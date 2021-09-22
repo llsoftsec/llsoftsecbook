@@ -1,0 +1,24 @@
+name: Build book with docker container CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: build_pdfs_with_docker.sh
+      run: ./build_pdfs_with_docker.sh
+
+    - name: Archive PDFs
+      uses: actions/upload-artifact@v2
+      with:
+        name: PDFs
+        path: build/*.pdf
