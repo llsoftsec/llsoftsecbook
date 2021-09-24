@@ -7,8 +7,7 @@ documentclass: report
 papersize: A4
 ...
 
-Introduction
-============
+# Introduction
 
 Compilers, assemblers and similar tools generate all the binary code that
 processors execute.  It is no surprise then that for security analysis and
@@ -52,8 +51,7 @@ the focus is on compiler developers, we expect that this book will also be
 useful to other people working on low-level software.
 
 
-How this book is created
-------------------------
+## How this book is created
 
 The idea for this book emerged out of a frustration of not finding a good
 overview on this topic. Kristof Beyls and Georgia Kouveli, both compiler
@@ -86,18 +84,13 @@ encourage feedback, both positive and constructive criticisms.  We prefer
 feedback to be received through https://github.com/llsoftsec/llsoftsecbook.
 
 
-Memory vulnerability based attacks and mitigations
-==================================================
+# Memory vulnerability based attacks and mitigations
 
-Physical access side channel attacks
-====================================
+# Physical access side channel attacks
 
-Remote access side channel attacks
-==================================
+# Remote access side channel attacks
 
-Other security topics relevant for compiler developers
-======================================================
+# Other security topics relevant for compiler developers
 
-Appendix: contribution guidelines
-=================================
+# Appendix: contribution guidelines
 
