@@ -40,7 +40,7 @@ RUN cd /root && \
 # 3. Add texlive binaries to PATH so they can be used easily.
 ENV PATH=/texlive/bin:$PATH
 # 4. install latex too (the minimal scheme selected above does not install latex)
-RUN tlmgr install latex latex-bin
+RUN tlmgr install latex latex-bin latexmk
 # 5. install extra latex packages needed for pandoc:
 RUN tlmgr install amsfonts amsmath lm unicode-math iftex listings fancyvrb booktabs graphics hyperref xcolor ulem geometry setspace babel upquote microtype parskip xurl bookmark footnotehyper mdwtools kvoptions etoolbox pdftexcmds infwarerr
 
