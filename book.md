@@ -5,6 +5,12 @@ copyright:
 title: 'Low Level Software Security for Compiler Developers'
 documentclass: report
 papersize: A4
+header-includes:
+- |
+  ```{=latex}
+  \usepackage{makeidx}
+  \makeindex
+  ```
 ...
 
 # Introduction
@@ -94,3 +100,4 @@ feedback to be received through https://github.com/llsoftsec/llsoftsecbook.
 
 # Appendix: contribution guidelines
 
+\printindex
