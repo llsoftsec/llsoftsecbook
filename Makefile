@@ -15,7 +15,7 @@ build:
 	mkdir build
 
 build/book.tex: book.md Makefile build
-	pandoc $< -t latex -o $@ $(PANDOCFLAGS)
+	pandoc $< -t latex --filter pandoc-citeproc -o $@ $(PANDOCFLAGS)
 
 build/book.pdf: build/book.tex Makefile build
 	cd build && \

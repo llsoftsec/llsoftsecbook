@@ -5,6 +5,8 @@ copyright:
 title: 'Low Level Software Security for Compiler Developers'
 documentclass: report
 papersize: A4
+bibliography:
+- book.bib
 header-includes:
 - |
   ```{=latex}
@@ -121,7 +123,7 @@ feedback to be received through https://github.com/llsoftsec/llsoftsecbook.
 
 \missingcontent{Write section on securely clearing memory in C/C++ and undefined behaviour.}
 
-# Appendix: contribution guidelines
+# Appendix: contribution guidelines {-}
 
 \missingcontent{Write chapter on contribution guidelines.
  These should include at least: project locaton on github; how to create pull requests/issues.
@@ -131,3 +133,7 @@ feedback to be received through https://github.com/llsoftsec/llsoftsecbook.
 \printindex
 
 \listoftodos
+
+# References {-}
+::: {#refs}
+:::
