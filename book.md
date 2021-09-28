@@ -10,10 +10,18 @@ header-includes:
   ```{=latex}
   \usepackage{makeidx}
   \makeindex
-  \usepackage[]{todonotes}
+  \newcounter{TodoCounter}
+  \usepackage[backgroundcolor=white,linecolor=black]{todonotes}
   \let\oldtodo\todo
-  \renewcommand{\todo}[1]{\oldtodo{TODO: #1}}
-  \newcommand{\missingcontent}[1]{\oldtodo[inline]{TODO: #1}}
+  \usepackage{bclogo}%  \bcpanchant
+  \renewcommand{\todo}[1]{
+    \stepcounter{TodoCounter}
+    \oldtodo[caption={\arabic{TodoCounter}. #1}]{\bcpanchant #1}
+  }
+  \newcommand{\missingcontent}[1]{
+    \stepcounter{TodoCounter}
+    \oldtodo[inline,caption={\arabic{TodoCounter}. #1}]{\bcpanchant \textit{#1}}
+  }
   ```
 ...
 
