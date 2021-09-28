@@ -43,6 +43,8 @@ ENV PATH=/texlive/bin:$PATH
 RUN tlmgr install latex latex-bin latexmk
 # 5. install extra latex packages needed for pandoc:
 RUN tlmgr install amsfonts amsmath lm unicode-math iftex listings fancyvrb booktabs graphics hyperref xcolor ulem geometry setspace babel upquote microtype parskip xurl bookmark footnotehyper mdwtools kvoptions etoolbox pdftexcmds infwarerr
+# 6. install extra packages needed for the book specifically:
+RUN tlmgr install todonotes epstopdf-pkg
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

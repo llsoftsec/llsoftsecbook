@@ -10,6 +10,9 @@ header-includes:
   ```{=latex}
   \usepackage{makeidx}
   \makeindex
+  \usepackage[]{todonotes}
+  \let\oldtodo\todo
+  \renewcommand{\todo}[1]{\oldtodo{TODO: #1}}
   ```
 ...
 
@@ -101,3 +104,5 @@ feedback to be received through https://github.com/llsoftsec/llsoftsecbook.
 # Appendix: contribution guidelines
 
 \printindex
+
+\listoftodos
