@@ -13,6 +13,7 @@ header-includes:
   \usepackage[]{todonotes}
   \let\oldtodo\todo
   \renewcommand{\todo}[1]{\oldtodo{TODO: #1}}
+  \newcommand{\missingcontent}[1]{\oldtodo[inline]{TODO: #1}}
   ```
 ...
 
@@ -92,16 +93,32 @@ As a reader, you can also contribute to making this book better.  We highly
 encourage feedback, both positive and constructive criticisms.  We prefer
 feedback to be received through https://github.com/llsoftsec/llsoftsecbook.
 
-
+\missingcontent{Add section describing the structure of the rest of the book.}
+ 
 # Memory vulnerability based attacks and mitigations
+
+\missingcontent{Write chapter on memory vulnerabilities and mitigation.}
 
 # Physical access side channel attacks
 
+\missingcontent{Write chapter on physical access side channel attacks.}
+
 # Remote access side channel attacks
+
+\missingcontent{Write chapter on remote access side channel attacks.}
 
 # Other security topics relevant for compiler developers
 
+\missingcontent{Write chapter with other security topics.}
+
+\missingcontent{Write section on securely clearing memory in C/C++ and undefined behaviour.}
+
 # Appendix: contribution guidelines
+
+\missingcontent{Write chapter on contribution guidelines.
+ These should include at least: project locaton on github; how to create pull requests/issues.
+ Where do we discuss - mailing list? Grammar and writing style guidelines.
+ How to use todos and index.}
 
 \printindex
 
