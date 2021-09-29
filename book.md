@@ -115,7 +115,39 @@ feedback to be received through https://github.com/llsoftsec/llsoftsecbook.
 
 # Remote access side channel attacks
 
-\missingcontent{Write chapter on remote access side channel attacks.}
+This chapter covers side channel attacks for which the attacker does not need
+physical access to the hardware.\todo{Define side channel better.}
+
+## Timing attacks
+
+An implementation of a cryptographic algorithm can leak information about the
+data it processes if its run time is influenced by the value of the processed
+data. Attacks making use of this are called timing attacks\index{timing
+attacks}.
+
+The main mitigation against such attacks consists of carefully implementing the
+algorithm such that the execution time remains independent of the processed
+data. This can be done by making sure that both:
+
+a) The control flow, i.e. the trace of instructions executed, does not change
+   depending on the processed data. This guarantees that every time the
+   algorithm runs, exactly the same sequence of instructions is executed,
+   independent of the processed data.
+
+b) The instructions used to implement the algorithm are from the subset of
+   instructions for which the execution time is known to not depend on the data
+   values it processes.
+   
+   For example, in the Arm architecture, the Armv8.4-A
+   [DIT extension](https://developer.arm.com/documentation/ddi0595/2021-06/AArch64-Registers/DIT--Data-Independent-Timing)
+   guarantees that execution time is data-independent for a subset of the
+   AArch64 instructions.
+
+   By ensuring that the extension is enabled and only instructions in the subset
+   are used, data-independent execution time is guaranteed. At the moment, the
+   authors do not know of a compiler implementation that actively helps to
+   guarantee that only the instructions in the subset are used in specific
+   places in a program.
 
 # Other security topics relevant for compiler developers
 
