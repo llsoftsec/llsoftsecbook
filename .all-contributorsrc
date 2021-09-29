@@ -37,6 +37,16 @@
         "review",
         "ideas"
       ]
+    },
+    {
+      "login": "statham-arm",
+      "name": "Simon Tatham",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54840944?v=4",
+      "profile": "https://github.com/statham-arm",
+      "contributions": [
+        "review",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
