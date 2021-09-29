@@ -1,6 +1,6 @@
 # llsoftsecbook
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
@@ -33,6 +33,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/kbeyls"><img src="https://avatars.githubusercontent.com/u/19591946?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kristof Beyls</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=kbeyls" title="Tests">⚠️</a> <a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=kbeyls" title="Code">💻</a> <a href="#content-kbeyls" title="Content">🖋</a> <a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=kbeyls" title="Documentation">📖</a> <a href="#ideas-kbeyls" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-kbeyls" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    <td align="center"><a href="http://tubafranz.me/"><img src="https://avatars.githubusercontent.com/u/25690309?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Francesco Petrogalli</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/pulls?q=is%3Apr+reviewed-by%3Afpetrogalli" title="Reviewed Pull Requests">👀</a></td>
   </tr>
 </table>
 
