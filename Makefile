@@ -14,7 +14,7 @@ clean:
 build:
 	mkdir build
 
-build/book.tex: book.md Makefile build
+build/book.tex: book.md book.bib Makefile build
 	pandoc $< -t latex --filter pandoc-citeproc -o $@ $(PANDOCFLAGS)
 
 build/book.pdf: build/book.tex Makefile build

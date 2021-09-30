@@ -144,10 +144,22 @@ b) The instructions used to implement the algorithm are from the subset of
    AArch64 instructions.
 
    By ensuring that the extension is enabled and only instructions in the subset
-   are used, data-independent execution time is guaranteed. At the moment, the
-   authors do not know of a compiler implementation that actively helps to
-   guarantee that only the instructions in the subset are used in specific
-   places in a program.
+   are used, data-independent execution time is guaranteed.
+
+At the moment, we do not know of a compiler implementation that actively helps
+to guarantee both (a) and (b). A great reference giving practical advice on how
+to achieve (a), (b) and more security hardening properties specific for
+cryptographic kernels is found in [@Pornin2018].
+
+As discussed in [@Pornin2018], when implementing cryptographic algorithms, you
+also need to keep cache side channel attacks in mind, which are discussed in the
+[section on cache side channel attacks](#cache-side-channel-attacks).
+
+## Cache side channel attacks
+
+\missingcontent{Write section on cache side channel attacks. See
+\href{https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031}{the first comment on PR24}
+for suggestions of what this should contain.}
 
 # Other security topics relevant for compiler developers
 
