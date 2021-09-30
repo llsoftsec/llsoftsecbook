@@ -1,0 +1,19 @@
+/* Do not show bullet points for TOC entries: */
+#TOC ::marker { content: none; }
+/* Put the table-of-contents in 30%-ish wide left column. */
+#TOC {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 28%;
+}
+/* Put the main text in a 50%-ish wide column next to the TOC. */
+body {
+  position: relative;
+  left: 30%;
+  width: 50%;
+}
+/* Use a sans-serif font: */
+body {
+  font-family: sans-serif;
+}

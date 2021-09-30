@@ -6,13 +6,23 @@ PANDOCFLAGS = \
 	      --number-sections \
 	      --standalone
 
-.PHONY: all clean
-all: build/book.pdf
+.PHONY: all clean pdf html
+all: pdf html
+pdf: build/book.pdf
+html: build/book.html build/default.css
 clean:
 	rm -rf build
 
 build:
 	mkdir build
+
+build/default.css: default.css Makefile
+	cp default.css build/default.css
+
+build/book.html: book.md book.bib Makefile build
+	pandoc $< -t html --filter pandoc-citeproc \
+		-M css=default.css \
+		-o $@ $(PANDOCFLAGS)
 
 build/book.tex: book.md book.bib Makefile build
 	pandoc $< -t latex --filter pandoc-citeproc -o $@ $(PANDOCFLAGS)
