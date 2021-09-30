@@ -7,14 +7,17 @@ PANDOCFLAGS = \
 	      --standalone
 
 .PHONY: all clean
-all: build/book.pdf
+all: build/book.pdf build/book.html
 clean:
 	rm -rf build
 
 build:
 	mkdir build
 
-build/book.tex: book.md Makefile build
+build/book.html: book.md book.bib Makefile build
+	pandoc $< -t html --filter pandoc-citeproc -o $@ $(PANDOCFLAGS)
+
+build/book.tex: book.md book.bib Makefile build
 	pandoc $< -t latex --filter pandoc-citeproc -o $@ $(PANDOCFLAGS)
 
 build/book.pdf: build/book.tex Makefile build
