@@ -14,11 +14,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: build_pdfs_with_docker.sh
-      run: ./build_pdfs_with_docker.sh
+    - name: build
+      run: ./build_with_docker.sh
 
-    - name: Archive PDFs
+    - name: Archive PDF and HTML output
       uses: actions/upload-artifact@v2
       with:
-        name: PDFs
-        path: build/*.pdf
+        name: HTML and PDF books
+        path: |
+          build/*.pdf
+          build/*.html
