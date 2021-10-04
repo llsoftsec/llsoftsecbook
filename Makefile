@@ -9,20 +9,23 @@ PANDOCFLAGS = \
 .PHONY: all clean pdf html
 all: pdf html
 pdf: build/book.pdf
-html: build/book.html build/default.css
+html: build/book.html build/default.css build/index.html
 clean:
 	rm -rf build
 
 build:
 	mkdir build
 
-build/default.css: default.css Makefile
+build/default.css: default.css Makefile build
 	cp default.css build/default.css
 
 build/book.html: book.md book.bib Makefile build
 	pandoc $< -t html --filter pandoc-citeproc \
 		-M css=default.css \
 		-o $@ $(PANDOCFLAGS)
+
+build/index.html: build/book.html build
+	cp build/book.html build/index.html
 
 build/book.tex: book.md book.bib Makefile build
 	pandoc $< -t latex --filter pandoc-citeproc -o $@ $(PANDOCFLAGS)

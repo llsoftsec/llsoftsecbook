@@ -1,4 +1,4 @@
-name: Build book with docker container CI
+name: Build
 
 on:
   push:
@@ -25,3 +25,12 @@ jobs:
           build/*.pdf
           build/*.html
           build/*.css
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      # Only publish the produced book when this was triggered on the main branch,
+      # and as part of a push (not as part of a pull request).
+      if: ${{ github.ref == 'refs/heads/main'  && github.event_name == 'push' }}
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build
