@@ -1,0 +1,8 @@
+\contentsline {todo}{1. Add section describing the structure of the rest of the book.}{3}{section*.2}%
+\contentsline {todo}{2. Write chapter on memory vulnerabilities and mitigation.}{4}{section*.3}%
+\contentsline {todo}{3. Write chapter on physical access side channel attacks.}{5}{section*.4}%
+\contentsline {todo}{4. Define side channel better.}{6}{section*.5}%
+\contentsline {todo}{5. Write section on cache side channel attacks. See \href {https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031}{the first comment on PR24} for suggestions of what this should contain.}{7}{section*.6}%
+\contentsline {todo}{6. Write chapter with other security topics.}{8}{section*.7}%
+\contentsline {todo}{7. Write section on securely clearing memory in C/C++ and undefined behaviour.}{8}{section*.8}%
+\contentsline {todo}{8. Write chapter on contribution guidelines. These should include at least: project locaton on github; how to create pull requests/issues. Where do we discuss - mailing list? Grammar and writing style guidelines. How to use todos and index.}{9}{section*.10}%

@@ -1,0 +1,10 @@
+\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}How this book is created}{3}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Memory vulnerability based attacks and mitigations}{4}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Physical access side channel attacks}{5}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Remote access side channel attacks}{6}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Timing attacks}{6}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Cache side channel attacks}{7}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Other security topics relevant for compiler developers}{8}{chapter.5}%
+\contentsline {chapter}{Appendix: contribution guidelines}{9}{chapter*.9}%
+\contentsline {chapter}{References}{12}{chapter*.12}%
