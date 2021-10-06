@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.10.4)  4 OCT 2021 14:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.10.6)  6 OCT 2021 12:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1078,42 +1078,60 @@ Non-PDF special ignored!
 <special> ps:tx@Dict begin  gsave STV CP T /ps@refangle 0.  def grestore  e...
 Non-PDF special ignored!
 <special> ps:tx@Dict begin  gsave STV CP T /ps@rot 0 def grestore  end
-{/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./book.toc
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 2.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 2.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 2.
+{/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (31.3575pt too wide) in paragraph at lines 80--84
+\T1/lmr/m/n/10 (-20) Li-cense. To view a copy of this li-cense, visit http://cr
+eativecommons.org/licenses/by/4.0/
+ []
+
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 8
+5.
+(/texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-\tf@toc=\write6
-\openout6 = `book.toc'.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 86.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 86.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 86.
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--87
+
+ []
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.81 \chapter{Introduction}\label{introduction}}
-                                                 [1
+l.87 \clearpage
+                [1
+
+] (./book.toc)
+\tf@toc=\write6
+\openout6 = `book.toc'.
+
+ [2
+
 
 ]
 Chapter 1.
-[2
+[3
 
 ]
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 166.
+ine 179.
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-[3]
+[4]
 Chapter 2.
 File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [4
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [5
 
 ]
 Chapter 3.
 File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [5
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [6
 
 ]
 Chapter 4.
@@ -1121,58 +1139,59 @@ File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [6
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [7
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [7]
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [8]
 Chapter 5.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [8
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [9
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-(./book.ind [9
+(./book.ind [10
 
-] [10
+] [11
 
 
 ]) (./book.tdo)
 \tf@tdo=\write7
 \openout7 = `book.tdo'.
 
- [11
+ [12
 
 
-] [12
+] [13
 
 ] (./book.aux)
 Package rerunfilecheck Info: File `book.out' has not changed.
 (rerunfilecheck)             Checksum: BAE192BE87A668BDA753FB9CE2C2819E;2019.
  ) 
 Here is how much of TeX's memory you used:
- 25922 strings out of 480962
- 459929 string characters out of 5908147
- 831260 words of memory out of 5000000
- 42445 multiletter control sequences out of 15000+600000
- 466885 words of font info for 124 fonts, out of 8000000 for 9000
+ 25960 strings out of 480962
+ 460831 string characters out of 5908147
+ 831374 words of memory out of 5000000
+ 42474 multiletter control sequences out of 15000+600000
+ 467380 words of font info for 127 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  128i,12n,130p,645b,1198s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</texlive/2020/texmf-d
-ist/fonts/type1/public/lm/lmbx10.pfb></texlive/2020/texmf-dist/fonts/type1/publ
-ic/lm/lmbx12.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmr10.pfb></te
-xlive/2020/texmf-dist/fonts/type1/public/lm/lmr17.pfb></texlive/2020/texmf-dist
-/fonts/type1/public/lm/lmri10.pfb>
-Output written on book.pdf (13 pages, 160616 bytes).
+{/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/texlive/2020/texmf-d
+ist/fonts/enc/dvips/lm/lm-ts1.enc}</texlive/2020/texmf-dist/fonts/type1/public/
+lm/lmbx10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></texl
+ive/2020/texmf-dist/fonts/type1/public/lm/lmr10.pfb></texlive/2020/texmf-dist/f
+onts/type1/public/lm/lmr17.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/
+lmri10.pfb>
+Output written on book.pdf (14 pages, 162702 bytes).
 PDF statistics:
- 219 PDF objects out of 1000 (max. 8388607)
- 181 compressed objects within 2 object streams
- 47 named destinations out of 1000 (max. 500000)
- 35005 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 227 PDF objects out of 1000 (max. 8388607)
+ 188 compressed objects within 2 object streams
+ 48 named destinations out of 1000 (max. 500000)
+ 37053 words of extra memory for PDF output out of 42996 (max. 10000000)
 
