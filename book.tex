@@ -1,5 +1,6 @@
 \PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
 \PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
 %
 \documentclass[a4paper,]{report}
 \usepackage{lmodern}
@@ -27,10 +28,15 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 }
+\usepackage{xcolor}
 \usepackage{hyperref}
 \hypersetup{
             pdftitle={Low Level Software Security for Compiler Developers},
-            pdfborder={0 0 0},
+            colorlinks=true,
+            linkcolor=Maroon,
+            filecolor=Maroon,
+            citecolor=Blue,
+            urlcolor=Blue,
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
@@ -87,6 +93,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 \clearpage
 
 {
+\hypersetup{linkcolor=}
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
@@ -169,12 +176,12 @@ to write up a good summary for this book.
 Second, they very much invite and welcome contributions. If you're
 interested in potentially contributing content, please go to the home
 location for the open source project at
-https://github.com/llsoftsec/llsoftsecbook.
+\url{https://github.com/llsoftsec/llsoftsecbook}.
 
 As a reader, you can also contribute to making this book better. We
 highly encourage feedback, both positive and constructive criticisms. We
 prefer feedback to be received through
-https://github.com/llsoftsec/llsoftsecbook.
+\url{https://github.com/llsoftsec/llsoftsecbook}.
 
 \missingcontent{Add section describing the structure of the rest of the book.}
 
@@ -235,11 +242,12 @@ both:
 At the moment, we do not know of a compiler implementation that actively
 helps to guarantee both (a) and (b). A great reference giving practical
 advice on how to achieve (a), (b) and more security hardening properties
-specific for cryptographic kernels is found in (Pornin 2018).
+specific for cryptographic kernels is found in (Pornin
+\protect\hyperlink{ref-Pornin2018}{2018}).
 
-As discussed in (Pornin 2018), when implementing cryptographic
-algorithms, you also need to keep cache side channel attacks in mind,
-which are discussed in the
+As discussed in (Pornin \protect\hyperlink{ref-Pornin2018}{2018}), when
+implementing cryptographic algorithms, you also need to keep cache side
+channel attacks in mind, which are discussed in the
 \protect\hyperlink{cache-side-channel-attacks}{section on cache side
 channel attacks}.
 

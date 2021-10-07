@@ -59,8 +59,8 @@
 <p>As you read this, the book remains unfinished. This book may well never be finished, as new vulnerabilities continue to be discovered regularly. Our hope is that developing the book as an open source project will allow for it to continue to evolve and improve. The open source development process of this book increases the likelihood that it remains relevant as new vulnerabilities and mitigations emerge.</p>
 <p>Kristof and Georgia, the initial authors, are far from experts on all possible vulnerabilities. So what is the plan to get high quality content to cover all relevant topics? It is two-fold.</p>
 <p>First, by studying specific topics, they hope to gain enough knowledge to write up a good summary for this book.</p>
-<p>Second, they very much invite and welcome contributions. If you’re interested in potentially contributing content, please go to the home location for the open source project at https://github.com/llsoftsec/llsoftsecbook.</p>
-<p>As a reader, you can also contribute to making this book better. We highly encourage feedback, both positive and constructive criticisms. We prefer feedback to be received through https://github.com/llsoftsec/llsoftsecbook.</p>
+<p>Second, they very much invite and welcome contributions. If you’re interested in potentially contributing content, please go to the home location for the open source project at <a href="https://github.com/llsoftsec/llsoftsecbook" class="uri">https://github.com/llsoftsec/llsoftsecbook</a>.</p>
+<p>As a reader, you can also contribute to making this book better. We highly encourage feedback, both positive and constructive criticisms. We prefer feedback to be received through <a href="https://github.com/llsoftsec/llsoftsecbook" class="uri">https://github.com/llsoftsec/llsoftsecbook</a>.</p>
 
 <h1 id="memory-vulnerability-based-attacks-and-mitigations"><span class="header-section-number">2</span> Memory vulnerability based attacks and mitigations</h1>
 
@@ -77,8 +77,8 @@
 <p>For example, in the Arm architecture, the Armv8.4-A <a href="https://developer.arm.com/documentation/ddi0595/2021-06/AArch64-Registers/DIT--Data-Independent-Timing">DIT extension</a> guarantees that execution time is data-independent for a subset of the AArch64 instructions.</p>
 <p>By ensuring that the extension is enabled and only instructions in the subset are used, data-independent execution time is guaranteed.</p></li>
 </ol>
-<p>At the moment, we do not know of a compiler implementation that actively helps to guarantee both (a) and (b). A great reference giving practical advice on how to achieve (a), (b) and more security hardening properties specific for cryptographic kernels is found in <span class="citation" data-cites="Pornin2018">(Pornin 2018)</span>.</p>
-<p>As discussed in <span class="citation" data-cites="Pornin2018">(Pornin 2018)</span>, when implementing cryptographic algorithms, you also need to keep cache side channel attacks in mind, which are discussed in the <a href="#cache-side-channel-attacks">section on cache side channel attacks</a>.</p>
+<p>At the moment, we do not know of a compiler implementation that actively helps to guarantee both (a) and (b). A great reference giving practical advice on how to achieve (a), (b) and more security hardening properties specific for cryptographic kernels is found in <span class="citation" data-cites="Pornin2018">(Pornin <a href="#ref-Pornin2018">2018</a>)</span>.</p>
+<p>As discussed in <span class="citation" data-cites="Pornin2018">(Pornin <a href="#ref-Pornin2018">2018</a>)</span>, when implementing cryptographic algorithms, you also need to keep cache side channel attacks in mind, which are discussed in the <a href="#cache-side-channel-attacks">section on cache side channel attacks</a>.</p>
 <h2 id="cache-side-channel-attacks"><span class="header-section-number">4.2</span> Cache side channel attacks</h2>
 
 <h1 id="other-security-topics-relevant-for-compiler-developers"><span class="header-section-number">5</span> Other security topics relevant for compiler developers</h1>
