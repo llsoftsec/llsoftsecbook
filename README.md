@@ -2,7 +2,7 @@
 
 [![Build book with docker container CI](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml/badge.svg)](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
@@ -38,6 +38,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://tubafranz.me/"><img src="https://avatars.githubusercontent.com/u/25690309?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Francesco Petrogalli</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/pulls?q=is%3Apr+reviewed-by%3Afpetrogalli" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/g-kouv"><img src="https://avatars.githubusercontent.com/u/6901396?v=4?s=100" width="100px;" alt=""/><br /><sub><b>g-kouv</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/pulls?q=is%3Apr+reviewed-by%3Ag-kouv" title="Reviewed Pull Requests">👀</a> <a href="#ideas-g-kouv" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=g-kouv" title="Code">💻</a> <a href="#content-g-kouv" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/statham-arm"><img src="https://avatars.githubusercontent.com/u/54840944?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Simon Tatham</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/pulls?q=is%3Apr+reviewed-by%3Astatham-arm" title="Reviewed Pull Requests">👀</a> <a href="#ideas-statham-arm" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/sam-ellis"><img src="https://avatars.githubusercontent.com/u/6695726?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sam Ellis</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=sam-ellis" title="Code">💻</a> <a href="#content-sam-ellis" title="Content">🖋</a></td>
   </tr>
 </table>
 
