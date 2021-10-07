@@ -5,6 +5,8 @@ copyright:
 title: 'Low Level Software Security for Compiler Developers'
 documentclass: report
 papersize: A4
+colorlinks: true
+link-citations: true
 bibliography:
 - book.bib
 header-includes:
@@ -97,11 +99,11 @@ up a good summary for this book.
 
 Second, they very much invite and welcome contributions. If you're interested
 in potentially contributing content, please go to the home location for the
-open source project at https://github.com/llsoftsec/llsoftsecbook.
+open source project at <https://github.com/llsoftsec/llsoftsecbook>.
 
 As a reader, you can also contribute to making this book better.  We highly
 encourage feedback, both positive and constructive criticisms.  We prefer
-feedback to be received through https://github.com/llsoftsec/llsoftsecbook.
+feedback to be received through <https://github.com/llsoftsec/llsoftsecbook>.
 
 \missingcontent{Add section describing the structure of the rest of the book.}
  
