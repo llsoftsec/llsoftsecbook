@@ -109,7 +109,73 @@ feedback to be received through <https://github.com/llsoftsec/llsoftsecbook>.
  
 # Memory vulnerability based attacks and mitigations
 
-\missingcontent{Write chapter on memory vulnerabilities and mitigation.}
+## Introduction
+
+An important class of vulnerabilities arise due to memory access errors, such as
+buffer overflows, use-after-free accesses and null pointer dereferences. An
+attacker can exploit such vulnerabilities to leak sensitive data or
+overwrite critical memory locations and gain control of the vulnerable program.
+These types of vulnerabilities most commonly occur due to programming errors when
+using languages such as C/C++, which do not provide mechanisms to protect the
+integrity of memory accesses by default.
+
+Memory vulnerabilities have a long history. The Morris worm in 1988 was the
+first widely publicized attack exploiting a buffer overflow. Later, in the
+mid-90s a few famous write-ups describing buffer overflows appeared
+[@AlephOne1996].  Stack overflows were mitigated with stack canaries and
+non-executable stacks, but attackers answered with more ingenious ways to
+bypass these mitigations: code reuse attacks, starting from simple attacks like
+return-into-libc [@Solar1997] and leading up to Return-Oriented Programming
+[@Shacham2007] and even more complex techniques.
+
+To defend against code reuse attacks, the defensive security side came up with
+address space layout randomization (ASLR) and control-flow integrity (CFI)
+measures. The race continues to this day. Each newly deployed mitigation
+results in attempts, often successful, to bypass it, or in alternative, more
+complex exploitation techniques, and even tools to automate them.
+
+Memory safe [@Hicks2014] languages are designed with prevention of such
+vulnerabilities in mind and use techniques such as bounds checking and
+automatic memory management. If these languages promise to eliminate
+memory vulnerabilities, why are we still discussing this topic?
+
+On one hand, C and C++ remain very popular languages, particular in the
+implementation of low-level software. On the other hand, programs written in
+memory safe languages can themselves be vulnerable to memory errors as a result
+of bugs in their implementation. Can we fix the problem by switching to memory
+safe languages for compiler and runtime implementation? Even if that were as
+simple as it sounds, unfortunately there are types of programming errors that
+these languages cannot protect against.
+
+Given the rich history of memory vulnerabilities and mitigations and the active
+developments in this area, compiler developers are likely to encounter some of
+these issues over the course of their careers. This chapter aims to serve as an
+introduction to this area. We start with a discussion of exploitation
+primitives, which can be useful when discussing threat models. We then continue
+with a more detailed discussion of the various types of vulnerabilities, along
+with their mitigations, presented in a rough chronological order of their
+appearance (and therefore complexity).
+
+## Exploitation primitives
+\missingcontent{Discuss exploitation primitives}
+
+## Stack overflows
+\missingcontent{Describe stack overflows and mitigations}
+
+## Code reuse attacks
+\missingcontent{Discuss ROP, JOP, COOP and mitigations (ASLR, CFI etc)}
+
+## Non-control data exploits
+\missingcontent{Discuss data-oriented programming and other attacks}
+
+## Hardware support for protection against memory vulnerabilities
+\missingcontent{Describe architectural features for mitigating memory vulnerabilities and for CFI}
+
+## Other issues
+\missingcontent{Mention other issues, e.g. sigreturn-oriented programming}
+
+## JIT compiler vulnerabilities
+\missingcontent{Write section on JIT compiler vulnerabilities}
 
 # Physical access side-channel attacks
 
