@@ -49,6 +49,16 @@
         "review",
         "ideas"
       ]
+    },
+    {
+      "login": "sam-ellis",
+      "name": "Sam Ellis",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6695726?v=4",
+      "profile": "https://github.com/sam-ellis",
+      "contributions": [
+        "code",
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
