@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.10.7)  7 OCT 2021 11:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.10.8)  8 OCT 2021 08:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1180,7 +1180,7 @@ File: bc-aux-301.mps Graphic file (type mps)
 
 ] (./book.aux)
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: BAE192BE87A668BDA753FB9CE2C2819E;2019.
+(rerunfilecheck)             Checksum: 5A2E69D33AE0A7A4E600350FD93EE92A;2010.
  ) 
 Here is how much of TeX's memory you used:
  26044 strings out of 480962
@@ -1196,7 +1196,7 @@ lm/lmbx10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></texl
 ive/2020/texmf-dist/fonts/type1/public/lm/lmr10.pfb></texlive/2020/texmf-dist/f
 onts/type1/public/lm/lmr17.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/
 lmri10.pfb>
-Output written on book.pdf (14 pages, 163086 bytes).
+Output written on book.pdf (14 pages, 163203 bytes).
 PDF statistics:
  231 PDF objects out of 1000 (max. 8388607)
  192 compressed objects within 2 object streams

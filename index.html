@@ -34,10 +34,10 @@
 <li><a href="#how-this-book-is-created"><span class="toc-section-number">1.1</span> How this book is created</a></li>
 </ul></li>
 <li><a href="#memory-vulnerability-based-attacks-and-mitigations"><span class="toc-section-number">2</span> Memory vulnerability based attacks and mitigations</a></li>
-<li><a href="#physical-access-side-channel-attacks"><span class="toc-section-number">3</span> Physical access side channel attacks</a></li>
-<li><a href="#remote-access-side-channel-attacks"><span class="toc-section-number">4</span> Remote access side channel attacks</a><ul>
+<li><a href="#physical-access-side-channel-attacks"><span class="toc-section-number">3</span> Physical access side-channel attacks</a></li>
+<li><a href="#remote-access-side-channel-attacks"><span class="toc-section-number">4</span> Remote access side-channel attacks</a><ul>
 <li><a href="#timing-attacks"><span class="toc-section-number">4.1</span> Timing attacks</a></li>
-<li><a href="#cache-side-channel-attacks"><span class="toc-section-number">4.2</span> Cache side channel attacks</a></li>
+<li><a href="#cache-side-channel-attacks"><span class="toc-section-number">4.2</span> Cache side-channel attacks</a></li>
 </ul></li>
 <li><a href="#other-security-topics-relevant-for-compiler-developers"><span class="toc-section-number">5</span> Other security topics relevant for compiler developers</a></li>
 <li><a href="#appendix-contribution-guidelines">Appendix: contribution guidelines</a></li>
@@ -64,10 +64,10 @@
 
 <h1 id="memory-vulnerability-based-attacks-and-mitigations"><span class="header-section-number">2</span> Memory vulnerability based attacks and mitigations</h1>
 
-<h1 id="physical-access-side-channel-attacks"><span class="header-section-number">3</span> Physical access side channel attacks</h1>
+<h1 id="physical-access-side-channel-attacks"><span class="header-section-number">3</span> Physical access side-channel attacks</h1>
 
-<h1 id="remote-access-side-channel-attacks"><span class="header-section-number">4</span> Remote access side channel attacks</h1>
-<p>This chapter covers side channel attacks for which the attacker does not need physical access to the hardware.</p>
+<h1 id="remote-access-side-channel-attacks"><span class="header-section-number">4</span> Remote access side-channel attacks</h1>
+<p>This chapter covers side-channel attacks for which the attacker does not need physical access to the hardware.</p>
 <h2 id="timing-attacks"><span class="header-section-number">4.1</span> Timing attacks</h2>
 <p>An implementation of a cryptographic algorithm can leak information about the data it processes if its run time is influenced by the value of the processed data. Attacks making use of this are called timing attacks.</p>
 <p>The main mitigation against such attacks consists of carefully implementing the algorithm such that the execution time remains independent of the processed data. This can be done by making sure that both:</p>
@@ -78,8 +78,8 @@
 <p>By ensuring that the extension is enabled and only instructions in the subset are used, data-independent execution time is guaranteed.</p></li>
 </ol>
 <p>At the moment, we do not know of a compiler implementation that actively helps to guarantee both (a) and (b). A great reference giving practical advice on how to achieve (a), (b) and more security hardening properties specific for cryptographic kernels is found in <span class="citation" data-cites="Pornin2018">(Pornin <a href="#ref-Pornin2018">2018</a>)</span>.</p>
-<p>As discussed in <span class="citation" data-cites="Pornin2018">(Pornin <a href="#ref-Pornin2018">2018</a>)</span>, when implementing cryptographic algorithms, you also need to keep cache side channel attacks in mind, which are discussed in the <a href="#cache-side-channel-attacks">section on cache side channel attacks</a>.</p>
-<h2 id="cache-side-channel-attacks"><span class="header-section-number">4.2</span> Cache side channel attacks</h2>
+<p>As discussed in <span class="citation" data-cites="Pornin2018">(Pornin <a href="#ref-Pornin2018">2018</a>)</span>, when implementing cryptographic algorithms, you also need to keep cache side-channel attacks in mind, which are discussed in the <a href="#cache-side-channel-attacks">section on cache side-channel attacks</a>.</p>
+<h2 id="cache-side-channel-attacks"><span class="header-section-number">4.2</span> Cache side-channel attacks</h2>
 
 <h1 id="other-security-topics-relevant-for-compiler-developers"><span class="header-section-number">5</span> Other security topics relevant for compiler developers</h1>
 
