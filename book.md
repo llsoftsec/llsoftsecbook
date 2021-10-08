@@ -111,14 +111,14 @@ feedback to be received through <https://github.com/llsoftsec/llsoftsecbook>.
 
 \missingcontent{Write chapter on memory vulnerabilities and mitigation.}
 
-# Physical access side channel attacks
+# Physical access side-channel attacks
 
-\missingcontent{Write chapter on physical access side channel attacks.}
+\missingcontent{Write chapter on physical access side-channel attacks.}
 
-# Remote access side channel attacks
+# Remote access side-channel attacks
 
-This chapter covers side channel attacks for which the attacker does not need
-physical access to the hardware.\todo{Define side channel better.}
+This chapter covers side-channel attacks for which the attacker does not need
+physical access to the hardware.\todo{Define side-channel better.}
 
 ## Timing attacks
 
@@ -154,12 +154,12 @@ to achieve (a), (b) and more security hardening properties specific for
 cryptographic kernels is found in [@Pornin2018].
 
 As discussed in [@Pornin2018], when implementing cryptographic algorithms, you
-also need to keep cache side channel attacks in mind, which are discussed in the
-[section on cache side channel attacks](#cache-side-channel-attacks).
+also need to keep cache side-channel attacks in mind, which are discussed in the
+[section on cache side-channel attacks](#cache-side-channel-attacks).
 
-## Cache side channel attacks
+## Cache side-channel attacks
 
-\missingcontent{Write section on cache side channel attacks. See
+\missingcontent{Write section on cache side-channel attacks. See
 \href{https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031}{the first comment on PR24}
 for suggestions of what this should contain.}
 
