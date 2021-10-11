@@ -62,6 +62,16 @@
         "ideas",
         "review"
       ]
+    },
+    {
+      "login": "lyndon160",
+      "name": "Lyndon Fawcett",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5150703?v=4",
+      "profile": "https://www.lyndonfawcett.com",
+      "contributions": [
+        "bug",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
