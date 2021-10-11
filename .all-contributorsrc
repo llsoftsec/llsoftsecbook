@@ -57,7 +57,10 @@
       "profile": "https://github.com/sam-ellis",
       "contributions": [
         "code",
-        "content"
+        "content",
+        "bug",
+        "ideas",
+        "review"
       ]
     }
   ],
