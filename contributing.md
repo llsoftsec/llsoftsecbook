@@ -25,7 +25,7 @@ See https://github.com/llsoftsec/llsoftsecbook/blob/main/README.md#purpose
 ## Submitting ideas for new content, how to improve language, ...
 
 Please raise an issue at https://github.com/llsoftsec/llsoftsecbook/issues/. It
-may be a good idea to check if there isn't already an issue for what you're
+may be a good idea to check if there is already an issue for what you're
 planning to report.
 
 ## Submitting changes
@@ -64,33 +64,39 @@ communicate, please use [Discussions](<https://github.com/llsoftsec/llsoftsecboo
     are used in code projects, we use ``\todo`` macros to indicate an
     improvement that should be made later. We hope that by using ``\todo``,
     contributors will wrestle a bit less with writer's block. For now, to-dos
-    are only visible in the PDF output, where they are put in the margin. An example to-do looks as follows in the source:
+    are only visible in the PDF output, where they are put in the margin. An
+    example to-do looks as follows in the source:
     ``\todo{Also support \todo in the HTML output.}.``
 
     For completely missing sections of contents, use
     ``\missingcontent{A description of the missing content goes here.}``
 
 - For now, we keep all text content of the book in a single
-  [https://github.com/llsoftsec/llsoftsecbook/blob/main/book.md](book.md) file.
+  [book.md](https://github.com/llsoftsec/llsoftsecbook/blob/main/book.md) file.
 - When adding new content, please remember to:
   - Spell check your contributions. We use US English spelling.
   - Add \index as needed to make sure the index of the book remains up-to-date.
+- If the copyright owner of what you're adding is not already listed in the
+  header of
+  [book.md](https://github.com/llsoftsec/llsoftsecbook/blob/main/book.md) under
+  'copyright:', please add a SPDX-FileCopyrightText item.
+
 
 ### General style and grammar conventions
 
 - We use US English spelling.
 - We favor simple language over complicated language.
 - If in doubt, we'll consult the
-  [https://www.chicagomanualofstyle.org/home.html](Chicago Manual of Style) as
+  [Chicago Manual of Style](https://www.chicagomanualofstyle.org/home.html) as
   it is a de facto standard.
 
 ## How to build/test
-- See https://github.com/llsoftsec/llsoftsecbook/blob/main/README.md#build-instructions.
+- See <https://github.com/llsoftsec/llsoftsecbook/blob/main/README.md#build-instructions>.
 - The project has [CI
   setup](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml),
-  which check that the PDF and HTML versions of the book build without error
+  which checks that the PDF and HTML versions of the book build without error
   messages. It also publishes the top-of-tree version of the book at
-  https://llsoftsec.github.io/llsoftsecbook/.
+  <https://llsoftsec.github.io/llsoftsecbook/>.
 
 ## Attribution
 
