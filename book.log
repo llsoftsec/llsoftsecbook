@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.10.8)  8 OCT 2021 10:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.10.14)  14 OCT 2021 18:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1184,7 +1184,7 @@ Package rerunfilecheck Info: File `book.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  26044 strings out of 480962
- 462282 string characters out of 5908147
+ 462282 string characters out of 5908146
  841388 words of memory out of 5000000
  42548 multiletter control sequences out of 15000+600000
  467380 words of font info for 127 fonts, out of 8000000 for 9000
