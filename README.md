@@ -91,7 +91,7 @@ build/book.html if the build finishes successfully.
 
 ## Contributing
 
-Please find contribution guidelines in <https://github.com/llsoftsec/llsoftsecbook/contributing.md>.
+Please find contribution guidelines in <https://github.com/llsoftsec/llsoftsecbook/blob/main/contributing.md>.
 
 ## Contributors ✨
 
