@@ -109,52 +109,72 @@ feedback to be received through <https://github.com/llsoftsec/llsoftsecbook>.
  
 # Memory vulnerability based attacks and mitigations
 
-## Introduction
+## A bit of background on memory vulnerabilities
 
-An important class of vulnerabilities arise due to memory access errors, such as
-buffer overflows, use-after-free accesses and null pointer dereferences. An
-attacker can exploit such vulnerabilities to leak sensitive data or
-overwrite critical memory locations and gain control of the vulnerable program.
-These types of vulnerabilities most commonly occur due to programming errors when
-using languages such as C/C++, which do not provide mechanisms to protect the
-integrity of memory accesses by default.
+Memory access errors describe memory accesses that, although permitted by a
+program, were not intended by the programmer. These types of errors are usually
+defined [@Hicks2014] by explicitly listing their types, which include:
 
-Memory vulnerabilities have a long history. The Morris worm in 1988 was the
-first widely publicized attack exploiting a buffer overflow. Later, in the
-mid-90s a few famous write-ups describing buffer overflows appeared
-[@AlephOne1996].  Stack overflows were mitigated with stack canaries and
-non-executable stacks, but attackers answered with more ingenious ways to
-bypass these mitigations: code reuse attacks, starting from simple attacks like
-return-into-libc [@Solar1997] and leading up to Return-Oriented Programming
+  * buffer overflow
+  * null pointer dereference
+  * use after free
+  * use of uninitialized memory
+  * illegal free
+
+Memory vulnerabilities are an important class of vulnerabilities that arise due
+to these types of errors, and they most commonly occur due to programming
+mistakes when using languages such as C/C++. These languages do not provide
+mechanisms to protect against memory access errors by default. An attacker can
+exploit such vulnerabilities to leak sensitive data or overwrite critical
+memory locations and gain control of the vulnerable program.
+
+Memory vulnerabilities have a long history. The [Morris
+worm](https://en.wikipedia.org/wiki/Morris_worm) in 1988 was the first widely
+publicized attack exploiting a buffer overflow. Later, in the mid-90s, a few
+famous write-ups describing buffer overflows appeared [@AlephOne1996]. [Stack
+overflows](#stack-overflows) were mitigated with [stack
+canaries](#stack-overflows) and [non-executable stacks](#stack-overflows). The
+answer was more ingenious ways to bypass these mitigations: [code reuse
+attacks](#code-reuse-attacks), starting with attacks like
+[return-into-libc](#code-reuse-attacks) [@Solar1997]. Code reuse attacks later
+evolved to [Return-Oriented Programming (ROP)](#code-reuse-attacks)
 [@Shacham2007] and even more complex techniques.
 
-To defend against code reuse attacks, the defensive security side came up with
-address space layout randomization (ASLR) and control-flow integrity (CFI)
-measures. The race continues to this day. Each newly deployed mitigation
-results in attempts, often successful, to bypass it, or in alternative, more
-complex exploitation techniques, and even tools to automate them.
+To defend against code reuse attacks, the [Address Space Layout Randomization
+(ASLR)](#code-reuse-attacks) and [Control-Flow Integrity
+(CFI)](#code-reuse-attacks) measures were introduced. \todo{Refine section
+links used here and in the previous paragraph.} This interaction between
+offensive and defensive security research has been essential to improving
+security, and continues to this day. Each newly deployed mitigation results in
+attempts, often successful, to bypass it, or in alternative, more complex
+exploitation techniques, and even tools to automate them.
 
 Memory safe [@Hicks2014] languages are designed with prevention of such
 vulnerabilities in mind and use techniques such as bounds checking and
 automatic memory management. If these languages promise to eliminate
 memory vulnerabilities, why are we still discussing this topic?
 
-On one hand, C and C++ remain very popular languages, particular in the
+On the one hand, C and C++ remain very popular languages, particular in the
 implementation of low-level software. On the other hand, programs written in
 memory safe languages can themselves be vulnerable to memory errors as a result
-of bugs in their implementation. Can we fix the problem by switching to memory
-safe languages for compiler and runtime implementation? Even if that were as
-simple as it sounds, unfortunately there are types of programming errors that
-these languages cannot protect against.
+of bugs in how they are implemented, e.g. a bug in their compiler. Can we fix
+the problem by also using memory safe languages for the compiler and runtime
+implementation? Even if that were as simple as it sounds, unfortunately there
+are types of programming errors that these languages cannot protect against.
+For example, a logical error in the implementation of a compiler or runtime for
+a memory safe language can lead to a memory access error not being detected. We
+will see examples of such logic errors in compiler optimizations in a [later
+section](#jit-compiler-vulnerabilities).
 
 Given the rich history of memory vulnerabilities and mitigations and the active
 developments in this area, compiler developers are likely to encounter some of
 these issues over the course of their careers. This chapter aims to serve as an
 introduction to this area. We start with a discussion of exploitation
-primitives, which can be useful when discussing threat models. We then continue
-with a more detailed discussion of the various types of vulnerabilities, along
-with their mitigations, presented in a rough chronological order of their
-appearance (and therefore complexity).
+primitives, which can be useful when discussing threat models \todo{Discuss
+threat models elsewhere in book and refer to that section here}. We then
+continue with a more detailed discussion of the various types of
+vulnerabilities, along with their mitigations, presented in a rough
+chronological order of their appearance, and, therefore, complexity.
 
 ## Exploitation primitives
 \missingcontent{Discuss exploitation primitives}
