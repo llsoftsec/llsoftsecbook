@@ -14,18 +14,6 @@ header-includes:
   ```{=latex}
   \usepackage{makeidx}
   \makeindex
-  \newcounter{TodoCounter}
-  \usepackage[backgroundcolor=white,linecolor=black]{todonotes}
-  \let\oldtodo\todo
-  \usepackage{bclogo}%  \bcpanchant
-  \renewcommand{\todo}[1]{
-    \stepcounter{TodoCounter}
-    \oldtodo[caption={\arabic{TodoCounter}. #1}]{\bcpanchant #1}
-  }
-  \newcommand{\missingcontent}[1]{
-    \stepcounter{TodoCounter}
-    \oldtodo[inline,caption={\arabic{TodoCounter}. #1}]{\bcpanchant \textit{#1}}
-  }
   ```
 ...
 
@@ -105,20 +93,22 @@ As a reader, you can also contribute to making this book better.  We highly
 encourage feedback, both positive and constructive criticisms.  We prefer
 feedback to be received through <https://github.com/llsoftsec/llsoftsecbook>.
 
-\missingcontent{Add section describing the structure of the rest of the book.}
+- [ ] Add section describing the structure of the rest of the book.
  
 # Memory vulnerability based attacks and mitigations
 
-\missingcontent{Write chapter on memory vulnerabilities and mitigation.}
+- [ ] Write chapter on memory vulnerabilities and mitigation.
 
 # Physical access side-channel attacks
 
-\missingcontent{Write chapter on physical access side-channel attacks.}
+- [ ] Write chapter on physical access side-channel attacks.
 
 # Remote access side-channel attacks
 
 This chapter covers side-channel attacks for which the attacker does not need
-physical access to the hardware.\todo{Define side-channel better.}
+physical access to the hardware.
+
+- [ ] Define side-channel better.
 
 ## Timing attacks
 
@@ -159,28 +149,23 @@ also need to keep cache side-channel attacks in mind, which are discussed in the
 
 ## Cache side-channel attacks
 
-<!-- markdown-link-check-disable -->
-\missingcontent{Write section on cache side-channel attacks. See
-\href{https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031}{the first comment on PR24}
-for suggestions of what this should contain.}
-<!-- markdown-link-check-enable-->
+- [ ] Write section on cache side-channel attacks. See [the first comment](https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031) on #24
+      for suggestions of what this should contain.
 
 # Other security topics relevant for compiler developers
 
-\missingcontent{Write chapter with other security topics.}
+- [ ] Write chapter with other security topics.
 
-\missingcontent{Write section on securely clearing memory in C/C++ and undefined behaviour.}
+- [ ] Write section on securely clearing memory in C/C++ and undefined behaviour.
 
 # Appendix: contribution guidelines {-}
 
-\missingcontent{Write chapter on contribution guidelines.
+- [ ] Write chapter on contribution guidelines.
  These should include at least: project locaton on github; how to create pull requests/issues.
  Where do we discuss - mailing list? Grammar and writing style guidelines.
- How to use todos and index.}
+ How to use todos and index.
 
 \printindex
-
-\listoftodos
 
 # References {-}
 ::: {#refs}
