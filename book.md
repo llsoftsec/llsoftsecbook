@@ -159,9 +159,11 @@ also need to keep cache side-channel attacks in mind, which are discussed in the
 
 ## Cache side-channel attacks
 
+<!-- markdown-link-check-disable -->
 \missingcontent{Write section on cache side-channel attacks. See
 \href{https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031}{the first comment on PR24}
 for suggestions of what this should contain.}
+<!-- markdown-link-check-enable-->
 
 # Other security topics relevant for compiler developers
 
