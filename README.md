@@ -1,4 +1,4 @@
-# llsoftsecbook: a book on Low Level Software Security for Compiler Developers
+# llsoftsecbook: a book on Low-Level Software Security for Compiler Developers
 
 [![Build book with docker container CI](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml/badge.svg)](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
