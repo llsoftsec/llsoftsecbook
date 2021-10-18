@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.10.15)  15 OCT 2021 10:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.10.18)  18 OCT 2021 09:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1134,26 +1134,45 @@ File: bc-aux-301.mps Graphic file (type mps)
 [4]
 Chapter 2.
 File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [5
-
-]
-Chapter 3.
-File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [6
-
-]
-Chapter 4.
-File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [7
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [5
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [8]
-Chapter 5.
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [6]
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [7]
+Chapter 3.
+File: bc-aux-301.mps Graphic file (type mps)
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [8
+
+]
+Chapter 4.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
@@ -1163,31 +1182,42 @@ File: bc-aux-301.mps Graphic file (type mps)
 ]
 File: bc-aux-301.mps Graphic file (type mps)
 
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [10]
+Chapter 5.
+File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-(./book.ind [10
+File: bc-aux-301.mps Graphic file (type mps)
 
-] [11
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [11
+
+]
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+(./book.ind [12
+
+] [13
 
 
 ]) (./book.tdo)
 \tf@tdo=\write7
 \openout7 = `book.tdo'.
 
- [12
+ [14
 
 
-] [13
+] [15
 
 ] (./book.aux)
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: 5A2E69D33AE0A7A4E600350FD93EE92A;2010.
+(rerunfilecheck)             Checksum: 82E619C2779761F7FE3584BC2F7A9120;3654.
  ) 
 Here is how much of TeX's memory you used:
- 26044 strings out of 480962
- 462282 string characters out of 5908146
- 841385 words of memory out of 5000000
- 42548 multiletter control sequences out of 15000+600000
- 467380 words of font info for 127 fonts, out of 8000000 for 9000
+ 26163 strings out of 480962
+ 465125 string characters out of 5908146
+ 858339 words of memory out of 5000000
+ 42593 multiletter control sequences out of 15000+600000
+ 468470 words of font info for 139 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  128i,12n,130p,645b,1198s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/texlive/2020/texmf-d
@@ -1196,10 +1226,10 @@ lm/lmbx10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></texl
 ive/2020/texmf-dist/fonts/type1/public/lm/lmr10.pfb></texlive/2020/texmf-dist/f
 onts/type1/public/lm/lmr17.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/
 lmri10.pfb>
-Output written on book.pdf (14 pages, 163299 bytes).
+Output written on book.pdf (16 pages, 180853 bytes).
 PDF statistics:
- 231 PDF objects out of 1000 (max. 8388607)
- 192 compressed objects within 2 object streams
- 48 named destinations out of 1000 (max. 500000)
- 37053 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 339 PDF objects out of 1000 (max. 8388607)
+ 297 compressed objects within 3 object streams
+ 78 named destinations out of 1000 (max. 500000)
+ 37117 words of extra memory for PDF output out of 42996 (max. 10000000)
 

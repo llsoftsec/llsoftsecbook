@@ -189,7 +189,134 @@ prefer feedback to be received through
 \chapter{Memory vulnerability based attacks and
 mitigations}\label{memory-vulnerability-based-attacks-and-mitigations}}
 
-\missingcontent{Write chapter on memory vulnerabilities and mitigation.}
+\hypertarget{a-bit-of-background-on-memory-vulnerabilities}{%
+\section{A bit of background on memory
+vulnerabilities}\label{a-bit-of-background-on-memory-vulnerabilities}}
+
+Memory access errors describe memory accesses that, although permitted
+by a program, were not intended by the programmer. These types of errors
+are usually defined (Hicks \protect\hyperlink{ref-Hicks2014}{2014}) by
+explicitly listing their types, which include:
+
+\begin{itemize}
+\tightlist
+\item
+  buffer overflow
+\item
+  null pointer dereference
+\item
+  use after free
+\item
+  use of uninitialized memory
+\item
+  illegal free
+\end{itemize}
+
+Memory vulnerabilities are an important class of vulnerabilities that
+arise due to these types of errors, and they most commonly occur due to
+programming mistakes when using languages such as C/C++. These languages
+do not provide mechanisms to protect against memory access errors by
+default. An attacker can exploit such vulnerabilities to leak sensitive
+data or overwrite critical memory locations and gain control of the
+vulnerable program.
+
+Memory vulnerabilities have a long history. The
+\href{https://en.wikipedia.org/wiki/Morris_worm}{Morris worm} in 1988
+was the first widely publicized attack exploiting a buffer overflow.
+Later, in the mid-90s, a few famous write-ups describing buffer
+overflows appeared (Aleph One
+\protect\hyperlink{ref-AlephOne1996}{1996}).
+\protect\hyperlink{stack-overflows}{Stack overflows} were mitigated with
+\protect\hyperlink{stack-overflows}{stack canaries} and
+\protect\hyperlink{stack-overflows}{non-executable stacks}. The answer
+was more ingenious ways to bypass these mitigations:
+\protect\hyperlink{code-reuse-attacks}{code reuse attacks}, starting
+with attacks like
+\protect\hyperlink{code-reuse-attacks}{return-into-libc} (Solar Designer
+\protect\hyperlink{ref-Solar1997}{1997}). Code reuse attacks later
+evolved to \protect\hyperlink{code-reuse-attacks}{Return-Oriented
+Programming (ROP)} (Shacham \protect\hyperlink{ref-Shacham2007}{2007})
+and even more complex techniques.
+
+To defend against code reuse attacks, the
+\protect\hyperlink{code-reuse-attacks}{Address Space Layout
+Randomization (ASLR)} and
+\protect\hyperlink{code-reuse-attacks}{Control-Flow Integrity (CFI)}
+measures were introduced. \todo{Refine section
+links used here and in the previous paragraph.} This interaction between
+offensive and defensive security research has been essential to
+improving security, and continues to this day. Each newly deployed
+mitigation results in attempts, often successful, to bypass it, or in
+alternative, more complex exploitation techniques, and even tools to
+automate them.
+
+Memory safe (Hicks \protect\hyperlink{ref-Hicks2014}{2014}) languages
+are designed with prevention of such vulnerabilities in mind and use
+techniques such as bounds checking and automatic memory management. If
+these languages promise to eliminate memory vulnerabilities, why are we
+still discussing this topic?
+
+On the one hand, C and C++ remain very popular languages, particular in
+the implementation of low-level software. On the other hand, programs
+written in memory safe languages can themselves be vulnerable to memory
+errors as a result of bugs in how they are implemented, e.g.~a bug in
+their compiler. Can we fix the problem by also using memory safe
+languages for the compiler and runtime implementation? Even if that were
+as simple as it sounds, unfortunately there are types of programming
+errors that these languages cannot protect against. For example, a
+logical error in the implementation of a compiler or runtime for a
+memory safe language can lead to a memory access error not being
+detected. We will see examples of such logic errors in compiler
+optimizations in a
+\protect\hyperlink{jit-compiler-vulnerabilities}{later section}.
+
+Given the rich history of memory vulnerabilities and mitigations and the
+active developments in this area, compiler developers are likely to
+encounter some of these issues over the course of their careers. This
+chapter aims to serve as an introduction to this area. We start with a
+discussion of exploitation primitives, which can be useful when
+discussing threat models \todo{Discuss
+threat models elsewhere in book and refer to that section here}. We then
+continue with a more detailed discussion of the various types of
+vulnerabilities, along with their mitigations, presented in a rough
+chronological order of their appearance, and, therefore, complexity.
+
+\hypertarget{exploitation-primitives}{%
+\section{Exploitation primitives}\label{exploitation-primitives}}
+
+\missingcontent{Discuss exploitation primitives}
+
+\hypertarget{stack-overflows}{%
+\section{Stack overflows}\label{stack-overflows}}
+
+\missingcontent{Describe stack overflows and mitigations}
+
+\hypertarget{code-reuse-attacks}{%
+\section{Code reuse attacks}\label{code-reuse-attacks}}
+
+\missingcontent{Discuss ROP, JOP, COOP and mitigations (ASLR, CFI etc)}
+
+\hypertarget{non-control-data-exploits}{%
+\section{Non-control data exploits}\label{non-control-data-exploits}}
+
+\missingcontent{Discuss data-oriented programming and other attacks}
+
+\hypertarget{hardware-support-for-protection-against-memory-vulnerabilities}{%
+\section{Hardware support for protection against memory
+vulnerabilities}\label{hardware-support-for-protection-against-memory-vulnerabilities}}
+
+\missingcontent{Describe architectural features for mitigating memory vulnerabilities and for CFI}
+
+\hypertarget{other-issues}{%
+\section{Other issues}\label{other-issues}}
+
+\missingcontent{Mention other issues, e.g. sigreturn-oriented programming}
+
+\hypertarget{jit-compiler-vulnerabilities}{%
+\section{JIT compiler
+vulnerabilities}\label{jit-compiler-vulnerabilities}}
+
+\missingcontent{Write section on JIT compiler vulnerabilities}
 
 \hypertarget{physical-access-side-channel-attacks}{%
 \chapter{Physical access side-channel
@@ -285,8 +412,28 @@ guidelines}\label{appendix-contribution-guidelines}}
 \addcontentsline{toc}{chapter}{References}
 
 \hypertarget{refs}{}
+\leavevmode\hypertarget{ref-AlephOne1996}{}%
+Aleph One. 1996. ``Smashing the Stack for Fun and Profit.'' 1996.
+\url{http://www.phrack.org/issues/49/14.html\#article}.
+
+\leavevmode\hypertarget{ref-Hicks2014}{}%
+Hicks, Michael. 2014. ``What Is Memory Safety?'' 2014.
+\url{http://www.pl-enthusiast.net/2014/07/21/memory-safety/}.
+
 \leavevmode\hypertarget{ref-Pornin2018}{}%
 Pornin, Thomas. 2018. ``Why Constant-Time Crypto?'' 2018.
 \url{https://www.bearssl.org/constanttime.html}.
+
+\leavevmode\hypertarget{ref-Shacham2007}{}%
+Shacham, Hovav. 2007. ``The Geometry of Innocent Flesh on the Bone:
+Return-into-Libc Without Function Calls (on the X86).'' In
+\emph{Proceedings of the 14th Acm Conference on Computer and
+Communications Security}, 552--61. CCS '07. New York, NY, USA:
+Association for Computing Machinery.
+\url{https://doi.org/10.1145/1315245.1315313}.
+
+\leavevmode\hypertarget{ref-Solar1997}{}%
+Solar Designer. 1997. ``Getting Around Non-Executable Stack (and Fix).''
+1997. \url{https://seclists.org/bugtraq/1997/Aug/63}.
 
 \end{document}

@@ -33,7 +33,16 @@
 <li><a href="#introduction"><span class="toc-section-number">1</span> Introduction</a><ul>
 <li><a href="#how-this-book-is-created"><span class="toc-section-number">1.1</span> How this book is created</a></li>
 </ul></li>
-<li><a href="#memory-vulnerability-based-attacks-and-mitigations"><span class="toc-section-number">2</span> Memory vulnerability based attacks and mitigations</a></li>
+<li><a href="#memory-vulnerability-based-attacks-and-mitigations"><span class="toc-section-number">2</span> Memory vulnerability based attacks and mitigations</a><ul>
+<li><a href="#a-bit-of-background-on-memory-vulnerabilities"><span class="toc-section-number">2.1</span> A bit of background on memory vulnerabilities</a></li>
+<li><a href="#exploitation-primitives"><span class="toc-section-number">2.2</span> Exploitation primitives</a></li>
+<li><a href="#stack-overflows"><span class="toc-section-number">2.3</span> Stack overflows</a></li>
+<li><a href="#code-reuse-attacks"><span class="toc-section-number">2.4</span> Code reuse attacks</a></li>
+<li><a href="#non-control-data-exploits"><span class="toc-section-number">2.5</span> Non-control data exploits</a></li>
+<li><a href="#hardware-support-for-protection-against-memory-vulnerabilities"><span class="toc-section-number">2.6</span> Hardware support for protection against memory vulnerabilities</a></li>
+<li><a href="#other-issues"><span class="toc-section-number">2.7</span> Other issues</a></li>
+<li><a href="#jit-compiler-vulnerabilities"><span class="toc-section-number">2.8</span> JIT compiler vulnerabilities</a></li>
+</ul></li>
 <li><a href="#physical-access-side-channel-attacks"><span class="toc-section-number">3</span> Physical access side-channel attacks</a></li>
 <li><a href="#remote-access-side-channel-attacks"><span class="toc-section-number">4</span> Remote access side-channel attacks</a><ul>
 <li><a href="#timing-attacks"><span class="toc-section-number">4.1</span> Timing attacks</a></li>
@@ -63,6 +72,34 @@
 <p>As a reader, you can also contribute to making this book better. We highly encourage feedback, both positive and constructive criticisms. We prefer feedback to be received through <a href="https://github.com/llsoftsec/llsoftsecbook" class="uri">https://github.com/llsoftsec/llsoftsecbook</a>.</p>
 
 <h1 id="memory-vulnerability-based-attacks-and-mitigations"><span class="header-section-number">2</span> Memory vulnerability based attacks and mitigations</h1>
+<h2 id="a-bit-of-background-on-memory-vulnerabilities"><span class="header-section-number">2.1</span> A bit of background on memory vulnerabilities</h2>
+<p>Memory access errors describe memory accesses that, although permitted by a program, were not intended by the programmer. These types of errors are usually defined <span class="citation" data-cites="Hicks2014">(Hicks <a href="#ref-Hicks2014">2014</a>)</span> by explicitly listing their types, which include:</p>
+<ul>
+<li>buffer overflow</li>
+<li>null pointer dereference</li>
+<li>use after free</li>
+<li>use of uninitialized memory</li>
+<li>illegal free</li>
+</ul>
+<p>Memory vulnerabilities are an important class of vulnerabilities that arise due to these types of errors, and they most commonly occur due to programming mistakes when using languages such as C/C++. These languages do not provide mechanisms to protect against memory access errors by default. An attacker can exploit such vulnerabilities to leak sensitive data or overwrite critical memory locations and gain control of the vulnerable program.</p>
+<p>Memory vulnerabilities have a long history. The <a href="https://en.wikipedia.org/wiki/Morris_worm">Morris worm</a> in 1988 was the first widely publicized attack exploiting a buffer overflow. Later, in the mid-90s, a few famous write-ups describing buffer overflows appeared <span class="citation" data-cites="AlephOne1996">(Aleph One <a href="#ref-AlephOne1996">1996</a>)</span>. <a href="#stack-overflows">Stack overflows</a> were mitigated with <a href="#stack-overflows">stack canaries</a> and <a href="#stack-overflows">non-executable stacks</a>. The answer was more ingenious ways to bypass these mitigations: <a href="#code-reuse-attacks">code reuse attacks</a>, starting with attacks like <a href="#code-reuse-attacks">return-into-libc</a> <span class="citation" data-cites="Solar1997">(Solar Designer <a href="#ref-Solar1997">1997</a>)</span>. Code reuse attacks later evolved to <a href="#code-reuse-attacks">Return-Oriented Programming (ROP)</a> <span class="citation" data-cites="Shacham2007">(Shacham <a href="#ref-Shacham2007">2007</a>)</span> and even more complex techniques.</p>
+<p>To defend against code reuse attacks, the <a href="#code-reuse-attacks">Address Space Layout Randomization (ASLR)</a> and <a href="#code-reuse-attacks">Control-Flow Integrity (CFI)</a> measures were introduced.  This interaction between offensive and defensive security research has been essential to improving security, and continues to this day. Each newly deployed mitigation results in attempts, often successful, to bypass it, or in alternative, more complex exploitation techniques, and even tools to automate them.</p>
+<p>Memory safe <span class="citation" data-cites="Hicks2014">(Hicks <a href="#ref-Hicks2014">2014</a>)</span> languages are designed with prevention of such vulnerabilities in mind and use techniques such as bounds checking and automatic memory management. If these languages promise to eliminate memory vulnerabilities, why are we still discussing this topic?</p>
+<p>On the one hand, C and C++ remain very popular languages, particular in the implementation of low-level software. On the other hand, programs written in memory safe languages can themselves be vulnerable to memory errors as a result of bugs in how they are implemented, e.g. a bug in their compiler. Can we fix the problem by also using memory safe languages for the compiler and runtime implementation? Even if that were as simple as it sounds, unfortunately there are types of programming errors that these languages cannot protect against. For example, a logical error in the implementation of a compiler or runtime for a memory safe language can lead to a memory access error not being detected. We will see examples of such logic errors in compiler optimizations in a <a href="#jit-compiler-vulnerabilities">later section</a>.</p>
+<p>Given the rich history of memory vulnerabilities and mitigations and the active developments in this area, compiler developers are likely to encounter some of these issues over the course of their careers. This chapter aims to serve as an introduction to this area. We start with a discussion of exploitation primitives, which can be useful when discussing threat models . We then continue with a more detailed discussion of the various types of vulnerabilities, along with their mitigations, presented in a rough chronological order of their appearance, and, therefore, complexity.</p>
+<h2 id="exploitation-primitives"><span class="header-section-number">2.2</span> Exploitation primitives</h2>
+
+<h2 id="stack-overflows"><span class="header-section-number">2.3</span> Stack overflows</h2>
+
+<h2 id="code-reuse-attacks"><span class="header-section-number">2.4</span> Code reuse attacks</h2>
+
+<h2 id="non-control-data-exploits"><span class="header-section-number">2.5</span> Non-control data exploits</h2>
+
+<h2 id="hardware-support-for-protection-against-memory-vulnerabilities"><span class="header-section-number">2.6</span> Hardware support for protection against memory vulnerabilities</h2>
+
+<h2 id="other-issues"><span class="header-section-number">2.7</span> Other issues</h2>
+
+<h2 id="jit-compiler-vulnerabilities"><span class="header-section-number">2.8</span> JIT compiler vulnerabilities</h2>
 
 <h1 id="physical-access-side-channel-attacks"><span class="header-section-number">3</span> Physical access side-channel attacks</h1>
 
@@ -92,8 +129,20 @@
 
 <h1 id="references" class="unnumbered">References</h1>
 <div id="refs">
+<div id="ref-AlephOne1996">
+<p>Aleph One. 1996. “Smashing the Stack for Fun and Profit.” 1996. <a href="http://www.phrack.org/issues/49/14.html#article">http://www.phrack.org/issues/49/14.html#article</a>.</p>
+</div>
+<div id="ref-Hicks2014">
+<p>Hicks, Michael. 2014. “What Is Memory Safety?” 2014. <a href="http://www.pl-enthusiast.net/2014/07/21/memory-safety/">http://www.pl-enthusiast.net/2014/07/21/memory-safety/</a>.</p>
+</div>
 <div id="ref-Pornin2018">
 <p>Pornin, Thomas. 2018. “Why Constant-Time Crypto?” 2018. <a href="https://www.bearssl.org/constanttime.html">https://www.bearssl.org/constanttime.html</a>.</p>
+</div>
+<div id="ref-Shacham2007">
+<p>Shacham, Hovav. 2007. “The Geometry of Innocent Flesh on the Bone: Return-into-Libc Without Function Calls (on the X86).” In <em>Proceedings of the 14th Acm Conference on Computer and Communications Security</em>, 552–61. CCS ’07. New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/1315245.1315313">https://doi.org/10.1145/1315245.1315313</a>.</p>
+</div>
+<div id="ref-Solar1997">
+<p>Solar Designer. 1997. “Getting Around Non-Executable Stack (and Fix).” 1997. <a href="https://seclists.org/bugtraq/1997/Aug/63">https://seclists.org/bugtraq/1997/Aug/63</a>.</p>
 </div>
 </div>
 </body>
