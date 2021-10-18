@@ -251,6 +251,70 @@ also need to keep cache side-channel attacks in mind, which are discussed in the
 for suggestions of what this should contain.}
 <!-- markdown-link-check-enable-->
 
+# Supply chain attacks
+
+A software _supply chain attack_ occurs when an attacker interferes with the
+software development or distribution processes to impact end-users of that
+software. Supply chain attacks and their possible mitigations are not specific
+to compilers. However, attacks on compilers are particularly pernicious because
+of the ubiquity of compiler technology, to developers, in continuous
+integration systems and as JITs, and because such attacks can go on to silently
+infect many other applications that were created with or run using those
+compilers. For this reason it is worth exploring the history of attacks that
+involve compilers and what can be done to prevent them.
+
+As far back as 1974 Karger & Schell theorized about an attack on the Multics
+operating system via the PL/I compiler [@Karger1974]:
+
+> In Multics, most of the ring 0 supervisor is written in PL/1. A penetrator
+> could insert a trap door in the PL/1 compiler to note when it is compiling a
+> ring 0 module. Then the compiler would insert an object code trap door in the
+> ring 0 module without listing the code in the listing. Since the PL/1
+> compiler is itself written in PL/1, the trap door can maintain itself, even
+> when the compiler is recompiled.
+
+This attack method was subsequently popularised by Ken Thompson in his 1984 ACM
+Turing Award acceptance speech _Reflections on Trusting Trust_ [@Thompson1984].
+In this, Ken outlined a C compiler that inserts a backdoor into the code it
+compiles. Given that the compiler source code that inserts the backdoor could be
+easily spotted, Ken proposed a modified compiler that could dynamically insert
+this backdoor generating code when compiling itself. Thus a single compromised
+compiler binary can result in future instances of itself being silently
+compromised.
+
+If these cases seem far-fetched then consider that there have been several real
+examples of supply chain attacks on development tools.
+
+Induc is family of viruses that infects a pre-compiled library in the Delphi
+toolchain with malicious code [@Gostev2009]. When Delphi compiles a project the
+malicious library is included into the resulting executable, thus enabling the
+virus to spread. The virus was first detected in 2009 and was circulating
+undetected for at least a year beforehand. The Induc-B variant infects two other
+toolchains in addition to Delphi. Thousands of infections were reported, and
+some in commonly used applications.
+
+XcodeGhost is the name given to malware first detected in 2015 that infected
+thousands of iOS applications [@Cox2015]. The source of the infection was
+tracked down to use of a trojanized version of Xcode tools. The malware exists
+in an extra object file within the Xcode tools and is silently linked into each
+application as it is built. File sharing sites were used to spread the
+trojanized Xcode tools to unwitting developers.
+
+A trojanized linker was found to be involved in a supply chain attack discovered
+in 2017 named ShadowPad [@Greenberg2019]. Some instances of the attack were
+perpetrated using a trojanized Visual Studio linker that silently incorporates
+a malicious library into applications as they are built. Related attacks named
+CCleaner and ShadowHammer used the same approach of a trojanized linker to
+infect built applications. Infected applications from these attacks were
+distributed to millions of users world-wide.
+
+These cases highlight that attacks on compilers are a viable route to silently
+infect many other applications, and there is no doubt that there will be more
+such attacks in the future. Our attention must now turn to what we can do about
+these.
+
+\missingcontent{Explain how these vulnerabilities arise and how to mitigate them.}
+
 # Other security topics relevant for compiler developers
 
 \missingcontent{Write chapter with other security topics.}
