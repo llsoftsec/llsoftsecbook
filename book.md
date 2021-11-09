@@ -281,7 +281,7 @@ acceptance speech _Reflections on Trusting Trust_ [@Thompson1984].
 If these cases seem far-fetched then consider that there have been several real
 examples of supply chain attacks on development tools.
 
-Induc is family of viruses that infects a pre-compiled library in the Delphi
+Induc is a family of viruses that infects a pre-compiled library in the Delphi
 toolchain with malicious code [@Gostev2009]. When Delphi compiles a project the
 malicious library is included into the resulting executable, thus enabling the
 virus to spread. The virus was first detected in 2009 and was circulating
@@ -292,7 +292,7 @@ world-wide by anti-virus solutions.
 
 XcodeGhost is the name given to malware first detected in 2015 that infected
 thousands of iOS applications [@Cox2015]. The source of the infection was
-tracked down a trojanized version of Xcode tools. The malware exists
+tracked down to a trojanized version of Xcode tools. The malware exists
 in an extra object file within the Xcode tools and is silently linked into each
 application as it is built. File sharing sites were used to spread the
 trojanized Xcode tools to unwitting developers.
