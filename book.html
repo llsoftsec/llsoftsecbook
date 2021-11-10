@@ -48,7 +48,10 @@
 <li><a href="#timing-attacks"><span class="toc-section-number">4.1</span> Timing attacks</a></li>
 <li><a href="#cache-side-channel-attacks"><span class="toc-section-number">4.2</span> Cache side-channel attacks</a></li>
 </ul></li>
-<li><a href="#other-security-topics-relevant-for-compiler-developers"><span class="toc-section-number">5</span> Other security topics relevant for compiler developers</a></li>
+<li><a href="#supply-chain-attacks"><span class="toc-section-number">5</span> Supply chain attacks</a><ul>
+<li><a href="#history-of-supply-chain-attacks"><span class="toc-section-number">5.1</span> History of supply chain attacks</a></li>
+</ul></li>
+<li><a href="#other-security-topics-relevant-for-compiler-developers"><span class="toc-section-number">6</span> Other security topics relevant for compiler developers</a></li>
 <li><a href="#appendix-contribution-guidelines">Appendix: contribution guidelines</a></li>
 <li><a href="#references">References</a></li>
 </ul>
@@ -120,7 +123,19 @@
 <!-- markdown-link-check-disable -->
 
 <!-- markdown-link-check-enable-->
-<h1 id="other-security-topics-relevant-for-compiler-developers"><span class="header-section-number">5</span> Other security topics relevant for compiler developers</h1>
+<h1 id="supply-chain-attacks"><span class="header-section-number">5</span> Supply chain attacks</h1>
+<p>A software <em>supply chain attack</em> occurs when an attacker interferes with the software development or distribution processes with the intention to impact users of that software.</p>
+<p>Supply chain attacks and their possible mitigations are not specific to compilers. However, compilers are an attractive target for attack because they are widely deployed to developers, in continuous integration systems and as JITs. Also, an infected compiler has the possibilty to make a much larger impact if it can silently spread the infection to other software created with or run using it.</p>
+<p>This chapter explores the history of supply chain attacks that involve compilers and what can be done to prevent them.</p>
+<h2 id="history-of-supply-chain-attacks"><span class="header-section-number">5.1</span> History of supply chain attacks</h2>
+<p>As far back as 1974 Karger &amp; Schell theorized about an attack on the Multics operating system via the PL/I compiler <span class="citation" data-cites="Karger1974">(Paul A. and Roger R. <a href="#ref-Karger1974">1974</a>)</span>. In this attack, a trap door is inserted into the compiler, which then injects malicious code into generated object code. Furthermore, the trap door could be designed to reinsert itself into the compiler binary so that future compilers are silently infected without needing changes to their source code. This attack method was subsequently popularised by Ken Thompson in his 1984 ACM Turing Award acceptance speech <em>Reflections on Trusting Trust</em> <span class="citation" data-cites="Thompson1984">(Thompson <a href="#ref-Thompson1984">1984</a>)</span>.</p>
+<p>If these cases seem far-fetched then consider that there have been several real examples of supply chain attacks on development tools.</p>
+<p>Induc is a family of viruses that infects a pre-compiled library in the Delphi toolchain with malicious code <span class="citation" data-cites="Gostev2009">(Gostev <a href="#ref-Gostev2009">2009</a>)</span>. When Delphi compiles a project the malicious library is included into the resulting executable, thus enabling the virus to spread. The virus was first detected in 2009 and was circulating undetected for at least a year beforehand. Several popular applications are known to have been infected, including a chat client and a media player. Overall, in excess of a hundred thousand infected computers were detected world-wide by anti-virus solutions.</p>
+<p>XcodeGhost is the name given to malware first detected in 2015 that infected thousands of iOS applications <span class="citation" data-cites="Cox2015">(Cox <a href="#ref-Cox2015">2015</a>)</span>. The source of the infection was tracked down to a trojanized version of Xcode tools. The malware exists in an extra object file within the Xcode tools and is silently linked into each application as it is built. File sharing sites were used to spread the trojanized Xcode tools to unwitting developers.</p>
+<p>A trojanized linker was found to be involved in a supply chain attack discovered in 2017 named ShadowPad <span class="citation" data-cites="Greenberg2019">(Greenberg <a href="#ref-Greenberg2019">2019</a>)</span>. Some instances of the attack were perpetrated using a trojanized Visual Studio linker that silently incorporates a malicious library into applications as they are built. Related attacks named CCleaner and ShadowHammer used the same approach of a trojanized linker to infect built applications. Infected applications from these attacks were distributed to millions of users world-wide.</p>
+<p>These cases highlight that attacks on compilers, and especially linkers and libraries, are a viable route to silently infect many other applications, and there is no doubt that there will be more such attacks in the future. Let us now explore what we can do about these.</p>
+
+<h1 id="other-security-topics-relevant-for-compiler-developers"><span class="header-section-number">6</span> Other security topics relevant for compiler developers</h1>
 
 
 <h1 id="appendix-contribution-guidelines" class="unnumbered">Appendix: contribution guidelines</h1>
@@ -132,8 +147,20 @@
 <div id="ref-AlephOne1996">
 <p>Aleph One. 1996. “Smashing the Stack for Fun and Profit.” 1996. <a href="http://www.phrack.org/issues/49/14.html#article">http://www.phrack.org/issues/49/14.html#article</a>.</p>
 </div>
+<div id="ref-Cox2015">
+<p>Cox, Joseph. 2015. “Hack Brief: Malware Sneaks into the Chinese iOS App Store.” <em>WIRED</em>. <a href="https://www.wired.com/2015/09/hack-brief-malware-sneaks-chinese-ios-app-store/">https://www.wired.com/2015/09/hack-brief-malware-sneaks-chinese-ios-app-store/</a>.</p>
+</div>
+<div id="ref-Gostev2009">
+<p>Gostev, Alexander. 2009. “A Short History of Induc.” 2009. <a href="https://securelist.com/a-short-history-of-induc/30555/">https://securelist.com/a-short-history-of-induc/30555/</a>.</p>
+</div>
+<div id="ref-Greenberg2019">
+<p>Greenberg, Andy. 2019. “Supply Chain Hackers Snuck Malware into Videogames.” <em>WIRED</em>. <a href="https://www.wired.com/story/supply-chain-hackers-videogames-asus-ccleaner/">https://www.wired.com/story/supply-chain-hackers-videogames-asus-ccleaner/</a>.</p>
+</div>
 <div id="ref-Hicks2014">
 <p>Hicks, Michael. 2014. “What Is Memory Safety?” 2014. <a href="http://www.pl-enthusiast.net/2014/07/21/memory-safety/">http://www.pl-enthusiast.net/2014/07/21/memory-safety/</a>.</p>
+</div>
+<div id="ref-Karger1974">
+<p>Paul A., Karger, and Schell Roger R. 1974. “MULTICS Security Evaluation: VULNERABILITY Analysis,” 52. <a href="https://csrc.nist.gov/csrc/media/publications/conference-paper/1998/10/08/proceedings-of-the-21st-nissc-1998/documents/early-cs-papers/karg74.pdf">https://csrc.nist.gov/csrc/media/publications/conference-paper/1998/10/08/proceedings-of-the-21st-nissc-1998/documents/early-cs-papers/karg74.pdf</a>.</p>
 </div>
 <div id="ref-Pornin2018">
 <p>Pornin, Thomas. 2018. “Why Constant-Time Crypto?” 2018. <a href="https://www.bearssl.org/constanttime.html">https://www.bearssl.org/constanttime.html</a>.</p>
@@ -143,6 +170,9 @@
 </div>
 <div id="ref-Solar1997">
 <p>Solar Designer. 1997. “Getting Around Non-Executable Stack (and Fix).” 1997. <a href="https://seclists.org/bugtraq/1997/Aug/63">https://seclists.org/bugtraq/1997/Aug/63</a>.</p>
+</div>
+<div id="ref-Thompson1984">
+<p>Thompson, Ken. 1984. “Reflections on Trusting Trust.” <a href="https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf">https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf</a>.</p>
 </div>
 </div>
 </body>

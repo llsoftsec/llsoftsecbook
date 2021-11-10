@@ -11,6 +11,7 @@
 \contentsline {todo}{11. Write chapter on physical access side-channel attacks.}{8}{section*.12}%
 \contentsline {todo}{12. Define side-channel better.}{9}{section*.13}%
 \contentsline {todo}{13. Write section on cache side-channel attacks. See \href {https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031}{the first comment on PR24} for suggestions of what this should contain.}{10}{section*.14}%
-\contentsline {todo}{14. Write chapter with other security topics.}{11}{section*.15}%
-\contentsline {todo}{15. Write section on securely clearing memory in C/C++ and undefined behaviour.}{11}{section*.16}%
-\contentsline {todo}{16. Write chapter on contribution guidelines. These should include at least: project locaton on github; how to create pull requests/issues. Where do we discuss - mailing list? Grammar and writing style guidelines. How to use todos and index.}{12}{section*.18}%
+\contentsline {todo}{14. Explain how these vulnerabilities arise and how to mitigate them.}{12}{section*.15}%
+\contentsline {todo}{15. Write chapter with other security topics.}{13}{section*.16}%
+\contentsline {todo}{16. Write section on securely clearing memory in C/C++ and undefined behaviour.}{13}{section*.17}%
+\contentsline {todo}{17. Write chapter on contribution guidelines. These should include at least: project locaton on github; how to create pull requests/issues. Where do we discuss - mailing list? Grammar and writing style guidelines. How to use todos and index.}{14}{section*.19}%

@@ -13,6 +13,8 @@
 \contentsline {chapter}{\numberline {4}Remote access side-channel attacks}{9}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Timing attacks}{9}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Cache side-channel attacks}{10}{section.4.2}%
-\contentsline {chapter}{\numberline {5}Other security topics relevant for compiler developers}{11}{chapter.5}%
-\contentsline {chapter}{Appendix: contribution guidelines}{12}{chapter*.17}%
-\contentsline {chapter}{References}{15}{chapter*.20}%
+\contentsline {chapter}{\numberline {5}Supply chain attacks}{11}{chapter.5}%
+\contentsline {section}{\numberline {5.1}History of supply chain attacks}{11}{section.5.1}%
+\contentsline {chapter}{\numberline {6}Other security topics relevant for compiler developers}{13}{chapter.6}%
+\contentsline {chapter}{Appendix: contribution guidelines}{14}{chapter*.18}%
+\contentsline {chapter}{References}{17}{chapter*.21}%
