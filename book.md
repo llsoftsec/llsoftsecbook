@@ -251,6 +251,67 @@ also need to keep cache side-channel attacks in mind, which are discussed in the
 for suggestions of what this should contain.}
 <!-- markdown-link-check-enable-->
 
+# Supply chain attacks
+
+A software _supply chain attack_ occurs when an attacker interferes with the
+software development or distribution processes with the intention to impact
+users of that software.
+
+Supply chain attacks and their possible mitigations are not specific to
+compilers. However, compilers are an attractive target for attack because they
+are widely deployed to developers, in continuous integration systems and as
+JITs. Also, an infected compiler has the possibilty to make a much larger
+impact if it can silently spread the infection to other software created with
+or run using it.
+
+This chapter explores the history of supply chain attacks that involve
+compilers and what can be done to prevent them.
+
+## History of supply chain attacks
+
+As far back as 1974 Karger & Schell theorized about an attack on the Multics
+operating system via the PL/I compiler [@Karger1974]. In this attack, a trap
+door is inserted into the compiler, which then injects malicious code into
+generated object code. Furthermore, the trap door could be designed to reinsert
+itself into the compiler binary so that future compilers are silently infected
+without needing changes to their source code. This attack method was
+subsequently popularised by Ken Thompson in his 1984 ACM Turing Award
+acceptance speech _Reflections on Trusting Trust_ [@Thompson1984].
+
+If these cases seem far-fetched then consider that there have been several real
+examples of supply chain attacks on development tools.
+
+Induc is a family of viruses that infects a pre-compiled library in the Delphi
+toolchain with malicious code [@Gostev2009]. When Delphi compiles a project the
+malicious library is included into the resulting executable, thus enabling the
+virus to spread. The virus was first detected in 2009 and was circulating
+undetected for at least a year beforehand. Several popular applications are
+known to have been infected, including a chat client and a media player.
+Overall, in excess of a hundred thousand infected computers were detected
+world-wide by anti-virus solutions.
+
+XcodeGhost is the name given to malware first detected in 2015 that infected
+thousands of iOS applications [@Cox2015]. The source of the infection was
+tracked down to a trojanized version of Xcode tools. The malware exists
+in an extra object file within the Xcode tools and is silently linked into each
+application as it is built. File sharing sites were used to spread the
+trojanized Xcode tools to unwitting developers.
+
+A trojanized linker was found to be involved in a supply chain attack discovered
+in 2017 named ShadowPad [@Greenberg2019]. Some instances of the attack were
+perpetrated using a trojanized Visual Studio linker that silently incorporates
+a malicious library into applications as they are built. Related attacks named
+CCleaner and ShadowHammer used the same approach of a trojanized linker to
+infect built applications. Infected applications from these attacks were
+distributed to millions of users world-wide.
+
+These cases highlight that attacks on compilers, and especially linkers and
+libraries, are a viable route to silently infect many other applications, and
+there is no doubt that there will be more such attacks in the future. Let us
+now explore what we can do about these.
+
+\missingcontent{Explain how these vulnerabilities arise and how to mitigate them.}
+
 # Other security topics relevant for compiler developers
 
 \missingcontent{Write chapter with other security topics.}
