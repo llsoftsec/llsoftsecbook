@@ -74,6 +74,16 @@
         "bug",
         "ideas"
       ]
+    },
+    {
+      "login": "JLouisKaplan-Arm",
+      "name": "Jonathan Louis Kaplan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/90251161?v=4",
+      "profile": "https://github.com/JLouisKaplan-Arm",
+      "contributions": [
+        "bug",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
