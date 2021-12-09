@@ -73,7 +73,7 @@ the focus is on compiler developers, we expect that this book will also be
 useful to other people working on low-level software.
 
 
-## How this book is created
+## Why an open source book?
 
 The idea for this book emerged out of a frustration of not finding a good
 overview on this topic. Kristof Beyls and Georgia Kouveli, both compiler
