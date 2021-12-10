@@ -1,5 +1,5 @@
 \contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}%
-\contentsline {section}{\numberline {1.1}How this book is created}{4}{section.1.1}%
+\contentsline {section}{\numberline {1.1}Why an open source book?}{4}{section.1.1}%
 \contentsline {chapter}{\numberline {2}Memory vulnerability based attacks and mitigations}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}A bit of background on memory vulnerabilities}{5}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Exploitation primitives}{6}{section.2.2}%
