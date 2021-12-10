@@ -3,7 +3,7 @@
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Build book with docker container CI](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml/badge.svg)](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This book aims to provide a structured, broad overview of all attacks and
@@ -109,6 +109,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/statham-arm"><img src="https://avatars.githubusercontent.com/u/54840944?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Simon Tatham</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/pulls?q=is%3Apr+reviewed-by%3Astatham-arm" title="Reviewed Pull Requests">👀</a> <a href="#ideas-statham-arm" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/sam-ellis"><img src="https://avatars.githubusercontent.com/u/6695726?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sam Ellis</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=sam-ellis" title="Code">💻</a> <a href="#content-sam-ellis" title="Content">🖋</a> <a href="https://github.com/llsoftsec/llsoftsecbook/issues?q=author%3Asam-ellis" title="Bug reports">🐛</a> <a href="#ideas-sam-ellis" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/llsoftsec/llsoftsecbook/pulls?q=is%3Apr+reviewed-by%3Asam-ellis" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://www.lyndonfawcett.com"><img src="https://avatars.githubusercontent.com/u/5150703?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lyndon Fawcett</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/issues?q=author%3Alyndon160" title="Bug reports">🐛</a> <a href="#ideas-lyndon160" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/JLouisKaplan-Arm"><img src="https://avatars.githubusercontent.com/u/90251161?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jonathan Louis Kaplan</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/issues?q=author%3AJLouisKaplan-Arm" title="Bug reports">🐛</a> <a href="#ideas-JLouisKaplan-Arm" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=JLouisKaplan-Arm" title="Code">💻</a></td>
   </tr>
 </table>
 
