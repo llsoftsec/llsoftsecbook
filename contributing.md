@@ -35,6 +35,20 @@ Please send a GitHub Pull Request (read more about
 Please follow our
 [style and coding conventions](#style-and-coding-conventions).
 
+### Copyright and license
+
+The copyright on contributions is not transferred. In other words, contributors
+retain copyright on their contributions.
+
+If you're making a contribution for the first time, please check if the
+copyright owner is listed in the header under the "copyright:" tag at
+https://raw.githubusercontent.com/llsoftsec/llsoftsecbook/main/book.md. If not,
+please do add a line with "SPDX-FileCopyrightText" under the "copyright:" header
+so that the copyright notices for this project remain well-maintained.
+
+The license used for this project is
+https://creativecommons.org/licenses/by/4.0/.
+
 ### Planning changes
 
 If you're planning to fix a non-trivial reported issue or to add new content,
