@@ -42,7 +42,7 @@ retain copyright on their contributions.
 
 If you're making a contribution for the first time, please check if the
 copyright owner is listed in the header under the "copyright:" tag at
-https://raw.githubusercontent.com/llsoftsec/llsoftsecbook/main/book.md. If not,
+https://github.com/llsoftsec/llsoftsecbook/blob/main/book.md?plain=1. If not,
 please do add a line with "SPDX-FileCopyrightText" under the "copyright:" header
 so that the copyright notices for this project remain well-maintained.
 
