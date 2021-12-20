@@ -197,6 +197,61 @@ chronological order of their appearance, and, therefore, complexity.
 ## JIT compiler vulnerabilities
 \missingcontent{Write section on JIT compiler vulnerabilities}
 
+# Covert channels and side-channels
+
+A large class of attacks make use of so-called side-channels, which are defined
+below. The class is so big that in this book we devote the next two chapters to
+such attacks. Side-channels have enough complexity to discuss them separately
+first in this chapter.
+
+Side-channels are a special class of covert channels. A **covert
+channel**\index{covert channel} is communication channel between two entities in
+a system that are not supposed to be allowed to communicate that way. A
+**side-channel**\index{side-channel} is a covert channel where one end is a
+victim of an attack. In other words, the difference between a covert channel and
+a side-channel is whether both entities intent to communicate, in which case we
+talk about a covert channel. If one entity does not intent to communicate, but
+the other entity nonetheless extracts some data from the first, it is called a
+side-channel attack. The entity not intending to communicate, and hence being
+attacked, is called the victim\index{victim}.
+
+The rest of this chapter mostly describes a variety of common covert channel
+mechanisms. It does not aim to differentiate much on whether both ends intend to
+cooperate on the communication, or whether one end is a victim under attack of
+the other end.
+
+In the next few sections we'll explore a common few channels that can be used as
+covert channels.
+
+## Cache covert channels
+
+[Caches](https://en.wikipedia.org/wiki/Cache_(computing))\index{cache} are used
+in almost every computing system. They are small and much faster memories than
+the main memory. They automatically keep the most frequently used data that
+programs access. Various techniques exist where a covert communication can
+happen between processes that share a cache, without the processes having rights
+to read or write to the same memory locations.
+To understand how these techniques work, one needs to understand typical
+organization and operation of a cache.
+
+### Typical cache architecture
+
+
+\missingcontent{Add a description of how a cache operates - as far as is
+necessary to explain the cache covert channel techniques.}
+
+### Flush + Reload
+
+### Prime + Probe
+
+## Timing covert channels
+
+## Resource contention channels
+
+## Predictor aliasing channels
+
+\missingcontent{Should we also discuss more "covert" channels here such as power analysis, etc?}
+
 # Physical access side-channel attacks
 
 \missingcontent{Write chapter on physical access side-channel attacks.}
@@ -204,7 +259,7 @@ chronological order of their appearance, and, therefore, complexity.
 # Remote access side-channel attacks
 
 This chapter covers side-channel attacks for which the attacker does not need
-physical access to the hardware.\todo{Define side-channel better.}
+physical access to the hardware.
 
 ## Timing attacks
 
