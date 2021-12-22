@@ -3,8 +3,10 @@
 # syntax=docker/dockerfile:1
 FROM ubuntu:20.04
 # 1. install pandoc and texlive dependencies
+#    Also install git as we need that for computing version numbers
 RUN apt-get update && \
-    DEBIAN_FRONTEND="noninteractive" apt-get install -y wget perl pandoc make pandoc-citeproc && \
+    DEBIAN_FRONTEND="noninteractive" apt-get install -y \
+            wget perl pandoc make pandoc-citeproc git && \
     rm -rf /var/lib/apt/lists/*
 # 2. Install LaTeX directly from stable Texlive 2020 final repo
 # (We could alternatively install a base Texlive using "apt-get install
