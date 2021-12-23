@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.12.21)  21 DEC 2021 16:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.12.23)  23 DEC 2021 10:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1168,21 +1168,19 @@ File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [7]
 Chapter 3.
-File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [8
+[8
 
 ]
+File: bc-aux-301.mps Graphic file (type mps)
+ [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [9]
 Chapter 4.
 File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-File: bc-aux-301.mps Graphic file (type mps)
-
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [9
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [10
 
 ]
-File: bc-aux-301.mps Graphic file (type mps)
-
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [10]
 Chapter 5.
 [11
 
@@ -1191,46 +1189,53 @@ File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [12]
 Chapter 6.
+[13
+
+]
+File: bc-aux-301.mps Graphic file (type mps)
+ [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+[14]
+Chapter 7.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [13
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [15
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-(./book.ind [14
+(./book.ind [16
 
-] [15
+] [17
 
 
 ]) (./book.tdo)
 \tf@tdo=\write7
 \openout7 = `book.tdo'.
 
- [16
+ [18
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 507--511
+Underfull \hbox (badness 10000) in paragraph at lines 584--588
 \T1/lmr/m/n/10 (+20) publications / conference -[] paper / 1998 / 10 / 08 / pro
 ceedings -[] of -[] the -[] 21st -[] nissc -[]
  []
 
-[17
+[19
 
 ] (./book.aux)
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: 186BF713D4913E5B7BB2246061CB370B;4026.
+(rerunfilecheck)             Checksum: 0C0F2D74AFE003D9B29DB31E4BD4B8D0;5701.
  ) 
 Here is how much of TeX's memory you used:
- 26195 strings out of 480962
- 465655 string characters out of 5908146
- 858494 words of memory out of 5000000
- 42599 multiletter control sequences out of 15000+600000
- 469062 words of font info for 145 fonts, out of 8000000 for 9000
+ 26238 strings out of 480962
+ 466418 string characters out of 5908146
+ 858974 words of memory out of 5000000
+ 42613 multiletter control sequences out of 15000+600000
+ 472525 words of font info for 151 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  128i,12n,130p,645b,1198s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/texlive/2020/texmf-d
@@ -1239,10 +1244,10 @@ lm/lmbx10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></texl
 ive/2020/texmf-dist/fonts/type1/public/lm/lmr10.pfb></texlive/2020/texmf-dist/f
 onts/type1/public/lm/lmr17.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/
 lmri10.pfb>
-Output written on book.pdf (18 pages, 190181 bytes).
+Output written on book.pdf (20 pages, 196559 bytes).
 PDF statistics:
- 385 PDF objects out of 1000 (max. 8388607)
- 340 compressed objects within 4 object streams
- 90 named destinations out of 1000 (max. 500000)
- 37133 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 458 PDF objects out of 1000 (max. 8388607)
+ 410 compressed objects within 5 object streams
+ 109 named destinations out of 1000 (max. 500000)
+ 39245 words of extra memory for PDF output out of 42996 (max. 10000000)
 

@@ -1,5 +1,18 @@
 \begin{theindex}
 
-  \item timing attacks, \hyperpage{9}
+  \item cache, \hyperpage{8}
+  \item covert channel, \hyperpage{8}
+
+  \indexspace
+
+  \item side-channel, \hyperpage{8}
+
+  \indexspace
+
+  \item timing attacks, \hyperpage{11}
+
+  \indexspace
+
+  \item victim, \hyperpage{8}
 
 \end{theindex}

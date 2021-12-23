@@ -43,15 +43,25 @@
 <li><a href="#other-issues"><span class="toc-section-number">2.7</span> Other issues</a></li>
 <li><a href="#jit-compiler-vulnerabilities"><span class="toc-section-number">2.8</span> JIT compiler vulnerabilities</a></li>
 </ul></li>
-<li><a href="#physical-access-side-channel-attacks"><span class="toc-section-number">3</span> Physical access side-channel attacks</a></li>
-<li><a href="#remote-access-side-channel-attacks"><span class="toc-section-number">4</span> Remote access side-channel attacks</a><ul>
-<li><a href="#timing-attacks"><span class="toc-section-number">4.1</span> Timing attacks</a></li>
-<li><a href="#cache-side-channel-attacks"><span class="toc-section-number">4.2</span> Cache side-channel attacks</a></li>
+<li><a href="#covert-channels-and-side-channels"><span class="toc-section-number">3</span> Covert channels and side-channels</a><ul>
+<li><a href="#cache-covert-channels"><span class="toc-section-number">3.1</span> Cache covert channels</a><ul>
+<li><a href="#typical-cache-architecture"><span class="toc-section-number">3.1.1</span> Typical cache architecture</a></li>
+<li><a href="#flush-reload"><span class="toc-section-number">3.1.2</span> Flush + Reload</a></li>
+<li><a href="#prime-probe"><span class="toc-section-number">3.1.3</span> Prime + Probe</a></li>
 </ul></li>
-<li><a href="#supply-chain-attacks"><span class="toc-section-number">5</span> Supply chain attacks</a><ul>
-<li><a href="#history-of-supply-chain-attacks"><span class="toc-section-number">5.1</span> History of supply chain attacks</a></li>
+<li><a href="#timing-covert-channels"><span class="toc-section-number">3.2</span> Timing covert channels</a></li>
+<li><a href="#resource-contention-channels"><span class="toc-section-number">3.3</span> Resource contention channels</a></li>
+<li><a href="#channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors"><span class="toc-section-number">3.4</span> Channels making use of aliasing in branch predictors and other predictors</a></li>
 </ul></li>
-<li><a href="#other-security-topics-relevant-for-compiler-developers"><span class="toc-section-number">6</span> Other security topics relevant for compiler developers</a></li>
+<li><a href="#physical-access-side-channel-attacks"><span class="toc-section-number">4</span> Physical access side-channel attacks</a></li>
+<li><a href="#remote-access-side-channel-attacks"><span class="toc-section-number">5</span> Remote access side-channel attacks</a><ul>
+<li><a href="#timing-attacks"><span class="toc-section-number">5.1</span> Timing attacks</a></li>
+<li><a href="#cache-side-channel-attacks"><span class="toc-section-number">5.2</span> Cache side-channel attacks</a></li>
+</ul></li>
+<li><a href="#supply-chain-attacks"><span class="toc-section-number">6</span> Supply chain attacks</a><ul>
+<li><a href="#history-of-supply-chain-attacks"><span class="toc-section-number">6.1</span> History of supply chain attacks</a></li>
+</ul></li>
+<li><a href="#other-security-topics-relevant-for-compiler-developers"><span class="toc-section-number">7</span> Other security topics relevant for compiler developers</a></li>
 <li><a href="#appendix-contribution-guidelines">Appendix: contribution guidelines</a></li>
 <li><a href="#references">References</a></li>
 </ul>
@@ -104,11 +114,28 @@
 
 <h2 id="jit-compiler-vulnerabilities"><span class="header-section-number">2.8</span> JIT compiler vulnerabilities</h2>
 
-<h1 id="physical-access-side-channel-attacks"><span class="header-section-number">3</span> Physical access side-channel attacks</h1>
+<h1 id="covert-channels-and-side-channels"><span class="header-section-number">3</span> Covert channels and side-channels</h1>
+<p>A large class of attacks make use of so-called side-channels, which are defined below. The class is so big that in this book we devote the next two chapters to such attacks. Side-channels have enough complexity to discuss them separately in this chapter. This chapter describes the mechanisms used to make communication happen through side-channels. The next two chapters explore how attacks are constructed that use side-channels.</p>
+<p>Side-channels and covert channels are closely related. Both side-channels and covert channels are communication channels between two entities in a system, where the entities are not supposed to be allowed to communicate that way.</p>
+<p>A <strong>covert channel</strong> is such a channel where both entities intent to communicate through the channel. A <strong>side-channel</strong> is a such a channel where one end is the victim of an attack using the channel.</p>
+<p>In other words, the difference between a covert channel and a side-channel is whether both entities intent to communicate, in which case we talk about a covert channel. If one entity does not intent to communicate, but the other entity nonetheless extracts some data from the first, it is called a side-channel attack. The entity not intending to communicate, and hence being attacked, is called the victim.</p>
+<p>The rest of this chapter mostly describes a variety of common covert channel mechanisms. It does not aim to differentiate much on whether both ends intend to cooperate on the communication, or whether one end is a victim under attack of the other end.</p>
+<p>In the next few sections we’ll explore a common few channels that can be used as covert channels.</p>
+<h2 id="cache-covert-channels"><span class="header-section-number">3.1</span> Cache covert channels</h2>
+<p><a href="https://en.wikipedia.org/wiki/Cache_(computing)">Caches</a> are used in almost every computing system. They are small and much faster memories than the main memory. They aim to automatically keep frequently used data accessed by programs, so that average memory access time improves. Various techniques exist where a covert communication can happen between processes that share a cache, without the processes having rights to read or write to the same memory locations. To understand how these techniques work, one needs to understand typical organization and operation of a cache.</p>
+<h3 id="typical-cache-architecture"><span class="header-section-number">3.1.1</span> Typical cache architecture</h3>
 
-<h1 id="remote-access-side-channel-attacks"><span class="header-section-number">4</span> Remote access side-channel attacks</h1>
+<h3 id="flush-reload"><span class="header-section-number">3.1.2</span> Flush + Reload</h3>
+<h3 id="prime-probe"><span class="header-section-number">3.1.3</span> Prime + Probe</h3>
+<h2 id="timing-covert-channels"><span class="header-section-number">3.2</span> Timing covert channels</h2>
+<h2 id="resource-contention-channels"><span class="header-section-number">3.3</span> Resource contention channels</h2>
+<h2 id="channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors"><span class="header-section-number">3.4</span> Channels making use of aliasing in branch predictors and other predictors</h2>
+
+<h1 id="physical-access-side-channel-attacks"><span class="header-section-number">4</span> Physical access side-channel attacks</h1>
+
+<h1 id="remote-access-side-channel-attacks"><span class="header-section-number">5</span> Remote access side-channel attacks</h1>
 <p>This chapter covers side-channel attacks for which the attacker does not need physical access to the hardware.</p>
-<h2 id="timing-attacks"><span class="header-section-number">4.1</span> Timing attacks</h2>
+<h2 id="timing-attacks"><span class="header-section-number">5.1</span> Timing attacks</h2>
 <p>An implementation of a cryptographic algorithm can leak information about the data it processes if its run time is influenced by the value of the processed data. Attacks making use of this are called timing attacks.</p>
 <p>The main mitigation against such attacks consists of carefully implementing the algorithm such that the execution time remains independent of the processed data. This can be done by making sure that both:</p>
 <ol type="a">
@@ -119,15 +146,15 @@
 </ol>
 <p>At the moment, we do not know of a compiler implementation that actively helps to guarantee both (a) and (b). A great reference giving practical advice on how to achieve (a), (b) and more security hardening properties specific for cryptographic kernels is found in <span class="citation" data-cites="Pornin2018">(Pornin <a href="#ref-Pornin2018">2018</a>)</span>.</p>
 <p>As discussed in <span class="citation" data-cites="Pornin2018">(Pornin <a href="#ref-Pornin2018">2018</a>)</span>, when implementing cryptographic algorithms, you also need to keep cache side-channel attacks in mind, which are discussed in the <a href="#cache-side-channel-attacks">section on cache side-channel attacks</a>.</p>
-<h2 id="cache-side-channel-attacks"><span class="header-section-number">4.2</span> Cache side-channel attacks</h2>
+<h2 id="cache-side-channel-attacks"><span class="header-section-number">5.2</span> Cache side-channel attacks</h2>
 <!-- markdown-link-check-disable -->
 
 <!-- markdown-link-check-enable-->
-<h1 id="supply-chain-attacks"><span class="header-section-number">5</span> Supply chain attacks</h1>
+<h1 id="supply-chain-attacks"><span class="header-section-number">6</span> Supply chain attacks</h1>
 <p>A software <em>supply chain attack</em> occurs when an attacker interferes with the software development or distribution processes with the intention to impact users of that software.</p>
 <p>Supply chain attacks and their possible mitigations are not specific to compilers. However, compilers are an attractive target for attack because they are widely deployed to developers, in continuous integration systems and as JITs. Also, an infected compiler has the possibilty to make a much larger impact if it can silently spread the infection to other software created with or run using it.</p>
 <p>This chapter explores the history of supply chain attacks that involve compilers and what can be done to prevent them.</p>
-<h2 id="history-of-supply-chain-attacks"><span class="header-section-number">5.1</span> History of supply chain attacks</h2>
+<h2 id="history-of-supply-chain-attacks"><span class="header-section-number">6.1</span> History of supply chain attacks</h2>
 <p>As far back as 1974 Karger &amp; Schell theorized about an attack on the Multics operating system via the PL/I compiler <span class="citation" data-cites="Karger1974">(Paul A. and Roger R. <a href="#ref-Karger1974">1974</a>)</span>. In this attack, a trap door is inserted into the compiler, which then injects malicious code into generated object code. Furthermore, the trap door could be designed to reinsert itself into the compiler binary so that future compilers are silently infected without needing changes to their source code. This attack method was subsequently popularised by Ken Thompson in his 1984 ACM Turing Award acceptance speech <em>Reflections on Trusting Trust</em> <span class="citation" data-cites="Thompson1984">(Thompson <a href="#ref-Thompson1984">1984</a>)</span>.</p>
 <p>If these cases seem far-fetched then consider that there have been several real examples of supply chain attacks on development tools.</p>
 <p>Induc is a family of viruses that infects a pre-compiled library in the Delphi toolchain with malicious code <span class="citation" data-cites="Gostev2009">(Gostev <a href="#ref-Gostev2009">2009</a>)</span>. When Delphi compiles a project the malicious library is included into the resulting executable, thus enabling the virus to spread. The virus was first detected in 2009 and was circulating undetected for at least a year beforehand. Several popular applications are known to have been infected, including a chat client and a media player. Overall, in excess of a hundred thousand infected computers were detected world-wide by anti-virus solutions.</p>
@@ -135,7 +162,7 @@
 <p>A trojanized linker was found to be involved in a supply chain attack discovered in 2017 named ShadowPad <span class="citation" data-cites="Greenberg2019">(Greenberg <a href="#ref-Greenberg2019">2019</a>)</span>. Some instances of the attack were perpetrated using a trojanized Visual Studio linker that silently incorporates a malicious library into applications as they are built. Related attacks named CCleaner and ShadowHammer used the same approach of a trojanized linker to infect built applications. Infected applications from these attacks were distributed to millions of users world-wide.</p>
 <p>These cases highlight that attacks on compilers, and especially linkers and libraries, are a viable route to silently infect many other applications, and there is no doubt that there will be more such attacks in the future. Let us now explore what we can do about these.</p>
 
-<h1 id="other-security-topics-relevant-for-compiler-developers"><span class="header-section-number">6</span> Other security topics relevant for compiler developers</h1>
+<h1 id="other-security-topics-relevant-for-compiler-developers"><span class="header-section-number">7</span> Other security topics relevant for compiler developers</h1>
 
 
 <h1 id="appendix-contribution-guidelines" class="unnumbered">Appendix: contribution guidelines</h1>
