@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.12.23)  23 DEC 2021 10:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.12.31)  31 DEC 2021 11:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1112,7 +1112,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.93 \clearpage
+l.95 \clearpage
                 [1
 
 ] (./book.toc)
@@ -1128,7 +1128,7 @@ Chapter 1.
 
 ]
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 186.
+ine 188.
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [4]
@@ -1219,7 +1219,7 @@ File: bc-aux-301.mps Graphic file (type mps)
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 584--588
+Underfull \hbox (badness 10000) in paragraph at lines 586--590
 \T1/lmr/m/n/10 (+20) publications / conference -[] paper / 1998 / 10 / 08 / pro
 ceedings -[] of -[] the -[] 21st -[] nissc -[]
  []
@@ -1244,7 +1244,7 @@ lm/lmbx10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></texl
 ive/2020/texmf-dist/fonts/type1/public/lm/lmr10.pfb></texlive/2020/texmf-dist/f
 onts/type1/public/lm/lmr17.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/
 lmri10.pfb>
-Output written on book.pdf (20 pages, 196559 bytes).
+Output written on book.pdf (20 pages, 196591 bytes).
 PDF statistics:
  458 PDF objects out of 1000 (max. 8388607)
  410 compressed objects within 5 object streams
