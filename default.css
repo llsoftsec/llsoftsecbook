@@ -17,3 +17,26 @@ body {
 body {
   font-family: sans-serif;
 }
+
+/* For smaller screens: */
+@media only screen and (max-width : 768px) {
+/* Put table-of-contents above paragraph elements. */
+#TOC {
+  position: relative;
+  left: 1%;
+  width: 94%;
+}
+/* Ensure superflous horizontal scroll bar is not added. */
+body {
+  text-align: left;
+  position: relative;
+  left: 1%;
+  width: 94%;
+  overflow-x: hidden;
+}
+/* Justify text for small-screen readability. */
+p {
+  text-align: justify;
+  text-justify: auto;
+}
+}
