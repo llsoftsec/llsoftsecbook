@@ -178,87 +178,104 @@ chronological order of their appearance, and, therefore, complexity.
 
 ## Exploitation primitives
 
-Newcomers to the area of software security may find themselves lost in a large
-number of blog posts and other publications describing specific memory
+Newcomers to the area of software security may find themselves lost in many
+blog posts and other publications describing specific memory
 vulnerabilities and how to exploit them. Two very common, yet unfamiliar to a
 newcomer, terms that appear in such publications are _read primitive_ and
 _write primitive_. In order to understand memory vulnerabilities and be able to
 design effective mitigations, it's important to understand what these terms
-mean, how these primitives could be achieved by an attacker, and how they can
+mean, how these primitives could be obtained by an attacker, and how they can
 be used.
 
-An _exploit primitive_ is a mechanism that allows an attacker to reliably
-perform a specific operation in the memory space of the victim program, through
-an input interaction with the victim program.
+An _exploit primitive_\index{exploit primitive} is a mechanism that allows an
+attacker to perform a specific operation in the memory space of the
+victim program. This is done by providing specially crafted input to the
+victim program.
 
-A _write primitive_ gives the attacker write access to the victim's memory space.
-The value written and the address written to may be controlled by the attacker
-to various degrees. The primitive, for example, may allow:
+A _write primitive_\index{write primitive} gives the attacker some level of
+write access to the victim's memory space.  The value written and the address
+written to may be controlled by the attacker to various degrees. The primitive,
+for example, may allow:
 
-* writing a fixed value to an attacker-controlled address
+* writing a fixed value to an attacker-controlled address, or
 * writing to an address consisting of a fixed base and an attacker-controlled
-  offset limited to a specific range (e.g. a 32-bit offset)
-* writing to an attacker-controlled base address with a fixed offset
+  offset limited to a specific range (e.g. a 32-bit offset)\todo{Consider
+  describing in more detail why the range limitation matters}, or
+* writing to an attacker-controlled base address with a fixed offset.
 
-Slide 11 of [@Miller2012] describes more properties of primitives that allow a
-more detailed classification.
+Primitives can be further classified according to more detailed properties.
+See slide 11 of [@Miller2012] for an example.
 
 The most powerful version of a write primitive is an _arbitrary write_
 primitive, where both the address and the value are fully controlled by the
 attacker.
 
-A _read primitive_, respectively, gives the attacker read access to the
-victim's memory space. As for the write primitive, the address of the memory
-location accessed will be controlled by the attacker to some degree. One of the
-attacker's early goals will often be to achieve an _arbitrary read_ primitive,
-in which the address is fully controlled by the attacker.
+A _read primitive_\index{read primitive}, respectively, gives the attacker read
+access to the victim's memory space. The address of the memory location
+accessed will be controlled by the attacker to some degree, as for the write
+primitive. A particularly useful primitive is an _arbitrary read_ primitive, in
+which the address is fully controlled by the attacker.
 
 The effects of a write primitive are perhaps easier to understand, as it
 has obvious side-effects: a value is written to the victim program's memory.
-But how does an attacker get to observe the result of a read primitive?
+But how can an attacker observe the result of a read primitive?
 
-This basically depends on whether the attack is interactive or non-interactive,
-terminology which is taken from [@Hu2016].
+This depends on whether the attack is interactive or non-interactive [@Hu2016].
 
-* In an _interactive attack_, the attacker gives malicious input to the victim
-  program, observes the result, and prepares the next input. Observing the
-  results is done through looking at the victim program's output, for example
-  looking at a network packet transmitted by the victim. For an attacker to
-  be able to interact with the victim through these primitives, the victim
-  process must stay alive between the handling of the malicious inputs, i.e.
-  it must not be restarted. Note that although the crafting of malicious
-  input could in theory be done by hand, it's usually done via an external
-  program that drives the exploit. An example of this type of attack can be
-  seen in [@Beer2020], which describes a zero-click radio proximity
-  exploit.
-* In a _non-interactive (one-shot) attack_, the attacker provides all malicious
-  input to the victim program at once. The malicious input triggers multiple
-  primitives one after the other, and the primitives are able to observe the
-  effects of the preceding operations through the victim program's state.
-  The input could be, for example, in the form of a JavaScript program
-  [@Groß2020], or a PDF file pretending to be a GIF [@Beer2021].
+* In an _interactive attack_\index{interactive attack}, the attacker gives
+  malicious input to the victim program. The malicious input causes the victim
+  program to perform the read the attacker instructed it to, and to output
+  the results of that read. This output could be any kind of output, for
+  example a network packet that the victim transmits. The attacker can observe
+  the result of the read primitive by looking at this output, for example
+  parsing this network packet. This process then repeats: the attacker sends
+  more malicious input to the victim, observes the output and prepares the next
+  input. You can see an example of this type of attack in
+  [@Beer2020], which describes a zero-click radio proximity exploit.
+* In a _non-interactive (one-shot) attack_\index{non-interactive (one-shot)
+  attack}, the attacker provides all malicious input to the victim program at
+  once. The malicious input triggers multiple primitives one after the other,
+  and the primitives are able to observe the effects of the preceding
+  operations through the victim program's state. The input could be, for
+  example, in the form of a JavaScript program [@Groß2020], or a PDF file
+  pretending to be a GIF [@Beer2021].
 
-How does an attacker achieve these kinds of primitives in the first place?
-The details for this vary, and in some cases it takes a combination of many
-techniques, some of which are out of scope for this book. But we will be
-seeing a few of them in this chapter, for example a stack overflow
-resulting in a (restricted) write primitive when the input size exceeds what
-the program expected.
+\todo{The references in this section describe complicated modern exploits.
+Consider linking to simpler exploits, as well as some tutorial-level material.}
 
-How are primitives chained to perform multiple reads/writes?
+How does an attacker obtain these kinds of primitives in the first place?  The
+details vary, and in some cases it takes a combination of many techniques, some
+of which are out of scope for this book. But we will be describing a few of
+them in this chapter. For example a stack buffer overflow results in a
+(restricted) write primitive when the input size exceeds what the program
+expected.
+
+As part of an attack, the attacker will want to execute each primitive more
+than once, since a single read or write operation will rarely be enough to
+achieve their end goal (more on this later). How can primitives be combined
+to perform multiple reads/writes?
+
 In the case of an interactive attack, preparing and sending input to the victim
 program and parsing the output of the victim program are usually done in an
-external program that drives the exploit. This could be, for example, a C
-program communicating with the victim over the Internet. In this case, the
-primitives are abstracted into C functions, which prepare and send packets to
-the victim, and parse the victim's responses. These functions can be easily
-chained together, interleaved with arbitrary computations, all written in C, to
-form the exploit.
+external program that drives the exploit. The attacker is free to use a
+programming language of their choice, as long as they can interact with the
+victim program in it. Let's assume, for example, an exploit program in C,
+communicating with the victim program over TCP. In this case, the primitives
+are abstracted into C functions, which prepare and send packets to the victim,
+and parse the victim's responses. Using the primitives is then as simple as
+calling these functions. These calls can be easily combined with arbitrary
+computations, all written in C, to form the exploit.
+
+For this cycle of repeated input/output interactions to work, the state of the
+victim program must not be lost between the different iterations of providing
+input and observing output. In other words, the victim process must not be
+restarted. 
 
 It's interesting to note that while the read/write primitives consist of
 carefully constructed inputs to the victim program, the attacker can view these
-inputs as *instructions* to the victim program). This duality is
-explored in [@Dullien2020].
+inputs as *instructions* to the victim program. The victim program effectively
+implements an interpreter unintentionally, and the attacker can send instructions
+to this interpreter. This is explored further in [@Dullien2020].
 
 In the case of a non-interactive attack, all computation happens within the
 victim program. The duality of input data and code is even more obvious in this
@@ -271,33 +288,34 @@ side-effect of accessing arbitrary memory that a JavaScript program is not
 supposed to have access to.  The primitives can be chained together with
 arbitrary computations, also expressed in JavaScript.
 
-There are, however, cases, where the correspondence between data and code isn't
+There are, however, cases where the correspondence between data and code isn't
 as obvious. For example, in [@Beer2021], the malicious input consists of a PDF
 file, masquerading as a GIF. Due to an integer overflow bug in the PDF decoder,
-the malicious input leads to an unbounded buffer access.  In the case of
-JavaScript engine exploitation, the attacker would normally be able to use
-JavaScript operations and perform arbitrary computations, making exploitation
-more straightforward. In this case, there are no scripting capabilities
-officially supported. The attackers, however, take advantage of the compression
-format intricacies to implement a small computer architecture, in thousands of
-simple commands to the decoder.  In this way, they effectively _introduce_
-scripting capabilities and are able to express their exploit as a program to
-this architecture.
+the malicious input leads to an unbounded buffer access, therefore to an
+arbitrary read/write primitive. In the case of JavaScript engine exploitation,
+the attacker would normally be able to use JavaScript operations and perform
+arbitrary computations, making exploitation more straightforward. In this case,
+there are no scripting capabilities officially supported. The attackers,
+however, take advantage of the compression format intricacies to implement a
+small computer architecture, in thousands of simple commands to the decoder.
+In this way, they effectively _introduce_ scripting capabilities and are able
+to express their exploit as a program to this architecture.
 
-We have described read/write primitives, and have discussed how an attacker
-might also perform arbitrary computations, either in an external program
-in the case of interactive attacks, or by using scripting capabilities
-(whether originally supported or introduced by the attacker) in
-non-interactive attacks. Assuming an attacker has gained these capabilities,
-how can they use them to achieve their goals?
+So far, we have described read/write primitives. We have also discussed how an
+attacker might perform arbitrary computations:
+  * in an external program in the case of interactive attacks, or
+  * by using scripting capabilities (whether originally supported or
+    introduced by the attacker) in non-interactive attacks.
+Assuming an attacker has gained these capabilities, how can they use them to
+achieve their goals?
 
 The ultimate goal of an attacker may vary: it may be, among other things,
 getting access to a system, leaking sensitive information or bringing down a
 service. Frequently, a first step towards these wider goals is arbitrary code
-execution within the victim process. We have already mentioned that the
-attacker will typically have arbitrary computation capabilities at this point,
-but arbitrary code execution also involves things like calling arbitrary
-library functions, performing system calls, and so on.
+execution\index{arbitrary code execution} within the victim process. We have
+already mentioned that the attacker will typically have arbitrary computation
+capabilities at this point, but arbitrary code execution also involves things
+like calling arbitrary library functions and performing system calls.
 
 Some examples of how the attacker may use the obtained primitives:
 
@@ -308,7 +326,7 @@ Some examples of how the attacker may use the obtained primitives:
   step is sufficient to achieve the attacker's goal, bypassing the need for
   arbitrary code execution.
 
-Once arbitrary execution is achieved, the attacker may need to exploit
+Once arbitrary code execution is achieved, the attacker may need to exploit
 additional vulnerabilities in order to escape a process sandbox, escalate
 privilege, etc. Such vulnerability chaining is common, but for the
 purposes of this chapter we will focus on:
