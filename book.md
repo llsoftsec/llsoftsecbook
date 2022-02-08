@@ -132,13 +132,13 @@ Memory vulnerabilities have a long history. The [Morris
 worm](https://en.wikipedia.org/wiki/Morris_worm) in 1988 was the first widely
 publicized attack exploiting a buffer overflow. Later, in the mid-90s, a few
 famous write-ups describing buffer overflows appeared [@AlephOne1996]. [Stack
-overflows](#stack-overflows) were mitigated with [stack
-canaries](#stack-overflows) and [non-executable stacks](#stack-overflows). The
-answer was more ingenious ways to bypass these mitigations: [code reuse
-attacks](#code-reuse-attacks), starting with attacks like
-[return-into-libc](#code-reuse-attacks) [@Solar1997]. Code reuse attacks later
-evolved to [Return-Oriented Programming (ROP)](#code-reuse-attacks)
-[@Shacham2007] and even more complex techniques.
+buffer overflows](#stack-buffer-overflows) were mitigated with [stack
+canaries](#stack-buffer-overflows) and [non-executable
+stacks](#stack-buffer-overflows). The answer was more ingenious ways to bypass
+these mitigations: [code reuse attacks](#code-reuse-attacks), starting with
+attacks like [return-into-libc](#code-reuse-attacks) [@Solar1997]. Code reuse
+attacks later evolved to [Return-Oriented Programming
+(ROP)](#code-reuse-attacks) [@Shacham2007] and even more complex techniques.
 
 To defend against code reuse attacks, the [Address Space Layout Randomization
 (ASLR)](#code-reuse-attacks) and [Control-Flow Integrity
@@ -179,8 +179,8 @@ chronological order of their appearance, and, therefore, complexity.
 ## Exploitation primitives
 \missingcontent{Discuss exploitation primitives}
 
-## Stack overflows
-\missingcontent{Describe stack overflows and mitigations}
+## Stack buffer overflows
+\missingcontent{Describe stack buffer overflows and mitigations}
 
 ## Code reuse attacks
 \missingcontent{Discuss ROP, JOP, COOP and mitigations (ASLR, CFI etc)}
