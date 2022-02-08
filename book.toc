@@ -3,7 +3,7 @@
 \contentsline {chapter}{\numberline {2}Memory vulnerability based attacks and mitigations}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}A bit of background on memory vulnerabilities}{5}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Exploitation primitives}{6}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Stack overflows}{6}{section.2.3}%
+\contentsline {section}{\numberline {2.3}Stack buffer overflows}{6}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Code reuse attacks}{6}{section.2.4}%
 \contentsline {section}{\numberline {2.5}Non-control data exploits}{7}{section.2.5}%
 \contentsline {section}{\numberline {2.6}Hardware support for protection against memory vulnerabilities}{7}{section.2.6}%

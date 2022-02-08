@@ -2,7 +2,7 @@
 \contentsline {todo}{2. Refine section links used here and in the previous paragraph.}{5}{section*.3}%
 \contentsline {todo}{3. Discuss threat models elsewhere in book and refer to that section here}{6}{section*.4}%
 \contentsline {todo}{4. Discuss exploitation primitives}{6}{section*.5}%
-\contentsline {todo}{5. Describe stack overflows and mitigations}{6}{section*.6}%
+\contentsline {todo}{5. Describe stack buffer overflows and mitigations}{6}{section*.6}%
 \contentsline {todo}{6. Discuss ROP, JOP, COOP and mitigations (ASLR, CFI etc)}{6}{section*.7}%
 \contentsline {todo}{7. Discuss data-oriented programming and other attacks}{7}{section*.8}%
 \contentsline {todo}{8. Describe architectural features for mitigating memory vulnerabilities and for CFI}{7}{section*.9}%
