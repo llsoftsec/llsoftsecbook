@@ -26,7 +26,7 @@
 <p>
   © 2021 Arm Limited <a href="mailto:kristof.beyls@arm.com" class="email">kristof.beyls@arm.com</a><br />
 </p>
-<p>Version: 0-60-g4e05363</p>
+<p>Version: 0-61-g78003f9</p>
 
 </header>
 <nav id="TOC">
@@ -100,7 +100,7 @@
 <p>To defend against code reuse attacks, the <a href="#code-reuse-attacks">Address Space Layout Randomization (ASLR)</a> and <a href="#code-reuse-attacks">Control-Flow Integrity (CFI)</a> measures were introduced.  This interaction between offensive and defensive security research has been essential to improving security, and continues to this day. Each newly deployed mitigation results in attempts, often successful, to bypass it, or in alternative, more complex exploitation techniques, and even tools to automate them.</p>
 <p>Memory safe <span class="citation" data-cites="Hicks2014">(Hicks <a href="#ref-Hicks2014">2014</a>)</span> languages are designed with prevention of such vulnerabilities in mind and use techniques such as bounds checking and automatic memory management. If these languages promise to eliminate memory vulnerabilities, why are we still discussing this topic?</p>
 <p>On the one hand, C and C++ remain very popular languages, particular in the implementation of low-level software. On the other hand, programs written in memory safe languages can themselves be vulnerable to memory errors as a result of bugs in how they are implemented, e.g. a bug in their compiler. Can we fix the problem by also using memory safe languages for the compiler and runtime implementation? Even if that were as simple as it sounds, unfortunately there are types of programming errors that these languages cannot protect against. For example, a logical error in the implementation of a compiler or runtime for a memory safe language can lead to a memory access error not being detected. We will see examples of such logic errors in compiler optimizations in a <a href="#jit-compiler-vulnerabilities">later section</a>.</p>
-<p>Given the rich history of memory vulnerabilities and mitigations and the active developments in this area, compiler developers are likely to encounter some of these issues over the course of their careers. This chapter aims to serve as an introduction to this area. We start with a discussion of exploitation primitives, which can be useful when discussing threat models . We then continue with a more detailed discussion of the various types of vulnerabilities, along with their mitigations, presented in a rough chronological order of their appearance, and, therefore, complexity.</p>
+<p>Given the rich history of memory vulnerabilities and mitigations and the active developments in this area, compiler developers are likely to encounter some of these issues over the course of their careers. This chapter aims to serve as an introduction to this area. We start with a discussion of exploitation primitives, which can be useful when analyzing threat models . We then continue with a more detailed discussion of the various types of vulnerabilities, along with their mitigations, presented in a rough chronological order of their appearance, and, therefore, complexity.</p>
 <h2 id="exploitation-primitives"><span class="header-section-number">2.2</span> Exploitation primitives</h2>
 
 <h2 id="stack-buffer-overflows"><span class="header-section-number">2.3</span> Stack buffer overflows</h2>
