@@ -170,7 +170,7 @@ Given the rich history of memory vulnerabilities and mitigations and the active
 developments in this area, compiler developers are likely to encounter some of
 these issues over the course of their careers. This chapter aims to serve as an
 introduction to this area. We start with a discussion of exploitation
-primitives, which can be useful when discussing threat models \todo{Discuss
+primitives, which can be useful when analyzing threat models \todo{Discuss
 threat models elsewhere in book and refer to that section here}. We then
 continue with a more detailed discussion of the various types of
 vulnerabilities, along with their mitigations, presented in a rough
