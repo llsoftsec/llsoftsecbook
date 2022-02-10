@@ -19,29 +19,30 @@ clean:
 build:
 	mkdir build
 
-build/default.css: default.css Makefile build
-	cp default.css build/default.css
+build/default.css: theme/html/default.css Makefile build
+	cp theme/html/default.css build/default.css
 
-build/book.html: book.md book.bib Makefile build pandoc_template.html
+build/book.html: book.md book.bib Makefile build theme/html/pandoc_template.html theme/html/clickable_headers.lua
 	pandoc $< -t html \
-	    --template pandoc_template.html \
+		--template theme/html/pandoc_template.html \
+		--lua-filter theme/html/clickable_headers.lua \
 		-M css=default.css \
 		-o $@ $(PANDOCFLAGS)
 
 build/index.html: build/book.html build
 	cp build/book.html build/index.html
 
-build/book.tex: book.md book.bib Makefile build pandoc_template.tex
+build/book.tex: book.md book.bib Makefile build theme/tex/pandoc_template.tex
 	pandoc $< -t latex \
-		--template pandoc_template.tex \
+		--template theme/tex/pandoc_template.tex \
 		-o $@ $(PANDOCFLAGS)
 
 build/book.pdf: build/book.tex Makefile build
 	cd build && \
 	latexmk -pdf book.tex
 
-default_pandoc_html_template: Makefile
+default_pandoc_html_template: Makefile 
 	pandoc -D html > $@
 
-default_pandoc_latex_template: Makefile
+default_pandoc_latex_template: Makefile 
 	pandoc -D latex > $@
