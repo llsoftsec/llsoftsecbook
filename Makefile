@@ -41,8 +41,8 @@ build/book.pdf: build/book.tex Makefile build
 	cd build && \
 	latexmk -pdf book.tex
 
-default_pandoc_html_template: Makefile 
+default_pandoc_html_template: Makefile
 	pandoc -D html > $@
 
-default_pandoc_latex_template: Makefile 
+default_pandoc_latex_template: Makefile
 	pandoc -D latex > $@
