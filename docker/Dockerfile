@@ -2,6 +2,12 @@
 # SPDX-FileCopyrightText: © 2021 Arm Limited <kristof.beyls@arm.com>
 # syntax=docker/dockerfile:1
 FROM ubuntu:20.04
+ARG uname
+ARG uid
+
+# 0. create in-container duplicate of user who started build
+RUN useradd -u $uid -s /bin/bash -m $uname
+
 # 1. install pandoc and texlive dependencies
 #    Also install git as we need that for computing version numbers
 RUN apt-get update && \
@@ -50,4 +56,5 @@ RUN tlmgr install amsfonts amsmath lm unicode-math iftex listings fancyvrb bookt
 RUN tlmgr install todonotes epstopdf-pkg bclogo pstricks pst-grad pst-coil pst-node mdframed zref needspace mptopdf
 
 COPY entrypoint.sh /entrypoint.sh
+USER $uname
 ENTRYPOINT ["/entrypoint.sh"]
