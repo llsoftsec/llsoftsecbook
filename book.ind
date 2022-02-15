@@ -1,18 +1,42 @@
 \begin{theindex}
 
-  \item cache, \hyperpage{8}
-  \item covert channel, \hyperpage{8}
+  \item arbitrary code execution, \hyperpage{8}
 
   \indexspace
 
-  \item side-channel, \hyperpage{8}
+  \item cache, \hyperpage{11}
+  \item covert channel, \hyperpage{11}
 
   \indexspace
 
-  \item timing attacks, \hyperpage{11}
+  \item exploit primitive, \hyperpage{6}
 
   \indexspace
 
-  \item victim, \hyperpage{8}
+  \item interactive attack, \hyperpage{7}
+
+  \indexspace
+
+  \item non-interactive (one-shot)   attack, \hyperpage{7}
+
+  \indexspace
+
+  \item read primitive, \hyperpage{7}
+
+  \indexspace
+
+  \item side-channel, \hyperpage{11}
+
+  \indexspace
+
+  \item timing attacks, \hyperpage{14}
+
+  \indexspace
+
+  \item victim, \hyperpage{11}
+
+  \indexspace
+
+  \item write primitive, \hyperpage{6}
 
 \end{theindex}

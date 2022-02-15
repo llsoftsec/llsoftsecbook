@@ -26,7 +26,7 @@
 <p>
   © 2021 Arm Limited <a href="mailto:kristof.beyls@arm.com" class="email">kristof.beyls@arm.com</a><br />
 </p>
-<p>Version: 0-62-gcf92d76</p>
+<p>Version: 0-63-gb527fe5</p>
 
 </header>
 <nav id="TOC">
@@ -102,7 +102,44 @@
 <p>On the one hand, C and C++ remain very popular languages, particular in the implementation of low-level software. On the other hand, programs written in memory safe languages can themselves be vulnerable to memory errors as a result of bugs in how they are implemented, e.g. a bug in their compiler. Can we fix the problem by also using memory safe languages for the compiler and runtime implementation? Even if that were as simple as it sounds, unfortunately there are types of programming errors that these languages cannot protect against. For example, a logical error in the implementation of a compiler or runtime for a memory safe language can lead to a memory access error not being detected. We will see examples of such logic errors in compiler optimizations in a <a href="#jit-compiler-vulnerabilities">later section</a>.</p>
 <p>Given the rich history of memory vulnerabilities and mitigations and the active developments in this area, compiler developers are likely to encounter some of these issues over the course of their careers. This chapter aims to serve as an introduction to this area. We start with a discussion of exploitation primitives, which can be useful when analyzing threat models . We then continue with a more detailed discussion of the various types of vulnerabilities, along with their mitigations, presented in a rough chronological order of their appearance, and, therefore, complexity.</p>
 <h2 id="exploitation-primitives"><span class="header-section-number">2.2</span> Exploitation primitives <a href="#exploitation-primitives" class="selflink">§</a></h2>
+<p>Newcomers to the area of software security may find themselves lost in many blog posts and other publications describing specific memory vulnerabilities and how to exploit them. Two very common, yet unfamiliar to a newcomer, terms that appear in such publications are <em>read primitive</em> and <em>write primitive</em>. In order to understand memory vulnerabilities and be able to design effective mitigations, it’s important to understand what these terms mean, how these primitives could be obtained by an attacker, and how they can be used.</p>
+<p>An <em>exploit primitive</em> is a mechanism that allows an attacker to perform a specific operation in the memory space of the victim program. This is done by providing specially crafted input to the victim program.</p>
+<p>A <em>write primitive</em> gives the attacker some level of write access to the victim’s memory space. The value written and the address written to may be controlled by the attacker to various degrees. The primitive, for example, may allow:</p>
+<ul>
+<li>writing a fixed value to an attacker-controlled address, or</li>
+<li>writing to an address consisting of a fixed base and an attacker-controlled offset limited to a specific range (e.g. a 32-bit offset), or</li>
+<li>writing to an attacker-controlled base address with a fixed offset.</li>
+</ul>
+<p>Primitives can be further classified according to more detailed properties. See slide 11 of <span class="citation" data-cites="Miller2012">(Miller, <a href="#ref-Miller2012">n.d.</a>)</span> for an example.</p>
+<p>The most powerful version of a write primitive is an <em>arbitrary write</em> primitive, where both the address and the value are fully controlled by the attacker.</p>
+<p>A <em>read primitive</em>, respectively, gives the attacker read access to the victim’s memory space. The address of the memory location accessed will be controlled by the attacker to some degree, as for the write primitive. A particularly useful primitive is an <em>arbitrary read</em> primitive, in which the address is fully controlled by the attacker.</p>
+<p>The effects of a write primitive are perhaps easier to understand, as it has obvious side-effects: a value is written to the victim program’s memory. But how can an attacker observe the result of a read primitive?</p>
+<p>This depends on whether the attack is interactive or non-interactive <span class="citation" data-cites="Hu2016">(Hu et al. <a href="#ref-Hu2016">2016</a>)</span>.</p>
+<ul>
+<li>In an <em>interactive attack</em>, the attacker gives malicious input to the victim program. The malicious input causes the victim program to perform the read the attacker instructed it to, and to output the results of that read. This output could be any kind of output, for example a network packet that the victim transmits. The attacker can observe the result of the read primitive by looking at this output, for example parsing this network packet. This process then repeats: the attacker sends more malicious input to the victim, observes the output and prepares the next input. You can see an example of this type of attack in <span class="citation" data-cites="Beer2020">(Beer <a href="#ref-Beer2020">2020</a>)</span>, which describes a zero-click radio proximity exploit.</li>
+<li>In a <em>non-interactive (one-shot) attack</em>, the attacker provides all malicious input to the victim program at once. The malicious input triggers multiple primitives one after the other, and the primitives are able to observe the effects of the preceding operations through the victim program’s state. The input could be, for example, in the form of a JavaScript program <span class="citation" data-cites="Groß2020">(Groß <a href="#ref-Groß2020">2020</a>)</span>, or a PDF file pretending to be a GIF <span class="citation" data-cites="Beer2021">(Beer and Groß <a href="#ref-Beer2021">2021</a>)</span>.</li>
+</ul>
 
+<p>How does an attacker obtain these kinds of primitives in the first place? The details vary, and in some cases it takes a combination of many techniques, some of which are out of scope for this book. But we will be describing a few of them in this chapter. For example a stack buffer overflow results in a (restricted) write primitive when the input size exceeds what the program expected.</p>
+<p>As part of an attack, the attacker will want to execute each primitive more than once, since a single read or write operation will rarely be enough to achieve their end goal (more on this later). How can primitives be combined to perform multiple reads/writes?</p>
+<p>In the case of an interactive attack, preparing and sending input to the victim program and parsing the output of the victim program are usually done in an external program that drives the exploit. The attacker is free to use a programming language of their choice, as long as they can interact with the victim program in it. Let’s assume, for example, an exploit program in C, communicating with the victim program over TCP. In this case, the primitives are abstracted into C functions, which prepare and send packets to the victim, and parse the victim’s responses. Using the primitives is then as simple as calling these functions. These calls can be easily combined with arbitrary computations, all written in C, to form the exploit.</p>
+<p>For this cycle of repeated input/output interactions to work, the state of the victim program must not be lost between the different iterations of providing input and observing output. In other words, the victim process must not be restarted.</p>
+<p>It’s interesting to note that while the read/write primitives consist of carefully constructed inputs to the victim program, the attacker can view these inputs as <em>instructions</em> to the victim program. The victim program effectively implements an interpreter unintentionally, and the attacker can send instructions to this interpreter. This is explored further in <span class="citation" data-cites="Dullien2020">(Dullien <a href="#ref-Dullien2020">2020</a>)</span>.</p>
+<p>In the case of a non-interactive attack, all computation happens within the victim program. The duality of input data and code is even more obvious in this case, as the malicious input to the victim can be viewed as the exploit code. There are cases for which the input is obviously interpreted as code by the victim application as well, as in the case of a JavaScript program given as input to a JavaScript engine. In this case, the read/write primitives would be written as JavaScript functions, which when called have the unintended side-effect of accessing arbitrary memory that a JavaScript program is not supposed to have access to. The primitives can be chained together with arbitrary computations, also expressed in JavaScript.</p>
+<p>There are, however, cases where the correspondence between data and code isn’t as obvious. For example, in <span class="citation" data-cites="Beer2021">(Beer and Groß <a href="#ref-Beer2021">2021</a>)</span>, the malicious input consists of a PDF file, masquerading as a GIF. Due to an integer overflow bug in the PDF decoder, the malicious input leads to an unbounded buffer access, therefore to an arbitrary read/write primitive. In the case of JavaScript engine exploitation, the attacker would normally be able to use JavaScript operations and perform arbitrary computations, making exploitation more straightforward. In this case, there are no scripting capabilities officially supported. The attackers, however, take advantage of the compression format intricacies to implement a small computer architecture, in thousands of simple commands to the decoder. In this way, they effectively <em>introduce</em> scripting capabilities and are able to express their exploit as a program to this architecture.</p>
+<p>So far, we have described read/write primitives. We have also discussed how an attacker might perform arbitrary computations: * in an external program in the case of interactive attacks, or * by using scripting capabilities (whether originally supported or introduced by the attacker) in non-interactive attacks. Assuming an attacker has gained these capabilities, how can they use them to achieve their goals?</p>
+<p>The ultimate goal of an attacker may vary: it may be, among other things, getting access to a system, leaking sensitive information or bringing down a service. Frequently, a first step towards these wider goals is arbitrary code execution within the victim process. We have already mentioned that the attacker will typically have arbitrary computation capabilities at this point, but arbitrary code execution also involves things like calling arbitrary library functions and performing system calls.</p>
+<p>Some examples of how the attacker may use the obtained primitives:</p>
+<ul>
+<li>Leak information, such as pointers to specific data structures or code, or the stack pointer.</li>
+<li>Overwrite the stack contents, e.g. to perform a <a href="#code-reuse-attacks">ROP attack</a>.</li>
+<li>Overwrite non-control data, e.g. authorization state. Sometimes this step is sufficient to achieve the attacker’s goal, bypassing the need for arbitrary code execution.</li>
+</ul>
+<p>Once arbitrary code execution is achieved, the attacker may need to exploit additional vulnerabilities in order to escape a process sandbox, escalate privilege, etc. Such vulnerability chaining is common, but for the purposes of this chapter we will focus on:</p>
+<ul>
+<li>Preventing memory vulnerabilities in the first place, thus stopping the attacker from obtaining powerful read/write primitives.</li>
+<li>Mitigating the effects of read/write primitives, e.g. with mechanisms to maintain <a href="#code-reuse-attacks">Control-Flow Integrity (CFI)</a>.</li>
+</ul>
 <h2 id="stack-buffer-overflows"><span class="header-section-number">2.3</span> Stack buffer overflows <a href="#stack-buffer-overflows" class="selflink">§</a></h2>
 
 <h2 id="code-reuse-attacks"><span class="header-section-number">2.4</span> Code reuse attacks <a href="#code-reuse-attacks" class="selflink">§</a></h2>
@@ -175,8 +212,17 @@
 <div id="ref-AlephOne1996">
 <p>Aleph One. 1996. “Smashing the Stack for Fun and Profit.” 1996. <a href="http://www.phrack.org/issues/49/14.html#article">http://www.phrack.org/issues/49/14.html#article</a>.</p>
 </div>
+<div id="ref-Beer2020">
+<p>Beer, Ian. 2020. “An iOS Zero-Click Radio Proximity Exploit Odyssey.” 2020. <a href="https://googleprojectzero.blogspot.com/2020/12/an-ios-zero-click-radio-proximity.html">https://googleprojectzero.blogspot.com/2020/12/an-ios-zero-click-radio-proximity.html</a>.</p>
+</div>
+<div id="ref-Beer2021">
+<p>Beer, Ian, and Samuel Groß. 2021. “A Deep Dive into an Nso Zero-Click iMessage Exploit: Remote Code Execution.” 2021. <a href="https://googleprojectzero.blogspot.com/2021/12/a-deep-dive-into-nso-zero-click.html">https://googleprojectzero.blogspot.com/2021/12/a-deep-dive-into-nso-zero-click.html</a>.</p>
+</div>
 <div id="ref-Cox2015">
 <p>Cox, Joseph. 2015. “Hack Brief: Malware Sneaks into the Chinese iOS App Store.” <em>WIRED</em>. <a href="https://www.wired.com/2015/09/hack-brief-malware-sneaks-chinese-ios-app-store/">https://www.wired.com/2015/09/hack-brief-malware-sneaks-chinese-ios-app-store/</a>.</p>
+</div>
+<div id="ref-Dullien2020">
+<p>Dullien, Thomas. 2020. “Weird Machines, Exploitability, and Provable Unexploitability.” <em>IEEE Transactions on Emerging Topics in Computing</em> 8 (2): 391–403. <a href="https://doi.org/10.1109/TETC.2017.2785300">https://doi.org/10.1109/TETC.2017.2785300</a>.</p>
 </div>
 <div id="ref-Gostev2009">
 <p>Gostev, Alexander. 2009. “A Short History of Induc.” 2009. <a href="https://securelist.com/a-short-history-of-induc/30555/">https://securelist.com/a-short-history-of-induc/30555/</a>.</p>
@@ -184,8 +230,17 @@
 <div id="ref-Greenberg2019">
 <p>Greenberg, Andy. 2019. “Supply Chain Hackers Snuck Malware into Videogames.” <em>WIRED</em>. <a href="https://www.wired.com/story/supply-chain-hackers-videogames-asus-ccleaner/">https://www.wired.com/story/supply-chain-hackers-videogames-asus-ccleaner/</a>.</p>
 </div>
+<div id="ref-Groß2020">
+<p>Groß, Samuel. 2020. “JITSploitation I: A Jit Bug.” 2020. <a href="https://googleprojectzero.blogspot.com/2020/09/jitsploitation-one.html">https://googleprojectzero.blogspot.com/2020/09/jitsploitation-one.html</a>.</p>
+</div>
 <div id="ref-Hicks2014">
 <p>Hicks, Michael. 2014. “What Is Memory Safety?” 2014. <a href="http://www.pl-enthusiast.net/2014/07/21/memory-safety/">http://www.pl-enthusiast.net/2014/07/21/memory-safety/</a>.</p>
+</div>
+<div id="ref-Hu2016">
+<p>Hu, Hong, Shweta Shinde, Sendroiu Adrian, Zheng Leong Chua, Prateek Saxena, and Zhenkai Liang. 2016. “Data-Oriented Programming: On the Expressiveness of Non-Control Data Attacks.” In <em>2016 Ieee Symposium on Security and Privacy (Sp)</em>, 969–86. <a href="https://doi.org/10.1109/SP.2016.62">https://doi.org/10.1109/SP.2016.62</a>.</p>
+</div>
+<div id="ref-Miller2012">
+<p>Miller, Matt. n.d. “Modeling the Exploitation and Mitigation of Memory Safety Vulnerabilities.” <a href="https://2012.ruxconbreakpoint.com/">Breakpoint 2012</a>. <a href="https://github.com/Microsoft/MSRC-Security-Research/blob/master/presentations/2012_10_Breakpoint/BreakPoint2012_Miller_Modeling_the_exploitation_and_mitigation_of_memory_safety_vulnerabilities.pdf">https://github.com/Microsoft/MSRC-Security-Research/blob/master/presentations/2012_10_Breakpoint/BreakPoint2012_Miller_Modeling_the_exploitation_and_mitigation_of_memory_safety_vulnerabilities.pdf</a>.</p>
 </div>
 <div id="ref-Karger1974">
 <p>Paul A., Karger, and Schell Roger R. 1974. “MULTICS Security Evaluation: VULNERABILITY Analysis,” 52. <a href="https://csrc.nist.gov/csrc/media/publications/conference-paper/1998/10/08/proceedings-of-the-21st-nissc-1998/documents/early-cs-papers/karg74.pdf">https://csrc.nist.gov/csrc/media/publications/conference-paper/1998/10/08/proceedings-of-the-21st-nissc-1998/documents/early-cs-papers/karg74.pdf</a>.</p>

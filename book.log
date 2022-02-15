@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.2.12)  12 FEB 2022 08:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.2.15)  15 FEB 2022 12:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1149,105 +1149,133 @@ File: bc-aux-301.mps Graphic file (type mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-File: bc-aux-301.mps Graphic file (type mps)
+Overfull \hbox (5.33688pt too wide) in paragraph at lines 316--316
+[][][][]\T1/lmr/m/n/10 (-20) Consider 
+ []
 
+File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-File: bc-aux-301.mps Graphic file (type mps)
+Overfull \hbox (5.33688pt too wide) in paragraph at lines 316--316
+[][][][]\T1/lmr/m/n/10 (-20) Consider 
+ []
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-File: bc-aux-301.mps Graphic file (type mps)
-
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [6]
-File: bc-aux-301.mps Graphic file (type mps)
-
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-File: bc-aux-301.mps Graphic file (type mps)
-
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-File: bc-aux-301.mps Graphic file (type mps)
-
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [7]
-Chapter 3.
-[8
-
-]
+[6]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [9]
-Chapter 4.
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [7]
+[8]
 File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [10
+ [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
 
-]
-Chapter 5.
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [9]
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [10]
+Chapter 3.
 [11
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-[12]
-Chapter 6.
-[13
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [12]
+Chapter 4.
+File: bc-aux-301.mps Graphic file (type mps)
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [13
+
+]
+Chapter 5.
+[14
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-[14]
+[15]
+Chapter 6.
+[16
+
+]
+File: bc-aux-301.mps Graphic file (type mps)
+ [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+[17]
 Chapter 7.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [15
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [18
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-(./book.ind [16
+(./book.ind [19
 
-] [17
+] [20
 
 
 ]) (./book.tdo)
 \tf@tdo=\write7
 \openout7 = `book.tdo'.
 
- [18
+ [21
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 586--590
+Underfull \hbox (badness 10000) in paragraph at lines 806--811
+\T1/lmr/m/n/10 (+20) Security -[] Research / blob / master / presentations / 20
+12 _ 10 _ Breakpoint /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 806--811
+\T1/lmr/m/n/10 (+20) BreakPoint2012 _ Miller _ Modeling _ the _ exploitation _ 
+and _ mitigation _
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 812--816
 \T1/lmr/m/n/10 (+20) publications / conference -[] paper / 1998 / 10 / 08 / pro
 ceedings -[] of -[] the -[] 21st -[] nissc -[]
  []
 
-[19
+[22
 
-] (./book.aux)
+] [23] (./book.aux)
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: EE03A386DC36678AE3729671CC33A98F;5739.
+(rerunfilecheck)             Checksum: 0D84782082B8242E10E2B75F6FA5D128;5739.
  ) 
 Here is how much of TeX's memory you used:
- 26238 strings out of 480962
- 466432 string characters out of 5908147
- 859110 words of memory out of 5000000
- 42613 multiletter control sequences out of 15000+600000
- 472525 words of font info for 151 fonts, out of 8000000 for 9000
+ 26281 strings out of 480962
+ 467348 string characters out of 5908147
+ 869514 words of memory out of 5000000
+ 42627 multiletter control sequences out of 15000+600000
+ 473258 words of font info for 157 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 128i,12n,130p,645b,1198s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 128i,12n,130p,645b,1254s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/texlive/2020/texmf-d
 ist/fonts/enc/dvips/lm/lm-ts1.enc}</texlive/2020/texmf-dist/fonts/type1/public/
 lm/lmbx10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></texl
 ive/2020/texmf-dist/fonts/type1/public/lm/lmr10.pfb></texlive/2020/texmf-dist/f
 onts/type1/public/lm/lmr17.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/
 lmri10.pfb>
-Output written on book.pdf (20 pages, 197223 bytes).
+Output written on book.pdf (24 pages, 213553 bytes).
 PDF statistics:
- 459 PDF objects out of 1000 (max. 8388607)
- 411 compressed objects within 5 object streams
- 109 named destinations out of 1000 (max. 500000)
+ 514 PDF objects out of 1000 (max. 8388607)
+ 462 compressed objects within 5 object streams
+ 120 named destinations out of 1000 (max. 500000)
  39245 words of extra memory for PDF output out of 42996 (max. 10000000)
 

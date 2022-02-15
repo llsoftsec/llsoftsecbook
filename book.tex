@@ -91,7 +91,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   © 2021 Arm Limited
   \href{mailto:kristof.beyls@arm.com}{\nolinkurl{kristof.beyls@arm.com}}\\
 
-Version 0-62-gcf92d76
+Version 0-63-gb527fe5
 \clearpage
 
 {
@@ -286,7 +286,200 @@ chronological order of their appearance, and, therefore, complexity.
 \hypertarget{exploitation-primitives}{%
 \section{Exploitation primitives}\label{exploitation-primitives}}
 
-\missingcontent{Discuss exploitation primitives}
+Newcomers to the area of software security may find themselves lost in
+many blog posts and other publications describing specific memory
+vulnerabilities and how to exploit them. Two very common, yet unfamiliar
+to a newcomer, terms that appear in such publications are \emph{read
+primitive} and \emph{write primitive}. In order to understand memory
+vulnerabilities and be able to design effective mitigations, it's
+important to understand what these terms mean, how these primitives
+could be obtained by an attacker, and how they can be used.
+
+An \emph{exploit primitive}\index{exploit primitive} is a mechanism that
+allows an attacker to perform a specific operation in the memory space
+of the victim program. This is done by providing specially crafted input
+to the victim program.
+
+A \emph{write primitive}\index{write primitive} gives the attacker some
+level of write access to the victim's memory space. The value written
+and the address written to may be controlled by the attacker to various
+degrees. The primitive, for example, may allow:
+
+\begin{itemize}
+\tightlist
+\item
+  writing a fixed value to an attacker-controlled address, or
+\item
+  writing to an address consisting of a fixed base and an
+  attacker-controlled offset limited to a specific range (e.g.~a 32-bit
+  offset)\todo{Consider
+  describing in more detail why the range limitation matters}, or
+\item
+  writing to an attacker-controlled base address with a fixed offset.
+\end{itemize}
+
+Primitives can be further classified according to more detailed
+properties. See slide 11 of (Miller,
+\protect\hyperlink{ref-Miller2012}{n.d.}) for an example.
+
+The most powerful version of a write primitive is an \emph{arbitrary
+write} primitive, where both the address and the value are fully
+controlled by the attacker.
+
+A \emph{read primitive}\index{read primitive}, respectively, gives the
+attacker read access to the victim's memory space. The address of the
+memory location accessed will be controlled by the attacker to some
+degree, as for the write primitive. A particularly useful primitive is
+an \emph{arbitrary read} primitive, in which the address is fully
+controlled by the attacker.
+
+The effects of a write primitive are perhaps easier to understand, as it
+has obvious side-effects: a value is written to the victim program's
+memory. But how can an attacker observe the result of a read primitive?
+
+This depends on whether the attack is interactive or non-interactive (Hu
+et al. \protect\hyperlink{ref-Hu2016}{2016}).
+
+\begin{itemize}
+\tightlist
+\item
+  In an \emph{interactive attack}\index{interactive attack}, the
+  attacker gives malicious input to the victim program. The malicious
+  input causes the victim program to perform the read the attacker
+  instructed it to, and to output the results of that read. This output
+  could be any kind of output, for example a network packet that the
+  victim transmits. The attacker can observe the result of the read
+  primitive by looking at this output, for example parsing this network
+  packet. This process then repeats: the attacker sends more malicious
+  input to the victim, observes the output and prepares the next input.
+  You can see an example of this type of attack in (Beer
+  \protect\hyperlink{ref-Beer2020}{2020}), which describes a zero-click
+  radio proximity exploit.
+\item
+  In a \emph{non-interactive (one-shot)
+  attack}\index{non-interactive (one-shot)
+  attack}, the attacker provides all malicious input to the victim
+  program at once. The malicious input triggers multiple primitives one
+  after the other, and the primitives are able to observe the effects of
+  the preceding operations through the victim program's state. The input
+  could be, for example, in the form of a JavaScript program (Groß
+  \protect\hyperlink{ref-Grouxdf2020}{2020}), or a PDF file pretending
+  to be a GIF (Beer and Groß \protect\hyperlink{ref-Beer2021}{2021}).
+\end{itemize}
+
+\todo{The references in this section describe complicated modern exploits.
+Consider linking to simpler exploits, as well as some tutorial-level material.}
+
+How does an attacker obtain these kinds of primitives in the first
+place? The details vary, and in some cases it takes a combination of
+many techniques, some of which are out of scope for this book. But we
+will be describing a few of them in this chapter. For example a stack
+buffer overflow results in a (restricted) write primitive when the input
+size exceeds what the program expected.
+
+As part of an attack, the attacker will want to execute each primitive
+more than once, since a single read or write operation will rarely be
+enough to achieve their end goal (more on this later). How can
+primitives be combined to perform multiple reads/writes?
+
+In the case of an interactive attack, preparing and sending input to the
+victim program and parsing the output of the victim program are usually
+done in an external program that drives the exploit. The attacker is
+free to use a programming language of their choice, as long as they can
+interact with the victim program in it. Let's assume, for example, an
+exploit program in C, communicating with the victim program over TCP. In
+this case, the primitives are abstracted into C functions, which prepare
+and send packets to the victim, and parse the victim's responses. Using
+the primitives is then as simple as calling these functions. These calls
+can be easily combined with arbitrary computations, all written in C, to
+form the exploit.
+
+For this cycle of repeated input/output interactions to work, the state
+of the victim program must not be lost between the different iterations
+of providing input and observing output. In other words, the victim
+process must not be restarted.
+
+It's interesting to note that while the read/write primitives consist of
+carefully constructed inputs to the victim program, the attacker can
+view these inputs as \emph{instructions} to the victim program. The
+victim program effectively implements an interpreter unintentionally,
+and the attacker can send instructions to this interpreter. This is
+explored further in (Dullien \protect\hyperlink{ref-Dullien2020}{2020}).
+
+In the case of a non-interactive attack, all computation happens within
+the victim program. The duality of input data and code is even more
+obvious in this case, as the malicious input to the victim can be viewed
+as the exploit code. There are cases for which the input is obviously
+interpreted as code by the victim application as well, as in the case of
+a JavaScript program given as input to a JavaScript engine. In this
+case, the read/write primitives would be written as JavaScript
+functions, which when called have the unintended side-effect of
+accessing arbitrary memory that a JavaScript program is not supposed to
+have access to. The primitives can be chained together with arbitrary
+computations, also expressed in JavaScript.
+
+There are, however, cases where the correspondence between data and code
+isn't as obvious. For example, in (Beer and Groß
+\protect\hyperlink{ref-Beer2021}{2021}), the malicious input consists of
+a PDF file, masquerading as a GIF. Due to an integer overflow bug in the
+PDF decoder, the malicious input leads to an unbounded buffer access,
+therefore to an arbitrary read/write primitive. In the case of
+JavaScript engine exploitation, the attacker would normally be able to
+use JavaScript operations and perform arbitrary computations, making
+exploitation more straightforward. In this case, there are no scripting
+capabilities officially supported. The attackers, however, take
+advantage of the compression format intricacies to implement a small
+computer architecture, in thousands of simple commands to the decoder.
+In this way, they effectively \emph{introduce} scripting capabilities
+and are able to express their exploit as a program to this architecture.
+
+So far, we have described read/write primitives. We have also discussed
+how an attacker might perform arbitrary computations: * in an external
+program in the case of interactive attacks, or * by using scripting
+capabilities (whether originally supported or introduced by the
+attacker) in non-interactive attacks. Assuming an attacker has gained
+these capabilities, how can they use them to achieve their goals?
+
+The ultimate goal of an attacker may vary: it may be, among other
+things, getting access to a system, leaking sensitive information or
+bringing down a service. Frequently, a first step towards these wider
+goals is arbitrary code execution\index{arbitrary code execution} within
+the victim process. We have already mentioned that the attacker will
+typically have arbitrary computation capabilities at this point, but
+arbitrary code execution also involves things like calling arbitrary
+library functions and performing system calls.
+
+Some examples of how the attacker may use the obtained primitives:
+
+\begin{itemize}
+\tightlist
+\item
+  Leak information, such as pointers to specific data structures or
+  code, or the stack pointer.
+\item
+  Overwrite the stack contents, e.g.~to perform a
+  \protect\hyperlink{code-reuse-attacks}{ROP attack}.
+\item
+  Overwrite non-control data, e.g.~authorization state. Sometimes this
+  step is sufficient to achieve the attacker's goal, bypassing the need
+  for arbitrary code execution.
+\end{itemize}
+
+Once arbitrary code execution is achieved, the attacker may need to
+exploit additional vulnerabilities in order to escape a process sandbox,
+escalate privilege, etc. Such vulnerability chaining is common, but for
+the purposes of this chapter we will focus on:
+
+\begin{itemize}
+\tightlist
+\item
+  Preventing memory vulnerabilities in the first place, thus stopping
+  the attacker from obtaining powerful read/write primitives.
+\item
+  Mitigating the effects of read/write primitives, e.g.~with mechanisms
+  to maintain \protect\hyperlink{code-reuse-attacks}{Control-Flow
+  Integrity (CFI)}.
+\end{itemize}
 
 \hypertarget{stack-buffer-overflows}{%
 \section{Stack buffer overflows}\label{stack-buffer-overflows}}
@@ -565,10 +758,26 @@ guidelines}\label{appendix-contribution-guidelines}}
 Aleph One. 1996. ``Smashing the Stack for Fun and Profit.'' 1996.
 \url{http://www.phrack.org/issues/49/14.html\#article}.
 
+\leavevmode\hypertarget{ref-Beer2020}{}%
+Beer, Ian. 2020. ``An iOS Zero-Click Radio Proximity Exploit Odyssey.''
+2020.
+\url{https://googleprojectzero.blogspot.com/2020/12/an-ios-zero-click-radio-proximity.html}.
+
+\leavevmode\hypertarget{ref-Beer2021}{}%
+Beer, Ian, and Samuel Groß. 2021. ``A Deep Dive into an Nso Zero-Click
+iMessage Exploit: Remote Code Execution.'' 2021.
+\url{https://googleprojectzero.blogspot.com/2021/12/a-deep-dive-into-nso-zero-click.html}.
+
 \leavevmode\hypertarget{ref-Cox2015}{}%
 Cox, Joseph. 2015. ``Hack Brief: Malware Sneaks into the Chinese iOS App
 Store.'' \emph{WIRED}.
 \url{https://www.wired.com/2015/09/hack-brief-malware-sneaks-chinese-ios-app-store/}.
+
+\leavevmode\hypertarget{ref-Dullien2020}{}%
+Dullien, Thomas. 2020. ``Weird Machines, Exploitability, and Provable
+Unexploitability.'' \emph{IEEE Transactions on Emerging Topics in
+Computing} 8 (2): 391--403.
+\url{https://doi.org/10.1109/TETC.2017.2785300}.
 
 \leavevmode\hypertarget{ref-Gostev2009}{}%
 Gostev, Alexander. 2009. ``A Short History of Induc.'' 2009.
@@ -579,9 +788,26 @@ Greenberg, Andy. 2019. ``Supply Chain Hackers Snuck Malware into
 Videogames.'' \emph{WIRED}.
 \url{https://www.wired.com/story/supply-chain-hackers-videogames-asus-ccleaner/}.
 
+\leavevmode\hypertarget{ref-Grouxdf2020}{}%
+Groß, Samuel. 2020. ``JITSploitation I: A Jit Bug.'' 2020.
+\url{https://googleprojectzero.blogspot.com/2020/09/jitsploitation-one.html}.
+
 \leavevmode\hypertarget{ref-Hicks2014}{}%
 Hicks, Michael. 2014. ``What Is Memory Safety?'' 2014.
 \url{http://www.pl-enthusiast.net/2014/07/21/memory-safety/}.
+
+\leavevmode\hypertarget{ref-Hu2016}{}%
+Hu, Hong, Shweta Shinde, Sendroiu Adrian, Zheng Leong Chua, Prateek
+Saxena, and Zhenkai Liang. 2016. ``Data-Oriented Programming: On the
+Expressiveness of Non-Control Data Attacks.'' In \emph{2016 Ieee
+Symposium on Security and Privacy (Sp)}, 969--86.
+\url{https://doi.org/10.1109/SP.2016.62}.
+
+\leavevmode\hypertarget{ref-Miller2012}{}%
+Miller, Matt. n.d. ``Modeling the Exploitation and Mitigation of Memory
+Safety Vulnerabilities.''
+\href{https://2012.ruxconbreakpoint.com/}{Breakpoint 2012}.
+\url{https://github.com/Microsoft/MSRC-Security-Research/blob/master/presentations/2012_10_Breakpoint/BreakPoint2012_Miller_Modeling_the_exploitation_and_mitigation_of_memory_safety_vulnerabilities.pdf}.
 
 \leavevmode\hypertarget{ref-Karger1974}{}%
 Paul A., Karger, and Schell Roger R. 1974. ``MULTICS Security

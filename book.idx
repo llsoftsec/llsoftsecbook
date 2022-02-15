@@ -1,5 +1,11 @@
-\indexentry{covert channel|hyperpage}{8}
-\indexentry{side-channel|hyperpage}{8}
-\indexentry{victim|hyperpage}{8}
-\indexentry{cache|hyperpage}{8}
-\indexentry{timing attacks|hyperpage}{11}
+\indexentry{exploit primitive|hyperpage}{6}
+\indexentry{write primitive|hyperpage}{6}
+\indexentry{read primitive|hyperpage}{7}
+\indexentry{interactive attack|hyperpage}{7}
+\indexentry{non-interactive (one-shot)   attack|hyperpage}{7}
+\indexentry{arbitrary code execution|hyperpage}{8}
+\indexentry{covert channel|hyperpage}{11}
+\indexentry{side-channel|hyperpage}{11}
+\indexentry{victim|hyperpage}{11}
+\indexentry{cache|hyperpage}{11}
+\indexentry{timing attacks|hyperpage}{14}
