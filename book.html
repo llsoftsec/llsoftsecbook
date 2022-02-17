@@ -26,7 +26,7 @@
 <p>
   © 2021 Arm Limited <a href="mailto:kristof.beyls@arm.com" class="email">kristof.beyls@arm.com</a><br />
 </p>
-<p>Version: 0-63-gb527fe5</p>
+<p>Version: 0-64-ga6b1121</p>
 
 </header>
 <nav id="TOC">
@@ -190,7 +190,7 @@
 <!-- markdown-link-check-enable-->
 <h1 id="supply-chain-attacks"><span class="header-section-number">6</span> Supply chain attacks <a href="#supply-chain-attacks" class="selflink">§</a></h1>
 <p>A software <em>supply chain attack</em> occurs when an attacker interferes with the software development or distribution processes with the intention to impact users of that software.</p>
-<p>Supply chain attacks and their possible mitigations are not specific to compilers. However, compilers are an attractive target for attack because they are widely deployed to developers, in continuous integration systems and as JITs. Also, an infected compiler has the possibilty to make a much larger impact if it can silently spread the infection to other software created with or run using it.</p>
+<p>Supply chain attacks and their possible mitigations are not specific to compilers. However, compilers are an attractive target for attack because they are widely deployed to developers, in continuous integration systems and as JITs. Also, an infected compiler has the possibility to make a much larger impact if it can silently spread the infection to other software created with or run using it.</p>
 <p>This chapter explores the history of supply chain attacks that involve compilers and what can be done to prevent them.</p>
 <h2 id="history-of-supply-chain-attacks"><span class="header-section-number">6.1</span> History of supply chain attacks <a href="#history-of-supply-chain-attacks" class="selflink">§</a></h2>
 <p>As far back as 1974 Karger &amp; Schell theorized about an attack on the Multics operating system via the PL/I compiler <span class="citation" data-cites="Karger1974">(Paul A. and Roger R. <a href="#ref-Karger1974">1974</a>)</span>. In this attack, a trap door is inserted into the compiler, which then injects malicious code into generated object code. Furthermore, the trap door could be designed to reinsert itself into the compiler binary so that future compilers are silently infected without needing changes to their source code. This attack method was subsequently popularised by Ken Thompson in his 1984 ACM Turing Award acceptance speech <em>Reflections on Trusting Trust</em> <span class="citation" data-cites="Thompson1984">(Thompson <a href="#ref-Thompson1984">1984</a>)</span>.</p>

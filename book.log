@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.2.15)  15 FEB 2022 12:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.2.17)  17 FEB 2022 08:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1261,7 +1261,7 @@ Package rerunfilecheck Info: File `book.out' has not changed.
 Here is how much of TeX's memory you used:
  26281 strings out of 480962
  467348 string characters out of 5908147
- 869514 words of memory out of 5000000
+ 869513 words of memory out of 5000000
  42627 multiletter control sequences out of 15000+600000
  473258 words of font info for 157 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1272,7 +1272,7 @@ lm/lmbx10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></texl
 ive/2020/texmf-dist/fonts/type1/public/lm/lmr10.pfb></texlive/2020/texmf-dist/f
 onts/type1/public/lm/lmr17.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/
 lmri10.pfb>
-Output written on book.pdf (24 pages, 213553 bytes).
+Output written on book.pdf (24 pages, 213559 bytes).
 PDF statistics:
  514 PDF objects out of 1000 (max. 8388607)
  462 compressed objects within 5 object streams
