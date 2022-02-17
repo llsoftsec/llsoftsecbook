@@ -479,7 +479,7 @@ users of that software.
 Supply chain attacks and their possible mitigations are not specific to
 compilers. However, compilers are an attractive target for attack because they
 are widely deployed to developers, in continuous integration systems and as
-JITs. Also, an infected compiler has the possibilty to make a much larger
+JITs. Also, an infected compiler has the possibility to make a much larger
 impact if it can silently spread the infection to other software created with
 or run using it.
 
