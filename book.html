@@ -26,7 +26,7 @@
 <p>
   © 2021 Arm Limited <a href="mailto:kristof.beyls@arm.com" class="email">kristof.beyls@arm.com</a><br />
 </p>
-<p>Version: 0-64-ga6b1121</p>
+<p>Version: 0-65-g0440a27</p>
 
 </header>
 <nav id="TOC">
@@ -46,9 +46,8 @@
 </ul></li>
 <li><a href="#covert-channels-and-side-channels"><span class="toc-section-number">3</span> Covert channels and side-channels <span>§</span></a><ul>
 <li><a href="#cache-covert-channels"><span class="toc-section-number">3.1</span> Cache covert channels <span>§</span></a><ul>
-<li><a href="#typical-cache-architecture"><span class="toc-section-number">3.1.1</span> Typical cache architecture <span>§</span></a></li>
-<li><a href="#flush-reload"><span class="toc-section-number">3.1.2</span> Flush + Reload <span>§</span></a></li>
-<li><a href="#prime-probe"><span class="toc-section-number">3.1.3</span> Prime + Probe <span>§</span></a></li>
+<li><a href="#typical-cpu-cache-architecture"><span class="toc-section-number">3.1.1</span> Typical CPU cache architecture <span>§</span></a></li>
+<li><a href="#general-operation-of-cache-covert-channels"><span class="toc-section-number">3.1.2</span> General operation of cache covert channels <span>§</span></a></li>
 </ul></li>
 <li><a href="#timing-covert-channels"><span class="toc-section-number">3.2</span> Timing covert channels <span>§</span></a></li>
 <li><a href="#resource-contention-channels"><span class="toc-section-number">3.3</span> Resource contention channels <span>§</span></a></li>
@@ -161,10 +160,24 @@
 <p>In the next few sections we’ll explore a common few channels that can be used as covert channels.</p>
 <h2 id="cache-covert-channels"><span class="header-section-number">3.1</span> Cache covert channels <a href="#cache-covert-channels" class="selflink">§</a></h2>
 <p><a href="https://en.wikipedia.org/wiki/Cache_(computing)">Caches</a> are used in almost every computing system. They are small and much faster memories than the main memory. They aim to automatically keep frequently used data accessed by programs, so that average memory access time improves. Various techniques exist where a covert communication can happen between processes that share a cache, without the processes having rights to read or write to the same memory locations. To understand how these techniques work, one needs to understand typical organization and operation of a cache.</p>
-<h3 id="typical-cache-architecture"><span class="header-section-number">3.1.1</span> Typical cache architecture <a href="#typical-cache-architecture" class="selflink">§</a></h3>
+<h3 id="typical-cpu-cache-architecture"><span class="header-section-number">3.1.1</span> Typical CPU cache architecture <a href="#typical-cpu-cache-architecture" class="selflink">§</a></h3>
+<p>There is a wide variety in <a href="https://en.wikipedia.org/wiki/CPU_cache">CPU cache micro-architecture</a> details, but the main characteristics that are important to set up a covert channel tend to be similar across most popular implementations.</p>
+<p>Caches are small and much faster memories than the main memory that aim to keep a copy of the data at the most frequently accessed main memory addresses. The set of addresses that are used most frequently changes quickly over time as a program executes. Therefore, the addresses that are present in CPU caches also evolve quickly over time. The content of the cache may change with every executed read or write instruction.</p>
+<p>On every read and write instruction, the cache micro-architecture looks up if the data for the requested address happens to be present in the cache. If it is, the CPU can continue executing quickly; if not, dependent operations will have to wait until the data returns from the much slower main memory. A typical access time is 3 to 5 CPU cycles for the fastest cache on a CPU versus hundreds of cycles for a main memory access.</p>
+<p>Most systems have multiple levels of cache, each with a different trade-off between cache size and access time. Some typical characteristics might be:</p>
+<ul>
+<li>L1 (level 1) cache, 32kB in size, with an access time of 4 cycles.</li>
+<li>L2 cache, 256Kb in size, with an access time of 10 cycles.</li>
+<li>L3 cache, 16MB in size, with an access time of 40 cycles.</li>
+<li>Main memory, gigabytes in size, with an access time of more than 100 cycles.</li>
+</ul>
+<p>If data is not already present in a cache layer, it is typically stored there after it has been fetched from a slower cache level or main memory. This is often a good decision to make as there’s a high likelihood the same address will be accessed by the program soon after. This high likelihood is known as the <a href="https://en.wikipedia.org/wiki/Locality_of_reference">principle of locality</a>.</p>
+<p>Data is stored and transferred between cache levels in blocks of aligned memory. Such a block is called a cache block or cache line. Typical sizes are 32, 64 or 128 bytes per cache line.</p>
+<p>When data that wasn’t previously in the cache needs to be stored in the cache, most of the time, room has to be made for it by removing, or evicting, some other address/data from it. How that choice gets made is decided by the <a href="https://en.wikipedia.org/wiki/Cache_replacement_policies">cache replacement policy</a>. Popular replacement algorithms are Least Recently Used (LRU), Random and pseudo-LRU. As the names suggest, LRU evicts the cache line that is least recently used; random picks a random cache line; and pseudo-LRU approximates choosing the least recently used line.</p>
+<p>If an address can be stored in all locations available in the cache, the cache is fully-associative. Most caches are however not fully-associative, as it’s too costly to implement. Instead, most caches are set-associative. In an N-way set-associative cache, a specific main memory address can only be stored in one of N cache locations. For example, if an address can potentially be stored in one of 2 locations, the cache is said to be 2-way set-associative. If it can be stored in one of 4 locations, it’s called 4-way set-associative, and so on. When an address can only be stored in one location in the cache, it is said to be direct-mapped, rather than 1-way set-associative. Typical organizations are direct-mapped, 2-way, 4-way, 8-way, 16-way or 32-way set-associative.</p>
 
-<h3 id="flush-reload"><span class="header-section-number">3.1.2</span> Flush + Reload <a href="#flush-reload" class="selflink">§</a></h3>
-<h3 id="prime-probe"><span class="header-section-number">3.1.3</span> Prime + Probe <a href="#prime-probe" class="selflink">§</a></h3>
+
+<h3 id="general-operation-of-cache-covert-channels"><span class="header-section-number">3.1.2</span> General operation of cache covert channels <a href="#general-operation-of-cache-covert-channels" class="selflink">§</a></h3>
 <h2 id="timing-covert-channels"><span class="header-section-number">3.2</span> Timing covert channels <a href="#timing-covert-channels" class="selflink">§</a></h2>
 <h2 id="resource-contention-channels"><span class="header-section-number">3.3</span> Resource contention channels <a href="#resource-contention-channels" class="selflink">§</a></h2>
 <h2 id="channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors"><span class="header-section-number">3.4</span> Channels making use of aliasing in branch predictors and other predictors <a href="#channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors" class="selflink">§</a></h2>

@@ -8,4 +8,21 @@
 \indexentry{side-channel|hyperpage}{11}
 \indexentry{victim|hyperpage}{11}
 \indexentry{cache|hyperpage}{11}
-\indexentry{timing attacks|hyperpage}{14}
+\indexentry{memory access time|hyperpage}{12}
+\indexentry{multi-level cache|hyperpage}{12}
+\indexentry{cache size|hyperpage}{12}
+\indexentry{cache access time|hyperpage}{12}
+\indexentry{principle of locality|hyperpage}{12}
+\indexentry{locality of reference|hyperpage}{12}
+\indexentry{cache block|hyperpage}{12}
+\indexentry{cache line|hyperpage}{12}
+\indexentry{cache eviction|hyperpage}{12}
+\indexentry{cache replacement policy|hyperpage}{12}
+\indexentry{LRU replacement policy|hyperpage}{12}
+\indexentry{random replacement policy|hyperpage}{12}
+\indexentry{pseudo-LRU replacement policy|hyperpage}{12}
+\indexentry{fully-associative cache|hyperpage}{13}
+\indexentry{set-associative cache|hyperpage}{13}
+\indexentry{direct-mapped cache|hyperpage}{13}
+\indexentry{cache coherency|hyperpage}{13}
+\indexentry{timing attacks|hyperpage}{15}

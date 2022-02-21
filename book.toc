@@ -11,18 +11,17 @@
 \contentsline {section}{\numberline {2.8}JIT compiler vulnerabilities}{10}{section.2.8}%
 \contentsline {chapter}{\numberline {3}Covert channels and side-channels}{11}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Cache covert channels}{11}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Typical cache architecture}{12}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Flush + Reload}{12}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Prime + Probe}{12}{subsection.3.1.3}%
-\contentsline {section}{\numberline {3.2}Timing covert channels}{12}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Resource contention channels}{12}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Channels making use of aliasing in branch predictors and other predictors}{12}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Physical access side-channel attacks}{13}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Remote access side-channel attacks}{14}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Timing attacks}{14}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Cache side-channel attacks}{15}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Supply chain attacks}{16}{chapter.6}%
-\contentsline {section}{\numberline {6.1}History of supply chain attacks}{16}{section.6.1}%
-\contentsline {chapter}{\numberline {7}Other security topics relevant for compiler developers}{18}{chapter.7}%
-\contentsline {chapter}{Appendix: contribution guidelines}{19}{chapter*.20}%
-\contentsline {chapter}{References}{22}{chapter*.23}%
+\contentsline {subsection}{\numberline {3.1.1}Typical CPU cache architecture}{12}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}General operation of cache covert channels}{13}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Timing covert channels}{13}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Resource contention channels}{13}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Channels making use of aliasing in branch predictors and other predictors}{13}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Physical access side-channel attacks}{14}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Remote access side-channel attacks}{15}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Timing attacks}{15}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Cache side-channel attacks}{16}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Supply chain attacks}{17}{chapter.6}%
+\contentsline {section}{\numberline {6.1}History of supply chain attacks}{17}{section.6.1}%
+\contentsline {chapter}{\numberline {7}Other security topics relevant for compiler developers}{19}{chapter.7}%
+\contentsline {chapter}{Appendix: contribution guidelines}{20}{chapter*.22}%
+\contentsline {chapter}{References}{23}{chapter*.25}%
