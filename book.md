@@ -415,9 +415,9 @@ executed read or write instruction.
 On every read and write instruction, the cache micro-architecture looks up if
 the data for the requested address happens to be present in the cache. If it is,
 the CPU can continue executing quickly; if not, dependent operations will have
-to wait until the data returns from the much slower main memory.
-Typical access time is 3 to 5 CPU cycles for the fastest cache on a CPU versus
-hundreds of cycles for a main memory access.\index{memory access time}
+to wait until the data returns from the much slower main memory. A typical
+access time is 3 to 5 CPU cycles for the fastest cache on a CPU versus hundreds
+of cycles for a main memory access.\index{memory access time}
 
 Most systems have multiple levels of cache\index{multi-level cache}, each with a
 different trade-off between cache size\index{cache size} and access
