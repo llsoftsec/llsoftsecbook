@@ -398,15 +398,77 @@ cache, without the processes having rights to read or write to the same memory
 locations.  To understand how these techniques work, one needs to understand
 typical organization and operation of a cache.
 
-### Typical cache architecture
+### Typical CPU cache architecture
 
+There is a wide variety in
+[CPU cache micro-architecture](https://en.wikipedia.org/wiki/CPU_cache) details,
+but the main characteristics that are important to set up a covert channel tend
+to be similar across most popular implementations.
 
-\missingcontent{Add a description of how a cache operates - as far as is
-necessary to explain the cache covert channel techniques.}
+Caches are small and much faster memories than the main memory that aim to keep
+a copy of the data at the most frequently accessed main memory addresses. The
+set of addresses that are used most frequently changes quickly over time as a
+program executes. Therefore, the addresses that are present in CPU caches also
+evolve quickly over time. The content of the cache may change with every
+executed read or write instruction.
 
-### Flush + Reload
+On every read and write instruction, the cache micro-architecture looks up if
+the data for the requested address happens to be present in the cache. If it is,
+the CPU can continue executing quickly; if not, dependent operations will have
+to wait until the data returns from the much slower main memory. A typical
+access time is 3 to 5 CPU cycles for the fastest cache on a CPU versus hundreds
+of cycles for a main memory access.\index{memory access time}
 
-### Prime + Probe
+Most systems have multiple levels of cache\index{multi-level cache}, each with a
+different trade-off between cache size\index{cache size} and access
+time\index{cache access time}. Some typical characteristics might be:
+
+* L1 (level 1) cache, 32kB in size, with an access time of 4 cycles.
+* L2 cache, 256Kb in size, with an access time of 10 cycles.
+* L3 cache, 16MB in size, with an access time of 40 cycles.
+* Main memory, gigabytes in size, with an access time of more than 100 cycles.
+
+If data is not already present in a cache layer, it is typically stored there
+after it has been fetched from a slower cache level or main memory. This is
+often a good decision to make as there's a high likelihood the same address will
+be accessed by the program soon after. This high likelihood is known as the
+[principle of locality](https://en.wikipedia.org/wiki/Locality_of_reference)\index{principle
+of locality}\index{locality of reference}.
+
+Data is stored and transferred between cache levels in blocks of aligned memory.
+Such a block is called a cache block\index{cache block} or cache
+line\index{cache line}. Typical sizes are 32, 64 or 128 bytes per cache line.
+
+When data that wasn't previously in the cache needs to be stored in the cache,
+most of the time, room has to be made for it by removing, or
+evicting\index{cache eviction}, some other address/data from it. How that choice
+gets made is decided by the
+[cache replacement policy](https://en.wikipedia.org/wiki/Cache_replacement_policies)\index{cache
+replacement policy}. Popular replacement algorithms are Least Recently Used
+(LRU)\index{LRU replacement policy}, Random\index{random replacement policy} and
+pseudo-LRU\index{pseudo-LRU replacement policy}. As the names suggest, LRU
+evicts the cache line that is least recently used; random picks a random cache
+line; and pseudo-LRU approximates choosing the least recently used line.
+
+If an address can be stored in all locations available in the cache, the cache
+is fully-associative\index{fully-associative cache}. Most caches are however not
+fully-associative, as it's too costly to implement. Instead, most caches are
+set-associative\index{set-associative cache}. In an N-way set-associative cache,
+a specific main memory address can only be stored in one of N cache locations.
+For example, if an address can potentially be stored in one of 2 locations, the
+cache is said to be 2-way set-associative. If it can be stored in one of 4
+locations, it's called 4-way set-associative, and so on. When an address can
+only be stored in one location in the cache, it is said to be
+direct-mapped\index{direct-mapped cache}, rather than 1-way set-associative.
+Typical organizations are direct-mapped, 2-way, 4-way, 8-way, 16-way or 32-way
+set-associative.
+
+\missingcontent{Explain indexing mechanism used; from address bits to index in cache.}
+
+\missingcontent{Also explain cache coherency \index{cache coherency}?}
+\missingcontent{Also say something about TLBs and prefetching?}
+
+### General operation of cache covert channels
 
 ## Timing covert channels
 
