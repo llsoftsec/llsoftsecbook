@@ -4,9 +4,10 @@
 FROM ubuntu:20.04
 # 1. install pandoc and texlive dependencies
 #    Also install git as we need that for computing version numbers
+#    Also install librsvg2-bin to enable pandoc to convert SVG images to PDF
 RUN apt-get update && \
     DEBIAN_FRONTEND="noninteractive" apt-get install -y \
-            wget perl pandoc make pandoc-citeproc git && \
+            wget perl pandoc make pandoc-citeproc git librsvg2-bin && \
     rm -rf /var/lib/apt/lists/*
 # 2. Install LaTeX directly from stable Texlive 2020 final repo
 # (We could alternatively install a base Texlive using "apt-get install
@@ -45,7 +46,7 @@ ENV PATH=/texlive/bin:$PATH
 # 4. install latex too (the minimal scheme selected above does not install latex)
 RUN tlmgr install latex latex-bin latexmk
 # 5. install extra latex packages needed for pandoc:
-RUN tlmgr install amsfonts amsmath lm unicode-math iftex listings fancyvrb booktabs graphics hyperref xcolor ulem geometry setspace babel upquote microtype parskip xurl bookmark footnotehyper mdwtools kvoptions etoolbox pdftexcmds infwarerr
+RUN tlmgr install amsfonts amsmath lm unicode-math iftex listings fancyvrb booktabs graphics hyperref xcolor ulem geometry setspace babel upquote microtype parskip xurl bookmark footnotehyper mdwtools kvoptions etoolbox pdftexcmds infwarerr grffile
 # 6. install extra packages needed for the book specifically:
 RUN tlmgr install todonotes epstopdf-pkg bclogo pstricks pst-grad pst-coil pst-node mdframed zref needspace mptopdf
 
