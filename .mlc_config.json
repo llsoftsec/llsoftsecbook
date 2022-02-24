@@ -1,0 +1,8 @@
+{
+    "replacementPatterns": [
+        {
+            "pattern": "img/.*",
+            "replacement": "$&.svg"
+        }
+    ],
+}
