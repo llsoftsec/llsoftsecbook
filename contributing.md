@@ -116,7 +116,7 @@ sub-directory.
 For the HTML output, the SVG images are included as is.  For the PDF output,
 the SVGs are automatically converted to PDFs.  If you edit or add an SVG image,
 make sure to check the PDF output to see if the conversion worked as expected.
-A potential issue that can happen during conversion to PDF is explained at
+A common issue that can happen during conversion to PDF is explained at
 https://www.diagrams.net/doc/faq/svg-export-text-problems.
 
 ## How to build/test
