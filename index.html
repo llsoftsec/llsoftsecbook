@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
@@ -11,7 +11,65 @@
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <link rel="stylesheet" href="default.css" />
+  <style type="text/css">
+#TOC ::marker { content: none; }
+
+#TOC {
+position: fixed;
+top: 0;
+left: 0;
+width: 28%;
+}
+
+body {
+position: relative;
+left: 30%;
+width: 50%;
+}
+
+body {
+font-family: sans-serif;
+}
+
+#TOC a span {
+display: none;
+}
+#TOC a span.toc-section-number {
+display: inline;
+}
+
+h1 a, h2 a, h3 a {
+visibility: hidden;
+font-size: 85%;
+}
+h1:hover a, h1:active a,
+h2:hover a, h2:active a,
+h3:hover a, h2:active a {
+visibility: visible;
+}
+
+@media only screen and (max-width : 768px) {
+
+#TOC {
+position: relative;
+left: 1%;
+width: 94%;
+}
+
+body {
+text-align: left;
+position: relative;
+left: 1%;
+width: 94%;
+overflow-x: hidden;
+}
+
+p {
+text-align: justify;
+text-justify: auto;
+}
+}
+</style>
   
 </head>
 <body>
@@ -20,13 +78,13 @@
 
 <p>
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />
+  <img alt="Creative Commons License" style="border-width:0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAAAfCAMAAABUFvrSAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAEZ0FNQQAAsY58+1GTAAAAAXNSR0IB2cksfwAAAW5QTFRF////////////////7+/v39/f1tXV09bS0tXS0tXR0dTR0dTQ0NTQ0NPPz9PPztLOztHNzdHNzdHMz8/PzdDMzNDMzNDLzM/Ly8/Ly8/Ky87Kys3Jyc3Jyc3IyMzIyMzHx8vHxsrGxsrFxcnFxcnExMnExMjDw8jDxMfDw8fCwsfCwcXAwMXAwMW/wMS/v8S+v8O+vsO+vsK9vcK9vcK8v7+/vMG8vMG7vMC8u8C7u8C6ur+6ur+5ub65ub64uL23t7y2tru1tbq0tLqztLmzs7iysrixsrexsbewsbawsLavsLWvr7Wur7SusLOvrrStrrOtr7KvrbOsrLKrr6+vq7Gqn6OenqCdn5+flpmWk5iTkZSRkZORj4+PiYyJhIaEhIWEgoWCgICAfX98fH98eXx5cHJvcHBwYGBgXV5dUFFQUFBQQ0RDQEBAPj8+NTY1MjMxMDAwKSkpKCkoICAgGxsbEBAQDg4ODQ4NAAAAlzoSDQAAAAN0Uk5TAAoO5yEBUwAAAvhJREFUeNq1lutX2kAQxWmXFDVGYy1EIjQ2VZDiu1CsRQQURYvV+qSKj6II8rANYOT+9z0JqIASo9Y5ydkP2f2d2Ts7d2N4jRcJgwEIBwO+SbdTFGw8ZzZz1n5BdLgnfLPBcCT6fW1jY3P78QEYEA76PWMu0W5lGbrNZGrrYNg+u+ga9fgVcmxtY/NJZAOCfs+IY4Bn6eN8RdlEJX9Ed1uFIfdnfzC8uBJbv5tyqqhMLKa0wQHPiEOwMInLW4Eu9xmzfdDtmQ0uLK3cSXmvBBTS6QJQ2tMC+8YcgpnOApAzSa83mZEBZIff2odGfYFQJNqc8s4VchQhhFA5XO1pgCddAxaFKyeNpBpxGSgNmwXXxMxcWE25fkkJGUIIoExESQPsFnkmC0gUuQmjBGQZq+j2BEKR5dUGLVLIvbkGkxxSrcHO92wCkIyENJL3u+2O8Zng/FJsvR5cRF0GFIqtwaKVvoTcSxrCKOOS7hPdXwLhxUYtUFC+Z6AKQgpoDRZ6joEkaYo4cMQKril/KLLcCE4TVYmqFmkNsK0rD9lIiDdXKCSrwwEhREae6Ve0WIiuPg3M0xVlW171BBe21CGjbLbSYR0c/To3H409TQquHTggREKZ8pbjEiRqqxxXtWjjRLdvLrzUAK4Vr5qwZvEsJsCrzExWF9Tk9gIm84e74BRyRN9xeyS4vkHSmg1yK4Wxt5yUIClDayn0t3SteLWq3RQvjQrN31O87e2dEiBl0tJDJmTrykImN8dtq6AOpIw8Y3OMf2s+bvptU+hJqFrc1yCfpmZDkWYX0mv0H9WWpvS2tH6w8z27e58JJVi7c2ImuNBkQvrBOOWZc0CqsyFKtU3+97OuaQBnXGe90RuTMvCHtpziuWCcmDvPm64m+t2vlmuq/YHqqwnGCcfs1l+mCcbSmgtSe8iDGQNnPEsnrq//fZrltXS4tk3oAOPvT2tPF91uMrXTDNv340JrjQ4hbsHAxeE0z1ksHD99eKFdl0dl/P//Cl+9EPcfS+yBAoqk3eUAAAAASUVORK5CYII=" /></a><br />
   This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 </p>
 <p>
   © 2021 Arm Limited <a href="mailto:kristof.beyls@arm.com" class="email">kristof.beyls@arm.com</a><br />
 </p>
-<p>Version: 0-66-g9876604</p>
+<p>Version: 0-67-g9b038b3</p>
 
 </header>
 <nav id="TOC">
@@ -171,6 +229,9 @@
 <li>L3 cache, 16MB in size, with an access time of 40 cycles.</li>
 <li>Main memory, gigabytes in size, with an access time of more than 100 cycles.</li>
 </ul>
+<figure>
+<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLSBEbyBub3QgZWRpdCB0aGlzIGZpbGUgd2l0aCBlZGl0b3JzIG90aGVyIHRoYW4gZGlhZ3JhbXMubmV0IC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSIgd2lkdGg9IjIzMXB4IiBoZWlnaHQ9IjMyMXB4IiB2aWV3Qm94PSItMC41IC0wLjUgMjMxIDMyMSIgY29udGVudD0iJmx0O214ZmlsZSBob3N0PSZxdW90O0VsZWN0cm9uJnF1b3Q7IG1vZGlmaWVkPSZxdW90OzIwMjItMDItMjNUMjA6NDQ6MDMuNjAyWiZxdW90OyBhZ2VudD0mcXVvdDs1LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgZHJhdy5pby8xNi41LjEgQ2hyb21lLzk2LjAuNDY2NC4xMTAgRWxlY3Ryb24vMTYuMC43IFNhZmFyaS81MzcuMzYmcXVvdDsgZXRhZz0mcXVvdDtPejNVUDRqcFVDOHpQd2oxdlJsTiZxdW90OyB2ZXJzaW9uPSZxdW90OzE2LjUuMSZxdW90OyB0eXBlPSZxdW90O2RldmljZSZxdW90OyZndDsmbHQ7ZGlhZ3JhbSBpZD0mcXVvdDtZSGhtMTVDMVBMQ2I4VUtfVm5WTiZxdW90OyBuYW1lPSZxdW90O1BhZ2UtMSZxdW90OyZndDs3WmZmYjVzd0VNZi9HaDQzWVJ2UzVIVnB0a2x0dFVuVnRyWXZrd1ZYWUFPTUhKUEEvdnJaNFJ4Z1hpTW10VVNUK2hMNXZyN0Q5K01UaEQyMkxwb1BrbGZwallnaDk2Z2ZOeDY3OUNoZEJRdjlhNFMyRXhiRTc0UkVabkVua1Y2NHpYNEJpdGF0em1MWWpoeVZFTG5LcXJFWWliS0VTSTAwTHFYWWo5MGVSVDQrdGVJSk9NSnR4SE5YL1piRkt1M1VKYjNvOVkrUUphazltU3hXM1U3QnJUTldzazE1TFBZRGlXMDh0cFpDcUc1Vk5HdklUZTlzWDdxNDkwL3NIaE9UVUtvcEFXSDQvV29UK0xzN3YzNThVSitxb3J6NittYUp1YW5XRmd5eHJoOU5JVlVxRWxIeWZOT3I3M1FobGRuTnMvS25OcVdveXhqTUliNjIrcEJySVNvdEVpMytBS1ZhbkMydmxkQVNOSm02TXpGdlE3VHUwZG1zTHh0ODNNRm8wZWh5TlFrKzJRS1V0cUtXRVp5bzI2TEVaUUxxaEI4OURrb0REcUlBSlZzZEp5SG5LdHVOOCtDSVduTDA2NmVoRnppUWZ4Z09QbmZIOHhwUFduLys0Z3hzM0g4TUFhbWdPZDBsdHlvTTBNbDBJZmlYRFJEZ2ZjLy9BcVYwZ0w1MWUvWTJyUDRuUm5XUFpUc0lNdWI5Y0s4UE8xZ3Z3RGFkeURZN0o5dlVZZnVhbU5jNGoxS1lIM0ZDenN5NFBmOFY4b21RczRtUUIrZUVuTG1RMHhraFozOUF2blFoSi82c2xCT242bGZLVDFFZVRLUThQQ2ZsZ1VzNW01RnkrMzNkMmxmN1h5aG5jMUllT3YyNDRWbHByZ1JRQ0h6K2k3YUVYSXhid3FqYkV2cE1MZEZtZjRVNTdBM3VnV3p6R3c9PSZsdDsvZGlhZ3JhbSZndDsmbHQ7L214ZmlsZSZndDsiPjxkZWZzLz48Zz48cGF0aCBkPSJNIDExNyA0MCBMIDExNyA1MCBMIDExNyA3MCBNIDExMyA3MCBMIDExMyA1MCBMIDExMyA0MCBNIDExMyA3MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2IoMCwgMCwgMCkiIHN0cm9rZS1taXRlcmxpbWl0PSIxLjQyIiBwb2ludGVyLWV2ZW50cz0iYWxsIi8+PHJlY3QgeD0iODUiIHk9IjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI0MCIgZmlsbD0icmdiKDI1NSwgMjU1LCAyNTUpIiBzdHJva2U9InJnYigwLCAwLCAwKSIgcG9pbnRlci1ldmVudHM9ImFsbCIvPjxnIGZpbGw9InJnYigwLCAwLCAwKSIgZm9udC1mYW1pbHk9IkhlbHZldGljYSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMnB4Ij48dGV4dCB4PSIxMTQuNSIgeT0iMjQuNSI+Q1BVPC90ZXh0PjwvZz48cGF0aCBkPSJNIDExNyAxMTAgTCAxMTcgMTQwIE0gMTEzIDE0MCBMIDExMyAxMTAgTSAxMTMgMTQwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYigwLCAwLCAwKSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBwb2ludGVyLWV2ZW50cz0iYWxsIi8+PHJlY3QgeD0iODUiIHk9IjcwIiB3aWR0aD0iNjAiIGhlaWdodD0iNDAiIGZpbGw9InJnYigyNTUsIDI1NSwgMjU1KSIgc3Ryb2tlPSJyZ2IoMCwgMCwgMCkiIHBvaW50ZXItZXZlbnRzPSJhbGwiLz48ZyBmaWxsPSJyZ2IoMCwgMCwgMCkiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTJweCI+PHRleHQgeD0iMTE0LjUiIHk9Ijk0LjUiPkwxIGNhY2hlPC90ZXh0PjwvZz48cGF0aCBkPSJNIDExNyAxODAgTCAxMTcgMjEwIE0gMTEzIDIxMCBMIDExMyAxODAgTSAxMTMgMjEwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYigwLCAwLCAwKSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBwb2ludGVyLWV2ZW50cz0iYWxsIi8+PHJlY3QgeD0iNjUiIHk9IjE0MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0MCIgZmlsbD0icmdiKDI1NSwgMjU1LCAyNTUpIiBzdHJva2U9InJnYigwLCAwLCAwKSIgcG9pbnRlci1ldmVudHM9ImFsbCIvPjxnIGZpbGw9InJnYigwLCAwLCAwKSIgZm9udC1mYW1pbHk9IkhlbHZldGljYSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMnB4Ij48dGV4dCB4PSIxMTQuNSIgeT0iMTY0LjUiPkwyIGNhY2hlPC90ZXh0PjwvZz48cGF0aCBkPSJNIDExNyAyNTAgTCAxMTcgMjgwIE0gMTEzIDI4MCBMIDExMyAyNTAgTSAxMTMgMjgwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYigwLCAwLCAwKSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBwb2ludGVyLWV2ZW50cz0iYWxsIi8+PHJlY3QgeD0iNTAiIHk9IjIxMCIgd2lkdGg9IjEzMCIgaGVpZ2h0PSI0MCIgZmlsbD0icmdiKDI1NSwgMjU1LCAyNTUpIiBzdHJva2U9InJnYigwLCAwLCAwKSIgcG9pbnRlci1ldmVudHM9ImFsbCIvPjxnIGZpbGw9InJnYigwLCAwLCAwKSIgZm9udC1mYW1pbHk9IkhlbHZldGljYSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMnB4Ij48dGV4dCB4PSIxMTQuNSIgeT0iMjM0LjUiPkwzIGNhY2hlPC90ZXh0PjwvZz48cmVjdCB4PSIwIiB5PSIyODAiIHdpZHRoPSIyMzAiIGhlaWdodD0iNDAiIGZpbGw9InJnYigyNTUsIDI1NSwgMjU1KSIgc3Ryb2tlPSJyZ2IoMCwgMCwgMCkiIHBvaW50ZXItZXZlbnRzPSJhbGwiLz48ZyBmaWxsPSJyZ2IoMCwgMCwgMCkiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTJweCI+PHRleHQgeD0iMTE0LjUiIHk9IjMwNC41Ij5NYWluIG1lbW9yeTwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="Illustration of cache levels in a typical system" style="width:40.0%" /><figcaption>Illustration of cache levels in a typical system</figcaption>
+</figure>
 <p>If data is not already present in a cache layer, it is typically stored there after it has been fetched from a slower cache level or main memory. This is often a good decision to make as there’s a high likelihood the same address will be accessed by the program soon after. This high likelihood is known as the <a href="https://en.wikipedia.org/wiki/Locality_of_reference">principle of locality</a>.</p>
 <p>Data is stored and transferred between cache levels in blocks of aligned memory. Such a block is called a cache block or cache line. Typical sizes are 32, 64 or 128 bytes per cache line.</p>
 <p>When data that wasn’t previously in the cache needs to be stored in the cache, most of the time, room has to be made for it by removing, or evicting, some other address/data from it. How that choice gets made is decided by the <a href="https://en.wikipedia.org/wiki/Cache_replacement_policies">cache replacement policy</a>. Popular replacement algorithms are Least Recently Used (LRU), Random and pseudo-LRU. As the names suggest, LRU evicts the cache line that is least recently used; random picks a random cache line; and pseudo-LRU approximates choosing the least recently used line.</p>

@@ -39,6 +39,15 @@
             urlcolor=Blue,
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -91,7 +100,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   © 2021 Arm Limited
   \href{mailto:kristof.beyls@arm.com}{\nolinkurl{kristof.beyls@arm.com}}\\
 
-Version 0-66-g9876604
+Version 0-67-g9b038b3
 \clearpage
 
 {
@@ -606,6 +615,12 @@ be:
   Main memory, gigabytes in size, with an access time of more than 100
   cycles.
 \end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth,height=\textheight]{img/CacheLevels.pdf}
+\caption{Illustration of cache levels in a typical system}
+\end{figure}
 
 If data is not already present in a cache layer, it is typically stored
 there after it has been fetched from a slower cache level or main

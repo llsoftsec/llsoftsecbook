@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.2.25)  25 FEB 2022 09:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.2.25)  25 FEB 2022 15:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**book.tex
-(./book.tex
+**build/book.tex
+(./build/book.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18>
 (/texlive/2020/texmf-dist/tex/latex/base/report.cls
@@ -368,6 +368,29 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 Package hyperref Info: Option `colorlinks' set `true' on input line 40.
 Package hyperref Info: Option `breaklinks' set `true' on input line 40.
 
+(/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+
+(/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+)
+\Gin@req@height=\dimen153
+\Gin@req@width=\dimen154
+)
+(/texlive/2020/texmf-dist/tex/latex/grffile/grffile.sty
+Package: grffile 2019/11/11 v2.1 Extended file name support for graphics (legac
+y)
+Package grffile Info: This package is an empty stub for compatibility on input 
+line 40.
+)
 (/texlive/2020/texmf-dist/tex/latex/base/makeidx.sty
 Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
 )
@@ -400,8 +423,8 @@ File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 (/texlive/2020/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks27
-\pgfutil@tempdima=\dimen153
-\pgfutil@tempdimb=\dimen154
+\pgfutil@tempdima=\dimen155
+\pgfutil@tempdimb=\dimen156
 
 (/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex))
 (/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
@@ -414,23 +437,6 @@ Package: pgfrcs 2020/12/27 v3.1.8b (3.1.8b)
 Package: pgf 2020/12/27 v3.1.8b (3.1.8b)
 
 (/texlive/2020/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
-
-(/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
-
-(/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
-)
-(/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
-File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
-)
-Package graphics Info: Driver file: pdftex.def on input line 105.
-)
-\Gin@req@height=\dimen155
-\Gin@req@width=\dimen156
-)
 (/texlive/2020/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
 (/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2020/12/27 v3.1.8b (3.1.8b)
@@ -932,35 +938,35 @@ Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
 \bcval@margeG=\skip134
 \bcval@margeD=\skip135
 \bc@envbox=\box69
-) (./book.aux)
+) (build/book.aux)
 \openout1 = `book.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Info: Redefining \microtypecontext on input line 79.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Info: Redefining \microtypecontext on input line 88.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 79.
+LaTeX Info: Redefining \showhyphens on input line 88.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -991,7 +997,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring ON on input line 79.
+Package hyperref Info: Link coloring ON on input line 88.
 
 (/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -1004,44 +1010,45 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count349
 )
-LaTeX Info: Redefining \ref on input line 79.
-LaTeX Info: Redefining \pageref on input line 79.
-LaTeX Info: Redefining \nameref on input line 79.
+LaTeX Info: Redefining \ref on input line 88.
+LaTeX Info: Redefining \pageref on input line 88.
+LaTeX Info: Redefining \nameref on input line 88.
 
-(./book.out) (./book.out)
+(build/book.out) (build/book.out)
 \@outlinefile=\write5
 \openout5 = `book.out'.
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 8
-1.
- (/texlive/2020/texmf-dist/tex/latex/lm/ot1lmr.fd
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 9
+0.
+
+(/texlive/2020/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 8
-1.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 9
+0.
 
 (/texlive/2020/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-81.
+90.
 
 (/texlive/2020/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-81.
+90.
 
 (/texlive/2020/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 81.
+(Font)              <12> on input line 90.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 81.
+(Font)              <8> on input line 90.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 81.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 81.
+(Font)              <6> on input line 90.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 90.
 
 
 (/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1050,7 +1057,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/texlive/2020/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 81.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 90.
 
 
 (/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1087,24 +1094,24 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 <special> ps:tx@Dict begin  gsave STV CP T /ps@rot 0 def grestore  end
 {/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (31.3575pt too wide) in paragraph at lines 86--90
+Overfull \hbox (31.3575pt too wide) in paragraph at lines 95--99
 \T1/lmr/m/n/10 (-20) Li-cense. To view a copy of this li-cense, visit http://cr
 eativecommons.org/licenses/by/4.0/
  []
 
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 9
-1.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
+00.
 (/texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 92.
+(Font)              <10> on input line 101.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 92.
+(Font)              <7> on input line 101.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 92.
+(Font)              <5> on input line 101.
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--93
+Underfull \hbox (badness 10000) in paragraph at lines 100--102
 
  []
 
@@ -1112,10 +1119,10 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.95 \clearpage
-                [1
+l.104 \clearpage
+                 [1
 
-] (./book.toc)
+] (build/book.toc)
 \tf@toc=\write6
 \openout6 = `book.toc'.
 
@@ -1128,7 +1135,7 @@ Chapter 1.
 
 ]
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 188.
+ine 197.
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [4]
@@ -1149,13 +1156,13 @@ File: bc-aux-301.mps Graphic file (type mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.33688pt too wide) in paragraph at lines 316--316
+Overfull \hbox (5.3377pt too wide) in paragraph at lines 325--325
 [][][][]\T1/lmr/m/n/10 (-20) Consider 
  []
 
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.33688pt too wide) in paragraph at lines 316--316
+Overfull \hbox (5.3377pt too wide) in paragraph at lines 325--325
 [][][][]\T1/lmr/m/n/10 (-20) Consider 
  []
 
@@ -1186,7 +1193,13 @@ File: bc-aux-301.mps Graphic file (type mps)
 Chapter 3.
 [11
 
-] [12]
+]
+<img/CacheLevels.pdf, id=290, 231.86626pt x 322.20375pt>
+File: img/CacheLevels.pdf Graphic file (type pdf)
+<use img/CacheLevels.pdf>
+Package pdftex.def Info: img/CacheLevels.pdf  used on input line 621.
+(pdftex.def)             Requested size: 137.99927pt x 191.76523pt.
+ [12]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
@@ -1196,91 +1209,92 @@ File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [13]
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [13 <./i
+mg/CacheLevels.pdf>] [14]
 Chapter 4.
 File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [14
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [15
 
 ]
 Chapter 5.
-[15
+[16
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-[16]
+[17]
 Chapter 6.
-[17
+[18
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-[18]
+[19]
 Chapter 7.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [19
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [20
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-(./book.ind [20
+(build/book.ind [21
 
-] [21
+] [22
 
 
-]) (./book.tdo)
+]) (build/book.tdo)
 \tf@tdo=\write7
 \openout7 = `book.tdo'.
 
- [22
+ [23
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 887--892
+Underfull \hbox (badness 10000) in paragraph at lines 902--907
 \T1/lmr/m/n/10 (+20) Security -[] Research / blob / master / presentations / 20
 12 _ 10 _ Breakpoint /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 887--892
+Underfull \hbox (badness 10000) in paragraph at lines 902--907
 \T1/lmr/m/n/10 (+20) BreakPoint2012 _ Miller _ Modeling _ the _ exploitation _ 
 and _ mitigation _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 893--897
+Underfull \hbox (badness 10000) in paragraph at lines 908--912
 \T1/lmr/m/n/10 (+20) publications / conference -[] paper / 1998 / 10 / 08 / pro
 ceedings -[] of -[] the -[] 21st -[] nissc -[]
  []
 
-[23
+[24
 
-] [24] (./book.aux)
+] [25] (build/book.aux)
 Package rerunfilecheck Info: File `book.out' has not changed.
 (rerunfilecheck)             Checksum: 6CDA8FCE39FACF6F7A4F559E8003A586;5778.
  ) 
 Here is how much of TeX's memory you used:
- 26288 strings out of 480962
- 467697 string characters out of 5908147
- 869596 words of memory out of 5000000
- 42629 multiletter control sequences out of 15000+600000
+ 26311 strings out of 480962
+ 468258 string characters out of 5908147
+ 869825 words of memory out of 5000000
+ 42643 multiletter control sequences out of 15000+600000
  473258 words of font info for 157 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 128i,12n,130p,645b,1254s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 102i,12n,103p,651b,1259s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/texlive/2020/texmf-d
 ist/fonts/enc/dvips/lm/lm-ts1.enc}</texlive/2020/texmf-dist/fonts/type1/public/
 lm/lmbx10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></texl
 ive/2020/texmf-dist/fonts/type1/public/lm/lmr10.pfb></texlive/2020/texmf-dist/f
 onts/type1/public/lm/lmr17.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/
 lmri10.pfb>
-Output written on book.pdf (25 pages, 218407 bytes).
+Output written on build/book.pdf (26 pages, 226162 bytes).
 PDF statistics:
- 538 PDF objects out of 1000 (max. 8388607)
- 485 compressed objects within 5 object streams
- 121 named destinations out of 1000 (max. 500000)
- 39237 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 552 PDF objects out of 1000 (max. 8388607)
+ 495 compressed objects within 5 object streams
+ 123 named destinations out of 1000 (max. 500000)
+ 39242 words of extra memory for PDF output out of 42996 (max. 10000000)
 
