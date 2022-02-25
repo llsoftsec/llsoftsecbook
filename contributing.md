@@ -104,6 +104,21 @@ communicate, please use [Discussions](<https://github.com/llsoftsec/llsoftsecboo
   [Chicago Manual of Style](https://www.chicagomanualofstyle.org/home.html) as
   it is a de facto standard.
 
+### Diagrams and images
+
+When diagrams or images are needed in the book, we encourage drawing them with
+https://github.com/jgraph/drawio-desktop/. Inkscape can also be used to draw
+them, but may be a bit more cumbersome to use for technical diagrams.
+
+We use SVG as the image source format. The sources are stored in the `img`
+sub-directory.
+
+For the HTML output, the SVG images are included as is.  For the PDF output,
+the SVGs are automatically converted to PDFs.  If you edit or add an SVG image,
+make sure to check the PDF output to see if the conversion worked as expected.
+A common issue that can happen during conversion to PDF is explained at
+https://www.diagrams.net/doc/faq/svg-export-text-problems.
+
 ## How to build/test
 - See <https://github.com/llsoftsec/llsoftsecbook/blob/main/README.md#build-instructions>.
 - The project has [CI

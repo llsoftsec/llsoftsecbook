@@ -428,6 +428,8 @@ time\index{cache access time}. Some typical characteristics might be:
 * L3 cache, 16MB in size, with an access time of 40 cycles.
 * Main memory, gigabytes in size, with an access time of more than 100 cycles.
 
+![Illustration of cache levels in a typical system](img/CacheLevels){ width=40% }
+
 If data is not already present in a cache layer, it is typically stored there
 after it has been fetched from a slower cache level or main memory. This is
 often a good decision to make as there's a high likelihood the same address will
