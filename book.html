@@ -84,7 +84,7 @@ text-justify: auto;
 <p>
   © 2021 Arm Limited <a href="mailto:kristof.beyls@arm.com" class="email">kristof.beyls@arm.com</a><br />
 </p>
-<p>Version: 0-68-g343e3c2</p>
+<p>Version: 0-69-g1a9f2fa</p>
 
 </header>
 <nav id="TOC">
@@ -212,8 +212,8 @@ text-justify: auto;
 <h1 id="covert-channels-and-side-channels"><span class="header-section-number">3</span> Covert channels and side-channels <a href="#covert-channels-and-side-channels" class="selflink">§</a></h1>
 <p>A large class of attacks make use of so-called side-channels, which are defined below. The class is so big that in this book we devote the next two chapters to such attacks. Side-channels have enough complexity to discuss them separately in this chapter. This chapter describes the mechanisms used to make communication happen through side-channels. The next two chapters explore how attacks are constructed that use side-channels.</p>
 <p>Side-channels and covert channels are closely related. Both side-channels and covert channels are communication channels between two entities in a system, where the entities are not supposed to be allowed to communicate that way.</p>
-<p>A <strong>covert channel</strong> is such a channel where both entities intent to communicate through the channel. A <strong>side-channel</strong> is a such a channel where one end is the victim of an attack using the channel.</p>
-<p>In other words, the difference between a covert channel and a side-channel is whether both entities intent to communicate, in which case we talk about a covert channel. If one entity does not intent to communicate, but the other entity nonetheless extracts some data from the first, it is called a side-channel attack. The entity not intending to communicate, and hence being attacked, is called the victim.</p>
+<p>A <strong>covert channel</strong> is such a channel where both entities intend to communicate through the channel. A <strong>side-channel</strong> is a such a channel where one end is the victim of an attack using the channel.</p>
+<p>In other words, the difference between a covert channel and a side-channel is whether both entities intend to communicate, in which case we talk about a covert channel. If one entity does not intend to communicate, but the other entity nonetheless extracts some data from the first, it is called a side-channel attack. The entity not intending to communicate, and hence being attacked, is called the victim.</p>
 <p>The rest of this chapter mostly describes a variety of common covert channel mechanisms. It does not aim to differentiate much on whether both ends intend to cooperate on the communication, or whether one end is a victim under attack of the other end.</p>
 <p>In the next few sections we’ll explore a common few channels that can be used as covert channels.</p>
 <h2 id="cache-covert-channels"><span class="header-section-number">3.1</span> Cache covert channels <a href="#cache-covert-channels" class="selflink">§</a></h2>
