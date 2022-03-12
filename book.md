@@ -368,13 +368,13 @@ covert channels are communication channels between two entities in a system,
 where the entities are not supposed to be allowed to communicate that way.
 
 A **covert channel**\index{covert channel} is such a channel where both
-entities intent to communicate through the channel.  A
+entities intend to communicate through the channel.  A
 **side-channel**\index{side-channel} is a such a channel where one end is the
 victim of an attack using the channel.
 
 In other words, the difference between a covert channel and a side-channel is
-whether both entities intent to communicate, in which case we talk about a
-covert channel. If one entity does not intent to communicate, but the other
+whether both entities intend to communicate, in which case we talk about a
+covert channel. If one entity does not intend to communicate, but the other
 entity nonetheless extracts some data from the first, it is called a
 side-channel attack. The entity not intending to communicate, and hence being
 attacked, is called the victim\index{victim}.
