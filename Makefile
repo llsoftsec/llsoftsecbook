@@ -11,6 +11,7 @@ PANDOCFLAGS = \
 	      --resource-path=. \
 	      --standalone \
 	      --self-contained \
+	      --filter pandoc-fignos \
 	      --filter pandoc-citeproc \
 	      --metadata=VERSION:$(version)
 
