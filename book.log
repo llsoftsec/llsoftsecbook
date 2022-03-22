@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.3.12)  12 MAR 2022 21:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.3.22)  22 MAR 2022 12:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -938,35 +938,55 @@ Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
 \bcval@margeG=\skip134
 \bcval@margeD=\skip135
 \bc@envbox=\box69
-) (build/book.aux)
+)
+(/texlive/2020/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+
+(/texlive/2020/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen288
+\captionmargin@=\dimen289
+\captionwidth=\dimen290
+\caption@tempdima=\dimen291
+\caption@indent=\dimen292
+\caption@parindent=\dimen293
+\caption@hangindent=\dimen294
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count343
+\c@continuedfloat=\count344
+Package caption Info: hyperref package is loaded.
+)
+\c@figno=\count345
+ (build/book.aux)
 \openout1 = `book.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Info: Redefining \microtypecontext on input line 88.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Info: Redefining \microtypecontext on input line 113.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 88.
+LaTeX Info: Redefining \showhyphens on input line 113.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -977,16 +997,16 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 )
 (/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count343
-\scratchdimen=\dimen288
+\scratchcounter=\count346
+\scratchdimen=\dimen295
 \scratchbox=\box70
-\nofMPsegments=\count344
-\nofMParguments=\count345
+\nofMPsegments=\count347
+\nofMParguments=\count348
 \everyMPshowfont=\toks42
-\MPscratchCnt=\count346
-\MPscratchDim=\dimen289
-\MPnumerator=\count347
-\makeMPintoPDFobject=\count348
+\MPscratchCnt=\count349
+\MPscratchDim=\dimen296
+\MPnumerator=\count350
+\makeMPintoPDFobject=\count351
 \everyMPtoPDFconversion=\toks43
 ) (/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -997,7 +1017,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring ON on input line 88.
+Package hyperref Info: Link coloring ON on input line 113.
 
 (/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -1008,48 +1028,50 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/texlive/2020/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count349
+\c@section@level=\count352
 )
-LaTeX Info: Redefining \ref on input line 88.
-LaTeX Info: Redefining \pageref on input line 88.
-LaTeX Info: Redefining \nameref on input line 88.
+LaTeX Info: Redefining \ref on input line 113.
+LaTeX Info: Redefining \pageref on input line 113.
+LaTeX Info: Redefining \nameref on input line 113.
 
 (build/book.out) (build/book.out)
 \@outlinefile=\write5
 \openout5 = `book.out'.
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 9
-0.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
+15.
 
 (/texlive/2020/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 9
-0.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
+15.
 
 (/texlive/2020/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-90.
+115.
 
 (/texlive/2020/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-90.
+115.
 
 (/texlive/2020/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 90.
+(Font)              <12> on input line 115.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 90.
+(Font)              <8> on input line 115.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 90.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 90.
-
+(Font)              <6> on input line 115.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 115
+.
 
 (/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1057,8 +1079,8 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/texlive/2020/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 90.
-
+LaTeX Font Info:    Trying to load font information for U+msb on input line 115
+.
 
 (/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1094,24 +1116,24 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 <special> ps:tx@Dict begin  gsave STV CP T /ps@rot 0 def grestore  end
 {/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (31.3575pt too wide) in paragraph at lines 95--99
+Overfull \hbox (31.3575pt too wide) in paragraph at lines 120--124
 \T1/lmr/m/n/10 (-20) Li-cense. To view a copy of this li-cense, visit http://cr
 eativecommons.org/licenses/by/4.0/
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-00.
+25.
 (/texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 101.
+(Font)              <10> on input line 126.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 101.
+(Font)              <7> on input line 126.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 101.
+(Font)              <5> on input line 126.
 
-Underfull \hbox (badness 10000) in paragraph at lines 100--102
+Underfull \hbox (badness 10000) in paragraph at lines 125--127
 
  []
 
@@ -1119,7 +1141,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.104 \clearpage
+l.129 \clearpage
                  [1
 
 ] (build/book.toc)
@@ -1135,7 +1157,7 @@ Chapter 1.
 
 ]
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 197.
+ine 222.
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [4]
@@ -1156,13 +1178,13 @@ File: bc-aux-301.mps Graphic file (type mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.3377pt too wide) in paragraph at lines 325--325
+Overfull \hbox (5.3377pt too wide) in paragraph at lines 350--350
 [][][][]\T1/lmr/m/n/10 (-20) Consider 
  []
 
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.3377pt too wide) in paragraph at lines 325--325
+Overfull \hbox (5.3377pt too wide) in paragraph at lines 350--350
 [][][][]\T1/lmr/m/n/10 (-20) Consider 
  []
 
@@ -1197,7 +1219,7 @@ Chapter 3.
 <img/CacheLevels.pdf, id=290, 231.86626pt x 322.20375pt>
 File: img/CacheLevels.pdf Graphic file (type pdf)
 <use img/CacheLevels.pdf>
-Package pdftex.def Info: img/CacheLevels.pdf  used on input line 621.
+Package pdftex.def Info: img/CacheLevels.pdf  used on input line 648.
 (pdftex.def)             Requested size: 137.99927pt x 191.76523pt.
  [12]
 File: bc-aux-301.mps Graphic file (type mps)
@@ -1254,19 +1276,19 @@ File: bc-aux-301.mps Graphic file (type mps)
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 902--907
+Underfull \hbox (badness 10000) in paragraph at lines 931--936
 \T1/lmr/m/n/10 (+20) Security -[] Research / blob / master / presentations / 20
 12 _ 10 _ Breakpoint /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 902--907
+Underfull \hbox (badness 10000) in paragraph at lines 931--936
 \T1/lmr/m/n/10 (+20) BreakPoint2012 _ Miller _ Modeling _ the _ exploitation _ 
 and _ mitigation _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 908--912
+Underfull \hbox (badness 10000) in paragraph at lines 937--941
 \T1/lmr/m/n/10 (+20) publications / conference -[] paper / 1998 / 10 / 08 / pro
 ceedings -[] of -[] the -[] 21st -[] nissc -[]
  []
@@ -1275,23 +1297,23 @@ ceedings -[] of -[] the -[] 21st -[] nissc -[]
 
 ] [25] (build/book.aux)
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: 6CDA8FCE39FACF6F7A4F559E8003A586;5778.
+(rerunfilecheck)             Checksum: F36A20BCB732CF278BE70F0A1BFFA4B3;5778.
  ) 
 Here is how much of TeX's memory you used:
- 26309 strings out of 480962
- 468234 string characters out of 5908147
- 869825 words of memory out of 5000000
- 42643 multiletter control sequences out of 15000+600000
+ 27536 strings out of 480962
+ 492008 string characters out of 5908147
+ 883423 words of memory out of 5000000
+ 43864 multiletter control sequences out of 15000+600000
  473164 words of font info for 156 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 102i,12n,103p,651b,1259s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 102i,12n,117p,651b,1259s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/texlive/2020/texmf-d
 ist/fonts/enc/dvips/lm/lm-ts1.enc}</texlive/2020/texmf-dist/fonts/type1/public/
 lm/lmbx10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></texl
 ive/2020/texmf-dist/fonts/type1/public/lm/lmr10.pfb></texlive/2020/texmf-dist/f
 onts/type1/public/lm/lmr17.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/
 lmri10.pfb>
-Output written on build/book.pdf (26 pages, 226156 bytes).
+Output written on build/book.pdf (26 pages, 226117 bytes).
 PDF statistics:
  552 PDF objects out of 1000 (max. 8388607)
  495 compressed objects within 5 object streams

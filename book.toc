@@ -23,5 +23,5 @@
 \contentsline {chapter}{\numberline {6}Supply chain attacks}{18}{chapter.6}%
 \contentsline {section}{\numberline {6.1}History of supply chain attacks}{18}{section.6.1}%
 \contentsline {chapter}{\numberline {7}Other security topics relevant for compiler developers}{20}{chapter.7}%
-\contentsline {chapter}{Appendix: contribution guidelines}{21}{chapter*.22}%
-\contentsline {chapter}{References}{24}{chapter*.25}%
+\contentsline {chapter}{Appendix: contribution guidelines}{21}{chapter*.23}%
+\contentsline {chapter}{References}{24}{chapter*.26}%

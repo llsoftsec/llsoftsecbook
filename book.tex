@@ -82,6 +82,31 @@
   \oldtodo[inline,caption={\arabic{TodoCounter}. #1}]{\bcpanchant \textit{#1}}
 }
 
+%%%% pandoc-fignos: required package
+\usepackage{caption}
+
+%% pandoc-fignos: environment to disable figure caption prefixes
+\makeatletter
+\newcounter{figno}
+\newenvironment{fignos:no-prefix-figure-caption}{
+  \caption@ifcompatibility{}{
+    \let\oldthefigure\thefigure
+    \let\oldtheHfigure\theHfigure
+    \renewcommand{\thefigure}{figno:\thefigno}
+    \renewcommand{\theHfigure}{figno:\thefigno}
+    \stepcounter{figno}
+    \captionsetup{labelformat=empty}
+  }
+}{
+  \caption@ifcompatibility{}{
+    \captionsetup{labelformat=default}
+    \let\thefigure\oldthefigure
+    \let\theHfigure\oldtheHfigure
+    \addtocounter{figure}{-1}
+  }
+}
+\makeatother
+
 \title{Low-Level Software Security for Compiler Developers}
 \date{}
 
@@ -100,7 +125,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   © 2021 Arm Limited
   \href{mailto:kristof.beyls@arm.com}{\nolinkurl{kristof.beyls@arm.com}}\\
 
-Version 0-69-g1a9f2fa
+Version 0-70-g26e4132
 \clearpage
 
 {
@@ -616,11 +641,15 @@ be:
   cycles.
 \end{itemize}
 
+\begin{fignos:no-prefix-figure-caption}
+
 \begin{figure}
 \centering
 \includegraphics[width=0.4\textwidth,height=\textheight]{img/CacheLevels.pdf}
 \caption{Illustration of cache levels in a typical system}
 \end{figure}
+
+\end{fignos:no-prefix-figure-caption}
 
 If data is not already present in a cache layer, it is typically stored
 there after it has been fetched from a slower cache level or main
