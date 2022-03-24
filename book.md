@@ -452,39 +452,44 @@ pseudo-LRU\index{pseudo-LRU replacement policy}. As the names suggest, LRU
 evicts the cache line that is least recently used; random picks a random cache
 line; and pseudo-LRU approximates choosing the least recently used line.
 
-If an address can be stored in all locations available in the cache, the cache
+If a cache line can be stored in all locations available in the cache, the cache
 is fully-associative\index{fully-associative cache}. Most caches are however not
 fully-associative, as it's too costly to implement. Instead, most caches are
 set-associative\index{set-associative cache}. In an N-way set-associative cache,
-a specific main memory address can only be stored in one of N cache locations.
-For example, if an address can potentially be stored in one of 2 locations, the
-cache is said to be 2-way set-associative. If it can be stored in one of 4
-locations, it's called 4-way set-associative, and so on. When an address can
-only be stored in one location in the cache, it is said to be
-direct-mapped\index{direct-mapped cache}, rather than 1-way set-associative. The
-set of cache locations that data from a particular address can be stored at is
-called a cache set\index{cache set}.
+a specific line can only be stored in one of N cache locations. For example, if
+a line can potentially be stored in one of 2 locations, the cache is said to be
+2-way set-associative. If it can be stored in one of 4 locations, it's called
+4-way set-associative, and so on. When an address can only be stored in one
+location in the cache, it is said to be direct-mapped\index{direct-mapped
+cache}, rather than 1-way set-associative. Typical organizations are
+direct-mapped, 2-way, 4-way, 8-way, 16-way or 32-way set-associative.
 
-Typical organizations are direct-mapped, 2-way, 4-way, 8-way, 16-way or 32-way
-set-associative.
+The set of cache locations that a particular cache line can be stored at is
+called a cache set\index{cache set}.
 
 #### Indexing in a set-associative cache
 
 For some cache covert channels, it is essential to know exactly how a memory
 address maps to a specific cache set.
 
-![Illustration of indexing into a set-associative cache](img/CacheIndexing){ width=100% #fig:cache-indexing}
+![Illustration of indexing into a set-associative cache.
+In this example:
+$L$ = 6 bits, hence the cache line size is $2^6=64$ bytes.
+$S$ = 5 bits, so there are $2^5=32$ cache sets.
+$N$ can be independent of address bits used to index the cache. If we
+assume $N=12$ for a 12-way set-associative cache, the total cache size is
+$N*2^L*2^S=12*64*32=24$KB.](img/CacheIndexing){ width=100% #fig:cache-indexing}
 
 Specific bits in the memory address are used for different cache indexing
 purposes, as illustrated in +@fig:cache-indexing. The least-significant $L$
-bits, where $2^L$ is the cache line size, are used to compute the offset within
-a cache line the address lives at. The next $S$ bits, where $2^S$ is the number
-of cache sets, are used to determine which cache set an address maps to. The
-remaining top bits are "tag bits". They are stored alongside a line in the cache
-so later operations can detect which specific memory address is replicated in
-that cache line.
+bits, where $2^L$ is the cache line size, are used to compute an addres's offset
+within a cache line. The next $S$ bits, where $2^S$ is the number of cache sets,
+are used to determine which cache set an address maps to. The remaining top bits
+are "tag bits". They are stored alongside a line in the cache so later
+operations can detect which specific memory address is replicated in that cache
+line.
 
-For direct-mapped and fully-associated caches, the mapping of an address to
+For direct-mapped and fully-associative caches, the mapping of an address to
 cache locations also works as described above. In fully-associative caches the
 number of cache sets is 1, so $S$=0.
 
