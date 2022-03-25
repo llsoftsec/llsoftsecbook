@@ -482,12 +482,12 @@ $N*2^L*2^S=12*64*32=24$KB.](img/CacheIndexing){ width=100% #fig:cache-indexing}
 
 Specific bits in the memory address are used for different cache indexing
 purposes, as illustrated in +@fig:cache-indexing. The least-significant $L$
-bits, where $2^L$ is the cache line size, are used to compute an addres's offset
-within a cache line. The next $S$ bits, where $2^S$ is the number of cache sets,
-are used to determine which cache set an address maps to. The remaining top bits
-are "tag bits". They are stored alongside a line in the cache so later
-operations can detect which specific memory address is replicated in that cache
-line.
+bits, where $2^L$ is the cache line size, are used to compute an address's
+offset within a cache line. The next $S$ bits, where $2^S$ is the number of
+cache sets, are used to determine which cache set an address maps to. The
+remaining top bits are "tag bits". They are stored alongside a line in the cache
+so later operations can detect which specific memory address is replicated in
+that cache line.
 
 For direct-mapped and fully-associative caches, the mapping of an address to
 cache locations also works as described above. In fully-associative caches the
