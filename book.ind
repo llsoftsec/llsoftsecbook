@@ -7,10 +7,11 @@
   \item cache, \hyperpage{11}
   \item cache access time, \hyperpage{12}
   \item cache block, \hyperpage{12}
-  \item cache coherency, \hyperpage{13}
+  \item cache coherency, \hyperpage{14}
   \item cache eviction, \hyperpage{12}
   \item cache line, \hyperpage{12}
   \item cache replacement policy, \hyperpage{12}
+  \item cache set, \hyperpage{13}
   \item cache size, \hyperpage{12}
   \item covert channel, \hyperpage{11}
 

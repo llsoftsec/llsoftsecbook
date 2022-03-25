@@ -24,5 +24,6 @@
 \indexentry{fully-associative cache|hyperpage}{13}
 \indexentry{set-associative cache|hyperpage}{13}
 \indexentry{direct-mapped cache|hyperpage}{13}
-\indexentry{cache coherency|hyperpage}{13}
+\indexentry{cache set|hyperpage}{13}
+\indexentry{cache coherency|hyperpage}{14}
 \indexentry{timing attacks|hyperpage}{16}

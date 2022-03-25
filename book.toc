@@ -12,9 +12,10 @@
 \contentsline {chapter}{\numberline {3}Covert channels and side-channels}{11}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Cache covert channels}{11}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}Typical CPU cache architecture}{12}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}General operation of cache covert channels}{13}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}Timing covert channels}{13}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Resource contention channels}{13}{section.3.3}%
+\contentsline {subsubsection}{\numberline {3.1.1.1}Indexing in a set-associative cache}{13}{subsubsection.3.1.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}General operation of cache covert channels}{14}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Timing covert channels}{14}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Resource contention channels}{14}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Channels making use of aliasing in branch predictors and other predictors}{14}{section.3.4}%
 \contentsline {chapter}{\numberline {4}Physical access side-channel attacks}{15}{chapter.4}%
 \contentsline {chapter}{\numberline {5}Remote access side-channel attacks}{16}{chapter.5}%
