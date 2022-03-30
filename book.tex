@@ -128,7 +128,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   © 2021 Arm Limited
   \href{mailto:kristof.beyls@arm.com}{\nolinkurl{kristof.beyls@arm.com}}\\
 
-Version 0-72-g0365096
+Version 0-73-g86e38bd
 \clearpage
 
 {
@@ -471,11 +471,19 @@ In this way, they effectively \emph{introduce} scripting capabilities
 and are able to express their exploit as a program to this architecture.
 
 So far, we have described read/write primitives. We have also discussed
-how an attacker might perform arbitrary computations: * in an external
-program in the case of interactive attacks, or * by using scripting
-capabilities (whether originally supported or introduced by the
-attacker) in non-interactive attacks. Assuming an attacker has gained
-these capabilities, how can they use them to achieve their goals?
+how an attacker might perform arbitrary computations:
+
+\begin{itemize}
+\tightlist
+\item
+  in an external program in the case of interactive attacks, or
+\item
+  by using scripting capabilities (whether originally supported or
+  introduced by the attacker) in non-interactive attacks.
+\end{itemize}
+
+Assuming an attacker has gained these capabilities, how can they use
+them to achieve their goals?
 
 The ultimate goal of an attacker may vary: it may be, among other
 things, getting access to a system, leaking sensitive information or

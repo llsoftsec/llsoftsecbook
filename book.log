@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.3.25)  25 MAR 2022 08:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.3.30)  30 MAR 2022 09:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1233,13 +1233,13 @@ Chapter 3.
 <img/CacheLevels.pdf, id=290, 231.86626pt x 322.20375pt>
 File: img/CacheLevels.pdf Graphic file (type pdf)
 <use img/CacheLevels.pdf>
-Package pdftex.def Info: img/CacheLevels.pdf  used on input line 651.
+Package pdftex.def Info: img/CacheLevels.pdf  used on input line 659.
 (pdftex.def)             Requested size: 137.99927pt x 191.76523pt.
  [12]
 <img/CacheIndexing.pdf, id=301, 704.6325pt x 278.03876pt>
 File: img/CacheIndexing.pdf Graphic file (type pdf)
 <use img/CacheIndexing.pdf>
-Package pdftex.def Info: img/CacheIndexing.pdf  used on input line 719.
+Package pdftex.def Info: img/CacheIndexing.pdf  used on input line 727.
 (pdftex.def)             Requested size: 344.99341pt x 136.12987pt.
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [13 <./
@@ -1294,19 +1294,19 @@ File: bc-aux-301.mps Graphic file (type mps)
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 969--974
+Underfull \hbox (badness 10000) in paragraph at lines 977--982
 \T1/lmr/m/n/10 (+20) Security -[] Research / blob / master / presentations / 20
 12 _ 10 _ Breakpoint /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 969--974
+Underfull \hbox (badness 10000) in paragraph at lines 977--982
 \T1/lmr/m/n/10 (+20) BreakPoint2012 _ Miller _ Modeling _ the _ exploitation _ 
 and _ mitigation _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 975--979
+Underfull \hbox (badness 10000) in paragraph at lines 983--987
 \T1/lmr/m/n/10 (+20) publications / conference -[] paper / 1998 / 10 / 08 / pro
 ceedings -[] of -[] the -[] 21st -[] nissc -[]
  []
@@ -1320,7 +1320,7 @@ Package rerunfilecheck Info: File `book.out' has not changed.
 Here is how much of TeX's memory you used:
  29158 strings out of 480962
  530274 string characters out of 5908147
- 919075 words of memory out of 5000000
+ 919168 words of memory out of 5000000
  45474 multiletter control sequences out of 15000+600000
  473413 words of font info for 159 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1336,7 +1336,7 @@ type1/public/lm/lmr10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmr17
 .pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmr7.pfb></texlive/2020/te
 xmf-dist/fonts/type1/public/lm/lmri10.pfb></texlive/2020/texmf-dist/fonts/type1
 /public/lm/lmsy10.pfb>
-Output written on build/book.pdf (26 pages, 273071 bytes).
+Output written on build/book.pdf (26 pages, 272929 bytes).
 PDF statistics:
  600 PDF objects out of 1000 (max. 8388607)
  531 compressed objects within 6 object streams

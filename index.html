@@ -84,7 +84,7 @@ text-justify: auto;
 <p>
   © 2021 Arm Limited <a href="mailto:kristof.beyls@arm.com" class="email">kristof.beyls@arm.com</a><br />
 </p>
-<p>Version: 0-72-g0365096</p>
+<p>Version: 0-73-g86e38bd</p>
 
 </header>
 <nav id="TOC">
@@ -184,7 +184,12 @@ text-justify: auto;
 <p>It’s interesting to note that while the read/write primitives consist of carefully constructed inputs to the victim program, the attacker can view these inputs as <em>instructions</em> to the victim program. The victim program effectively implements an interpreter unintentionally, and the attacker can send instructions to this interpreter. This is explored further in <span class="citation" data-cites="Dullien2020">(Dullien <a href="#ref-Dullien2020">2020</a>)</span>.</p>
 <p>In the case of a non-interactive attack, all computation happens within the victim program. The duality of input data and code is even more obvious in this case, as the malicious input to the victim can be viewed as the exploit code. There are cases for which the input is obviously interpreted as code by the victim application as well, as in the case of a JavaScript program given as input to a JavaScript engine. In this case, the read/write primitives would be written as JavaScript functions, which when called have the unintended side-effect of accessing arbitrary memory that a JavaScript program is not supposed to have access to. The primitives can be chained together with arbitrary computations, also expressed in JavaScript.</p>
 <p>There are, however, cases where the correspondence between data and code isn’t as obvious. For example, in <span class="citation" data-cites="Beer2021">(Beer and Groß <a href="#ref-Beer2021">2021</a>)</span>, the malicious input consists of a PDF file, masquerading as a GIF. Due to an integer overflow bug in the PDF decoder, the malicious input leads to an unbounded buffer access, therefore to an arbitrary read/write primitive. In the case of JavaScript engine exploitation, the attacker would normally be able to use JavaScript operations and perform arbitrary computations, making exploitation more straightforward. In this case, there are no scripting capabilities officially supported. The attackers, however, take advantage of the compression format intricacies to implement a small computer architecture, in thousands of simple commands to the decoder. In this way, they effectively <em>introduce</em> scripting capabilities and are able to express their exploit as a program to this architecture.</p>
-<p>So far, we have described read/write primitives. We have also discussed how an attacker might perform arbitrary computations: * in an external program in the case of interactive attacks, or * by using scripting capabilities (whether originally supported or introduced by the attacker) in non-interactive attacks. Assuming an attacker has gained these capabilities, how can they use them to achieve their goals?</p>
+<p>So far, we have described read/write primitives. We have also discussed how an attacker might perform arbitrary computations:</p>
+<ul>
+<li>in an external program in the case of interactive attacks, or</li>
+<li>by using scripting capabilities (whether originally supported or introduced by the attacker) in non-interactive attacks.</li>
+</ul>
+<p>Assuming an attacker has gained these capabilities, how can they use them to achieve their goals?</p>
 <p>The ultimate goal of an attacker may vary: it may be, among other things, getting access to a system, leaking sensitive information or bringing down a service. Frequently, a first step towards these wider goals is arbitrary code execution within the victim process. We have already mentioned that the attacker will typically have arbitrary computation capabilities at this point, but arbitrary code execution also involves things like calling arbitrary library functions and performing system calls.</p>
 <p>Some examples of how the attacker may use the obtained primitives:</p>
 <ul>
