@@ -303,9 +303,11 @@ to express their exploit as a program to this architecture.
 
 So far, we have described read/write primitives. We have also discussed how an
 attacker might perform arbitrary computations:
+
   * in an external program in the case of interactive attacks, or
   * by using scripting capabilities (whether originally supported or
     introduced by the attacker) in non-interactive attacks.
+
 Assuming an attacker has gained these capabilities, how can they use them to
 achieve their goals?
 
