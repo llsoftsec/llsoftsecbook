@@ -285,7 +285,7 @@ victim application as well, as in the case of a JavaScript program given as
 input to a JavaScript engine. In this case, the read/write primitives would
 be written as JavaScript functions, which when called have the unintended
 side-effect of accessing arbitrary memory that a JavaScript program is not
-supposed to have access to.  The primitives can be chained together with
+supposed to have access to. The primitives can be chained together with
 arbitrary computations, also expressed in JavaScript.
 
 There are, however, cases where the correspondence between data and code isn't
@@ -339,7 +339,160 @@ purposes of this chapter we will focus on:
   to maintain [Control-Flow Integrity (CFI)](#code-reuse-attacks).
 
 ## Stack buffer overflows
-\missingcontent{Describe stack buffer overflows and mitigations}
+
+A buffer overflow occurs when a read from or write to a data
+buffer\href{https://en.wikipedia.org/wiki/Data_buffer} exceeds its boundaries.
+This typically results in adjacent data structures being accessed, which has
+the potential of leaking or compromising the integrity of this adjacent data.
+
+When the buffer is allocated on the stack, we refer to a stack buffer overflow.
+In this section we focus on stack buffer overflows since, in the absence of any
+mitigations, they are some of the simplest buffer overflows to exploit.
+
+The stack frame\href{https://en.wikipedia.org/wiki/Call_stack} of a function
+includes important control information, such as the saved return address and
+the saved frame pointer. Overwriting these values unintentionally will
+typically result in a crash, but the overflowing values can be carefully chosen
+by an attacker to gain control of the program's execution.
+
+Here is a simple example of a program vulnerable to a stack buffer overflow[^oversimplified]:
+```
+#include <stdio.h>
+#include <string.h>
+
+void copy_and_print(char* src) {
+  char dst[16];
+
+  for (int i = 0; i < strlen(src) + 1; ++i)
+    dst[i] = src[i];
+  printf("%s\n", dst);
+}
+
+int main(int argc, char* argv[]) {
+  if (argc > 1) {
+    copy_and_print(argv[1]);
+  }
+}
+```
+
+
+[^oversimplified]: This is an oversimplified example for illustrative purposes.
+  However, as this is a [wide class of
+  vulnerabilities](https://cwe.mitre.org/data/definitions/121.html),
+  [many real-world examples](https://www.cvedetails.com/vulnerability-list/cweid-121/vulnerabilities.html)
+  can be found and studied.
+
+In the code above, since the length of the argument is not checked before
+copying it into `dst`, we have a potential for a buffer overflow.
+
+When looking at code generated for AArch64 with GCC 11.2[^build-options],
+the stack layout looks like this:
+
+![Stack frame layout for stack buffer overflow example](img/stack){ width=60% }
+
+\todo{Improve diagram to make the direction of the overflow clearer. One
+suggestion is to also draw the stack frame horizontally.}
+
+[^build-options]: The code is generated with the `-fno-stack-protector` option,
+  to ensure GCC's stack guard feature is disabled. We also used the `-O1`
+  optimization level.
+
+The exact details of the stack frame layout, including the ordering of
+variables and the exact control information stored, will depend on the specific
+compiler version you use and the architecture you compile for.
+
+As can be seen the stack diagram, an overflowing write in function
+`copy_and_print` can overwrite the saved frame pointer (FP) and link register
+(LR) in `main`'s frame. When `copy_and_print` returns, execution continues in
+`main`. When `main` returns, however, execution continues from the address
+stored in the saved LR, which has been overwritten. Therefore, when an attacker
+can choose the value that overwrites the saved LR, it's possible to control
+where the program resumes execution after returning from `main`.
+
+Before non-executable stacks were mainstream, a common way to exploit these
+vulnerabilities would be to use the overflow to simultaneously write
+shellcode[^shellcode]\index{shellcode} to the stack and overwrite the return
+address so that it points to the shellcode. [@AlephOne1996] is a classic
+example of this technique.
+
+[^shellcode]: A shellcode is a short instruction sequence that performs an
+  action such as starting a shell on the victim machine.
+
+The obvious solution to this issue is to use memory protection features of the
+processor in order to mark the stack (along with other data sections) as
+non-executable[^trampolines]. However, even when the stack is not executable,
+more advanced techniques can be used to exploit an overflow that overwrites the
+return address. These take advantage of code that already exists in the
+executable or in library code, and will be described in the next section.
+
+[^trampolines]: Note that the use of [nested
+  functions](https://gcc.gnu.org/onlinedocs/gcc/Nested-Functions.html) in GCC
+  requires [trampolines](https://gcc.gnu.org/onlinedocs/gccint/Trampolines.html)
+  which reside on an executable stack. The use of nested functions, therefore,
+  poses a security risk.
+
+Stack canaries are an alternative mitigation for stack buffer overflows. The
+general idea is to store a known value, called the stack canary, between the
+buffer and the control information (in the example, the saved FP and LR), and
+to check this value before leaving the function. Since an overflow that would
+overwrite the return address is going to overwrite the canary first, a corruption of
+the return address through a stack buffer overflow will be detected.
+
+This technique has a few limitations: first of all, it specifically aims to
+protect against stack buffer overflows, and does nothing to protect against
+stronger primitives (e.g. arbitrary write primitives). Control-flow integrity
+techniques, which are described in the next section, aim to protect the
+integrity of stored code pointers against any modification.
+
+Secondly, since a compiler needs to generate additional instructions for
+ensuring the canary's integrity, heuristics are usually employed to determine
+which functions are considered vulnerable. The additional instructions are then
+generated only for the functions that are considered vulnerable.  Since
+heuristics aren't always perfect, this poses another potential limitation of
+the technique. To address this, compilers can introduce various levels of
+heuristics, ranging from applying the mitigations only to a small proportion of
+functions, to applying it universally. See, for example, the
+`-fstack-protector`, `-fstack-protector-strong` and `-fstack-protector-all`
+options offered by both
+[GCC](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html) and
+[Clang](https://clang.llvm.org/docs/ClangCommandLineReference.html#cmdoption-clang-fstack-protector).
+
+Another limitation is the possibility of leaks of the canary value. The canary
+value is often randomized at program start but remains the same during the
+program's execution. An attacker who manages to obtain the canary value at
+some point might, therefore, be able to reuse the leaked canary value and
+corrupt control information while avoiding detection. Choosing a canary value
+that includes a null byte (the C-style string terminator) might help in
+limiting the damage of overflows coming from string manipulation functions,
+even when the value is leaked.
+
+Many buffer overflow vulnerabilities result from the use of unsafe library
+functions, such as `gets`, or from the unsafe use of library functions such as
+`strcpy`. There is extensive literature on writing secure C/C++ code, for
+example [@Seacord2013] and [@Dowd2006]. A different approach to limiting the
+effects of overflows is library function hardening, which aims to detect buffer
+overflows and terminate the program gracefully. This involves the introduction
+of feature macros like `_FORTIFY_SOURCE` [@Sharma2014].
+
+Finally, it's important to mention that not all buffer overflows aim to
+overwrite a saved return address.  There are many cases where a buffer overflow
+can overwrite other data adjacent to the buffer, for example an adjacent
+variable that determines whether authorization was successful, or a function
+pointer that, when modified, can modify the program's control flow according to
+the attacker's wishes.
+
+Some of these vulnerabilities can be mitigated with the measures described in
+this section, but often more general measures to ensure memory safety or
+[Control-Flow Integrity](#code-reuse-attacks) are necessary. For example, in
+addition to the hardening of specific library functions, compilers can also
+implement automatic bounds checking for arrays where the array bound can be
+statically determined (`-fsanitize=bounds`), as well as various other
+"sanitizers". We will describe these measures in following sections.
+
+\todo{Rethink the later sections of this chapter and the order in which issues
+and mitigations are presented. The "non-control data exploits" section should
+probably include, or be followed by, a section on the various sanitizers
+available (ASan, UBSan, etc).}
 
 ## Code reuse attacks
 \missingcontent{Discuss ROP, JOP, COOP and mitigations (ASLR, CFI etc)}
