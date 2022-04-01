@@ -340,8 +340,8 @@ purposes of this chapter we will focus on:
 
 ## Stack buffer overflows
 
-A buffer overflow occurs when a read from or write to a data
-buffer\href{https://en.wikipedia.org/wiki/Data_buffer} exceeds its boundaries.
+A buffer overflow occurs when a read from or write to a [data
+buffer](https://en.wikipedia.org/wiki/Data_buffer) exceeds its boundaries.
 This typically results in adjacent data structures being accessed, which has
 the potential of leaking or compromising the integrity of this adjacent data.
 
@@ -349,7 +349,7 @@ When the buffer is allocated on the stack, we refer to a stack buffer overflow.
 In this section we focus on stack buffer overflows since, in the absence of any
 mitigations, they are some of the simplest buffer overflows to exploit.
 
-The stack frame\href{https://en.wikipedia.org/wiki/Call_stack} of a function
+The [stack frame](https://en.wikipedia.org/wiki/Call_stack) of a function
 includes important control information, such as the saved return address and
 the saved frame pointer. Overwriting these values unintentionally will
 typically result in a crash, but the overflowing values can be carefully chosen
