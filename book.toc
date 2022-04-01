@@ -4,3 +4,25 @@
 \contentsline {section}{\numberline {2.1}A bit of background on memory vulnerabilities}{5}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Exploitation primitives}{6}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Stack buffer overflows}{9}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Code reuse attacks}{12}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Non-control data exploits}{12}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Hardware support for protection against memory vulnerabilities}{12}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Other issues}{12}{section.2.7}%
+\contentsline {section}{\numberline {2.8}JIT compiler vulnerabilities}{12}{section.2.8}%
+\contentsline {chapter}{\numberline {3}Covert channels and side-channels}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Cache covert channels}{13}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Typical CPU cache architecture}{14}{subsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.1.1}Indexing in a set-associative cache}{15}{subsubsection.3.1.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}General operation of cache covert channels}{16}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Timing covert channels}{16}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Resource contention channels}{16}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Channels making use of aliasing in branch predictors and other predictors}{16}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Physical access side-channel attacks}{17}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Remote access side-channel attacks}{18}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Timing attacks}{18}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Cache side-channel attacks}{19}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Supply chain attacks}{20}{chapter.6}%
+\contentsline {section}{\numberline {6.1}History of supply chain attacks}{20}{section.6.1}%
+\contentsline {chapter}{\numberline {7}Other security topics relevant for compiler developers}{22}{chapter.7}%
+\contentsline {chapter}{Appendix: contribution guidelines}{23}{chapter*.25}%
+\contentsline {chapter}{References}{26}{chapter*.28}%

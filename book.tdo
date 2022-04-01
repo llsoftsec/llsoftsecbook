@@ -1,0 +1,21 @@
+\contentsline {todo}{1. Add section describing the structure of the rest of the book.}{4}{section*.2}%
+\contentsline {todo}{2. Refine section links used here and in the previous paragraph.}{5}{section*.3}%
+\contentsline {todo}{3. Discuss threat models elsewhere in book and refer to that section here}{6}{section*.4}%
+\contentsline {todo}{4. Consider describing in more detail why the range limitation matters}{6}{section*.5}%
+\contentsline {todo}{5. The references in this section describe complicated modern exploits. Consider linking to simpler exploits, as well as some tutorial-level material.}{7}{section*.6}%
+\contentsline {todo}{6. Improve diagram to make the direction of the overflow clearer. One suggestion is to also draw the stack frame horizontally.}{10}{section*.8}%
+\contentsline {todo}{7. Rethink the later sections of this chapter and the order in which issues and mitigations are presented. The "non-control data exploits" section should probably include, or be followed by, a section on the various sanitizers available (ASan, UBSan, etc).}{12}{section*.9}%
+\contentsline {todo}{8. Discuss ROP, JOP, COOP and mitigations (ASLR, CFI etc)}{12}{section*.10}%
+\contentsline {todo}{9. Discuss data-oriented programming and other attacks}{12}{section*.11}%
+\contentsline {todo}{10. Describe architectural features for mitigating memory vulnerabilities and for CFI}{12}{section*.12}%
+\contentsline {todo}{11. Mention other issues, e.g. sigreturn-oriented programming}{12}{section*.13}%
+\contentsline {todo}{12. Write section on JIT compiler vulnerabilities}{12}{section*.14}%
+\contentsline {todo}{13. Also explain cache coherency ?}{15}{section*.17}%
+\contentsline {todo}{14. Also say something about TLBs and prefetching?}{16}{section*.18}%
+\contentsline {todo}{15. Should we also discuss more "covert" channels here such as power analysis, etc?}{16}{section*.19}%
+\contentsline {todo}{16. Write chapter on physical access side-channel attacks.}{17}{section*.20}%
+\contentsline {todo}{17. Write section on cache side-channel attacks. See \href {https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031}{the first comment on PR24} for suggestions of what this should contain.}{19}{section*.21}%
+\contentsline {todo}{18. Explain how these vulnerabilities arise and how to mitigate them.}{21}{section*.22}%
+\contentsline {todo}{19. Write chapter with other security topics.}{22}{section*.23}%
+\contentsline {todo}{20. Write section on securely clearing memory in C/C++ and undefined behaviour.}{22}{section*.24}%
+\contentsline {todo}{21. Write chapter on contribution guidelines. These should include at least: project locaton on github; how to create pull requests/issues. Where do we discuss - mailing list? Grammar and writing style guidelines. How to use todos and index.}{23}{section*.26}%

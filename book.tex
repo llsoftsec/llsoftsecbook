@@ -39,6 +39,15 @@
             urlcolor=Blue,
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -73,6 +82,34 @@
   \oldtodo[inline,caption={\arabic{TodoCounter}. #1}]{\bcpanchant \textit{#1}}
 }
 
+%% pandoc-fignos: required package
+\usepackage{cleveref}
+
+%%%% pandoc-fignos: required package
+\usepackage{caption}
+
+%% pandoc-fignos: environment to disable figure caption prefixes
+\makeatletter
+\newcounter{figno}
+\newenvironment{fignos:no-prefix-figure-caption}{
+  \caption@ifcompatibility{}{
+    \let\oldthefigure\thefigure
+    \let\oldtheHfigure\theHfigure
+    \renewcommand{\thefigure}{figno:\thefigno}
+    \renewcommand{\theHfigure}{figno:\thefigno}
+    \stepcounter{figno}
+    \captionsetup{labelformat=empty}
+  }
+}{
+  \caption@ifcompatibility{}{
+    \captionsetup{labelformat=default}
+    \let\thefigure\oldthefigure
+    \let\theHfigure\oldtheHfigure
+    \addtocounter{figure}{-1}
+  }
+}
+\makeatother
+
 \title{Low-Level Software Security for Compiler Developers}
 \date{}
 
@@ -91,7 +128,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   © 2021 Arm Limited
   \href{mailto:kristof.beyls@arm.com}{\nolinkurl{kristof.beyls@arm.com}}\\
 
-Version 0-74-g85fd1a2
+Version 0-75-g9f64a94
 \clearpage
 
 {
@@ -492,10 +529,573 @@ the purposes of this chapter we will focus on:
 \hypertarget{stack-buffer-overflows}{%
 \section{Stack buffer overflows}\label{stack-buffer-overflows}}
 
-A buffer overflow occurs when a read from or write to a data
-buffer\href{https://en.wikipedia.org/wiki/Data_buffer} exceeds its boundaries.
-This typically results in adjacent data structures being accessed, which has
-the potential of leaking or compromising the integrity of this adjacent data.
+A buffer overflow occurs when a read from or write to a
+\href{https://en.wikipedia.org/wiki/Data_buffer}{data buffer} exceeds
+its boundaries. This typically results in adjacent data structures being
+accessed, which has the potential of leaking or compromising the
+integrity of this adjacent data.
+
+When the buffer is allocated on the stack, we refer to a stack buffer
+overflow. In this section we focus on stack buffer overflows since, in
+the absence of any mitigations, they are some of the simplest buffer
+overflows to exploit.
+
+The \href{https://en.wikipedia.org/wiki/Call_stack}{stack frame} of a
+function includes important control information, such as the saved
+return address and the saved frame pointer. Overwriting these values
+unintentionally will typically result in a crash, but the overflowing
+values can be carefully chosen by an attacker to gain control of the
+program's execution.
+
+Here is a simple example of a program vulnerable to a stack buffer
+overflow\footnote{This is an oversimplified example for illustrative
+  purposes. However, as this is a
+  \href{https://cwe.mitre.org/data/definitions/121.html}{wide class of
+  vulnerabilities},
+  \href{https://www.cvedetails.com/vulnerability-list/cweid-121/vulnerabilities.html}{many
+  real-world examples} can be found and studied.}:
+
+\begin{verbatim}
+#include <stdio.h>
+#include <string.h>
+
+void copy_and_print(char* src) {
+  char dst[16];
+
+  for (int i = 0; i < strlen(src) + 1; ++i)
+    dst[i] = src[i];
+  printf("%s\n", dst);
+}
+
+int main(int argc, char* argv[]) {
+  if (argc > 1) {
+    copy_and_print(argv[1]);
+  }
+}
+\end{verbatim}
+
+In the code above, since the length of the argument is not checked
+before copying it into \texttt{dst}, we have a potential for a buffer
+overflow.
+
+When looking at code generated for AArch64 with GCC 11.2\footnote{The
+  code is generated with the \texttt{-fno-stack-protector} option, to
+  ensure GCC's stack guard feature is disabled. We also used the
+  \texttt{-O1} optimization level.}, the stack layout looks like this:
+
+\begin{fignos:no-prefix-figure-caption}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.6\textwidth,height=\textheight]{img/stack.pdf}
+\caption{Stack frame layout for stack buffer overflow example}
+\end{figure}
+
+\end{fignos:no-prefix-figure-caption}
+
+\todo{Improve diagram to make the direction of the overflow clearer. One
+suggestion is to also draw the stack frame horizontally.}
+
+The exact details of the stack frame layout, including the ordering of
+variables and the exact control information stored, will depend on the
+specific compiler version you use and the architecture you compile for.
+
+As can be seen the stack diagram, an overflowing write in function
+\texttt{copy\_and\_print} can overwrite the saved frame pointer (FP) and
+link register (LR) in \texttt{main}'s frame. When
+\texttt{copy\_and\_print} returns, execution continues in \texttt{main}.
+When \texttt{main} returns, however, execution continues from the
+address stored in the saved LR, which has been overwritten. Therefore,
+when an attacker can choose the value that overwrites the saved LR, it's
+possible to control where the program resumes execution after returning
+from \texttt{main}.
+
+Before non-executable stacks were mainstream, a common way to exploit
+these vulnerabilities would be to use the overflow to simultaneously
+write shellcode\footnote{A shellcode is a short instruction sequence
+  that performs an action such as starting a shell on the victim
+  machine.}\index{shellcode} to the stack and overwrite the return
+address so that it points to the shellcode. (Aleph One
+\protect\hyperlink{ref-AlephOne1996}{1996}) is a classic example of this
+technique.
+
+The obvious solution to this issue is to use memory protection features
+of the processor in order to mark the stack (along with other data
+sections) as non-executable\footnote{Note that the use of
+  \href{https://gcc.gnu.org/onlinedocs/gcc/Nested-Functions.html}{nested
+  functions} in GCC requires
+  \href{https://gcc.gnu.org/onlinedocs/gccint/Trampolines.html}{trampolines}
+  which reside on an executable stack. The use of nested functions,
+  therefore, poses a security risk.}. However, even when the stack is
+not executable, more advanced techniques can be used to exploit an
+overflow that overwrites the return address. These take advantage of
+code that already exists in the executable or in library code, and will
+be described in the next section.
+
+Stack canaries are an alternative mitigation for stack buffer overflows.
+The general idea is to store a known value, called the stack canary,
+between the buffer and the control information (in the example, the
+saved FP and LR), and to check this value before leaving the function.
+Since an overflow that would overwrite the return address is going to
+overwrite the canary first, a corruption of the return address through a
+stack buffer overflow will be detected.
+
+This technique has a few limitations: first of all, it specifically aims
+to protect against stack buffer overflows, and does nothing to protect
+against stronger primitives (e.g.~arbitrary write primitives).
+Control-flow integrity techniques, which are described in the next
+section, aim to protect the integrity of stored code pointers against
+any modification.
+
+Secondly, since a compiler needs to generate additional instructions for
+ensuring the canary's integrity, heuristics are usually employed to
+determine which functions are considered vulnerable. The additional
+instructions are then generated only for the functions that are
+considered vulnerable. Since heuristics aren't always perfect, this
+poses another potential limitation of the technique. To address this,
+compilers can introduce various levels of heuristics, ranging from
+applying the mitigations only to a small proportion of functions, to
+applying it universally. See, for example, the
+\texttt{-fstack-protector}, \texttt{-fstack-protector-strong} and
+\texttt{-fstack-protector-all} options offered by both
+\href{https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html}{GCC}
+and
+\href{https://clang.llvm.org/docs/ClangCommandLineReference.html\#cmdoption-clang-fstack-protector}{Clang}.
+
+Another limitation is the possibility of leaks of the canary value. The
+canary value is often randomized at program start but remains the same
+during the program's execution. An attacker who manages to obtain the
+canary value at some point might, therefore, be able to reuse the leaked
+canary value and corrupt control information while avoiding detection.
+Choosing a canary value that includes a null byte (the C-style string
+terminator) might help in limiting the damage of overflows coming from
+string manipulation functions, even when the value is leaked.
+
+Many buffer overflow vulnerabilities result from the use of unsafe
+library functions, such as \texttt{gets}, or from the unsafe use of
+library functions such as \texttt{strcpy}. There is extensive literature
+on writing secure C/C++ code, for example (Seacord
+\protect\hyperlink{ref-Seacord2013}{2013}) and (Dowd, McDonald, and
+Schuh \protect\hyperlink{ref-Dowd2006}{2006}). A different approach to
+limiting the effects of overflows is library function hardening, which
+aims to detect buffer overflows and terminate the program gracefully.
+This involves the introduction of feature macros like
+\texttt{\_FORTIFY\_SOURCE} (Sharma
+\protect\hyperlink{ref-Sharma2014}{2014}).
+
+Finally, it's important to mention that not all buffer overflows aim to
+overwrite a saved return address. There are many cases where a buffer
+overflow can overwrite other data adjacent to the buffer, for example an
+adjacent variable that determines whether authorization was successful,
+or a function pointer that, when modified, can modify the program's
+control flow according to the attacker's wishes.
+
+Some of these vulnerabilities can be mitigated with the measures
+described in this section, but often more general measures to ensure
+memory safety or \protect\hyperlink{code-reuse-attacks}{Control-Flow
+Integrity} are necessary. For example, in addition to the hardening of
+specific library functions, compilers can also implement automatic
+bounds checking for arrays where the array bound can be statically
+determined (\texttt{-fsanitize=bounds}), as well as various other
+``sanitizers''. We will describe these measures in following sections.
+
+\todo{Rethink the later sections of this chapter and the order in which issues
+and mitigations are presented. The "non-control data exploits" section should
+probably include, or be followed by, a section on the various sanitizers
+available (ASan, UBSan, etc).}
+
+\hypertarget{code-reuse-attacks}{%
+\section{Code reuse attacks}\label{code-reuse-attacks}}
+
+\missingcontent{Discuss ROP, JOP, COOP and mitigations (ASLR, CFI etc)}
+
+\hypertarget{non-control-data-exploits}{%
+\section{Non-control data exploits}\label{non-control-data-exploits}}
+
+\missingcontent{Discuss data-oriented programming and other attacks}
+
+\hypertarget{hardware-support-for-protection-against-memory-vulnerabilities}{%
+\section{Hardware support for protection against memory
+vulnerabilities}\label{hardware-support-for-protection-against-memory-vulnerabilities}}
+
+\missingcontent{Describe architectural features for mitigating memory vulnerabilities and for CFI}
+
+\hypertarget{other-issues}{%
+\section{Other issues}\label{other-issues}}
+
+\missingcontent{Mention other issues, e.g. sigreturn-oriented programming}
+
+\hypertarget{jit-compiler-vulnerabilities}{%
+\section{JIT compiler
+vulnerabilities}\label{jit-compiler-vulnerabilities}}
+
+\missingcontent{Write section on JIT compiler vulnerabilities}
+
+\hypertarget{covert-channels-and-side-channels}{%
+\chapter{Covert channels and
+side-channels}\label{covert-channels-and-side-channels}}
+
+A large class of attacks make use of so-called side-channels, which are
+defined below. The class is so big that in this book we devote the next
+two chapters to such attacks. Side-channels have enough complexity to
+discuss them separately in this chapter. This chapter describes the
+mechanisms used to make communication happen through side-channels. The
+next two chapters explore how attacks are constructed that use
+side-channels.
+
+Side-channels and covert channels are closely related. Both
+side-channels and covert channels are communication channels between two
+entities in a system, where the entities are not supposed to be allowed
+to communicate that way.
+
+A \textbf{covert channel}\index{covert channel} is such a channel where
+both entities intend to communicate through the channel. A
+\textbf{side-channel}\index{side-channel} is a such a channel where one
+end is the victim of an attack using the channel.
+
+In other words, the difference between a covert channel and a
+side-channel is whether both entities intend to communicate, in which
+case we talk about a covert channel. If one entity does not intend to
+communicate, but the other entity nonetheless extracts some data from
+the first, it is called a side-channel attack. The entity not intending
+to communicate, and hence being attacked, is called the
+victim\index{victim}.
+
+The rest of this chapter mostly describes a variety of common covert
+channel mechanisms. It does not aim to differentiate much on whether
+both ends intend to cooperate on the communication, or whether one end
+is a victim under attack of the other end.
+
+In the next few sections we'll explore a common few channels that can be
+used as covert channels.
+
+\hypertarget{cache-covert-channels}{%
+\section{Cache covert channels}\label{cache-covert-channels}}
+
+\href{https://en.wikipedia.org/wiki/Cache_(computing)}{Caches}\index{cache}
+are used in almost every computing system. They are small and much
+faster memories than the main memory. They aim to automatically keep
+frequently used data accessed by programs, so that average memory access
+time improves. Various techniques exist where a covert communication can
+happen between processes that share a cache, without the processes
+having rights to read or write to the same memory locations. To
+understand how these techniques work, one needs to understand typical
+organization and operation of a cache.
+
+\hypertarget{typical-cpu-cache-architecture}{%
+\subsection{Typical CPU cache
+architecture}\label{typical-cpu-cache-architecture}}
+
+There is a wide variety in
+\href{https://en.wikipedia.org/wiki/CPU_cache}{CPU cache
+micro-architecture} details, but the main characteristics that are
+important to set up a covert channel tend to be similar across most
+popular implementations.
+
+Caches are small and much faster memories than the main memory that aim
+to keep a copy of the data at the most frequently accessed main memory
+addresses. The set of addresses that are used most frequently changes
+quickly over time as a program executes. Therefore, the addresses that
+are present in CPU caches also evolve quickly over time. The content of
+the cache may change with every executed read or write instruction.
+
+On every read and write instruction, the cache micro-architecture looks
+up if the data for the requested address happens to be present in the
+cache. If it is, the CPU can continue executing quickly; if not,
+dependent operations will have to wait until the data returns from the
+much slower main memory. A typical access time is 3 to 5 CPU cycles for
+the fastest cache on a CPU versus hundreds of cycles for a main memory
+access.\index{memory access time}
+
+Most systems have multiple levels of cache\index{multi-level cache},
+each with a different trade-off between cache size\index{cache size} and
+access time\index{cache access time}. Some typical characteristics might
+be:
+
+\begin{itemize}
+\tightlist
+\item
+  L1 (level 1) cache, 32kB in size, with an access time of 4 cycles.
+\item
+  L2 cache, 256Kb in size, with an access time of 10 cycles.
+\item
+  L3 cache, 16MB in size, with an access time of 40 cycles.
+\item
+  Main memory, gigabytes in size, with an access time of more than 100
+  cycles.
+\end{itemize}
+
+\begin{fignos:no-prefix-figure-caption}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth,height=\textheight]{img/CacheLevels.pdf}
+\caption{Illustration of cache levels in a typical system}
+\end{figure}
+
+\end{fignos:no-prefix-figure-caption}
+
+If data is not already present in a cache layer, it is typically stored
+there after it has been fetched from a slower cache level or main
+memory. This is often a good decision to make as there's a high
+likelihood the same address will be accessed by the program soon after.
+This high likelihood is known as the
+\href{https://en.wikipedia.org/wiki/Locality_of_reference}{principle of
+locality}\index{principle
+of locality}\index{locality of reference}.
+
+Data is stored and transferred between cache levels in blocks of aligned
+memory. Such a block is called a cache block\index{cache block} or cache
+line\index{cache line}. Typical sizes are 32, 64 or 128 bytes per cache
+line.
+
+When data that wasn't previously in the cache needs to be stored in the
+cache, most of the time, room has to be made for it by removing, or
+evicting\index{cache eviction}, some other address/data from it. How
+that choice gets made is decided by the
+\href{https://en.wikipedia.org/wiki/Cache_replacement_policies}{cache
+replacement policy}\index{cache
+replacement policy}. Popular replacement algorithms are Least Recently
+Used (LRU)\index{LRU replacement policy},
+Random\index{random replacement policy} and
+pseudo-LRU\index{pseudo-LRU replacement policy}. As the names suggest,
+LRU evicts the cache line that is least recently used; random picks a
+random cache line; and pseudo-LRU approximates choosing the least
+recently used line.
+
+If a cache line can be stored in all locations available in the cache,
+the cache is fully-associative\index{fully-associative cache}. Most
+caches are however not fully-associative, as it's too costly to
+implement. Instead, most caches are
+set-associative\index{set-associative cache}. In an N-way
+set-associative cache, a specific line can only be stored in one of N
+cache locations. For example, if a line can potentially be stored in one
+of 2 locations, the cache is said to be 2-way set-associative. If it can
+be stored in one of 4 locations, it's called 4-way set-associative, and
+so on. When an address can only be stored in one location in the cache,
+it is said to be direct-mapped\index{direct-mapped
+cache}, rather than 1-way set-associative. Typical organizations are
+direct-mapped, 2-way, 4-way, 8-way, 16-way or 32-way set-associative.
+
+The set of cache locations that a particular cache line can be stored at
+is called a cache set\index{cache set}.
+
+\hypertarget{indexing-in-a-set-associative-cache}{%
+\subsubsection{Indexing in a set-associative
+cache}\label{indexing-in-a-set-associative-cache}}
+
+For some cache covert channels, it is essential to know exactly how a
+memory address maps to a specific cache set.
+
+\begin{figure}
+\hypertarget{fig:cache-indexing}{%
+\centering
+\includegraphics[width=1\textwidth,height=\textheight]{img/CacheIndexing.pdf}
+\caption{Illustration of indexing into a set-associative cache. In this
+example: \(L\) = 6 bits, hence the cache line size is \(2^6=64\) bytes.
+\(S\) = 5 bits, so there are \(2^5=32\) cache sets. \(N\) can be
+independent of address bits used to index the cache. If we assume
+\(N=12\) for a 12-way set-associative cache, the total cache size is
+\(N*2^L*2^S=12*64*32=24\)KB.}\label{fig:cache-indexing}
+}
+\end{figure}
+
+Specific bits in the memory address are used for different cache
+indexing purposes, as illustrated in \cref{fig:cache-indexing}. The
+least-significant \(L\) bits, where \(2^L\) is the cache line size, are
+used to compute an address's offset within a cache line. The next \(S\)
+bits, where \(2^S\) is the number of cache sets, are used to determine
+which cache set an address maps to. The remaining top bits are ``tag
+bits''. They are stored alongside a line in the cache so later
+operations can detect which specific memory address is replicated in
+that cache line.
+
+For direct-mapped and fully-associative caches, the mapping of an
+address to cache locations also works as described above. In
+fully-associative caches the number of cache sets is 1, so \(S\)=0.
+
+\missingcontent{Also explain cache coherency \index{cache coherency}?}
+\missingcontent{Also say something about TLBs and prefetching?}
+
+\hypertarget{general-operation-of-cache-covert-channels}{%
+\subsection{General operation of cache covert
+channels}\label{general-operation-of-cache-covert-channels}}
+
+\hypertarget{timing-covert-channels}{%
+\section{Timing covert channels}\label{timing-covert-channels}}
+
+\hypertarget{resource-contention-channels}{%
+\section{Resource contention
+channels}\label{resource-contention-channels}}
+
+\hypertarget{channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors}{%
+\section{Channels making use of aliasing in branch predictors and other
+predictors}\label{channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors}}
+
+\missingcontent{Should we also discuss more "covert" channels here such as power analysis, etc?}
+
+\hypertarget{physical-access-side-channel-attacks}{%
+\chapter{Physical access side-channel
+attacks}\label{physical-access-side-channel-attacks}}
+
+\missingcontent{Write chapter on physical access side-channel attacks.}
+
+\hypertarget{remote-access-side-channel-attacks}{%
+\chapter{Remote access side-channel
+attacks}\label{remote-access-side-channel-attacks}}
+
+This chapter covers side-channel attacks for which the attacker does not
+need physical access to the hardware.
+
+\hypertarget{timing-attacks}{%
+\section{Timing attacks}\label{timing-attacks}}
+
+An implementation of a cryptographic algorithm can leak information
+about the data it processes if its run time is influenced by the value
+of the processed data. Attacks making use of this are called timing
+attacks\index{timing
+attacks}.
+
+The main mitigation against such attacks consists of carefully
+implementing the algorithm such that the execution time remains
+independent of the processed data. This can be done by making sure that
+both:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\item
+  The control flow, i.e.~the trace of instructions executed, does not
+  change depending on the processed data. This guarantees that every
+  time the algorithm runs, exactly the same sequence of instructions is
+  executed, independent of the processed data.
+\item
+  The instructions used to implement the algorithm are from the subset
+  of instructions for which the execution time is known to not depend on
+  the data values it processes.
+
+  For example, in the Arm architecture, the Armv8.4-A
+  \href{https://developer.arm.com/documentation/ddi0595/2021-06/AArch64-Registers/DIT--Data-Independent-Timing}{DIT
+  extension} guarantees that execution time is data-independent for a
+  subset of the AArch64 instructions.
+
+  By ensuring that the extension is enabled and only instructions in the
+  subset are used, data-independent execution time is guaranteed.
+\end{enumerate}
+
+At the moment, we do not know of a compiler implementation that actively
+helps to guarantee both (a) and (b). A great reference giving practical
+advice on how to achieve (a), (b) and more security hardening properties
+specific for cryptographic kernels is found in (Pornin
+\protect\hyperlink{ref-Pornin2018}{2018}).
+
+As discussed in (Pornin \protect\hyperlink{ref-Pornin2018}{2018}), when
+implementing cryptographic algorithms, you also need to keep cache
+side-channel attacks in mind, which are discussed in the
+\protect\hyperlink{cache-side-channel-attacks}{section on cache
+side-channel attacks}.
+
+\hypertarget{cache-side-channel-attacks}{%
+\section{Cache side-channel attacks}\label{cache-side-channel-attacks}}
+
+\missingcontent{Write section on cache side-channel attacks. See
+\href{https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031}{the first comment on PR24}
+for suggestions of what this should contain.}
+
+\hypertarget{supply-chain-attacks}{%
+\chapter{Supply chain attacks}\label{supply-chain-attacks}}
+
+A software \emph{supply chain attack} occurs when an attacker interferes
+with the software development or distribution processes with the
+intention to impact users of that software.
+
+Supply chain attacks and their possible mitigations are not specific to
+compilers. However, compilers are an attractive target for attack
+because they are widely deployed to developers, in continuous
+integration systems and as JITs. Also, an infected compiler has the
+possibility to make a much larger impact if it can silently spread the
+infection to other software created with or run using it.
+
+This chapter explores the history of supply chain attacks that involve
+compilers and what can be done to prevent them.
+
+\hypertarget{history-of-supply-chain-attacks}{%
+\section{History of supply chain
+attacks}\label{history-of-supply-chain-attacks}}
+
+As far back as 1974 Karger \& Schell theorized about an attack on the
+Multics operating system via the PL/I compiler (Paul A. and Roger R.
+\protect\hyperlink{ref-Karger1974}{1974}). In this attack, a trap door
+is inserted into the compiler, which then injects malicious code into
+generated object code. Furthermore, the trap door could be designed to
+reinsert itself into the compiler binary so that future compilers are
+silently infected without needing changes to their source code. This
+attack method was subsequently popularised by Ken Thompson in his 1984
+ACM Turing Award acceptance speech \emph{Reflections on Trusting Trust}
+(Thompson \protect\hyperlink{ref-Thompson1984}{1984}).
+
+If these cases seem far-fetched then consider that there have been
+several real examples of supply chain attacks on development tools.
+
+Induc is a family of viruses that infects a pre-compiled library in the
+Delphi toolchain with malicious code (Gostev
+\protect\hyperlink{ref-Gostev2009}{2009}). When Delphi compiles a
+project the malicious library is included into the resulting executable,
+thus enabling the virus to spread. The virus was first detected in 2009
+and was circulating undetected for at least a year beforehand. Several
+popular applications are known to have been infected, including a chat
+client and a media player. Overall, in excess of a hundred thousand
+infected computers were detected world-wide by anti-virus solutions.
+
+XcodeGhost is the name given to malware first detected in 2015 that
+infected thousands of iOS applications (Cox
+\protect\hyperlink{ref-Cox2015}{2015}). The source of the infection was
+tracked down to a trojanized version of Xcode tools. The malware exists
+in an extra object file within the Xcode tools and is silently linked
+into each application as it is built. File sharing sites were used to
+spread the trojanized Xcode tools to unwitting developers.
+
+A trojanized linker was found to be involved in a supply chain attack
+discovered in 2017 named ShadowPad (Greenberg
+\protect\hyperlink{ref-Greenberg2019}{2019}). Some instances of the
+attack were perpetrated using a trojanized Visual Studio linker that
+silently incorporates a malicious library into applications as they are
+built. Related attacks named CCleaner and ShadowHammer used the same
+approach of a trojanized linker to infect built applications. Infected
+applications from these attacks were distributed to millions of users
+world-wide.
+
+These cases highlight that attacks on compilers, and especially linkers
+and libraries, are a viable route to silently infect many other
+applications, and there is no doubt that there will be more such attacks
+in the future. Let us now explore what we can do about these.
+
+\missingcontent{Explain how these vulnerabilities arise and how to mitigate them.}
+
+\hypertarget{other-security-topics-relevant-for-compiler-developers}{%
+\chapter{Other security topics relevant for compiler
+developers}\label{other-security-topics-relevant-for-compiler-developers}}
+
+\missingcontent{Write chapter with other security topics.}
+
+\missingcontent{Write section on securely clearing memory in C/C++ and undefined behaviour.}
+
+\hypertarget{appendix-contribution-guidelines}{%
+\chapter*{Appendix: contribution
+guidelines}\label{appendix-contribution-guidelines}}
+\addcontentsline{toc}{chapter}{Appendix: contribution guidelines}
+
+\missingcontent{Write chapter on contribution guidelines.
+ These should include at least: project locaton on github; how to create pull requests/issues.
+ Where do we discuss - mailing list? Grammar and writing style guidelines.
+ How to use todos and index.}
+
+\printindex
+
+\listoftodos
+
+\hypertarget{references}{%
+\chapter*{References}\label{references}}
+\addcontentsline{toc}{chapter}{References}
 
 \hypertarget{refs}{}
 \leavevmode\hypertarget{ref-AlephOne1996}{}%
@@ -512,11 +1112,30 @@ Beer, Ian, and Samuel Groß. 2021. ``A Deep Dive into an Nso Zero-Click
 iMessage Exploit: Remote Code Execution.'' 2021.
 \url{https://googleprojectzero.blogspot.com/2021/12/a-deep-dive-into-nso-zero-click.html}.
 
+\leavevmode\hypertarget{ref-Cox2015}{}%
+Cox, Joseph. 2015. ``Hack Brief: Malware Sneaks into the Chinese iOS App
+Store.'' \emph{WIRED}.
+\url{https://www.wired.com/2015/09/hack-brief-malware-sneaks-chinese-ios-app-store/}.
+
+\leavevmode\hypertarget{ref-Dowd2006}{}%
+Dowd, Mark, John McDonald, and Justin Schuh. 2006. \emph{The Art of
+Software Security Assessment: Identifying and Preventing Software
+Vulnerabilities}. Addison-Wesley Professional.
+
 \leavevmode\hypertarget{ref-Dullien2020}{}%
 Dullien, Thomas. 2020. ``Weird Machines, Exploitability, and Provable
 Unexploitability.'' \emph{IEEE Transactions on Emerging Topics in
 Computing} 8 (2): 391--403.
 \url{https://doi.org/10.1109/TETC.2017.2785300}.
+
+\leavevmode\hypertarget{ref-Gostev2009}{}%
+Gostev, Alexander. 2009. ``A Short History of Induc.'' 2009.
+\url{https://securelist.com/a-short-history-of-induc/30555/}.
+
+\leavevmode\hypertarget{ref-Greenberg2019}{}%
+Greenberg, Andy. 2019. ``Supply Chain Hackers Snuck Malware into
+Videogames.'' \emph{WIRED}.
+\url{https://www.wired.com/story/supply-chain-hackers-videogames-asus-ccleaner/}.
 
 \leavevmode\hypertarget{ref-Grouxdf2020}{}%
 Groß, Samuel. 2020. ``JITSploitation I: A Jit Bug.'' 2020.
@@ -539,6 +1158,19 @@ Safety Vulnerabilities.''
 \href{https://2012.ruxconbreakpoint.com/}{Breakpoint 2012}.
 \url{https://github.com/Microsoft/MSRC-Security-Research/blob/master/presentations/2012_10_Breakpoint/BreakPoint2012_Miller_Modeling_the_exploitation_and_mitigation_of_memory_safety_vulnerabilities.pdf}.
 
+\leavevmode\hypertarget{ref-Karger1974}{}%
+Paul A., Karger, and Schell Roger R. 1974. ``MULTICS Security
+Evaluation: VULNERABILITY Analysis,'' 52.
+\url{https://csrc.nist.gov/csrc/media/publications/conference-paper/1998/10/08/proceedings-of-the-21st-nissc-1998/documents/early-cs-papers/karg74.pdf}.
+
+\leavevmode\hypertarget{ref-Pornin2018}{}%
+Pornin, Thomas. 2018. ``Why Constant-Time Crypto?'' 2018.
+\url{https://www.bearssl.org/constanttime.html}.
+
+\leavevmode\hypertarget{ref-Seacord2013}{}%
+Seacord, Robert C. 2013. \emph{Secure Coding in c and C++}. 2nd ed.
+Addison-Wesley Professional.
+
 \leavevmode\hypertarget{ref-Shacham2007}{}%
 Shacham, Hovav. 2007. ``The Geometry of Innocent Flesh on the Bone:
 Return-into-Libc Without Function Calls (on the X86).'' In
@@ -547,8 +1179,16 @@ Communications Security}, 552--61. CCS '07. New York, NY, USA:
 Association for Computing Machinery.
 \url{https://doi.org/10.1145/1315245.1315313}.
 
+\leavevmode\hypertarget{ref-Sharma2014}{}%
+Sharma, Siddharth. 2014. 2014.
+\url{https://www.redhat.com/en/blog/enhance-application-security-fortifysource}.
+
 \leavevmode\hypertarget{ref-Solar1997}{}%
 Solar Designer. 1997. ``Getting Around Non-Executable Stack (and Fix).''
 1997. \url{https://seclists.org/bugtraq/1997/Aug/63}.
+
+\leavevmode\hypertarget{ref-Thompson1984}{}%
+Thompson, Ken. 1984. ``Reflections on Trusting Trust.''
+\url{https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf}.
 
 \end{document}
