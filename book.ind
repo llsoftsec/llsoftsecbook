@@ -4,28 +4,7 @@
 
   \indexspace
 
-  \item cache, \hyperpage{11}
-  \item cache access time, \hyperpage{12}
-  \item cache block, \hyperpage{12}
-  \item cache coherency, \hyperpage{14}
-  \item cache eviction, \hyperpage{12}
-  \item cache line, \hyperpage{12}
-  \item cache replacement policy, \hyperpage{12}
-  \item cache set, \hyperpage{13}
-  \item cache size, \hyperpage{12}
-  \item covert channel, \hyperpage{11}
-
-  \indexspace
-
-  \item direct-mapped cache, \hyperpage{13}
-
-  \indexspace
-
   \item exploit primitive, \hyperpage{6}
-
-  \indexspace
-
-  \item fully-associative cache, \hyperpage{13}
 
   \indexspace
 
@@ -33,40 +12,11 @@
 
   \indexspace
 
-  \item locality of reference, \hyperpage{12}
-  \item LRU replacement policy, \hyperpage{12}
-
-  \indexspace
-
-  \item memory access time, \hyperpage{12}
-  \item multi-level cache, \hyperpage{12}
-
-  \indexspace
-
   \item non-interactive (one-shot)   attack, \hyperpage{7}
 
   \indexspace
 
-  \item principle of locality, \hyperpage{12}
-  \item pseudo-LRU replacement policy, \hyperpage{12}
-
-  \indexspace
-
-  \item random replacement policy, \hyperpage{12}
   \item read primitive, \hyperpage{7}
-
-  \indexspace
-
-  \item set-associative cache, \hyperpage{13}
-  \item side-channel, \hyperpage{11}
-
-  \indexspace
-
-  \item timing attacks, \hyperpage{16}
-
-  \indexspace
-
-  \item victim, \hyperpage{11}
 
   \indexspace
 
