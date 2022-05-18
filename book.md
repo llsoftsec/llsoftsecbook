@@ -532,7 +532,8 @@ whether both entities intend to communicate, in which case we talk about a
 covert channel. If one entity does not intend to communicate, but the other
 entity nonetheless extracts some data from the first, it is called a
 side-channel attack. The entity not intending to communicate, and hence being
-attacked, is called the victim\index{victim}.
+attacked, is called the victim\index{victim}. The other entity is sometimes
+called the spy\index{spy}.
 
 The rest of this chapter mostly describes a variety of common covert channel
 mechanisms. It does not aim to differentiate much on whether both ends intend to
@@ -572,7 +573,9 @@ the data for the requested address happens to be present in the cache. If it is,
 the CPU can continue executing quickly; if not, dependent operations will have
 to wait until the data returns from the much slower main memory. A typical
 access time is 3 to 5 CPU cycles for the fastest cache on a CPU versus hundreds
-of cycles for a main memory access.\index{memory access time}
+of cycles for a main memory access.\index{memory access time} When data is
+present in the cache for a read or write, it is said to be a cache
+hit\index{cache hit}. Otherwise, it's called a cache miss\index{cache miss}.
 
 Most systems have multiple levels of cache\index{multi-level cache}, each with a
 different trade-off between cache size\index{cache size} and access
@@ -651,7 +654,72 @@ number of cache sets is 1, so $S$=0.
 \missingcontent{Also explain cache coherency \index{cache coherency}?}
 \missingcontent{Also say something about TLBs and prefetching?}
 
-### General operation of cache covert channels
+### Operation of cache side-channels
+
+Cache covert channels typically work by the spy determining whether a memory
+access was a cache hit or a cache miss. From that information, in specific
+situations, it may be able to deduce bits of data that only the victim has
+access to.
+
+Let's illustrate this with describing a few well-known cache side-channels:
+
+#### Flush+Reload
+
+In a so-called Flush+Reload\index{Flush+Reload} attack[@Yarom2014], the spy
+process shares memory with the victim process. The attack works in 3 steps:
+
+  1. The Flush step: The spy flushes a specific address from the cache.
+  2. The spy waits for some time to give the victim time to potentially access
+     that address, resulting in bringing it back into the cache.
+  3. The Reload step: The spy accesses the address and measures the access time.
+     A short access time means the address is in the cache; a long access time
+     means it's not in the cache. In other words, a short access time means that
+     in step 2 the victim accessed the address; a long access time means it did
+     not access the address.
+
+Knowing if a victim accessed a specific address can leak sensitive information.
+Such as when accessing a specific array element depends on whether a specific
+bit is set in secret data. For example, [@Yarom2014] demonstrates that a
+Flush+Reload attack can be used to leak GnuPG private keys.
+
+\missingcontent{Should there be a more elaborate example with code that
+demonstrates in more detail how a flush+reload attack works?}
+
+#### Prime+Probe
+
+In a Prime+Probe attack\index{Prime+Probe}, there is no need for memory to be
+shared between victim and spy. The attack works in 3 steps:
+
+  1. The Prime step: The spy fills one or more cache sets with its data, for
+     example, by accessing data that maps to those cache sets.
+  2. The spy waits for some time to let the victim potentially access data that
+     maps to those same cache sets.
+  3. The Probe step: The spy accesses that same data as in the prime step.
+     Measuring the time it takes to load the data, it can derive how many cache
+     lines the victim evicted from each cache set in step 2, and from that
+     derive information about addresses that the victim accessed.
+
+[@Osvik2005] which first documented this technique in 2005 demonstrates
+extracting AES keys in just a few milliseconds using Prime+Probe.
+
+#### General schema for cache covert channels
+
+An attentative reader may have noticed that the concrete named attacks above
+follow a similar 3-step pattern. Indeed, [@Weber2021] describes this general
+pattern and uses it to automatically discover more side-channels that follow
+this 3-step pattern. They describe the general pattern as being:
+
+  1. An instruction sequence that resets the inner CPU state (*reset
+     sequence*).\index{reset sequence}
+  2. An instruction sequence that triggers a state change (*trigger
+     sequence*).\index{trigger sequence}
+  3. An instruction sequence that leaks the inner state (*measurement
+     sequence*).\index{measurement sequence}
+
+Other cache-based side channel attacks following this general 3-step approach
+include: Flush+Flush\index{Flush+Flush}, Flush+Prefetch\index{Flush+Prefetch},
+Evict+Reload\index{Evict+Reload}, Evict+Time\index{Evict+Time},
+Reload+Refresh\index{Reload+Refresh}, Collide+Probe\index{Collide+Probe}, etc.
 
 ## Timing covert channels
 
