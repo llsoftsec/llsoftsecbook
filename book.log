@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.4.1)  1 APR 2022 18:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.5.23)  23 MAY 2022 14:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1135,11 +1135,6 @@ Overfull \hbox (31.3575pt too wide) in paragraph at lines 123--127
 eativecommons.org/licenses/by/4.0/
  []
 
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-28.
-(/texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 129.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1176,22 +1171,28 @@ File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [4]
 Chapter 2.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
+43.
+(/texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
 File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+ [MP to PDF]
+(/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
-
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [5
+ [MP to PDF]
+(/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [5
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
-
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+ [MP to PDF]
+(/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
-
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+ [MP to PDF]
+(/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
-
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+ [MP to PDF]
+(/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 Overfull \hbox (5.3377pt too wide) in paragraph at lines 353--353
 [][][][]\T1/lmr/m/n/10 (-20) Consider 
  []
@@ -1358,10 +1359,10 @@ Package rerunfilecheck Info: File `book.out' has not changed.
 (rerunfilecheck)             Checksum: 035E44A4D773D2E02D7602D6A90483E7;5778.
  ) 
 Here is how much of TeX's memory you used:
- 29268 strings out of 480962
- 532188 string characters out of 5908148
+ 29267 strings out of 480962
+ 532172 string characters out of 5908147
  933653 words of memory out of 5000000
- 45541 multiletter control sequences out of 15000+600000
+ 45540 multiletter control sequences out of 15000+600000
  483683 words of font info for 172 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  102i,12n,117p,651b,1259s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1379,7 +1380,7 @@ ublic/lm/lmr8.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmri10.pfb></
 texlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></texlive/2020/texmf-d
 ist/fonts/type1/public/lm/lmtt10.pfb></texlive/2020/texmf-dist/fonts/type1/publ
 ic/lm/lmtt8.pfb>
-Output written on build/book.pdf (28 pages, 406037 bytes).
+Output written on build/book.pdf (28 pages, 405687 bytes).
 PDF statistics:
  670 PDF objects out of 1000 (max. 8388607)
  594 compressed objects within 6 object streams

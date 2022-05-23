@@ -1280,11 +1280,6 @@ INPUT /texlive/2020/texmf-dist/tex/latex/microtype/mt-msb.cfg
 INPUT /texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT /texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
-INPUT /texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
-INPUT /texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
-INPUT /texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
-INPUT /texlive/2020/texmf-dist/fonts/tfm/public/lm/ts1-lmr10.tfm
 INPUT /texlive/2020/texmf-dist/fonts/tfm/public/lm/rm-lmr10.tfm
 INPUT /texlive/2020/texmf-dist/fonts/tfm/public/lm/rm-lmr7.tfm
 INPUT /texlive/2020/texmf-dist/fonts/tfm/public/lm/rm-lmr5.tfm
@@ -1316,6 +1311,11 @@ INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
 INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
 INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
 INPUT /texlive/2020/texmf-dist/fonts/tfm/public/lm/ec-lmri10.tfm
+INPUT /texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
+INPUT /texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
+INPUT /texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
+INPUT /texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
+INPUT /texlive/2020/texmf-dist/fonts/tfm/public/lm/ts1-lmr10.tfm
 INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
 INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
 INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
