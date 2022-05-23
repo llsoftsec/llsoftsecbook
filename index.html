@@ -84,7 +84,7 @@ text-justify: auto;
 <p>
   Copyright 2021-2022 Arm Limited <a href="mailto:open-source-office@arm.com" class="email">open-source-office@arm.com</a><br />
 </p>
-<p>Version: 0-76-ge149b51</p>
+<p>Version: 0-77-ga3030cb</p>
 
 </header>
 <nav id="TOC">
@@ -252,12 +252,11 @@ int main(int argc, char* argv[]) {
 <h2 id="jit-compiler-vulnerabilities"><span class="header-section-number">2.8</span> JIT compiler vulnerabilities <a href="#jit-compiler-vulnerabilities" class="selflink">§</a></h2>
 
 <h1 id="covert-channels-and-side-channels"><span class="header-section-number">3</span> Covert channels and side-channels <a href="#covert-channels-and-side-channels" class="selflink">§</a></h1>
-<p>A large class of attacks make use of so-called side-channels, which are defined below. The class is so big that in this book we devote the next two chapters to such attacks. Side-channels have enough complexity to discuss them separately in this chapter. This chapter describes the mechanisms used to make communication happen through side-channels. The next two chapters explore how attacks are constructed that use side-channels.</p>
-<p>Side-channels and covert channels are closely related. Both side-channels and covert channels are communication channels between two entities in a system, where the entities are not supposed to be allowed to communicate that way.</p>
+<p>A large class of attacks make use of so-called side-channels. In this chapter, we focus on the the mechanisms used to make communication happen through side-channels or covert channels. In the next two chapters, we describe attacks making use of side-channels.</p>
+<p>Side-channels and covert channels are closely related. Both side-channels and covert channels are communication channels between two entities in a system, where the entities should not be able to communicate that way.</p>
 <p>A <strong>covert channel</strong> is such a channel where both entities intend to communicate through the channel. A <strong>side-channel</strong> is a such a channel where one end is the victim of an attack using the channel.</p>
-<p>In other words, the difference between a covert channel and a side-channel is whether both entities intend to communicate, in which case we talk about a covert channel. If one entity does not intend to communicate, but the other entity nonetheless extracts some data from the first, it is called a side-channel attack. The entity not intending to communicate, and hence being attacked, is called the victim.</p>
-<p>The rest of this chapter mostly describes a variety of common covert channel mechanisms. It does not aim to differentiate much on whether both ends intend to cooperate on the communication, or whether one end is a victim under attack of the other end.</p>
-<p>In the next few sections we’ll explore a common few channels that can be used as covert channels.</p>
+<p>In other words, the difference between a covert channel and a side-channel is whether both entities intend to communicate. If one entity does not intend to communicate, but the other entity nonetheless extracts some data from the first, it is called a side-channel attack. The entity not intending to communicate is called the victim.</p>
+<p>The rest of this chapter mostly describes a variety of common covert channel mechanisms. It does not aim to differentiate much on whether both ends intend to cooperate, or whether one end is a victim under attack of the other end.</p>
 <h2 id="cache-covert-channels"><span class="header-section-number">3.1</span> Cache covert channels <a href="#cache-covert-channels" class="selflink">§</a></h2>
 <p><a href="https://en.wikipedia.org/wiki/Cache_(computing)">Caches</a> are used in almost every computing system. They are small and much faster memories than the main memory. They aim to automatically keep frequently used data accessed by programs, so that average memory access time improves. Various techniques exist where a covert communication can happen between processes that share a cache, without the processes having rights to read or write to the same memory locations. To understand how these techniques work, one needs to understand typical organization and operation of a cache.</p>
 <h3 id="typical-cpu-cache-architecture"><span class="header-section-number">3.1.1</span> Typical CPU cache architecture <a href="#typical-cpu-cache-architecture" class="selflink">§</a></h3>

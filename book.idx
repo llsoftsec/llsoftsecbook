@@ -13,15 +13,15 @@
 \indexentry{multi-level cache|hyperpage}{14}
 \indexentry{cache size|hyperpage}{14}
 \indexentry{cache access time|hyperpage}{14}
-\indexentry{principle of locality|hyperpage}{14}
-\indexentry{locality of reference|hyperpage}{14}
-\indexentry{cache block|hyperpage}{14}
-\indexentry{cache line|hyperpage}{14}
-\indexentry{cache eviction|hyperpage}{14}
-\indexentry{cache replacement policy|hyperpage}{14}
-\indexentry{LRU replacement policy|hyperpage}{14}
-\indexentry{random replacement policy|hyperpage}{14}
-\indexentry{pseudo-LRU replacement policy|hyperpage}{14}
+\indexentry{principle of locality|hyperpage}{15}
+\indexentry{locality of reference|hyperpage}{15}
+\indexentry{cache block|hyperpage}{15}
+\indexentry{cache line|hyperpage}{15}
+\indexentry{cache eviction|hyperpage}{15}
+\indexentry{cache replacement policy|hyperpage}{15}
+\indexentry{LRU replacement policy|hyperpage}{15}
+\indexentry{random replacement policy|hyperpage}{15}
+\indexentry{pseudo-LRU replacement policy|hyperpage}{15}
 \indexentry{fully-associative cache|hyperpage}{15}
 \indexentry{set-associative cache|hyperpage}{15}
 \indexentry{direct-mapped cache|hyperpage}{15}

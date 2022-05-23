@@ -1430,9 +1430,9 @@ OUTPUT build/book.tdo
 INPUT build/book.aux
 INPUT build/book.out
 INPUT build/book.out
+INPUT /texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT /texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
-INPUT /texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT /texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT /texlive/2020/texmf-dist/fonts/type1/public/lm/lmbx10.pfb

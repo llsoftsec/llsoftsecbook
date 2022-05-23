@@ -10,7 +10,7 @@
 \contentsline {todo}{10. Describe architectural features for mitigating memory vulnerabilities and for CFI}{12}{section*.12}%
 \contentsline {todo}{11. Mention other issues, e.g. sigreturn-oriented programming}{12}{section*.13}%
 \contentsline {todo}{12. Write section on JIT compiler vulnerabilities}{12}{section*.14}%
-\contentsline {todo}{13. Also explain cache coherency ?}{15}{section*.17}%
+\contentsline {todo}{13. Also explain cache coherency ?}{16}{section*.17}%
 \contentsline {todo}{14. Also say something about TLBs and prefetching?}{16}{section*.18}%
 \contentsline {todo}{15. Should we also discuss more "covert" channels here such as power analysis, etc?}{16}{section*.19}%
 \contentsline {todo}{16. Write chapter on physical access side-channel attacks.}{17}{section*.20}%
