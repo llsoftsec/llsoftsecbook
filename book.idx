@@ -8,8 +8,11 @@
 \indexentry{covert channel|hyperpage}{13}
 \indexentry{side-channel|hyperpage}{13}
 \indexentry{victim|hyperpage}{13}
+\indexentry{spy|hyperpage}{13}
 \indexentry{cache|hyperpage}{13}
 \indexentry{memory access time|hyperpage}{14}
+\indexentry{cache hit|hyperpage}{14}
+\indexentry{cache miss|hyperpage}{14}
 \indexentry{multi-level cache|hyperpage}{14}
 \indexentry{cache size|hyperpage}{14}
 \indexentry{cache access time|hyperpage}{14}
@@ -27,4 +30,15 @@
 \indexentry{direct-mapped cache|hyperpage}{15}
 \indexentry{cache set|hyperpage}{15}
 \indexentry{cache coherency|hyperpage}{16}
-\indexentry{timing attacks|hyperpage}{18}
+\indexentry{Flush+Reload|hyperpage}{16}
+\indexentry{Prime+Probe|hyperpage}{17}
+\indexentry{reset sequence|hyperpage}{17}
+\indexentry{trigger sequence|hyperpage}{17}
+\indexentry{measurement sequence|hyperpage}{17}
+\indexentry{Flush+Flush|hyperpage}{17}
+\indexentry{Flush+Prefetch|hyperpage}{17}
+\indexentry{Evict+Reload|hyperpage}{17}
+\indexentry{Evict+Time|hyperpage}{17}
+\indexentry{Reload+Refresh|hyperpage}{17}
+\indexentry{Collide+Probe|hyperpage}{17}
+\indexentry{timing attacks|hyperpage}{19}

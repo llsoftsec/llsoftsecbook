@@ -128,7 +128,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2021-2022 Arm Limited
   \href{mailto:open-source-office@arm.com}{\nolinkurl{open-source-office@arm.com}}\\
 
-Version 0-77-ga3030cb
+Version 0-78-gafcf769
 \clearpage
 
 {
@@ -755,7 +755,8 @@ side-channel is whether both entities intend to communicate. If one
 entity does not intend to communicate, but the other entity nonetheless
 extracts some data from the first, it is called a side-channel attack.
 The entity not intending to communicate is called the
-victim\index{victim}.
+victim\index{victim}. The other entity is sometimes called the
+spy\index{spy}.
 
 The rest of this chapter mostly describes a variety of common covert
 channel mechanisms. It does not aim to differentiate much on whether
@@ -798,7 +799,9 @@ cache. If it is, the CPU can continue executing quickly; if not,
 dependent operations will have to wait until the data returns from the
 much slower main memory. A typical access time is 3 to 5 CPU cycles for
 the fastest cache on a CPU versus hundreds of cycles for a main memory
-access.\index{memory access time}
+access.\index{memory access time} When data is present in the cache for
+a read or write, it is said to be a cache hit\index{cache hit}.
+Otherwise, it's called a cache miss\index{cache miss}.
 
 Most systems have multiple levels of cache\index{multi-level cache},
 each with a different trade-off between cache size\index{cache size} and
@@ -910,9 +913,113 @@ fully-associative caches the number of cache sets is 1, so \(S\)=0.
 \missingcontent{Also explain cache coherency \index{cache coherency}?}
 \missingcontent{Also say something about TLBs and prefetching?}
 
-\hypertarget{general-operation-of-cache-covert-channels}{%
-\subsection{General operation of cache covert
-channels}\label{general-operation-of-cache-covert-channels}}
+\hypertarget{operation-of-cache-side-channels}{%
+\subsection{Operation of cache
+side-channels}\label{operation-of-cache-side-channels}}
+
+Cache covert channels typically work by the spy determining whether a
+memory access was a cache hit or a cache miss. From that information, in
+specific situations, it may be able to deduce bits of data that only the
+victim has access to.
+
+Let's illustrate this with describing a few well-known cache
+side-channels:
+
+\hypertarget{flushreload}{%
+\subsubsection{Flush+Reload}\label{flushreload}}
+
+In a so-called Flush+Reload\index{Flush+Reload} attack(Yarom and Falkner
+\protect\hyperlink{ref-Yarom2014}{2014}), the spy process shares memory
+with the victim process. The attack works in 3 steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The Flush step: The spy flushes a specific address from the cache.
+\item
+  The spy waits for some time to give the victim time to potentially
+  access that address, resulting in bringing it back into the cache.
+\item
+  The Reload step: The spy accesses the address and measures the access
+  time. A short access time means the address is in the cache; a long
+  access time means it's not in the cache. In other words, a short
+  access time means that in step 2 the victim accessed the address; a
+  long access time means it did not access the address.
+\end{enumerate}
+
+Knowing if a victim accessed a specific address can leak sensitive
+information. Such as when accessing a specific array element depends on
+whether a specific bit is set in secret data. For example, (Yarom and
+Falkner \protect\hyperlink{ref-Yarom2014}{2014}) demonstrates that a
+Flush+Reload attack can be used to leak GnuPG private keys.
+
+\missingcontent{Should there be a more elaborate example with code that
+demonstrates in more detail how a flush+reload attack works?}
+
+\hypertarget{primeprobe}{%
+\subsubsection{Prime+Probe}\label{primeprobe}}
+
+In a Prime+Probe attack\index{Prime+Probe}, there is no need for memory
+to be shared between victim and spy. The attack works in 3 steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The Prime step: The spy fills one or more cache sets with its data,
+  for example, by accessing data that maps to those cache sets.
+\item
+  The spy waits for some time to let the victim potentially access data
+  that maps to those same cache sets.
+\item
+  The Probe step: The spy accesses that same data as in the prime step.
+  Measuring the time it takes to load the data, it can derive how many
+  cache lines the victim evicted from each cache set in step 2, and from
+  that derive information about addresses that the victim accessed.
+\end{enumerate}
+
+(Osvik, Shamir, and Tromer \protect\hyperlink{ref-Osvik2005}{2005})
+which first documented this technique in 2005 demonstrates extracting
+AES keys in just a few milliseconds using Prime+Probe.
+
+\hypertarget{general-schema-for-cache-covert-channels}{%
+\subsubsection{General schema for cache covert
+channels}\label{general-schema-for-cache-covert-channels}}
+
+An attentative reader may have noticed that the concrete named attacks
+above follow a similar 3-step pattern. Indeed, (Weber et al.
+\protect\hyperlink{ref-Weber2021}{2021}) describes this general pattern
+and uses it to automatically discover more side-channels that follow
+this 3-step pattern. They describe the general pattern as being:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  An instruction sequence that resets the inner CPU state (\emph{reset
+  sequence}).\index{reset sequence}
+\item
+  An instruction sequence that triggers a state change (\emph{trigger
+  sequence}).\index{trigger sequence}
+\item
+  An instruction sequence that leaks the inner state (\emph{measurement
+  sequence}).\index{measurement sequence}
+\end{enumerate}
+
+Other cache-based side channel attacks following this general 3-step
+approach include: Flush+Flush\index{Flush+Flush}(Gruss, Maurice, Wagner,
+et al. \protect\hyperlink{ref-Gruss2016a}{2016}),
+Flush+Prefetch\index{Flush+Prefetch}(Gruss, Maurice, Fogh, et al.
+\protect\hyperlink{ref-Gruss2016}{2016}),
+Evict+Reload\index{Evict+Reload}(Percival
+\protect\hyperlink{ref-Percival2005}{2005}),
+Evict+Time\index{Evict+Time}(Osvik, Shamir, and Tromer
+\protect\hyperlink{ref-Osvik2005}{2005}),
+Reload+Refresh\index{Reload+Refresh}(Briongos et al.
+\protect\hyperlink{ref-Briongos2020}{2020}),
+Collide+Probe\index{Collide+Probe}(Lipp et al.
+\protect\hyperlink{ref-Lipp2020}{2020}), etc.
 
 \hypertarget{timing-covert-channels}{%
 \section{Timing covert channels}\label{timing-covert-channels}}
@@ -1105,6 +1212,13 @@ Beer, Ian, and Samuel Groß. 2021. ``A Deep Dive into an Nso Zero-Click
 iMessage Exploit: Remote Code Execution.'' 2021.
 \url{https://googleprojectzero.blogspot.com/2021/12/a-deep-dive-into-nso-zero-click.html}.
 
+\leavevmode\hypertarget{ref-Briongos2020}{}%
+Briongos, Samira, Pedro Malagon, Jose M. Moya, and Thomas Eisenbarth.
+2020. ``RELOAD+REFRESH: Abusing Cache Replacement Policies to Perform
+Stealthy Cache Attacks.'' In \emph{29th Usenix Security Symposium
+(Usenix Security 20)}.
+\url{https://www.usenix.org/conference/usenixsecurity20/presentation/briongos}.
+
 \leavevmode\hypertarget{ref-Cox2015}{}%
 Cox, Joseph. 2015. ``Hack Brief: Malware Sneaks into the Chinese iOS App
 Store.'' \emph{WIRED}.
@@ -1134,6 +1248,20 @@ Videogames.'' \emph{WIRED}.
 Groß, Samuel. 2020. ``JITSploitation I: A Jit Bug.'' 2020.
 \url{https://googleprojectzero.blogspot.com/2020/09/jitsploitation-one.html}.
 
+\leavevmode\hypertarget{ref-Gruss2016}{}%
+Gruss, Daniel, Clémentine Maurice, Anders Fogh, Moritz Lipp, and Stefan
+Mangard. 2016. ``Prefetch Side-Channel Attacks: Bypassing Smap and
+Kernel Aslr.'' In \emph{Proceedings of the 2016 Acm Sigsac Conference on
+Computer and Communications Security}. CCS '16.
+\url{https://doi.org/10.1145/2976749.2978356}.
+
+\leavevmode\hypertarget{ref-Gruss2016a}{}%
+Gruss, Daniel, Clémentine Maurice, Klaus Wagner, and Stefan Mangard.
+2016. ``Flush+Flush: A Fast and Stealthy Cache Attack.'' In
+\emph{Proceedings of the 13th International Conference on Detection of
+Intrusions and Malware, and Vulnerability Assessment - Volume 9721},
+279--99. DIMVA 2016. \url{https://doi.org/10.1007/978-3-319-40667-1_14}.
+
 \leavevmode\hypertarget{ref-Hicks2014}{}%
 Hicks, Michael. 2014. ``What Is Memory Safety?'' 2014.
 \url{http://www.pl-enthusiast.net/2014/07/21/memory-safety/}.
@@ -1145,16 +1273,33 @@ Expressiveness of Non-Control Data Attacks.'' In \emph{2016 Ieee
 Symposium on Security and Privacy (Sp)}, 969--86.
 \url{https://doi.org/10.1109/SP.2016.62}.
 
+\leavevmode\hypertarget{ref-Lipp2020}{}%
+Lipp, Moritz, Vedad Hadzic, Michael Schwarz, Arthur Perais, Clementine
+Lucie Noemie Maurice, and Daniel Gruß. 2020. ``Take a Way: Exploring the
+Security Implications of Amd's Cache Way Predictors.'' In
+\emph{Proceedings of the 15th Acm Asia Conference on Computer and
+Communications Security, Asia Ccs 2020}.
+\url{https://doi.org/10.1145/3320269.3384746}.
+
 \leavevmode\hypertarget{ref-Miller2012}{}%
 Miller, Matt. n.d. ``Modeling the Exploitation and Mitigation of Memory
 Safety Vulnerabilities.''
 \href{https://2012.ruxconbreakpoint.com/}{Breakpoint 2012}.
 \url{https://github.com/Microsoft/MSRC-Security-Research/blob/master/presentations/2012_10_Breakpoint/BreakPoint2012_Miller_Modeling_the_exploitation_and_mitigation_of_memory_safety_vulnerabilities.pdf}.
 
+\leavevmode\hypertarget{ref-Osvik2005}{}%
+Osvik, Dag Arne, Adi Shamir, and Eran Tromer. 2005. ``Cache Attacks and
+Countermeasures: The Case of Aes.'' In \emph{IACR Cryptology ePrint
+Archive}. \url{https://doi.org/10.1007/11605805_1}.
+
 \leavevmode\hypertarget{ref-Karger1974}{}%
 Paul A., Karger, and Schell Roger R. 1974. ``MULTICS Security
 Evaluation: VULNERABILITY Analysis,'' 52.
 \url{https://csrc.nist.gov/csrc/media/publications/conference-paper/1998/10/08/proceedings-of-the-21st-nissc-1998/documents/early-cs-papers/karg74.pdf}.
+
+\leavevmode\hypertarget{ref-Percival2005}{}%
+Percival, Colin. 2005. ``Cache Missing for Fun and Profit.'' BSDCan.
+\url{https://eprint.iacr.org/2005/271}.
 
 \leavevmode\hypertarget{ref-Pornin2018}{}%
 Pornin, Thomas. 2018. ``Why Constant-Time Crypto?'' 2018.
@@ -1183,5 +1328,18 @@ Solar Designer. 1997. ``Getting Around Non-Executable Stack (and Fix).''
 \leavevmode\hypertarget{ref-Thompson1984}{}%
 Thompson, Ken. 1984. ``Reflections on Trusting Trust.''
 \url{https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf}.
+
+\leavevmode\hypertarget{ref-Weber2021}{}%
+Weber, Daniel, Ahmad Ibrahim, Hamed Nemati, Michael Schwarz, and
+Christian Rossow. 2021. ``Osiris: Automated Discovery of
+Microarchitectural Side Channels.'' In \emph{USENIX Security'21}.
+\url{https://arxiv.org/abs/2106.03470}.
+
+\leavevmode\hypertarget{ref-Yarom2014}{}%
+Yarom, Yuval, and Katrina Falkner. 2014. ``FLUSH+RELOAD: A High
+Resolution, Low Noise, L3 Cache Side-Channel Attack.'' In \emph{23rd
+Usenix Security Symposium (Usenix Security 14)}, 719--32. San Diego, CA:
+USENIX Association.
+\url{https://www.usenix.org/conference/usenixsecurity14/technical-sessions/presentation/yarom}.
 
 \end{document}

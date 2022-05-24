@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.5.23)  23 MAY 2022 15:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.5.24)  24 MAY 2022 15:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1274,13 +1274,13 @@ Chapter 3.
 <img/CacheLevels.pdf, id=337, 231.86626pt x 322.20375pt>
 File: img/CacheLevels.pdf Graphic file (type pdf)
 <use img/CacheLevels.pdf>
-Package pdftex.def Info: img/CacheLevels.pdf  used on input line 825.
+Package pdftex.def Info: img/CacheLevels.pdf  used on input line 828.
 (pdftex.def)             Requested size: 137.99927pt x 191.76523pt.
  [14 <./img/CacheLevels.pdf>]
-<img/CacheIndexing.pdf, id=354, 704.6325pt x 278.03876pt>
+<img/CacheIndexing.pdf, id=353, 704.6325pt x 278.03876pt>
 File: img/CacheIndexing.pdf Graphic file (type pdf)
 <use img/CacheIndexing.pdf>
-Package pdftex.def Info: img/CacheIndexing.pdf  used on input line 893.
+Package pdftex.def Info: img/CacheIndexing.pdf  used on input line 896.
 (pdftex.def)             Requested size: 344.99341pt x 136.12987pt.
  [15 <./img/CacheIndexing.pdf>]
 File: bc-aux-301.mps Graphic file (type mps)
@@ -1292,78 +1292,84 @@ File: bc-aux-301.mps Graphic file (type mps)
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF]
 (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [16]
+Underfull \hbox (badness 1490) in paragraph at lines 1010--1023
+\T1/lmr/m/n/10 (+20) proach in-clude: Flush+Flush[](Gruss, Mau-rice, Wag-ner, e
+t al. [][]2016[][]),
+ []
+
+File: bc-aux-301.mps Graphic file (type mps)
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [17]
 Chapter 4.
 File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [17
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [18
 
 ]
 Chapter 5.
-[18
+[19
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-[19]
+[20]
 Chapter 6.
-[20
+[21
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-[21]
+[22]
 Chapter 7.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [22
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [23
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-(build/book.ind [23
+(build/book.ind [24
 
-] [24
-
+] [25
 
 ]) (build/book.tdo)
 \tf@tdo=\write7
 \openout7 = `book.tdo'.
 
- [25
+ [26
 
+
+] [27
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1148--1153
+Underfull \hbox (badness 10000) in paragraph at lines 1284--1289
 \T1/lmr/m/n/10 (+20) Security -[] Research / blob / master / presentations / 20
 12 _ 10 _ Breakpoint /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1148--1153
+Underfull \hbox (badness 10000) in paragraph at lines 1284--1289
 \T1/lmr/m/n/10 (+20) BreakPoint2012 _ Miller _ Modeling _ the _ exploitation _ 
 and _ mitigation _
  []
 
-[26
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 1154--1158
+Underfull \hbox (badness 10000) in paragraph at lines 1295--1299
 \T1/lmr/m/n/10 (+20) publications / conference -[] paper / 1998 / 10 / 08 / pro
 ceedings -[] of -[] the -[] 21st -[] nissc -[]
  []
 
-[27] (build/book.aux)
+[28] [29] (build/book.aux)
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: 035E44A4D773D2E02D7602D6A90483E7;5778.
+(rerunfilecheck)             Checksum: DD23E7A5AE8BFE50408ADAF0EDADA077;5722.
  ) 
 Here is how much of TeX's memory you used:
- 29267 strings out of 480962
- 532172 string characters out of 5908147
- 933653 words of memory out of 5000000
- 45540 multiletter control sequences out of 15000+600000
- 483683 words of font info for 172 fonts, out of 8000000 for 9000
+ 29307 strings out of 480962
+ 532807 string characters out of 5908147
+ 936028 words of memory out of 5000000
+ 45548 multiletter control sequences out of 15000+600000
+ 483943 words of font info for 174 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  102i,12n,117p,651b,1259s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/texlive/2020/tex
@@ -1380,10 +1386,10 @@ ublic/lm/lmr8.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmri10.pfb></
 texlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></texlive/2020/texmf-d
 ist/fonts/type1/public/lm/lmtt10.pfb></texlive/2020/texmf-dist/fonts/type1/publ
 ic/lm/lmtt8.pfb>
-Output written on build/book.pdf (28 pages, 405545 bytes).
+Output written on build/book.pdf (30 pages, 417555 bytes).
 PDF statistics:
- 673 PDF objects out of 1000 (max. 8388607)
- 597 compressed objects within 6 object streams
- 137 named destinations out of 1000 (max. 500000)
+ 743 PDF objects out of 1000 (max. 8388607)
+ 664 compressed objects within 7 object streams
+ 163 named destinations out of 1000 (max. 500000)
  45396 words of extra memory for PDF output out of 51595 (max. 10000000)
 

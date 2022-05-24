@@ -84,7 +84,7 @@ text-justify: auto;
 <p>
   Copyright 2021-2022 Arm Limited <a href="mailto:open-source-office@arm.com" class="email">open-source-office@arm.com</a><br />
 </p>
-<p>Version: 0-77-ga3030cb</p>
+<p>Version: 0-78-gafcf769</p>
 
 </header>
 <nav id="TOC">
@@ -105,7 +105,7 @@ text-justify: auto;
 <li><a href="#covert-channels-and-side-channels"><span class="toc-section-number">3</span> Covert channels and side-channels <span>§</span></a><ul>
 <li><a href="#cache-covert-channels"><span class="toc-section-number">3.1</span> Cache covert channels <span>§</span></a><ul>
 <li><a href="#typical-cpu-cache-architecture"><span class="toc-section-number">3.1.1</span> Typical CPU cache architecture <span>§</span></a></li>
-<li><a href="#general-operation-of-cache-covert-channels"><span class="toc-section-number">3.1.2</span> General operation of cache covert channels <span>§</span></a></li>
+<li><a href="#operation-of-cache-side-channels"><span class="toc-section-number">3.1.2</span> Operation of cache side-channels <span>§</span></a></li>
 </ul></li>
 <li><a href="#timing-covert-channels"><span class="toc-section-number">3.2</span> Timing covert channels <span>§</span></a></li>
 <li><a href="#resource-contention-channels"><span class="toc-section-number">3.3</span> Resource contention channels <span>§</span></a></li>
@@ -255,14 +255,14 @@ int main(int argc, char* argv[]) {
 <p>A large class of attacks make use of so-called side-channels. In this chapter, we focus on the the mechanisms used to make communication happen through side-channels or covert channels. In the next two chapters, we describe attacks making use of side-channels.</p>
 <p>Side-channels and covert channels are closely related. Both side-channels and covert channels are communication channels between two entities in a system, where the entities should not be able to communicate that way.</p>
 <p>A <strong>covert channel</strong> is such a channel where both entities intend to communicate through the channel. A <strong>side-channel</strong> is a such a channel where one end is the victim of an attack using the channel.</p>
-<p>In other words, the difference between a covert channel and a side-channel is whether both entities intend to communicate. If one entity does not intend to communicate, but the other entity nonetheless extracts some data from the first, it is called a side-channel attack. The entity not intending to communicate is called the victim.</p>
+<p>In other words, the difference between a covert channel and a side-channel is whether both entities intend to communicate. If one entity does not intend to communicate, but the other entity nonetheless extracts some data from the first, it is called a side-channel attack. The entity not intending to communicate is called the victim. The other entity is sometimes called the spy.</p>
 <p>The rest of this chapter mostly describes a variety of common covert channel mechanisms. It does not aim to differentiate much on whether both ends intend to cooperate, or whether one end is a victim under attack of the other end.</p>
 <h2 id="cache-covert-channels"><span class="header-section-number">3.1</span> Cache covert channels <a href="#cache-covert-channels" class="selflink">§</a></h2>
 <p><a href="https://en.wikipedia.org/wiki/Cache_(computing)">Caches</a> are used in almost every computing system. They are small and much faster memories than the main memory. They aim to automatically keep frequently used data accessed by programs, so that average memory access time improves. Various techniques exist where a covert communication can happen between processes that share a cache, without the processes having rights to read or write to the same memory locations. To understand how these techniques work, one needs to understand typical organization and operation of a cache.</p>
 <h3 id="typical-cpu-cache-architecture"><span class="header-section-number">3.1.1</span> Typical CPU cache architecture <a href="#typical-cpu-cache-architecture" class="selflink">§</a></h3>
 <p>There is a wide variety in <a href="https://en.wikipedia.org/wiki/CPU_cache">CPU cache micro-architecture</a> details, but the main characteristics that are important to set up a covert channel tend to be similar across most popular implementations.</p>
 <p>Caches are small and much faster memories than the main memory that aim to keep a copy of the data at the most frequently accessed main memory addresses. The set of addresses that are used most frequently changes quickly over time as a program executes. Therefore, the addresses that are present in CPU caches also evolve quickly over time. The content of the cache may change with every executed read or write instruction.</p>
-<p>On every read and write instruction, the cache micro-architecture looks up if the data for the requested address happens to be present in the cache. If it is, the CPU can continue executing quickly; if not, dependent operations will have to wait until the data returns from the much slower main memory. A typical access time is 3 to 5 CPU cycles for the fastest cache on a CPU versus hundreds of cycles for a main memory access.</p>
+<p>On every read and write instruction, the cache micro-architecture looks up if the data for the requested address happens to be present in the cache. If it is, the CPU can continue executing quickly; if not, dependent operations will have to wait until the data returns from the much slower main memory. A typical access time is 3 to 5 CPU cycles for the fastest cache on a CPU versus hundreds of cycles for a main memory access. When data is present in the cache for a read or write, it is said to be a cache hit. Otherwise, it’s called a cache miss.</p>
 <p>Most systems have multiple levels of cache, each with a different trade-off between cache size and access time. Some typical characteristics might be:</p>
 <ul>
 <li>L1 (level 1) cache, 32kB in size, with an access time of 4 cycles.</li>
@@ -288,7 +288,34 @@ int main(int argc, char* argv[]) {
 <p>Specific bits in the memory address are used for different cache indexing purposes, as illustrated in fig. <a href="#fig:cache-indexing">1</a>. The least-significant <span class="math inline"><em>L</em></span> bits, where <span class="math inline">2<sup><em>L</em></sup></span> is the cache line size, are used to compute an address’s offset within a cache line. The next <span class="math inline"><em>S</em></span> bits, where <span class="math inline">2<sup><em>S</em></sup></span> is the number of cache sets, are used to determine which cache set an address maps to. The remaining top bits are “tag bits”. They are stored alongside a line in the cache so later operations can detect which specific memory address is replicated in that cache line.</p>
 <p>For direct-mapped and fully-associative caches, the mapping of an address to cache locations also works as described above. In fully-associative caches the number of cache sets is 1, so <span class="math inline"><em>S</em></span>=0.</p>
 
-<h3 id="general-operation-of-cache-covert-channels"><span class="header-section-number">3.1.2</span> General operation of cache covert channels <a href="#general-operation-of-cache-covert-channels" class="selflink">§</a></h3>
+<h3 id="operation-of-cache-side-channels"><span class="header-section-number">3.1.2</span> Operation of cache side-channels <a href="#operation-of-cache-side-channels" class="selflink">§</a></h3>
+<p>Cache covert channels typically work by the spy determining whether a memory access was a cache hit or a cache miss. From that information, in specific situations, it may be able to deduce bits of data that only the victim has access to.</p>
+<p>Let’s illustrate this with describing a few well-known cache side-channels:</p>
+<h4 id="flushreload"><span class="header-section-number">3.1.2.1</span> Flush+Reload <a href="#flushreload" class="selflink">§</a></h4>
+<p>In a so-called Flush+Reload attack<span class="citation" data-cites="Yarom2014">(Yarom and Falkner <a href="#ref-Yarom2014">2014</a>)</span>, the spy process shares memory with the victim process. The attack works in 3 steps:</p>
+<ol type="1">
+<li>The Flush step: The spy flushes a specific address from the cache.</li>
+<li>The spy waits for some time to give the victim time to potentially access that address, resulting in bringing it back into the cache.</li>
+<li>The Reload step: The spy accesses the address and measures the access time. A short access time means the address is in the cache; a long access time means it’s not in the cache. In other words, a short access time means that in step 2 the victim accessed the address; a long access time means it did not access the address.</li>
+</ol>
+<p>Knowing if a victim accessed a specific address can leak sensitive information. Such as when accessing a specific array element depends on whether a specific bit is set in secret data. For example, <span class="citation" data-cites="Yarom2014">(Yarom and Falkner <a href="#ref-Yarom2014">2014</a>)</span> demonstrates that a Flush+Reload attack can be used to leak GnuPG private keys.</p>
+
+<h4 id="primeprobe"><span class="header-section-number">3.1.2.2</span> Prime+Probe <a href="#primeprobe" class="selflink">§</a></h4>
+<p>In a Prime+Probe attack, there is no need for memory to be shared between victim and spy. The attack works in 3 steps:</p>
+<ol type="1">
+<li>The Prime step: The spy fills one or more cache sets with its data, for example, by accessing data that maps to those cache sets.</li>
+<li>The spy waits for some time to let the victim potentially access data that maps to those same cache sets.</li>
+<li>The Probe step: The spy accesses that same data as in the prime step. Measuring the time it takes to load the data, it can derive how many cache lines the victim evicted from each cache set in step 2, and from that derive information about addresses that the victim accessed.</li>
+</ol>
+<p><span class="citation" data-cites="Osvik2005">(Osvik, Shamir, and Tromer <a href="#ref-Osvik2005">2005</a>)</span> which first documented this technique in 2005 demonstrates extracting AES keys in just a few milliseconds using Prime+Probe.</p>
+<h4 id="general-schema-for-cache-covert-channels"><span class="header-section-number">3.1.2.3</span> General schema for cache covert channels <a href="#general-schema-for-cache-covert-channels" class="selflink">§</a></h4>
+<p>An attentative reader may have noticed that the concrete named attacks above follow a similar 3-step pattern. Indeed, <span class="citation" data-cites="Weber2021">(Weber et al. <a href="#ref-Weber2021">2021</a>)</span> describes this general pattern and uses it to automatically discover more side-channels that follow this 3-step pattern. They describe the general pattern as being:</p>
+<ol type="1">
+<li>An instruction sequence that resets the inner CPU state (<em>reset sequence</em>).</li>
+<li>An instruction sequence that triggers a state change (<em>trigger sequence</em>).</li>
+<li>An instruction sequence that leaks the inner state (<em>measurement sequence</em>).</li>
+</ol>
+<p>Other cache-based side channel attacks following this general 3-step approach include: Flush+Flush<span class="citation" data-cites="Gruss2016a">(Gruss, Maurice, Wagner, et al. <a href="#ref-Gruss2016a">2016</a>)</span>, Flush+Prefetch<span class="citation" data-cites="Gruss2016">(Gruss, Maurice, Fogh, et al. <a href="#ref-Gruss2016">2016</a>)</span>, Evict+Reload<span class="citation" data-cites="Percival2005">(Percival <a href="#ref-Percival2005">2005</a>)</span>, Evict+Time<span class="citation" data-cites="Osvik2005">(Osvik, Shamir, and Tromer <a href="#ref-Osvik2005">2005</a>)</span>, Reload+Refresh<span class="citation" data-cites="Briongos2020">(Briongos et al. <a href="#ref-Briongos2020">2020</a>)</span>, Collide+Probe<span class="citation" data-cites="Lipp2020">(Lipp et al. <a href="#ref-Lipp2020">2020</a>)</span>, etc.</p>
 <h2 id="timing-covert-channels"><span class="header-section-number">3.2</span> Timing covert channels <a href="#timing-covert-channels" class="selflink">§</a></h2>
 <h2 id="resource-contention-channels"><span class="header-section-number">3.3</span> Resource contention channels <a href="#resource-contention-channels" class="selflink">§</a></h2>
 <h2 id="channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors"><span class="header-section-number">3.4</span> Channels making use of aliasing in branch predictors and other predictors <a href="#channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors" class="selflink">§</a></h2>
@@ -342,6 +369,9 @@ int main(int argc, char* argv[]) {
 <div id="ref-Beer2021">
 <p>Beer, Ian, and Samuel Groß. 2021. “A Deep Dive into an Nso Zero-Click iMessage Exploit: Remote Code Execution.” 2021. <a href="https://googleprojectzero.blogspot.com/2021/12/a-deep-dive-into-nso-zero-click.html">https://googleprojectzero.blogspot.com/2021/12/a-deep-dive-into-nso-zero-click.html</a>.</p>
 </div>
+<div id="ref-Briongos2020">
+<p>Briongos, Samira, Pedro Malagon, Jose M. Moya, and Thomas Eisenbarth. 2020. “RELOAD+REFRESH: Abusing Cache Replacement Policies to Perform Stealthy Cache Attacks.” In <em>29th Usenix Security Symposium (Usenix Security 20)</em>. <a href="https://www.usenix.org/conference/usenixsecurity20/presentation/briongos">https://www.usenix.org/conference/usenixsecurity20/presentation/briongos</a>.</p>
+</div>
 <div id="ref-Cox2015">
 <p>Cox, Joseph. 2015. “Hack Brief: Malware Sneaks into the Chinese iOS App Store.” <em>WIRED</em>. <a href="https://www.wired.com/2015/09/hack-brief-malware-sneaks-chinese-ios-app-store/">https://www.wired.com/2015/09/hack-brief-malware-sneaks-chinese-ios-app-store/</a>.</p>
 </div>
@@ -360,17 +390,32 @@ int main(int argc, char* argv[]) {
 <div id="ref-Groß2020">
 <p>Groß, Samuel. 2020. “JITSploitation I: A Jit Bug.” 2020. <a href="https://googleprojectzero.blogspot.com/2020/09/jitsploitation-one.html">https://googleprojectzero.blogspot.com/2020/09/jitsploitation-one.html</a>.</p>
 </div>
+<div id="ref-Gruss2016">
+<p>Gruss, Daniel, Clémentine Maurice, Anders Fogh, Moritz Lipp, and Stefan Mangard. 2016. “Prefetch Side-Channel Attacks: Bypassing Smap and Kernel Aslr.” In <em>Proceedings of the 2016 Acm Sigsac Conference on Computer and Communications Security</em>. CCS ’16. <a href="https://doi.org/10.1145/2976749.2978356">https://doi.org/10.1145/2976749.2978356</a>.</p>
+</div>
+<div id="ref-Gruss2016a">
+<p>Gruss, Daniel, Clémentine Maurice, Klaus Wagner, and Stefan Mangard. 2016. “Flush+Flush: A Fast and Stealthy Cache Attack.” In <em>Proceedings of the 13th International Conference on Detection of Intrusions and Malware, and Vulnerability Assessment - Volume 9721</em>, 279–99. DIMVA 2016. <a href="https://doi.org/10.1007/978-3-319-40667-1_14">https://doi.org/10.1007/978-3-319-40667-1_14</a>.</p>
+</div>
 <div id="ref-Hicks2014">
 <p>Hicks, Michael. 2014. “What Is Memory Safety?” 2014. <a href="http://www.pl-enthusiast.net/2014/07/21/memory-safety/">http://www.pl-enthusiast.net/2014/07/21/memory-safety/</a>.</p>
 </div>
 <div id="ref-Hu2016">
 <p>Hu, Hong, Shweta Shinde, Sendroiu Adrian, Zheng Leong Chua, Prateek Saxena, and Zhenkai Liang. 2016. “Data-Oriented Programming: On the Expressiveness of Non-Control Data Attacks.” In <em>2016 Ieee Symposium on Security and Privacy (Sp)</em>, 969–86. <a href="https://doi.org/10.1109/SP.2016.62">https://doi.org/10.1109/SP.2016.62</a>.</p>
 </div>
+<div id="ref-Lipp2020">
+<p>Lipp, Moritz, Vedad Hadzic, Michael Schwarz, Arthur Perais, Clementine Lucie Noemie Maurice, and Daniel Gruß. 2020. “Take a Way: Exploring the Security Implications of Amd’s Cache Way Predictors.” In <em>Proceedings of the 15th Acm Asia Conference on Computer and Communications Security, Asia Ccs 2020</em>. <a href="https://doi.org/10.1145/3320269.3384746">https://doi.org/10.1145/3320269.3384746</a>.</p>
+</div>
 <div id="ref-Miller2012">
 <p>Miller, Matt. n.d. “Modeling the Exploitation and Mitigation of Memory Safety Vulnerabilities.” <a href="https://2012.ruxconbreakpoint.com/">Breakpoint 2012</a>. <a href="https://github.com/Microsoft/MSRC-Security-Research/blob/master/presentations/2012_10_Breakpoint/BreakPoint2012_Miller_Modeling_the_exploitation_and_mitigation_of_memory_safety_vulnerabilities.pdf">https://github.com/Microsoft/MSRC-Security-Research/blob/master/presentations/2012_10_Breakpoint/BreakPoint2012_Miller_Modeling_the_exploitation_and_mitigation_of_memory_safety_vulnerabilities.pdf</a>.</p>
 </div>
+<div id="ref-Osvik2005">
+<p>Osvik, Dag Arne, Adi Shamir, and Eran Tromer. 2005. “Cache Attacks and Countermeasures: The Case of Aes.” In <em>IACR Cryptology ePrint Archive</em>. <a href="https://doi.org/10.1007/11605805_1">https://doi.org/10.1007/11605805_1</a>.</p>
+</div>
 <div id="ref-Karger1974">
 <p>Paul A., Karger, and Schell Roger R. 1974. “MULTICS Security Evaluation: VULNERABILITY Analysis,” 52. <a href="https://csrc.nist.gov/csrc/media/publications/conference-paper/1998/10/08/proceedings-of-the-21st-nissc-1998/documents/early-cs-papers/karg74.pdf">https://csrc.nist.gov/csrc/media/publications/conference-paper/1998/10/08/proceedings-of-the-21st-nissc-1998/documents/early-cs-papers/karg74.pdf</a>.</p>
+</div>
+<div id="ref-Percival2005">
+<p>Percival, Colin. 2005. “Cache Missing for Fun and Profit.” BSDCan. <a href="https://eprint.iacr.org/2005/271">https://eprint.iacr.org/2005/271</a>.</p>
 </div>
 <div id="ref-Pornin2018">
 <p>Pornin, Thomas. 2018. “Why Constant-Time Crypto?” 2018. <a href="https://www.bearssl.org/constanttime.html">https://www.bearssl.org/constanttime.html</a>.</p>
@@ -389,6 +434,12 @@ int main(int argc, char* argv[]) {
 </div>
 <div id="ref-Thompson1984">
 <p>Thompson, Ken. 1984. “Reflections on Trusting Trust.” <a href="https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf">https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf</a>.</p>
+</div>
+<div id="ref-Weber2021">
+<p>Weber, Daniel, Ahmad Ibrahim, Hamed Nemati, Michael Schwarz, and Christian Rossow. 2021. “Osiris: Automated Discovery of Microarchitectural Side Channels.” In <em>USENIX Security’21</em>. <a href="https://arxiv.org/abs/2106.03470">https://arxiv.org/abs/2106.03470</a>.</p>
+</div>
+<div id="ref-Yarom2014">
+<p>Yarom, Yuval, and Katrina Falkner. 2014. “FLUSH+RELOAD: A High Resolution, Low Noise, L3 Cache Side-Channel Attack.” In <em>23rd Usenix Security Symposium (Usenix Security 14)</em>, 719–32. San Diego, CA: USENIX Association. <a href="https://www.usenix.org/conference/usenixsecurity14/technical-sessions/presentation/yarom">https://www.usenix.org/conference/usenixsecurity14/technical-sessions/presentation/yarom</a>.</p>
 </div>
 </div>
 <section class="footnotes">

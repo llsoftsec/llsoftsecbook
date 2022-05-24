@@ -9,10 +9,13 @@
   \item cache block, \hyperpage{15}
   \item cache coherency, \hyperpage{16}
   \item cache eviction, \hyperpage{15}
+  \item cache hit, \hyperpage{14}
   \item cache line, \hyperpage{15}
+  \item cache miss, \hyperpage{14}
   \item cache replacement policy, \hyperpage{15}
   \item cache set, \hyperpage{15}
   \item cache size, \hyperpage{14}
+  \item Collide+Probe, \hyperpage{17}
   \item covert channel, \hyperpage{13}
 
   \indexspace
@@ -21,10 +24,15 @@
 
   \indexspace
 
+  \item Evict+Reload, \hyperpage{17}
+  \item Evict+Time, \hyperpage{17}
   \item exploit primitive, \hyperpage{6}
 
   \indexspace
 
+  \item Flush+Flush, \hyperpage{17}
+  \item Flush+Prefetch, \hyperpage{17}
+  \item Flush+Reload, \hyperpage{16}
   \item fully-associative cache, \hyperpage{15}
 
   \indexspace
@@ -38,6 +46,7 @@
 
   \indexspace
 
+  \item measurement sequence, \hyperpage{17}
   \item memory access time, \hyperpage{14}
   \item multi-level cache, \hyperpage{14}
 
@@ -47,6 +56,7 @@
 
   \indexspace
 
+  \item Prime+Probe, \hyperpage{17}
   \item principle of locality, \hyperpage{15}
   \item pseudo-LRU replacement policy, \hyperpage{15}
 
@@ -54,16 +64,20 @@
 
   \item random replacement policy, \hyperpage{15}
   \item read primitive, \hyperpage{7}
+  \item Reload+Refresh, \hyperpage{17}
+  \item reset sequence, \hyperpage{17}
 
   \indexspace
 
   \item set-associative cache, \hyperpage{15}
   \item shellcode, \hyperpage{10}
   \item side-channel, \hyperpage{13}
+  \item spy, \hyperpage{13}
 
   \indexspace
 
-  \item timing attacks, \hyperpage{18}
+  \item timing attacks, \hyperpage{19}
+  \item trigger sequence, \hyperpage{17}
 
   \indexspace
 
