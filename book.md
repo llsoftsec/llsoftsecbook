@@ -717,9 +717,12 @@ this 3-step pattern. They describe the general pattern as being:
      sequence*).\index{measurement sequence}
 
 Other cache-based side channel attacks following this general 3-step approach
-include: Flush+Flush\index{Flush+Flush}, Flush+Prefetch\index{Flush+Prefetch},
-Evict+Reload\index{Evict+Reload}, Evict+Time\index{Evict+Time},
-Reload+Refresh\index{Reload+Refresh}, Collide+Probe\index{Collide+Probe}, etc.
+include: Flush+Flush\index{Flush+Flush}[@Gruss2016a],
+Flush+Prefetch\index{Flush+Prefetch}[@Gruss2016],
+Evict+Reload\index{Evict+Reload}[@Percival2005],
+Evict+Time\index{Evict+Time}[@Osvik2005],
+Reload+Refresh\index{Reload+Refresh}[@Briongos2020],
+Collide+Probe\index{Collide+Probe}[@Lipp2020], etc.
 
 ## Timing covert channels
 
