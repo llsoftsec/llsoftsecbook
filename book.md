@@ -1,7 +1,7 @@
 ---
 SPDX-License-Identifier: CC-BY-4.0
 copyright:
-  - SPDX-FileCopyrightText: © 2021 Arm Limited <kristof.beyls@arm.com>
+  - SPDX-FileCopyrightText: Copyright 2021-2022 Arm Limited <open-source-office@arm.com>
 title: 'Low-Level Software Security for Compiler Developers'
 documentclass: report
 papersize: A4
@@ -511,16 +511,14 @@ available (ASan, UBSan, etc).}
 
 # Covert channels and side-channels
 
-A large class of attacks make use of so-called side-channels, which are defined
-below. The class is so big that in this book we devote the next two chapters to
-such attacks. Side-channels have enough complexity to discuss them separately
-in this chapter. This chapter describes the mechanisms used to make
-communication happen through side-channels. The next two chapters explore how
-attacks are constructed that use side-channels.
+A large class of attacks make use of so-called side-channels.  In this chapter,
+we focus on the the mechanisms used to make communication happen through
+side-channels or covert channels.  In the next two chapters, we describe
+attacks making use of side-channels.
 
 Side-channels and covert channels are closely related. Both side-channels and
 covert channels are communication channels between two entities in a system,
-where the entities are not supposed to be allowed to communicate that way.
+where the entities should not be able to communicate that way.
 
 A **covert channel**\index{covert channel} is such a channel where both
 entities intend to communicate through the channel.  A
@@ -528,20 +526,15 @@ entities intend to communicate through the channel.  A
 victim of an attack using the channel.
 
 In other words, the difference between a covert channel and a side-channel is
-whether both entities intend to communicate, in which case we talk about a
-covert channel. If one entity does not intend to communicate, but the other
-entity nonetheless extracts some data from the first, it is called a
-side-channel attack. The entity not intending to communicate, and hence being
-attacked, is called the victim\index{victim}. The other entity is sometimes
+whether both entities intend to communicate. If one entity does not intend to
+communicate, but the other entity nonetheless extracts some data from the
+first, it is called a side-channel attack. The entity not intending to
+communicate is called the victim\index{victim}. The other entity is sometimes
 called the spy\index{spy}.
 
 The rest of this chapter mostly describes a variety of common covert channel
-mechanisms. It does not aim to differentiate much on whether both ends intend to
-cooperate on the communication, or whether one end is a victim under attack of
-the other end.
-
-In the next few sections we'll explore a common few channels that can be used as
-covert channels.
+mechanisms. It does not aim to differentiate much on whether both ends intend
+to cooperate, or whether one end is a victim under attack of the other end.
 
 ## Cache covert channels
 
