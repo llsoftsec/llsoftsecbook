@@ -576,11 +576,19 @@ ROP chain that:
 
 ![ROP example control flow](img/rop-control-flow){ width=30% #fig:rop-control-flow }
 
-Going back to the stack buffer overflow example from
-[earlier](#stack-buffer-overflows), we can achieve this by constructing the
-fake call stack shown in @fig:rop-call-stack.
+![ROP example fake call stack](img/rop-call-stack){ width=80% #fig:rop-call-stack }
 
-![ROP example fake call stack](img/rop-call-stack){ width=100% #fig:rop-call-stack }
+We can achieve this by constructing the fake call stack shown in
+@fig:rop-call-stack, where "Original frame" marks the frame in which the
+address of `gadget_x2` has replaced a saved return address that will be loaded
+and returned to in the future. As an alternative, an attacker could place this
+fake call stack somewhere else, for example on the heap, and use a primitive
+that changes the stack pointer's value instead. This is known as stack
+pivoting.
+
+Note that this fake call stack contains NULL bytes, even without considering
+the various return addresses, and would need to be adjusted if an attacker
+wanted to use an overflow that relies on NULL-terminated string operations.
 
 A question that comes up when looking at the stack diagram is "how do we
 know the addresses of these gadgets"? We will talk a bit more about this in
