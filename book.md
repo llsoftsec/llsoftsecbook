@@ -138,7 +138,8 @@ stacks](#stack-buffer-overflows). The answer was more ingenious ways to bypass
 these mitigations: [code reuse attacks](#code-reuse-attacks), starting with
 attacks like [return-into-libc](#code-reuse-attacks) [@Solar1997]. Code reuse
 attacks later evolved to [Return-Oriented Programming
-(ROP)](#code-reuse-attacks) [@Shacham2007] and even more complex techniques.
+(ROP)](#return-oriented-programming) [@Shacham2007] and even more complex
+techniques.
 
 To defend against code reuse attacks, the [Address Space Layout Randomization
 (ASLR)](#code-reuse-attacks) and [Control-Flow Integrity
@@ -495,7 +496,7 @@ available (ASan, UBSan, etc).}
 
 In the early days of memory vulnerability exploitation, attackers could simply
 place shellcode\index{shellcode} of their choice in executable memory and jump
-to it. As executable-space protection became mainstream, attackers started to
+to it. As non-executable stack and heap became mainstream, attackers started to
 reuse code already present in an application's binary and linked libraries
 instead. A variety of different techniques to this effect came to light.
 
@@ -506,21 +507,28 @@ technique is simpler to use when arguments are also passed on the stack and
 can therefore be controlled with the same stack buffer overflow that is used
 to modify the address.
 
+### Return-oriented programming
+
 Return-to-libc attacks restrict an attacker to whole library functions. While
 this can lead to powerful attacks, it has also been demonstrated that it is
 possible to achieve arbitrary computation by combining a number of short
-instruction sequences known as **gadgets**\index{gadget}. In return-oriented
-programming (ROP)\index{return-oriented programming (ROP)} [@Shacham2007], In
-ROP, each gadget performs a simple operation, for example setting a register,
-then pops a return address from the stack and returns to it. The attacker
-constructs a fake call stack (often called a ROP chain) which ensures a number
-of gadgets are executed one after another, in order to perform a more complex
-operation.
+instruction sequences ending in indirect control transfer instructions, known
+as **gadgets**\index{gadget}. The indirect control transfer instructions make
+it easy for an attacker to execute gadgets one after another, by controlling the
+memory or register that provides each control transfer instruction's target.
 
-This will hopefully become more clear with an example: a ROP chain for
-AArch64 that starts a shell, by calling `execve` with `"/bin/sh"` as an
-argument. The prototype of the `execve` library function, which wraps the
-exec system call , is:
+In return-oriented programming (ROP)\index{return-oriented programming (ROP)}
+[@Shacham2007], each gadget performs a simple operation, for example setting a
+register, then pops a return address from the stack and returns to it. The
+attacker constructs a fake call stack (often called a ROP chain\index{ROP
+chain}) which ensures a number of gadgets are executed one after another, in
+order to perform a more complex operation.
+
+This will hopefully become more clear with an example: a ROP chain for AArch64
+Linux that starts a shell, by calling `execve` with `"/bin/sh"` as an argument.
+[The prototype of the `execve` library
+function](https://man7.org/linux/man-pages/man2/execve.2.html), which wraps the
+exec system call, is:
 
 ```
   int execve(const char *pathname, char *const argv[],
@@ -564,6 +572,9 @@ Let's assume we have the following gadgets:
     ret
 ```
 
+\todo{Explain how these gadgets could result from C/C++ code. The current
+versions are slightly tweaked by hand to have more manageable offsets.}
+
 Both gadgets also clobber several uninteresting registers, but since
 `gadget_x2` also clears `x0`, it becomes clear that we should use a
 ROP chain that:
@@ -572,23 +583,29 @@ ROP chain that:
 2. Returns to `gadget_x0_x1`, which sets `x0` and `x1` to the desired values.
 3. Returns to `execve`.
 
-@fig:rop-control-flow shows this control flow.
+Figure @fig:rop-control-flow shows this control flow.
 
 ![ROP example control flow](img/rop-control-flow){ width=30% #fig:rop-control-flow }
 
 ![ROP example fake call stack](img/rop-call-stack){ width=80% #fig:rop-call-stack }
 
-We can achieve this by constructing the fake call stack shown in
+We can achieve this by constructing the fake call stack shown in figure
 @fig:rop-call-stack, where "Original frame" marks the frame in which the
 address of `gadget_x2` has replaced a saved return address that will be loaded
 and returned to in the future. As an alternative, an attacker could place this
 fake call stack somewhere else, for example on the heap, and use a primitive
 that changes the stack pointer's value instead. This is known as stack
-pivoting.
+pivoting\index{stack pivoting}.
 
 Note that this fake call stack contains NULL bytes, even without considering
-the various return addresses, and would need to be adjusted if an attacker
-wanted to use an overflow that relies on NULL-terminated string operations.
+the exact values of the various return addresses included. An overflow bug that
+is based on a C-style string operation would not allow an attacker to replace
+the stack contents with this fake call stack in one go, since C-style strings
+are null-terminated and copying the fake stack contents would stop once the
+first NULL byte is encountered. The ROP chain would therefore need to be
+adjusted so that it doesn't contain NULL bytes, for example by initially
+replacing the NULL bytes with a different byte and adding some more gadgets to
+the ROP chain that write zero to those stack locations.
 
 A question that comes up when looking at the stack diagram is "how do we
 know the addresses of these gadgets"? We will talk a bit more about this in
@@ -596,24 +613,47 @@ the next section.
 
 ROP gadgets like the ones used here may be easy to identify by visual
 inspection of a disassembled binary, but it's common for attackers to use
-"gadget scanner" tools in order to discover large numbers of gadgets
-automatically. Such tools can also be useful to a compiler engineer working on
-a code reuse attack mitigation, as they can point out code sequences that
-should be protected and have been missed.
+"gadget scanner"\index{gadget scanner} tools in order to discover large numbers
+of gadgets automatically. Such tools can also be useful to a compiler engineer
+working on a code reuse attack mitigation, as they can point out code sequences
+that should be protected and have been missed.
 
-Jump-oriented programming [@Bletsch2011] is a variation on ROP, where gadgets
-can also end in indirect branch instructions instead of return instructions.
-The attacker chains a number of such gadgets through a dispatcher gadget, which
-loads pointers one after another from an array of pointers, and branches to
-each one in return. The gadgets used must be set up so that they branch or
+### Jump-oriented programming
+
+Jump-oriented programming (JOP)\index{jump-oriented programming (JOP)}
+[@Bletsch2011] is a variation on ROP, where gadgets can also end in indirect
+branch instructions instead of return instructions.  The attacker chains a
+number of such gadgets through a dispatcher gadget\index{dispatcher gadget},
+which loads pointers one after another from an array of pointers, and branches
+to each one in return. The gadgets used must be set up so that they branch or
 return back to the dispatcher after they're done. This is demonstrated in
-@fig:jop.
+figure @fig:jop.
 
 ![JOP example](img/jop){ width=50% #fig:jop }
 
-Counterfeit Object-oriented programming (COOP) [@Schuster2015] is a code reuse
-technique that takes advantage of C++ virtual function calls.  A COOP attack
-takes advantage of existing virtual functions and
+In figure @fig:jop, `x4` initially points to the "dispatch table", which has
+been modified by the attacker to contain the addresses of the three gadgets
+they want to execute. The dispatcher gadget loads each address in the dispatch
+table one by one and branches to them. The first gadget loads `x0` and `x1`
+from the stack, where the attacker has placed the inputs of their choice. It
+then loads its return address, also modified by the attacker so that it points
+back to the dispatcher gadget, and returns to it. The dispatcher branches to
+the next gadget, which adds `x0` and `x1` and leaves the result in `x0`,
+branching back to the dispatcher through another value loaded from the stack
+into `x2`. The final gadget stores the result of the addition, which remains in
+`x0`, to the stack, before branching to `x2`, which still points to the
+dispatcher gadget.
+
+\todo{The gadgets in the figure are made up, chosen to highlight that each
+gadget can end in a different type of indirect control flow transfer
+instruction. Consider replacing them with more realistic ones.}
+
+### Counterfeit Object-oriented programming
+
+Counterfeit Object-oriented programming (COOP)\index{counterfeit
+object-oriented programming (COOP)} [@Schuster2015] is a code reuse technique
+that takes advantage of C++ virtual function calls.  A COOP attack takes
+advantage of existing virtual functions and
 [vtables](https://en.wikipedia.org/wiki/Virtual_method_table), and creates fake
 objects pointing to these existing vtables. The virtual functions used as
 gadgets in the attack are called vfgadgets. To chain vfgadgets together, the
@@ -626,15 +666,17 @@ and code pointers, like ROP and JOP do. Such language-specific attacks are
 important to consider when considering mitigations against code reuse attacks,
 which will be the topic of the next section.
 
+### Sigreturn-oriented programming
+
 One last example of a code reuse attack that is worth mentioning here is
-sigreturn-oriented programming (SROP) [@Bosman2014]. It is a special case of
-ROP where the attacker creates a fake signal handler frame and calls
-`sigreturn`. `sigreturn` is a system call on many UNIX-type systems which is
-normally called upon return from a signal handler, and restores the state of
-the process based on the state that has been saved on the signal handler's
-stack by the kernel previously, on entry to the signal handler.  The ability to
-fake a signal handler frame and call `sigreturn` gives an attacker a simple way
-to control the state of the program.
+sigreturn-oriented programming (SROP)\index{sigreturn-oriented programming
+(SROP)} [@Bosman2014]. It is a special case of ROP where the attacker creates a
+fake signal handler frame and calls `sigreturn`. `sigreturn` is a system call
+on many UNIX-type systems which is normally called upon return from a signal
+handler, and restores the state of the process based on the state that has been
+saved on the signal handler's stack by the kernel previously, on entry to the
+signal handler.  The ability to fake a signal handler frame and call
+`sigreturn` gives an attacker a simple way to control the state of the program.
 
 ## Mitigations against code reuse attacks
 
