@@ -706,7 +706,7 @@ successful attack will be greatly reduced.
 Does this mean that code reuse attacks have been made redundant by ASLR?
 Unfortunately, this is not the case. There are various ways in which an
 attacker can discover the memory layout of the victim program.  This is often
-referred to as an "info leak" [@Serna2012].
+referred to as an "info leak"\index{info leak} [@Serna2012].
 
 Since we can not exclude code reuse attacks solely by making addresses hard to
 guess, we need to also consider mitigations that prevent attackers from
@@ -723,17 +723,18 @@ need something more.
 family of mitigations that aim to preserve the intended control flow of a
 program. This is done by restricting the possible targets of indirect branches
 and returns.  A scheme that protects indirect jumps and calls is referred to as
-forward-edge CFI, whereas a scheme that protects returns is said to implement
-backward-edge CFI. Ideally, a CFI scheme would not allow any control flow
-transfers that don't occur in a correct program execution, however different
-schemes have varying granularities. They often rely on function type checks or
-use static analysis (points-to analysis) to identify potential control flow
-transfer targets.  [@Burow2017] compares a number of available CFI schemes
-based on the precision. For forward-edge CFI schemes, for example, schemes are
-classified based on whether or not they perform, among others, flow-sensitive
-analysis, context-sensitive analysis and class-hierarchy analysis.
+forward-edge CFI\index{forward-edge CFI}, whereas a scheme that protects
+returns is said to implement backward-edge CFI\index{backward-edge CFI}.
+Ideally, a CFI scheme would not allow any control flow transfers that don't
+occur in a correct program execution, however different schemes have varying
+granularities. They often rely on function type checks or use static analysis
+(points-to analysis) to identify potential control flow transfer targets.
+[@Burow2017] compares a number of available CFI schemes based on the precision.
+For forward-edge CFI schemes, for example, schemes are classified based on
+whether or not they perform, among others, flow-sensitive analysis,
+context-sensitive analysis and class-hierarchy analysis.
 
-### Clang CFI
+#### Clang CFI
 
 [Clang's CFI](https://clang.llvm.org/docs/ControlFlowIntegrity.html) includes a
 variety of forward-edge control-flow integrity checks. These include checking
@@ -765,46 +766,46 @@ When compiling with `-fsanitize=cfi -flto -fvisibility=hidden` [^cfi-flags],
 the code for `call_foo` would look something like this:
 
 ```
-<call_foo(A*)>:
-  stp     x29, x30, [sp, #-16]!
-  mov     x29, sp
-  ldr     x8, [x0]                   // load vptr
-  adrp    x9, 400000 <_init-0x558>
-  add     x9, x9, #0x858
-  sub     x9, x8, x9
-  sub     x9, x9, #0x10
-  ror     x9, x9, #5
-  cmp     x9, #0x2
-  b.cs    4006ec <call_foo(A*)+0x38>
-  ldr     x8, [x8]
-  blr     x8
-  ldp     x29, x30, [sp], #16
-  ret
-  brk     #0x1
+00000000004006b4 <call_foo(A*)>:
+  4006b4:       a9bf7bfd        stp     x29, x30, [sp, #-16]!
+  4006b8:       910003fd        mov     x29, sp
+  4006bc:       f9400008        ldr     x8, [x0]
+  4006c0:       90000009        adrp    x9, 400000 <_init-0x558>
+  4006c4:       91216129        add     x9, x9, #0x858
+  4006c8:       cb090109        sub     x9, x8, x9
+  4006cc:       d1004129        sub     x9, x9, #0x10
+  4006d0:       93c91529        ror     x9, x9, #5
+  4006d4:       f100093f        cmp     x9, #0x2
+  4006d8:       540000a2        b.cs    4006ec <call_foo(A*)+0x38>
+  4006dc:       f9400108        ldr     x8, [x8]
+  4006e0:       d63f0100        blr     x8
+  4006e4:       a8c17bfd        ldp     x29, x30, [sp], #16
+  4006e8:       d65f03c0        ret
+  4006ec:       d4200020        brk     #0x1
 ```
 
-This code looks complicated, but what it does is check that the vptr of
-the argument points to the vtable of `A` or of `B`, which are stored
-consecutively and are the only allowed possibilities. The checks generated for
-different types of control-flow transfers are similar.
+This code looks complicated, but what it does is check that the virtual table
+pointer (vptr) of the argument points to the vtable of `A` or of `B`, which are
+stored consecutively and are the only allowed possibilities. The checks
+generated for different types of control-flow transfers are similar.
 
 [^cfi-flags]: The LTO and visibility flags are required by Clang's CFI.
 
 Another implementation of forward-edge CFI is Windows [Control Flow
 Guard](https://docs.microsoft.com/en-us/windows/win32/secbp/control-flow-guard),
-which only allows indirect calls to functions that are valid indirect
+which only allows indirect calls to functions that are marked as valid indirect
 control flow targets.
 
-### Clang Shadow Stack
+#### Clang Shadow Stack
 
 Clang also implements a backward-edge CFI scheme known as [Shadow
-Stack](https://clang.llvm.org/docs/ShadowCallStack.html). In Clang's
-implementation, a separate stack is used for return addresses, which means that
-stack-based buffer overflows cannot be used to overwrite return addresses. The
-address of the shadow stack is randomized and kept in a dedicated register,
-with care taken so that it is never leaked, which means that an arbitrary write
-primitive cannot be used against the shadow stack unless its location is
-discovered through some other means.
+Stack](https://clang.llvm.org/docs/ShadowCallStack.html)\index{shadow stack}.
+In Clang's implementation, a separate stack is used for return addresses, which
+means that stack-based buffer overflows cannot be used to overwrite return
+addresses. The address of the shadow stack is randomized and kept in a
+dedicated register, with care taken so that it is never leaked, which means
+that an arbitrary write primitive cannot be used against the shadow stack
+unless its location is discovered through some other means.
 
 As an example, when compiling with `-fsanitize=shadow-call-stack -ffixed-x18`
 [^shadow-stack-flags], the code generated for the `main` function from the
@@ -835,7 +836,7 @@ it's not actually used for the function return.
   register as reserved, and is required by `-fsanitize=shadow-call-stack`
   on some platforms.
 
-### Pointer Authentication
+#### Pointer Authentication
 
 In addition to software implementations, there are a number of hardware-based
 CFI implementations. A hardware-based implementation has the potential to offer
@@ -846,12 +847,24 @@ One such example is Pointer Authentication\index{Pointer Authentication}
 [@Rutland2017], an Armv8.3 feature, supported only in AArch64 state, that can
 be used to mitigate code reuse attacks. Pointer Authentication introduces
 instructions that generate a pointer _signature_, called a Pointer
-Authentication Code (PAC), based on a key and a modifier, and matching
-instructions to authenticate this signature. Incorrect authentication leads to
-an unusable pointer, that will cause a fault when used [^fpac]. The key is not
-directly accessible by user space software.
+Authentication Code (PAC), based on a key and a modifier. It also introduces
+matching instructions to authenticate this signature. Incorrect authentication
+leads to an unusable pointer, that will cause a fault when used [^fpac]. The
+key is not directly accessible by user space software.
 
 [^fpac]: With the FPAC extension, a fault is raised at incorrect authentication.
+
+Pointers are stored as 64-bit values, but they don't need all of these bits to
+describe the available address space, so a number of bits in the top of each
+pointer are unused.  The unused bits must be all ones or all zeros, so we refer
+to them as extension bits\index{pointer extension bits}. Pointer Authentication
+Codes are stored in those unused extension bits of a pointer. The exact number
+of PAC bits depends on the number of unused pointer bits, which varies based on
+the configuration of the virtual address space size.[^tbi]
+
+[^tbi]: If the Top-Byte-Ignore (TBI)\index{Top-Byte-Ignore (TBI)} feature is
+  enabled, the top byte of pointers is ignored when performing memory accesses.
+  This restricts the number of available PAC bits.
 
 [Clang](https://clang.llvm.org/docs/ClangCommandLineReference.html#aarch64) and
 [GCC](https://gcc.gnu.org/onlinedocs/gcc/AArch64-Options.html) both use Pointer
@@ -888,33 +901,54 @@ correct, which will be the case in normal execution, the extension bits of the
 address are restored, so that the address can be used in the `ret` instruction.
 However, if the stored return address has been overwritten with an address with
 an incorrect PAC, the upper bits will be corrupted so that subsequent uses of
-the address (such as in the `ret` instruction) will result in a fault.  By
-making sure we don't store any return addresses without a PAC, we can
-significantly reduce the effectiveness of ROP attacks.
+the address (such as in the `ret` instruction) will result in a fault.
 
-Pointer Authentication can be used more widely, to also implement a
+By making sure we don't store any return addresses without a PAC, we can
+significantly reduce the effectiveness of ROP attacks: since the secret key is
+not retrievable by an attacker, an attacker cannot calculate the correct PAC
+for a given address and modifier, and is restricted to guessing it. The
+probability of success when guessing a PAC depends on the exact number of PAC
+bits available in a given system configuration. However, authenticated pointers
+are vulnerable to pointer substitution attacks\index{pointer substitution
+attack}, where a pointer that has been signed with a given modifier is replaced
+with a different pointer that has also been signed with the same modifier.
+
+Another backward-edge CFI scheme that uses Pointer Authentication instructions
+is PACStack [@Liljestrand2021], which chains together PACs in order to include
+the full context (all of the previous return addresses in the call stack) when
+signing a return address.
+\todo{Add more references to relevant research}
+
+Pointer Authentication can also be used more widely, for example to implement a
 forward-edge CFI scheme, as is done in the arm64e ABI [@McCall2019].
+The Pointer Authentication instructions, however, are generic enough to also be
+useful in implementing more general memory safety measures, beyond CFI.
+\todo{Mention more Pointer Authentication uses in later section, and add link
+here}
 
-### BTI
+#### BTI
 
 [Branch Target Identification
 (BTI)](https://developer.arm.com/documentation/102433/0100/Jump-oriented-programming?lang=en)
 \index{BTI}, introduced in Armv8.5, offers coarse-grained forward-edge
 protection. With BTI, the locations that are targets of indirect branches have
-to be marked with a new instruction, `BTI`. There are a few different types of
-BTI instructions that permit different types of indirect branches (`BR`, `BLR`,
-or both).
+to be marked with a new instruction, `BTI`. There are four different types of
+BTI instructions that permit different types of indirect branches (indirect
+jump, indirect call, both, or none). An indirect branch to a non-BTI
+instruction or the wrong type of BTI instruction will raise a Branch Target
+Exception.
 
-With BTI, individual pages can be marked as guarded or unguarded.  Guarded
-pages are the ones where BTI applies. An indirect branch to a non-BTI or the
-wrong type of BTI instruction in a guarded page will raise a Branch Target
-Exception. The BTI instruction has been assigned to the hint space, therefore
-it will be executed as a no-op in cores that do not support BTI, aiding its
-adoption. Both Clang and GCC support generating BTI instructions, with the
+Both Clang and GCC support generating BTI instructions, with the
 `-mbranch-protection=bti` flag, or, to enable both BTI and return address
 signing with Pointer Authentication, `-mbranch-protection=standard`.
 
-### Issues with CFI implementation
+Two aspects of BTI can simplify its deployment: individual pages can be marked
+as guarded or unguarded, with BTI checks as described above only applying to
+indirect branches targeting guarded pages. In addition to this, the BTI
+instruction has been assigned to the hint space, therefore it will be executed
+as a no-op in cores that do not support BTI, aiding its adoption.
+
+#### CFI implementation pitfalls
 
 When implementing CFI measures like the ones described here, it is important to
 be aware of known weaknesses that affect similar schemes. [@Conti2015]
