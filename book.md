@@ -138,7 +138,8 @@ stacks](#stack-buffer-overflows). The answer was more ingenious ways to bypass
 these mitigations: [code reuse attacks](#code-reuse-attacks), starting with
 attacks like [return-into-libc](#code-reuse-attacks) [@Solar1997]. Code reuse
 attacks later evolved to [Return-Oriented Programming
-(ROP)](#code-reuse-attacks) [@Shacham2007] and even more complex techniques.
+(ROP)](#return-oriented-programming) [@Shacham2007] and even more complex
+techniques.
 
 To defend against code reuse attacks, the [Address Space Layout Randomization
 (ASLR)](#code-reuse-attacks) and [Control-Flow Integrity
@@ -388,10 +389,7 @@ copying it into `dst`, we have a potential for a buffer overflow.
 When looking at code generated for AArch64 with GCC 11.2[^build-options],
 the stack layout looks like this:
 
-![Stack frame layout for stack buffer overflow example](img/stack){ width=60% }
-
-\todo{Improve diagram to make the direction of the overflow clearer. One
-suggestion is to also draw the stack frame horizontally.}
+![Stack frame layout for stack buffer overflow example](img/stack-buffer-overflow){ width=80% }
 
 [^build-options]: The code is generated with the `-fno-stack-protector` option,
   to ensure GCC's stack guard feature is disabled. We also used the `-O1`
@@ -495,16 +493,200 @@ probably include, or be followed by, a section on the various sanitizers
 available (ASan, UBSan, etc).}
 
 ## Code reuse attacks
-\missingcontent{Discuss ROP, JOP, COOP and mitigations (ASLR, CFI etc)}
+
+In the early days of memory vulnerability exploitation, attackers could simply
+place shellcode\index{shellcode} of their choice in executable memory and jump
+to it. As non-executable stack and heap became mainstream, attackers started to
+reuse code already present in an application's binary and linked libraries
+instead. A variety of different techniques to this effect came to light.
+
+The simplest of these techniques is return-to-libc [@Solar1997]. Instead of
+returning to shellcode that the attacker has injected, the return address is
+modified to return into a library function, such as `system` or `exec`. This
+technique is simpler to use when arguments are also passed on the stack and
+can therefore be controlled with the same stack buffer overflow that is used
+to modify the address.
+
+### Return-oriented programming
+
+Return-to-libc attacks restrict an attacker to whole library functions. While
+this can lead to powerful attacks, it has also been demonstrated that it is
+possible to achieve arbitrary computation by combining a number of short
+instruction sequences ending in indirect control transfer instructions, known
+as **gadgets**\index{gadget}. The indirect control transfer instructions make
+it easy for an attacker to execute gadgets one after another, by controlling the
+memory or register that provides each control transfer instruction's target.
+
+In return-oriented programming (ROP)\index{return-oriented programming (ROP)}
+[@Shacham2007], each gadget performs a simple operation, for example setting a
+register, then pops a return address from the stack and returns to it. The
+attacker constructs a fake call stack (often called a ROP chain\index{ROP
+chain}) which ensures a number of gadgets are executed one after another, in
+order to perform a more complex operation.
+
+This will hopefully become more clear with an example: a ROP chain for AArch64
+Linux that starts a shell, by calling `execve` with `"/bin/sh"` as an argument.
+[The prototype of the `execve` library
+function](https://man7.org/linux/man-pages/man2/execve.2.html), which wraps the
+exec system call, is:
+
+```
+  int execve(const char *pathname, char *const argv[],
+             char *const envp[]);
+```
+For AArch64, `pathname` will be passed in the `x0` register, `argv` will be
+passed in `x1`, and `envp` in `x2`. For starting a shell, it is sufficient
+to:
+
+ * Make `x0` contain a pointer to `"/bin/sh"`.
+ * Make `x1` contain a pointer to an array of pointers with two elements:
+   * The first element is a pointer to `"/bin/sh"`.
+   * The second element is zero (`NULL`).
+ * Make `x2` contain zero (`NULL`).
+
+This can be achieved by chaining gadgets to set the registers `x0`, `x1`,
+`x2`, and then returning to `execve` in the C library.
+
+Let's assume we have the following gadgets:
+
+  1. A gadget that loads `x0` and `x1` from the stack:
+```
+  gadget_x0_x1:
+    ldp x0, x1, [sp]
+    ldp x20, x19, [sp, #64]
+    ldp x29, x30, [sp, #32]
+    ldr x21, [sp, #48]
+    add sp, sp, #0x50
+    ret
+```
+
+ 2. A gadget that sets `x2` to zero, but also clears `x0` as a side-effect:
+```
+  gadget_x2:
+    mov x2, xzr
+    mov x0, x2
+    ldp x20, x19, [sp, #32]
+    ldp x29, x30, [sp]
+    ldr x21, [sp, #16]
+    add sp, sp, #0x30
+    ret
+```
+
+\todo{Explain how these gadgets could result from C/C++ code. The current
+versions are slightly tweaked by hand to have more manageable offsets.}
+
+Both gadgets also clobber several uninteresting registers, but since
+`gadget_x2` also clears `x0`, it becomes clear that we should use a
+ROP chain that:
+
+1. Returns to `gadget_x2`, which sets `x2` to zero.
+2. Returns to `gadget_x0_x1`, which sets `x0` and `x1` to the desired values.
+3. Returns to `execve`.
+
+Figure @fig:rop-control-flow shows this control flow.
+
+![ROP example control flow](img/rop-control-flow){ width=30% #fig:rop-control-flow }
+
+![ROP example fake call stack](img/rop-call-stack){ width=80% #fig:rop-call-stack }
+
+We can achieve this by constructing the fake call stack shown in figure
+@fig:rop-call-stack, where "Original frame" marks the frame in which the
+address of `gadget_x2` has replaced a saved return address that will be loaded
+and returned to in the future. As an alternative, an attacker could place this
+fake call stack somewhere else, for example on the heap, and use a primitive
+that changes the stack pointer's value instead. This is known as stack
+pivoting\index{stack pivoting}.
+
+Note that this fake call stack contains NULL bytes, even without considering
+the exact values of the various return addresses included. An overflow bug that
+is based on a C-style string operation would not allow an attacker to replace
+the stack contents with this fake call stack in one go, since C-style strings
+are null-terminated and copying the fake stack contents would stop once the
+first NULL byte is encountered. The ROP chain would therefore need to be
+adjusted so that it doesn't contain NULL bytes, for example by initially
+replacing the NULL bytes with a different byte and adding some more gadgets to
+the ROP chain that write zero to those stack locations.
+
+A question that comes up when looking at the stack diagram is "how do we
+know the addresses of these gadgets"? We will talk a bit more about this in
+the next section.
+
+ROP gadgets like the ones used here may be easy to identify by visual
+inspection of a disassembled binary, but it's common for attackers to use
+"gadget scanner"\index{gadget scanner} tools in order to discover large numbers
+of gadgets automatically. Such tools can also be useful to a compiler engineer
+working on a code reuse attack mitigation, as they can point out code sequences
+that should be protected and have been missed.
+
+### Jump-oriented programming
+
+Jump-oriented programming (JOP)\index{jump-oriented programming (JOP)}
+[@Bletsch2011] is a variation on ROP, where gadgets can also end in indirect
+branch instructions instead of return instructions.  The attacker chains a
+number of such gadgets through a dispatcher gadget\index{dispatcher gadget},
+which loads pointers one after another from an array of pointers, and branches
+to each one in return. The gadgets used must be set up so that they branch or
+return back to the dispatcher after they're done. This is demonstrated in
+figure @fig:jop.
+
+![JOP example](img/jop){ width=50% #fig:jop }
+
+In figure @fig:jop, `x4` initially points to the "dispatch table", which has
+been modified by the attacker to contain the addresses of the three gadgets
+they want to execute. The dispatcher gadget loads each address in the dispatch
+table one by one and branches to them. The first gadget loads `x0` and `x1`
+from the stack, where the attacker has placed the inputs of their choice. It
+then loads its return address, also modified by the attacker so that it points
+back to the dispatcher gadget, and returns to it. The dispatcher branches to
+the next gadget, which adds `x0` and `x1` and leaves the result in `x0`,
+branching back to the dispatcher through another value loaded from the stack
+into `x2`. The final gadget stores the result of the addition, which remains in
+`x0`, to the stack, before branching to `x2`, which still points to the
+dispatcher gadget.
+
+\todo{The gadgets in the figure are made up, chosen to highlight that each
+gadget can end in a different type of indirect control flow transfer
+instruction. Consider replacing them with more realistic ones.}
+
+### Counterfeit Object-oriented programming
+
+Counterfeit Object-oriented programming (COOP)\index{counterfeit
+object-oriented programming (COOP)} [@Schuster2015] is a code reuse technique
+that takes advantage of C++ virtual function calls.  A COOP attack takes
+advantage of existing virtual functions and
+[vtables](https://en.wikipedia.org/wiki/Virtual_method_table), and creates fake
+objects pointing to these existing vtables. The virtual functions used as
+gadgets in the attack are called vfgadgets. To chain vfgadgets together, the
+attacker uses a "main loop gadget", similar to JOP's dispatcher gadget, which
+is itself a virtual function that loops over a container of pointers to C++
+objects and invokes a virtual function on these objects. [@Schuster2015]
+describes the attack in more detail. It is specifically mentioned here as an
+example of an attack that doesn't depend on directly replacing return addresses
+and code pointers, like ROP and JOP do. Such language-specific attacks are
+important to consider when considering mitigations against code reuse attacks,
+which will be the topic of the next section.
+
+### Sigreturn-oriented programming
+
+One last example of a code reuse attack that is worth mentioning here is
+sigreturn-oriented programming (SROP)\index{sigreturn-oriented programming
+(SROP)} [@Bosman2014]. It is a special case of ROP where the attacker creates a
+fake signal handler frame and calls `sigreturn`. `sigreturn` is a system call
+on many UNIX-type systems which is normally called upon return from a signal
+handler, and restores the state of the process based on the state that has been
+saved on the signal handler's stack by the kernel previously, on entry to the
+signal handler.  The ability to fake a signal handler frame and call
+`sigreturn` gives an attacker a simple way to control the state of the program.
+
+## Mitigations against code reuse attacks
+
+\missingcontent{Describe ASLR, CFI etc}
 
 ## Non-control data exploits
 \missingcontent{Discuss data-oriented programming and other attacks}
 
 ## Hardware support for protection against memory vulnerabilities
 \missingcontent{Describe architectural features for mitigating memory vulnerabilities and for CFI}
-
-## Other issues
-\missingcontent{Mention other issues, e.g. sigreturn-oriented programming}
 
 ## JIT compiler vulnerabilities
 \missingcontent{Write section on JIT compiler vulnerabilities}
