@@ -128,7 +128,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2021-2022 Arm Limited
   \href{mailto:open-source-office@arm.com}{\nolinkurl{open-source-office@arm.com}}\\
 
-Version 0-78-gafcf769
+Version 0-79-g77ff053
 \clearpage
 
 {
@@ -273,7 +273,8 @@ stacks}. The answer was more ingenious ways to bypass these mitigations:
 with attacks like
 \protect\hyperlink{code-reuse-attacks}{return-into-libc} (Solar Designer
 \protect\hyperlink{ref-Solar1997}{1997}). Code reuse attacks later
-evolved to \protect\hyperlink{code-reuse-attacks}{Return-Oriented
+evolved to
+\protect\hyperlink{return-oriented-programming}{Return-Oriented
 Programming (ROP)} (Shacham \protect\hyperlink{ref-Shacham2007}{2007})
 and even more complex techniques.
 
@@ -587,14 +588,11 @@ When looking at code generated for AArch64 with GCC 11.2\footnote{The
 
 \begin{figure}
 \centering
-\includegraphics[width=0.6\textwidth,height=\textheight]{img/stack.pdf}
+\includegraphics[width=0.8\textwidth,height=\textheight]{img/stack-buffer-overflow.pdf}
 \caption{Stack frame layout for stack buffer overflow example}
 \end{figure}
 
 \end{fignos:no-prefix-figure-caption}
-
-\todo{Improve diagram to make the direction of the overflow clearer. One
-suggestion is to also draw the stack frame horizontally.}
 
 The exact details of the stack frame layout, including the ordering of
 variables and the exact control information stored, will depend on the
@@ -707,7 +705,276 @@ available (ASan, UBSan, etc).}
 \hypertarget{code-reuse-attacks}{%
 \section{Code reuse attacks}\label{code-reuse-attacks}}
 
-\missingcontent{Discuss ROP, JOP, COOP and mitigations (ASLR, CFI etc)}
+In the early days of memory vulnerability exploitation, attackers could
+simply place shellcode\index{shellcode} of their choice in executable
+memory and jump to it. As non-executable stack and heap became
+mainstream, attackers started to reuse code already present in an
+application's binary and linked libraries instead. A variety of
+different techniques to this effect came to light.
+
+The simplest of these techniques is return-to-libc (Solar Designer
+\protect\hyperlink{ref-Solar1997}{1997}). Instead of returning to
+shellcode that the attacker has injected, the return address is modified
+to return into a library function, such as \texttt{system} or
+\texttt{exec}. This technique is simpler to use when arguments are also
+passed on the stack and can therefore be controlled with the same stack
+buffer overflow that is used to modify the address.
+
+\hypertarget{return-oriented-programming}{%
+\subsection{Return-oriented
+programming}\label{return-oriented-programming}}
+
+Return-to-libc attacks restrict an attacker to whole library functions.
+While this can lead to powerful attacks, it has also been demonstrated
+that it is possible to achieve arbitrary computation by combining a
+number of short instruction sequences ending in indirect control
+transfer instructions, known as \textbf{gadgets}\index{gadget}. The
+indirect control transfer instructions make it easy for an attacker to
+execute gadgets one after another, by controlling the memory or register
+that provides each control transfer instruction's target.
+
+In return-oriented programming
+(ROP)\index{return-oriented programming (ROP)} (Shacham
+\protect\hyperlink{ref-Shacham2007}{2007}), each gadget performs a
+simple operation, for example setting a register, then pops a return
+address from the stack and returns to it. The attacker constructs a fake
+call stack (often called a ROP chain\index{ROP
+chain}) which ensures a number of gadgets are executed one after
+another, in order to perform a more complex operation.
+
+This will hopefully become more clear with an example: a ROP chain for
+AArch64 Linux that starts a shell, by calling \texttt{execve} with
+\texttt{"/bin/sh"} as an argument.
+\href{https://man7.org/linux/man-pages/man2/execve.2.html}{The prototype
+of the \texttt{execve} library function}, which wraps the exec system
+call, is:
+
+\begin{verbatim}
+  int execve(const char *pathname, char *const argv[],
+             char *const envp[]);
+\end{verbatim}
+
+For AArch64, \texttt{pathname} will be passed in the \texttt{x0}
+register, \texttt{argv} will be passed in \texttt{x1}, and \texttt{envp}
+in \texttt{x2}. For starting a shell, it is sufficient to:
+
+\begin{itemize}
+\tightlist
+\item
+  Make \texttt{x0} contain a pointer to \texttt{"/bin/sh"}.
+\item
+  Make \texttt{x1} contain a pointer to an array of pointers with two
+  elements:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The first element is a pointer to \texttt{"/bin/sh"}.
+  \item
+    The second element is zero (\texttt{NULL}).
+  \end{itemize}
+\item
+  Make \texttt{x2} contain zero (\texttt{NULL}).
+\end{itemize}
+
+This can be achieved by chaining gadgets to set the registers
+\texttt{x0}, \texttt{x1}, \texttt{x2}, and then returning to
+\texttt{execve} in the C library.
+
+Let's assume we have the following gadgets:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A gadget that loads \texttt{x0} and \texttt{x1} from the stack:
+\end{enumerate}
+
+\begin{verbatim}
+  gadget_x0_x1:
+    ldp x0, x1, [sp]
+    ldp x20, x19, [sp, #64]
+    ldp x29, x30, [sp, #32]
+    ldr x21, [sp, #48]
+    add sp, sp, #0x50
+    ret
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  A gadget that sets \texttt{x2} to zero, but also clears \texttt{x0} as
+  a side-effect:
+\end{enumerate}
+
+\begin{verbatim}
+  gadget_x2:
+    mov x2, xzr
+    mov x0, x2
+    ldp x20, x19, [sp, #32]
+    ldp x29, x30, [sp]
+    ldr x21, [sp, #16]
+    add sp, sp, #0x30
+    ret
+\end{verbatim}
+
+\todo{Explain how these gadgets could result from C/C++ code. The current
+versions are slightly tweaked by hand to have more manageable offsets.}
+
+Both gadgets also clobber several uninteresting registers, but since
+\texttt{gadget\_x2} also clears \texttt{x0}, it becomes clear that we
+should use a ROP chain that:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Returns to \texttt{gadget\_x2}, which sets \texttt{x2} to zero.
+\item
+  Returns to \texttt{gadget\_x0\_x1}, which sets \texttt{x0} and
+  \texttt{x1} to the desired values.
+\item
+  Returns to \texttt{execve}.
+\end{enumerate}
+
+Figure \ref{fig:rop-control-flow} shows this control flow.
+
+\begin{figure}
+\hypertarget{fig:rop-control-flow}{%
+\centering
+\includegraphics[width=0.3\textwidth,height=\textheight]{img/rop-control-flow.pdf}
+\caption{ROP example control flow}\label{fig:rop-control-flow}
+}
+\end{figure}
+
+\begin{figure}
+\hypertarget{fig:rop-call-stack}{%
+\centering
+\includegraphics[width=0.8\textwidth,height=\textheight]{img/rop-call-stack.pdf}
+\caption{ROP example fake call stack}\label{fig:rop-call-stack}
+}
+\end{figure}
+
+We can achieve this by constructing the fake call stack shown in figure
+\ref{fig:rop-call-stack}, where ``Original frame'' marks the frame in
+which the address of \texttt{gadget\_x2} has replaced a saved return
+address that will be loaded and returned to in the future. As an
+alternative, an attacker could place this fake call stack somewhere
+else, for example on the heap, and use a primitive that changes the
+stack pointer's value instead. This is known as stack
+pivoting\index{stack pivoting}.
+
+Note that this fake call stack contains NULL bytes, even without
+considering the exact values of the various return addresses included.
+An overflow bug that is based on a C-style string operation would not
+allow an attacker to replace the stack contents with this fake call
+stack in one go, since C-style strings are null-terminated and copying
+the fake stack contents would stop once the first NULL byte is
+encountered. The ROP chain would therefore need to be adjusted so that
+it doesn't contain NULL bytes, for example by initially replacing the
+NULL bytes with a different byte and adding some more gadgets to the ROP
+chain that write zero to those stack locations.
+
+A question that comes up when looking at the stack diagram is ``how do
+we know the addresses of these gadgets''? We will talk a bit more about
+this in the next section.
+
+ROP gadgets like the ones used here may be easy to identify by visual
+inspection of a disassembled binary, but it's common for attackers to
+use ``gadget scanner''\index{gadget scanner} tools in order to discover
+large numbers of gadgets automatically. Such tools can also be useful to
+a compiler engineer working on a code reuse attack mitigation, as they
+can point out code sequences that should be protected and have been
+missed.
+
+\hypertarget{jump-oriented-programming}{%
+\subsection{Jump-oriented programming}\label{jump-oriented-programming}}
+
+Jump-oriented programming (JOP)\index{jump-oriented programming (JOP)}
+(Bletsch et al. \protect\hyperlink{ref-Bletsch2011}{2011}) is a
+variation on ROP, where gadgets can also end in indirect branch
+instructions instead of return instructions. The attacker chains a
+number of such gadgets through a dispatcher
+gadget\index{dispatcher gadget}, which loads pointers one after another
+from an array of pointers, and branches to each one in return. The
+gadgets used must be set up so that they branch or return back to the
+dispatcher after they're done. This is demonstrated in figure
+\ref{fig:jop}.
+
+\begin{figure}
+\hypertarget{fig:jop}{%
+\centering
+\includegraphics[width=0.5\textwidth,height=\textheight]{img/jop.pdf}
+\caption{JOP example}\label{fig:jop}
+}
+\end{figure}
+
+In figure \ref{fig:jop}, \texttt{x4} initially points to the ``dispatch
+table'', which has been modified by the attacker to contain the
+addresses of the three gadgets they want to execute. The dispatcher
+gadget loads each address in the dispatch table one by one and branches
+to them. The first gadget loads \texttt{x0} and \texttt{x1} from the
+stack, where the attacker has placed the inputs of their choice. It then
+loads its return address, also modified by the attacker so that it
+points back to the dispatcher gadget, and returns to it. The dispatcher
+branches to the next gadget, which adds \texttt{x0} and \texttt{x1} and
+leaves the result in \texttt{x0}, branching back to the dispatcher
+through another value loaded from the stack into \texttt{x2}. The final
+gadget stores the result of the addition, which remains in \texttt{x0},
+to the stack, before branching to \texttt{x2}, which still points to the
+dispatcher gadget.
+
+\todo{The gadgets in the figure are made up, chosen to highlight that each
+gadget can end in a different type of indirect control flow transfer
+instruction. Consider replacing them with more realistic ones.}
+
+\hypertarget{counterfeit-object-oriented-programming}{%
+\subsection{Counterfeit Object-oriented
+programming}\label{counterfeit-object-oriented-programming}}
+
+Counterfeit Object-oriented programming (COOP)\index{counterfeit
+object-oriented programming (COOP)} (Schuster et al.
+\protect\hyperlink{ref-Schuster2015}{2015}) is a code reuse technique
+that takes advantage of C++ virtual function calls. A COOP attack takes
+advantage of existing virtual functions and
+\href{https://en.wikipedia.org/wiki/Virtual_method_table}{vtables}, and
+creates fake objects pointing to these existing vtables. The virtual
+functions used as gadgets in the attack are called vfgadgets. To chain
+vfgadgets together, the attacker uses a ``main loop gadget'', similar to
+JOP's dispatcher gadget, which is itself a virtual function that loops
+over a container of pointers to C++ objects and invokes a virtual
+function on these objects. (Schuster et al.
+\protect\hyperlink{ref-Schuster2015}{2015}) describes the attack in more
+detail. It is specifically mentioned here as an example of an attack
+that doesn't depend on directly replacing return addresses and code
+pointers, like ROP and JOP do. Such language-specific attacks are
+important to consider when considering mitigations against code reuse
+attacks, which will be the topic of the next section.
+
+\hypertarget{sigreturn-oriented-programming}{%
+\subsection{Sigreturn-oriented
+programming}\label{sigreturn-oriented-programming}}
+
+One last example of a code reuse attack that is worth mentioning here is
+sigreturn-oriented programming
+(SROP)\index{sigreturn-oriented programming
+(SROP)} (Bosman and Bos \protect\hyperlink{ref-Bosman2014}{2014}). It is
+a special case of ROP where the attacker creates a fake signal handler
+frame and calls \texttt{sigreturn}. \texttt{sigreturn} is a system call
+on many UNIX-type systems which is normally called upon return from a
+signal handler, and restores the state of the process based on the state
+that has been saved on the signal handler's stack by the kernel
+previously, on entry to the signal handler. The ability to fake a signal
+handler frame and call \texttt{sigreturn} gives an attacker a simple way
+to control the state of the program.
+
+\hypertarget{mitigations-against-code-reuse-attacks}{%
+\section{Mitigations against code reuse
+attacks}\label{mitigations-against-code-reuse-attacks}}
+
+\missingcontent{Describe ASLR, CFI etc}
 
 \hypertarget{non-control-data-exploits}{%
 \section{Non-control data exploits}\label{non-control-data-exploits}}
@@ -719,11 +986,6 @@ available (ASan, UBSan, etc).}
 vulnerabilities}\label{hardware-support-for-protection-against-memory-vulnerabilities}}
 
 \missingcontent{Describe architectural features for mitigating memory vulnerabilities and for CFI}
-
-\hypertarget{other-issues}{%
-\section{Other issues}\label{other-issues}}
-
-\missingcontent{Mention other issues, e.g. sigreturn-oriented programming}
 
 \hypertarget{jit-compiler-vulnerabilities}{%
 \section{JIT compiler
@@ -1212,6 +1474,19 @@ Beer, Ian, and Samuel Groß. 2021. ``A Deep Dive into an Nso Zero-Click
 iMessage Exploit: Remote Code Execution.'' 2021.
 \url{https://googleprojectzero.blogspot.com/2021/12/a-deep-dive-into-nso-zero-click.html}.
 
+\leavevmode\hypertarget{ref-Bletsch2011}{}%
+Bletsch, Tyler, Xuxian Jiang, Vince W. Freeh, and Zhenkai Liang. 2011.
+``Jump-Oriented Programming: A New Class of Code-Reuse Attack.'' In
+\emph{Proceedings of the 6th Acm Symposium on Information, Computer and
+Communications Security}, 30--40. ASIACCS '11. New York, NY, USA:
+Association for Computing Machinery.
+\url{https://doi.org/10.1145/1966913.1966919}.
+
+\leavevmode\hypertarget{ref-Bosman2014}{}%
+Bosman, Erik, and Herbert Bos. 2014. ``Framing Signals - a Return to
+Portable Shellcode.'' In \emph{2014 Ieee Symposium on Security and
+Privacy}, 243--58. \url{https://doi.org/10.1109/SP.2014.23}.
+
 \leavevmode\hypertarget{ref-Briongos2020}{}%
 Briongos, Samira, Pedro Malagon, Jose M. Moya, and Thomas Eisenbarth.
 2020. ``RELOAD+REFRESH: Abusing Cache Replacement Policies to Perform
@@ -1304,6 +1579,13 @@ Percival, Colin. 2005. ``Cache Missing for Fun and Profit.'' BSDCan.
 \leavevmode\hypertarget{ref-Pornin2018}{}%
 Pornin, Thomas. 2018. ``Why Constant-Time Crypto?'' 2018.
 \url{https://www.bearssl.org/constanttime.html}.
+
+\leavevmode\hypertarget{ref-Schuster2015}{}%
+Schuster, F., T. Tendyck, C. Liebchen, L. Davi, A. Sadeghi, and T. Holz.
+2015. ``Counterfeit Object-Oriented Programming: On the Difficulty of
+Preventing Code Reuse Attacks in C++ Applications.'' In \emph{2015 Ieee
+Symposium on Security and Privacy (Sp)}, 745--62. Los Alamitos, CA, USA:
+IEEE Computer Society. \url{https://doi.org/10.1109/SP.2015.51}.
 
 \leavevmode\hypertarget{ref-Seacord2013}{}%
 Seacord, Robert C. 2013. \emph{Secure Coding in c and C++}. 2nd ed.

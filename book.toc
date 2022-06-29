@@ -1,31 +1,35 @@
-\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Why an open source book?}{4}{section.1.1}%
-\contentsline {chapter}{\numberline {2}Memory vulnerability based attacks and mitigations}{5}{chapter.2}%
-\contentsline {section}{\numberline {2.1}A bit of background on memory vulnerabilities}{5}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Exploitation primitives}{6}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Stack buffer overflows}{9}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Code reuse attacks}{12}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Non-control data exploits}{12}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Hardware support for protection against memory vulnerabilities}{12}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Other issues}{12}{section.2.7}%
-\contentsline {section}{\numberline {2.8}JIT compiler vulnerabilities}{12}{section.2.8}%
-\contentsline {chapter}{\numberline {3}Covert channels and side-channels}{13}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Cache covert channels}{13}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Typical CPU cache architecture}{14}{subsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.1.1}Indexing in a set-associative cache}{15}{subsubsection.3.1.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Operation of cache side-channels}{16}{subsection.3.1.2}%
-\contentsline {subsubsection}{\numberline {3.1.2.1}Flush+Reload}{16}{subsubsection.3.1.2.1}%
-\contentsline {subsubsection}{\numberline {3.1.2.2}Prime+Probe}{17}{subsubsection.3.1.2.2}%
-\contentsline {subsubsection}{\numberline {3.1.2.3}General schema for cache covert channels}{17}{subsubsection.3.1.2.3}%
-\contentsline {section}{\numberline {3.2}Timing covert channels}{17}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Resource contention channels}{17}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Channels making use of aliasing in branch predictors and other predictors}{17}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Physical access side-channel attacks}{18}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Remote access side-channel attacks}{19}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Timing attacks}{19}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Cache side-channel attacks}{20}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Supply chain attacks}{21}{chapter.6}%
-\contentsline {section}{\numberline {6.1}History of supply chain attacks}{21}{section.6.1}%
-\contentsline {chapter}{\numberline {7}Other security topics relevant for compiler developers}{23}{chapter.7}%
-\contentsline {chapter}{Appendix: contribution guidelines}{24}{chapter*.26}%
-\contentsline {chapter}{References}{27}{chapter*.29}%
+\contentsline {chapter}{\numberline {1}Introduction}{4}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Why an open source book?}{5}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Memory vulnerability based attacks and mitigations}{6}{chapter.2}%
+\contentsline {section}{\numberline {2.1}A bit of background on memory vulnerabilities}{6}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Exploitation primitives}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Stack buffer overflows}{10}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Code reuse attacks}{13}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Return-oriented programming}{13}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Jump-oriented programming}{15}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Counterfeit Object-oriented programming}{17}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}Sigreturn-oriented programming}{17}{subsection.2.4.4}%
+\contentsline {section}{\numberline {2.5}Mitigations against code reuse attacks}{18}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Non-control data exploits}{18}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Hardware support for protection against memory vulnerabilities}{18}{section.2.7}%
+\contentsline {section}{\numberline {2.8}JIT compiler vulnerabilities}{18}{section.2.8}%
+\contentsline {chapter}{\numberline {3}Covert channels and side-channels}{19}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Cache covert channels}{19}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Typical CPU cache architecture}{20}{subsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.1.1}Indexing in a set-associative cache}{21}{subsubsection.3.1.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Operation of cache side-channels}{22}{subsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.1}Flush+Reload}{22}{subsubsection.3.1.2.1}%
+\contentsline {subsubsection}{\numberline {3.1.2.2}Prime+Probe}{23}{subsubsection.3.1.2.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.3}General schema for cache covert channels}{23}{subsubsection.3.1.2.3}%
+\contentsline {section}{\numberline {3.2}Timing covert channels}{23}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Resource contention channels}{23}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Channels making use of aliasing in branch predictors and other predictors}{23}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Physical access side-channel attacks}{24}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Remote access side-channel attacks}{25}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Timing attacks}{25}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Cache side-channel attacks}{26}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Supply chain attacks}{27}{chapter.6}%
+\contentsline {section}{\numberline {6.1}History of supply chain attacks}{27}{section.6.1}%
+\contentsline {chapter}{\numberline {7}Other security topics relevant for compiler developers}{29}{chapter.7}%
+\contentsline {chapter}{Appendix: contribution guidelines}{30}{chapter*.29}%
+\contentsline {chapter}{References}{33}{chapter*.32}%

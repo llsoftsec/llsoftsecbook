@@ -1,90 +1,105 @@
 \begin{theindex}
 
-  \item arbitrary code execution, \hyperpage{8}
+  \item arbitrary code execution, \hyperpage{9}
 
   \indexspace
 
-  \item cache, \hyperpage{13}
-  \item cache access time, \hyperpage{14}
-  \item cache block, \hyperpage{15}
-  \item cache coherency, \hyperpage{16}
-  \item cache eviction, \hyperpage{15}
-  \item cache hit, \hyperpage{14}
-  \item cache line, \hyperpage{15}
-  \item cache miss, \hyperpage{14}
-  \item cache replacement policy, \hyperpage{15}
-  \item cache set, \hyperpage{15}
-  \item cache size, \hyperpage{14}
-  \item Collide+Probe, \hyperpage{17}
-  \item covert channel, \hyperpage{13}
+  \item cache, \hyperpage{19}
+  \item cache access time, \hyperpage{20}
+  \item cache block, \hyperpage{21}
+  \item cache coherency, \hyperpage{22}
+  \item cache eviction, \hyperpage{21}
+  \item cache hit, \hyperpage{20}
+  \item cache line, \hyperpage{21}
+  \item cache miss, \hyperpage{20}
+  \item cache replacement policy, \hyperpage{21}
+  \item cache set, \hyperpage{21}
+  \item cache size, \hyperpage{20}
+  \item Collide+Probe, \hyperpage{23}
+  \item counterfeit object-oriented programming (COOP), \hyperpage{17}
+  \item covert channel, \hyperpage{19}
 
   \indexspace
 
-  \item direct-mapped cache, \hyperpage{15}
+  \item direct-mapped cache, \hyperpage{21}
+  \item dispatcher gadget, \hyperpage{15}
 
   \indexspace
 
-  \item Evict+Reload, \hyperpage{17}
-  \item Evict+Time, \hyperpage{17}
-  \item exploit primitive, \hyperpage{6}
+  \item Evict+Reload, \hyperpage{23}
+  \item Evict+Time, \hyperpage{23}
+  \item exploit primitive, \hyperpage{7}
 
   \indexspace
 
-  \item Flush+Flush, \hyperpage{17}
-  \item Flush+Prefetch, \hyperpage{17}
-  \item Flush+Reload, \hyperpage{16}
-  \item fully-associative cache, \hyperpage{15}
+  \item Flush+Flush, \hyperpage{23}
+  \item Flush+Prefetch, \hyperpage{23}
+  \item Flush+Reload, \hyperpage{22}
+  \item fully-associative cache, \hyperpage{21}
 
   \indexspace
 
-  \item interactive attack, \hyperpage{7}
+  \item gadget, \hyperpage{13}
+  \item gadget scanner, \hyperpage{15}
 
   \indexspace
 
-  \item locality of reference, \hyperpage{15}
-  \item LRU replacement policy, \hyperpage{15}
+  \item interactive attack, \hyperpage{8}
 
   \indexspace
 
-  \item measurement sequence, \hyperpage{17}
-  \item memory access time, \hyperpage{14}
-  \item multi-level cache, \hyperpage{14}
+  \item jump-oriented programming (JOP), \hyperpage{15}
 
   \indexspace
 
-  \item non-interactive (one-shot)   attack, \hyperpage{7}
+  \item locality of reference, \hyperpage{21}
+  \item LRU replacement policy, \hyperpage{21}
 
   \indexspace
 
-  \item Prime+Probe, \hyperpage{17}
-  \item principle of locality, \hyperpage{15}
-  \item pseudo-LRU replacement policy, \hyperpage{15}
+  \item measurement sequence, \hyperpage{23}
+  \item memory access time, \hyperpage{20}
+  \item multi-level cache, \hyperpage{20}
 
   \indexspace
 
-  \item random replacement policy, \hyperpage{15}
-  \item read primitive, \hyperpage{7}
-  \item Reload+Refresh, \hyperpage{17}
-  \item reset sequence, \hyperpage{17}
+  \item non-interactive (one-shot)   attack, \hyperpage{8}
 
   \indexspace
 
-  \item set-associative cache, \hyperpage{15}
-  \item shellcode, \hyperpage{10}
-  \item side-channel, \hyperpage{13}
-  \item spy, \hyperpage{13}
+  \item Prime+Probe, \hyperpage{23}
+  \item principle of locality, \hyperpage{21}
+  \item pseudo-LRU replacement policy, \hyperpage{21}
 
   \indexspace
 
-  \item timing attacks, \hyperpage{19}
-  \item trigger sequence, \hyperpage{17}
+  \item random replacement policy, \hyperpage{21}
+  \item read primitive, \hyperpage{8}
+  \item Reload+Refresh, \hyperpage{23}
+  \item reset sequence, \hyperpage{23}
+  \item return-oriented programming (ROP), \hyperpage{13}
+  \item ROP chain, \hyperpage{13}
 
   \indexspace
 
-  \item victim, \hyperpage{13}
+  \item set-associative cache, \hyperpage{21}
+  \item shellcode, \hyperpage{11}, \hyperpage{13}
+  \item side-channel, \hyperpage{19}
+  \item sigreturn-oriented programming (SROP), \hyperpage{17}
+  \item spy, \hyperpage{19}
+  \item stack pivoting, \hyperpage{14}
 
   \indexspace
 
-  \item write primitive, \hyperpage{6}
+  \item timing attacks, \hyperpage{25}
+  \item trigger sequence, \hyperpage{23}
+
+  \indexspace
+
+  \item victim, \hyperpage{19}
+
+  \indexspace
+
+  \item write primitive, \hyperpage{7}
 
 \end{theindex}
