@@ -128,7 +128,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2021-2022 Arm Limited
   \href{mailto:open-source-office@arm.com}{\nolinkurl{open-source-office@arm.com}}\\
 
-Version 0-80-g26f97d3
+Version 0-81-gb7cbe19
 \clearpage
 
 {
@@ -692,11 +692,6 @@ functions, compilers can also implement automatic bounds checking for
 arrays where the array bound can be statically determined
 (\texttt{-fsanitize=bounds}), as well as various other ``sanitizers''.
 We will describe these measures in following sections.
-
-\todo{Rethink the later sections of this chapter and the order in which issues
-and mitigations are presented. The "non-control data exploits" section should
-probably include, or be followed by, a section on the various sanitizers
-available (ASan, UBSan, etc).}
 
 \hypertarget{code-reuse-attacks}{%
 \section{Code reuse attacks}\label{code-reuse-attacks}}
@@ -1284,16 +1279,18 @@ time to turn our attention to a different type of attacks, which do not
 try to overwrite code pointers: attacks against non-control data, which
 will be the topic of the next section.
 
-\hypertarget{non-control-data-exploits}{%
-\section{Non-control data exploits}\label{non-control-data-exploits}}
+\hypertarget{non-control-data-attacks}{%
+\section{Non-control data attacks}\label{non-control-data-attacks}}
 
-\missingcontent{Discuss data-oriented programming and other attacks}
+\missingcontent{Discuss data-oriented programming and other similar attacks}
 
-\hypertarget{hardware-support-for-protection-against-memory-vulnerabilities}{%
-\section{Hardware support for protection against memory
-vulnerabilities}\label{hardware-support-for-protection-against-memory-vulnerabilities}}
+\hypertarget{preventing-and-detecting-memory-errors}{%
+\section{Preventing and detecting memory
+errors}\label{preventing-and-detecting-memory-errors}}
 
-\missingcontent{Describe architectural features for mitigating memory vulnerabilities and for CFI}
+\missingcontent{Describe various mechanisms for detecting memory errors, both
+software-based and hardware-based, e.g. Clang address sanitizer, PAuth-based
+pointer integrity schemes, MTE etc}
 
 \hypertarget{jit-compiler-vulnerabilities}{%
 \section{JIT compiler

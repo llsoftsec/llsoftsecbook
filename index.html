@@ -84,7 +84,7 @@ text-justify: auto;
 <p>
   Copyright 2021-2022 Arm Limited <a href="mailto:open-source-office@arm.com" class="email">open-source-office@arm.com</a><br />
 </p>
-<p>Version: 0-80-g26f97d3</p>
+<p>Version: 0-81-gb7cbe19</p>
 
 </header>
 <nav id="TOC">
@@ -106,8 +106,8 @@ text-justify: auto;
 <li><a href="#aslr"><span class="toc-section-number">2.5.1</span> ASLR <span>§</span></a></li>
 <li><a href="#cfi"><span class="toc-section-number">2.5.2</span> CFI <span>§</span></a></li>
 </ul></li>
-<li><a href="#non-control-data-exploits"><span class="toc-section-number">2.6</span> Non-control data exploits <span>§</span></a></li>
-<li><a href="#hardware-support-for-protection-against-memory-vulnerabilities"><span class="toc-section-number">2.7</span> Hardware support for protection against memory vulnerabilities <span>§</span></a></li>
+<li><a href="#non-control-data-attacks"><span class="toc-section-number">2.6</span> Non-control data attacks <span>§</span></a></li>
+<li><a href="#preventing-and-detecting-memory-errors"><span class="toc-section-number">2.7</span> Preventing and detecting memory errors <span>§</span></a></li>
 <li><a href="#jit-compiler-vulnerabilities"><span class="toc-section-number">2.8</span> JIT compiler vulnerabilities <span>§</span></a></li>
 </ul></li>
 <li><a href="#covert-channels-and-side-channels"><span class="toc-section-number">3</span> Covert channels and side-channels <span>§</span></a><ul>
@@ -247,7 +247,6 @@ int main(int argc, char* argv[]) {
 <p>Many buffer overflow vulnerabilities result from the use of unsafe library functions, such as <code>gets</code>, or from the unsafe use of library functions such as <code>strcpy</code>. There is extensive literature on writing secure C/C++ code, for example <span class="citation" data-cites="Seacord2013">(Seacord <a href="#ref-Seacord2013">2013</a>)</span> and <span class="citation" data-cites="Dowd2006">(Dowd, McDonald, and Schuh <a href="#ref-Dowd2006">2006</a>)</span>. A different approach to limiting the effects of overflows is library function hardening, which aims to detect buffer overflows and terminate the program gracefully. This involves the introduction of feature macros like <code>_FORTIFY_SOURCE</code> <span class="citation" data-cites="Sharma2014">(Sharma <a href="#ref-Sharma2014">2014</a>)</span>.</p>
 <p>Finally, it’s important to mention that not all buffer overflows aim to overwrite a saved return address. There are many cases where a buffer overflow can overwrite other data adjacent to the buffer, for example an adjacent variable that determines whether authorization was successful, or a function pointer that, when modified, can modify the program’s control flow according to the attacker’s wishes.</p>
 <p>Some of these vulnerabilities can be mitigated with the measures described in this section, but often more general measures to ensure memory safety or <a href="#cfi">Control-Flow Integrity</a> are necessary. For example, in addition to the hardening of specific library functions, compilers can also implement automatic bounds checking for arrays where the array bound can be statically determined (<code>-fsanitize=bounds</code>), as well as various other “sanitizers”. We will describe these measures in following sections.</p>
-
 <h2 id="code-reuse-attacks"><span class="header-section-number">2.4</span> Code reuse attacks <a href="#code-reuse-attacks" class="selflink">§</a></h2>
 <p>In the early days of memory vulnerability exploitation, attackers could simply place shellcode of their choice in executable memory and jump to it. As non-executable stack and heap became mainstream, attackers started to reuse code already present in an application’s binary and linked libraries instead. A variety of different techniques to this effect came to light.</p>
 <p>The simplest of these techniques is return-to-libc <span class="citation" data-cites="Solar1997">(Solar Designer <a href="#ref-Solar1997">1997</a>)</span>. Instead of returning to shellcode that the attacker has injected, the return address is modified to return into a library function, such as <code>system</code> or <code>exec</code>. This technique is simpler to use when arguments are also passed on the stack and can therefore be controlled with the same stack buffer overflow that is used to modify the address.</p>
@@ -419,9 +418,9 @@ void call_foo(A* a) {
 <h4 id="cfi-implementation-pitfalls"><span class="header-section-number">2.5.2.5</span> CFI implementation pitfalls <a href="#cfi-implementation-pitfalls" class="selflink">§</a></h4>
 <p>When implementing CFI measures like the ones described here, it is important to be aware of known weaknesses that affect similar schemes. <span class="citation" data-cites="Conti2015">(Conti et al. <a href="#ref-Conti2015">2015</a>)</span> describes how CFI implementations can suffer when certain registers are spilled on the stack, where they could be controlled by an attacker. For example, if a register that contains a function pointer that has just been validated gets spilled, the check can effectively be bypassed by overwriting the spilled pointer.</p>
 <p>Having discussed various mitigations against code reuse attacks, it’s time to turn our attention to a different type of attacks, which do not try to overwrite code pointers: attacks against non-control data, which will be the topic of the next section.</p>
-<h2 id="non-control-data-exploits"><span class="header-section-number">2.6</span> Non-control data exploits <a href="#non-control-data-exploits" class="selflink">§</a></h2>
+<h2 id="non-control-data-attacks"><span class="header-section-number">2.6</span> Non-control data attacks <a href="#non-control-data-attacks" class="selflink">§</a></h2>
 
-<h2 id="hardware-support-for-protection-against-memory-vulnerabilities"><span class="header-section-number">2.7</span> Hardware support for protection against memory vulnerabilities <a href="#hardware-support-for-protection-against-memory-vulnerabilities" class="selflink">§</a></h2>
+<h2 id="preventing-and-detecting-memory-errors"><span class="header-section-number">2.7</span> Preventing and detecting memory errors <a href="#preventing-and-detecting-memory-errors" class="selflink">§</a></h2>
 
 <h2 id="jit-compiler-vulnerabilities"><span class="header-section-number">2.8</span> JIT compiler vulnerabilities <a href="#jit-compiler-vulnerabilities" class="selflink">§</a></h2>
 

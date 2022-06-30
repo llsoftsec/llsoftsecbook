@@ -2,21 +2,20 @@
 \contentsline {todo}{2. Discuss threat models elsewhere in book and refer to that section here}{7}{section*.3}%
 \contentsline {todo}{3. Consider describing in more detail why the range limitation matters}{7}{section*.4}%
 \contentsline {todo}{4. The references in this section describe complicated modern exploits. Consider linking to simpler exploits, as well as some tutorial-level material.}{8}{section*.5}%
-\contentsline {todo}{5. Rethink the later sections of this chapter and the order in which issues and mitigations are presented. The "non-control data exploits" section should probably include, or be followed by, a section on the various sanitizers available (ASan, UBSan, etc).}{13}{section*.7}%
-\contentsline {todo}{6. Explain how these gadgets could result from C/C++ code. The current versions are slightly tweaked by hand to have more manageable offsets.}{14}{section*.8}%
-\contentsline {todo}{7. The gadgets in the figure are made up, chosen to highlight that each gadget can end in a different type of indirect control flow transfer instruction. Consider replacing them with more realistic ones.}{17}{section*.12}%
-\contentsline {todo}{8. Add more references to relevant research}{22}{section*.13}%
-\contentsline {todo}{9. Mention more Pointer Authentication uses in later section, and add link here}{22}{section*.14}%
-\contentsline {todo}{10. Discuss data-oriented programming and other attacks}{23}{section*.15}%
-\contentsline {todo}{11. Describe architectural features for mitigating memory vulnerabilities and for CFI}{23}{section*.16}%
-\contentsline {todo}{12. Write section on JIT compiler vulnerabilities}{23}{section*.17}%
-\contentsline {todo}{13. Also explain cache coherency ?}{27}{section*.20}%
-\contentsline {todo}{14. Also say something about TLBs and prefetching?}{27}{section*.21}%
-\contentsline {todo}{15. Should there be a more elaborate example with code that demonstrates in more detail how a flush+reload attack works?}{27}{section*.22}%
-\contentsline {todo}{16. Should we also discuss more "covert" channels here such as power analysis, etc?}{28}{section*.23}%
-\contentsline {todo}{17. Write chapter on physical access side-channel attacks.}{29}{section*.24}%
-\contentsline {todo}{18. Write section on cache side-channel attacks. See \href {https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031}{the first comment on PR24} for suggestions of what this should contain.}{31}{section*.25}%
-\contentsline {todo}{19. Explain how these vulnerabilities arise and how to mitigate them.}{33}{section*.26}%
-\contentsline {todo}{20. Write chapter with other security topics.}{34}{section*.27}%
-\contentsline {todo}{21. Write section on securely clearing memory in C/C++ and undefined behaviour.}{34}{section*.28}%
-\contentsline {todo}{22. Write chapter on contribution guidelines. These should include at least: project locaton on github; how to create pull requests/issues. Where do we discuss - mailing list? Grammar and writing style guidelines. How to use todos and index.}{35}{section*.30}%
+\contentsline {todo}{5. Explain how these gadgets could result from C/C++ code. The current versions are slightly tweaked by hand to have more manageable offsets.}{14}{section*.7}%
+\contentsline {todo}{6. The gadgets in the figure are made up, chosen to highlight that each gadget can end in a different type of indirect control flow transfer instruction. Consider replacing them with more realistic ones.}{17}{section*.11}%
+\contentsline {todo}{7. Add more references to relevant research}{22}{section*.12}%
+\contentsline {todo}{8. Mention more Pointer Authentication uses in later section, and add link here}{22}{section*.13}%
+\contentsline {todo}{9. Discuss data-oriented programming and other similar attacks}{23}{section*.14}%
+\contentsline {todo}{10. Describe various mechanisms for detecting memory errors, both software-based and hardware-based, e.g. Clang address sanitizer, PAuth-based pointer integrity schemes, MTE etc}{23}{section*.15}%
+\contentsline {todo}{11. Write section on JIT compiler vulnerabilities}{23}{section*.16}%
+\contentsline {todo}{12. Also explain cache coherency ?}{27}{section*.19}%
+\contentsline {todo}{13. Also say something about TLBs and prefetching?}{27}{section*.20}%
+\contentsline {todo}{14. Should there be a more elaborate example with code that demonstrates in more detail how a flush+reload attack works?}{27}{section*.21}%
+\contentsline {todo}{15. Should we also discuss more "covert" channels here such as power analysis, etc?}{28}{section*.22}%
+\contentsline {todo}{16. Write chapter on physical access side-channel attacks.}{29}{section*.23}%
+\contentsline {todo}{17. Write section on cache side-channel attacks. See \href {https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031}{the first comment on PR24} for suggestions of what this should contain.}{31}{section*.24}%
+\contentsline {todo}{18. Explain how these vulnerabilities arise and how to mitigate them.}{33}{section*.25}%
+\contentsline {todo}{19. Write chapter with other security topics.}{34}{section*.26}%
+\contentsline {todo}{20. Write section on securely clearing memory in C/C++ and undefined behaviour.}{34}{section*.27}%
+\contentsline {todo}{21. Write chapter on contribution guidelines. These should include at least: project locaton on github; how to create pull requests/issues. Where do we discuss - mailing list? Grammar and writing style guidelines. How to use todos and index.}{35}{section*.29}%
