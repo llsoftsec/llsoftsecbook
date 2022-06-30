@@ -486,11 +486,6 @@ bounds checking for arrays where the array bound can be statically determined
 (`-fsanitize=bounds`), as well as various other "sanitizers". We will describe
 these measures in following sections.
 
-\todo{Rethink the later sections of this chapter and the order in which issues
-and mitigations are presented. The "non-control data exploits" section should
-probably include, or be followed by, a section on the various sanitizers
-available (ASan, UBSan, etc).}
-
 ## Code reuse attacks
 
 In the early days of memory vulnerability exploitation, attackers could simply
@@ -963,11 +958,13 @@ turn our attention to a different type of attacks, which do not try to overwrite
 code pointers: attacks against non-control data, which will be the topic of
 the next section.
 
-## Non-control data exploits
-\missingcontent{Discuss data-oriented programming and other attacks}
+## Non-control data attacks
+\missingcontent{Discuss data-oriented programming and other similar attacks}
 
-## Hardware support for protection against memory vulnerabilities
-\missingcontent{Describe architectural features for mitigating memory vulnerabilities and for CFI}
+## Preventing and detecting memory errors
+\missingcontent{Describe various mechanisms for detecting memory errors, both
+software-based and hardware-based, e.g. Clang address sanitizer, PAuth-based
+pointer integrity schemes, MTE etc}
 
 ## JIT compiler vulnerabilities
 \missingcontent{Write section on JIT compiler vulnerabilities}
