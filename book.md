@@ -142,13 +142,12 @@ attacks later evolved to [Return-Oriented Programming
 techniques.
 
 To defend against code reuse attacks, the [Address Space Layout Randomization
-(ASLR)](#code-reuse-attacks) and [Control-Flow Integrity
-(CFI)](#code-reuse-attacks) measures were introduced. \todo{Refine section
-links used here and in the previous paragraph.} This interaction between
-offensive and defensive security research has been essential to improving
-security, and continues to this day. Each newly deployed mitigation results in
-attempts, often successful, to bypass it, or in alternative, more complex
-exploitation techniques, and even tools to automate them.
+(ASLR)](#aslr) and [Control-Flow Integrity (CFI)](#cfi) measures were
+introduced. This interaction between offensive and defensive security research
+has been essential to improving security, and continues to this day. Each newly
+deployed mitigation results in attempts, often successful, to bypass it, or in
+alternative, more complex exploitation techniques, and even tools to automate
+them.
 
 Memory safe [@Hicks2014] languages are designed with prevention of such
 vulnerabilities in mind and use techniques such as bounds checking and
@@ -324,7 +323,7 @@ Some examples of how the attacker may use the obtained primitives:
 
 * Leak information, such as pointers to specific data structures or code,
   or the stack pointer.
-* Overwrite the stack contents, e.g. to perform a [ROP attack](#code-reuse-attacks).
+* Overwrite the stack contents, e.g. to perform a [ROP attack](#rop).
 * Overwrite non-control data, e.g. authorization state. Sometimes this
   step is sufficient to achieve the attacker's goal, bypassing the need for
   arbitrary code execution.
@@ -337,7 +336,7 @@ purposes of this chapter we will focus on:
 * Preventing memory vulnerabilities in the first place, thus stopping
   the attacker from obtaining powerful read/write primitives.
 * Mitigating the effects of read/write primitives, e.g. with mechanisms
-  to maintain [Control-Flow Integrity (CFI)](#code-reuse-attacks).
+  to maintain [Control-Flow Integrity (CFI)](#cfi).
 
 ## Stack buffer overflows
 
@@ -481,11 +480,11 @@ the attacker's wishes.
 
 Some of these vulnerabilities can be mitigated with the measures described in
 this section, but often more general measures to ensure memory safety or
-[Control-Flow Integrity](#code-reuse-attacks) are necessary. For example, in
-addition to the hardening of specific library functions, compilers can also
-implement automatic bounds checking for arrays where the array bound can be
-statically determined (`-fsanitize=bounds`), as well as various other
-"sanitizers". We will describe these measures in following sections.
+[Control-Flow Integrity](#cfi) are necessary. For example, in addition to the
+hardening of specific library functions, compilers can also implement automatic
+bounds checking for arrays where the array bound can be statically determined
+(`-fsanitize=bounds`), as well as various other "sanitizers". We will describe
+these measures in following sections.
 
 \todo{Rethink the later sections of this chapter and the order in which issues
 and mitigations are presented. The "non-control data exploits" section should
@@ -680,7 +679,289 @@ signal handler.  The ability to fake a signal handler frame and call
 
 ## Mitigations against code reuse attacks
 
-\missingcontent{Describe ASLR, CFI etc}
+When discussing mitigations against code reuse attacks, it is important to keep
+in mind that there are two capabilities the attacker must have for such attacks
+to work:
+
+* the ability to overwrite return addresses or function pointers
+* knowledge of the target addresses to overwrite them with (e.g. libc function
+  entry points).
+
+When code reuse attacks were first described, programs used to contain absolute
+code pointers, and needed to be loaded at fixed addresses. The stack base was
+predictable, and libraries were loaded in predictable memory locations. This
+made code reuse attacks simple, as all of the addresses needed for a successful
+exploit were easy to discover.
+
+### ASLR
+
+[Address space layout randomization
+(ASLR)](https://en.wikipedia.org/wiki/Address_space_layout_randomization)\index{ASLR}
+makes this more difficult by randomizing the positions of the memory areas
+containing the executable, the loaded libraries, the stack and the heap. ASLR
+requires code to be position-independent. Given enough entropy, the chance that
+an attacker would successfully guess one or more addresses in order to mount a
+successful attack will be greatly reduced.
+
+Does this mean that code reuse attacks have been made redundant by ASLR?
+Unfortunately, this is not the case. There are various ways in which an
+attacker can discover the memory layout of the victim program.  This is often
+referred to as an "info leak"\index{info leak} [@Serna2012].
+
+Since we can not exclude code reuse attacks solely by making addresses hard to
+guess, we need to also consider mitigations that prevent attackers from
+overwriting return addresses and other code pointers. Some of the mitigations
+described [earlier](#stack-buffer-overflows), like stack canaries and library
+function hardening, can help in specific situations, but for the more general
+case where an attacker has obtained arbitrary read and write primitives, we
+need something more.
+
+### CFI
+
+[Control-flow integrity
+(CFI)](https://en.wikipedia.org/wiki/Control-flow_integrity)\index{CFI} is a
+family of mitigations that aim to preserve the intended control flow of a
+program. This is done by restricting the possible targets of indirect branches
+and returns.  A scheme that protects indirect jumps and calls is referred to as
+forward-edge CFI\index{forward-edge CFI}, whereas a scheme that protects
+returns is said to implement backward-edge CFI\index{backward-edge CFI}.
+Ideally, a CFI scheme would not allow any control flow transfers that don't
+occur in a correct program execution, however different schemes have varying
+granularities. They often rely on function type checks or use static analysis
+(points-to analysis) to identify potential control flow transfer targets.
+[@Burow2017] compares a number of available CFI schemes based on the precision.
+For forward-edge CFI schemes, for example, schemes are classified based on
+whether or not they perform, among others, flow-sensitive analysis,
+context-sensitive analysis and class-hierarchy analysis.
+
+#### Clang CFI
+
+[Clang's CFI](https://clang.llvm.org/docs/ControlFlowIntegrity.html) includes a
+variety of forward-edge control-flow integrity checks. These include checking
+that the target of an indirect function call is an address-taken function of
+the correct type and checking that a C++ virtual call happens on an object of
+the correct dynamic type.
+
+For example, assume we have a class `A` with a virtual function `foo` and a
+class `B` deriving from `A`, and that these classes are not exported to
+other compilation modules:
+
+```
+class A {
+public:
+  virtual void foo() {}
+};
+
+class B : public A {
+public:
+  virtual void foo() {}
+};
+
+void call_foo(A* a) {
+  a->foo();
+}
+```
+
+When compiling with `-fsanitize=cfi -flto -fvisibility=hidden` [^cfi-flags],
+the code for `call_foo` would look something like this:
+
+```
+00000000004006b4 <call_foo(A*)>:
+  4006b4:       a9bf7bfd        stp     x29, x30, [sp, #-16]!
+  4006b8:       910003fd        mov     x29, sp
+  4006bc:       f9400008        ldr     x8, [x0]
+  4006c0:       90000009        adrp    x9, 400000 <_init-0x558>
+  4006c4:       91216129        add     x9, x9, #0x858
+  4006c8:       cb090109        sub     x9, x8, x9
+  4006cc:       d1004129        sub     x9, x9, #0x10
+  4006d0:       93c91529        ror     x9, x9, #5
+  4006d4:       f100093f        cmp     x9, #0x2
+  4006d8:       540000a2        b.cs    4006ec <call_foo(A*)+0x38>
+  4006dc:       f9400108        ldr     x8, [x8]
+  4006e0:       d63f0100        blr     x8
+  4006e4:       a8c17bfd        ldp     x29, x30, [sp], #16
+  4006e8:       d65f03c0        ret
+  4006ec:       d4200020        brk     #0x1
+```
+
+This code looks complicated, but what it does is check that the virtual table
+pointer (vptr) of the argument points to the vtable of `A` or of `B`, which are
+stored consecutively and are the only allowed possibilities. The checks
+generated for different types of control-flow transfers are similar.
+
+[^cfi-flags]: The LTO and visibility flags are required by Clang's CFI.
+
+Another implementation of forward-edge CFI is Windows [Control Flow
+Guard](https://docs.microsoft.com/en-us/windows/win32/secbp/control-flow-guard),
+which only allows indirect calls to functions that are marked as valid indirect
+control flow targets.
+
+#### Clang Shadow Stack
+
+Clang also implements a backward-edge CFI scheme known as [Shadow
+Stack](https://clang.llvm.org/docs/ShadowCallStack.html)\index{shadow stack}.
+In Clang's implementation, a separate stack is used for return addresses, which
+means that stack-based buffer overflows cannot be used to overwrite return
+addresses. The address of the shadow stack is randomized and kept in a
+dedicated register, with care taken so that it is never leaked, which means
+that an arbitrary write primitive cannot be used against the shadow stack
+unless its location is discovered through some other means.
+
+As an example, when compiling with `-fsanitize=shadow-call-stack -ffixed-x18`
+[^shadow-stack-flags], the code generated for the `main` function from the
+[earlier stack buffer overflow example](#stack-buffer-overflow) will look
+something like:
+
+```
+main:
+    cmp w0, #2
+    b.lt    .LBB1_2
+    str x30, [x18], #8
+    stp x29, x30, [sp, #-16]!
+    mov x29, sp
+    ldr x0, [x1, #8]
+    bl  copy_and_print
+    ldp x29, x30, [sp], #16
+    ldr x30, [x18, #-8]!
+.LBB1_2:
+    mov w0, wzr
+    ret
+```
+
+You can see that the shadow stack address is kept in `x18`. The return address
+is also saved on the "normal" stack for compatibility with unwinders, but
+it's not actually used for the function return.
+
+[^shadow-stack-flags]: The `-ffixed-x18` flag results in treating the `x18`
+  register as reserved, and is required by `-fsanitize=shadow-call-stack`
+  on some platforms.
+
+#### Pointer Authentication
+
+In addition to software implementations, there are a number of hardware-based
+CFI implementations. A hardware-based implementation has the potential to offer
+improved protection and performance compared to an equivalent software-only CFI
+scheme.
+
+One such example is Pointer Authentication\index{Pointer Authentication}
+[@Rutland2017], an Armv8.3 feature, supported only in AArch64 state, that can
+be used to mitigate code reuse attacks. Pointer Authentication introduces
+instructions that generate a pointer _signature_, called a Pointer
+Authentication Code (PAC), based on a key and a modifier. It also introduces
+matching instructions to authenticate this signature. Incorrect authentication
+leads to an unusable pointer, that will cause a fault when used [^fpac]. The
+key is not directly accessible by user space software.
+
+[^fpac]: With the FPAC extension, a fault is raised at incorrect authentication.
+
+Pointers are stored as 64-bit values, but they don't need all of these bits to
+describe the available address space, so a number of bits in the top of each
+pointer are unused.  The unused bits must be all ones or all zeros, so we refer
+to them as extension bits\index{pointer extension bits}. Pointer Authentication
+Codes are stored in those unused extension bits of a pointer. The exact number
+of PAC bits depends on the number of unused pointer bits, which varies based on
+the configuration of the virtual address space size.[^tbi]
+
+[^tbi]: If the Top-Byte-Ignore (TBI)\index{Top-Byte-Ignore (TBI)} feature is
+  enabled, the top byte of pointers is ignored when performing memory accesses.
+  This restricts the number of available PAC bits.
+
+[Clang](https://clang.llvm.org/docs/ClangCommandLineReference.html#aarch64) and
+[GCC](https://gcc.gnu.org/onlinedocs/gcc/AArch64-Options.html) both use Pointer
+Authentication for return address signing, when compiling with the
+`-mbranch-protection=pac-ret` flag. When compiling with Clang using this flag,
+the `main` function from the [earlier stack buffer overflow
+example](#stack-buffer-overflow) looks like:
+
+```
+main:
+    cmp w0, #2
+    b.lt    .LBB1_2
+    paciasp
+    stp x29, x30, [sp, #-16]!
+    ldr x0, [x1, #8]
+    mov x29, sp
+    bl  copy_and_print
+    ldp x29, x30, [sp], #16
+    autiasp
+.LBB1_2:
+    mov w0, wzr
+    ret
+```
+
+Notice the `paciasp` and `autiasp` instructions: `paciasp` computes a PAC for
+the return address in the link register (`x30`), based on the current value of
+the stack pointer (`sp`) and a key. This PAC is inserted in the extension bits
+of the pointer. We then store this signed version of the link register on the
+stack.  Before returning, we load the signed return address from the stack, we
+execute `autiasp`, which verifies the PAC stored in the return address, again
+based on the value of the key and the value of the stack pointer (which at this
+point will be the same as when we signed the return address). If the PAC is
+correct, which will be the case in normal execution, the extension bits of the
+address are restored, so that the address can be used in the `ret` instruction.
+However, if the stored return address has been overwritten with an address with
+an incorrect PAC, the upper bits will be corrupted so that subsequent uses of
+the address (such as in the `ret` instruction) will result in a fault.
+
+By making sure we don't store any return addresses without a PAC, we can
+significantly reduce the effectiveness of ROP attacks: since the secret key is
+not retrievable by an attacker, an attacker cannot calculate the correct PAC
+for a given address and modifier, and is restricted to guessing it. The
+probability of success when guessing a PAC depends on the exact number of PAC
+bits available in a given system configuration. However, authenticated pointers
+are vulnerable to pointer substitution attacks\index{pointer substitution
+attack}, where a pointer that has been signed with a given modifier is replaced
+with a different pointer that has also been signed with the same modifier.
+
+Another backward-edge CFI scheme that uses Pointer Authentication instructions
+is PACStack [@Liljestrand2021], which chains together PACs in order to include
+the full context (all of the previous return addresses in the call stack) when
+signing a return address.
+\todo{Add more references to relevant research}
+
+Pointer Authentication can also be used more widely, for example to implement a
+forward-edge CFI scheme, as is done in the arm64e ABI [@McCall2019].
+The Pointer Authentication instructions, however, are generic enough to also be
+useful in implementing more general memory safety measures, beyond CFI.
+\todo{Mention more Pointer Authentication uses in later section, and add link
+here}
+
+#### BTI
+
+[Branch Target Identification
+(BTI)](https://developer.arm.com/documentation/102433/0100/Jump-oriented-programming?lang=en)
+\index{BTI}, introduced in Armv8.5, offers coarse-grained forward-edge
+protection. With BTI, the locations that are targets of indirect branches have
+to be marked with a new instruction, `BTI`. There are four different types of
+BTI instructions that permit different types of indirect branches (indirect
+jump, indirect call, both, or none). An indirect branch to a non-BTI
+instruction or the wrong type of BTI instruction will raise a Branch Target
+Exception.
+
+Both Clang and GCC support generating BTI instructions, with the
+`-mbranch-protection=bti` flag, or, to enable both BTI and return address
+signing with Pointer Authentication, `-mbranch-protection=standard`.
+
+Two aspects of BTI can simplify its deployment: individual pages can be marked
+as guarded or unguarded, with BTI checks as described above only applying to
+indirect branches targeting guarded pages. In addition to this, the BTI
+instruction has been assigned to the hint space, therefore it will be executed
+as a no-op in cores that do not support BTI, aiding its adoption.
+
+#### CFI implementation pitfalls
+
+When implementing CFI measures like the ones described here, it is important to
+be aware of known weaknesses that affect similar schemes. [@Conti2015]
+describes how CFI implementations can suffer when certain registers are spilled
+on the stack, where they could be controlled by an attacker. For example, if a
+register that contains a function pointer that has just been validated gets
+spilled, the check can effectively be bypassed by overwriting the spilled
+pointer.
+
+Having discussed various mitigations against code reuse attacks, it's time to
+turn our attention to a different type of attacks, which do not try to overwrite
+code pointers: attacks against non-control data, which will be the topic of
+the next section.
 
 ## Non-control data exploits
 \missingcontent{Discuss data-oriented programming and other attacks}
