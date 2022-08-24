@@ -128,7 +128,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2021-2022 Arm Limited
   \href{mailto:open-source-office@arm.com}{\nolinkurl{open-source-office@arm.com}}\\
 
-Version 0-81-gb7cbe19
+Version 0-82-ge3a71af
 \clearpage
 
 {
@@ -1282,7 +1282,125 @@ will be the topic of the next section.
 \hypertarget{non-control-data-attacks}{%
 \section{Non-control data attacks}\label{non-control-data-attacks}}
 
-\missingcontent{Discuss data-oriented programming and other similar attacks}
+In the previous sections, we have focused on subverting control flow by
+overwriting control data\index{control data}, which are used to change
+the value of the program counter, such as return addresses and function
+pointers. Since these types of attacks are prominent, many mitigations
+have been designed with the goal of maintaining control-flow integrity.
+Non-control data attacks\index{non-control data attacks}, also known as
+data-only attacks\index{data-only attacks}, can completely bypass these
+mitigations, since the data they modify is not the control data that
+these mitigations protect.
+
+Non-control data attacks can range from very simple attacks targeting a
+single piece of data to very elaborate attacks with very high
+expressiveness (Beer and Groß \protect\hyperlink{ref-Beer2021}{2021}). A
+very simple example may look something like this:
+
+\begin{verbatim}
+// Returns zero for failure, non-zero for success.
+int authenticate() {
+  int authenticated = 0;
+  char passphrase[10];
+  if (fgets(passphrase, 20, stdin)) {     // buffer overflow
+    if (!strcmp(passphrase, "secret\n")) {
+      authenticated = 1;
+    }
+  }
+  return authenticated;
+}
+\end{verbatim}
+
+The example shows a simplified\footnote{This is obviously not a
+  realistic example of how authentication should be done, but simply
+  serves to illustrate how a buffer overflow into a non-control variable
+  can have serious security consequences.} function that reads a
+passphrase from a user, compares it with a known value and sets an
+integer stack variable to indicate whether ``authentication'' was
+successful or not. The function contains a very obvious buffer overflow,
+as the string length limit passed to \texttt{fgets} does not match the
+buffer size.
+
+Figure \ref{fig:non-control-data-attack} shows the stack frame layout
+for this function when the code is compiled for AArch64 with Clang
+10.0\footnote{The stack frame layout may be significantly different for
+  other architectures and compilers.}. As the figure shows, an overflow
+of \texttt{passphrase} will overwrite \texttt{authenticated}, setting it
+to a non-zero value, even though the passphrase was incorrect. The
+\texttt{authenticate} function will then return a non-zero value,
+incorrectly indicating authentication success.
+
+\begin{figure}
+\hypertarget{fig:non-control-data-attack}{%
+\centering
+\includegraphics[width=0.6\textwidth,height=\textheight]{img/non-control-data-attack.pdf}
+\caption{Stack frame for
+\texttt{authenticate}}\label{fig:non-control-data-attack}
+}
+\end{figure}
+
+For many more simple examples of data-only attacks that can occur in
+real applications, see (Chen et al.
+\protect\hyperlink{ref-Chen2005}{2005}). Although this makes it clear
+that data-only attacks are a real issue, it leaves open a very important
+question: what are the limits of such attacks? It is tempting to assume
+that data-only attacks are somehow inherently limited, however it has
+been demonstrated in (Hu et al. \protect\hyperlink{ref-Hu2016}{2016})
+that they can, in fact, be very expressive. (Hu et al.
+\protect\hyperlink{ref-Hu2016}{2016}) describes Data-Oriented
+Programming (DOP), a general method for building data-only attacks
+against a vulnerable program, starting from a known memory error in the
+program\footnote{The authors describe how DOP gadgets can be chained to
+  simulate a Turing machine, making DOP attacks Turing-complete (it's
+  not possible to simulate the infinite tape of a Turing machine on any
+  actual hardware, of course). Turing-completeness is not, however, a
+  particularly useful measure of exploitability, as explained in (Flake
+  \protect\hyperlink{ref-Dullien2018}{2018}). Many applications offer
+  their users the ability to perform arbitrary computation, for example
+  JavaScript engines, and those capabilities can be useful to an
+  attacker, but performing a computation without affecting normal
+  program behavior does not constitute ``exploitation''.}.
+
+The authors of (Hu et al. \protect\hyperlink{ref-Hu2016}{2016}) describe
+a small language called MINDOP, with a virtual instruction set and
+virtual registers. The virtual registers of MINDOP correspond to memory
+locations. The MINDOP instructions correspond to operations on these
+virtual registers, for example loading a value into a virtual register,
+storing a value from a virtual register, arithmetic operations and even
+conditional and unconditional jumps. The authors show how to identify
+gadgets in the code that implement the various MINDOP instructions and
+are reachable from memory errors, and how those gadgets can be stitched
+together with the help of dispatcher gadgets, the role of which is
+specifically to chain gadgets together.
+
+Stitching gadgets together is simpler for interactive attacks, where the
+attacker can keep providing malicious input to trigger the initial
+memory error and a certain chain of gadgets, as many times as needed.
+For non-interactive attacks, the MINDOP jump operations are required as
+well, used in conjunction with a memory location that provides a virtual
+program counter.
+
+The process of creating a DOP attack is not so simple and not fully
+automated. Related literature (Ispoglou et al.
+\protect\hyperlink{ref-Ispoglou2018}{2018}) focuses on automating
+data-only attacks.
+
+When reading write-ups on recent security issues, instead of terminology
+related to data-oriented gadgets, you are more likely to encounter the
+term ``primitive'', which has been described in
+\protect\hyperlink{exploitation-primitives}{an earlier section}. These
+concepts are related: an arbitrary read primitive, for example, can be
+produced by chaining a (possibly large) number of DOP gadgets. Talking
+about primitives offers a nicer level of abstraction, as it tends to be
+simpler to reason in terms of higher-level operations instead of many
+small pieces of code that need to be stitched together to perform the
+operations.
+
+To summarize, data-only attacks are a significant concern. As most of
+the mitigation techniques we have seen so far are control-flow oriented,
+they are by design inadequate to protect against this different type of
+attacks. In the next section, we will look at what we can do to address
+them at their source: memory errors.
 
 \hypertarget{preventing-and-detecting-memory-errors}{%
 \section{Preventing and detecting memory
@@ -1805,6 +1923,11 @@ Stefan Brunthaler, and Mathias Payer. 2017. ``Control-Flow Integrity:
 Precision, Security, and Performance.'' \emph{ACM Comput. Surv.} 50 (1).
 \url{https://doi.org/10.1145/3054924}.
 
+\leavevmode\hypertarget{ref-Chen2005}{}%
+Chen, Shuo, Jun Xu, Emre Can Sezer, Prachi Gauriar, and Ravishankar K
+Iyer. 2005. ``Non-Control-Data Attacks Are Realistic Threats.'' In
+\emph{USENIX Security Symposium}, 5:146.
+
 \leavevmode\hypertarget{ref-Conti2015}{}%
 Conti, Mauro, Stephen Crane, Lucas Davi, Michael Franz, Per Larsen,
 Marco Negro, Christopher Liebchen, Mohaned Qunaibit, and Ahmad-Reza
@@ -1829,6 +1952,11 @@ Dullien, Thomas. 2020. ``Weird Machines, Exploitability, and Provable
 Unexploitability.'' \emph{IEEE Transactions on Emerging Topics in
 Computing} 8 (2): 391--403.
 \url{https://doi.org/10.1109/TETC.2017.2785300}.
+
+\leavevmode\hypertarget{ref-Dullien2018}{}%
+Flake, Thomas Dullien/Halvar. 2018. ``Turing Completeness, Weird
+Machines, Twitter, and Muddled Terminology.'' 2018.
+\url{http://addxorrol.blogspot.com/2018/10/turing-completeness-weird-machines.html}.
 
 \leavevmode\hypertarget{ref-Gostev2009}{}%
 Gostev, Alexander. 2009. ``A Short History of Induc.'' 2009.
@@ -1867,6 +1995,14 @@ Saxena, and Zhenkai Liang. 2016. ``Data-Oriented Programming: On the
 Expressiveness of Non-Control Data Attacks.'' In \emph{2016 Ieee
 Symposium on Security and Privacy (Sp)}, 969--86.
 \url{https://doi.org/10.1109/SP.2016.62}.
+
+\leavevmode\hypertarget{ref-Ispoglou2018}{}%
+Ispoglou, Kyriakos K., Bader AlBassam, Trent Jaeger, and Mathias Payer.
+2018. ``Block Oriented Programming: Automating Data-Only Attacks.'' In
+\emph{Proceedings of the 2018 Acm Sigsac Conference on Computer and
+Communications Security}, 1868--82. CCS '18. New York, NY, USA:
+Association for Computing Machinery.
+\url{https://doi.org/10.1145/3243734.3243739}.
 
 \leavevmode\hypertarget{ref-Liljestrand2021}{}%
 Liljestrand, Hans, Thomas Nyman, Lachlan J Gunn, Jan-Erik Ekberg, and N

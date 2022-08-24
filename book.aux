@@ -122,110 +122,111 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2.6}Non-control data attacks}{23}{section.2.6}\protected@file@percent }
 \newlabel{non-control-data-attacks}{{2.6}{23}{Non-control data attacks}{section.2.6}{}}
 \newlabel{non-control-data-attacks@cref}{{[section][6][2]2.6}{[1][22][]23}}
-\@writefile{tdo}{\contentsline {todo}{9. Discuss data-oriented programming and other similar attacks}{23}{section*.14}\protected@file@percent }
-\pgfsyspdfmark {pgfid37}{19498269}{44594428}
-\@writefile{toc}{\contentsline {section}{\numberline {2.7}Preventing and detecting memory errors}{23}{section.2.7}\protected@file@percent }
-\newlabel{preventing-and-detecting-memory-errors}{{2.7}{23}{Preventing and detecting memory errors}{section.2.7}{}}
-\newlabel{preventing-and-detecting-memory-errors@cref}{{[section][7][2]2.7}{[1][23][]23}}
-\@writefile{tdo}{\contentsline {todo}{10. Describe various mechanisms for detecting memory errors, both software-based and hardware-based, e.g. Clang address sanitizer, PAuth-based pointer integrity schemes, MTE etc}{23}{section*.15}\protected@file@percent }
-\pgfsyspdfmark {pgfid38}{19498269}{38459843}
-\@writefile{toc}{\contentsline {section}{\numberline {2.8}JIT compiler vulnerabilities}{23}{section.2.8}\protected@file@percent }
-\newlabel{jit-compiler-vulnerabilities}{{2.8}{23}{JIT compiler vulnerabilities}{section.2.8}{}}
-\newlabel{jit-compiler-vulnerabilities@cref}{{[section][8][2]2.8}{[1][23][]23}}
-\@writefile{tdo}{\contentsline {todo}{11. Write section on JIT compiler vulnerabilities}{23}{section*.16}\protected@file@percent }
-\pgfsyspdfmark {pgfid39}{19498269}{32325258}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Covert channels and side-channels}{24}{chapter.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Stack frame for \texttt  {authenticate}\relax }}{24}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:non-control-data-attack}{{2.4}{24}{Stack frame for \texttt {authenticate}\relax }{figure.caption.14}{}}
+\newlabel{fig:non-control-data-attack@cref}{{[figure][4][2]2.4}{[1][23][]24}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}Preventing and detecting memory errors}{25}{section.2.7}\protected@file@percent }
+\newlabel{preventing-and-detecting-memory-errors}{{2.7}{25}{Preventing and detecting memory errors}{section.2.7}{}}
+\newlabel{preventing-and-detecting-memory-errors@cref}{{[section][7][2]2.7}{[1][25][]25}}
+\@writefile{tdo}{\contentsline {todo}{9. Describe various mechanisms for detecting memory errors, both software-based and hardware-based, e.g. Clang address sanitizer, PAuth-based pointer integrity schemes, MTE etc}{25}{section*.15}\protected@file@percent }
+\pgfsyspdfmark {pgfid37}{19498269}{39884407}
+\@writefile{toc}{\contentsline {section}{\numberline {2.8}JIT compiler vulnerabilities}{25}{section.2.8}\protected@file@percent }
+\newlabel{jit-compiler-vulnerabilities}{{2.8}{25}{JIT compiler vulnerabilities}{section.2.8}{}}
+\newlabel{jit-compiler-vulnerabilities@cref}{{[section][8][2]2.8}{[1][25][]25}}
+\@writefile{tdo}{\contentsline {todo}{10. Write section on JIT compiler vulnerabilities}{25}{section*.16}\protected@file@percent }
+\pgfsyspdfmark {pgfid38}{19498269}{33749822}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Covert channels and side-channels}{26}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{covert-channels-and-side-channels}{{3}{24}{Covert channels and side-channels}{chapter.3}{}}
-\newlabel{covert-channels-and-side-channels@cref}{{[chapter][3][]3}{[1][24][]24}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Cache covert channels}{24}{section.3.1}\protected@file@percent }
-\newlabel{cache-covert-channels}{{3.1}{24}{Cache covert channels}{section.3.1}{}}
-\newlabel{cache-covert-channels@cref}{{[section][1][3]3.1}{[1][24][]24}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Typical CPU cache architecture}{25}{subsection.3.1.1}\protected@file@percent }
-\newlabel{typical-cpu-cache-architecture}{{3.1.1}{25}{Typical CPU cache architecture}{subsection.3.1.1}{}}
-\newlabel{typical-cpu-cache-architecture@cref}{{[subsection][1][3,1]3.1.1}{[1][24][]25}}
-\@writefile{lof}{\contentsline {figure}{\numberline {figno:2}{\ignorespaces Illustration of cache levels in a typical system\relax }}{25}{figure.caption.17}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1.1}Indexing in a set-associative cache}{26}{subsubsection.3.1.1.1}\protected@file@percent }
-\newlabel{indexing-in-a-set-associative-cache}{{3.1.1.1}{26}{Indexing in a set-associative cache}{subsubsection.3.1.1.1}{}}
-\newlabel{indexing-in-a-set-associative-cache@cref}{{[subsubsection][1][3,1,1]3.1.1.1}{[1][26][]26}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Illustration of indexing into a set-associative cache. In this example: \(L\) = 6 bits, hence the cache line size is \(2^6=64\) bytes. \(S\) = 5 bits, so there are \(2^5=32\) cache sets. \(N\) can be independent of address bits used to index the cache. If we assume \(N=12\) for a 12-way set-associative cache, the total cache size is \(N*2^L*2^S=12*64*32=24\)KB.\relax }}{26}{figure.caption.18}\protected@file@percent }
-\newlabel{fig:cache-indexing}{{3.1}{26}{Illustration of indexing into a set-associative cache. In this example: \(L\) = 6 bits, hence the cache line size is \(2^6=64\) bytes. \(S\) = 5 bits, so there are \(2^5=32\) cache sets. \(N\) can be independent of address bits used to index the cache. If we assume \(N=12\) for a 12-way set-associative cache, the total cache size is \(N*2^L*2^S=12*64*32=24\)KB.\relax }{figure.caption.18}{}}
-\newlabel{fig:cache-indexing@cref}{{[figure][1][3]3.1}{[1][26][]26}}
-\@writefile{tdo}{\contentsline {todo}{12. Also explain cache coherency ?}{27}{section*.19}\protected@file@percent }
-\pgfsyspdfmark {pgfid40}{19498269}{37251658}
-\@writefile{tdo}{\contentsline {todo}{13. Also say something about TLBs and prefetching?}{27}{section*.20}\protected@file@percent }
-\pgfsyspdfmark {pgfid41}{19498269}{34509994}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Operation of cache side-channels}{27}{subsection.3.1.2}\protected@file@percent }
-\newlabel{operation-of-cache-side-channels}{{3.1.2}{27}{Operation of cache side-channels}{subsection.3.1.2}{}}
-\newlabel{operation-of-cache-side-channels@cref}{{[subsection][2][3,1]3.1.2}{[1][27][]27}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2.1}Flush+Reload}{27}{subsubsection.3.1.2.1}\protected@file@percent }
-\newlabel{flushreload}{{3.1.2.1}{27}{Flush+Reload}{subsubsection.3.1.2.1}{}}
-\newlabel{flushreload@cref}{{[subsubsection][1][3,1,2]3.1.2.1}{[1][27][]27}}
-\@writefile{tdo}{\contentsline {todo}{14. Should there be a more elaborate example with code that demonstrates in more detail how a flush+reload attack works?}{27}{section*.21}\protected@file@percent }
-\pgfsyspdfmark {pgfid42}{19498269}{10741326}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2.2}Prime+Probe}{28}{subsubsection.3.1.2.2}\protected@file@percent }
-\newlabel{primeprobe}{{3.1.2.2}{28}{Prime+Probe}{subsubsection.3.1.2.2}{}}
-\newlabel{primeprobe@cref}{{[subsubsection][2][3,1,2]3.1.2.2}{[1][27][]28}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2.3}General schema for cache covert channels}{28}{subsubsection.3.1.2.3}\protected@file@percent }
-\newlabel{general-schema-for-cache-covert-channels}{{3.1.2.3}{28}{General schema for cache covert channels}{subsubsection.3.1.2.3}{}}
-\newlabel{general-schema-for-cache-covert-channels@cref}{{[subsubsection][3][3,1,2]3.1.2.3}{[1][28][]28}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Timing covert channels}{28}{section.3.2}\protected@file@percent }
-\newlabel{timing-covert-channels}{{3.2}{28}{Timing covert channels}{section.3.2}{}}
-\newlabel{timing-covert-channels@cref}{{[section][2][3]3.2}{[1][28][]28}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Resource contention channels}{28}{section.3.3}\protected@file@percent }
-\newlabel{resource-contention-channels}{{3.3}{28}{Resource contention channels}{section.3.3}{}}
-\newlabel{resource-contention-channels@cref}{{[section][3][3]3.3}{[1][28][]28}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Channels making use of aliasing in branch predictors and other predictors}{28}{section.3.4}\protected@file@percent }
-\newlabel{channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors}{{3.4}{28}{Channels making use of aliasing in branch predictors and other predictors}{section.3.4}{}}
-\newlabel{channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors@cref}{{[section][4][3]3.4}{[1][28][]28}}
-\@writefile{tdo}{\contentsline {todo}{15. Should we also discuss more "covert" channels here such as power analysis, etc?}{28}{section*.22}\protected@file@percent }
-\pgfsyspdfmark {pgfid43}{19498269}{14016389}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Physical access side-channel attacks}{29}{chapter.4}\protected@file@percent }
+\newlabel{covert-channels-and-side-channels}{{3}{26}{Covert channels and side-channels}{chapter.3}{}}
+\newlabel{covert-channels-and-side-channels@cref}{{[chapter][3][]3}{[1][26][]26}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Cache covert channels}{26}{section.3.1}\protected@file@percent }
+\newlabel{cache-covert-channels}{{3.1}{26}{Cache covert channels}{section.3.1}{}}
+\newlabel{cache-covert-channels@cref}{{[section][1][3]3.1}{[1][26][]26}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Typical CPU cache architecture}{27}{subsection.3.1.1}\protected@file@percent }
+\newlabel{typical-cpu-cache-architecture}{{3.1.1}{27}{Typical CPU cache architecture}{subsection.3.1.1}{}}
+\newlabel{typical-cpu-cache-architecture@cref}{{[subsection][1][3,1]3.1.1}{[1][26][]27}}
+\@writefile{lof}{\contentsline {figure}{\numberline {figno:2}{\ignorespaces Illustration of cache levels in a typical system\relax }}{27}{figure.caption.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1.1}Indexing in a set-associative cache}{28}{subsubsection.3.1.1.1}\protected@file@percent }
+\newlabel{indexing-in-a-set-associative-cache}{{3.1.1.1}{28}{Indexing in a set-associative cache}{subsubsection.3.1.1.1}{}}
+\newlabel{indexing-in-a-set-associative-cache@cref}{{[subsubsection][1][3,1,1]3.1.1.1}{[1][28][]28}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Illustration of indexing into a set-associative cache. In this example: \(L\) = 6 bits, hence the cache line size is \(2^6=64\) bytes. \(S\) = 5 bits, so there are \(2^5=32\) cache sets. \(N\) can be independent of address bits used to index the cache. If we assume \(N=12\) for a 12-way set-associative cache, the total cache size is \(N*2^L*2^S=12*64*32=24\)KB.\relax }}{28}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:cache-indexing}{{3.1}{28}{Illustration of indexing into a set-associative cache. In this example: \(L\) = 6 bits, hence the cache line size is \(2^6=64\) bytes. \(S\) = 5 bits, so there are \(2^5=32\) cache sets. \(N\) can be independent of address bits used to index the cache. If we assume \(N=12\) for a 12-way set-associative cache, the total cache size is \(N*2^L*2^S=12*64*32=24\)KB.\relax }{figure.caption.18}{}}
+\newlabel{fig:cache-indexing@cref}{{[figure][1][3]3.1}{[1][28][]28}}
+\@writefile{tdo}{\contentsline {todo}{11. Also explain cache coherency ?}{29}{section*.19}\protected@file@percent }
+\pgfsyspdfmark {pgfid39}{19498269}{37251658}
+\@writefile{tdo}{\contentsline {todo}{12. Also say something about TLBs and prefetching?}{29}{section*.20}\protected@file@percent }
+\pgfsyspdfmark {pgfid40}{19498269}{34509994}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Operation of cache side-channels}{29}{subsection.3.1.2}\protected@file@percent }
+\newlabel{operation-of-cache-side-channels}{{3.1.2}{29}{Operation of cache side-channels}{subsection.3.1.2}{}}
+\newlabel{operation-of-cache-side-channels@cref}{{[subsection][2][3,1]3.1.2}{[1][29][]29}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2.1}Flush+Reload}{29}{subsubsection.3.1.2.1}\protected@file@percent }
+\newlabel{flushreload}{{3.1.2.1}{29}{Flush+Reload}{subsubsection.3.1.2.1}{}}
+\newlabel{flushreload@cref}{{[subsubsection][1][3,1,2]3.1.2.1}{[1][29][]29}}
+\@writefile{tdo}{\contentsline {todo}{13. Should there be a more elaborate example with code that demonstrates in more detail how a flush+reload attack works?}{29}{section*.21}\protected@file@percent }
+\pgfsyspdfmark {pgfid41}{19498269}{10741326}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2.2}Prime+Probe}{30}{subsubsection.3.1.2.2}\protected@file@percent }
+\newlabel{primeprobe}{{3.1.2.2}{30}{Prime+Probe}{subsubsection.3.1.2.2}{}}
+\newlabel{primeprobe@cref}{{[subsubsection][2][3,1,2]3.1.2.2}{[1][29][]30}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2.3}General schema for cache covert channels}{30}{subsubsection.3.1.2.3}\protected@file@percent }
+\newlabel{general-schema-for-cache-covert-channels}{{3.1.2.3}{30}{General schema for cache covert channels}{subsubsection.3.1.2.3}{}}
+\newlabel{general-schema-for-cache-covert-channels@cref}{{[subsubsection][3][3,1,2]3.1.2.3}{[1][30][]30}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Timing covert channels}{30}{section.3.2}\protected@file@percent }
+\newlabel{timing-covert-channels}{{3.2}{30}{Timing covert channels}{section.3.2}{}}
+\newlabel{timing-covert-channels@cref}{{[section][2][3]3.2}{[1][30][]30}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Resource contention channels}{30}{section.3.3}\protected@file@percent }
+\newlabel{resource-contention-channels}{{3.3}{30}{Resource contention channels}{section.3.3}{}}
+\newlabel{resource-contention-channels@cref}{{[section][3][3]3.3}{[1][30][]30}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Channels making use of aliasing in branch predictors and other predictors}{30}{section.3.4}\protected@file@percent }
+\newlabel{channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors}{{3.4}{30}{Channels making use of aliasing in branch predictors and other predictors}{section.3.4}{}}
+\newlabel{channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors@cref}{{[section][4][3]3.4}{[1][30][]30}}
+\@writefile{tdo}{\contentsline {todo}{14. Should we also discuss more "covert" channels here such as power analysis, etc?}{30}{section*.22}\protected@file@percent }
+\pgfsyspdfmark {pgfid42}{19498269}{14016389}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Physical access side-channel attacks}{31}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{physical-access-side-channel-attacks}{{4}{29}{Physical access side-channel attacks}{chapter.4}{}}
-\newlabel{physical-access-side-channel-attacks@cref}{{[chapter][4][]4}{[1][29][]29}}
-\@writefile{tdo}{\contentsline {todo}{16. Write chapter on physical access side-channel attacks.}{29}{section*.23}\protected@file@percent }
-\pgfsyspdfmark {pgfid44}{19498269}{31284240}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Remote access side-channel attacks}{30}{chapter.5}\protected@file@percent }
+\newlabel{physical-access-side-channel-attacks}{{4}{31}{Physical access side-channel attacks}{chapter.4}{}}
+\newlabel{physical-access-side-channel-attacks@cref}{{[chapter][4][]4}{[1][31][]31}}
+\@writefile{tdo}{\contentsline {todo}{15. Write chapter on physical access side-channel attacks.}{31}{section*.23}\protected@file@percent }
+\pgfsyspdfmark {pgfid43}{19498269}{31284240}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Remote access side-channel attacks}{32}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{remote-access-side-channel-attacks}{{5}{30}{Remote access side-channel attacks}{chapter.5}{}}
-\newlabel{remote-access-side-channel-attacks@cref}{{[chapter][5][]5}{[1][30][]30}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Timing attacks}{30}{section.5.1}\protected@file@percent }
-\newlabel{timing-attacks}{{5.1}{30}{Timing attacks}{section.5.1}{}}
-\newlabel{timing-attacks@cref}{{[section][1][5]5.1}{[1][30][]30}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Cache side-channel attacks}{31}{section.5.2}\protected@file@percent }
-\newlabel{cache-side-channel-attacks}{{5.2}{31}{Cache side-channel attacks}{section.5.2}{}}
-\newlabel{cache-side-channel-attacks@cref}{{[section][2][5]5.2}{[1][31][]31}}
-\@writefile{tdo}{\contentsline {todo}{17. Write section on cache side-channel attacks. See \href  {https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031}{the first comment on PR24} for suggestions of what this should contain.}{31}{section*.24}\protected@file@percent }
-\pgfsyspdfmark {pgfid45}{19498269}{40461123}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Supply chain attacks}{32}{chapter.6}\protected@file@percent }
+\newlabel{remote-access-side-channel-attacks}{{5}{32}{Remote access side-channel attacks}{chapter.5}{}}
+\newlabel{remote-access-side-channel-attacks@cref}{{[chapter][5][]5}{[1][32][]32}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Timing attacks}{32}{section.5.1}\protected@file@percent }
+\newlabel{timing-attacks}{{5.1}{32}{Timing attacks}{section.5.1}{}}
+\newlabel{timing-attacks@cref}{{[section][1][5]5.1}{[1][32][]32}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Cache side-channel attacks}{33}{section.5.2}\protected@file@percent }
+\newlabel{cache-side-channel-attacks}{{5.2}{33}{Cache side-channel attacks}{section.5.2}{}}
+\newlabel{cache-side-channel-attacks@cref}{{[section][2][5]5.2}{[1][33][]33}}
+\@writefile{tdo}{\contentsline {todo}{16. Write section on cache side-channel attacks. See \href  {https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031}{the first comment on PR24} for suggestions of what this should contain.}{33}{section*.24}\protected@file@percent }
+\pgfsyspdfmark {pgfid44}{19498269}{40461123}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Supply chain attacks}{34}{chapter.6}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{supply-chain-attacks}{{6}{32}{Supply chain attacks}{chapter.6}{}}
-\newlabel{supply-chain-attacks@cref}{{[chapter][6][]6}{[1][32][]32}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}History of supply chain attacks}{32}{section.6.1}\protected@file@percent }
-\newlabel{history-of-supply-chain-attacks}{{6.1}{32}{History of supply chain attacks}{section.6.1}{}}
-\newlabel{history-of-supply-chain-attacks@cref}{{[section][1][6]6.1}{[1][32][]32}}
-\@writefile{tdo}{\contentsline {todo}{18. Explain how these vulnerabilities arise and how to mitigate them.}{33}{section*.25}\protected@file@percent }
-\pgfsyspdfmark {pgfid46}{19498269}{31353418}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Other security topics relevant for compiler developers}{34}{chapter.7}\protected@file@percent }
+\newlabel{supply-chain-attacks}{{6}{34}{Supply chain attacks}{chapter.6}{}}
+\newlabel{supply-chain-attacks@cref}{{[chapter][6][]6}{[1][34][]34}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}History of supply chain attacks}{34}{section.6.1}\protected@file@percent }
+\newlabel{history-of-supply-chain-attacks}{{6.1}{34}{History of supply chain attacks}{section.6.1}{}}
+\newlabel{history-of-supply-chain-attacks@cref}{{[section][1][6]6.1}{[1][34][]34}}
+\@writefile{tdo}{\contentsline {todo}{17. Explain how these vulnerabilities arise and how to mitigate them.}{35}{section*.25}\protected@file@percent }
+\pgfsyspdfmark {pgfid45}{19498269}{31353418}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Other security topics relevant for compiler developers}{36}{chapter.7}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{other-security-topics-relevant-for-compiler-developers}{{7}{34}{Other security topics relevant for compiler developers}{chapter.7}{}}
-\newlabel{other-security-topics-relevant-for-compiler-developers@cref}{{[chapter][7][]7}{[1][34][]34}}
-\@writefile{tdo}{\contentsline {todo}{19. Write chapter with other security topics.}{34}{section*.26}\protected@file@percent }
-\pgfsyspdfmark {pgfid47}{19498269}{29001113}
-\@writefile{tdo}{\contentsline {todo}{20. Write section on securely clearing memory in C/C++ and undefined behaviour.}{34}{section*.27}\protected@file@percent }
-\pgfsyspdfmark {pgfid48}{19498269}{25929948}
-\newlabel{appendix-contribution-guidelines}{{7}{35}{Appendix: contribution guidelines}{chapter*.28}{}}
-\newlabel{appendix-contribution-guidelines@cref}{{[chapter][7][]7}{[1][35][]35}}
-\@writefile{toc}{\contentsline {chapter}{Appendix: contribution guidelines}{35}{chapter*.28}\protected@file@percent }
-\@writefile{tdo}{\contentsline {todo}{21. Write chapter on contribution guidelines. These should include at least: project locaton on github; how to create pull requests/issues. Where do we discuss - mailing list? Grammar and writing style guidelines. How to use todos and index.}{35}{section*.29}\protected@file@percent }
-\pgfsyspdfmark {pgfid49}{19498269}{33193596}
-\newlabel{references}{{7}{38}{References}{chapter*.31}{}}
-\newlabel{references@cref}{{[chapter][7][]7}{[1][38][]38}}
-\@writefile{toc}{\contentsline {chapter}{References}{38}{chapter*.31}\protected@file@percent }
-\gdef \@abspage@last{41}
+\newlabel{other-security-topics-relevant-for-compiler-developers}{{7}{36}{Other security topics relevant for compiler developers}{chapter.7}{}}
+\newlabel{other-security-topics-relevant-for-compiler-developers@cref}{{[chapter][7][]7}{[1][36][]36}}
+\@writefile{tdo}{\contentsline {todo}{18. Write chapter with other security topics.}{36}{section*.26}\protected@file@percent }
+\pgfsyspdfmark {pgfid46}{19498269}{29001113}
+\@writefile{tdo}{\contentsline {todo}{19. Write section on securely clearing memory in C/C++ and undefined behaviour.}{36}{section*.27}\protected@file@percent }
+\pgfsyspdfmark {pgfid47}{19498269}{25929948}
+\newlabel{appendix-contribution-guidelines}{{7}{37}{Appendix: contribution guidelines}{chapter*.28}{}}
+\newlabel{appendix-contribution-guidelines@cref}{{[chapter][7][]7}{[1][37][]37}}
+\@writefile{toc}{\contentsline {chapter}{Appendix: contribution guidelines}{37}{chapter*.28}\protected@file@percent }
+\@writefile{tdo}{\contentsline {todo}{20. Write chapter on contribution guidelines. These should include at least: project locaton on github; how to create pull requests/issues. Where do we discuss - mailing list? Grammar and writing style guidelines. How to use todos and index.}{37}{section*.29}\protected@file@percent }
+\pgfsyspdfmark {pgfid48}{19498269}{33193596}
+\newlabel{references}{{7}{40}{References}{chapter*.31}{}}
+\newlabel{references@cref}{{[chapter][7][]7}{[1][40][]40}}
+\@writefile{toc}{\contentsline {chapter}{References}{40}{chapter*.31}\protected@file@percent }
+\gdef \@abspage@last{44}

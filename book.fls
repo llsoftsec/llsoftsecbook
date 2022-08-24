@@ -1388,9 +1388,11 @@ INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
 INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
 INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
 INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
-INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
-INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
-INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
+INPUT ./img/non-control-data-attack.pdf
+INPUT ./img/non-control-data-attack.pdf
+INPUT img/non-control-data-attack.pdf
+INPUT ./img/non-control-data-attack.pdf
+INPUT ./img/non-control-data-attack.pdf
 INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
 INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
 INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
