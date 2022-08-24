@@ -971,8 +971,8 @@ since the data they modify is not the control data that these mitigations
 protect.
 
 Non-control data attacks can range from very simple attacks targeting a single
-piece of data to very elaborate attacks with very high expressiveness. A very
-simple example may look something like this:
+piece of data to very elaborate attacks with very high expressiveness
+[@Beer2021]. A very simple example may look something like this:
 
 ```
 // Returns zero for failure, non-zero for success.
@@ -1004,7 +1004,7 @@ function when the code is compiled for AArch64 with Clang 10.0[^ymmv]. As the fi
 shows, an overflow of `passphrase` will overwrite `authenticated`, setting it
 to a non-zero value, even though the passphrase was incorrect.  The
 `authenticate` function will then return a non-zero value, incorrectly
-indication authentication success.
+indicating authentication success.
 
 [^ymmv]: The stack frame layout may be significantly different for other
   architectures and compilers.
@@ -1016,17 +1016,21 @@ applications, see [@Chen2005]. Although this makes it clear that data-only
 attacks are a real issue, it leaves open a very important question: what are
 the limits of such attacks? It is tempting to assume that data-only attacks are
 somehow inherently limited, however it has been demonstrated in [@Hu2016] that
-they can, in fact, be very expressive[^caveat].
+they can, in fact, be very expressive. [@Hu2016] describes Data-Oriented
+Programming (DOP), a general method for building data-only attacks against a
+vulnerable program, starting from a known memory error in the program[^caveat].
 
 [^caveat]: The authors describe how DOP gadgets can be chained to simulate
   a Turing machine, making DOP attacks Turing-complete (it's not possible
   to simulate the infinite tape of a Turing machine on any actual hardware,
   of course). Turing-completeness is not, however, a particularly useful
-  measure of exploitability, as explained in [@Dullien2018].
+  measure of exploitability, as explained in [@Dullien2018]. Many applications
+  offer their users the ability to perform arbitrary computation, for
+  example JavaScript engines, and those capabilities can be useful to an
+  attacker, but performing a computation without affecting normal program
+  behavior does not constitute "exploitation".
 
-[@Hu2016] describes Data-Oriented Programming (DOP), a general method for
-building data-only attacks against a vulnerable program, starting from a known
-memory error in the program. The authors describe a small language called
+The authors of [@Hu2016] describe a small language called
 MINDOP, with a virtual instruction set and virtual registers. The virtual
 registers of MINDOP correspond to memory locations.  The MINDOP instructions
 correspond to operations on these virtual registers, for example loading a
@@ -1045,7 +1049,7 @@ used in conjunction with a memory location that provides a virtual program
 counter.
 
 The process of creating a DOP attack is not so simple and not fully
-automated. Related literature ([@Ispoglou2018]) focuses on automating
+automated. Related literature [@Ispoglou2018] focuses on automating
 data-only attacks.
 
 When reading write-ups on recent security issues, instead of terminology
