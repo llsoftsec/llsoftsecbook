@@ -959,7 +959,114 @@ code pointers: attacks against non-control data, which will be the topic of
 the next section.
 
 ## Non-control data attacks
-\missingcontent{Discuss data-oriented programming and other similar attacks}
+
+In the previous sections, we have focused on subverting control flow by
+overwriting control data\index{control data}, which are used to change the
+value of the program counter, such as return addresses and function pointers.
+Since these types of attacks are prominent, many mitigations have been designed
+with the goal of maintaining control-flow integrity. Non-control data
+attacks\index{non-control data attacks}, also known as data-only
+attacks\index{data-only attacks}, can completely bypass these mitigations,
+since the data they modify is not the control data that these mitigations
+protect.
+
+Non-control data attacks can range from very simple attacks targeting a single
+piece of data to very elaborate attacks with very high expressiveness
+[@Beer2021]. A very simple example may look something like this:
+
+```
+// Returns zero for failure, non-zero for success.
+int authenticate() {
+  int authenticated = 0;
+  char passphrase[10];
+  if (fgets(passphrase, 20, stdin)) {     // buffer overflow
+    if (!strcmp(passphrase, "secret\n")) {
+      authenticated = 1;
+    }
+  }
+  return authenticated;
+}
+```
+
+The example shows a simplified[^non-control-example] function that reads a
+passphrase from a user, compares it with a known value and sets an integer
+stack variable to indicate whether "authentication" was successful or not. The
+function contains a very obvious buffer overflow, as the string length limit
+passed to `fgets` does not match the buffer size.
+
+[^non-control-example]: This is obviously not a realistic example of how
+  authentication should be done, but simply serves to illustrate how a
+  buffer overflow into a non-control variable can have serious security
+  consequences.
+
+Figure @fig:non-control-data-attack shows the stack frame layout for this
+function when the code is compiled for AArch64 with Clang 10.0[^ymmv]. As the figure
+shows, an overflow of `passphrase` will overwrite `authenticated`, setting it
+to a non-zero value, even though the passphrase was incorrect.  The
+`authenticate` function will then return a non-zero value, incorrectly
+indicating authentication success.
+
+[^ymmv]: The stack frame layout may be significantly different for other
+  architectures and compilers.
+
+![Stack frame for `authenticate`](img/non-control-data-attack){ width=60% #fig:non-control-data-attack }
+
+For many more simple examples of data-only attacks that can occur in real
+applications, see [@Chen2005]. Although this makes it clear that data-only
+attacks are a real issue, it leaves open a very important question: what are
+the limits of such attacks? It is tempting to assume that data-only attacks are
+somehow inherently limited, however it has been demonstrated in [@Hu2016] that
+they can, in fact, be very expressive. [@Hu2016] describes Data-Oriented
+Programming (DOP), a general method for building data-only attacks against a
+vulnerable program, starting from a known memory error in the program[^caveat].
+
+[^caveat]: The authors describe how DOP gadgets can be chained to simulate
+  a Turing machine, making DOP attacks Turing-complete (it's not possible
+  to simulate the infinite tape of a Turing machine on any actual hardware,
+  of course). Turing-completeness is not, however, a particularly useful
+  measure of exploitability, as explained in [@Dullien2018]. Many applications
+  offer their users the ability to perform arbitrary computation, for
+  example JavaScript engines, and those capabilities can be useful to an
+  attacker, but performing a computation without affecting normal program
+  behavior does not constitute "exploitation".
+
+The authors of [@Hu2016] describe a small language called
+MINDOP, with a virtual instruction set and virtual registers. The virtual
+registers of MINDOP correspond to memory locations.  The MINDOP instructions
+correspond to operations on these virtual registers, for example loading a
+value into a virtual register, storing a value from a virtual register,
+arithmetic operations and even conditional and unconditional jumps. The authors
+show how to identify gadgets in the code that implement the various MINDOP
+instructions and are reachable from memory errors, and how those gadgets can be
+stitched together with the help of dispatcher gadgets, the role of which is
+specifically to chain gadgets together.
+
+Stitching gadgets together is simpler for interactive attacks, where the
+attacker can keep providing malicious input to trigger the initial memory
+error and a certain chain of gadgets, as many times as needed. For
+non-interactive attacks, the MINDOP jump operations are required as well,
+used in conjunction with a memory location that provides a virtual program
+counter.
+
+The process of creating a DOP attack is not so simple and not fully
+automated. Related literature [@Ispoglou2018] focuses on automating
+data-only attacks.
+
+When reading write-ups on recent security issues, instead of terminology
+related to data-oriented gadgets, you are more likely to encounter the term
+"primitive", which has been described in [an earlier
+section](#exploitation-primitives). These concepts are related: an arbitrary
+read primitive, for example, can be produced by chaining a (possibly large)
+number of DOP gadgets. Talking about primitives offers a nicer level of
+abstraction, as it tends to be simpler to reason in terms of higher-level
+operations instead of many small pieces of code that need to be stitched
+together to perform the operations.
+
+To summarize, data-only attacks are a significant concern. As most of the
+mitigation techniques we have seen so far are control-flow oriented, they are
+by design inadequate to protect against this different type of attacks.  In the
+next section, we will look at what we can do to address them at their source:
+memory errors.
 
 ## Preventing and detecting memory errors
 \missingcontent{Describe various mechanisms for detecting memory errors, both
