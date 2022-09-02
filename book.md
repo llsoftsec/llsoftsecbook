@@ -1099,11 +1099,48 @@ first, it is called a side-channel attack. The entity not intending to
 communicate is called the victim\index{victim}. The other entity is sometimes
 called the spy\index{spy}.
 
-The rest of this chapter mostly describes a variety of common covert channel
-mechanisms. It does not aim to differentiate much on whether both ends intend
-to cooperate, or whether one end is a victim under attack of the other end.
+There are a lot of covert channels and side-channels. We describe the most
+important ones, and applicable mitigations, in this chapter.
 
-## Cache covert channels
+## Timing side-channels
+
+An implementation of a cryptographic algorithm can leak information about the
+data it processes if its run time is influenced by the value of the processed
+data. Attacks making use of this are called timing attacks\index{timing
+attacks}.
+
+The main mitigation against such attacks consists of carefully implementing the
+algorithm such that the execution time remains independent of the processed
+data. This can be done by making sure that both:
+
+a) The control flow, i.e. the trace of instructions executed, does not change
+   depending on the processed data. This guarantees that every time the
+   algorithm runs, exactly the same sequence of instructions is executed,
+   independent of the processed data.
+
+b) The instructions used to implement the algorithm are from the subset of
+   instructions for which the execution time is known to not depend on the data
+   values it processes.
+
+   For example, in the Arm architecture, the Armv8.4-A
+   [DIT extension](https://developer.arm.com/documentation/ddi0595/2021-06/AArch64-Registers/DIT--Data-Independent-Timing)
+   guarantees that execution time is data-independent for a subset of the
+   AArch64 instructions.
+
+   By ensuring that the extension is enabled and only instructions in the subset
+   are used, data-independent execution time is guaranteed.
+
+At the moment, we do not know of a compiler implementation that actively helps
+to guarantee both (a) and (b). A great reference giving practical advice on how
+to achieve (a), (b) and more security hardening properties specific for
+cryptographic kernels is found in [@Pornin2018].
+
+As discussed in [@Pornin2018], when implementing cryptographic algorithms, you
+also need to keep cache side-channel attacks in mind, which are discussed in the
+[section on cache side-channel attacks](#cache-side-channel-attacks).
+
+
+## Cache side-channels
 
 [Caches](https://en.wikipedia.org/wiki/Cache_(computing))\index{cache} are used
 in almost every computing system. They are small and much faster memories than
@@ -1216,7 +1253,7 @@ number of cache sets is 1, so $S$=0.
 
 ### Operation of cache side-channels
 
-Cache covert channels typically work by the spy determining whether a memory
+Cache side-channels typically work by the spy determining whether a memory
 access was a cache hit or a cache miss. From that information, in specific
 situations, it may be able to deduce bits of data that only the victim has
 access to.
@@ -1284,7 +1321,10 @@ Evict+Time\index{Evict+Time}[@Osvik2005],
 Reload+Refresh\index{Reload+Refresh}[@Briongos2020],
 Collide+Probe\index{Collide+Probe}[@Lipp2020], etc.
 
-## Timing covert channels
+### Mitigating cache side-channel attacks
+
+\missingcontent{What general mitigations are possible?}
+
 
 ## Resource contention channels
 
@@ -1292,59 +1332,20 @@ Collide+Probe\index{Collide+Probe}[@Lipp2020], etc.
 
 \missingcontent{Should we also discuss more "covert" channels here such as power analysis, etc?}
 
-# Physical access side-channel attacks
 
-\missingcontent{Write chapter on physical access side-channel attacks.}
+## Transient execution attacks
 
-# Remote access side-channel attacks
-
-This chapter covers side-channel attacks for which the attacker does not need
-physical access to the hardware.
-
-## Timing attacks
-
-An implementation of a cryptographic algorithm can leak information about the
-data it processes if its run time is influenced by the value of the processed
-data. Attacks making use of this are called timing attacks\index{timing
-attacks}.
-
-The main mitigation against such attacks consists of carefully implementing the
-algorithm such that the execution time remains independent of the processed
-data. This can be done by making sure that both:
-
-a) The control flow, i.e. the trace of instructions executed, does not change
-   depending on the processed data. This guarantees that every time the
-   algorithm runs, exactly the same sequence of instructions is executed,
-   independent of the processed data.
-
-b) The instructions used to implement the algorithm are from the subset of
-   instructions for which the execution time is known to not depend on the data
-   values it processes.
-   
-   For example, in the Arm architecture, the Armv8.4-A
-   [DIT extension](https://developer.arm.com/documentation/ddi0595/2021-06/AArch64-Registers/DIT--Data-Independent-Timing)
-   guarantees that execution time is data-independent for a subset of the
-   AArch64 instructions.
-
-   By ensuring that the extension is enabled and only instructions in the subset
-   are used, data-independent execution time is guaranteed.
-
-At the moment, we do not know of a compiler implementation that actively helps
-to guarantee both (a) and (b). A great reference giving practical advice on how
-to achieve (a), (b) and more security hardening properties specific for
-cryptographic kernels is found in [@Pornin2018].
-
-As discussed in [@Pornin2018], when implementing cryptographic algorithms, you
-also need to keep cache side-channel attacks in mind, which are discussed in the
-[section on cache side-channel attacks](#cache-side-channel-attacks).
-
-## Cache side-channel attacks
+\missingcontent{Write section on transient execution attacks}
 
 <!-- markdown-link-check-disable -->
 \missingcontent{Write section on cache side-channel attacks. See
 \href{https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031}{the first comment on PR24}
 for suggestions of what this should contain.}
 <!-- markdown-link-check-enable-->
+
+## Physical access side-channel attacks
+
+\missingcontent{Write chapter on physical access side-channel attacks.}
 
 # Supply chain attacks
 
