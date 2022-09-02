@@ -1319,8 +1319,76 @@ Collide+Probe\index{Collide+Probe}[@Lipp2020], etc.
 
 ### Mitigating cache side-channel attacks
 
-\missingcontent{What general mitigations are possible?}
+As described in [@Su2021], 3 conditions need to be met for a cache-based
+side-channel attack to succeed:
 
+ 1. There is a mapping between a state change in the cache and
+    sensitive information in the victim program.
+
+ 2. The spy program needs to run on a CPU that shares the targeted cache level
+    with the CPU the victim program runs on.
+
+ 3. The spy program can infer a cache status change caused by the victim program
+    through its own cache status
+
+Mitigations against cache side-channel attacks can be categorized according to
+which of the 3 conditions above they aim to prevent from happening:
+
+#### Mitigations de-correlating cache state change with sensitive information in the victim program
+
+A typical example of when a cache state change could be correlated to sensitive
+information is when a program uses secret information to index into an array. An
+attacker could derive bits of the secret information by observing which cache
+line was fetched.
+
+Especially in crypto kernels, indexing into an array using a secret value is
+generally avoided. An alternative mitigation is to always access all array
+indices, independent of the secret value, e.g. as done in
+[commit
+46fbe375](https://git.tartarus.org/?p=simon/putty.git;a=commitdiff;h=46fbe375bf) to the Putty project, which contains this comment:
+
+>     * Side-channel considerations: the exponent is secret, so
+>     * actually doing a single table lookup by using a chunk of
+>     * exponent bits as an array index would be an obvious leak of
+>     * secret information into the cache. So instead, in each
+>     * iteration, we read _all_ the table entries, and do a sequence
+>     * of mp_select operations to leave just the one we wanted in the
+>     * variable
+
+
+#### Mitigations disallowing spy programs to share the cache with the victim program
+
+If the victim and the spy do not share a common channel -- in this case a cache
+level -- then a side channel cannot be created. Some typical ways to reduce the
+number of cache levels victim and spy share is disabling [cpu
+multithreading](https://en.wikipedia.org/wiki/Multithreading_(computer_architecture))\index{multithreading};
+making sure a spy cannot run in the same virtual machine of victim; etc.
+
+One could argue that
+[site isolation](https://developer.chrome.com/blog/site-isolation/)\index{site
+isolation} as implemented in many web browsers is a mitigation that also falls
+into this category.
+
+#### Mitigations disabling the spy program to infer a cache status change in the victim program through its own cache status
+
+In some contexts, the resolution of the smallest time increment measurable by
+the spy program can be reduced so much that it becomes much harder to
+distinguish between a cache hit and a cache miss. Injecting noise and jitter
+into the timer also makes it harder to distinguish between a cache hit and cache
+miss. This is one of the mitigations in [javascript engines against Spectre
+attacks](https://v8.dev/blog/spectre)\index{Spectre}.
+
+Note that this is not always a perfect mitigation - there are often surprising
+ways that an attacker can get a fine-grained enough timer or use statistical
+methods to be able to detect the difference between a cache hit or miss. One
+extreme example is NetSpectre\index{NetSpectre} [@Schwarz2019] where the
+difference between cache hit and cache miss is measured over a network, by
+statistically analyzing delays on network packet responses.
+
+Another possibility is to clear the cache between times when the victim runs and
+the spy runs. This is probably going to incur quite a bit of performance
+overhead, and may also not always possible e.g. when victim and spy running at
+the same time on 2 CPUs sharing a cache level.
 
 ## Resource contention channels
 
