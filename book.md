@@ -1078,14 +1078,10 @@ pointer integrity schemes, MTE etc}
 
 # Covert channels and side-channels
 
-A large class of attacks make use of so-called side-channels.  In this chapter,
-we focus on the the mechanisms used to make communication happen through
-side-channels or covert channels.  In the next two chapters, we describe
-attacks making use of side-channels.
-
-Side-channels and covert channels are closely related. Both side-channels and
-covert channels are communication channels between two entities in a system,
-where the entities should not be able to communicate that way.
+A large class of attacks make use of so-called side-channels, which are attacks
+making use of so-called covert channels. Side-channels and covert channels are
+communication channels between two entities in a system, where the entities
+should not be able to communicate that way.
 
 A **covert channel**\index{covert channel} is such a channel where both
 entities intend to communicate through the channel.  A
@@ -1094,13 +1090,13 @@ victim of an attack using the channel.
 
 In other words, the difference between a covert channel and a side-channel is
 whether both entities intend to communicate. If one entity does not intend to
-communicate, but the other entity nonetheless extracts some data from the
-first, it is called a side-channel attack. The entity not intending to
-communicate is called the victim\index{victim}. The other entity is sometimes
-called the spy\index{spy}.
+communicate, but the other entity nonetheless extracts some data from the first,
+it is called a side-channel attack. The entity not intending to communicate is
+called the **victim**\index{victim}. The other entity is sometimes called the
+**spy**\index{spy}.
 
-There are a lot of covert channels and side-channels. We describe the most
-important ones, and applicable mitigations, in this chapter.
+As we focus on attacks in this book, we'll mostly use the term side-channels
+in the rest of this chapter.
 
 ## Timing side-channels
 
