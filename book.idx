@@ -33,7 +33,8 @@
 \indexentry{side-channel|hyperpage}{26}
 \indexentry{victim|hyperpage}{26}
 \indexentry{spy|hyperpage}{26}
-\indexentry{cache|hyperpage}{26}
+\indexentry{timing attacks|hyperpage}{26}
+\indexentry{cache|hyperpage}{27}
 \indexentry{memory access time|hyperpage}{27}
 \indexentry{cache hit|hyperpage}{27}
 \indexentry{cache miss|hyperpage}{27}
@@ -52,17 +53,16 @@
 \indexentry{fully-associative cache|hyperpage}{28}
 \indexentry{set-associative cache|hyperpage}{28}
 \indexentry{direct-mapped cache|hyperpage}{28}
-\indexentry{cache set|hyperpage}{28}
+\indexentry{cache set|hyperpage}{29}
 \indexentry{cache coherency|hyperpage}{29}
-\indexentry{Flush+Reload|hyperpage}{29}
+\indexentry{Flush+Reload|hyperpage}{30}
 \indexentry{Prime+Probe|hyperpage}{30}
-\indexentry{reset sequence|hyperpage}{30}
-\indexentry{trigger sequence|hyperpage}{30}
-\indexentry{measurement sequence|hyperpage}{30}
-\indexentry{Flush+Flush|hyperpage}{30}
-\indexentry{Flush+Prefetch|hyperpage}{30}
-\indexentry{Evict+Reload|hyperpage}{30}
-\indexentry{Evict+Time|hyperpage}{30}
-\indexentry{Reload+Refresh|hyperpage}{30}
-\indexentry{Collide+Probe|hyperpage}{30}
-\indexentry{timing attacks|hyperpage}{32}
+\indexentry{reset sequence|hyperpage}{31}
+\indexentry{trigger sequence|hyperpage}{31}
+\indexentry{measurement sequence|hyperpage}{31}
+\indexentry{Flush+Flush|hyperpage}{31}
+\indexentry{Flush+Prefetch|hyperpage}{31}
+\indexentry{Evict+Reload|hyperpage}{31}
+\indexentry{Evict+Time|hyperpage}{31}
+\indexentry{Reload+Refresh|hyperpage}{31}
+\indexentry{Collide+Probe|hyperpage}{31}

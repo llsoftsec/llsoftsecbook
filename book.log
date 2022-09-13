@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.8.24)  24 AUG 2022 11:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.9.13)  13 SEP 2022 12:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1209,7 +1209,7 @@ LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
  (/texlive/2020/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [10]
-<img/stack-buffer-overflow.pdf, id=318, 604.2575pt x 417.56pt>
+<img/stack-buffer-overflow.pdf, id=313, 604.2575pt x 417.56pt>
 File: img/stack-buffer-overflow.pdf Graphic file (type pdf)
 <use img/stack-buffer-overflow.pdf>
 Package pdftex.def Info: img/stack-buffer-overflow.pdf  used on input line 587.
@@ -1235,18 +1235,18 @@ Overfull \hbox (0.9646pt too wide) in paragraph at lines 815--815
 [][][][]\T1/lmr/m/n/10 (-20) Explain 
  []
 
-<img/rop-control-flow.pdf, id=359, 178.6675pt x 351.3125pt>
+<img/rop-control-flow.pdf, id=354, 178.6675pt x 351.3125pt>
 File: img/rop-control-flow.pdf Graphic file (type pdf)
 <use img/rop-control-flow.pdf>
 Package pdftex.def Info: img/rop-control-flow.pdf  used on input line 840.
 (pdftex.def)             Requested size: 103.5018pt x 203.5148pt.
-<img/rop-call-stack.pdf, id=360, 544.0325pt x 756.8275pt>
+<img/rop-call-stack.pdf, id=355, 544.0325pt x 756.8275pt>
 File: img/rop-call-stack.pdf Graphic file (type pdf)
 <use img/rop-call-stack.pdf>
 Package pdftex.def Info: img/rop-call-stack.pdf  used on input line 848.
 (pdftex.def)             Requested size: 276.01678pt x 383.97906pt.
 [14]
-<img/jop.pdf, id=376, 335.2525pt x 381.425pt>
+<img/jop.pdf, id=371, 335.2525pt x 381.425pt>
 File: img/jop.pdf Graphic file (type pdf)
 <use img/jop.pdf>
 Package pdftex.def Info: img/jop.pdf  used on input line 902.
@@ -1298,7 +1298,7 @@ ions, with the
  []
 
 [22]
-<img/non-control-data-attack.pdf, id=485, 406.51875pt x 305.14pt>
+<img/non-control-data-attack.pdf, id=480, 406.51875pt x 305.14pt>
 File: img/non-control-data-attack.pdf Graphic file (type pdf)
 <use img/non-control-data-attack.pdf>
 Package pdftex.def Info: img/non-control-data-attack.pdf  used on input line 13
@@ -1314,66 +1314,66 @@ File: bc-aux-301.mps Graphic file (type mps)
 Chapter 3.
 [26
 
-]
-<img/CacheLevels.pdf, id=529, 231.86626pt x 322.20375pt>
+] [27]
+<img/CacheLevels.pdf, id=537, 231.86626pt x 322.20375pt>
 File: img/CacheLevels.pdf Graphic file (type pdf)
 <use img/CacheLevels.pdf>
-Package pdftex.def Info: img/CacheLevels.pdf  used on input line 1513.
+Package pdftex.def Info: img/CacheLevels.pdf  used on input line 1553.
 (pdftex.def)             Requested size: 137.99927pt x 191.76523pt.
- [27 <./img/CacheLevels.pdf>]
-<img/CacheIndexing.pdf, id=545, 704.6325pt x 278.03876pt>
+ [28 <./img/CacheLevels.pdf>]
+<img/CacheIndexing.pdf, id=555, 704.6325pt x 278.03876pt>
 File: img/CacheIndexing.pdf Graphic file (type pdf)
 <use img/CacheIndexing.pdf>
-Package pdftex.def Info: img/CacheIndexing.pdf  used on input line 1581.
+Package pdftex.def Info: img/CacheIndexing.pdf  used on input line 1621.
 (pdftex.def)             Requested size: 344.99341pt x 136.12987pt.
- [28 <./img/CacheIndexing.pdf>]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF]
 (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF]
-(/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+(/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [29 <./img/CacheInde
+xing.pdf>]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF]
-(/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [29]
-Underfull \hbox (badness 1490) in paragraph at lines 1695--1708
+(/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [30]
+Underfull \hbox (badness 1490) in paragraph at lines 1735--1748
 \T1/lmr/m/n/10 (+20) proach in-clude: Flush+Flush[](Gruss, Mau-rice, Wag-ner, e
 t al. [][]2016[][]),
  []
 
 File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [30]
-Chapter 4.
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [31
 
-]
-Chapter 5.
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [31]
+Chapter 4.
 [32
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [33]
-Chapter 6.
-[34
-
-]
-File: bc-aux-301.mps Graphic file (type mps)
- [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-[35]
-Chapter 7.
+Chapter 5.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [36
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [34
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-(build/book.ind [37
+(build/book.ind [35
 
 ]
 Underfull \hbox (badness 1092) in paragraph at lines 27--28
@@ -1385,49 +1385,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 104--105
 []\T1/lmr/m/n/10 (+20) sigreturn-oriented pro-gram-ming
  []
 
-[38
+[36
 
 ]) (build/book.tdo)
 \tf@tdo=\write7
 \openout7 = `book.tdo'.
 
- [39
+ [37
 
 
-] [40
+] [38
 
-] [41]
-Underfull \hbox (badness 10000) in paragraph at lines 2025--2030
+] [39]
+Underfull \hbox (badness 10000) in paragraph at lines 2017--2022
 \T1/lmr/m/n/10 (+20) Security -[] Research / blob / master / presentations / 20
 12 _ 10 _ Breakpoint /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2025--2030
+Underfull \hbox (badness 10000) in paragraph at lines 2017--2022
 \T1/lmr/m/n/10 (+20) BreakPoint2012 _ Miller _ Modeling _ the _ exploitation _ 
 and _ mitigation _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2036--2040
+Underfull \hbox (badness 10000) in paragraph at lines 2028--2032
 \T1/lmr/m/n/10 (+20) publications / conference -[] paper / 1998 / 10 / 08 / pro
 ceedings -[] of -[] the -[] 21st -[] nissc -[]
  []
 
-[42] [43] (build/book.aux)
+[40] [41] (build/book.aux)
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: 5D2AC3D0A08D2C265867A06B470411B6;6757.
+(rerunfilecheck)             Checksum: 50B9D0E0E8A353A7E7EB1C18B038EB99;6652.
  ) 
 Here is how much of TeX's memory you used:
- 29451 strings out of 480962
- 535460 string characters out of 5908147
- 933376 words of memory out of 5000000
- 45608 multiletter control sequences out of 15000+600000
+ 29455 strings out of 480962
+ 535747 string characters out of 5908147
+ 941178 words of memory out of 5000000
+ 45609 multiletter control sequences out of 15000+600000
  484577 words of font info for 181 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  102i,12n,117p,651b,1259s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{stack-buffer-overflow} has been referenced but do
-es not exist, replaced by a fixed one
+pdfTeX warning (dest): name{cache-side-channel-attacks} has been referenced b
+ut does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{stack-buffer-overflow} has been referenced but does
+ not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{rop} has been referenced but does not exist, replac
 ed by a fixed one
@@ -1446,10 +1449,10 @@ lic/lm/lmr8.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmri10.pfb></te
 xlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></texlive/2020/texmf-dis
 t/fonts/type1/public/lm/lmtt10.pfb></texlive/2020/texmf-dist/fonts/type1/public
 /lm/lmtt8.pfb>
-Output written on build/book.pdf (44 pages, 672559 bytes).
+Output written on build/book.pdf (42 pages, 670589 bytes).
 PDF statistics:
- 996 PDF objects out of 1000 (max. 8388607)
- 897 compressed objects within 9 object streams
- 231 named destinations out of 1000 (max. 500000)
- 45464 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 986 PDF objects out of 1000 (max. 8388607)
+ 889 compressed objects within 9 object streams
+ 230 named destinations out of 1000 (max. 500000)
+ 45456 words of extra memory for PDF output out of 51595 (max. 10000000)
 

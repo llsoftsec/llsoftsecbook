@@ -84,7 +84,7 @@ text-justify: auto;
 <p>
   Copyright 2021-2022 Arm Limited <a href="mailto:open-source-office@arm.com" class="email">open-source-office@arm.com</a><br />
 </p>
-<p>Version: 0-82-ge3a71af</p>
+<p>Version: 0-83-g03f1d35</p>
 
 </header>
 <nav id="TOC">
@@ -111,23 +111,21 @@ text-justify: auto;
 <li><a href="#jit-compiler-vulnerabilities"><span class="toc-section-number">2.8</span> JIT compiler vulnerabilities <span>§</span></a></li>
 </ul></li>
 <li><a href="#covert-channels-and-side-channels"><span class="toc-section-number">3</span> Covert channels and side-channels <span>§</span></a><ul>
-<li><a href="#cache-covert-channels"><span class="toc-section-number">3.1</span> Cache covert channels <span>§</span></a><ul>
-<li><a href="#typical-cpu-cache-architecture"><span class="toc-section-number">3.1.1</span> Typical CPU cache architecture <span>§</span></a></li>
-<li><a href="#operation-of-cache-side-channels"><span class="toc-section-number">3.1.2</span> Operation of cache side-channels <span>§</span></a></li>
+<li><a href="#timing-side-channels"><span class="toc-section-number">3.1</span> Timing side-channels <span>§</span></a></li>
+<li><a href="#cache-side-channels"><span class="toc-section-number">3.2</span> Cache side-channels <span>§</span></a><ul>
+<li><a href="#typical-cpu-cache-architecture"><span class="toc-section-number">3.2.1</span> Typical CPU cache architecture <span>§</span></a></li>
+<li><a href="#operation-of-cache-side-channels"><span class="toc-section-number">3.2.2</span> Operation of cache side-channels <span>§</span></a></li>
+<li><a href="#mitigating-cache-side-channel-attacks"><span class="toc-section-number">3.2.3</span> Mitigating cache side-channel attacks <span>§</span></a></li>
 </ul></li>
-<li><a href="#timing-covert-channels"><span class="toc-section-number">3.2</span> Timing covert channels <span>§</span></a></li>
 <li><a href="#resource-contention-channels"><span class="toc-section-number">3.3</span> Resource contention channels <span>§</span></a></li>
 <li><a href="#channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors"><span class="toc-section-number">3.4</span> Channels making use of aliasing in branch predictors and other predictors <span>§</span></a></li>
+<li><a href="#transient-execution-attacks"><span class="toc-section-number">3.5</span> Transient execution attacks <span>§</span></a></li>
+<li><a href="#physical-access-side-channel-attacks"><span class="toc-section-number">3.6</span> Physical access side-channel attacks <span>§</span></a></li>
 </ul></li>
-<li><a href="#physical-access-side-channel-attacks"><span class="toc-section-number">4</span> Physical access side-channel attacks <span>§</span></a></li>
-<li><a href="#remote-access-side-channel-attacks"><span class="toc-section-number">5</span> Remote access side-channel attacks <span>§</span></a><ul>
-<li><a href="#timing-attacks"><span class="toc-section-number">5.1</span> Timing attacks <span>§</span></a></li>
-<li><a href="#cache-side-channel-attacks"><span class="toc-section-number">5.2</span> Cache side-channel attacks <span>§</span></a></li>
+<li><a href="#supply-chain-attacks"><span class="toc-section-number">4</span> Supply chain attacks <span>§</span></a><ul>
+<li><a href="#history-of-supply-chain-attacks"><span class="toc-section-number">4.1</span> History of supply chain attacks <span>§</span></a></li>
 </ul></li>
-<li><a href="#supply-chain-attacks"><span class="toc-section-number">6</span> Supply chain attacks <span>§</span></a><ul>
-<li><a href="#history-of-supply-chain-attacks"><span class="toc-section-number">6.1</span> History of supply chain attacks <span>§</span></a></li>
-</ul></li>
-<li><a href="#other-security-topics-relevant-for-compiler-developers"><span class="toc-section-number">7</span> Other security topics relevant for compiler developers <span>§</span></a></li>
+<li><a href="#other-security-topics-relevant-for-compiler-developers"><span class="toc-section-number">5</span> Other security topics relevant for compiler developers <span>§</span></a></li>
 <li><a href="#appendix-contribution-guidelines">Appendix: contribution guidelines <span>§</span></a></li>
 <li><a href="#references">References <span>§</span></a></li>
 </ul>
@@ -450,14 +448,24 @@ int authenticate() {
 <h2 id="jit-compiler-vulnerabilities"><span class="header-section-number">2.8</span> JIT compiler vulnerabilities <a href="#jit-compiler-vulnerabilities" class="selflink">§</a></h2>
 
 <h1 id="covert-channels-and-side-channels"><span class="header-section-number">3</span> Covert channels and side-channels <a href="#covert-channels-and-side-channels" class="selflink">§</a></h1>
-<p>A large class of attacks make use of so-called side-channels. In this chapter, we focus on the the mechanisms used to make communication happen through side-channels or covert channels. In the next two chapters, we describe attacks making use of side-channels.</p>
-<p>Side-channels and covert channels are closely related. Both side-channels and covert channels are communication channels between two entities in a system, where the entities should not be able to communicate that way.</p>
+<p>A large class of attacks make use of so-called side-channels, which are attacks making use of so-called covert channels. Side-channels and covert channels are communication channels between two entities in a system, where the entities should not be able to communicate that way.</p>
 <p>A <strong>covert channel</strong> is such a channel where both entities intend to communicate through the channel. A <strong>side-channel</strong> is a such a channel where one end is the victim of an attack using the channel.</p>
-<p>In other words, the difference between a covert channel and a side-channel is whether both entities intend to communicate. If one entity does not intend to communicate, but the other entity nonetheless extracts some data from the first, it is called a side-channel attack. The entity not intending to communicate is called the victim. The other entity is sometimes called the spy.</p>
-<p>The rest of this chapter mostly describes a variety of common covert channel mechanisms. It does not aim to differentiate much on whether both ends intend to cooperate, or whether one end is a victim under attack of the other end.</p>
-<h2 id="cache-covert-channels"><span class="header-section-number">3.1</span> Cache covert channels <a href="#cache-covert-channels" class="selflink">§</a></h2>
+<p>In other words, the difference between a covert channel and a side-channel is whether both entities intend to communicate. If one entity does not intend to communicate, but the other entity nonetheless extracts some data from the first, it is called a side-channel attack. The entity not intending to communicate is called the <strong>victim</strong>. The other entity is sometimes called the <strong>spy</strong>.</p>
+<p>As we focus on attacks in this book, we’ll mostly use the term side-channels in the rest of this chapter.</p>
+<h2 id="timing-side-channels"><span class="header-section-number">3.1</span> Timing side-channels <a href="#timing-side-channels" class="selflink">§</a></h2>
+<p>An implementation of a cryptographic algorithm can leak information about the data it processes if its run time is influenced by the value of the processed data. Attacks making use of this are called timing attacks.</p>
+<p>The main mitigation against such attacks consists of carefully implementing the algorithm such that the execution time remains independent of the processed data. This can be done by making sure that both:</p>
+<ol type="a">
+<li><p>The control flow, i.e. the trace of instructions executed, does not change depending on the processed data. This guarantees that every time the algorithm runs, exactly the same sequence of instructions is executed, independent of the processed data.</p></li>
+<li><p>The instructions used to implement the algorithm are from the subset of instructions for which the execution time is known to not depend on the data values it processes.</p>
+<p>For example, in the Arm architecture, the Armv8.4-A <a href="https://developer.arm.com/documentation/ddi0595/2021-06/AArch64-Registers/DIT--Data-Independent-Timing">DIT extension</a> guarantees that execution time is data-independent for a subset of the AArch64 instructions.</p>
+<p>By ensuring that the extension is enabled and only instructions in the subset are used, data-independent execution time is guaranteed.</p></li>
+</ol>
+<p>At the moment, we do not know of a compiler implementation that actively helps to guarantee both (a) and (b). A great reference giving practical advice on how to achieve (a), (b) and more security hardening properties specific for cryptographic kernels is found in <span class="citation" data-cites="Pornin2018">(Pornin <a href="#ref-Pornin2018">2018</a>)</span>.</p>
+<p>As discussed in <span class="citation" data-cites="Pornin2018">(Pornin <a href="#ref-Pornin2018">2018</a>)</span>, when implementing cryptographic algorithms, you also need to keep cache side-channel attacks in mind, which are discussed in the <a href="#cache-side-channel-attacks">section on cache side-channel attacks</a>.</p>
+<h2 id="cache-side-channels"><span class="header-section-number">3.2</span> Cache side-channels <a href="#cache-side-channels" class="selflink">§</a></h2>
 <p><a href="https://en.wikipedia.org/wiki/Cache_(computing)">Caches</a> are used in almost every computing system. They are small and much faster memories than the main memory. They aim to automatically keep frequently used data accessed by programs, so that average memory access time improves. Various techniques exist where a covert communication can happen between processes that share a cache, without the processes having rights to read or write to the same memory locations. To understand how these techniques work, one needs to understand typical organization and operation of a cache.</p>
-<h3 id="typical-cpu-cache-architecture"><span class="header-section-number">3.1.1</span> Typical CPU cache architecture <a href="#typical-cpu-cache-architecture" class="selflink">§</a></h3>
+<h3 id="typical-cpu-cache-architecture"><span class="header-section-number">3.2.1</span> Typical CPU cache architecture <a href="#typical-cpu-cache-architecture" class="selflink">§</a></h3>
 <p>There is a wide variety in <a href="https://en.wikipedia.org/wiki/CPU_cache">CPU cache micro-architecture</a> details, but the main characteristics that are important to set up a covert channel tend to be similar across most popular implementations.</p>
 <p>Caches are small and much faster memories than the main memory that aim to keep a copy of the data at the most frequently accessed main memory addresses. The set of addresses that are used most frequently changes quickly over time as a program executes. Therefore, the addresses that are present in CPU caches also evolve quickly over time. The content of the cache may change with every executed read or write instruction.</p>
 <p>On every read and write instruction, the cache micro-architecture looks up if the data for the requested address happens to be present in the cache. If it is, the CPU can continue executing quickly; if not, dependent operations will have to wait until the data returns from the much slower main memory. A typical access time is 3 to 5 CPU cycles for the fastest cache on a CPU versus hundreds of cycles for a main memory access. When data is present in the cache for a read or write, it is said to be a cache hit. Otherwise, it’s called a cache miss.</p>
@@ -476,7 +484,7 @@ int authenticate() {
 <p>When data that wasn’t previously in the cache needs to be stored in the cache, most of the time, room has to be made for it by removing, or evicting, some other address/data from it. How that choice gets made is decided by the <a href="https://en.wikipedia.org/wiki/Cache_replacement_policies">cache replacement policy</a>. Popular replacement algorithms are Least Recently Used (LRU), Random and pseudo-LRU. As the names suggest, LRU evicts the cache line that is least recently used; random picks a random cache line; and pseudo-LRU approximates choosing the least recently used line.</p>
 <p>If a cache line can be stored in all locations available in the cache, the cache is fully-associative. Most caches are however not fully-associative, as it’s too costly to implement. Instead, most caches are set-associative. In an N-way set-associative cache, a specific line can only be stored in one of N cache locations. For example, if a line can potentially be stored in one of 2 locations, the cache is said to be 2-way set-associative. If it can be stored in one of 4 locations, it’s called 4-way set-associative, and so on. When an address can only be stored in one location in the cache, it is said to be direct-mapped, rather than 1-way set-associative. Typical organizations are direct-mapped, 2-way, 4-way, 8-way, 16-way or 32-way set-associative.</p>
 <p>The set of cache locations that a particular cache line can be stored at is called a cache set.</p>
-<h4 id="indexing-in-a-set-associative-cache"><span class="header-section-number">3.1.1.1</span> Indexing in a set-associative cache <a href="#indexing-in-a-set-associative-cache" class="selflink">§</a></h4>
+<h4 id="indexing-in-a-set-associative-cache"><span class="header-section-number">3.2.1.1</span> Indexing in a set-associative cache <a href="#indexing-in-a-set-associative-cache" class="selflink">§</a></h4>
 <p>For some cache covert channels, it is essential to know exactly how a memory address maps to a specific cache set.</p>
 <div id="fig:cache-indexing" class="fignos">
 <figure>
@@ -486,10 +494,10 @@ int authenticate() {
 <p>Specific bits in the memory address are used for different cache indexing purposes, as illustrated in fig. <a href="#fig:cache-indexing">5</a>. The least-significant <span class="math inline"><em>L</em></span> bits, where <span class="math inline">2<sup><em>L</em></sup></span> is the cache line size, are used to compute an address’s offset within a cache line. The next <span class="math inline"><em>S</em></span> bits, where <span class="math inline">2<sup><em>S</em></sup></span> is the number of cache sets, are used to determine which cache set an address maps to. The remaining top bits are “tag bits”. They are stored alongside a line in the cache so later operations can detect which specific memory address is replicated in that cache line.</p>
 <p>For direct-mapped and fully-associative caches, the mapping of an address to cache locations also works as described above. In fully-associative caches the number of cache sets is 1, so <span class="math inline"><em>S</em></span>=0.</p>
 
-<h3 id="operation-of-cache-side-channels"><span class="header-section-number">3.1.2</span> Operation of cache side-channels <a href="#operation-of-cache-side-channels" class="selflink">§</a></h3>
-<p>Cache covert channels typically work by the spy determining whether a memory access was a cache hit or a cache miss. From that information, in specific situations, it may be able to deduce bits of data that only the victim has access to.</p>
+<h3 id="operation-of-cache-side-channels"><span class="header-section-number">3.2.2</span> Operation of cache side-channels <a href="#operation-of-cache-side-channels" class="selflink">§</a></h3>
+<p>Cache side-channels typically work by the spy determining whether a memory access was a cache hit or a cache miss. From that information, in specific situations, it may be able to deduce bits of data that only the victim has access to.</p>
 <p>Let’s illustrate this with describing a few well-known cache side-channels:</p>
-<h4 id="flushreload"><span class="header-section-number">3.1.2.1</span> Flush+Reload <a href="#flushreload" class="selflink">§</a></h4>
+<h4 id="flushreload"><span class="header-section-number">3.2.2.1</span> Flush+Reload <a href="#flushreload" class="selflink">§</a></h4>
 <p>In a so-called Flush+Reload attack<span class="citation" data-cites="Yarom2014">(Yarom and Falkner <a href="#ref-Yarom2014">2014</a>)</span>, the spy process shares memory with the victim process. The attack works in 3 steps:</p>
 <ol type="1">
 <li>The Flush step: The spy flushes a specific address from the cache.</li>
@@ -498,7 +506,7 @@ int authenticate() {
 </ol>
 <p>Knowing if a victim accessed a specific address can leak sensitive information. Such as when accessing a specific array element depends on whether a specific bit is set in secret data. For example, <span class="citation" data-cites="Yarom2014">(Yarom and Falkner <a href="#ref-Yarom2014">2014</a>)</span> demonstrates that a Flush+Reload attack can be used to leak GnuPG private keys.</p>
 
-<h4 id="primeprobe"><span class="header-section-number">3.1.2.2</span> Prime+Probe <a href="#primeprobe" class="selflink">§</a></h4>
+<h4 id="primeprobe"><span class="header-section-number">3.2.2.2</span> Prime+Probe <a href="#primeprobe" class="selflink">§</a></h4>
 <p>In a Prime+Probe attack, there is no need for memory to be shared between victim and spy. The attack works in 3 steps:</p>
 <ol type="1">
 <li>The Prime step: The spy fills one or more cache sets with its data, for example, by accessing data that maps to those cache sets.</li>
@@ -506,7 +514,7 @@ int authenticate() {
 <li>The Probe step: The spy accesses that same data as in the prime step. Measuring the time it takes to load the data, it can derive how many cache lines the victim evicted from each cache set in step 2, and from that derive information about addresses that the victim accessed.</li>
 </ol>
 <p><span class="citation" data-cites="Osvik2005">(Osvik, Shamir, and Tromer <a href="#ref-Osvik2005">2005</a>)</span> which first documented this technique in 2005 demonstrates extracting AES keys in just a few milliseconds using Prime+Probe.</p>
-<h4 id="general-schema-for-cache-covert-channels"><span class="header-section-number">3.1.2.3</span> General schema for cache covert channels <a href="#general-schema-for-cache-covert-channels" class="selflink">§</a></h4>
+<h4 id="general-schema-for-cache-covert-channels"><span class="header-section-number">3.2.2.3</span> General schema for cache covert channels <a href="#general-schema-for-cache-covert-channels" class="selflink">§</a></h4>
 <p>An attentative reader may have noticed that the concrete named attacks above follow a similar 3-step pattern. Indeed, <span class="citation" data-cites="Weber2021">(Weber et al. <a href="#ref-Weber2021">2021</a>)</span> describes this general pattern and uses it to automatically discover more side-channels that follow this 3-step pattern. They describe the general pattern as being:</p>
 <ol type="1">
 <li>An instruction sequence that resets the inner CPU state (<em>reset sequence</em>).</li>
@@ -514,34 +522,23 @@ int authenticate() {
 <li>An instruction sequence that leaks the inner state (<em>measurement sequence</em>).</li>
 </ol>
 <p>Other cache-based side channel attacks following this general 3-step approach include: Flush+Flush<span class="citation" data-cites="Gruss2016a">(Gruss, Maurice, Wagner, et al. <a href="#ref-Gruss2016a">2016</a>)</span>, Flush+Prefetch<span class="citation" data-cites="Gruss2016">(Gruss, Maurice, Fogh, et al. <a href="#ref-Gruss2016">2016</a>)</span>, Evict+Reload<span class="citation" data-cites="Percival2005">(Percival <a href="#ref-Percival2005">2005</a>)</span>, Evict+Time<span class="citation" data-cites="Osvik2005">(Osvik, Shamir, and Tromer <a href="#ref-Osvik2005">2005</a>)</span>, Reload+Refresh<span class="citation" data-cites="Briongos2020">(Briongos et al. <a href="#ref-Briongos2020">2020</a>)</span>, Collide+Probe<span class="citation" data-cites="Lipp2020">(Lipp et al. <a href="#ref-Lipp2020">2020</a>)</span>, etc.</p>
-<h2 id="timing-covert-channels"><span class="header-section-number">3.2</span> Timing covert channels <a href="#timing-covert-channels" class="selflink">§</a></h2>
+<h3 id="mitigating-cache-side-channel-attacks"><span class="header-section-number">3.2.3</span> Mitigating cache side-channel attacks <a href="#mitigating-cache-side-channel-attacks" class="selflink">§</a></h3>
+
 <h2 id="resource-contention-channels"><span class="header-section-number">3.3</span> Resource contention channels <a href="#resource-contention-channels" class="selflink">§</a></h2>
 <h2 id="channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors"><span class="header-section-number">3.4</span> Channels making use of aliasing in branch predictors and other predictors <a href="#channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors" class="selflink">§</a></h2>
 
-<h1 id="physical-access-side-channel-attacks"><span class="header-section-number">4</span> Physical access side-channel attacks <a href="#physical-access-side-channel-attacks" class="selflink">§</a></h1>
+<h2 id="transient-execution-attacks"><span class="header-section-number">3.5</span> Transient execution attacks <a href="#transient-execution-attacks" class="selflink">§</a></h2>
 
-<h1 id="remote-access-side-channel-attacks"><span class="header-section-number">5</span> Remote access side-channel attacks <a href="#remote-access-side-channel-attacks" class="selflink">§</a></h1>
-<p>This chapter covers side-channel attacks for which the attacker does not need physical access to the hardware.</p>
-<h2 id="timing-attacks"><span class="header-section-number">5.1</span> Timing attacks <a href="#timing-attacks" class="selflink">§</a></h2>
-<p>An implementation of a cryptographic algorithm can leak information about the data it processes if its run time is influenced by the value of the processed data. Attacks making use of this are called timing attacks.</p>
-<p>The main mitigation against such attacks consists of carefully implementing the algorithm such that the execution time remains independent of the processed data. This can be done by making sure that both:</p>
-<ol type="a">
-<li><p>The control flow, i.e. the trace of instructions executed, does not change depending on the processed data. This guarantees that every time the algorithm runs, exactly the same sequence of instructions is executed, independent of the processed data.</p></li>
-<li><p>The instructions used to implement the algorithm are from the subset of instructions for which the execution time is known to not depend on the data values it processes.</p>
-<p>For example, in the Arm architecture, the Armv8.4-A <a href="https://developer.arm.com/documentation/ddi0595/2021-06/AArch64-Registers/DIT--Data-Independent-Timing">DIT extension</a> guarantees that execution time is data-independent for a subset of the AArch64 instructions.</p>
-<p>By ensuring that the extension is enabled and only instructions in the subset are used, data-independent execution time is guaranteed.</p></li>
-</ol>
-<p>At the moment, we do not know of a compiler implementation that actively helps to guarantee both (a) and (b). A great reference giving practical advice on how to achieve (a), (b) and more security hardening properties specific for cryptographic kernels is found in <span class="citation" data-cites="Pornin2018">(Pornin <a href="#ref-Pornin2018">2018</a>)</span>.</p>
-<p>As discussed in <span class="citation" data-cites="Pornin2018">(Pornin <a href="#ref-Pornin2018">2018</a>)</span>, when implementing cryptographic algorithms, you also need to keep cache side-channel attacks in mind, which are discussed in the <a href="#cache-side-channel-attacks">section on cache side-channel attacks</a>.</p>
-<h2 id="cache-side-channel-attacks"><span class="header-section-number">5.2</span> Cache side-channel attacks <a href="#cache-side-channel-attacks" class="selflink">§</a></h2>
 <!-- markdown-link-check-disable -->
 
 <!-- markdown-link-check-enable-->
-<h1 id="supply-chain-attacks"><span class="header-section-number">6</span> Supply chain attacks <a href="#supply-chain-attacks" class="selflink">§</a></h1>
+<h2 id="physical-access-side-channel-attacks"><span class="header-section-number">3.6</span> Physical access side-channel attacks <a href="#physical-access-side-channel-attacks" class="selflink">§</a></h2>
+
+<h1 id="supply-chain-attacks"><span class="header-section-number">4</span> Supply chain attacks <a href="#supply-chain-attacks" class="selflink">§</a></h1>
 <p>A software <em>supply chain attack</em> occurs when an attacker interferes with the software development or distribution processes with the intention to impact users of that software.</p>
 <p>Supply chain attacks and their possible mitigations are not specific to compilers. However, compilers are an attractive target for attack because they are widely deployed to developers, in continuous integration systems and as JITs. Also, an infected compiler has the possibility to make a much larger impact if it can silently spread the infection to other software created with or run using it.</p>
 <p>This chapter explores the history of supply chain attacks that involve compilers and what can be done to prevent them.</p>
-<h2 id="history-of-supply-chain-attacks"><span class="header-section-number">6.1</span> History of supply chain attacks <a href="#history-of-supply-chain-attacks" class="selflink">§</a></h2>
+<h2 id="history-of-supply-chain-attacks"><span class="header-section-number">4.1</span> History of supply chain attacks <a href="#history-of-supply-chain-attacks" class="selflink">§</a></h2>
 <p>As far back as 1974 Karger &amp; Schell theorized about an attack on the Multics operating system via the PL/I compiler <span class="citation" data-cites="Karger1974">(Paul A. and Roger R. <a href="#ref-Karger1974">1974</a>)</span>. In this attack, a trap door is inserted into the compiler, which then injects malicious code into generated object code. Furthermore, the trap door could be designed to reinsert itself into the compiler binary so that future compilers are silently infected without needing changes to their source code. This attack method was subsequently popularised by Ken Thompson in his 1984 ACM Turing Award acceptance speech <em>Reflections on Trusting Trust</em> <span class="citation" data-cites="Thompson1984">(Thompson <a href="#ref-Thompson1984">1984</a>)</span>.</p>
 <p>If these cases seem far-fetched then consider that there have been several real examples of supply chain attacks on development tools.</p>
 <p>Induc is a family of viruses that infects a pre-compiled library in the Delphi toolchain with malicious code <span class="citation" data-cites="Gostev2009">(Gostev <a href="#ref-Gostev2009">2009</a>)</span>. When Delphi compiles a project the malicious library is included into the resulting executable, thus enabling the virus to spread. The virus was first detected in 2009 and was circulating undetected for at least a year beforehand. Several popular applications are known to have been infected, including a chat client and a media player. Overall, in excess of a hundred thousand infected computers were detected world-wide by anti-virus solutions.</p>
@@ -549,7 +546,7 @@ int authenticate() {
 <p>A trojanized linker was found to be involved in a supply chain attack discovered in 2017 named ShadowPad <span class="citation" data-cites="Greenberg2019">(Greenberg <a href="#ref-Greenberg2019">2019</a>)</span>. Some instances of the attack were perpetrated using a trojanized Visual Studio linker that silently incorporates a malicious library into applications as they are built. Related attacks named CCleaner and ShadowHammer used the same approach of a trojanized linker to infect built applications. Infected applications from these attacks were distributed to millions of users world-wide.</p>
 <p>These cases highlight that attacks on compilers, and especially linkers and libraries, are a viable route to silently infect many other applications, and there is no doubt that there will be more such attacks in the future. Let us now explore what we can do about these.</p>
 
-<h1 id="other-security-topics-relevant-for-compiler-developers"><span class="header-section-number">7</span> Other security topics relevant for compiler developers <a href="#other-security-topics-relevant-for-compiler-developers" class="selflink">§</a></h1>
+<h1 id="other-security-topics-relevant-for-compiler-developers"><span class="header-section-number">5</span> Other security topics relevant for compiler developers <a href="#other-security-topics-relevant-for-compiler-developers" class="selflink">§</a></h1>
 
 
 <h1 id="appendix-contribution-guidelines" class="unnumbered">Appendix: contribution guidelines <a href="#appendix-contribution-guidelines" class="selflink">§</a></h1>

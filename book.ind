@@ -10,7 +10,7 @@
 
   \indexspace
 
-  \item cache, \hyperpage{26}
+  \item cache, \hyperpage{27}
   \item cache access time, \hyperpage{27}
   \item cache block, \hyperpage{28}
   \item cache coherency, \hyperpage{29}
@@ -19,10 +19,10 @@
   \item cache line, \hyperpage{28}
   \item cache miss, \hyperpage{27}
   \item cache replacement policy, \hyperpage{28}
-  \item cache set, \hyperpage{28}
+  \item cache set, \hyperpage{29}
   \item cache size, \hyperpage{27}
   \item CFI, \hyperpage{18}
-  \item Collide+Probe, \hyperpage{30}
+  \item Collide+Probe, \hyperpage{31}
   \item control data, \hyperpage{23}
   \item counterfeit object-oriented programming (COOP), \hyperpage{17}
   \item covert channel, \hyperpage{26}
@@ -35,15 +35,15 @@
 
   \indexspace
 
-  \item Evict+Reload, \hyperpage{30}
-  \item Evict+Time, \hyperpage{30}
+  \item Evict+Reload, \hyperpage{31}
+  \item Evict+Time, \hyperpage{31}
   \item exploit primitive, \hyperpage{7}
 
   \indexspace
 
-  \item Flush+Flush, \hyperpage{30}
-  \item Flush+Prefetch, \hyperpage{30}
-  \item Flush+Reload, \hyperpage{29}
+  \item Flush+Flush, \hyperpage{31}
+  \item Flush+Prefetch, \hyperpage{31}
+  \item Flush+Reload, \hyperpage{30}
   \item forward-edge CFI, \hyperpage{18}
   \item fully-associative cache, \hyperpage{28}
 
@@ -68,7 +68,7 @@
 
   \indexspace
 
-  \item measurement sequence, \hyperpage{30}
+  \item measurement sequence, \hyperpage{31}
   \item memory access time, \hyperpage{27}
   \item multi-level cache, \hyperpage{27}
 
@@ -90,8 +90,8 @@
 
   \item random replacement policy, \hyperpage{28}
   \item read primitive, \hyperpage{8}
-  \item Reload+Refresh, \hyperpage{30}
-  \item reset sequence, \hyperpage{30}
+  \item Reload+Refresh, \hyperpage{31}
+  \item reset sequence, \hyperpage{31}
   \item return-oriented programming (ROP), \hyperpage{13}
   \item ROP chain, \hyperpage{13}
 
@@ -107,9 +107,9 @@
 
   \indexspace
 
-  \item timing attacks, \hyperpage{32}
+  \item timing attacks, \hyperpage{26}
   \item Top-Byte-Ignore (TBI), \hyperpage{21}
-  \item trigger sequence, \hyperpage{30}
+  \item trigger sequence, \hyperpage{31}
 
   \indexspace
 
