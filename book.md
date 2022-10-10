@@ -1366,7 +1366,7 @@ and when a context switch does happen, to clear all cache content. Obviously,
 this has a huge performance impact, especially in systems with multiple cores
 and with large caches. Therefore, a wide variety of mitigations have been
 proposed that aim to make attacks somewhat harder without losing too much system
-efficiency. [@Mushtaq_2020] and [[@Su2021] summarize dozens of proposals and
+efficiency. [@Mushtaq2020] and [@Su2021] summarize dozens of proposals and
 implementations -- too many to try to describe them all here.
 
 One popular such mitigation is disabling [cpu
@@ -1421,9 +1421,9 @@ at the same time on 2 CPUs sharing a cache level.
 
 \missingcontent{Write section on transient execution attacks}
 
-#### site-isolation
+#### Site isolation
 
-\missingcontent{Write section on site-isolation as a SpectreV1 mitigation}
+\missingcontent{Write section on site isolation as a SpectreV1 mitigation}
 
 ## Physical access side-channel attacks
 
