@@ -1329,7 +1329,7 @@ side-channel attack to succeed:
     with the CPU the victim program runs on.
 
  3. The spy program can infer a cache status change caused by the victim program
-    through its own cache status
+    through its own cache status.
 
 Mitigations against cache side-channel attacks can be categorized according to
 which of the 3 conditions above they aim to prevent from happening:
@@ -1359,15 +1359,31 @@ indices, independent of the secret value, e.g. as done in
 #### Mitigations disallowing spy programs to share the cache with the victim program
 
 If the victim and the spy do not share a common channel -- in this case a cache
-level -- then a side channel cannot be created. Some typical ways to reduce the
-number of cache levels victim and spy share is disabling [cpu
-multithreading](https://en.wikipedia.org/wiki/Multithreading_(computer_architecture))\index{multithreading};
-making sure a spy cannot run in the same virtual machine of victim; etc.
+level -- then a side channel cannot be created.
+
+One way to achieve this is to only allow one program to run at the same time,
+and when a context switch does happen, to clear all cache content. Obviously,
+this has a huge performance impact, especially in systems with multiple cores
+and with large caches. Therefore, a wide variety of mitigations have been
+proposed that aim to make attacks somewhat harder without losing too much system
+efficiency. [@Mushtaq_2020] and [[@Su2021] summarize dozens of proposals and
+implementations -- too many to try to describe them all here.
+
+One popular such mitigation is disabling [cpu
+multithreading](https://en.wikipedia.org/wiki/Multithreading_(computer_architecture))\index{multithreading}.
+For example,
+[Azure suggests that users who run untrusted code should consider disabling cpu multithreading](https://learn.microsoft.com/en-us/azure/virtual-machines/mitigate-se).
+[The linux kernel's core scheduling documentation](https://www.kernel.org/doc/Documentation/admin-guide/hw-vuln/core-scheduling.rst)
+also states mutually untrusted code should not run on the same core
+concurrently. It implements a scheduler that
+[takes into account which processes are mutually-trusting](https://lwn.net/Articles/861251/)
+and only allows those to run simultaneously on the same core.
 
 One could argue that
 [site isolation](https://developer.chrome.com/blog/site-isolation/)\index{site
 isolation} as implemented in many web browsers is a mitigation that also falls
-into this category.
+into this category. Site isolation is described in more detail in
+[its own section](#site-isolation).
 
 #### Mitigations disabling the spy program to infer a cache status change in the victim program through its own cache status
 
@@ -1375,20 +1391,24 @@ In some contexts, the resolution of the smallest time increment measurable by
 the spy program can be reduced so much that it becomes much harder to
 distinguish between a cache hit and a cache miss. Injecting noise and jitter
 into the timer also makes it harder to distinguish between a cache hit and cache
-miss. This is one of the mitigations in [javascript engines against Spectre
-attacks](https://v8.dev/blog/spectre)\index{Spectre}.
+miss. This is one of the mitigations in javascript engines against Spectre
+attacks. For more information see this
+[v8 blog post](https://v8.dev/blog/spectre) or this
+[Firefox documentation of the performance.now() method](https://developer.mozilla.org/en-US/docs/Web/API/Performance/now)\index{Spectre}.
 
 Note that this is not always a perfect mitigation - there are often surprising
 ways that an attacker can get a fine-grained enough timer or use statistical
 methods to be able to detect the difference between a cache hit or miss. One
 extreme example is NetSpectre\index{NetSpectre} [@Schwarz2019] where the
 difference between cache hit and cache miss is measured over a network, by
-statistically analyzing delays on network packet responses.
+statistically analyzing delays on network packet responses. Furthermore,
+[@Schwarz2017] demonstrates how to construct high-resolution timers in various
+indirect ways in all browsers that have removed explicit fine-grained timers.
 
 Another possibility is to clear the cache between times when the victim runs and
 the spy runs. This is probably going to incur quite a bit of performance
-overhead, and may also not always possible e.g. when victim and spy running at
-the same time on 2 CPUs sharing a cache level.
+overhead, and may also not always possible e.g. when victim and spy are running
+at the same time on 2 CPUs sharing a cache level.
 
 ## Resource contention channels
 
@@ -1401,11 +1421,9 @@ the same time on 2 CPUs sharing a cache level.
 
 \missingcontent{Write section on transient execution attacks}
 
-<!-- markdown-link-check-disable -->
-\missingcontent{Write section on cache side-channel attacks. See
-\href{https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031}{the first comment on PR24}
-for suggestions of what this should contain.}
-<!-- markdown-link-check-enable-->
+#### site-isolation
+
+\missingcontent{Write section on site-isolation as a SpectreV1 mitigation}
 
 ## Physical access side-channel attacks
 
