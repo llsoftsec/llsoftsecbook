@@ -84,7 +84,7 @@ text-justify: auto;
 <p>
   Copyright 2021-2022 Arm Limited <a href="mailto:open-source-office@arm.com" class="email">open-source-office@arm.com</a><br />
 </p>
-<p>Version: 0-83-g03f1d35</p>
+<p>Version: 0-84-gec5e7ea</p>
 
 </header>
 <nav id="TOC">
@@ -523,15 +523,41 @@ int authenticate() {
 </ol>
 <p>Other cache-based side channel attacks following this general 3-step approach include: Flush+Flush<span class="citation" data-cites="Gruss2016a">(Gruss, Maurice, Wagner, et al. <a href="#ref-Gruss2016a">2016</a>)</span>, Flush+Prefetch<span class="citation" data-cites="Gruss2016">(Gruss, Maurice, Fogh, et al. <a href="#ref-Gruss2016">2016</a>)</span>, Evict+Reload<span class="citation" data-cites="Percival2005">(Percival <a href="#ref-Percival2005">2005</a>)</span>, Evict+Time<span class="citation" data-cites="Osvik2005">(Osvik, Shamir, and Tromer <a href="#ref-Osvik2005">2005</a>)</span>, Reload+Refresh<span class="citation" data-cites="Briongos2020">(Briongos et al. <a href="#ref-Briongos2020">2020</a>)</span>, Collide+Probe<span class="citation" data-cites="Lipp2020">(Lipp et al. <a href="#ref-Lipp2020">2020</a>)</span>, etc.</p>
 <h3 id="mitigating-cache-side-channel-attacks"><span class="header-section-number">3.2.3</span> Mitigating cache side-channel attacks <a href="#mitigating-cache-side-channel-attacks" class="selflink">§</a></h3>
-
+<p>As described in <span class="citation" data-cites="Su2021">(Su and Zeng <a href="#ref-Su2021">2021</a>)</span>, 3 conditions need to be met for a cache-based side-channel attack to succeed:</p>
+<ol type="1">
+<li><p>There is a mapping between a state change in the cache and sensitive information in the victim program.</p></li>
+<li><p>The spy program needs to run on a CPU that shares the targeted cache level with the CPU the victim program runs on.</p></li>
+<li><p>The spy program can infer a cache status change caused by the victim program through its own cache status.</p></li>
+</ol>
+<p>Mitigations against cache side-channel attacks can be categorized according to which of the 3 conditions above they aim to prevent from happening:</p>
+<h4 id="mitigations-de-correlating-cache-state-change-with-sensitive-information-in-the-victim-program"><span class="header-section-number">3.2.3.1</span> Mitigations de-correlating cache state change with sensitive information in the victim program <a href="#mitigations-de-correlating-cache-state-change-with-sensitive-information-in-the-victim-program" class="selflink">§</a></h4>
+<p>A typical example of when a cache state change could be correlated to sensitive information is when a program uses secret information to index into an array. An attacker could derive bits of the secret information by observing which cache line was fetched.</p>
+<p>Especially in crypto kernels, indexing into an array using a secret value is generally avoided. An alternative mitigation is to always access all array indices, independent of the secret value, e.g. as done in <a href="https://git.tartarus.org/?p=simon/putty.git;a=commitdiff;h=46fbe375bf">commit 46fbe375</a> to the Putty project, which contains this comment:</p>
+<blockquote>
+<pre><code>* Side-channel considerations: the exponent is secret, so
+* actually doing a single table lookup by using a chunk of
+* exponent bits as an array index would be an obvious leak of
+* secret information into the cache. So instead, in each
+* iteration, we read _all_ the table entries, and do a sequence
+* of mp_select operations to leave just the one we wanted in the
+* variable</code></pre>
+</blockquote>
+<h4 id="mitigations-disallowing-spy-programs-to-share-the-cache-with-the-victim-program"><span class="header-section-number">3.2.3.2</span> Mitigations disallowing spy programs to share the cache with the victim program <a href="#mitigations-disallowing-spy-programs-to-share-the-cache-with-the-victim-program" class="selflink">§</a></h4>
+<p>If the victim and the spy do not share a common channel – in this case a cache level – then a side channel cannot be created.</p>
+<p>One way to achieve this is to only allow one program to run at the same time, and when a context switch does happen, to clear all cache content. Obviously, this has a huge performance impact, especially in systems with multiple cores and with large caches. Therefore, a wide variety of mitigations have been proposed that aim to make attacks somewhat harder without losing too much system efficiency. <span class="citation" data-cites="Mushtaq2020">(Mushtaq et al. <a href="#ref-Mushtaq2020">2020</a>)</span> and <span class="citation" data-cites="Su2021">(Su and Zeng <a href="#ref-Su2021">2021</a>)</span> summarize dozens of proposals and implementations – too many to try to describe them all here.</p>
+<p>One popular such mitigation is disabling <a href="https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)">cpu multithreading</a>. For example, <a href="https://learn.microsoft.com/en-us/azure/virtual-machines/mitigate-se">Azure suggests that users who run untrusted code should consider disabling cpu multithreading</a>. <a href="https://www.kernel.org/doc/Documentation/admin-guide/hw-vuln/core-scheduling.rst">The linux kernel’s core scheduling documentation</a> also states mutually untrusted code should not run on the same core concurrently. It implements a scheduler that <a href="https://lwn.net/Articles/861251/">takes into account which processes are mutually-trusting</a> and only allows those to run simultaneously on the same core.</p>
+<p>One could argue that <a href="https://developer.chrome.com/blog/site-isolation/">site isolation</a> as implemented in many web browsers is a mitigation that also falls into this category. Site isolation is described in more detail in <a href="#site-isolation">its own section</a>.</p>
+<h4 id="mitigations-disabling-the-spy-program-to-infer-a-cache-status-change-in-the-victim-program-through-its-own-cache-status"><span class="header-section-number">3.2.3.3</span> Mitigations disabling the spy program to infer a cache status change in the victim program through its own cache status <a href="#mitigations-disabling-the-spy-program-to-infer-a-cache-status-change-in-the-victim-program-through-its-own-cache-status" class="selflink">§</a></h4>
+<p>In some contexts, the resolution of the smallest time increment measurable by the spy program can be reduced so much that it becomes much harder to distinguish between a cache hit and a cache miss. Injecting noise and jitter into the timer also makes it harder to distinguish between a cache hit and cache miss. This is one of the mitigations in javascript engines against Spectre attacks. For more information see this <a href="https://v8.dev/blog/spectre">v8 blog post</a> or this <a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance/now">Firefox documentation of the performance.now() method</a>.</p>
+<p>Note that this is not always a perfect mitigation - there are often surprising ways that an attacker can get a fine-grained enough timer or use statistical methods to be able to detect the difference between a cache hit or miss. One extreme example is NetSpectre <span class="citation" data-cites="Schwarz2019">(Schwarz et al. <a href="#ref-Schwarz2019">2019</a>)</span> where the difference between cache hit and cache miss is measured over a network, by statistically analyzing delays on network packet responses. Furthermore, <span class="citation" data-cites="Schwarz2017">(Schwarz et al. <a href="#ref-Schwarz2017">2017</a>)</span> demonstrates how to construct high-resolution timers in various indirect ways in all browsers that have removed explicit fine-grained timers.</p>
+<p>Another possibility is to clear the cache between times when the victim runs and the spy runs. This is probably going to incur quite a bit of performance overhead, and may also not always possible e.g. when victim and spy are running at the same time on 2 CPUs sharing a cache level.</p>
 <h2 id="resource-contention-channels"><span class="header-section-number">3.3</span> Resource contention channels <a href="#resource-contention-channels" class="selflink">§</a></h2>
 <h2 id="channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors"><span class="header-section-number">3.4</span> Channels making use of aliasing in branch predictors and other predictors <a href="#channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors" class="selflink">§</a></h2>
 
 <h2 id="transient-execution-attacks"><span class="header-section-number">3.5</span> Transient execution attacks <a href="#transient-execution-attacks" class="selflink">§</a></h2>
 
-<!-- markdown-link-check-disable -->
+<h4 id="site-isolation"><span class="header-section-number">3.5.0.1</span> Site isolation <a href="#site-isolation" class="selflink">§</a></h4>
 
-<!-- markdown-link-check-enable-->
 <h2 id="physical-access-side-channel-attacks"><span class="header-section-number">3.6</span> Physical access side-channel attacks <a href="#physical-access-side-channel-attacks" class="selflink">§</a></h2>
 
 <h1 id="supply-chain-attacks"><span class="header-section-number">4</span> Supply chain attacks <a href="#supply-chain-attacks" class="selflink">§</a></h1>
@@ -630,6 +656,9 @@ int authenticate() {
 <div id="ref-Miller2012">
 <p>Miller, Matt. n.d. “Modeling the Exploitation and Mitigation of Memory Safety Vulnerabilities.” <a href="https://2012.ruxconbreakpoint.com/">Breakpoint 2012</a>. <a href="https://github.com/Microsoft/MSRC-Security-Research/blob/master/presentations/2012_10_Breakpoint/BreakPoint2012_Miller_Modeling_the_exploitation_and_mitigation_of_memory_safety_vulnerabilities.pdf">https://github.com/Microsoft/MSRC-Security-Research/blob/master/presentations/2012_10_Breakpoint/BreakPoint2012_Miller_Modeling_the_exploitation_and_mitigation_of_memory_safety_vulnerabilities.pdf</a>.</p>
 </div>
+<div id="ref-Mushtaq2020">
+<p>Mushtaq, Maria, Muhammad Asim Mukhtar, Vianney Lapotre, Muhammad Khurram Bhatti, and Guy Gogniat. 2020. “Winter Is Here! A Decade of Cache-Based Side-Channel Attacks, Detection &amp; Mitigation for RSA.” <em>Information Systems</em>, September. <a href="https://doi.org/10.1016/j.is.2020.101524">https://doi.org/10.1016/j.is.2020.101524</a>.</p>
+</div>
 <div id="ref-Osvik2005">
 <p>Osvik, Dag Arne, Adi Shamir, and Eran Tromer. 2005. “Cache Attacks and Countermeasures: The Case of Aes.” In <em>IACR Cryptology ePrint Archive</em>. <a href="https://doi.org/10.1007/11605805_1">https://doi.org/10.1007/11605805_1</a>.</p>
 </div>
@@ -648,6 +677,12 @@ int authenticate() {
 <div id="ref-Schuster2015">
 <p>Schuster, F., T. Tendyck, C. Liebchen, L. Davi, A. Sadeghi, and T. Holz. 2015. “Counterfeit Object-Oriented Programming: On the Difficulty of Preventing Code Reuse Attacks in C++ Applications.” In <em>2015 Ieee Symposium on Security and Privacy (Sp)</em>, 745–62. Los Alamitos, CA, USA: IEEE Computer Society. <a href="https://doi.org/10.1109/SP.2015.51">https://doi.org/10.1109/SP.2015.51</a>.</p>
 </div>
+<div id="ref-Schwarz2017">
+<p>Schwarz, Michael, Clémentine Maurice, Daniel Gruss, and Stefan Mangard. 2017. “Fantastic Timers and Where to Find Them: High-Resolution Microarchitectural Attacks in JavaScript.” In <em>Financial Cryptography and Data Security</em>, 247–67. Springer International Publishing.</p>
+</div>
+<div id="ref-Schwarz2019">
+<p>Schwarz, Michael, Martin Schwarzl, Moritz Lipp, Jon Masters, and Daniel Gruss. 2019. “NetSpectre: Read Arbitrary Memory over Network.” In <em>Computer Security - ESORICS 2019 - 24th European Symposium on Research in Computer Security, Luxembourg, September 23-27, 2019, Proceedings, Part I</em>, 11735:279–99. Lecture Notes in Computer Science. Springer.</p>
+</div>
 <div id="ref-Seacord2013">
 <p>Seacord, Robert C. 2013. <em>Secure Coding in c and C++</em>. 2nd ed. Addison-Wesley Professional.</p>
 </div>
@@ -662,6 +697,9 @@ int authenticate() {
 </div>
 <div id="ref-Solar1997">
 <p>Solar Designer. 1997. “Getting Around Non-Executable Stack (and Fix).” 1997. <a href="https://seclists.org/bugtraq/1997/Aug/63">https://seclists.org/bugtraq/1997/Aug/63</a>.</p>
+</div>
+<div id="ref-Su2021">
+<p>Su, Chao, and Qingkai Zeng. 2021. “Survey of CPU Cache-Based Side-Channel Attacks: Systematic Analysis, Security Models, and Countermeasures.” <em>Security and Communication Networks</em>, June. <a href="https://doi.org/10.1155/2021/5559552">https://doi.org/10.1155/2021/5559552</a>.</p>
 </div>
 <div id="ref-Thompson1984">
 <p>Thompson, Ken. 1984. “Reflections on Trusting Trust.” <a href="https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf">https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf</a>.</p>

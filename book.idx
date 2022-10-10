@@ -66,3 +66,7 @@
 \indexentry{Evict+Time|hyperpage}{31}
 \indexentry{Reload+Refresh|hyperpage}{31}
 \indexentry{Collide+Probe|hyperpage}{31}
+\indexentry{multithreading|hyperpage}{32}
+\indexentry{site isolation|hyperpage}{32}
+\indexentry{Spectre|hyperpage}{32}
+\indexentry{NetSpectre|hyperpage}{32}

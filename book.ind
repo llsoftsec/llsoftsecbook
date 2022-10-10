@@ -71,9 +71,11 @@
   \item measurement sequence, \hyperpage{31}
   \item memory access time, \hyperpage{27}
   \item multi-level cache, \hyperpage{27}
+  \item multithreading, \hyperpage{32}
 
   \indexspace
 
+  \item NetSpectre, \hyperpage{32}
   \item non-control data attacks, \hyperpage{23}
   \item non-interactive (one-shot)   attack, \hyperpage{8}
 
@@ -102,6 +104,8 @@
   \item shellcode, \hyperpage{11}, \hyperpage{13}
   \item side-channel, \hyperpage{26}
   \item sigreturn-oriented programming (SROP), \hyperpage{17}
+  \item site isolation, \hyperpage{32}
+  \item Spectre, \hyperpage{32}
   \item spy, \hyperpage{26}
   \item stack pivoting, \hyperpage{14}
 

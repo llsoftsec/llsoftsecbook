@@ -128,7 +128,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2021-2022 Arm Limited
   \href{mailto:open-source-office@arm.com}{\nolinkurl{open-source-office@arm.com}}\\
 
-Version 0-83-g03f1d35
+Version 0-84-gec5e7ea
 \clearpage
 
 {
@@ -1750,7 +1750,126 @@ Collide+Probe\index{Collide+Probe}(Lipp et al.
 \subsection{Mitigating cache side-channel
 attacks}\label{mitigating-cache-side-channel-attacks}}
 
-\missingcontent{What general mitigations are possible?}
+As described in (Su and Zeng \protect\hyperlink{ref-Su2021}{2021}), 3
+conditions need to be met for a cache-based side-channel attack to
+succeed:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  There is a mapping between a state change in the cache and sensitive
+  information in the victim program.
+\item
+  The spy program needs to run on a CPU that shares the targeted cache
+  level with the CPU the victim program runs on.
+\item
+  The spy program can infer a cache status change caused by the victim
+  program through its own cache status.
+\end{enumerate}
+
+Mitigations against cache side-channel attacks can be categorized
+according to which of the 3 conditions above they aim to prevent from
+happening:
+
+\hypertarget{mitigations-de-correlating-cache-state-change-with-sensitive-information-in-the-victim-program}{%
+\subsubsection{Mitigations de-correlating cache state change with
+sensitive information in the victim
+program}\label{mitigations-de-correlating-cache-state-change-with-sensitive-information-in-the-victim-program}}
+
+A typical example of when a cache state change could be correlated to
+sensitive information is when a program uses secret information to index
+into an array. An attacker could derive bits of the secret information
+by observing which cache line was fetched.
+
+Especially in crypto kernels, indexing into an array using a secret
+value is generally avoided. An alternative mitigation is to always
+access all array indices, independent of the secret value, e.g.~as done
+in
+\href{https://git.tartarus.org/?p=simon/putty.git;a=commitdiff;h=46fbe375bf}{commit
+46fbe375} to the Putty project, which contains this comment:
+
+\begin{quote}
+\begin{verbatim}
+* Side-channel considerations: the exponent is secret, so
+* actually doing a single table lookup by using a chunk of
+* exponent bits as an array index would be an obvious leak of
+* secret information into the cache. So instead, in each
+* iteration, we read _all_ the table entries, and do a sequence
+* of mp_select operations to leave just the one we wanted in the
+* variable
+\end{verbatim}
+\end{quote}
+
+\hypertarget{mitigations-disallowing-spy-programs-to-share-the-cache-with-the-victim-program}{%
+\subsubsection{Mitigations disallowing spy programs to share the cache
+with the victim
+program}\label{mitigations-disallowing-spy-programs-to-share-the-cache-with-the-victim-program}}
+
+If the victim and the spy do not share a common channel -- in this case
+a cache level -- then a side channel cannot be created.
+
+One way to achieve this is to only allow one program to run at the same
+time, and when a context switch does happen, to clear all cache content.
+Obviously, this has a huge performance impact, especially in systems
+with multiple cores and with large caches. Therefore, a wide variety of
+mitigations have been proposed that aim to make attacks somewhat harder
+without losing too much system efficiency. (Mushtaq et al.
+\protect\hyperlink{ref-Mushtaq2020}{2020}) and (Su and Zeng
+\protect\hyperlink{ref-Su2021}{2021}) summarize dozens of proposals and
+implementations -- too many to try to describe them all here.
+
+One popular such mitigation is disabling
+\href{https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)}{cpu
+multithreading}\index{multithreading}. For example,
+\href{https://learn.microsoft.com/en-us/azure/virtual-machines/mitigate-se}{Azure
+suggests that users who run untrusted code should consider disabling cpu
+multithreading}.
+\href{https://www.kernel.org/doc/Documentation/admin-guide/hw-vuln/core-scheduling.rst}{The
+linux kernel's core scheduling documentation} also states mutually
+untrusted code should not run on the same core concurrently. It
+implements a scheduler that
+\href{https://lwn.net/Articles/861251/}{takes into account which
+processes are mutually-trusting} and only allows those to run
+simultaneously on the same core.
+
+One could argue that
+\href{https://developer.chrome.com/blog/site-isolation/}{site
+isolation}\index{site
+isolation} as implemented in many web browsers is a mitigation that also
+falls into this category. Site isolation is described in more detail in
+\protect\hyperlink{site-isolation}{its own section}.
+
+\hypertarget{mitigations-disabling-the-spy-program-to-infer-a-cache-status-change-in-the-victim-program-through-its-own-cache-status}{%
+\subsubsection{Mitigations disabling the spy program to infer a cache
+status change in the victim program through its own cache
+status}\label{mitigations-disabling-the-spy-program-to-infer-a-cache-status-change-in-the-victim-program-through-its-own-cache-status}}
+
+In some contexts, the resolution of the smallest time increment
+measurable by the spy program can be reduced so much that it becomes
+much harder to distinguish between a cache hit and a cache miss.
+Injecting noise and jitter into the timer also makes it harder to
+distinguish between a cache hit and cache miss. This is one of the
+mitigations in javascript engines against Spectre attacks. For more
+information see this \href{https://v8.dev/blog/spectre}{v8 blog post} or
+this
+\href{https://developer.mozilla.org/en-US/docs/Web/API/Performance/now}{Firefox
+documentation of the performance.now() method}\index{Spectre}.
+
+Note that this is not always a perfect mitigation - there are often
+surprising ways that an attacker can get a fine-grained enough timer or
+use statistical methods to be able to detect the difference between a
+cache hit or miss. One extreme example is NetSpectre\index{NetSpectre}
+(Schwarz et al. \protect\hyperlink{ref-Schwarz2019}{2019}) where the
+difference between cache hit and cache miss is measured over a network,
+by statistically analyzing delays on network packet responses.
+Furthermore, (Schwarz et al. \protect\hyperlink{ref-Schwarz2017}{2017})
+demonstrates how to construct high-resolution timers in various indirect
+ways in all browsers that have removed explicit fine-grained timers.
+
+Another possibility is to clear the cache between times when the victim
+runs and the spy runs. This is probably going to incur quite a bit of
+performance overhead, and may also not always possible e.g.~when victim
+and spy are running at the same time on 2 CPUs sharing a cache level.
 
 \hypertarget{resource-contention-channels}{%
 \section{Resource contention
@@ -1768,9 +1887,10 @@ attacks}\label{transient-execution-attacks}}
 
 \missingcontent{Write section on transient execution attacks}
 
-\missingcontent{Write section on cache side-channel attacks. See
-\href{https://github.com/llsoftsec/llsoftsecbook/pull/24\#issuecomment-930266031}{the first comment on PR24}
-for suggestions of what this should contain.}
+\hypertarget{site-isolation}{%
+\subsubsection{Site isolation}\label{site-isolation}}
+
+\missingcontent{Write section on site isolation as a SpectreV1 mitigation}
 
 \hypertarget{physical-access-side-channel-attacks}{%
 \section{Physical access side-channel
@@ -2020,6 +2140,13 @@ Safety Vulnerabilities.''
 \href{https://2012.ruxconbreakpoint.com/}{Breakpoint 2012}.
 \url{https://github.com/Microsoft/MSRC-Security-Research/blob/master/presentations/2012_10_Breakpoint/BreakPoint2012_Miller_Modeling_the_exploitation_and_mitigation_of_memory_safety_vulnerabilities.pdf}.
 
+\leavevmode\hypertarget{ref-Mushtaq2020}{}%
+Mushtaq, Maria, Muhammad Asim Mukhtar, Vianney Lapotre, Muhammad Khurram
+Bhatti, and Guy Gogniat. 2020. ``Winter Is Here! A Decade of Cache-Based
+Side-Channel Attacks, Detection \& Mitigation for RSA.''
+\emph{Information Systems}, September.
+\url{https://doi.org/10.1016/j.is.2020.101524}.
+
 \leavevmode\hypertarget{ref-Osvik2005}{}%
 Osvik, Dag Arne, Adi Shamir, and Eran Tromer. 2005. ``Cache Attacks and
 Countermeasures: The Case of Aes.'' In \emph{IACR Cryptology ePrint
@@ -2049,6 +2176,21 @@ Preventing Code Reuse Attacks in C++ Applications.'' In \emph{2015 Ieee
 Symposium on Security and Privacy (Sp)}, 745--62. Los Alamitos, CA, USA:
 IEEE Computer Society. \url{https://doi.org/10.1109/SP.2015.51}.
 
+\leavevmode\hypertarget{ref-Schwarz2017}{}%
+Schwarz, Michael, Clémentine Maurice, Daniel Gruss, and Stefan Mangard.
+2017. ``Fantastic Timers and Where to Find Them: High-Resolution
+Microarchitectural Attacks in JavaScript.'' In \emph{Financial
+Cryptography and Data Security}, 247--67. Springer International
+Publishing.
+
+\leavevmode\hypertarget{ref-Schwarz2019}{}%
+Schwarz, Michael, Martin Schwarzl, Moritz Lipp, Jon Masters, and Daniel
+Gruss. 2019. ``NetSpectre: Read Arbitrary Memory over Network.'' In
+\emph{Computer Security - ESORICS 2019 - 24th European Symposium on
+Research in Computer Security, Luxembourg, September 23-27, 2019,
+Proceedings, Part I}, 11735:279--99. Lecture Notes in Computer Science.
+Springer.
+
 \leavevmode\hypertarget{ref-Seacord2013}{}%
 Seacord, Robert C. 2013. \emph{Secure Coding in c and C++}. 2nd ed.
 Addison-Wesley Professional.
@@ -2072,6 +2214,12 @@ Sharma, Siddharth. 2014. 2014.
 \leavevmode\hypertarget{ref-Solar1997}{}%
 Solar Designer. 1997. ``Getting Around Non-Executable Stack (and Fix).''
 1997. \url{https://seclists.org/bugtraq/1997/Aug/63}.
+
+\leavevmode\hypertarget{ref-Su2021}{}%
+Su, Chao, and Qingkai Zeng. 2021. ``Survey of CPU Cache-Based
+Side-Channel Attacks: Systematic Analysis, Security Models, and
+Countermeasures.'' \emph{Security and Communication Networks}, June.
+\url{https://doi.org/10.1155/2021/5559552}.
 
 \leavevmode\hypertarget{ref-Thompson1984}{}%
 Thompson, Ken. 1984. ``Reflections on Trusting Trust.''

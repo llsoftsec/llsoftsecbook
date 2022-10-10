@@ -30,12 +30,16 @@
 \contentsline {subsubsection}{\numberline {3.2.2.2}Prime+Probe}{30}{subsubsection.3.2.2.2}%
 \contentsline {subsubsection}{\numberline {3.2.2.3}General schema for cache covert channels}{30}{subsubsection.3.2.2.3}%
 \contentsline {subsection}{\numberline {3.2.3}Mitigating cache side-channel attacks}{31}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}Resource contention channels}{31}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Channels making use of aliasing in branch predictors and other predictors}{31}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Transient execution attacks}{31}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Physical access side-channel attacks}{31}{section.3.6}%
-\contentsline {chapter}{\numberline {4}Supply chain attacks}{32}{chapter.4}%
-\contentsline {section}{\numberline {4.1}History of supply chain attacks}{32}{section.4.1}%
-\contentsline {chapter}{\numberline {5}Other security topics relevant for compiler developers}{34}{chapter.5}%
-\contentsline {chapter}{Appendix: contribution guidelines}{35}{chapter*.30}%
-\contentsline {chapter}{References}{38}{chapter*.33}%
+\contentsline {subsubsection}{\numberline {3.2.3.1}Mitigations de-correlating cache state change with sensitive information in the victim program}{31}{subsubsection.3.2.3.1}%
+\contentsline {subsubsection}{\numberline {3.2.3.2}Mitigations disallowing spy programs to share the cache with the victim program}{32}{subsubsection.3.2.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.3.3}Mitigations disabling the spy program to infer a cache status change in the victim program through its own cache status}{32}{subsubsection.3.2.3.3}%
+\contentsline {section}{\numberline {3.3}Resource contention channels}{32}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Channels making use of aliasing in branch predictors and other predictors}{33}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Transient execution attacks}{33}{section.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.0.1}Site isolation}{33}{subsubsection.3.5.0.1}%
+\contentsline {section}{\numberline {3.6}Physical access side-channel attacks}{33}{section.3.6}%
+\contentsline {chapter}{\numberline {4}Supply chain attacks}{34}{chapter.4}%
+\contentsline {section}{\numberline {4.1}History of supply chain attacks}{34}{section.4.1}%
+\contentsline {chapter}{\numberline {5}Other security topics relevant for compiler developers}{36}{chapter.5}%
+\contentsline {chapter}{Appendix: contribution guidelines}{37}{chapter*.29}%
+\contentsline {chapter}{References}{41}{chapter*.32}%
