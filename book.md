@@ -1520,13 +1520,12 @@ Generally, such attack requires knowledge of radio circuit techniques and the re
 Instruction executions can result in various forms of side channel leakage:
 Cycle timing resulting from conditional branch – A code sequence containing a conditional branch could result in observable side channel leakage. For example, if the power signatures of several code segments are easily recognizable (process A, B and C in the following diagram), it is possible to detect if the conditional branch was taken or not.
 
-![Alt text](./side_channel_leakage_figure_1_branch.svg)
-<img src="./img/side_channel_leakage_figure_1_branch.svg">
+
+![leakage of conditional branch](img/side_channel_leakage_figure_1_branch){ width=80% }
 
 Cycle timing resulting from specific data value – Some instructions execution cycle can be dependent on the value of input data, resulting in timing side-channel leakage. E.g., the integer divide instruction in Arm Cortex-M processors.
 
-![Alt text](./side_channel_leakage_figure_2_duration.svg)
-<img src="./img/side_channel_leakage_figure_2_duration.svg">
+![leakage of execution cycle](img/side_channel_leakage_figure_2_duration){ width=80% }
 
 Power variation due to value changes – The   power spikes in the power signature are often dependent of how many bits are toggled in the register(s), so the amplitude of the spike could be used to tell how many register bits has changed in that clock cycle. The power spikes can be caused by a combination of
 - Logic switching due to the operations of an instruction (e.g. power consumed by a single cycle multiplier can be much higher than the power used by a Boolean logic function), and
@@ -1534,8 +1533,7 @@ Power variation due to value changes – The   power spikes in the power signatu
 
 The switching activities are dependent on preceding and next operations. If the power signature of the codes around specific instruction is recognizable, then the data value being process could be guessed.
 
-![Alt text](./side_channel_leakage_figure_3_toggle.svg)
-<img src="./img/side_channel_leakage_figure_3_toggle.svg">
+![leakage of number of bit toggled](img/side_channel_leakage_figure_3_toggle){ width=80% }
 
 In some SoC or microcontroller implementations, the power spike effect of the operations can be much higher than the effect of data value changes in the register banks.  In such case the program execution flow can be observed, and as a result, might also indirectly leak information about the data that it is processing.
 
@@ -1550,8 +1548,8 @@ There are additional software techniques to mitigate power leakage. One of the m
 ### Common forms of physical attacks
 If an attacker has physical access to a device, he/she can also choose to use physical attacks to modify the behavior of the software, for example, prevent the software from setting up certain security features during the device’s initialization sequence. The two most common forms of such attacks are voltage glitching and clock glitching. (These are also referred as fault injection.)
 
-![Alt text](./physical_attacks.svg)
-<img src="./img/physical_attacks.svg">
+![common physical attacks](img/physical_attacks){ width=80% }
+
 
 * Voltage glitch attack
     * Using a programmable power supply that can switch the voltage level rapidly, it is possible to reduce/increase the power supply voltage of a chip at specific clock cycle of the software execution. In some case, a precise voltage drop can cause a processor to “skip” an instruction, for example, the write to memory or a hardware register might not be taken. Or if a write has taken place, the actual write value used could be changed by the voltage glitch. 
