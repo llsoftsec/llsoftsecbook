@@ -1492,7 +1492,9 @@ now explore what we can do about these.
 
 # Physical attacks
 ## Overview
-There are many types of physical attacks – these attack methods focus on one or multiple physical properties of systems ( e.g. CPU, GPU, crypto hardware), and can either be 
+There are many types of physical attacks – these attack methods focus on one or 
+multiple physical properties of systems ( e.g. CPU, GPU, crypto hardware), and 
+can either be 
 -	Passive – just monitoring physical quantities (e.g. side channel information leakage), or
 -	Active – modification of physical quantities, for example, by
     -	changing the operation conditions of the system so that the circuit operates outside its specifications (e.g. by changing temperature, or by applying glitches to supply voltage/clock source)
@@ -1502,51 +1504,111 @@ There are many types of physical attacks – these attack methods focus on one o
 In the rest of this section, we will focus on a subset of physical attacks:
 -	Side channel information leakage
 -	Physical attack using glitches
-These two forms of attacks can be carried out using low cost hardware, and have been widely demonstrated by researchers on SoCs or microcontrollers developed for IoT applications.
+These two forms of attacks can be carried out using low cost hardware, and have 
+been widely demonstrated by researchers on SoCs or microcontrollers developed for 
+IoT (Internet-of-Things) applications.
 
 ## Physical access side-channel attacks  
-If an attacker has physical access to a device, even without debug access, the attacker can collect side channel information about the program execution on a processor. If the processor is used to handle cryptography operations, the side channel information can be used to deduce the crypto key(s) or the data being processed. Please note that some forms of side channel attacks (e.g. rowhammer, voltjockey) do not require physical accesses, but those attacks are not covered in this section.
+If an attacker has physical access to a device, even without debug access, the 
+attacker can collect side channel information about the program execution on a 
+processor. If the processor is used to handle cryptographic operations, the side 
+channel information can be used to deduce the crypto key(s) or the data being 
+processed. Please note that some forms of side channel attacks (e.g. rowhammer, 
+voltjockey) do not require physical access, but those attacks are not covered 
+in this section.
 
-### How are information leaked?
-The most common physical access side channel attack method is to capture the voltage and current consumption of the device during its operation. Every time a flip-flop toggles, the switching activity results in a small current spike. Even there is capacitance on the power distribution connections inside the chip, the toggling of registers (composed of flip-flops) still results in variations in the power supply current, which can be observed easily.
-Because the connections for delivering power (at the power supply, printed circuit board, on chip packages as well as on the silicon dices) also contain resistance, the variation of electrical current in the chip’s power supply also results in variations in the power supply voltage. Again, this can be observed easily if the attacker has physical access to the device.
-If an attacker has access to data acquisition equipment that can record the current/voltage/power patterns, the attacker can record the “power signature” for different crypto operations, including the power signature using different data inputs. By applying analysis techniques like differential power analysis, the attacker could extract the information being processed.
-One additional form of side-channel leakage is electro-magnetic radiation. Because the processor’s clock frequency is usually in radio frequency (RF) range, the wires and tracks on the PCB becomes small antenna and the ripples in the processor’s voltage/current results in radio frequency signals. Although the RF power radiated can be tiny, it still means that an attacker can observe the side-channel leakage if he/she is in close proximity from the device and has the right equipment to amplify and record the RF power signature. However, the risk of such attack can be reduced by reducing the radiation energy level using:
+### How is information leaked?
+The most common physical access side channel attack method is to capture the 
+voltage and current consumption of the device during its operation. Every time 
+a flip-flop toggles, the switching activity results in a small current spike. 
+Even though there is capacitance on the power distribution connections inside 
+the chip, the toggling of registers (composed of flip-flops) still results in 
+variations in the power supply current, which can be observed easily.
+Because the connections for delivering power (at the power supply, printed 
+circuit board, on chip packages as well as on the silicon dices) also contain 
+resistance, the variation of electrical current in the chip’s power supply also 
+results in variations in the power supply voltage. Again, this can be observed 
+easily if the attacker has physical access to the device.
+If an attacker has access to data acquisition equipment that can record the 
+current/voltage/power patterns, the attacker can record the “power signature” 
+for different crypto operations, including the power signature using different 
+data inputs. By applying analysis techniques like differential power analysis, 
+the attacker could extract the information being processed.
+One additional form of side-channel leakage is electro-magnetic radiation. 
+Because the processor’s clock frequency is usually in the radio frequency (RF) 
+range, the wires and tracks on the PCB become small antenna and the ripples 
+in the processor’s voltage/current results in radio frequency signals. Although 
+the RF power radiated can be tiny, it still means that an attacker can observe 
+the side-channel leakage if he/she is in close proximity from the device and has 
+the right equipment to amplify and record the RF power signature. However, the 
+risk of such attack can be reduced by reducing the radiation energy level using:
 - Shielding around the device, including ground plate on the circuit board.
 - Coupling capacitors on power supply tracks on the printed circuit board.
-Generally, such attack requires knowledge of radio circuit techniques and the result can be affected by other factors. For example, in normal environments there are many other source of RF noises that affects the accuracy of signal measurement. In a “noisy” environment, the RF signals from various wireless communication gadgets nearby might drown out the signals from the device being monitored.
+Generally, such an attack requires knowledge of radio circuit techniques and the 
+result can be affected by other factors. For example, in normal environments 
+there are many other source of RF noises that affects the accuracy of signal 
+measurement. In a “noisy” environment, the RF signals from various wireless 
+communication gadgets nearby might drown out the signals from the device being 
+monitored.
 
 ### Side channel leakage at instruction level
 Instruction executions can result in various forms of side channel leakage:
-Cycle timing resulting from conditional branch – A code sequence containing a conditional branch could result in observable side channel leakage. For example, if the power signatures of several code segments are easily recognizable (process A, B and C in the following diagram), it is possible to detect if the conditional branch was taken or not.
+
+Cycle timing resulting from conditional branch – A code sequence containing a 
+conditional branch could result in observable side channel leakage. For example, 
+if the power signatures of several code segments are easily recognizable 
+(process A, B and C in the following diagram), it is possible to detect if the 
+conditional branch was taken or not.
 
 
 ![leakage of conditional branch](img/side_channel_leakage_figure_1_branch){ width=80% }
 
-Cycle timing resulting from specific data value – Some instructions execution cycle can be dependent on the value of input data, resulting in timing side-channel leakage. E.g., the integer divide instruction in Arm Cortex-M processors.
+Cycle timing resulting from specific data values – The execution cycles of some 
+instructions can be dependent on the values of input data, resulting in timing 
+side-channel leakage. E.g., the integer divide instruction in Arm Cortex-M 
+processors.
 
 ![leakage of execution cycle](img/side_channel_leakage_figure_2_duration){ width=80% }
 
-Power variation due to value changes – The   power spikes in the power signature are often dependent of how many bits are toggled in the register(s), so the amplitude of the spike could be used to tell how many register bits has changed in that clock cycle. The power spikes can be caused by a combination of
+Power variation due to value changes – The   power spikes in the power signature 
+are often dependent of how many bits are toggled in the register(s), so the 
+amplitude of the spike could be used to tell how many register bits has changed 
+in that clock cycle. The power spikes can be caused by a combination of
 - Logic switching due to the operations of an instruction (e.g. power consumed by a single cycle multiplier can be much higher than the power used by a Boolean logic function), and
 - Logic switching due to changes in data values in the register bank and data paths.
 
-The switching activities are dependent on preceding and next operations. If the power signature of the codes around specific instruction is recognizable, then the data value being process could be guessed.
+The switching activities are dependent on preceding and next operations. If the 
+power signature of the codes around a specific instruction is recognizable, then 
+the data value being process could be guessed.
 
 ![leakage of number of bit toggled](img/side_channel_leakage_figure_3_toggle){ width=80% }
 
-In some SoC or microcontroller implementations, the power spike effect of the operations can be much higher than the effect of data value changes in the register banks.  In such case the program execution flow can be observed, and as a result, might also indirectly leak information about the data that it is processing.
+In some SoC or microcontroller implementations, the power spike effect of the 
+operations can be much higher than the effect of data value changes in the 
+register banks.  In such case the program execution flow can be observed, and 
+as a result, might also indirectly leak information about the data that it is 
+processing.
 
 ### Countermeasures
-For normal embedded devices that don’t have physical protection features, there is a much higher chance that power/voltage/radiation side channels can result in information leakage. However, some aspects of timing signature leakage could be reduced:
+For normal embedded devices that don’t have physical protection features, there 
+is a much higher chance that power/voltage/radiation side channels can result 
+in information leakage. However, some aspects of timing signature leakage could 
+be reduced:
 - Using data processing instruction with data independent timing for cryptographic operations. In recent Arm architectures (including Armv8-A and Armv8-M), some instructions are architecturally defined as DIT (Data Independent Timing).
 - For conditional branches where the condition is dependent on secret data, use table branch instead might help reduce timing base leakage (both paths result in a branch). It is not necessary to replace all conditional branch. For example, many loop counters in crypto operation can be independent to the crypto key or input data values, so there is no need to change those loops.
 
-There are additional software techniques to mitigate power leakage. One of the most well-known techniques is masking (e.g. Boolean, multiplicative, affine). When applying software mitigation, software developers need to check that optimizations carried out by compilers (C/C++) does not impact the mitigation.
+There are additional software techniques to mitigate power leakage. One of the 
+most well-known techniques is masking (e.g. Boolean, multiplicative, affine). 
+When applying software mitigation, software developers need to check that 
+optimizations carried out by compilers (C/C++) does not impact the mitigation.
 
 ## Physical attacks
 ### Common forms of physical attacks
-If an attacker has physical access to a device, he/she can also choose to use physical attacks to modify the behavior of the software, for example, prevent the software from setting up certain security features during the device’s initialization sequence. The two most common forms of such attacks are voltage glitching and clock glitching. (These are also referred as fault injection.)
+If attackers has physical access to a device, they can also choose to use 
+physical attacks to modify the behavior of the software, for example, prevent 
+the software from setting up certain security features during the device’s 
+initialization sequence. The two most common forms of such attacks are voltage 
+glitching and clock glitching. (These are also referred to as fault injection.)
 
 ![common physical attacks](img/physical_attacks){ width=80% }
 
@@ -1556,19 +1618,39 @@ If an attacker has physical access to a device, he/she can also choose to use ph
 * Clock glitch attack
     * Using a clock switching circuit, it is possible to reduce the width of a clock pulse, or the interval between two clock pulses so that some of the hardware registers are not updated correctly at certain clock edge(s). Similar to voltage glitch, this can make the hardware seems to be skipping an instruction.
 
-Such voltage/clock glitch attack could affect multiple parts in the processors, but sometimes the impact might not lead to any visible error in the operation  , leaving the only effect that the processor skipping a memory/register write, or writing an incorrect value. Potentially, a glitch attack could result in other observable effect (e.g. register reset, bit toggle). The analysis of fault injection methods (and their physical effect) and the observable effects at the program or instruction execution level are often referred to as fault models, where one can say that a specific fault injection behaves as an instruction skip, etc. More details about the concept of fault models can be found in the paper "Fault Attacks on Secure Embedded Software: Threats, Design and Evaluation” (https://arxiv.org/pdf/2003.10513.pdf), where a good illustration of the concept is shown in figure 1 of that paper. 
 
-Using glitching methods, there are several common ways of attacking a system. For example:
+Such voltage/clock glitch attack could affect multiple parts in the processors, 
+but sometimes the impact might not lead to any visible error in the operation, 
+leaving the only effect that the processor skipping a memory/register write, or 
+writing an incorrect value. Potentially, a glitch attack could result in other 
+observable effect (e.g. register reset, bit toggle). The analysis of fault 
+injection methods (and their physical effect) and the observable effects at 
+the program or instruction execution level are often referred to as fault 
+models, where one can say that a specific fault injection behaves as an 
+instruction skip, etc. More details about the concept of fault models can be 
+found in the paper "Fault Attacks on Secure Embedded Software: Threats, Design 
+and Evaluation” (https://arxiv.org/pdf/2003.10513.pdf), where a good 
+illustration of the concept is shown in figure 1 of that paper. 
+
+Using glitching methods, there are several common ways of attacking a system. 
+For example:
 *	Skipping an instruction during setup sequence for security features – e.g. skipping the write to the MPU (Memory Protection Unit)/Security Attribution Unit (SAU) so that the MPU/SAU is not enabled.
 *	Skipping an instruction after a security authentication that branch to an error handling code. As the branch is not taken, the code can continue to operate even a security authentication has failed.
 *	Causing an incorrect value to be written in a memory or hardware. E.g. When writing a crypto key to a crypto accelerator, forcing the key value written to be zero (caused to low voltage on bus hardware).
 Example: Attack on TrustZone for Armv8-M: https://www.youtube.com/watch?v=4u6BAH8mEDw 
 
-There are other forms of physical attacks, but most of them requires significant effort or cost (e.g. cut open the chip package can carry out fault injection or readout secret data on chip).
+There are other forms of physical attacks, but most of them requires 
+significant effort or cost (e.g. cut open the chip package can carry out 
+fault injection or readout secret data on chip).
 
 ### Countermeasures
-Ideally, system designers can use hardware (SoCs or microcontroller) that support protection against fault injection. For example, a hardware circult can include redundancy logic (spatial and temporal). In addition, software developers can make such attack harder by adding checks after   the write operations.
-When applying software mitigation, software developers need to check that optimizations carried out by compilers (C/C++) does not impact the mitigation.
+Ideally, system designers can use hardware (SoCs or microcontroller) that 
+support protection against fault injection. For example, a hardware circuit 
+can include redundancy logic (spatial and temporal). In addition, software 
+developers can make such attack harder by adding checks after the write 
+operations.
+When applying software mitigation, software developers need to check that 
+optimizations carried out by compilers (C/C++) does not impact the mitigation.
 
 
 # Other security topics relevant for compiler developers
