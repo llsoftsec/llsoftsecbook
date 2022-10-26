@@ -1501,10 +1501,14 @@ There are many types of physical attacks – these attack methods focus on one o
 multiple physical properties of systems ( e.g. CPU, GPU, crypto hardware), and 
 can either be 
 
--	Passive – just monitoring physical quantities (e.g. side channel information leakage), or
+-	Passive – just monitoring physical quantities (e.g. side channel information
+	leakage), or
 -	Active – modification of physical quantities, for example, by
-    -	changing the operation conditions of the system so that the circuit operates outside its specifications (e.g. by changing temperature, or by applying glitches to supply voltage/clock source)
-    -	injecting faults to the system (e.g. altering the electrical state of the system using Electromagnetic pulse injection, or laser beam)
+    -	changing the operation conditions of the system so that the circuit
+      operates outside its specifications (e.g. by changing temperature, or by
+      applying glitches to supply voltage/clock source)
+    -	injecting faults to the system (e.g. altering the electrical state of the
+      system using Electromagnetic pulse injection, or laser beam)
     -	physically modifying the system/chip
 
 In the rest of this section, we will focus on a subset of physical attacks:
@@ -1585,8 +1589,11 @@ are often dependent of how many bits are toggled in the register(s), so the
 amplitude of the spike could be used to tell how many register bits has changed 
 in that clock cycle. The power spikes can be caused by a combination of
 
-- Logic switching due to the operations of an instruction (e.g. power consumed by a single cycle multiplier can be much higher than the power used by a Boolean logic function), and
-- Logic switching due to changes in data values in the register bank and data paths.
+- Logic switching due to the operations of an instruction (e.g. power consumed
+  by a single cycle multiplier can be much higher than the power used by a
+  Boolean logic function), and
+- Logic switching due to changes in data values in the register bank and data
+  paths.
 
 The switching activities are dependent on preceding and next operations. If the 
 power signature of the codes around a specific instruction is recognizable, then 
@@ -1606,8 +1613,15 @@ is a much higher chance that power/voltage/radiation side channels can result
 in information leakage. However, some aspects of timing signature leakage could 
 be reduced:
 
-- Using data processing instruction with data independent timing for cryptographic operations. In recent Arm architectures (including Armv8-A and Armv8-M), some instructions are architecturally defined as DIT (Data Independent Timing).
-- For conditional branches where the condition is dependent on secret data, use table branch instead might help reduce timing base leakage (both paths result in a branch). It is not necessary to replace all conditional branch. For example, many loop counters in crypto operation can be independent to the crypto key or input data values, so there is no need to change those loops.
+- Using data processing instruction with data independent timing for
+  cryptographic operations. In recent Arm architectures (including Armv8-A and
+  Armv8-M), some instructions are architecturally defined as DIT (Data
+  Independent Timing).
+- For conditional branches where the condition is dependent on secret data, use
+  table branch instead might help reduce timing base leakage (both paths result
+  in a branch). It is not necessary to replace all conditional branch. For
+  example, many loop counters in crypto operation can be independent to the
+  crypto key or input data values, so there is no need to change those loops.
 
 
 \todo{There is overlap with section timing-side-channels. How to best consolidate that?}
@@ -1629,9 +1643,19 @@ glitching and clock glitching. (These are also referred to as fault injection.)
 
 
 * Voltage glitch attack
-    * Using a programmable power supply that can switch the voltage level rapidly, it is possible to reduce/increase the power supply voltage of a chip at specific clock cycle of the software execution. In some case, a precise voltage drop can cause a processor to “skip” an instruction, for example, the write to memory or a hardware register might not be taken. Or if a write has taken place, the actual write value used could be changed by the voltage glitch. 
+    * Using a programmable power supply that can switch the voltage level
+      rapidly, it is possible to reduce/increase the power supply voltage of a
+      chip at specific clock cycle of the software execution. In some case, a
+      precise voltage drop can cause a processor to “skip” an instruction, for
+      example, the write to memory or a hardware register might not be taken.
+      Or if a write has taken place, the actual write value used could be
+      changed by the voltage glitch.
 * Clock glitch attack
-    * Using a clock switching circuit, it is possible to reduce the width of a clock pulse, or the interval between two clock pulses so that some of the hardware registers are not updated correctly at certain clock edge(s). Similar to voltage glitch, this can make the hardware seems to be skipping an instruction.
+    * Using a clock switching circuit, it is possible to reduce the width of a
+      clock pulse, or the interval between two clock pulses so that some of the
+      hardware registers are not updated correctly at certain clock edge(s).
+      Similar to voltage glitch, this can make the hardware seems to be
+      skipping an instruction.
 
 
 Such voltage/clock glitch attack could affect multiple parts in the processors, 
@@ -1652,9 +1676,15 @@ illustration of the concept is shown in figure 1 of that paper.
 Using glitching methods, there are several common ways of attacking a system. 
 For example:
 
-*	Skipping an instruction during setup sequence for security features – e.g. skipping the write to the MPU (Memory Protection Unit)/Security Attribution Unit (SAU) so that the MPU/SAU is not enabled.
-*	Skipping an instruction after a security authentication that branch to an error handling code. As the branch is not taken, the code can continue to operate even a security authentication has failed.
-*	Causing an incorrect value to be written in a memory or hardware. E.g. When writing a crypto key to a crypto accelerator, forcing the key value written to be zero (caused to low voltage on bus hardware).
+*	Skipping an instruction during setup sequence for security features – e.g.
+  skipping the write to the MPU (Memory Protection Unit)/Security Attribution
+  Unit (SAU) so that the MPU/SAU is not enabled.
+*	Skipping an instruction after a security authentication that branch to an
+  error handling code. As the branch is not taken, the code can continue to
+  operate even a security authentication has failed.
+*	Causing an incorrect value to be written in a memory or hardware. E.g. When
+  writing a crypto key to a crypto accelerator, forcing the key value written
+  to be zero (caused to low voltage on bus hardware).
 
 Example: Attack on TrustZone for Armv8-M: https://www.youtube.com/watch?v=4u6BAH8mEDw 
 
