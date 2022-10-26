@@ -96,6 +96,16 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "joseph-yiu",
+      "name": "Joseph Yiu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/77114984?v=4",
+      "profile": "https://github.com/joseph-yiu",
+      "contributions": [
+        "code",
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,

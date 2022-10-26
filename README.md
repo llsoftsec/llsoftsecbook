@@ -3,7 +3,7 @@
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Build book with docker container CI](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml/badge.svg)](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This book aims to provide a structured, broad overview of all attacks and
@@ -114,6 +114,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center"><a href="https://github.com/jacobbramley"><img src="https://avatars.githubusercontent.com/u/5206553?v=4?s=100" width="100px;" alt="Jacob Bramley"/><br /><sub><b>Jacob Bramley</b></sub></a><br /><a href="#ideas-jacobbramley" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center"><a href="https://github.com/joseph-yiu"><img src="https://avatars.githubusercontent.com/u/77114984?v=4?s=100" width="100px;" alt="Joseph Yiu"/><br /><sub><b>Joseph Yiu</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=joseph-yiu" title="Code">💻</a> <a href="#content-joseph-yiu" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
