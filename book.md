@@ -1492,8 +1492,8 @@ now explore what we can do about these.
 
 # Physical attacks
 
-\todo{This chapter should probably be moved under section ## Physical access 
-side-channel attacks higher-up}
+\todo{This chapter should probably be moved under section 'Physical access 
+side-channel attacks' higher-up}
 
 
 ## Overview
