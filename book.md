@@ -1491,6 +1491,11 @@ now explore what we can do about these.
 \missingcontent{Explain how these vulnerabilities arise and how to mitigate them.}
 
 # Physical attacks
+
+\todo{This chapter should probably be moved under section ## Physical access 
+side-channel attacks higher-up}
+
+
 ## Overview
 There are many types of physical attacks – these attack methods focus on one or 
 multiple physical properties of systems ( e.g. CPU, GPU, crypto hardware), and 
@@ -1604,6 +1609,9 @@ be reduced:
 - Using data processing instruction with data independent timing for cryptographic operations. In recent Arm architectures (including Armv8-A and Armv8-M), some instructions are architecturally defined as DIT (Data Independent Timing).
 - For conditional branches where the condition is dependent on secret data, use table branch instead might help reduce timing base leakage (both paths result in a branch). It is not necessary to replace all conditional branch. For example, many loop counters in crypto operation can be independent to the crypto key or input data values, so there is no need to change those loops.
 
+
+\todo{There is overlap with section timing-side-channels. How to best consolidate that?}
+
 There are additional software techniques to mitigate power leakage. One of the 
 most well-known techniques is masking (e.g. Boolean, multiplicative, affine). 
 When applying software mitigation, software developers need to check that 
@@ -1638,6 +1646,8 @@ instruction skip, etc. More details about the concept of fault models can be
 found in the paper "Fault Attacks on Secure Embedded Software: Threats, Design 
 and Evaluation” (https://arxiv.org/pdf/2003.10513.pdf), where a good 
 illustration of the concept is shown in figure 1 of that paper. 
+
+\todo{Make the above reference to a paper use bibtex.}
 
 Using glitching methods, there are several common ways of attacking a system. 
 For example:
