@@ -16,7 +16,8 @@
         "content",
         "doc",
         "ideas",
-        "infra"
+        "infra",
+        "review"
       ]
     },
     {
@@ -102,5 +103,6 @@
   "projectOwner": "llsoftsec",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }
