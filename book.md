@@ -1525,35 +1525,36 @@ If an attacker has physical access to a device, even without debug access, the
 attacker can collect side channel information about the program execution on a 
 processor. If the processor is used to handle cryptographic operations, the side 
 channel information can be used to deduce the crypto key(s) or the data being 
-processed. Please note that some forms of side channel attacks (e.g. rowhammer, 
-voltjockey) do not require physical access, but those attacks are not covered 
-in this section.
+processed. Please note that some forms of physical attacks (e.g. fault injection 
+attacks like rowhammer and voltjockey) do not require physical access, but 
+those attacks are not covered in this section.
 
 ### How is information leaked?
 The most common physical access side channel attack method is to capture the 
-voltage and current consumption of the device during its operation. Every time 
+voltage or current consumption of the device during its operation. Every time 
 a flip-flop toggles, the switching activity results in a small current spike. 
 Even though there is capacitance on the power distribution connections inside 
 the chip, the toggling of registers (composed of flip-flops) still results in 
 variations in the power supply current, which can be observed easily.
 Because the connections for delivering power (at the power supply, printed 
-circuit board, on chip packages as well as on the silicon dices) also contain 
+circuit board, on chip packages as well as on the silicon dies) also contain 
 resistance, the variation of electrical current in the chip’s power supply also 
 results in variations in the power supply voltage. Again, this can be observed 
 easily if the attacker has physical access to the device.
 If an attacker has access to data acquisition equipment that can record the 
-current/voltage/power patterns, the attacker can record the “power signature” 
+current/voltage/power patterns, he/she can record the “power signature” 
 for different crypto operations, including the power signature using different 
 data inputs. By applying analysis techniques like differential power analysis, 
-the attacker could extract the information being processed.
+the attacker can extract the information being processed.
 One additional form of side-channel leakage is electro-magnetic radiation. 
 Because the processor’s clock frequency is usually in the radio frequency (RF) 
-range, the wires and tracks on the PCB become small antenna and the ripples 
-in the processor’s voltage/current results in radio frequency signals. Although 
-the RF power radiated can be tiny, it still means that an attacker can observe 
-the side-channel leakage if he/she is in close proximity from the device and has 
-the right equipment to amplify and record the RF power signature. However, the 
-risk of such attack can be reduced by reducing the radiation energy level using:
+range, the wires on the die and the tracks on the PCB become small antennas, 
+and the ripples in the processor’s voltage/current results in radio frequency 
+signals. Although the RF power radiated can be tiny, it still means that an 
+attacker can observe the side-channel leakage if he/she is in close proximity 
+from the device and has the right equipment to amplify and record the RF power 
+signature. However, the risk of such attack can be reduced by reducing the 
+radiation energy level using:
 
 - Shielding around the device, including ground plate on the circuit board.
 - Coupling capacitors on power supply tracks on the printed circuit board.
@@ -1584,9 +1585,10 @@ processors.
 
 ![leakage of execution cycle](img/side_channel_leakage_figure_2_duration){ width=80% }
 
-Power variation due to value changes – The   power spikes in the power signature 
-are often dependent of how many bits are toggled in the register(s), so the 
-amplitude of the spike could be used to tell how many register bits has changed 
+Power variation due to value changes – The power spikes in the power signature 
+are often dependent on a combination of how many bits are set and how many bits 
+have toggled in the register(s) --- the so-called Hamming weight and Hamming 
+distance, so the amplitude of the spike could be used to guess the register value 
 in that clock cycle. The power spikes can be caused by a combination of
 
 - Logic switching due to the operations of an instruction (e.g. power consumed
@@ -1629,17 +1631,19 @@ be reduced:
 There are additional software techniques to mitigate power leakage. One of the 
 most well-known techniques is masking (e.g. Boolean, multiplicative, affine). 
 When applying software mitigation, software developers need to check that 
-optimizations carried out by compilers (C/C++) does not impact the mitigation.
+optimizations carried out by compilers (C/C++) do not impact the mitigation, 
+as compilers can be very smart and undo the masking in order to perform 
+faster operations (or reducing code size).
 
-## Physical attacks
-### Common forms of physical attacks
-If attackers has physical access to a device, they can also choose to use 
+## Fault injection attacks
+### Common forms of Fault injection attacks
+If an attacker has physical access to a device, they can also choose to use 
 physical attacks to modify the behavior of the software, for example, prevent 
 the software from setting up certain security features during the device’s 
 initialization sequence. The two most common forms of such attacks are voltage 
-glitching and clock glitching. (These are also referred to as fault injection.)
+glitching and clock glitching.
 
-![common physical attacks](img/physical_attacks){ width=80% }
+![common fault injection attacks](img/physical_attacks){ width=80% }
 
 
 * Voltage glitch attack
@@ -1699,7 +1703,7 @@ can include redundancy logic (spatial and temporal). In addition, software
 developers can make such attack harder by adding checks after the write 
 operations.
 When applying software mitigation, software developers need to check that 
-optimizations carried out by compilers (C/C++) does not impact the mitigation.
+optimizations carried out by compilers (C/C++) do not impact the mitigation.
 
 
 # Other security topics relevant for compiler developers
