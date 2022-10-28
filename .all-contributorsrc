@@ -106,6 +106,15 @@
         "code",
         "content"
       ]
+    },
+    {
+      "login": "Arnaud-de-Grandmaison-ARM",
+      "name": "Arnaud de Grandmaison",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24225823?v=4",
+      "profile": "https://github.com/Arnaud-de-Grandmaison-ARM",
+      "contributions": [
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
