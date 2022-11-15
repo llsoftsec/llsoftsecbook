@@ -107,7 +107,7 @@ feedback to be received through <https://github.com/llsoftsec/llsoftsecbook>.
 
 \missingcontent{Add section describing the structure of the rest of the book.}
  
-# Memory vulnerability based attacks and mitigations
+# Memory vulnerability based attacks
 
 ## A bit of background on memory vulnerabilities
 
@@ -1069,9 +1069,126 @@ next section, we will look at what we can do to address them at their source:
 memory errors.
 
 ## Preventing and detecting memory errors
-\missingcontent{Describe various mechanisms for detecting memory errors, both
-software-based and hardware-based, e.g. Clang address sanitizer, PAuth-based
-pointer integrity schemes, MTE etc}
+
+In this section, we will discuss tools that are available to C/C++ programmers
+to help them detect vulnerabilities that can lead to memory errors.
+
+### Sanitizers
+
+Sanitizers are tools that detect bugs during program execution. Sanitizers
+usually have two components: a compiler instrumentation part that introduces
+the new checks, and a runtime library part. They are often too expensive to
+run in production mode, as they tend to increase execution time and memory
+usage. They are commonly used during testing of an application, frequently in
+combination with fuzzers\index{fuzzing}[^fuzzing].
+
+[^fuzzing]: Fuzzing is a powerful testing technique that relies on automatically
+generating large amounts of random inputs to the program under test.
+
+A very popular sanitizer is [Address
+Sanitizer](https://clang.llvm.org/docs/AddressSanitizer.html) (ASan), which
+aims to detect various memory errors, including out-of-bounds accesses,
+use-after-free, double-free and invalid free[^LeakSanitizer]. There are Address
+Sanitizer implementations for both GCC and Clang, but we will focus on the
+Clang implementation here.
+
+[^LeakSanitizer]: ASan also includes a [memory leak
+detector](https://clang.llvm.org/docs/LeakSanitizer.html).
+
+ASan uses shadow memory to keep track of the state of the application's memory.
+Each byte of shadow memory records information on 8 bytes of the application's
+memory, describing how many of the 8 bytes are addressable, with additional
+details provided when they are not (whether they are out-of-bounds stack,
+out-of-bounds heap, freed memory, and so on). Requiring one byte of shadow
+memory for every 8 bytes of application memory means that ASan needs to reserve
+one-eighth of the application's virtual address space [@Serebryany2012]. Shadow
+memory is allocated in one contiguous chunk, which keeps mapping application
+memory to shadow memory simple.
+
+ASan's runtime library replaces memory allocation functions like `malloc` and
+`free` with its own specialized versions. `malloc` introduces redzones before
+and after each allocation, which are marked as unaddressable. `free` marks the
+entire allocation as unaddressable and places it in quarantine, so that it
+doesn't get reallocated for a while (in a FIFO basis). This allows for
+detecting use-after-free. The runtime library also handles management of the
+shadow memory.
+
+ASan also introduces redzones around each stack array allocation, and around
+globals. It then instruments loads and stores to check whether the accessed
+memory is addressable, based on the information stored in the shadow memory,
+and reports an error if unaddressable memory is accessed.
+
+ASan doesn't produce false positives and easy to use, it requires compiling and
+linking a program with the `-fsanitize=address` option. It's actually used in
+practice for testing [large
+projects](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/asan.md).
+There is a similar tool for dynamic memory error detection in the Linux kernel,
+[KASAN](https://www.kernel.org/doc/html/v5.0/dev-tools/kasan.html).
+
+ASan's biggest drawback is its high runtime overhead and memory usage, due to
+the quarantine, redzones and shadow memory. [Hardware-assisted AddressSanitizer
+(HWASAN)](https://clang.llvm.org/docs/HardwareAssistedAddressSanitizerDesign.html)
+works similarly to ASan, but with partial hardware assistance can result in
+lower memory overheads, at the cost of being less portable.
+
+On AArch64, HWASAN uses Top-Byte Ignore (TBI). When TBI is enabled, the top
+byte of a pointer is ignored when performing a memory access, allowing software
+to use that top byte to store metadata, without affecting execution. Each
+allocation is aligned to 16 bytes and each 16-byte chunk of memory (called
+"granule") is randomly assigned an 8-bit tag. The tag is stored in shadow
+memory and also placed in the top byte of the pointer to the object. Memory
+loads and stores are then instrumented to check that the tag stored in the
+pointer matches the tag stored in memory, and report an error when a mismatch
+happens.
+
+For granules shorter than 16 bytes, the value stored in shadow memory is
+not the actual tag, but the length of the granule. The actual tag is stored
+at the last byte of the granule itself. For tags in shadow memory with values
+between 1 and 15, HWASAN checks that the access is within the bounds of the
+granule and the pointer tag matches the tag stored at the last byte of the
+granule.
+
+HWASAN is also easy to use, and simply requires compiling and linking an
+application with the `-fsanitize=hwaddress` flag.
+
+[MemTagSanitizer](https://llvm.org/docs/MemTagSanitizer.html) goes one step
+further and uses the Armv8.5-A [Memory Tagging Extension
+(MTE)](https://developer.arm.com/documentation/102925/0100)\index{Memory
+Tagging Extension (MTE)}. With MTE, the tag checking is done automatically
+by hardware, and an exception is raised on mismatch. MTE's granule size is
+16 bits, whereas tags are 4-bit.
+
+\missingcontent{Consider adding a whole section on MTE and its applications}
+
+[UndefinedBehaviorSanitizer
+(UBSan)](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#ubsan-checks)
+detects undefined behavior during program execution, for example array
+out-of-bounds accesses for statically determined array bounds, null pointer
+dereference, signed integer overflow and various kinds of integer conversions
+that result in data loss. Although some of these checks are not directly
+related to memory errors, these kinds of errors can lead to incorrect
+pointer arithmetic, incorrect allocation sizes, and other issues that lead to
+memory errors, so it is important to detect them and address them.
+
+UBSan's documentation describes the full list of available checks. The majority
+of these checks are enabled with the `-fsanitize=undefined` flag, but
+there are also other useful groupings of checks, for example `-fsanitize=integer`
+for checks related to integer conversions and arithmetic.
+
+There are many other sanitizers, more than can reasonably be covered in this
+section. For the interested reader, we list a few more:
+
+ * [MemorySanitizer](https://clang.llvm.org/docs/MemorySanitizer.html):
+   detects uninitialized reads.
+ * [ThreadSanitizer](https://clang.llvm.org/docs/ThreadSanitizer.html):
+   detects data races.
+ * [GWP-ASan](https://llvm.org/docs/GwpAsan.html): detects use-after-free and
+   heap buffer overflows, with low overhead that makes it suitable for
+   production environments. It performs checks only on a sample of allocations.
+
+\missingcontent{Describe other mechanisms for detecting memory errors, both
+software-based (static analysis, library and buffer hardening) and
+hardware-based, e.g. PAuth-based pointer integrity schemes, MTE etc}
 
 ## JIT compiler vulnerabilities
 \missingcontent{Write section on JIT compiler vulnerabilities}
