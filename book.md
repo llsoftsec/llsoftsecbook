@@ -1419,6 +1419,102 @@ at the same time on 2 CPUs sharing a cache level.
 
 ## Transient execution attacks
 
+### Transient execution
+
+CPUs execute sequences of instructions. There often are dependencies between
+instructions in the sequence. That means that the output of one instruction is
+often input to a later instruction.
+
+Apart from the smallest micro-controllers, all CPUs execute multiple
+instructions in parallel. Sometimes even multiple hundreds of them at the same
+time, all in various stages of execution. In other words, instructions start
+executing while potentially hundreds of previous instructions haven't produced
+their results yet. How can a CPU do so when the input to an instruction is so
+often the output of a previous instruction, which might not have fully executed
+yet, and hence the output not being ready?
+
+The answer is the CPUs making massive numbers of *predictions*\index{prediction}
+on what the outputs are likely to be before they are available. Based on those
+predictions, later instructions start executing with a predicted value. This is
+known as *speculation*\index{speculation}.
+
+Let's illustrate that with the following example
+:     The following C code
+
+      ``` {.c}
+      long abs(long a) {
+        if (a>=0)
+          return a;
+        else
+          return -a;
+        }
+      ```
+
+      can be translated to the following AArch64 assembly code:
+
+      ``` {.asm}
+              cmp     x0, #0
+              b.ge    Lbb2
+      Lbb1:
+              neg     x0, x0
+      Lbb2:
+              ret
+      ```
+
+      The `b.ge` instruction is a conditional branch instruction. It computes
+      whether the next instruction should be the one immediately after, or the
+      one pointed to by label `Lbb2`. In case it's the instruction immediately
+      after, the branch is said to not be taken. Instead, if it's the
+      instruction pointed to be label `Lbb2`, the branch is said to be taken.
+      When the condition `.ge` (greater or equal) is true, the branch is taken.
+      That condition is defined or set by the previous instruction, the
+      `cmp x0, #0` instruction, which compares the value in register x0 with 0.
+      Therefore, there is a dependency between the `cmp` instruction and the
+      `b.ge` instruction. To overcome this dependency, and be able to execute
+      the `cmp`, `b.ge` and potentially more instructions in parallel, the CPU
+      predicts the outcome of the branch instruction. In other words, it
+      predicts whether the branch is taken or not. The CPU will pick up either
+      the `neg` or the `ret` instruction to start executing next. This is called
+      *speculation*, as the CPU *speculatively executes* either instruction
+      `neg`, or `ret`.
+
+\todo{Should I show a second example of cpu speculation that is not based on
+branch prediction?}
+
+Of course, as with all predictions, the CPU gets the prediction wrong from time
+to time. In that case, all changes to the system state that affects the correct
+execution of the program, needs to be undone. For example, in the above example
+if the branch should have been taken, but the CPU predicted it would not be
+taken, the `neg` instruction would be executed incorrectly and change the value
+in register x0. After discovering the branch was mis-predicted, the CPU would
+have to restore the correct, non-negated, value in register x0.
+
+Any instructions that are executed under so-called
+*mis-speculation*\index{mis-speculation}, are called *transient
+instructions*\index{transient instructions}.
+
+Note that the paragraph above says "*the system state that affects the correct
+execution of the program, needs to be undone*". There is a lot of system state
+that does not affect the correct execution of a program. And the changes to such
+system state by transient instructions is often not undone.
+
+For example, a transient load instruction can fetch a value into the cache that
+was not there before. By bringing that value in the cache, it could also have
+evicted another value from the cache. Whether a value is present in the cache or
+not does not influence the correct execution of a program; it merely influences
+its execution speed. Therefore, the effect of transient execution on the content
+of the cache is typically not undone when detecting mis-speculation.
+
+Sometimes, it is said that the *architectural effects*\index{architectural
+effects} of transient instructions need to be undone, but the
+*micro-architectural effects*\index{micro-architectural effects} do not need to
+be undone.
+
+*Transient execution attacks*\index{transient execution attacks} are a category
+of side-channel attacks that use the micro-architectural side-effects of
+transient execution as a side channel.
+
+
 \missingcontent{Write section on transient execution attacks}
 
 #### Site isolation
