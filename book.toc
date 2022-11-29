@@ -40,6 +40,15 @@
 \contentsline {section}{\numberline {3.6}Physical access side-channel attacks}{33}{section.3.6}%
 \contentsline {chapter}{\numberline {4}Supply chain attacks}{34}{chapter.4}%
 \contentsline {section}{\numberline {4.1}History of supply chain attacks}{34}{section.4.1}%
-\contentsline {chapter}{\numberline {5}Other security topics relevant for compiler developers}{36}{chapter.5}%
-\contentsline {chapter}{Appendix: contribution guidelines}{37}{chapter*.29}%
-\contentsline {chapter}{References}{41}{chapter*.32}%
+\contentsline {chapter}{\numberline {5}Physical attacks}{36}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Overview}{36}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Physical access side-channel attacks}{36}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}How is information leaked?}{37}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Side channel leakage at instruction level}{37}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Countermeasures}{39}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}Fault injection attacks}{40}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Common forms of Fault injection attacks}{40}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Countermeasures}{41}{subsection.5.3.2}%
+\contentsline {chapter}{\numberline {6}Other security topics relevant for compiler developers}{42}{chapter.6}%
+\contentsline {chapter}{Appendix: contribution guidelines}{43}{chapter*.36}%
+\contentsline {chapter}{References}{48}{chapter*.39}%

@@ -16,6 +16,9 @@
 \contentsline {todo}{16. Write section on site isolation as a SpectreV1 mitigation}{33}{section*.24}%
 \contentsline {todo}{17. Write chapter on physical access side-channel attacks.}{33}{section*.25}%
 \contentsline {todo}{18. Explain how these vulnerabilities arise and how to mitigate them.}{35}{section*.26}%
-\contentsline {todo}{19. Write chapter with other security topics.}{36}{section*.27}%
-\contentsline {todo}{20. Write section on securely clearing memory in C/C++ and undefined behaviour.}{36}{section*.28}%
-\contentsline {todo}{21. Write chapter on contribution guidelines. These should include at least: project locaton on github; how to create pull requests/issues. Where do we discuss - mailing list? Grammar and writing style guidelines. How to use todos and index.}{37}{section*.30}%
+\contentsline {todo}{19. This chapter should probably be moved under section 'Physical access side-channel attacks' higher-up}{36}{section*.27}%
+\contentsline {todo}{20. There is overlap with section timing-side-channels. How to best consolidate that?}{40}{section*.31}%
+\contentsline {todo}{21. Make the above reference to a paper use bibtex.}{41}{section*.33}%
+\contentsline {todo}{22. Write chapter with other security topics.}{42}{section*.34}%
+\contentsline {todo}{23. Write section on securely clearing memory in C/C++ and undefined behaviour.}{42}{section*.35}%
+\contentsline {todo}{24. Write chapter on contribution guidelines. These should include at least: project locaton on github; how to create pull requests/issues. Where do we discuss - mailing list? Grammar and writing style guidelines. How to use todos and index.}{43}{section*.37}%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.10.10)  10 OCT 2022 18:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.11.29)  29 NOV 2022 09:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1209,7 +1209,7 @@ LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
  (/texlive/2020/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [10]
-<img/stack-buffer-overflow.pdf, id=313, 604.2575pt x 417.56pt>
+<img/stack-buffer-overflow.pdf, id=359, 604.2575pt x 417.56pt>
 File: img/stack-buffer-overflow.pdf Graphic file (type pdf)
 <use img/stack-buffer-overflow.pdf>
 Package pdftex.def Info: img/stack-buffer-overflow.pdf  used on input line 587.
@@ -1235,18 +1235,18 @@ Overfull \hbox (0.9646pt too wide) in paragraph at lines 815--815
 [][][][]\T1/lmr/m/n/10 (-20) Explain 
  []
 
-<img/rop-control-flow.pdf, id=354, 178.6675pt x 351.3125pt>
+<img/rop-control-flow.pdf, id=399, 178.6675pt x 351.3125pt>
 File: img/rop-control-flow.pdf Graphic file (type pdf)
 <use img/rop-control-flow.pdf>
 Package pdftex.def Info: img/rop-control-flow.pdf  used on input line 840.
 (pdftex.def)             Requested size: 103.5018pt x 203.5148pt.
-<img/rop-call-stack.pdf, id=355, 544.0325pt x 756.8275pt>
+<img/rop-call-stack.pdf, id=400, 544.0325pt x 756.8275pt>
 File: img/rop-call-stack.pdf Graphic file (type pdf)
 <use img/rop-call-stack.pdf>
 Package pdftex.def Info: img/rop-call-stack.pdf  used on input line 848.
 (pdftex.def)             Requested size: 276.01678pt x 383.97906pt.
 [14]
-<img/jop.pdf, id=371, 335.2525pt x 381.425pt>
+<img/jop.pdf, id=416, 335.2525pt x 381.425pt>
 File: img/jop.pdf Graphic file (type pdf)
 <use img/jop.pdf>
 Package pdftex.def Info: img/jop.pdf  used on input line 902.
@@ -1298,7 +1298,7 @@ ions, with the
  []
 
 [22]
-<img/non-control-data-attack.pdf, id=480, 406.51875pt x 305.14pt>
+<img/non-control-data-attack.pdf, id=525, 406.51875pt x 305.14pt>
 File: img/non-control-data-attack.pdf Graphic file (type pdf)
 <use img/non-control-data-attack.pdf>
 Package pdftex.def Info: img/non-control-data-attack.pdf  used on input line 13
@@ -1315,13 +1315,13 @@ Chapter 3.
 [26
 
 ] [27]
-<img/CacheLevels.pdf, id=537, 231.86626pt x 322.20375pt>
+<img/CacheLevels.pdf, id=583, 231.86626pt x 322.20375pt>
 File: img/CacheLevels.pdf Graphic file (type pdf)
 <use img/CacheLevels.pdf>
 Package pdftex.def Info: img/CacheLevels.pdf  used on input line 1553.
 (pdftex.def)             Requested size: 137.99927pt x 191.76523pt.
  [28 <./img/CacheLevels.pdf>]
-<img/CacheIndexing.pdf, id=555, 704.6325pt x 278.03876pt>
+<img/CacheIndexing.pdf, id=600, 704.6325pt x 278.03876pt>
 File: img/CacheIndexing.pdf Graphic file (type pdf)
 <use img/CacheIndexing.pdf>
 Package pdftex.def Info: img/CacheIndexing.pdf  used on input line 1621.
@@ -1386,10 +1386,69 @@ File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [36
 
 ]
+<img/side_channel_leakage_figure_1_branch.pdf, id=763, 648.4225pt x 310.15875pt
+>
+File: img/side_channel_leakage_figure_1_branch.pdf Graphic file (type pdf)
+<use img/side_channel_leakage_figure_1_branch.pdf>
+Package pdftex.def Info: img/side_channel_leakage_figure_1_branch.pdf  used on 
+input line 2100.
+(pdftex.def)             Requested size: 276.0063pt x 132.02159pt.
+<img/side_channel_leakage_figure_2_duration.pdf, id=764, 422.57875pt x 275.0275
+pt>
+File: img/side_channel_leakage_figure_2_duration.pdf Graphic file (type pdf)
+<use img/side_channel_leakage_figure_2_duration.pdf>
+Package pdftex.def Info: img/side_channel_leakage_figure_2_duration.pdf  used o
+n input line 2115.
+(pdftex.def)             Requested size: 276.00768pt x 179.63445pt.
+
+[37] [38 <./img/side_channel_leakage_figure_1_branch.pdf> <./img/side_channel_l
+eakage_figure_2_duration.pdf
+
+pdfTeX warning: pdflatex (file ./img/side_channel_leakage_figure_2_duration.pdf
+): PDF inclusion: multiple pdfs with page group included in a single page
+>]
+<img/side_channel_leakage_figure_3_toggle.pdf, id=791, 628.3475pt x 291.0875pt>
+
+File: img/side_channel_leakage_figure_3_toggle.pdf Graphic file (type pdf)
+<use img/side_channel_leakage_figure_3_toggle.pdf>
+Package pdftex.def Info: img/side_channel_leakage_figure_3_toggle.pdf  used on 
+input line 2147.
+(pdftex.def)             Requested size: 275.99435pt x 127.8568pt.
+File: bc-aux-301.mps Graphic file (type mps)
+ [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [39 <./i
+mg/side_channel_leakage_figure_3_toggle.pdf>]
+<img/physical_attacks.pdf, id=806, 468.75125pt x 160.6pt>
+File: img/physical_attacks.pdf Graphic file (type pdf)
+<use img/physical_attacks.pdf>
+Package pdftex.def Info: img/physical_attacks.pdf  used on input line 2210.
+(pdftex.def)             Requested size: 275.99577pt x 94.55957pt.
+ [40 <./img/physical_attacks.pdf>]
+File: bc-aux-301.mps Graphic file (type mps)
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-(build/book.ind [37
+Overfull \hbox (80.5624pt too wide) in paragraph at lines 2281--2283
+[]\T1/lmr/m/n/10 (-20) Example: At-tack on Trust-Zone for Armv8-M: https://www.
+youtube.com/watch?v=4u6BAH8mEDw 
+ []
+
+[41]
+Chapter 6.
+File: bc-aux-301.mps Graphic file (type mps)
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [42
+
+]
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+(build/book.ind [43
 
 ]
 Underfull \hbox (badness 1092) in paragraph at lines 27--28
@@ -1401,46 +1460,46 @@ Underfull \hbox (badness 10000) in paragraph at lines 106--107
 []\T1/lmr/m/n/10 (+20) sigreturn-oriented pro-gram-ming
  []
 
-[38
+[44
 
-] [39
+] [45
 
 ]) (build/book.tdo)
 \tf@tdo=\write7
 \openout7 = `book.tdo'.
 
- [40
+ [46
 
 
-] [41
+] [47] [48
 
-] [42]
-Underfull \hbox (badness 10000) in paragraph at lines 2137--2142
+] [49]
+Underfull \hbox (badness 10000) in paragraph at lines 2465--2470
 \T1/lmr/m/n/10 (+20) Security -[] Research / blob / master / presentations / 20
 12 _ 10 _ Breakpoint /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2137--2142
+Underfull \hbox (badness 10000) in paragraph at lines 2465--2470
 \T1/lmr/m/n/10 (+20) BreakPoint2012 _ Miller _ Modeling _ the _ exploitation _ 
 and _ mitigation _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2155--2159
+Underfull \hbox (badness 10000) in paragraph at lines 2483--2487
 \T1/lmr/m/n/10 (+20) publications / conference -[] paper / 1998 / 10 / 08 / pro
 ceedings -[] of -[] the -[] 21st -[] nissc -[]
  []
 
-[43] [44] (build/book.aux)
+[50] [51] (build/book.aux)
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: CD974218D1B8BD1121D7603E9B83F5DF;6652.
+(rerunfilecheck)             Checksum: E3EDFC4F664D844B7AB2875719EB4C35;8323.
  ) 
 Here is how much of TeX's memory you used:
- 29480 strings out of 480962
- 536764 string characters out of 5908146
- 936177 words of memory out of 5000000
- 45615 multiletter control sequences out of 15000+600000
+ 29599 strings out of 480962
+ 540254 string characters out of 5908146
+ 944452 words of memory out of 5000000
+ 45686 multiletter control sequences out of 15000+600000
  484837 words of font info for 183 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  102i,12n,117p,651b,1259s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1467,10 +1526,10 @@ lic/lm/lmr8.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmri10.pfb></te
 xlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></texlive/2020/texmf-dis
 t/fonts/type1/public/lm/lmtt10.pfb></texlive/2020/texmf-dist/fonts/type1/public
 /lm/lmtt8.pfb>
-Output written on build/book.pdf (45 pages, 679098 bytes).
+Output written on build/book.pdf (52 pages, 737515 bytes).
 PDF statistics:
- 1034 PDF objects out of 1200 (max. 8388607)
- 933 compressed objects within 10 object streams
- 247 named destinations out of 1000 (max. 500000)
- 45456 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 1171 PDF objects out of 1200 (max. 8388607)
+ 1050 compressed objects within 11 object streams
+ 279 named destinations out of 1000 (max. 500000)
+ 45548 words of extra memory for PDF output out of 51595 (max. 10000000)
 
