@@ -1429,11 +1429,11 @@ Apart from the smallest micro-controllers, all CPUs execute multiple
 instructions in parallel. Sometimes even multiple hundreds of them at the same
 time, all in various stages of execution. In other words, instructions start
 executing while potentially hundreds of previous instructions haven't produced
-their results yet. How can a CPU do so when the input to an instruction is so
-often the output of a previous instruction, which might not have fully executed
-yet, and hence the output not being ready?
+their results yet. How can a CPU achieve this when the input to an instruction
+is so often the output of a previous instruction, which might not have fully
+executed yet, and hence whose output may not yet be ready?
 
-The answer is the CPUs making massive numbers of *predictions*\index{prediction}
+The answer is that CPUs make massive numbers of *predictions*\index{prediction}
 on what the outputs are likely to be before they are available. Based on those
 predictions, later instructions start executing with a predicted value. This is
 known as *speculation*\index{speculation}.
@@ -1478,15 +1478,15 @@ Let's illustrate that with the following example
       *speculation*, as the CPU *speculatively executes* either instruction
       `neg`, or `ret`.
 
-\todo{Should I show a second example of cpu speculation that is not based on
-branch prediction?}
+\todo{Show a second example of cpu speculation that is not based on
+branch prediction.}
 
 Of course, as with all predictions, the CPU gets the prediction wrong from time
-to time. In that case, all changes to the system state that affects the correct
-execution of the program, needs to be undone. For example, in the above example
+to time. In that case, all changes to the system state that affect the correct
+execution of the program need to be undone. For example, in the above example
 if the branch should have been taken, but the CPU predicted it would not be
 taken, the `neg` instruction would be executed incorrectly and change the value
-in register x0. After discovering the branch was mis-predicted, the CPU would
+in register `x0`. After discovering the branch was mis-predicted, the CPU would
 have to restore the correct, non-negated, value in register x0.
 
 Any instructions that are executed under so-called
