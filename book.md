@@ -1468,8 +1468,8 @@ Let's illustrate that with the following example
       instruction pointed to be label `Lbb2`, the branch is said to be taken.
       When the condition `.ge` (greater or equal) is true, the branch is taken.
       That condition is defined or set by the previous instruction, the
-      `cmp x0, #0` instruction, which compares the value in register x0 with 0.
-      Therefore, there is a dependency between the `cmp` instruction and the
+      `cmp x0, #0` instruction, which compares the value in register `x0` with
+      0. Therefore, there is a dependency between the `cmp` instruction and the
       `b.ge` instruction. To overcome this dependency, and be able to execute
       the `cmp`, `b.ge` and potentially more instructions in parallel, the CPU
       predicts the outcome of the branch instruction. In other words, it
@@ -1487,7 +1487,7 @@ execution of the program need to be undone. For example, in the above example
 if the branch should have been taken, but the CPU predicted it would not be
 taken, the `neg` instruction would be executed incorrectly and change the value
 in register `x0`. After discovering the branch was mis-predicted, the CPU would
-have to restore the correct, non-negated, value in register x0.
+have to restore the correct, non-negated, value in register `x0`.
 
 Any instructions that are executed under so-called
 *mis-speculation*\index{mis-speculation}, are called *transient
