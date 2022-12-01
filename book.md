@@ -1422,21 +1422,40 @@ at the same time on 2 CPUs sharing a cache level.
 ### Transient execution
 
 CPUs execute sequences of instructions. There often are dependencies between
-instructions in the sequence. That means that the output of one instruction is
-often input to a later instruction.
+instructions in the sequence. That means that the outcome of one instruction
+influences the execution of a later instruction.
 
 Apart from the smallest micro-controllers, all CPUs execute multiple
 instructions in parallel. Sometimes even multiple hundreds of them at the same
 time, all in various stages of execution. In other words, instructions start
 executing while potentially hundreds of previous instructions haven't produced
-their results yet. How can a CPU achieve this when the input to an instruction
-is so often the output of a previous instruction, which might not have fully
-executed yet, and hence whose output may not yet be ready?
+their results yet. How can a CPU achieve this when the output of a previous
+instruction, which might not have fully executed yet, and hence whose output may
+not yet be ready, may affect the execution of that later instruction?
 
-The answer is that CPUs make massive numbers of *predictions*\index{prediction}
-on what the outputs are likely to be before they are available. Based on those
-predictions, later instructions start executing with a predicted value. This is
-known as *speculation*\index{speculation}.
+In other words, there may be a dependency between an instruction that has not
+finished yet and a later instruction that the CPU also already started
+executing. There are various kinds of dependencies. One kind is *control
+dependencies*\index{control dependencies}, where whether the later instruction
+should be executed at all is dependent on the outcome of the earlier
+instruction. Other kinds are *true data dependencies*\index{true data
+dependency}, *anti-dependencies*\index{anti dependency} and *output
+dependencies*\index{output dependency}. More details about these kinds of
+dependencies can be found on
+[the wikipedia page about them](https://en.wikipedia.org/wiki/Data_dependency).
+
+CPUs overcome parallel execution limitations imposed by dependencies by making
+massive numbers of *predictions*\index{prediction}. For example, most CPUs
+predict whether conditional branches are taken or not, which is making a
+prediction on control dependencies. Another example is a CPU making a prediction
+on whether a load accesses the same memory address as a preceding store. If they
+do not access the same memory locations, the load can run in parallel with the
+store, as there is no data dependency between them. If they do access
+overlapping memory locations, there is a dependency and the store should
+complete before the load can start executing.
+
+Starting to execute later instructions before all of their dependencies have been
+resolved, based on the predictions, is called *speculation*\index{speculation}.
 
 Let's illustrate that with the following example
 :     The following C code
@@ -1483,37 +1502,47 @@ branch prediction.}
 
 Of course, as with all predictions, the CPU gets the prediction wrong from time
 to time. In that case, all changes to the system state that affect the correct
-execution of the program need to be undone. For example, in the above example
-if the branch should have been taken, but the CPU predicted it would not be
-taken, the `neg` instruction would be executed incorrectly and change the value
-in register `x0`. After discovering the branch was mis-predicted, the CPU would
-have to restore the correct, non-negated, value in register `x0`.
+execution of the program need to be undone. In the above example, if the branch
+should have been taken, but the CPU predicted it to not be taken, the `neg`
+instruction is executed incorrectly and changes the value in register `x0`.
+After discovering the branch was mis-predicted, the CPU would have to restore
+the correct, non-negated, value in register `x0`.
 
 Any instructions that are executed under so-called
 *mis-speculation*\index{mis-speculation}, are called *transient
 instructions*\index{transient instructions}.
 
-Note that the paragraph above says "*the system state that affects the correct
-execution of the program, needs to be undone*". There is a lot of system state
-that does not affect the correct execution of a program. And the changes to such
-system state by transient instructions is often not undone.
+The paragraph above says "*the system state that affects the correct execution
+of the program, needs to be undone*". There is a lot of system state that does
+not affect the correct execution of a program. And the changes to such system
+state by transient instructions is often not undone.
 
 For example, a transient load instruction can fetch a value into the cache that
-was not there before. By bringing that value in the cache, it could also have
-evicted another value from the cache. Whether a value is present in the cache or
-not does not influence the correct execution of a program; it merely influences
-its execution speed. Therefore, the effect of transient execution on the content
-of the cache is typically not undone when detecting mis-speculation.
+was not there before. By bringing that value in the cache, it could have evicted
+another value from the cache. Whether a value is present in the cache does not
+influence the correct execution of a program; it merely influences its execution
+speed. Therefore, the effect of transient execution on the content of the cache
+is typically not undone when detecting mis-speculation.
 
 Sometimes, it is said that the *architectural effects*\index{architectural
 effects} of transient instructions need to be undone, but the
 *micro-architectural effects*\index{micro-architectural effects} do not need to
 be undone.
 
+The above explanation describes architectural effects as changes in system state
+that need to be undone after detecting mis-speculation. In reality, most systems
+will implement techniques such that it keeps all state changes in
+micro-architectural buffers until it is clear that all predictions made to
+execute that instruction were correct. At that point the micro-architectural
+state is *committed* to become architectural state. In that way, mis-predictions
+naturally do not affect architectural state. \todo{Could we find a good
+reference that explains micro-architectural versus architectural state in more
+detail? Is "Computer Architecture: A Quantitative Approach" the best reference
+available?}
+
 *Transient execution attacks*\index{transient execution attacks} are a category
 of side-channel attacks that use the micro-architectural side-effects of
 transient execution as a side channel.
-
 
 \missingcontent{Write section on transient execution attacks}
 
