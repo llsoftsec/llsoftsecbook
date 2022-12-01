@@ -39,6 +39,44 @@
             urlcolor=Blue,
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -128,7 +166,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2021-2022 Arm Limited
   \href{mailto:open-source-office@arm.com}{\nolinkurl{open-source-office@arm.com}}\\
 
-Version 0-88-gdc59798
+Version 0-89-gfa57441
 \clearpage
 
 {
@@ -1884,6 +1922,150 @@ predictors}\label{channels-making-use-of-aliasing-in-branch-predictors-and-other
 \hypertarget{transient-execution-attacks}{%
 \section{Transient execution
 attacks}\label{transient-execution-attacks}}
+
+\hypertarget{transient-execution}{%
+\subsection{Transient execution}\label{transient-execution}}
+
+CPUs execute sequences of instructions. There often are dependencies
+between instructions in the sequence. That means that the outcome of one
+instruction influences the execution of a later instruction.
+
+Apart from the smallest micro-controllers, all CPUs execute multiple
+instructions in parallel. Sometimes even multiple hundreds of them at
+the same time, all in various stages of execution. In other words,
+instructions start executing while potentially hundreds of previous
+instructions haven't produced their results yet. How can a CPU achieve
+this when the output of a previous instruction, which might not have
+fully executed yet, and hence whose output may not yet be ready, may
+affect the execution of that later instruction?
+
+In other words, there may be a dependency between an instruction that
+has not finished yet and a later instruction that the CPU also already
+started executing. There are various kinds of dependencies. One kind is
+\emph{control dependencies}\index{control dependencies}, where whether
+the later instruction should be executed at all is dependent on the
+outcome of the earlier instruction. Other kinds are \emph{true data
+dependencies}\index{true data
+dependency}, \emph{anti-dependencies}\index{anti dependency} and
+\emph{output dependencies}\index{output dependency}. More details about
+these kinds of dependencies can be found on
+\href{https://en.wikipedia.org/wiki/Data_dependency}{the wikipedia page
+about them}.
+
+CPUs overcome parallel execution limitations imposed by dependencies by
+making massive numbers of \emph{predictions}\index{prediction}. For
+example, most CPUs predict whether conditional branches are taken or
+not, which is making a prediction on control dependencies. Another
+example is a CPU making a prediction on whether a load accesses the same
+memory address as a preceding store. If they do not access the same
+memory locations, the load can run in parallel with the store, as there
+is no data dependency between them. If they do access overlapping memory
+locations, there is a dependency and the store should complete before
+the load can start executing.
+
+Starting to execute later instructions before all of their dependencies
+have been resolved, based on the predictions, is called
+\emph{speculation}\index{speculation}.
+
+\begin{description}
+\item[Let's illustrate that with the following example]
+The following C code
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{long}\NormalTok{ abs(}\DataTypeTok{long}\NormalTok{ a) \{}
+  \ControlFlowTok{if}\NormalTok{ (a>=}\DecValTok{0}\NormalTok{)}
+    \ControlFlowTok{return}\NormalTok{ a;}
+  \ControlFlowTok{else}
+    \ControlFlowTok{return}\NormalTok{ -a;}
+\NormalTok{  \}}
+\end{Highlighting}
+\end{Shaded}
+
+can be translated to the following AArch64 assembly code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+        \BuiltInTok{cmp}\NormalTok{     x0, #}\DecValTok{0}
+\NormalTok{        b.ge    Lbb2}
+\FunctionTok{Lbb1:}
+        \BuiltInTok{neg}\NormalTok{     x0, x0}
+\FunctionTok{Lbb2:}
+        \BuiltInTok{ret}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{b.ge} instruction is a conditional branch instruction. It
+computes whether the next instruction should be the one immediately
+after, or the one pointed to by label \texttt{Lbb2}. In case it's the
+instruction immediately after, the branch is said to not be taken.
+Instead, if it's the instruction pointed to be label \texttt{Lbb2}, the
+branch is said to be taken. When the condition \texttt{.ge} (greater or
+equal) is true, the branch is taken. That condition is defined or set by
+the previous instruction, the \texttt{cmp\ x0,\ \#0} instruction, which
+compares the value in register \texttt{x0} with 0. Therefore, there is a
+dependency between the \texttt{cmp} instruction and the \texttt{b.ge}
+instruction. To overcome this dependency, and be able to execute the
+\texttt{cmp}, \texttt{b.ge} and potentially more instructions in
+parallel, the CPU predicts the outcome of the branch instruction. In
+other words, it predicts whether the branch is taken or not. The CPU
+will pick up either the \texttt{neg} or the \texttt{ret} instruction to
+start executing next. This is called \emph{speculation}, as the CPU
+\emph{speculatively executes} either instruction \texttt{neg}, or
+\texttt{ret}.
+\end{description}
+
+\todo{Show a second example of cpu speculation that is not based on
+branch prediction.}
+
+Of course, as with all predictions, the CPU gets the prediction wrong
+from time to time. In that case, all changes to the system state that
+affect the correct execution of the program need to be undone. In the
+above example, if the branch should have been taken, but the CPU
+predicted it to not be taken, the \texttt{neg} instruction is executed
+incorrectly and changes the value in register \texttt{x0}. After
+discovering the branch was mis-predicted, the CPU would have to restore
+the correct, non-negated, value in register \texttt{x0}.
+
+Any instructions that are executed under so-called
+\emph{mis-speculation}\index{mis-speculation}, are called
+\emph{transient instructions}\index{transient instructions}.
+
+The paragraph above says ``\emph{the system state that affects the
+correct execution of the program, needs to be undone}''. There is a lot
+of system state that does not affect the correct execution of a program.
+And the changes to such system state by transient instructions is often
+not undone.
+
+For example, a transient load instruction can fetch a value into the
+cache that was not there before. By bringing that value in the cache, it
+could have evicted another value from the cache. Whether a value is
+present in the cache does not influence the correct execution of a
+program; it merely influences its execution speed. Therefore, the effect
+of transient execution on the content of the cache is typically not
+undone when detecting mis-speculation.
+
+Sometimes, it is said that the \emph{architectural
+effects}\index{architectural
+effects} of transient instructions need to be undone, but the
+\emph{micro-architectural effects}\index{micro-architectural effects} do
+not need to be undone.
+
+The above explanation describes architectural effects as changes in
+system state that need to be undone after detecting mis-speculation. In
+reality, most systems will implement techniques that keep all state
+changes in micro-architectural buffers until it is clear that all
+predictions made to execute that instruction were correct. At that point
+the micro-architectural state is \emph{committed} to become
+architectural state. In that way, mis-predictions naturally do not
+affect architectural state.
+\todo{Could we find a good reference that explains
+micro-architectural versus architectural state in more detail? Is "Computer
+Architecture: A Quantitative Approach" the best reference available?}
+
+\emph{Transient execution attacks}\index{transient execution attacks}
+are a category of side-channel attacks that use the micro-architectural
+side-effects of transient execution as a side channel.
 
 \missingcontent{Write section on transient execution attacks}
 

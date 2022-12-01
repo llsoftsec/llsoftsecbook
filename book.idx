@@ -70,3 +70,14 @@
 \indexentry{site isolation|hyperpage}{32}
 \indexentry{Spectre|hyperpage}{32}
 \indexentry{NetSpectre|hyperpage}{32}
+\indexentry{control dependencies|hyperpage}{33}
+\indexentry{true data dependency|hyperpage}{33}
+\indexentry{anti dependency|hyperpage}{33}
+\indexentry{output dependency|hyperpage}{33}
+\indexentry{prediction|hyperpage}{33}
+\indexentry{speculation|hyperpage}{33}
+\indexentry{mis-speculation|hyperpage}{34}
+\indexentry{transient instructions|hyperpage}{34}
+\indexentry{architectural effects|hyperpage}{34}
+\indexentry{micro-architectural effects|hyperpage}{34}
+\indexentry{transient execution attacks|hyperpage}{35}

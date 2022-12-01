@@ -1,6 +1,8 @@
 \begin{theindex}
 
+  \item anti dependency, \hyperpage{33}
   \item arbitrary code execution, \hyperpage{9}
+  \item architectural effects, \hyperpage{34}
   \item ASLR, \hyperpage{18}
 
   \indexspace
@@ -24,6 +26,7 @@
   \item CFI, \hyperpage{18}
   \item Collide+Probe, \hyperpage{31}
   \item control data, \hyperpage{23}
+  \item control dependencies, \hyperpage{33}
   \item counterfeit object-oriented programming (COOP), \hyperpage{17}
   \item covert channel, \hyperpage{26}
 
@@ -70,6 +73,8 @@
 
   \item measurement sequence, \hyperpage{31}
   \item memory access time, \hyperpage{27}
+  \item micro-architectural effects, \hyperpage{34}
+  \item mis-speculation, \hyperpage{34}
   \item multi-level cache, \hyperpage{27}
   \item multithreading, \hyperpage{32}
 
@@ -81,9 +86,14 @@
 
   \indexspace
 
+  \item output dependency, \hyperpage{33}
+
+  \indexspace
+
   \item Pointer Authentication, \hyperpage{20}
   \item pointer extension bits, \hyperpage{21}
   \item pointer substitution attack, \hyperpage{22}
+  \item prediction, \hyperpage{33}
   \item Prime+Probe, \hyperpage{30}
   \item principle of locality, \hyperpage{28}
   \item pseudo-LRU replacement policy, \hyperpage{28}
@@ -106,6 +116,7 @@
   \item sigreturn-oriented programming (SROP), \hyperpage{17}
   \item site isolation, \hyperpage{32}
   \item Spectre, \hyperpage{32}
+  \item speculation, \hyperpage{33}
   \item spy, \hyperpage{26}
   \item stack pivoting, \hyperpage{14}
 
@@ -113,7 +124,10 @@
 
   \item timing attacks, \hyperpage{26}
   \item Top-Byte-Ignore (TBI), \hyperpage{21}
+  \item transient execution attacks, \hyperpage{35}
+  \item transient instructions, \hyperpage{34}
   \item trigger sequence, \hyperpage{31}
+  \item true data dependency, \hyperpage{33}
 
   \indexspace
 

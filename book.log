@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.11.29)  29 NOV 2022 09:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2022.12.1)  1 DEC 2022 11:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -368,6 +368,15 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 Package hyperref Info: Option `colorlinks' set `true' on input line 40.
 Package hyperref Info: Option `breaklinks' set `true' on input line 40.
 
+(/texlive/2020/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2021/01/20 v3.7 verbatim text (tvz,hv)
+\FV@CodeLineNo=\count279
+\FV@InFile=\read2
+\FV@TabBox=\box49
+\c@FancyVerbLine=\count280
+\FV@StepNumber=\count281
+\FV@OutFile=\write3
+)
 (/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -394,12 +403,12 @@ line 40.
 (/texlive/2020/texmf-dist/tex/latex/base/makeidx.sty
 Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
 )
-\@indexfile=\write3
-\openout3 = `book.idx'.
+\@indexfile=\write4
+\openout4 = `book.idx'.
 
 
 Writing index file book.idx
-\c@TodoCounter=\count279
+\c@TodoCounter=\count282
 (/texlive/2020/texmf-dist/tex/latex/todonotes/todonotes.sty
 Package: todonotes 2020/08/18 v1.1.3 Todonotes source and documentation.
 Package: todonotes 2018/11/22
@@ -415,7 +424,7 @@ Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
 \XKV@toks=\toks25
 \XKV@tempa@toks=\toks26
 )
-\XKV@depth=\count280
+\XKV@depth=\count283
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 (/texlive/2020/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
@@ -428,7 +437,7 @@ File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 
 (/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex))
 (/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box49
+\pgfutil@abb=\box50
 )
 (/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
 (/texlive/2020/texmf-dist/tex/generic/pgf/pgf.revision.tex)
@@ -458,16 +467,16 @@ Package: pgfsys 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@yc=\dimen164
 \pgf@xd=\dimen165
 \pgf@yd=\dimen166
-\w@pgf@writea=\write4
-\r@pgf@reada=\read2
-\c@pgf@counta=\count281
-\c@pgf@countb=\count282
-\c@pgf@countc=\count283
-\c@pgf@countd=\count284
+\w@pgf@writea=\write5
+\r@pgf@reada=\read3
+\c@pgf@counta=\count284
+\c@pgf@countb=\count285
+\c@pgf@countc=\count286
+\c@pgf@countd=\count287
 \t@pgf@toka=\toks31
 \t@pgf@tokb=\toks32
 \t@pgf@tokc=\toks33
-\pgf@sys@id@count=\count285
+\pgf@sys@id@count=\count288
 
 (/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2020/12/27 v3.1.8b (3.1.8b)
@@ -482,8 +491,8 @@ File: pgfsys-common-pdf.def 2020/12/27 v3.1.8b (3.1.8b)
 )))
 (/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-\pgfsyssoftpath@smallbuffer@items=\count286
-\pgfsyssoftpath@bigbuffer@items=\count287
+\pgfsyssoftpath@smallbuffer@items=\count289
+\pgfsyssoftpath@bigbuffer@items=\count290
 )
 (/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2020/12/27 v3.1.8b (3.1.8b)
@@ -495,8 +504,8 @@ Package: pgfcore 2020/12/27 v3.1.8b (3.1.8b)
 (/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen167
-\pgfmath@count=\count288
-\pgfmath@box=\box50
+\pgfmath@count=\count291
+\pgfmath@box=\box51
 \pgfmath@toks=\toks34
 \pgfmath@stack@operand=\toks35
 \pgfmath@stack@operation=\toks36
@@ -516,7 +525,7 @@ ode.tex)
 (/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmet
 ics.code.tex)))
 (/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count289
+\c@pgfmathroundto@lastzeros=\count292
 ))
 (/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
 (/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
@@ -548,10 +557,10 @@ File: pgfcorepathusage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@shorten@start@additional=\dimen185
 ) (/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-\pgfpic=\box51
-\pgf@hbox=\box52
-\pgf@layerbox@main=\box53
-\pgf@picture@serial@count=\count290
+\pgfpic=\box52
+\pgf@hbox=\box53
+\pgf@layerbox@main=\box54
+\pgf@picture@serial@count=\count293
 )
 (/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.t
 ex
@@ -582,15 +591,15 @@ File: pgfcorearrows.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 (/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@max=\dimen191
-\pgf@sys@shading@range@num=\count291
-\pgf@shadingcount=\count292
+\pgf@sys@shading@range@num=\count294
+\pgf@shadingcount=\count295
 )
 (/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 
 (/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-\pgfexternal@startupbox=\box54
+\pgfexternal@startupbox=\box55
 )) (/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )
@@ -606,7 +615,7 @@ File: pgfcorerdf.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )))
 (/texlive/2020/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-\pgfnodeparttextbox=\box55
+\pgfnodeparttextbox=\box56
 )
 (/texlive/2020/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2020/12/27 v3.1.8b (3.1.8b)
@@ -638,7 +647,7 @@ Package: tikz 2020/12/27 v3.1.8b (3.1.8b)
 (/texlive/2020/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code
 .tex
 File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-\pgf@plot@mark@count=\count293
+\pgf@plot@mark@count=\count296
 \pgfplotmarksize=\dimen196
 )
 \tikz@lastx=\dimen197
@@ -649,22 +658,22 @@ File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \tikz@lastmovetoy=\dimen258
 \tikzleveldistance=\dimen259
 \tikzsiblingdistance=\dimen260
-\tikz@figbox=\box56
-\tikz@figbox@bg=\box57
-\tikz@tempbox=\box58
-\tikz@tempbox@bg=\box59
-\tikztreelevel=\count294
-\tikznumberofchildren=\count295
-\tikznumberofcurrentchild=\count296
-\tikz@fig@count=\count297
+\tikz@figbox=\box57
+\tikz@figbox@bg=\box58
+\tikz@tempbox=\box59
+\tikz@tempbox@bg=\box60
+\tikztreelevel=\count297
+\tikznumberofchildren=\count298
+\tikznumberofcurrentchild=\count299
+\tikz@fig@count=\count300
 
 (/texlive/2020/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-\pgfmatrixcurrentrow=\count298
-\pgfmatrixcurrentcolumn=\count299
-\pgf@matrix@numberofcolumns=\count300
+\pgfmatrixcurrentrow=\count301
+\pgfmatrixcurrentcolumn=\count302
+\pgf@matrix@numberofcolumns=\count303
 )
-\tikz@expandcount=\count301
+\tikz@expandcount=\count304
 
 (/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibr
 arytopaths.code.tex
@@ -686,18 +695,18 @@ File: tikzlibraryfadings.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 File: pgflibraryfadings.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 ))) (/texlive/2020/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count302
-\calc@Bcount=\count303
+\calc@Acount=\count305
+\calc@Bcount=\count306
 \calc@Adimen=\dimen261
 \calc@Bdimen=\dimen262
 \calc@Askip=\skip54
 \calc@Bskip=\skip55
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count304
+\calc@Ccount=\count307
 \calc@Cskip=\skip56
 )
-\c@@todonotes@numberoftodonotes=\count305
+\c@@todonotes@numberoftodonotes=\count308
 )
 (/texlive/2020/texmf-dist/tex/latex/bclogo/bclogo.sty
 Package: bclogo 2016/01/10 v3.1
@@ -715,17 +724,17 @@ File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
 (/texlive/2020/texmf-dist/tex/generic/pstricks/pstricks.tex
 (/texlive/2020/texmf-dist/tex/generic/pstricks/pst-fp.tex
 `pst-fp' v0.05, 2010/01/17 (hv)
-\pstFP@xs=\count306
-\pstFP@xia=\count307
-\pstFP@xib=\count308
-\pstFP@xfa=\count309
-\pstFP@xfb=\count310
-\pstFP@rega=\count311
-\pstFP@regb=\count312
-\pstFP@regs=\count313
-\pstFP@times=\count314
+\pstFP@xs=\count309
+\pstFP@xia=\count310
+\pstFP@xib=\count311
+\pstFP@xfa=\count312
+\pstFP@xfb=\count313
+\pstFP@rega=\count314
+\pstFP@regb=\count315
+\pstFP@regs=\count316
+\pstFP@times=\count317
 )
-\psLoopIndex=\count315
+\psLoopIndex=\count318
 
 `PSTricks' v3.01  <2020/09/18> (tvz,hv)
 \pst@dima=\dimen263
@@ -738,26 +747,26 @@ File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
 \pst@dimn=\dimen270
 \pst@dimo=\dimen271
 \pst@dimp=\dimen272
-\pst@hbox=\box60
-\pst@ibox=\box61
-\pst@boxg=\box62
-\pst@cnta=\count316
-\pst@cntb=\count317
-\pst@cntc=\count318
-\pst@cntd=\count319
-\pst@cntg=\count320
-\pst@cnth=\count321
-\pst@cntm=\count322
-\pst@cntn=\count323
-\pst@cnto=\count324
-\pst@cntp=\count325
-\@zero=\count326
+\pst@hbox=\box61
+\pst@ibox=\box62
+\pst@boxg=\box63
+\pst@cnta=\count319
+\pst@cntb=\count320
+\pst@cntc=\count321
+\pst@cntd=\count322
+\pst@cntg=\count323
+\pst@cnth=\count324
+\pst@cntm=\count325
+\pst@cntn=\count326
+\pst@cnto=\count327
+\pst@cntp=\count328
+\@zero=\count329
 \pst@toks=\toks39
 (/texlive/2020/texmf-dist/tex/generic/pstricks/pstricks.con)
 \psunit=\dimen273
 \psxunit=\dimen274
 \psyunit=\dimen275
-\pst@C@@rType=\count327
+\pst@C@@rType=\count330
 \pslinewidth=\dimen276
 \psk@startLW=\dimen277
 \psk@endLW=\dimen278
@@ -791,14 +800,14 @@ Package: pst-coil 2010/02/01 package wrapper for pst-coil.tex (hv)
 (/texlive/2020/texmf-dist/tex/generic/pst-coil/pst-coil.tex  v1.06, 2006/11/27
 (/texlive/2020/texmf-dist/tex/generic/pst-node/pst-node.tex
  v1.42a, 2020/04/01
-\psrow=\count328
-\pscol=\count329
-\psmatrixcnt=\count330
+\psrow=\count331
+\pscol=\count332
+\psmatrixcnt=\count333
 \psrowsep=\skip61
 \pscolsep=\skip62
-\pst@args=\count331
-\num@pts=\count332
-\pst@argcnt=\count333
+\pst@args=\count334
+\num@pts=\count335
+\pst@argcnt=\count336
 ))
 File: pst-coil.tex 2015/05/13 v1.07 `PST-coil' (tvz,hv)
 )
@@ -811,8 +820,8 @@ Package: expl3 2021-02-18 L3 programming layer (loader)
 
 (/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count334
-\l__pdf_internal_box=\box63
+\l__color_backend_stack_int=\count337
+\l__pdf_internal_box=\box64
 ))
 (/texlive/2020/texmf-dist/tex/latex/l3packages/xparse/xparse-2020-10-01.sty
 (/texlive/2020/texmf-dist/tex/latex/l3packages/xparse/xparse-generic.tex)))
@@ -825,14 +834,14 @@ Package zref Info: New property list: main on input line 764.
 Package zref Info: New property: default on input line 765.
 Package zref Info: New property: page on input line 766.
 )
-\c@abspage=\count335
+\c@abspage=\count338
 Package zref Info: New property: abspage on input line 66.
 )
 (/texlive/2020/texmf-dist/tex/latex/needspace/needspace.sty
 Package: needspace 2010/09/12 v1.3d reserve vertical space
 )
 \mdf@templength=\skip63
-\c@mdf@globalstyle@cnt=\count336
+\c@mdf@globalstyle@cnt=\count339
 \mdf@skipabove@length=\skip64
 \mdf@skipbelow@length=\skip65
 \mdf@leftmargin@length=\skip66
@@ -883,11 +892,11 @@ File: pst-node.tex 2015/05/13 1.07 `pst-node' (tvz,hv)
 (/texlive/2020/texmf-dist/tex/latex/mdframed/md-frame-2.mdf
 File: md-frame-2.mdf 2013/07/01\ 1.9b: md-frame-2
 )
-\mdf@frametitlebox=\box64
-\mdf@footnotebox=\box65
-\mdf@splitbox@one=\box66
-\mdf@splitbox@two=\box67
-\mdf@splitbox@save=\box68
+\mdf@frametitlebox=\box65
+\mdf@footnotebox=\box66
+\mdf@splitbox@one=\box67
+\mdf@splitbox@two=\box68
+\mdf@splitbox@save=\box69
 \mdfsplitboxwidth=\skip103
 \mdfsplitboxtotalwidth=\skip104
 \mdfsplitboxheight=\skip105
@@ -915,29 +924,29 @@ File: md-frame-2.mdf 2013/07/01\ 1.9b: md-frame-2
 \mdf@horizontalspaceofbox=\skip127
 \mdfsubtitleheight=\skip128
 \mdfsubsubtitleheight=\skip129
-\c@mdfcountframes=\count337
+\c@mdfcountframes=\count340
 
 ****** mdframed patching \endmdf@trivlist
 
 ****** -- success******
 
-\mdf@envdepth=\count338
-\c@mdf@env@i=\count339
-\c@mdf@env@ii=\count340
-\c@mdf@zref@counter=\count341
+\mdf@envdepth=\count341
+\c@mdf@env@i=\count342
+\c@mdf@env@ii=\count343
+\c@mdf@zref@counter=\count344
 Package zref Info: New property: mdf@pagevalue on input line 895.
 )
 (/texlive/2020/texmf-dist/tex/generic/iftex/ifpdf.sty
 Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
 )
-\c@bclogocompteur=\count342
+\c@bclogocompteur=\count345
 \bcval@epBarre=\skip130
 \bcval@framesep=\skip131
 \bcval@tailleOndu=\skip132
 \bcval@borderWidth=\skip133
 \bcval@margeG=\skip134
 \bcval@margeD=\skip135
-\bc@envbox=\box69
+\bc@envbox=\box70
 )
 (/texlive/2020/texmf-dist/tex/latex/cleveref/cleveref.sty
 Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
@@ -967,40 +976,40 @@ Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
 \caption@hangindent=\dimen294
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count343
-\c@continuedfloat=\count344
+\c@caption@flags=\count346
+\c@continuedfloat=\count347
 Package caption Info: hyperref package is loaded.
 )
-\c@figno=\count345
+\c@figno=\count348
  (build/book.aux)
 \openout1 = `book.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Info: Redefining \microtypecontext on input line 116.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Info: Redefining \microtypecontext on input line 154.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 116.
+LaTeX Info: Redefining \showhyphens on input line 154.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1011,16 +1020,16 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 )
 (/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count346
+\scratchcounter=\count349
 \scratchdimen=\dimen295
-\scratchbox=\box70
-\nofMPsegments=\count347
-\nofMParguments=\count348
+\scratchbox=\box71
+\nofMPsegments=\count350
+\nofMParguments=\count351
 \everyMPshowfont=\toks42
-\MPscratchCnt=\count349
+\MPscratchCnt=\count352
 \MPscratchDim=\dimen296
-\MPnumerator=\count350
-\makeMPintoPDFobject=\count351
+\MPnumerator=\count353
+\makeMPintoPDFobject=\count354
 \everyMPtoPDFconversion=\toks43
 ) (/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1031,7 +1040,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring ON on input line 116.
+Package hyperref Info: Link coloring ON on input line 154.
 
 (/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -1042,49 +1051,49 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/texlive/2020/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count352
+\c@section@level=\count355
 )
-LaTeX Info: Redefining \ref on input line 116.
-LaTeX Info: Redefining \pageref on input line 116.
-LaTeX Info: Redefining \nameref on input line 116.
+LaTeX Info: Redefining \ref on input line 154.
+LaTeX Info: Redefining \pageref on input line 154.
+LaTeX Info: Redefining \nameref on input line 154.
 
 (build/book.out) (build/book.out)
-\@outlinefile=\write5
-\openout5 = `book.out'.
+\@outlinefile=\write6
+\openout6 = `book.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-18.
+56.
 
 (/texlive/2020/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-18.
+56.
 
 (/texlive/2020/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-118.
+156.
 
 (/texlive/2020/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-118.
+156.
 
 (/texlive/2020/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 118.
+(Font)              <12> on input line 156.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 118.
+(Font)              <8> on input line 156.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 118.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 118
+(Font)              <6> on input line 156.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 156
 .
 
 (/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1093,7 +1102,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/texlive/2020/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 118
+LaTeX Font Info:    Trying to load font information for U+msb on input line 156
 .
 
 (/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1130,19 +1139,19 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 <special> ps:tx@Dict begin  gsave STV CP T /ps@rot 0 def grestore  end
 {/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (31.3575pt too wide) in paragraph at lines 123--127
+Overfull \hbox (31.3575pt too wide) in paragraph at lines 161--165
 \T1/lmr/m/n/10 (-20) Li-cense. To view a copy of this li-cense, visit http://cr
 eativecommons.org/licenses/by/4.0/
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 129.
+(Font)              <10> on input line 167.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 129.
+(Font)              <7> on input line 167.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 129.
+(Font)              <5> on input line 167.
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--130
+Underfull \hbox (badness 10000) in paragraph at lines 166--168
 
  []
 
@@ -1150,15 +1159,15 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.132 \clearpage
+l.170 \clearpage
                  [1
 
 ] (build/book.toc [2
 
 
 ])
-\tf@toc=\write6
-\openout6 = `book.toc'.
+\tf@toc=\write7
+\openout7 = `book.toc'.
 
  [3]
 Chapter 1.
@@ -1166,13 +1175,13 @@ Chapter 1.
 
 ]
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 225.
+ine 263.
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [5]
 Chapter 2.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
-43.
+81.
 (/texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [6
@@ -1187,13 +1196,13 @@ File: bc-aux-301.mps Graphic file (type mps)
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF]
 (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.3377pt too wide) in paragraph at lines 351--351
+Overfull \hbox (5.3377pt too wide) in paragraph at lines 389--389
 [][][][]\T1/lmr/m/n/10 (-20) Consider 
  []
 
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.3377pt too wide) in paragraph at lines 351--351
+Overfull \hbox (5.3377pt too wide) in paragraph at lines 389--389
 [][][][]\T1/lmr/m/n/10 (-20) Consider 
  []
 
@@ -1205,18 +1214,18 @@ File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [8]
 [9]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
-55.
+93.
  (/texlive/2020/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [10]
-<img/stack-buffer-overflow.pdf, id=359, 604.2575pt x 417.56pt>
+<img/stack-buffer-overflow.pdf, id=364, 604.2575pt x 417.56pt>
 File: img/stack-buffer-overflow.pdf Graphic file (type pdf)
 <use img/stack-buffer-overflow.pdf>
-Package pdftex.def Info: img/stack-buffer-overflow.pdf  used on input line 587.
+Package pdftex.def Info: img/stack-buffer-overflow.pdf  used on input line 625.
 
 (pdftex.def)             Requested size: 275.99791pt x 190.7228pt.
 
-Underfull \hbox (badness 1681) in paragraph at lines 597--606
+Underfull \hbox (badness 1681) in paragraph at lines 635--644
 []\T1/lmr/m/n/10 (+20) As can be seen the stack di-a-gram, an over-flow-ing wri
 te in func-tion
  []
@@ -1225,31 +1234,31 @@ te in func-tion
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF]
 (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (0.9646pt too wide) in paragraph at lines 815--815
+Overfull \hbox (0.9646pt too wide) in paragraph at lines 853--853
 [][][][]\T1/lmr/m/n/10 (-20) Explain 
  []
 
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (0.9646pt too wide) in paragraph at lines 815--815
+Overfull \hbox (0.9646pt too wide) in paragraph at lines 853--853
 [][][][]\T1/lmr/m/n/10 (-20) Explain 
  []
 
-<img/rop-control-flow.pdf, id=399, 178.6675pt x 351.3125pt>
+<img/rop-control-flow.pdf, id=404, 178.6675pt x 351.3125pt>
 File: img/rop-control-flow.pdf Graphic file (type pdf)
 <use img/rop-control-flow.pdf>
-Package pdftex.def Info: img/rop-control-flow.pdf  used on input line 840.
+Package pdftex.def Info: img/rop-control-flow.pdf  used on input line 878.
 (pdftex.def)             Requested size: 103.5018pt x 203.5148pt.
-<img/rop-call-stack.pdf, id=400, 544.0325pt x 756.8275pt>
+<img/rop-call-stack.pdf, id=405, 544.0325pt x 756.8275pt>
 File: img/rop-call-stack.pdf Graphic file (type pdf)
 <use img/rop-call-stack.pdf>
-Package pdftex.def Info: img/rop-call-stack.pdf  used on input line 848.
+Package pdftex.def Info: img/rop-call-stack.pdf  used on input line 886.
 (pdftex.def)             Requested size: 276.01678pt x 383.97906pt.
 [14]
-<img/jop.pdf, id=416, 335.2525pt x 381.425pt>
+<img/jop.pdf, id=421, 335.2525pt x 381.425pt>
 File: img/jop.pdf Graphic file (type pdf)
 <use img/jop.pdf>
-Package pdftex.def Info: img/jop.pdf  used on input line 902.
+Package pdftex.def Info: img/jop.pdf  used on input line 940.
 (pdftex.def)             Requested size: 172.49582pt x 196.25273pt.
  [15 <./img/rop-control-flow.pdf>] [16 <./img/rop-call-stack.pdf>]
 File: bc-aux-301.mps Graphic file (type mps)
@@ -1259,13 +1268,13 @@ File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [17 <./i
 mg/jop.pdf>] [18]
-Overfull \hbox (1.499pt too wide) in paragraph at lines 1085--1085
+Overfull \hbox (1.499pt too wide) in paragraph at lines 1123--1123
 []  \T1/lmtt/m/n/10 4006d8:       540000a2        b.cs    4006ec <call_foo(A*)+
 0x38>[] 
  []
 
 [19]
-Underfull \hbox (badness 2469) in paragraph at lines 1111--1119
+Underfull \hbox (badness 2469) in paragraph at lines 1149--1157
 []\T1/lmr/m/n/10 (+20) As an ex-am-ple, when com-pil-ing with \T1/lmtt/m/n/10 -
 fsanitize=shadow-call-stack
  []
@@ -1278,13 +1287,13 @@ File: bc-aux-301.mps Graphic file (type mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (3.27332pt too wide) in paragraph at lines 1238--1238
+Overfull \hbox (3.27332pt too wide) in paragraph at lines 1276--1276
 [][][][]\T1/lmr/m/n/10 (-20) Mention 
  []
 
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (3.27332pt too wide) in paragraph at lines 1238--1238
+Overfull \hbox (3.27332pt too wide) in paragraph at lines 1276--1276
 [][][][]\T1/lmr/m/n/10 (-20) Mention 
  []
 
@@ -1292,17 +1301,17 @@ Overfull \hbox (3.27332pt too wide) in paragraph at lines 1238--1238
 LaTeX Warning: Marginpar on page 22 moved.
 
 
-Underfull \hbox (badness 1688) in paragraph at lines 1252--1256
+Underfull \hbox (badness 1688) in paragraph at lines 1290--1294
 []\T1/lmr/m/n/10 (+20) Both Clang and GCC sup-port gen-er-at-ing BTI in-struc-t
 ions, with the
  []
 
 [22]
-<img/non-control-data-attack.pdf, id=525, 406.51875pt x 305.14pt>
+<img/non-control-data-attack.pdf, id=530, 406.51875pt x 305.14pt>
 File: img/non-control-data-attack.pdf Graphic file (type pdf)
 <use img/non-control-data-attack.pdf>
 Package pdftex.def Info: img/non-control-data-attack.pdf  used on input line 13
-39.
+77.
 (pdftex.def)             Requested size: 206.99925pt x 155.37721pt.
  [23] [24 <./img/non-control-data-attack.pdf>]
 File: bc-aux-301.mps Graphic file (type mps)
@@ -1315,16 +1324,16 @@ Chapter 3.
 [26
 
 ] [27]
-<img/CacheLevels.pdf, id=583, 231.86626pt x 322.20375pt>
+<img/CacheLevels.pdf, id=588, 231.86626pt x 322.20375pt>
 File: img/CacheLevels.pdf Graphic file (type pdf)
 <use img/CacheLevels.pdf>
-Package pdftex.def Info: img/CacheLevels.pdf  used on input line 1553.
+Package pdftex.def Info: img/CacheLevels.pdf  used on input line 1591.
 (pdftex.def)             Requested size: 137.99927pt x 191.76523pt.
  [28 <./img/CacheLevels.pdf>]
-<img/CacheIndexing.pdf, id=600, 704.6325pt x 278.03876pt>
+<img/CacheIndexing.pdf, id=605, 704.6325pt x 278.03876pt>
 File: img/CacheIndexing.pdf Graphic file (type pdf)
 <use img/CacheIndexing.pdf>
-Package pdftex.def Info: img/CacheIndexing.pdf  used on input line 1621.
+Package pdftex.def Info: img/CacheIndexing.pdf  used on input line 1659.
 (pdftex.def)             Requested size: 344.99341pt x 136.12987pt.
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF]
@@ -1336,25 +1345,25 @@ xing.pdf>]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF]
 (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [30]
-Underfull \hbox (badness 1490) in paragraph at lines 1735--1748
+Underfull \hbox (badness 1490) in paragraph at lines 1773--1786
 \T1/lmr/m/n/10 (+20) proach in-clude: Flush+Flush[](Gruss, Mau-rice, Wag-ner, e
 t al. [][]2016[][]),
  []
 
 
-Overfull \hbox (0.2491pt too wide) in paragraph at lines 1800--1800
+Overfull \hbox (0.2491pt too wide) in paragraph at lines 1838--1838
  []\T1/lmtt/m/n/10 * exponent bits as an array index would be an obvious leak o
 f[] 
  []
 
 
-Overfull \hbox (10.74907pt too wide) in paragraph at lines 1800--1800
+Overfull \hbox (10.74907pt too wide) in paragraph at lines 1838--1838
  []\T1/lmtt/m/n/10 * iteration, we read _all_ the table entries, and do a seque
 nce[] 
  []
 
 
-Overfull \hbox (15.99905pt too wide) in paragraph at lines 1800--1800
+Overfull \hbox (15.99905pt too wide) in paragraph at lines 1838--1838
  []\T1/lmtt/m/n/10 * of mp_select operations to leave just the one we wanted in
  the[] 
  []
@@ -1363,6 +1372,27 @@ Overfull \hbox (15.99905pt too wide) in paragraph at lines 1800--1800
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [32]
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1977.
+ [33]
+File: bc-aux-301.mps Graphic file (type mps)
+ [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+ [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+File: bc-aux-301.mps Graphic file (type mps)
+
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+Overfull \hbox (5.11017pt too wide) in paragraph at lines 2064--2064
+\T1/lmr/m/n/10 (-20) architectural 
+ []
+
+File: bc-aux-301.mps Graphic file (type mps)
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+Overfull \hbox (5.11017pt too wide) in paragraph at lines 2064--2064
+\T1/lmr/m/n/10 (-20) architectural 
+ []
+
+[34]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
@@ -1370,137 +1400,137 @@ File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [33]
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [35]
 Chapter 4.
-[34
+[36
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-[35]
+[37]
 Chapter 5.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [36
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [38
 
 ]
-<img/side_channel_leakage_figure_1_branch.pdf, id=763, 648.4225pt x 310.15875pt
+<img/side_channel_leakage_figure_1_branch.pdf, id=781, 648.4225pt x 310.15875pt
 >
 File: img/side_channel_leakage_figure_1_branch.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_1_branch.pdf>
 Package pdftex.def Info: img/side_channel_leakage_figure_1_branch.pdf  used on 
-input line 2100.
+input line 2282.
 (pdftex.def)             Requested size: 276.0063pt x 132.02159pt.
-<img/side_channel_leakage_figure_2_duration.pdf, id=764, 422.57875pt x 275.0275
+<img/side_channel_leakage_figure_2_duration.pdf, id=782, 422.57875pt x 275.0275
 pt>
 File: img/side_channel_leakage_figure_2_duration.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_2_duration.pdf>
 Package pdftex.def Info: img/side_channel_leakage_figure_2_duration.pdf  used o
-n input line 2115.
+n input line 2297.
 (pdftex.def)             Requested size: 276.00768pt x 179.63445pt.
 
-[37] [38 <./img/side_channel_leakage_figure_1_branch.pdf> <./img/side_channel_l
+[39] [40 <./img/side_channel_leakage_figure_1_branch.pdf> <./img/side_channel_l
 eakage_figure_2_duration.pdf
 
 pdfTeX warning: pdflatex (file ./img/side_channel_leakage_figure_2_duration.pdf
 ): PDF inclusion: multiple pdfs with page group included in a single page
 >]
-<img/side_channel_leakage_figure_3_toggle.pdf, id=791, 628.3475pt x 291.0875pt>
+<img/side_channel_leakage_figure_3_toggle.pdf, id=810, 628.3475pt x 291.0875pt>
 
 File: img/side_channel_leakage_figure_3_toggle.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_3_toggle.pdf>
 Package pdftex.def Info: img/side_channel_leakage_figure_3_toggle.pdf  used on 
-input line 2147.
+input line 2329.
 (pdftex.def)             Requested size: 275.99435pt x 127.8568pt.
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [39 <./i
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [41 <./i
 mg/side_channel_leakage_figure_3_toggle.pdf>]
-<img/physical_attacks.pdf, id=806, 468.75125pt x 160.6pt>
+<img/physical_attacks.pdf, id=825, 468.75125pt x 160.6pt>
 File: img/physical_attacks.pdf Graphic file (type pdf)
 <use img/physical_attacks.pdf>
-Package pdftex.def Info: img/physical_attacks.pdf  used on input line 2210.
+Package pdftex.def Info: img/physical_attacks.pdf  used on input line 2392.
 (pdftex.def)             Requested size: 275.99577pt x 94.55957pt.
- [40 <./img/physical_attacks.pdf>]
+ [42 <./img/physical_attacks.pdf>]
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (80.5624pt too wide) in paragraph at lines 2281--2283
+Overfull \hbox (80.5624pt too wide) in paragraph at lines 2463--2465
 []\T1/lmr/m/n/10 (-20) Example: At-tack on Trust-Zone for Armv8-M: https://www.
 youtube.com/watch?v=4u6BAH8mEDw 
  []
 
-[41]
+[43]
 Chapter 6.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [42
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [44
 
 ]
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-(build/book.ind [43
+(build/book.ind [45
 
 ]
-Underfull \hbox (badness 1092) in paragraph at lines 27--28
+Underfull \hbox (badness 1092) in paragraph at lines 30--31
 []\T1/lmr/m/n/10 (+20) counterfeit object-oriented pro-gram-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 106--107
+Underfull \hbox (badness 10000) in paragraph at lines 116--117
 []\T1/lmr/m/n/10 (+20) sigreturn-oriented pro-gram-ming
  []
 
-[44
+[46
 
-] [45
+] [47
 
-]) (build/book.tdo)
-\tf@tdo=\write7
-\openout7 = `book.tdo'.
-
- [46
+]) (build/book.tdo [48
 
 
-] [47] [48
+])
+\tf@tdo=\write8
+\openout8 = `book.tdo'.
 
-] [49]
-Underfull \hbox (badness 10000) in paragraph at lines 2465--2470
+ [49] [50
+
+] [51]
+Underfull \hbox (badness 10000) in paragraph at lines 2647--2652
 \T1/lmr/m/n/10 (+20) Security -[] Research / blob / master / presentations / 20
 12 _ 10 _ Breakpoint /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2465--2470
+Underfull \hbox (badness 10000) in paragraph at lines 2647--2652
 \T1/lmr/m/n/10 (+20) BreakPoint2012 _ Miller _ Modeling _ the _ exploitation _ 
 and _ mitigation _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2483--2487
+Underfull \hbox (badness 10000) in paragraph at lines 2665--2669
 \T1/lmr/m/n/10 (+20) publications / conference -[] paper / 1998 / 10 / 08 / pro
 ceedings -[] of -[] the -[] 21st -[] nissc -[]
  []
 
-[50] [51] (build/book.aux)
+[52] [53] (build/book.aux)
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: E3EDFC4F664D844B7AB2875719EB4C35;8323.
+(rerunfilecheck)             Checksum: 24D3A8CA81E90D2846D5BF3E0E5DA183;8483.
  ) 
 Here is how much of TeX's memory you used:
- 29599 strings out of 480962
- 540254 string characters out of 5908146
- 944452 words of memory out of 5000000
- 45686 multiletter control sequences out of 15000+600000
- 484837 words of font info for 183 fonts, out of 8000000 for 9000
+ 30059 strings out of 480962
+ 547671 string characters out of 5908147
+ 963988 words of memory out of 5000000
+ 46119 multiletter control sequences out of 15000+600000
+ 485675 words of font info for 188 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  102i,12n,117p,651b,1259s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{cache-side-channel-attacks} has been referenced b
@@ -1512,9 +1542,9 @@ pdfTeX warning (dest): name{stack-buffer-overflow} has been referenced but does
 pdfTeX warning (dest): name{rop} has been referenced but does not exist, replac
 ed by a fixed one
 
-{/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/texlive/2020/texmf
--dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/texlive/2020/texmf-dist/fonts/enc/dvip
-s/lm/lm-rm.enc}{/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/texlive
+{/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/texlive/2020/texmf-dis
+t/fonts/enc/dvips/lm/lm-mathit.enc}{/texlive/2020/texmf-dist/fonts/enc/dvips/lm
+/lm-mathsy.enc}{/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/texlive
 /2020/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</texlive/2020/texmf-dist/fonts/
 type1/public/lm/lmbx10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmbx
 12.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></texlive/202
@@ -1524,12 +1554,12 @@ fb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmr6.pfb></texlive/2020/texm
 f-dist/fonts/type1/public/lm/lmr7.pfb></texlive/2020/texmf-dist/fonts/type1/pub
 lic/lm/lmr8.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmri10.pfb></te
 xlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></texlive/2020/texmf-dis
-t/fonts/type1/public/lm/lmtt10.pfb></texlive/2020/texmf-dist/fonts/type1/public
-/lm/lmtt8.pfb>
-Output written on build/book.pdf (52 pages, 737515 bytes).
+t/fonts/type1/public/lm/lmtk10.pfb></texlive/2020/texmf-dist/fonts/type1/public
+/lm/lmtt10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
+Output written on build/book.pdf (54 pages, 771739 bytes).
 PDF statistics:
- 1171 PDF objects out of 1200 (max. 8388607)
- 1050 compressed objects within 11 object streams
- 279 named destinations out of 1000 (max. 500000)
- 45548 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 1209 PDF objects out of 1440 (max. 8388607)
+ 1085 compressed objects within 11 object streams
+ 285 named destinations out of 1000 (max. 500000)
+ 45556 words of extra memory for PDF output out of 51595 (max. 10000000)
 
