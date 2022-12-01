@@ -1531,14 +1531,13 @@ be undone.
 
 The above explanation describes architectural effects as changes in system state
 that need to be undone after detecting mis-speculation. In reality, most systems
-will implement techniques such that it keeps all state changes in
-micro-architectural buffers until it is clear that all predictions made to
-execute that instruction were correct. At that point the micro-architectural
-state is *committed* to become architectural state. In that way, mis-predictions
-naturally do not affect architectural state. \todo{Could we find a good
-reference that explains micro-architectural versus architectural state in more
-detail? Is "Computer Architecture: A Quantitative Approach" the best reference
-available?}
+will implement techniques that keep all state changes in micro-architectural
+buffers until it is clear that all predictions made to execute that instruction
+were correct. At that point the micro-architectural state is *committed* to
+become architectural state. In that way, mis-predictions naturally do not affect
+architectural state. \todo{Could we find a good reference that explains
+micro-architectural versus architectural state in more detail? Is "Computer
+Architecture: A Quantitative Approach" the best reference available?}
 
 *Transient execution attacks*\index{transient execution attacks} are a category
 of side-channel attacks that use the micro-architectural side-effects of
