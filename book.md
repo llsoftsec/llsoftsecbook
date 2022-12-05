@@ -1345,7 +1345,7 @@ Especially in crypto kernels, indexing into an array using a secret value is
 generally avoided. An alternative mitigation is to always access all array
 indices, independent of the secret value, e.g. as done in
 [commit
-46fbe375](https://git.tartarus.org/?p=simon/putty.git;a=commitdiff;h=46fbe375bf) to the Putty project, which contains this comment:
+46fbe375](https://git.tartarus.org/?p=simon/putty.git;a=commitdiff;h=46fbe375bf) to the PuTTY project, which contains this comment:
 
 >     * Side-channel considerations: the exponent is secret, so
 >     * actually doing a single table lookup by using a chunk of
