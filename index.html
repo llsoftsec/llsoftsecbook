@@ -147,7 +147,7 @@ text-justify: auto;
 <p>
   Copyright 2021-2022 Arm Limited <a href="mailto:open-source-office@arm.com" class="email">open-source-office@arm.com</a><br />
 </p>
-<p>Version: 0-89-gfa57441</p>
+<p>Version: 0-90-g7b657dc</p>
 
 </header>
 <nav id="TOC">
@@ -609,7 +609,7 @@ int authenticate() {
 <p>Mitigations against cache side-channel attacks can be categorized according to which of the 3 conditions above they aim to prevent from happening:</p>
 <h4 id="mitigations-de-correlating-cache-state-change-with-sensitive-information-in-the-victim-program"><span class="header-section-number">3.2.3.1</span> Mitigations de-correlating cache state change with sensitive information in the victim program <a href="#mitigations-de-correlating-cache-state-change-with-sensitive-information-in-the-victim-program" class="selflink">§</a></h4>
 <p>A typical example of when a cache state change could be correlated to sensitive information is when a program uses secret information to index into an array. An attacker could derive bits of the secret information by observing which cache line was fetched.</p>
-<p>Especially in crypto kernels, indexing into an array using a secret value is generally avoided. An alternative mitigation is to always access all array indices, independent of the secret value, e.g. as done in <a href="https://git.tartarus.org/?p=simon/putty.git;a=commitdiff;h=46fbe375bf">commit 46fbe375</a> to the Putty project, which contains this comment:</p>
+<p>Especially in crypto kernels, indexing into an array using a secret value is generally avoided. An alternative mitigation is to always access all array indices, independent of the secret value, e.g. as done in <a href="https://git.tartarus.org/?p=simon/putty.git;a=commitdiff;h=46fbe375bf">commit 46fbe375</a> to the PuTTY project, which contains this comment:</p>
 <blockquote>
 <pre><code>* Side-channel considerations: the exponent is secret, so
 * actually doing a single table lookup by using a chunk of
