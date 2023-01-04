@@ -1,6 +1,6 @@
 \contentsline {chapter}{\numberline {1}Introduction}{4}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Why an open source book?}{5}{section.1.1}%
-\contentsline {chapter}{\numberline {2}Memory vulnerability based attacks and mitigations}{6}{chapter.2}%
+\contentsline {chapter}{\numberline {2}Memory vulnerability based attacks}{6}{chapter.2}%
 \contentsline {section}{\numberline {2.1}A bit of background on memory vulnerabilities}{6}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Exploitation primitives}{7}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Stack buffer overflows}{10}{section.2.3}%
@@ -19,37 +19,38 @@
 \contentsline {subsubsection}{\numberline {2.5.2.5}CFI implementation pitfalls}{22}{subsubsection.2.5.2.5}%
 \contentsline {section}{\numberline {2.6}Non-control data attacks}{23}{section.2.6}%
 \contentsline {section}{\numberline {2.7}Preventing and detecting memory errors}{25}{section.2.7}%
-\contentsline {section}{\numberline {2.8}JIT compiler vulnerabilities}{25}{section.2.8}%
-\contentsline {chapter}{\numberline {3}Covert channels and side-channels}{26}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Timing side-channels}{26}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Cache side-channels}{27}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Typical CPU cache architecture}{27}{subsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.1.1}Indexing in a set-associative cache}{29}{subsubsection.3.2.1.1}%
-\contentsline {subsection}{\numberline {3.2.2}Operation of cache side-channels}{30}{subsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.2.1}Flush+Reload}{30}{subsubsection.3.2.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2.2}Prime+Probe}{30}{subsubsection.3.2.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.2.3}General schema for cache covert channels}{30}{subsubsection.3.2.2.3}%
-\contentsline {subsection}{\numberline {3.2.3}Mitigating cache side-channel attacks}{31}{subsection.3.2.3}%
-\contentsline {subsubsection}{\numberline {3.2.3.1}Mitigations de-correlating cache state change with sensitive information in the victim program}{31}{subsubsection.3.2.3.1}%
-\contentsline {subsubsection}{\numberline {3.2.3.2}Mitigations disallowing spy programs to share the cache with the victim program}{32}{subsubsection.3.2.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.3.3}Mitigations disabling the spy program to infer a cache status change in the victim program through its own cache status}{32}{subsubsection.3.2.3.3}%
-\contentsline {section}{\numberline {3.3}Resource contention channels}{32}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Channels making use of aliasing in branch predictors and other predictors}{33}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Transient execution attacks}{33}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Transient execution}{33}{subsection.3.5.1}%
-\contentsline {subsubsection}{\numberline {3.5.1.1}Site isolation}{35}{subsubsection.3.5.1.1}%
-\contentsline {section}{\numberline {3.6}Physical access side-channel attacks}{35}{section.3.6}%
-\contentsline {chapter}{\numberline {4}Supply chain attacks}{36}{chapter.4}%
-\contentsline {section}{\numberline {4.1}History of supply chain attacks}{36}{section.4.1}%
-\contentsline {chapter}{\numberline {5}Physical attacks}{38}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Overview}{38}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Physical access side-channel attacks}{38}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}How is information leaked?}{39}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Side channel leakage at instruction level}{39}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Countermeasures}{41}{subsection.5.2.3}%
-\contentsline {section}{\numberline {5.3}Fault injection attacks}{42}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Common forms of Fault injection attacks}{42}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Countermeasures}{43}{subsection.5.3.2}%
-\contentsline {chapter}{\numberline {6}Other security topics relevant for compiler developers}{44}{chapter.6}%
-\contentsline {chapter}{Appendix: contribution guidelines}{45}{chapter*.38}%
-\contentsline {chapter}{References}{50}{chapter*.41}%
+\contentsline {subsection}{\numberline {2.7.1}Sanitizers}{25}{subsection.2.7.1}%
+\contentsline {section}{\numberline {2.8}JIT compiler vulnerabilities}{27}{section.2.8}%
+\contentsline {chapter}{\numberline {3}Covert channels and side-channels}{28}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Timing side-channels}{28}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Cache side-channels}{29}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Typical CPU cache architecture}{29}{subsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.1.1}Indexing in a set-associative cache}{31}{subsubsection.3.2.1.1}%
+\contentsline {subsection}{\numberline {3.2.2}Operation of cache side-channels}{32}{subsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.2.1}Flush+Reload}{32}{subsubsection.3.2.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2.2}Prime+Probe}{32}{subsubsection.3.2.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.2.3}General schema for cache covert channels}{32}{subsubsection.3.2.2.3}%
+\contentsline {subsection}{\numberline {3.2.3}Mitigating cache side-channel attacks}{33}{subsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.3.1}Mitigations de-correlating cache state change with sensitive information in the victim program}{33}{subsubsection.3.2.3.1}%
+\contentsline {subsubsection}{\numberline {3.2.3.2}Mitigations disallowing spy programs to share the cache with the victim program}{34}{subsubsection.3.2.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.3.3}Mitigations disabling the spy program to infer a cache status change in the victim program through its own cache status}{34}{subsubsection.3.2.3.3}%
+\contentsline {section}{\numberline {3.3}Resource contention channels}{34}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Channels making use of aliasing in branch predictors and other predictors}{35}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Transient execution attacks}{35}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Transient execution}{35}{subsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.1.1}Site isolation}{37}{subsubsection.3.5.1.1}%
+\contentsline {section}{\numberline {3.6}Physical access side-channel attacks}{37}{section.3.6}%
+\contentsline {chapter}{\numberline {4}Supply chain attacks}{38}{chapter.4}%
+\contentsline {section}{\numberline {4.1}History of supply chain attacks}{38}{section.4.1}%
+\contentsline {chapter}{\numberline {5}Physical attacks}{40}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Overview}{40}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Physical access side-channel attacks}{40}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}How is information leaked?}{41}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Side channel leakage at instruction level}{41}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Countermeasures}{43}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}Fault injection attacks}{44}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Common forms of Fault injection attacks}{44}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Countermeasures}{45}{subsection.5.3.2}%
+\contentsline {chapter}{\numberline {6}Other security topics relevant for compiler developers}{46}{chapter.6}%
+\contentsline {chapter}{Appendix: contribution guidelines}{47}{chapter*.40}%
+\contentsline {chapter}{References}{52}{chapter*.43}%

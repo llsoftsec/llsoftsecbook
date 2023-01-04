@@ -166,7 +166,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2021-2022 Arm Limited
   \href{mailto:open-source-office@arm.com}{\nolinkurl{open-source-office@arm.com}}\\
 
-Version 0-90-g7b657dc
+Version 0-92-g34f7465
 \clearpage
 
 {
@@ -262,9 +262,9 @@ prefer feedback to be received through
 
 \missingcontent{Add section describing the structure of the rest of the book.}
 
-\hypertarget{memory-vulnerability-based-attacks-and-mitigations}{%
-\chapter{Memory vulnerability based attacks and
-mitigations}\label{memory-vulnerability-based-attacks-and-mitigations}}
+\hypertarget{memory-vulnerability-based-attacks}{%
+\chapter{Memory vulnerability based
+attacks}\label{memory-vulnerability-based-attacks}}
 
 \hypertarget{a-bit-of-background-on-memory-vulnerabilities}{%
 \section{A bit of background on memory
@@ -291,11 +291,11 @@ explicitly listing their types, which include:
 
 Memory vulnerabilities are an important class of vulnerabilities that
 arise due to these types of errors, and they most commonly occur due to
-programming mistakes when using languages such as C/C++. These languages
-do not provide mechanisms to protect against memory access errors by
-default. An attacker can exploit such vulnerabilities to leak sensitive
-data or overwrite critical memory locations and gain control of the
-vulnerable program.
+programming mistakes when using languages such as C/C++
+\index{C}\index{C++}. These languages do not provide mechanisms to
+protect against memory access errors by default. An attacker can exploit
+such vulnerabilities to leak sensitive data or overwrite critical memory
+locations and gain control of the vulnerable program.
 
 Memory vulnerabilities have a long history. The
 \href{https://en.wikipedia.org/wiki/Morris_worm}{Morris worm} in 1988
@@ -331,18 +331,18 @@ techniques such as bounds checking and automatic memory management. If
 these languages promise to eliminate memory vulnerabilities, why are we
 still discussing this topic?
 
-On the one hand, C and C++ remain very popular languages, particular in
-the implementation of low-level software. On the other hand, programs
-written in memory safe languages can themselves be vulnerable to memory
-errors as a result of bugs in how they are implemented, e.g.~a bug in
-their compiler. Can we fix the problem by also using memory safe
-languages for the compiler and runtime implementation? Even if that were
-as simple as it sounds, unfortunately there are types of programming
-errors that these languages cannot protect against. For example, a
-logical error in the implementation of a compiler or runtime for a
-memory safe language can lead to a memory access error not being
-detected. We will see examples of such logic errors in compiler
-optimizations in a
+On the one hand, C and C++ \index{C}\index{C++} remain very popular
+languages, particular in the implementation of low-level software. On
+the other hand, programs written in memory safe languages can themselves
+be vulnerable to memory errors as a result of bugs in how they are
+implemented, e.g.~a bug in their compiler. Can we fix the problem by
+also using memory safe languages for the compiler and runtime
+implementation? Even if that were as simple as it sounds, unfortunately
+there are types of programming errors that these languages cannot
+protect against. For example, a logical error in the implementation of a
+compiler or runtime for a memory safe language can lead to a memory
+access error not being detected. We will see examples of such logic
+errors in compiler optimizations in a
 \protect\hyperlink{jit-compiler-vulnerabilities}{later section}.
 
 Given the rich history of memory vulnerabilities and mitigations and the
@@ -706,7 +706,7 @@ string manipulation functions, even when the value is leaked.
 Many buffer overflow vulnerabilities result from the use of unsafe
 library functions, such as \texttt{gets}, or from the unsafe use of
 library functions such as \texttt{strcpy}. There is extensive literature
-on writing secure C/C++ code, for example (Seacord
+on writing secure C/C++\index{C}\index{C++} code, for example (Seacord
 \protect\hyperlink{ref-Seacord2013}{2013}) and (Dowd, McDonald, and
 Schuh \protect\hyperlink{ref-Dowd2006}{2006}). A different approach to
 limiting the effects of overflows is library function hardening, which
@@ -966,8 +966,8 @@ programming}\label{counterfeit-object-oriented-programming}}
 Counterfeit Object-oriented programming (COOP)\index{counterfeit
 object-oriented programming (COOP)} (Schuster et al.
 \protect\hyperlink{ref-Schuster2015}{2015}) is a code reuse technique
-that takes advantage of C++ virtual function calls. A COOP attack takes
-advantage of existing virtual functions and
+that takes advantage of C++ \index{C++} virtual function calls. A COOP
+attack takes advantage of existing virtual functions and
 \href{https://en.wikipedia.org/wiki/Virtual_method_table}{vtables}, and
 creates fake objects pointing to these existing vtables. The virtual
 functions used as gadgets in the attack are called vfgadgets. To chain
@@ -1076,7 +1076,8 @@ class-hierarchy analysis.
 CFI} includes a variety of forward-edge control-flow integrity checks.
 These include checking that the target of an indirect function call is
 an address-taken function of the correct type and checking that a C++
-virtual call happens on an object of the correct dynamic type.
+\index{C++} virtual call happens on an object of the correct dynamic
+type
 
 For example, assume we have a class \texttt{A} with a virtual function
 \texttt{foo} and a class \texttt{B} deriving from \texttt{A}, and that
@@ -1444,9 +1445,150 @@ them at their source: memory errors.
 \section{Preventing and detecting memory
 errors}\label{preventing-and-detecting-memory-errors}}
 
-\missingcontent{Describe various mechanisms for detecting memory errors, both
-software-based and hardware-based, e.g. Clang address sanitizer, PAuth-based
-pointer integrity schemes, MTE etc}
+We have so far discussed how languages that are
+\protect\hyperlink{a-bit-of-background-on-memory-vulnerabilities}{not
+memory safe}, like C and C++, are vulnerable to memory errors and
+therefore exploitation. In this section, we will discuss tools that are
+available to C/C++ \index{C}\index{C++}programmers to help them detect
+vulnerabilities that can lead to memory errors.
+
+\hypertarget{sanitizers}{%
+\subsection{Sanitizers}\label{sanitizers}}
+
+Sanitizers \index{sanitizers} are tools that detect bugs during program
+execution. Sanitizers usually have two components: a compiler
+instrumentation part that introduces the new checks, and a runtime
+library part. They are often too expensive to run in production mode, as
+they tend to increase execution time and memory usage. They are commonly
+used during testing of an application, frequently in combination with
+fuzzers\index{fuzzing}\footnote{\href{https://en.wikipedia.org/wiki/Fuzzing}{Fuzzing}
+  \index{fuzzing} is a powerful testing technique that relies on
+  automatically generating large amounts of random inputs to the program
+  under test.}.
+
+A very popular sanitizer is
+\href{https://clang.llvm.org/docs/AddressSanitizer.html}{Address
+Sanitizer} (ASan)\index{AddressSanitizer (ASan)}. It aims to detect
+various memory errors. These include out-of-bounds accesses,
+use-after-free, double-free and invalid free\footnote{ASan also includes
+  a \href{https://clang.llvm.org/docs/LeakSanitizer.html}{memory leak
+  detector} \index{LeakSanitizer}.}. There are Address Sanitizer
+implementations for both GCC \index{GCC} and Clang\index{Clang}, but we
+will focus on the Clang implementation here.
+
+ASan uses shadow memory\index{shadow memory} to keep track of the state
+of the application's memory. Each byte of shadow memory records
+information on 8 bytes of the application's memory. It represents how
+many of the 8 bytes are addressable. When none of the bytes are
+addressable, it encodes additional details (whether the 8 bytes are are
+out-of-bounds stack, out-of-bounds heap, freed memory, and so on).
+Requiring one byte of shadow memory for every 8 bytes of application
+memory means that ASan needs to reserve one-eighth of the application's
+virtual address space (Serebryany et al.
+\protect\hyperlink{ref-Serebryany2012}{2012}). Shadow memory is
+allocated in one contiguous chunk, which keeps mapping application
+memory to shadow memory simple.
+
+ASan's runtime library replaces memory allocation functions like
+\texttt{malloc}\index{malloc} and \texttt{free}\index{free} with its own
+specialized versions. \texttt{malloc} introduces redzones\index{redzone}
+before and after each allocation, which are marked as unaddressable.
+\texttt{free} marks the entire allocation as unaddressable and places it
+in quarantine, so that it doesn't get reallocated for a while (in a FIFO
+basis). This allows for detecting use-after-free. The runtime library
+also handles management of the shadow memory.
+
+ASan's code instrumentation in the compiler introduces redzones around
+each stack array allocation, and around globals. It then instruments
+loads and stores to check whether the accessed memory is addressable,
+based on the information stored in the shadow memory, and reports an
+error if unaddressable memory is accessed.
+
+ASan doesn't produce false positives and is easy to use. It requires
+compiling and linking a program with the \texttt{-fsanitize=address}
+option. It is used in practice for testing
+\href{https://chromium.googlesource.com/chromium/src/+/HEAD/docs/asan.md}{large
+projects}. There is a similar tool for dynamic memory error detection in
+the Linux kernel,
+\href{https://www.kernel.org/doc/html/v5.0/dev-tools/kasan.html}{KASAN}\index{KASAN}.
+
+ASan's biggest drawback is its high runtime overhead and memory usage,
+due to the quarantine, redzones and shadow memory.
+\href{https://clang.llvm.org/docs/HardwareAssistedAddressSanitizerDesign.html}{Hardware-assisted
+AddressSanitizer (HWASAN)} \index{HWASAN} works similarly to ASan, but
+with partial hardware assistance can result in lower memory overheads,
+at the cost of being less portable.
+
+On AArch64\index{AArch64}, HWASAN uses Top-Byte Ignore
+(TBI)\index{Top-Byte
+Ignore (TBI)}. When TBI is enabled, the top byte of a pointer is ignored
+when performing a memory access, allowing software to use that top byte
+to store metadata, without affecting execution. Each allocation is
+aligned to 16 bytes and each 16-byte chunk of memory (called
+``granule'') is randomly assigned an 8-bit tag. The tag is stored in
+shadow memory and is also placed in the top byte of the pointer to the
+object. Memory loads and stores are then instrumented to check that the
+tag stored in the pointer matches the tag stored in memory, and report
+an error when a mismatch happens.
+\todo{Add diagram to demonstrate how HWASAN works.}
+
+For granules shorter than 16 bytes, the value stored in shadow memory is
+not the actual tag, but the length of the granule. The actual tag is
+stored at the last byte of the granule itself. For tags in shadow memory
+with values between 1 and 15, HWASAN checks that the access is within
+the bounds of the granule and the pointer tag matches the tag stored at
+the last byte of the granule.
+
+HWASAN is also easy to use, and simply requires compiling and linking an
+application with the \texttt{-fsanitize=hwaddress} flag.
+
+\href{https://llvm.org/docs/MemTagSanitizer.html}{MemTagSanitizer}\index{MemTagSanitizer}
+goes one step further and uses the Armv8.5-A
+\href{https://developer.arm.com/documentation/102925/0100}{Memory
+Tagging Extension (MTE)}\index{Memory
+Tagging Extension (MTE)}. With MTE, the tag checking is done
+automatically by hardware, and an exception is raised on mismatch. MTE's
+granule size is 16 bits, whereas tags are 4-bit.
+
+\missingcontent{Consider adding a whole section on MTE and its applications}
+
+\href{https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html\#ubsan-checks}{UndefinedBehaviorSanitizer
+(UBSan)} \index{UBSan}detects undefined behavior during program
+execution, for example array out-of-bounds accesses for statically
+determined array bounds, null pointer dereference, signed integer
+overflow and various kinds of integer conversions that result in data
+loss. Although some of these checks are not directly related to memory
+errors, these kinds of errors can lead to incorrect pointer arithmetic,
+incorrect allocation sizes, and other issues that lead to memory errors,
+so it is important to detect them and address them.
+
+UBSan's documentation describes the full list of available checks. The
+majority of these checks are enabled with the
+\texttt{-fsanitize=undefined} flag, but there are also other useful
+groupings of checks, for example \texttt{-fsanitize=integer} for checks
+related to integer conversions and arithmetic.
+
+There are many other sanitizers, more than can reasonably be covered in
+this section. For the interested reader, we list a few more:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://clang.llvm.org/docs/MemorySanitizer.html}{MemorySanitizer}\index{MemorySanitizer}:
+  detects uninitialized reads.
+\item
+  \href{https://clang.llvm.org/docs/ThreadSanitizer.html}{ThreadSanitizer}\index{ThreadSanitizer}:
+  detects data races.
+\item
+  \href{https://llvm.org/docs/GwpAsan.html}{GWP-ASan}\index{GWP-ASan}:
+  detects use-after-free and heap buffer overflows, with low overhead
+  that makes it suitable for production environments. It performs checks
+  only on a sample of allocations.
+\end{itemize}
+
+\missingcontent{Describe other mechanisms for detecting memory errors, both
+software-based (static analysis, library and buffer hardening) and
+hardware-based, e.g. PAuth-based pointer integrity schemes, MTE etc}
 
 \hypertarget{jit-compiler-vulnerabilities}{%
 \section{JIT compiler
@@ -2704,6 +2846,12 @@ Springer.
 \leavevmode\hypertarget{ref-Seacord2013}{}%
 Seacord, Robert C. 2013. \emph{Secure Coding in c and C++}. 2nd ed.
 Addison-Wesley Professional.
+
+\leavevmode\hypertarget{ref-Serebryany2012}{}%
+Serebryany, Konstantin, Derek Bruening, Alexander Potapenko, and Dmitriy
+Vyukov. 2012. ``\(\{\)AddressSanitizer\(\}\): A Fast Address Sanity
+Checker.'' In \emph{2012 Usenix Annual Technical Conference (Usenix Atc
+12)}, 309--18.
 
 \leavevmode\hypertarget{ref-Serna2012}{}%
 Serna, Fermin J. 2012. ``The Info Leak Era on Software Exploitation.''
