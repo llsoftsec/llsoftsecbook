@@ -117,6 +117,15 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "Fare9",
+      "name": "Fare9",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13202760?v=4",
+      "profile": "https://github.com/Fare9",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
