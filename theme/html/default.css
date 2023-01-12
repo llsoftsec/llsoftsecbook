@@ -1,18 +1,5 @@
 /* Do not show bullet points for TOC entries: */
 #TOC ::marker { content: none; }
-/* Put the table-of-contents in 30%-ish wide left column. */
-#TOC {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 28%;
-}
-/* Put the main text in a 50%-ish wide column next to the TOC. */
-body {
-  position: relative;
-  left: 30%;
-  width: 50%;
-}
 /* Use a sans-serif font: */
 body {
   font-family: sans-serif;
@@ -36,27 +23,4 @@ h1:hover a, h1:active a,
 h2:hover a, h2:active a,
 h3:hover a, h2:active a {
   visibility: visible;
-}
-
-/* For smaller screens: */
-@media only screen and (max-width : 768px) {
-/* Put table-of-contents above paragraph elements. */
-#TOC {
-  position: relative;
-  left: 1%;
-  width: 94%;
-}
-/* Ensure superflous horizontal scroll bar is not added. */
-body {
-  text-align: left;
-  position: relative;
-  left: 1%;
-  width: 94%;
-  overflow-x: hidden;
-}
-/* Justify text for small-screen readability. */
-p {
-  text-align: justify;
-  text-justify: auto;
-}
 }
