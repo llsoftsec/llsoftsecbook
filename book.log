@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2023.1.4)  4 JAN 2023 15:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2023.1.13)  13 JAN 2023 16:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1536,7 +1536,7 @@ Package rerunfilecheck Info: File `book.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  30091 strings out of 480962
- 548414 string characters out of 5908148
+ 548414 string characters out of 5908147
  967589 words of memory out of 5000000
  46134 multiletter control sequences out of 15000+600000
  485805 words of font info for 189 fonts, out of 8000000 for 9000
@@ -1565,7 +1565,7 @@ lic/lm/lmr8.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmri10.pfb></te
 xlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></texlive/2020/texmf-dis
 t/fonts/type1/public/lm/lmtk10.pfb></texlive/2020/texmf-dist/fonts/type1/public
 /lm/lmtt10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
-Output written on build/book.pdf (56 pages, 782841 bytes).
+Output written on build/book.pdf (56 pages, 782828 bytes).
 PDF statistics:
  1282 PDF objects out of 1440 (max. 8388607)
  1155 compressed objects within 12 object streams
