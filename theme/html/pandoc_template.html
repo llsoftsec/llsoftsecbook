@@ -53,70 +53,80 @@ $for(include-before)$
 $include-before$
 $endfor$
 
-$-- This is the main bootstrap container into which all page content is placed
-$-- Class container-lg makes the container 100% wide if the viewport is a
-$-- smaller screen (less than 992px).
-<div class="container-lg">
+$-- This is the bootstrap container into which the top button row and TOC modal
+$-- is placed.
+<div class="container">
 
-$-- The following row represents a screen-wide header. It contains the title,
-$-- copyright info etc.
-<div class="row">
+$-- Implement the button row at the top of the screen.
+<nav class="navbar fixed-top navbar-light bg-light">
+  <div class="container">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+    data-bs-target="#tocModal">
+      <span>TOC</span>
+    </button>
+    <a class="navbar-brand" href="#">LlSoftSecBook</a>
+  </div>
+</nav>
+
+$-- Show TOC as a "modal", when clicking the "TOC" button at the top left
+$if(toc)$
+  <div class="modal" id="tocModal" tabindex="-1" aria-labelledby="tocModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tocModalLabel">Table of Contents</h5>
+          <button type="button"
+            class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="TOC">
+          $table-of-contents$
+        </div>
+      </div>
+    </div>
+  </div>
+$endif$
+</div> $-- end of top navbar div with TOC modal
+
+$-- main content bootstrap container
+<main class="container" id="content">
+
 $if(title)$
 <header id="title-block-header">
-<h1 class="title">$title$</h1>
-$if(subtitle)$
-<p class="subtitle">$subtitle$</p>
-$endif$
-$for(author)$
-<p class="author">$author$</p>
-$endfor$
-$if(date)$
-<p class="date">$date$</p>
-$endif$
-<p>
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />
-  This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-</p>
-<p>
-$for(copyright)$
-  $copyright.SPDX-FileCopyrightText$<br />
-$endfor$
-</p>
-<p>Version: $VERSION$</p>
+  <h1 class="title">$title$</h1>
+  $if(subtitle)$
+    <p class="subtitle">$subtitle$</p>
+  $endif$
+  $for(author)$
+    <p class="author">$author$</p>
+  $endfor$
+  $if(date)$
+    <p class="date">$date$</p>
+  $endif$
+  <p>
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    <img alt="Creative Commons License" style="border-width:0"
+      src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+      Creative Commons Attribution 4.0 International License</a>.
+  </p>
+  <p>
+  $for(copyright)$
+    $copyright.SPDX-FileCopyrightText$<br />
+  $endfor$
+  </p>
+  <p>Version: $VERSION$</p>
 </header>
 $endif$
-</div> $-- end of header row
 
-$-- start of the main "body" of the page
-$-- Containing TOC on left hand side and main content right hand side.
-<div class="row">
-$if(toc)$
-$--<div class="col-2 d-none d-md-block order-last sidebar">
-  $-- Bootstrap models the available width as "12 columns" wide
-  $-- Reserve 3 of those columns on the left hand side for the table of contents.
-  $-- The next 7 columns are reserved for the main content.
-  $-- Which leaves (12-3-7=2) columns for margin notes (not yet implemented).
-  $-- Note that with col-*md* we specify that we only want these columns to be
-  $-- next to each other if the viewport available is at least md = Medium = 768px
-  $-- (See any bootstrap guide/tutorial).
-<div class="col-md-3">
-<nav id="$idprefix$TOC">
-$table-of-contents$
-</nav>
-</div>
-$endif$
-
-$-- main content bootstrap "column"
-<main class="col-md-7" id="content">
 $body$
-</main>
-
-</div> $-- end of main bootstrap container.
+</main> $-- end of main bootstrap container.
 
 $for(include-after)$
 $include-after$
 $endfor$
+
+
 <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
