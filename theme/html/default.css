@@ -24,3 +24,15 @@ h2:hover a, h2:active a,
 h3:hover a, h2:active a {
   visibility: visible;
 }
+
+/* make the main content start under the fixed top navbar */
+body { padding-top: 70px; }
+/* when clicking a link, make sure that the link appears
+   below the navbar at the top, not at the same location as
+   the navbar at the top, which makes it hidden. */
+:target:before {
+  content:"";
+  display:block;
+  height:70px; /* fixed header height*/
+  margin:-70px 0 0; /* negative fixed header height */
+  }
