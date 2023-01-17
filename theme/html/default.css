@@ -18,6 +18,14 @@ body {
 {
   display: inline;
 }
+
+/* only show TOC 2 levels deep: */
+#toc-sidebar ul ul ul,
+#toc-modal ul ul ul
+{
+  display: none;
+}
+
 /* Hide header link by default
    except on mouse hover, or
    click/tap (for mobile users) */
