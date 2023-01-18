@@ -49,20 +49,14 @@ $endfor$
 </head>
 
 <body>
-$for(include-before)$
-$include-before$
-$endfor$
-
-$-- This is the bootstrap container into which the top button row and TOC modal
-$-- is placed.
-<div class="container">
-
 $-- Implement the button row at the top of the screen.
-<nav class="navbar fixed-top navbar-light bg-light">
-  <div class="container">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-    data-bs-target="#tocModal">
-      <span>TOC</span>
+<nav id="top-bar"
+     class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <button type="button"
+      class="btn btn-primary" data-bs-toggle="modal"
+      data-bs-target="#toc-modal">
+      <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="#">LlSoftSecBook</a>
   </div>
@@ -70,11 +64,12 @@ $-- Implement the button row at the top of the screen.
 
 $-- Show TOC as a "modal", when clicking the "TOC" button at the top left
 $if(toc)$
-  <div class="modal" id="tocModal" tabindex="-1" aria-labelledby="tocModalLabel" aria-hidden="true">
+  <div class="modal" id="toc-modal"
+    tabindex="-1" aria-labelledby="toc-modal-label" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="tocModalLabel">Table of Contents</h5>
+          <h5 class="modal-title" id="toc-modal-label">Table of Contents</h5>
           <button type="button"
             class="btn-close" data-bs-dismiss="modal"
             aria-label="Close"></button>
@@ -86,11 +81,21 @@ $if(toc)$
     </div>
   </div>
 $endif$
-</div> $-- end of top navbar div with TOC modal
 
-$-- main content bootstrap container
-<main class="container" id="content">
+<div id="all-below-top-bar">
+  <div class="container h-100">
+    <div class="row h-100 d-flex justify-content-between">
+$if(toc)$
+  $-- show the TOC on the left hand side on lg screens and larger.
+  $-- d-none d-lg-block: makes the toc sidebar only visible on lg screens.
+  $-- h-100 -> make div same height as parent div (#all-below-top-bar here)
+  <div id="toc-sidebar" class="h-100 d-none d-lg-block col-lg-4 overflow-auto">
+    $table-of-contents$
+  </div>
+$endif$
 
+$-- start of the "main" column
+<div id="main-content-col" class="h-100 col-12 col-lg-8 overflow-auto">
 $if(title)$
 <header id="title-block-header">
   <h1 class="title">$title$</h1>
@@ -119,13 +124,12 @@ $if(title)$
 </header>
 $endif$
 
+<main id="content">
 $body$
-</main> $-- end of main bootstrap container.
-
-$for(include-after)$
-$include-after$
-$endfor$
-
+</main>
+</div> $-- row
+</div> $-- container
+</div> $-- end of the "all-below-top-bar" column
 
 <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
