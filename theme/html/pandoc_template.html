@@ -129,13 +129,13 @@ $body$
   }
 
   jQuery(document).ready(function() {
-    // toggle sidebar-toc visibility when the toggle button is clicked.
+    // Toggle sidebar-toc visibility when the toggle button is clicked.
     jQuery('#toggle-toc-button').click(function() {
       let toc_sidebar = jQuery('#toc-sidebar');
       if (toc_sidebar.hasClass("d-lg-block")) {
-        // this is the first time the TOC toggler was clicked.
+        // This is the first time the TOC toggler was clicked.
         toc_sidebar.removeClass("d-lg-block");
-        // the screensize is smaller than lg -> make it the TOC visible.
+        // The screensize is smaller than lg -> make the TOC visible.
         // Otherwise, leave the d-none class to make the TOC invisible.
         if (!isLG()) toc_sidebar.toggleClass("d-none");
       } else {
