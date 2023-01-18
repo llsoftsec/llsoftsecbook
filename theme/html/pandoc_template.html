@@ -167,6 +167,10 @@ $body$
         reset_default_toc_visibility();
       }
     });
+
+    // Make links in the TOC be "secondary links". The result is that
+    // they will be coloured grey, so will be less distracting.
+    jQuery("#toc-sidebar a").addClass("link-secondary");
   });
 </script>
 
