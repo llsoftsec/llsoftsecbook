@@ -69,3 +69,9 @@ body {
 #all-below-top-bar {
   height: calc(100vh - 56px);
 }
+
+/* Set maximum width so that lines do not get too long.
+   Lines of text that are too long are harder to read... */
+#main-content-col {
+  max-width: 768px; /* = bootstrap Medium/md */
+}
