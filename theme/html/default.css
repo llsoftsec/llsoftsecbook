@@ -1,6 +1,5 @@
 /* Do not show bullet points for TOC entries: */
-#toc-sidebar ::marker,
-#toc-modal ::marker
+#toc-sidebar ::marker
 { content: none; }
 /* Use a sans-serif font: */
 body {
@@ -8,20 +7,17 @@ body {
 }
 /* Don't show <span>s in TOC by default
    except if it's a section number. */
-#toc-sidebar a span,
-#toc-modal a span
+#toc-sidebar a span
 {
   display: none;
 }
-#toc-sidebar a span.toc-section-number,
-#toc-modal a span.toc-section-number
+#toc-sidebar a span.toc-section-number
 {
   display: inline;
 }
 
 /* only show TOC 2 levels deep: */
-#toc-sidebar ul ul ul,
-#toc-modal ul ul ul
+#toc-sidebar ul ul ul
 {
   display: none;
 }
