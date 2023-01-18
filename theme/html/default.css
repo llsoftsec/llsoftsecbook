@@ -22,6 +22,12 @@ body {
   display: none;
 }
 
+/* Remove underline from links in TOC. */
+#toc-sidebar a
+{
+  text-decoration: none;
+}
+
 /* Hide header link by default
    except on mouse hover, or
    click/tap (for mobile users) */
