@@ -28,10 +28,12 @@ body {
   display: none;
 }
 
-/* Remove underline from links in TOC. */
+/* Remove underline from links in TOC.
+   Also make font size a bit smaller than the default content size. */
 #toc-sidebar a
 {
   text-decoration: none;
+  font-size: 0.875em;
 }
 
 /* Hide header link by default
