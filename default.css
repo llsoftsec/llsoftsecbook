@@ -1,17 +1,48 @@
 /* Do not show bullet points for TOC entries: */
-#TOC ::marker { content: none; }
+#toc-sidebar ::marker
+{ content: none; }
 /* Use a sans-serif font: */
 body {
   font-family: sans-serif;
 }
 /* Don't show <span>s in TOC by default
    except if it's a section number. */
-#TOC a span {
+#toc-sidebar a span
+{
   display: none;
 }
-#TOC a span.toc-section-number {
+#toc-sidebar a span.toc-section-number
+{
   display: inline;
 }
+
+/* toc-sidebar needs some top-padding, otherwise the TOC starts too close to
+   the top bar. */
+#toc-sidebar
+{
+  padding-top: 2em;
+}
+
+/* No padding is needed on TOC top-level ul. Remove it so that we don't loose
+   too much screen real-estate. */
+#toc-sidebar > ul {
+  padding: 0;
+}
+
+/* only show TOC 2 levels deep: */
+#toc-sidebar ul ul ul
+{
+  display: none;
+}
+
+/* Remove underline from links in TOC.
+   Also make font size a bit smaller than the default content size. */
+#toc-sidebar a
+{
+  text-decoration: none;
+  font-size: 0.875em;
+}
+
 /* Hide header link by default
    except on mouse hover, or
    click/tap (for mobile users) */
@@ -23,4 +54,41 @@ h1:hover a, h1:active a,
 h2:hover a, h2:active a,
 h3:hover a, h2:active a {
   visibility: visible;
+}
+
+/* Set layout and size for top-level divs:
+  +-----------------------------------+
+  | body                              |
+  |+---------------------------------+|
+  ||   #top-bar                      ||
+  |+---------------------------------+|
+  ||   #all-below-top-bar            ||
+  ||+------------+------------------+||
+  |||#toc-sidebar| #main-content-col|||
+  ||+------------+------------------+||
+  |+-------------+-------------------+|
+  +-----------------------------------+
+
+   We're not using bootstrap for this top-level
+   layout (body, all-below-top-bar) because
+   it seems it does not support the necessary
+   "calc" height functionality needed for
+   #all-below-top-bar.
+
+   Within those containers, we do use bootstrap.
+*/
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+#all-below-top-bar {
+  height: calc(100vh - 56px);
+}
+
+/* Set maximum width so that lines do not get too long.
+   Lines of text that are too long are harder to read... */
+#main-content-max-width {
+  max-width: 768px; /* = bootstrap Medium/md */
 }
