@@ -16,6 +16,13 @@ body {
   display: inline;
 }
 
+/* toc-sidebar needs some top-padding, otherwise the TOC starts too close to
+   the top bar. */
+#toc-sidebar
+{
+  padding-top: 2em;
+}
+
 /* No padding is needed on TOC top-level ul. Remove it so that we don't loose
    too much screen real-estate. */
 #toc-sidebar > ul {
