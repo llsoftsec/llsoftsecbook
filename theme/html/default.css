@@ -89,6 +89,6 @@ body {
 
 /* Set maximum width so that lines do not get too long.
    Lines of text that are too long are harder to read... */
-#main-content-col {
+#main-content-max-width {
   max-width: 768px; /* = bootstrap Medium/md */
 }

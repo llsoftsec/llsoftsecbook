@@ -76,6 +76,8 @@ $endif$
 
 $-- start of the "main" column
 <div id="main-content-col" class="h-100 col-12 col-lg-8 overflow-auto">
+  $-- max-width container for main content
+  <div id="main-content-max-width" class="h-100">
 $if(title)$
 <header id="title-block-header">
   <h1 class="title">$title$</h1>
@@ -107,8 +109,9 @@ $endif$
 <main id="content">
 $body$
 </main>
-</div> $-- row
-</div> $-- container
+</div> $-- max-width container for main content
+</div> $-- main-content-col
+</div> $-- container-fluid
 </div> $-- end of the "all-below-top-bar" column
 
 <script
