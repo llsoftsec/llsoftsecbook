@@ -7,6 +7,8 @@ documentclass: report
 papersize: A4
 colorlinks: true
 link-citations: true
+github-repo: https://github.com/llsoftsec/llsoftsecbook
+github-edit-link: https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md
 bibliography:
 - book.bib
 header-includes:
