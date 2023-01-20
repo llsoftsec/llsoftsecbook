@@ -214,8 +214,9 @@ $body$
     jQuery("#toc-sidebar a").addClass("link-secondary");
 
     // Needed to enable the bootstrap tooltips:
-    let tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    let tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    let tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    let tooltipList = [...tooltipTriggerList].map(
+      tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {trigger : 'hover'}));
   });
 </script>
 
