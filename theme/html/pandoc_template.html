@@ -164,6 +164,9 @@ $body$
         }
       } else {
         toc_sidebar.addClass("d-none");
+        // when the TOC is not visible, make the main container span the full
+        // width of the screen. This makes sure that the scrollbar appears on
+        // the far right hand side.
         main_content_col.removeClass("col-lg-8");
         main_content_col.removeClass("d-none");
       }
