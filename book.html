@@ -236,7 +236,7 @@ max-width: 768px;
   <p>
       Copyright 2021-2022 Arm Limited <a href="mailto:open-source-office@arm.com" class="email">open-source-office@arm.com</a><br />
     </p>
-  <p>Version: 0-112-g7706259</p>
+  <p>Version: 0-114-g9917139</p>
 </header>
 
 <main id="content">
@@ -1012,6 +1012,9 @@ int authenticate() {
         }
       } else {
         toc_sidebar.addClass("d-none");
+        // when the TOC is not visible, make the main container span the full
+        // width of the screen. This makes sure that the scrollbar appears on
+        // the far right hand side.
         main_content_col.removeClass("col-lg-8");
         main_content_col.removeClass("d-none");
       }
@@ -1062,8 +1065,9 @@ int authenticate() {
     jQuery("#toc-sidebar a").addClass("link-secondary");
 
     // Needed to enable the bootstrap tooltips:
-    let tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    let tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    let tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    let tooltipList = [...tooltipTriggerList].map(
+      tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {trigger : 'hover'}));
   });
 </script>
 
