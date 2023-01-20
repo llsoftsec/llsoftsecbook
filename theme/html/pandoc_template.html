@@ -22,6 +22,8 @@ $endif$
     rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
     crossorigin="anonymous">
+  <link data-external="1" rel="stylesheet"
+     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
   <style type="text/css">
       code{white-space: pre-wrap;}
@@ -53,11 +55,21 @@ $-- Implement the button row at the top of the screen.
 <nav id="top-bar"
      class="navbar navbar-light bg-light">
   <div class="container-fluid">
+    <div> $-- div is needed to keep the buttons in it next to each other.
     <button type="button"
       id="toggle-toc-button"
       class="btn btn-sm btn-outline-primary">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <a id="view-source-button"
+      class="btn btn-sm btn-outline-primary" role="button"
+      href="$github-repo$">
+      <i class="bi bi-github"></i></a>
+    <a id="view-source-button"
+      class="btn btn-sm btn-outline-primary" role="button"
+      href="$github-edit-link$">
+      <i class="bi bi-pen"></i></a>
+    </div>
     <a class="navbar-brand" href="#">LLSoftSecBook</a>
   </div>
 </nav>
