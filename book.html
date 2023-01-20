@@ -229,7 +229,7 @@ max-width: 768px;
   <p>
       Copyright 2021-2022 Arm Limited <a href="mailto:open-source-office@arm.com" class="email">open-source-office@arm.com</a><br />
     </p>
-  <p>Version: 0-109-g485f890</p>
+  <p>Version: 0-110-gc6b3ebe</p>
 </header>
 
 <main id="content">
@@ -990,26 +990,46 @@ int authenticate() {
   }
 
   jQuery(document).ready(function() {
+    let toc_sidebar = jQuery('#toc-sidebar');
+    let main_content_col = jQuery('#main-content-col');
+
+    function setTocVisibility(visible) {
+      if (visible) {
+        toc_sidebar.removeClass("d-none");
+        main_content_col.addClass("col-lg-8");
+        if (!isLG()) {
+          // on a small screen, make the main content invisible
+          // when the TOC is visible.
+          main_content_col.addClass("d-none");
+        }
+      } else {
+        toc_sidebar.addClass("d-none");
+        main_content_col.removeClass("col-lg-8");
+        main_content_col.removeClass("d-none");
+      }
+    }
+
     // Toggle sidebar-toc visibility when the toggle button is clicked.
     jQuery('#toggle-toc-button').click(function() {
-      let toc_sidebar = jQuery('#toc-sidebar');
       if (toc_sidebar.hasClass("d-lg-block")) {
         // This is the first time the TOC toggler was clicked.
         toc_sidebar.removeClass("d-lg-block");
         // The screensize is smaller than lg -> make the TOC visible.
         // Otherwise, leave the d-none class to make the TOC invisible.
-        if (!isLG()) toc_sidebar.toggleClass("d-none");
+        setTocVisibility(!isLG());
       } else {
-        toc_sidebar.toggleClass("d-none");
+        let isVisibleNow = !toc_sidebar.hasClass("d-none");
+        setTocVisibility(!isVisibleNow);
       }
     });
 
     // When the window resizes across the LG (992 px) boundary, reset TOC
     // visibility to the default, i.e. adding classes d-none and d-lg-block.
     function reset_default_toc_visibility() {
-      let toc_sidebar = jQuery('#toc-sidebar');
       toc_sidebar.addClass("d-none");
       toc_sidebar.addClass("d-lg-block");
+      main_content_col.addClass("col-lg-8");
+      main_content_col.removeClass("d-none");
     }
 
     let previousWindowSizeWasLG = isLG();
