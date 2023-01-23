@@ -81,16 +81,16 @@ $-- Implement the button row at the top of the screen.
   <div class="container-fluid h-100">
     <div class="row h-100 d-flex justify-content-around">
 $if(toc)$
-  $-- show the TOC on the left hand side on lg screens and larger.
-  $-- d-none d-lg-block: makes the toc sidebar only visible on lg screens.
+  $-- show the TOC on the left hand side on xl screens and larger.
+  $-- d-none d-xl-block: makes the toc sidebar only visible on xl screens.
   $-- h-100 -> make div same height as parent div (#all-below-top-bar here)
-  <div id="toc-sidebar" class="h-100 d-none d-lg-block col-lg-4 overflow-auto">
+  <div id="toc-sidebar" class="h-100 d-none d-xl-block overflow-auto">
     $table-of-contents$
   </div>
 $endif$
 
 $-- start of the "main" column
-<div id="main-content-col" class="h-100 col-12 col-lg-8 overflow-auto">
+<div id="main-content-col" class="h-100 overflow-auto">
   $-- max-width container for main content
   <div id="main-content-max-width" class="h-100">
 $if(title)$
@@ -144,9 +144,9 @@ $body$
   src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"/>
 
 <script>
-  function isLG() {
+  function isXL() {
     var width = jQuery(window).width();
-    return width>=992;
+    return width>=1200;
   }
 
   jQuery(document).ready(function() {
@@ -156,8 +156,8 @@ $body$
     function setTocVisibility(visible) {
       if (visible) {
         toc_sidebar.removeClass("d-none");
-        main_content_col.addClass("col-lg-8");
-        if (!isLG()) {
+        main_content_col.removeClass("without-tocsidebar");
+        if (!isXL()) {
           // on a small screen, make the main content invisible
           // when the TOC is visible.
           main_content_col.addClass("d-none");
@@ -167,47 +167,47 @@ $body$
         // when the TOC is not visible, make the main container span the full
         // width of the screen. This makes sure that the scrollbar appears on
         // the far right hand side.
-        main_content_col.removeClass("col-lg-8");
         main_content_col.removeClass("d-none");
+        main_content_col.addClass("without-tocsidebar");
       }
     }
 
     // Toggle sidebar-toc visibility when the toggle button is clicked.
     jQuery('#toggle-toc-button').click(function() {
-      if (toc_sidebar.hasClass("d-lg-block")) {
+      if (toc_sidebar.hasClass("d-xl-block")) {
         // This is the first time the TOC toggler was clicked.
-        toc_sidebar.removeClass("d-lg-block");
-        // The screensize is smaller than lg -> make the TOC visible.
+        toc_sidebar.removeClass("d-xl-block");
+        // The screensize is smaller than xl -> make the TOC visible.
         // Otherwise, leave the d-none class to make the TOC invisible.
-        setTocVisibility(!isLG());
+        setTocVisibility(!isXL());
       } else {
         let isVisibleNow = !toc_sidebar.hasClass("d-none");
         setTocVisibility(!isVisibleNow);
       }
     });
 
-    // When the window resizes across the LG (992 px) boundary, reset TOC
-    // visibility to the default, i.e. adding classes d-none and d-lg-block.
+    // When the window resizes across the XL boundary, reset TOC
+    // visibility to the default, i.e. adding classes d-none and d-xl-block.
     function reset_default_toc_visibility() {
       toc_sidebar.addClass("d-none");
-      toc_sidebar.addClass("d-lg-block");
-      main_content_col.addClass("col-lg-8");
+      toc_sidebar.addClass("d-xl-block");
       main_content_col.removeClass("d-none");
+      main_content_col.removeClass("without-tocsidebar");
     }
 
-    let previousWindowSizeWasLG = isLG();
+    let previousWindowSizeWasXL = isXL();
     jQuery(window).resize(function() {
-      let is_LG = isLG();
-      if (is_LG != previousWindowSizeWasLG) {
-        previousWindowSizeWasLG = is_LG;
+      let is_XL = isXL();
+      if (is_XL != previousWindowSizeWasXL) {
+        previousWindowSizeWasXL = is_XL;
         reset_default_toc_visibility();
       }
     });
 
     // Also make the TOC sidebar invisible after clicking a link in it
-    // when !isLG();
+    // when !iXL();
     jQuery('#toc-sidebar a').click(function(){
-      if (!isLG()) {
+      if (!isXL()) {
         reset_default_toc_visibility();
       }
     });
