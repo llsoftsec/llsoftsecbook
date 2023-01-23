@@ -37,10 +37,14 @@ build:
 build/default.css: theme/html/default.css Makefile build
 	cp theme/html/default.css build/default.css
 
-build/book.html: book.md book.bib Makefile build theme/html/pandoc_template.html theme/html/clickable_headers.lua build/default.css $(svgimages)
+build/book.html: book.md book.bib Makefile build theme/html/pandoc_template.html \
+                 theme/html/clickable_headers.lua \
+				 theme/html/convert_to_sidenote.lua \
+				 build/default.css $(svgimages)
 	pandoc $< -t html \
 		--template theme/html/pandoc_template.html \
 		--lua-filter theme/html/clickable_headers.lua \
+		--lua-filter theme/html/convert_to_sidenote.lua \
 		-M css=build/default.css \
 		--default-image-extension=svg \
 		-o $@ $(PANDOCFLAGS)
