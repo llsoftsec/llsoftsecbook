@@ -107,25 +107,30 @@ body {
 /* Set maximum width so that lines do not get too long.
    Lines of text that are too long are harder to read... */
 
+:root {
+  /* Limit the width of sidenotes on really large display to 376px. Otherwise
+     allow up to 23% of the screen width to be used by the sidenotes. */
+  --sidenote-width: calc(min(23vw, 376px));
+  --sidenote-col-width: calc(min(25vw, 400px)); /* including padding to main content. */
+}
+
 .sidenote {
     display: inline; /* keep paragraphs with sidenote from breaking in 2. */
     float: right;    /* Show side notes on right hand side margin. */
-
-    /* Limit the width of sidenotes on really large display to 376px. Otherwise
-       allow up to 23% of the screen width to be used by the sidenotes. */
-    width: calc(min(23vw, 376px));
+    width: var(--sidenote-width);
     /* pull the side note, next to the text, not in the main text. */
-    margin-right: calc(max(-25vw, -400px));
+    margin-right: calc(0px - var(--sidenote-col-width));
     font-size: 80%;  /* Make the font size of side notes somewhat smaller. */
 }
 
 /* xs and sm breakpoints: */
 @media (max-width: 767px) {
-  #toc-sidebar {
-    max-width: 100vw; /* on sizes where it only is visible as an overlay */
-  }
-  #main-content-max-width {
-    max-width: calc(min(100vw, 576px)); /* = bootstrap Medium/md */
+  :root {
+     /* on sizes where it only is visible as an overlay */
+    --toc-sidebar-max-width: 100vw;
+    --main-content-max-width: calc(min(100vw, 576px)); /* = bootstrap md */
+    /* sidenotes are shown inline on smalls screens. */
+    --sidenote-col-width: 0px;
   }
   /* show side bar content inline on small screens. */
   .sidenote {
@@ -139,26 +144,39 @@ body {
 
 /* md and lg breakpoints: */
 @media (min-width: 768px) {
-  #toc-sidebar {
-    max-width: 100vw; /* on sizes where it only is visible as an overlay */
-  }
-  #main-content-max-width {
-    max-width: calc(min(100vw, 576px)); /* = bootstrap Medium/md */
+  :root {
+    /* on sizes where it only is visible as an overlay */
+    --toc-sidebar-max-width: 100vw;
+    --main-content-max-width: calc(min(100vw, 576px)); /* = bootstrap md */
   }
 }
 
 /* xl and xxl breakpoints: */
 @media (min-width: 1200px) {
-  #toc-sidebar {
-    max-width: calc(min(25vw, 576px)); /* max 25% of screen */
+  :root {
+    /* on large displays, show TOC sidebar next to main text.
+       Make it 25% of screen width, but no more than 576px wide. */
+    --toc-sidebar-max-width: calc(min(25vw, 576px));
+    /* Make main content at most 75% of screen width to leave room for
+       the TOC sidebar, which is 25% width at most, see above.
+       576px limits the width to at most the bootstrap md breakpoint. */
+    --main-content-max-width: calc(min(75vw, 576px));
   }
   #main-content-col:not(.without-tocsidebar) {
-    max-width: calc(100vw - min(25vw, 576px));
+    max-width: calc(100vw - var(--toc-sidebar-max-width));
   }
   #main-content-col .without-tocsidebar {
     max-width: 100vw;
   }
-  #main-content-max-width {
-    max-width: calc(min(75vw, 576px)); /* = bootstrap Medium/md */
-  }
 }
+
+#toc-sidebar {
+  max-width: var(--toc-sidebar-max-width);
+}
+#main-content-max-width {
+  max-width: var(--main-content-max-width);
+}
+#main-content-with-sidenotes {
+  width: calc(var(--main-content-max-width) + var(--sidenote-col-width));
+}
+

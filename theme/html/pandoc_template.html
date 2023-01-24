@@ -90,7 +90,8 @@ $if(toc)$
 $endif$
 
 $-- start of the "main" column
-<div id="main-content-col" class="h-100 overflow-auto">
+<div id="main-content-col" class="h-100  d-flex justify-content-center overflow-auto">
+  <div id="main-content-with-sidenotes" class="h-100">
   $-- max-width container for main content
   <div id="main-content-max-width" class="h-100">
 $if(title)$
@@ -125,6 +126,7 @@ $endif$
 $body$
 </main>
 </div> $-- max-width container for main content
+</div> $-- main-content-with-sidenotes
 </div> $-- main-content-col
 </div> $-- container-fluid
 </div> $-- end of the "all-below-top-bar" column
