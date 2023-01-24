@@ -115,7 +115,6 @@ body {
 }
 
 .sidenote {
-    display: inline; /* keep paragraphs with sidenote from breaking in 2. */
     float: right;    /* Show side notes on right hand side margin. */
     width: var(--sidenote-width);
     /* pull the side note, next to the text, not in the main text. */
@@ -134,7 +133,8 @@ body {
   }
   /* show side bar content inline on small screens. */
   .sidenote {
-    display: block; 	/* forces parent paragraph to break */
+    display: none; 	/* don't show sidenotes by default on small
+                       screens where they appear inline. */
     float: none; 	/* stops content from floating */
     margin: 5% 10% 5% 10%;
     width: 80%;
@@ -180,3 +180,6 @@ body {
   width: calc(var(--main-content-max-width) + var(--sidenote-col-width));
 }
 
+.sidenote_ref {
+  cursor: pointer;
+}
