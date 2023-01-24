@@ -222,6 +222,17 @@ $body$
     let tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     let tooltipList = [...tooltipTriggerList].map(
       tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {trigger : 'hover'}));
+
+    // Make sidenotes toggleable:
+    jQuery('.sidenote_ref').click(function(){
+      let sidenote_id = jQuery(this).attr("href");
+      let sidenote = jQuery(sidenote_id);
+      if (sidenote.css("display") == "none") {
+        sidenote.css("display", "block");
+      } else {
+        sidenote.css("display", "none");
+      }
+    });
   });
 </script>
 
