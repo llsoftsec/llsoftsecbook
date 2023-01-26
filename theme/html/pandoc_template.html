@@ -56,19 +56,22 @@ $-- Implement the button row at the top of the screen.
      class="navbar navbar-light bg-light">
   <div class="container-fluid">
     <div> $-- div is needed to keep the buttons in it next to each other.
-    <button type="button"
+    <a role="button"
       id="toggle-toc-button"
       class="btn btn-sm btn-outline-primary"
-      data-bs-toggle="tooltip" data-bs-title="Toggle table-of-contents">
+      data-bs-toggle="tooltip" data-bs-title="Toggle table-of-contents"
+      data-bs-placement="bottom">
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </a>
     <a id="view-source-button"
       class="btn btn-sm btn-outline-primary" role="button"
+      data-bs-placement="bottom"
       data-bs-toggle="tooltip" data-bs-title="Github repo"
       href="$github-repo$">
       <i class="bi bi-github"></i></a>
     <a id="view-source-button"
       class="btn btn-sm btn-outline-primary" role="button"
+      data-bs-placement="bottom"
       data-bs-toggle="tooltip" data-bs-title="Suggest an edit"
       href="$github-edit-link$">
       <i class="bi bi-pen"></i></a>
