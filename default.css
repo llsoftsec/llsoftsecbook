@@ -57,17 +57,20 @@ h3:hover a, h2:active a {
 }
 
 /* Set layout and size for top-level divs:
-  +-----------------------------------+
-  | body                              |
-  |+---------------------------------+|
-  ||   #top-bar                      ||
-  |+---------------------------------+|
-  ||   #all-below-top-bar            ||
-  ||+------------+------------------+||
-  |||#toc-sidebar| #main-content-col|||
-  ||+------------+------------------+||
-  |+-------------+-------------------+|
-  +-----------------------------------+
+  +-------------------------------------------------------+
+  | body                                                  |
+  |+-----------------------------------------------------+|
+  ||   #top-bar                                          ||
+  |+-----------------------------------------------------+|
+  ||   #all-below-top-bar                                ||
+  ||+------------+--------------------------------------+||
+  |||#toc-sidebar|+------------------+-----------------+|||
+  |||            ||#main-content-col | sidenotescol    ||||
+  |||            ||                  |                 ||||
+  |||            |+------------------+-----------------+|||
+  ||+------------+--------------------------------------+||
+  |+-------------+---------------------------------------+|
+  +-------------------------------------------------------+
 
    We're not using bootstrap for this top-level
    layout (body, all-below-top-bar) because
@@ -76,6 +79,20 @@ h3:hover a, h2:active a {
    #all-below-top-bar.
 
    Within those containers, we do use bootstrap.
+*/
+
+/* bootstrap breakpoints:
+   xs < 576px <= sm < 768px <= md < 992px <= lg < 1200px <= xl < 1400px <= xxl
+
+   On the different screen sizes we make the different content columns visible
+   by default as follows:
+
+   * xs and sm: only the main content column. sidenotes are shown inline.
+   * md and lg: only the main content column and the sidenotes column are shown
+     max-width(main)=min(75% width, md); max-width(sidenotes)=min(25% width, xs?)
+   * xl, xxl: toc, main content and the sidenotes are shown.
+     max-width(main)=min(50% width, md);
+     max-width(sidenotes) and max-width(toc)=min(25% width, xs?)
 */
 
 body {
@@ -89,6 +106,80 @@ body {
 
 /* Set maximum width so that lines do not get too long.
    Lines of text that are too long are harder to read... */
+
+:root {
+  /* Limit the width of sidenotes on really large display to 376px. Otherwise
+     allow up to 23% of the screen width to be used by the sidenotes. */
+  --sidenote-width: calc(min(23vw, 376px));
+  --sidenote-col-width: calc(min(25vw, 400px)); /* including padding to main content. */
+}
+
+.sidenote {
+    float: right;    /* Show side notes on right hand side margin. */
+    width: var(--sidenote-width);
+    /* pull the side note, next to the text, not in the main text. */
+    margin-right: calc(0px - var(--sidenote-col-width));
+    font-size: 80%;  /* Make the font size of side notes somewhat smaller. */
+}
+
+/* xs and sm breakpoints: */
+@media (max-width: 767px) {
+  :root {
+     /* on sizes where it only is visible as an overlay */
+    --toc-sidebar-max-width: 100vw;
+    --main-content-max-width: calc(min(100vw, 576px)); /* = bootstrap md */
+    /* sidenotes are shown inline on smalls screens. */
+    --sidenote-col-width: 0px;
+  }
+  /* show side bar content inline on small screens. */
+  .sidenote {
+    display: none; 	/* don't show sidenotes by default on small
+                       screens where they appear inline. */
+    float: none; 	/* stops content from floating */
+    margin: 5% 10% 5% 10%;
+    width: 80%;
+    font-size: 80%;
+  }
+}
+
+/* md and lg breakpoints: */
+@media (min-width: 768px) {
+  :root {
+    /* on sizes where it only is visible as an overlay */
+    --toc-sidebar-max-width: 100vw;
+    --main-content-max-width: calc(min(100vw, 576px)); /* = bootstrap md */
+  }
+}
+
+/* xl and xxl breakpoints: */
+@media (min-width: 1200px) {
+  :root {
+    /* on large displays, show TOC sidebar next to main text.
+       Make it 25% of screen width, but no more than 576px wide. */
+    --toc-sidebar-max-width: calc(min(25vw, 576px));
+    /* Make main content at most 75% of screen width to leave room for
+       the TOC sidebar, which is 25% width at most, see above.
+       576px limits the width to at most the bootstrap md breakpoint. */
+    --main-content-max-width: calc(min(75vw, 576px));
+  }
+  #main-content-col:not(.without-tocsidebar) {
+    max-width: calc(100vw - var(--toc-sidebar-max-width));
+  }
+  #main-content-col .without-tocsidebar {
+    max-width: 100vw;
+  }
+}
+
+#toc-sidebar {
+  max-width: var(--toc-sidebar-max-width);
+}
 #main-content-max-width {
-  max-width: 768px; /* = bootstrap Medium/md */
+  max-width: var(--main-content-max-width);
+}
+#main-content-with-sidenotes {
+  width: calc(var(--main-content-max-width) + var(--sidenote-col-width));
+}
+
+.sidenote_ref {
+  cursor: pointer;
 }
