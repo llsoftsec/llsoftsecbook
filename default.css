@@ -114,13 +114,38 @@ body {
   --sidenote-col-width: calc(min(25vw, 400px)); /* including padding to main content. */
 }
 
-.sidenote {
+.sidenote, .todo, .missingcontent {
     float: right;    /* Show side notes on right hand side margin. */
+    clear: right;    /* if multiple notes would overlap, push them below each
+                        other. */
+    margin-bottom: 1em; /* leave a bit of margin between sidenotes. */
     width: var(--sidenote-width);
     /* pull the side note, next to the text, not in the main text. */
     margin-right: calc(0px - var(--sidenote-col-width));
     font-size: 80%;  /* Make the font size of side notes somewhat smaller. */
 }
+
+.todo, .missingcontent {
+  color: gray;
+  font-style: italic;
+}
+
+.todo::before {
+  font-weight: bold;
+  color: navy;
+  content: "Todo ";
+}
+
+.missingcontent::before {
+  font-weight: bold;
+  color: navy;
+  content: "Missing content ";
+}
+
+.todo_ref, .missingcontent_ref {
+  display: none;
+}
+
 
 /* xs and sm breakpoints: */
 @media (max-width: 767px) {
@@ -132,7 +157,7 @@ body {
     --sidenote-col-width: 0px;
   }
   /* show side bar content inline on small screens. */
-  .sidenote {
+  .sidenote, .todo, .missingcontent {
     display: none; 	/* don't show sidenotes by default on small
                        screens where they appear inline. */
     float: none; 	/* stops content from floating */

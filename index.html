@@ -139,12 +139,31 @@ height: calc(100vh - 56px);
 --sidenote-width: calc(min(23vw, 376px));
 --sidenote-col-width: calc(min(25vw, 400px)); 
 }
-.sidenote {
+.sidenote, .todo, .missingcontent {
 float: right; 
+clear: right; 
+margin-bottom: 1em; 
 width: var(--sidenote-width);
 
 margin-right: calc(0px - var(--sidenote-col-width));
 font-size: 80%; 
+}
+.todo, .missingcontent {
+color: gray;
+font-style: italic;
+}
+.todo::before {
+font-weight: bold;
+color: navy;
+content: "Todo ";
+}
+.missingcontent::before {
+font-weight: bold;
+color: navy;
+content: "Missing content ";
+}
+.todo_ref, .missingcontent_ref {
+display: none;
 }
 
 @media (max-width: 767px) {
@@ -156,7 +175,7 @@ font-size: 80%;
 --sidenote-col-width: 0px;
 }
 
-.sidenote {
+.sidenote, .todo, .missingcontent {
 display: none; 
 float: none; 
 margin: 5% 10% 5% 10%;
@@ -299,7 +318,7 @@ cursor: pointer;
   <p>
       Copyright 2021-2022 Arm Limited <a href="mailto:open-source-office@arm.com" class="email">open-source-office@arm.com</a><br />
     </p>
-  <p>Version: 0-118-gc7e0a57</p>
+  <p>Version: 0-119-g4edb665</p>
 </header>
 
 <main id="content">
@@ -320,7 +339,8 @@ cursor: pointer;
 <p>First, by studying specific topics, they hope to gain enough knowledge to write up a good summary for this book.</p>
 <p>Second, they very much invite and welcome contributions. If you’re interested in potentially contributing content, please go to the home location for the open source project at <a href="https://github.com/llsoftsec/llsoftsecbook" class="uri">https://github.com/llsoftsec/llsoftsecbook</a>.</p>
 <p>As a reader, you can also contribute to making this book better. We highly encourage feedback, both positive and constructive criticisms. We prefer feedback to be received through <a href="https://github.com/llsoftsec/llsoftsecbook" class="uri">https://github.com/llsoftsec/llsoftsecbook</a>.</p>
-
+<span class="missingcontent_ref" href="#missingcontent_1"><sup>missingcontent</sup></span>
+<span id="missingcontent_1" class="missingcontent">Add section describing the structure of the rest of the book.</span>
 <h1 id="memory-vulnerability-based-attacks"><span class="header-section-number">2</span> Memory vulnerability based attacks <a href="#memory-vulnerability-based-attacks" class="selflink">§</a></h1>
 <h2 id="a-bit-of-background-on-memory-vulnerabilities"><span class="header-section-number">2.1</span> A bit of background on memory vulnerabilities <a href="#a-bit-of-background-on-memory-vulnerabilities" class="selflink">§</a></h2>
 <p>Memory access errors describe memory accesses that, although permitted by a program, were not intended by the programmer. These types of errors are usually defined <span class="citation" data-cites="Hicks2014">(Hicks <a href="#ref-Hicks2014">2014</a>)</span> by explicitly listing their types, which include:</p>
@@ -336,14 +356,16 @@ cursor: pointer;
 <p>To defend against code reuse attacks, the <a href="#aslr">Address Space Layout Randomization (ASLR)</a> and <a href="#cfi">Control-Flow Integrity (CFI)</a> measures were introduced. This interaction between offensive and defensive security research has been essential to improving security, and continues to this day. Each newly deployed mitigation results in attempts, often successful, to bypass it, or in alternative, more complex exploitation techniques, and even tools to automate them.</p>
 <p>Memory safe <span class="citation" data-cites="Hicks2014">(Hicks <a href="#ref-Hicks2014">2014</a>)</span> languages are designed with prevention of such vulnerabilities in mind and use techniques such as bounds checking and automatic memory management. If these languages promise to eliminate memory vulnerabilities, why are we still discussing this topic?</p>
 <p>On the one hand, C and C++  remain very popular languages, particular in the implementation of low-level software. On the other hand, programs written in memory safe languages can themselves be vulnerable to memory errors as a result of bugs in how they are implemented, e.g. a bug in their compiler. Can we fix the problem by also using memory safe languages for the compiler and runtime implementation? Even if that were as simple as it sounds, unfortunately there are types of programming errors that these languages cannot protect against. For example, a logical error in the implementation of a compiler or runtime for a memory safe language can lead to a memory access error not being detected. We will see examples of such logic errors in compiler optimizations in a <a href="#jit-compiler-vulnerabilities">later section</a>.</p>
-<p>Given the rich history of memory vulnerabilities and mitigations and the active developments in this area, compiler developers are likely to encounter some of these issues over the course of their careers. This chapter aims to serve as an introduction to this area. We start with a discussion of exploitation primitives, which can be useful when analyzing threat models . We then continue with a more detailed discussion of the various types of vulnerabilities, along with their mitigations, presented in a rough chronological order of their appearance, and, therefore, complexity.</p>
+<p>Given the rich history of memory vulnerabilities and mitigations and the active developments in this area, compiler developers are likely to encounter some of these issues over the course of their careers. This chapter aims to serve as an introduction to this area. We start with a discussion of exploitation primitives, which can be useful when analyzing threat models <span class="todo_ref" href="#todo_1"><sup>todo</sup></span><span id="todo_1" class="todo">Discuss
+threat models elsewhere in book and refer to that section here</span>. We then continue with a more detailed discussion of the various types of vulnerabilities, along with their mitigations, presented in a rough chronological order of their appearance, and, therefore, complexity.</p>
 <h2 id="exploitation-primitives"><span class="header-section-number">2.2</span> Exploitation primitives <a href="#exploitation-primitives" class="selflink">§</a></h2>
 <p>Newcomers to the area of software security may find themselves lost in many blog posts and other publications describing specific memory vulnerabilities and how to exploit them. Two very common, yet unfamiliar to a newcomer, terms that appear in such publications are <em>read primitive</em> and <em>write primitive</em>. In order to understand memory vulnerabilities and be able to design effective mitigations, it’s important to understand what these terms mean, how these primitives could be obtained by an attacker, and how they can be used.</p>
 <p>An <em>exploit primitive</em> is a mechanism that allows an attacker to perform a specific operation in the memory space of the victim program. This is done by providing specially crafted input to the victim program.</p>
 <p>A <em>write primitive</em> gives the attacker some level of write access to the victim’s memory space. The value written and the address written to may be controlled by the attacker to various degrees. The primitive, for example, may allow:</p>
 <ul>
 <li>writing a fixed value to an attacker-controlled address, or</li>
-<li>writing to an address consisting of a fixed base and an attacker-controlled offset limited to a specific range (e.g. a 32-bit offset), or</li>
+<li>writing to an address consisting of a fixed base and an attacker-controlled offset limited to a specific range (e.g. a 32-bit offset)<span class="todo_ref" href="#todo_2"><sup>todo</sup></span><span id="todo_2" class="todo">Consider
+describing in more detail why the range limitation matters</span>, or</li>
 <li>writing to an attacker-controlled base address with a fixed offset.</li>
 </ul>
 <p>Primitives can be further classified according to more detailed properties. See slide 11 of <span class="citation" data-cites="Miller2012">(Miller, <a href="#ref-Miller2012">n.d.</a>)</span> for an example.</p>
@@ -355,7 +377,9 @@ cursor: pointer;
 <li>In an <em>interactive attack</em>, the attacker gives malicious input to the victim program. The malicious input causes the victim program to perform the read the attacker instructed it to, and to output the results of that read. This output could be any kind of output, for example a network packet that the victim transmits. The attacker can observe the result of the read primitive by looking at this output, for example parsing this network packet. This process then repeats: the attacker sends more malicious input to the victim, observes the output and prepares the next input. You can see an example of this type of attack in <span class="citation" data-cites="Beer2020">(Beer <a href="#ref-Beer2020">2020</a>)</span>, which describes a zero-click radio proximity exploit.</li>
 <li>In a <em>non-interactive (one-shot) attack</em>, the attacker provides all malicious input to the victim program at once. The malicious input triggers multiple primitives one after the other, and the primitives are able to observe the effects of the preceding operations through the victim program’s state. The input could be, for example, in the form of a JavaScript program <span class="citation" data-cites="Groß2020">(Groß <a href="#ref-Groß2020">2020</a>)</span>, or a PDF file pretending to be a GIF <span class="citation" data-cites="Beer2021">(Beer and Groß <a href="#ref-Beer2021">2021</a>)</span>.</li>
 </ul>
-
+<span class="todo_ref" href="#todo_7"><sup>todo</sup></span>
+<span id="todo_7" class="todo">The references in this section describe complicated modern exploits.
+Consider linking to simpler exploits, as well as some tutorial-level material.</span>
 <p>How does an attacker obtain these kinds of primitives in the first place? The details vary, and in some cases it takes a combination of many techniques, some of which are out of scope for this book. But we will be describing a few of them in this chapter. For example a stack buffer overflow results in a (restricted) write primitive when the input size exceeds what the program expected.</p>
 <p>As part of an attack, the attacker will want to execute each primitive more than once, since a single read or write operation will rarely be enough to achieve their end goal (more on this later). How can primitives be combined to perform multiple reads/writes?</p>
 <p>In the case of an interactive attack, preparing and sending input to the victim program and parsing the output of the victim program are usually done in an external program that drives the exploit. The attacker is free to use a programming language of their choice, as long as they can interact with the victim program in it. Let’s assume, for example, an exploit program in C, communicating with the victim program over TCP. In this case, the primitives are abstracted into C functions, which prepare and send packets to the victim, and parse the victim’s responses. Using the primitives is then as simple as calling these functions. These calls can be easily combined with arbitrary computations, all written in C, to form the exploit.</p>
@@ -460,7 +484,9 @@ int main(int argc, char* argv[]) {
     ldr x21, [sp, #16]
     add sp, sp, #0x30
     ret</code></pre>
-
+<span class="todo_ref" href="#todo_8"><sup>todo</sup></span>
+<span id="todo_8" class="todo">Explain how these gadgets could result from C/C++ code. The current
+versions are slightly tweaked by hand to have more manageable offsets.</span>
 <p>Both gadgets also clobber several uninteresting registers, but since <code>gadget_x2</code> also clears <code>x0</code>, it becomes clear that we should use a ROP chain that:</p>
 <ol type="1">
 <li>Returns to <code>gadget_x2</code>, which sets <code>x2</code> to zero.</li>
@@ -490,7 +516,10 @@ int main(int argc, char* argv[]) {
 </figure>
 </div>
 <p>In figure <a href="#fig:jop">3</a>, <code>x4</code> initially points to the “dispatch table”, which has been modified by the attacker to contain the addresses of the three gadgets they want to execute. The dispatcher gadget loads each address in the dispatch table one by one and branches to them. The first gadget loads <code>x0</code> and <code>x1</code> from the stack, where the attacker has placed the inputs of their choice. It then loads its return address, also modified by the attacker so that it points back to the dispatcher gadget, and returns to it. The dispatcher branches to the next gadget, which adds <code>x0</code> and <code>x1</code> and leaves the result in <code>x0</code>, branching back to the dispatcher through another value loaded from the stack into <code>x2</code>. The final gadget stores the result of the addition, which remains in <code>x0</code>, to the stack, before branching to <code>x2</code>, which still points to the dispatcher gadget.</p>
-
+<span class="todo_ref" href="#todo_9"><sup>todo</sup></span>
+<span id="todo_9" class="todo">The gadgets in the figure are made up, chosen to highlight that each
+gadget can end in a different type of indirect control flow transfer
+instruction. Consider replacing them with more realistic ones.</span>
 <h3 id="counterfeit-object-oriented-programming"><span class="header-section-number">2.4.3</span> Counterfeit Object-oriented programming <a href="#counterfeit-object-oriented-programming" class="selflink">§</a></h3>
 <p>Counterfeit Object-oriented programming (COOP) <span class="citation" data-cites="Schuster2015">(Schuster et al. <a href="#ref-Schuster2015">2015</a>)</span> is a code reuse technique that takes advantage of C++  virtual function calls. A COOP attack takes advantage of existing virtual functions and <a href="https://en.wikipedia.org/wiki/Virtual_method_table">vtables</a>, and creates fake objects pointing to these existing vtables. The virtual functions used as gadgets in the attack are called vfgadgets. To chain vfgadgets together, the attacker uses a “main loop gadget”, similar to JOP’s dispatcher gadget, which is itself a virtual function that loops over a container of pointers to C++ objects and invokes a virtual function on these objects. <span class="citation" data-cites="Schuster2015">(Schuster et al. <a href="#ref-Schuster2015">2015</a>)</span> describes the attack in more detail. It is specifically mentioned here as an example of an attack that doesn’t depend on directly replacing return addresses and code pointers, like ROP and JOP do. Such language-specific attacks are important to consider when considering mitigations against code reuse attacks, which will be the topic of the next section.</p>
 <h3 id="sigreturn-oriented-programming"><span class="header-section-number">2.4.4</span> Sigreturn-oriented programming <a href="#sigreturn-oriented-programming" class="selflink">§</a></h3>
@@ -580,8 +609,9 @@ void call_foo(A* a) {
     ret</code></pre>
 <p>Notice the <code>paciasp</code> and <code>autiasp</code> instructions: <code>paciasp</code> computes a PAC for the return address in the link register (<code>x30</code>), based on the current value of the stack pointer (<code>sp</code>) and a key. This PAC is inserted in the extension bits of the pointer. We then store this signed version of the link register on the stack. Before returning, we load the signed return address from the stack, we execute <code>autiasp</code>, which verifies the PAC stored in the return address, again based on the value of the key and the value of the stack pointer (which at this point will be the same as when we signed the return address). If the PAC is correct, which will be the case in normal execution, the extension bits of the address are restored, so that the address can be used in the <code>ret</code> instruction. However, if the stored return address has been overwritten with an address with an incorrect PAC, the upper bits will be corrupted so that subsequent uses of the address (such as in the <code>ret</code> instruction) will result in a fault.</p>
 <p>By making sure we don’t store any return addresses without a PAC, we can significantly reduce the effectiveness of ROP attacks: since the secret key is not retrievable by an attacker, an attacker cannot calculate the correct PAC for a given address and modifier, and is restricted to guessing it. The probability of success when guessing a PAC depends on the exact number of PAC bits available in a given system configuration. However, authenticated pointers are vulnerable to pointer substitution attacks, where a pointer that has been signed with a given modifier is replaced with a different pointer that has also been signed with the same modifier.</p>
-<p>Another backward-edge CFI scheme that uses Pointer Authentication instructions is PACStack <span class="citation" data-cites="Liljestrand2021">(Liljestrand et al. <a href="#ref-Liljestrand2021">2021</a>)</span>, which chains together PACs in order to include the full context (all of the previous return addresses in the call stack) when signing a return address. </p>
-<p>Pointer Authentication can also be used more widely, for example to implement a forward-edge CFI scheme, as is done in the arm64e ABI <span class="citation" data-cites="McCall2019">(McCall and Bougacha <a href="#ref-McCall2019">2019</a>)</span>. The Pointer Authentication instructions, however, are generic enough to also be useful in implementing more general memory safety measures, beyond CFI. </p>
+<p>Another backward-edge CFI scheme that uses Pointer Authentication instructions is PACStack <span class="citation" data-cites="Liljestrand2021">(Liljestrand et al. <a href="#ref-Liljestrand2021">2021</a>)</span>, which chains together PACs in order to include the full context (all of the previous return addresses in the call stack) when signing a return address. <span class="todo_ref" href="#todo_3"><sup>todo</sup></span><span id="todo_3" class="todo">Add more references to relevant research</span></p>
+<p>Pointer Authentication can also be used more widely, for example to implement a forward-edge CFI scheme, as is done in the arm64e ABI <span class="citation" data-cites="McCall2019">(McCall and Bougacha <a href="#ref-McCall2019">2019</a>)</span>. The Pointer Authentication instructions, however, are generic enough to also be useful in implementing more general memory safety measures, beyond CFI. <span class="todo_ref" href="#todo_4"><sup>todo</sup></span><span id="todo_4" class="todo">Mention more Pointer Authentication uses in later section, and add link
+here</span></p>
 <h4 id="bti"><span class="header-section-number">2.5.2.4</span> BTI <a href="#bti" class="selflink">§</a></h4>
 <p><a href="https://developer.arm.com/documentation/102433/0100/Jump-oriented-programming?lang=en">Branch Target Identification (BTI)</a> , introduced in Armv8.5, offers coarse-grained forward-edge protection. With BTI, the locations that are targets of indirect branches have to be marked with a new instruction, <code>BTI</code>. There are four different types of BTI instructions that permit different types of indirect branches (indirect jump, indirect call, both, or none). An indirect branch to a non-BTI instruction or the wrong type of BTI instruction will raise a Branch Target Exception.</p>
 <p>Both Clang and GCC support generating BTI instructions, with the <code>-mbranch-protection=bti</code> flag, or, to enable both BTI and return address signing with Pointer Authentication, <code>-mbranch-protection=standard</code>.</p>
@@ -626,11 +656,12 @@ int authenticate() {
 <p>ASan’s code instrumentation in the compiler introduces redzones around each stack array allocation, and around globals. It then instruments loads and stores to check whether the accessed memory is addressable, based on the information stored in the shadow memory, and reports an error if unaddressable memory is accessed.</p>
 <p>ASan doesn’t produce false positives and is easy to use. It requires compiling and linking a program with the <code>-fsanitize=address</code> option. It is used in practice for testing <a href="https://chromium.googlesource.com/chromium/src/+/HEAD/docs/asan.md">large projects</a>. There is a similar tool for dynamic memory error detection in the Linux kernel, <a href="https://www.kernel.org/doc/html/v5.0/dev-tools/kasan.html">KASAN</a>.</p>
 <p>ASan’s biggest drawback is its high runtime overhead and memory usage, due to the quarantine, redzones and shadow memory. <a href="https://clang.llvm.org/docs/HardwareAssistedAddressSanitizerDesign.html">Hardware-assisted AddressSanitizer (HWASAN)</a>  works similarly to ASan, but with partial hardware assistance can result in lower memory overheads, at the cost of being less portable.</p>
-<p>On AArch64, HWASAN uses Top-Byte Ignore (TBI). When TBI is enabled, the top byte of a pointer is ignored when performing a memory access, allowing software to use that top byte to store metadata, without affecting execution. Each allocation is aligned to 16 bytes and each 16-byte chunk of memory (called “granule”) is randomly assigned an 8-bit tag. The tag is stored in shadow memory and is also placed in the top byte of the pointer to the object. Memory loads and stores are then instrumented to check that the tag stored in the pointer matches the tag stored in memory, and report an error when a mismatch happens. </p>
+<p>On AArch64, HWASAN uses Top-Byte Ignore (TBI). When TBI is enabled, the top byte of a pointer is ignored when performing a memory access, allowing software to use that top byte to store metadata, without affecting execution. Each allocation is aligned to 16 bytes and each 16-byte chunk of memory (called “granule”) is randomly assigned an 8-bit tag. The tag is stored in shadow memory and is also placed in the top byte of the pointer to the object. Memory loads and stores are then instrumented to check that the tag stored in the pointer matches the tag stored in memory, and report an error when a mismatch happens. <span class="todo_ref" href="#todo_5"><sup>todo</sup></span><span id="todo_5" class="todo">Add diagram to demonstrate how HWASAN works.</span></p>
 <p>For granules shorter than 16 bytes, the value stored in shadow memory is not the actual tag, but the length of the granule. The actual tag is stored at the last byte of the granule itself. For tags in shadow memory with values between 1 and 15, HWASAN checks that the access is within the bounds of the granule and the pointer tag matches the tag stored at the last byte of the granule.</p>
 <p>HWASAN is also easy to use, and simply requires compiling and linking an application with the <code>-fsanitize=hwaddress</code> flag.</p>
 <p><a href="https://llvm.org/docs/MemTagSanitizer.html">MemTagSanitizer</a> goes one step further and uses the Armv8.5-A <a href="https://developer.arm.com/documentation/102925/0100">Memory Tagging Extension (MTE)</a>. With MTE, the tag checking is done automatically by hardware, and an exception is raised on mismatch. MTE’s granule size is 16 bits, whereas tags are 4-bit.</p>
-
+<span class="missingcontent_ref" href="#missingcontent_2"><sup>missingcontent</sup></span>
+<span id="missingcontent_2" class="missingcontent">Consider adding a whole section on MTE and its applications</span>
 <p><a href="https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#ubsan-checks">UndefinedBehaviorSanitizer (UBSan)</a> detects undefined behavior during program execution, for example array out-of-bounds accesses for statically determined array bounds, null pointer dereference, signed integer overflow and various kinds of integer conversions that result in data loss. Although some of these checks are not directly related to memory errors, these kinds of errors can lead to incorrect pointer arithmetic, incorrect allocation sizes, and other issues that lead to memory errors, so it is important to detect them and address them.</p>
 <p>UBSan’s documentation describes the full list of available checks. The majority of these checks are enabled with the <code>-fsanitize=undefined</code> flag, but there are also other useful groupings of checks, for example <code>-fsanitize=integer</code> for checks related to integer conversions and arithmetic.</p>
 <p>There are many other sanitizers, more than can reasonably be covered in this section. For the interested reader, we list a few more:</p>
@@ -639,9 +670,13 @@ int authenticate() {
 <li><a href="https://clang.llvm.org/docs/ThreadSanitizer.html">ThreadSanitizer</a>: detects data races.</li>
 <li><a href="https://llvm.org/docs/GwpAsan.html">GWP-ASan</a>: detects use-after-free and heap buffer overflows, with low overhead that makes it suitable for production environments. It performs checks only on a sample of allocations.</li>
 </ul>
-
+<span class="missingcontent_ref" href="#missingcontent_3"><sup>missingcontent</sup></span>
+<span id="missingcontent_3" class="missingcontent">Describe other mechanisms for detecting memory errors, both
+software-based (static analysis, library and buffer hardening) and
+hardware-based, e.g. PAuth-based pointer integrity schemes, MTE etc</span>
 <h2 id="jit-compiler-vulnerabilities"><span class="header-section-number">2.8</span> JIT compiler vulnerabilities <a href="#jit-compiler-vulnerabilities" class="selflink">§</a></h2>
-
+<span class="missingcontent_ref" href="#missingcontent_4"><sup>missingcontent</sup></span>
+<span id="missingcontent_4" class="missingcontent">Write section on JIT compiler vulnerabilities</span>
 <h1 id="covert-channels-and-side-channels"><span class="header-section-number">3</span> Covert channels and side-channels <a href="#covert-channels-and-side-channels" class="selflink">§</a></h1>
 <p>A large class of attacks make use of so-called side-channels, which are attacks making use of so-called covert channels. Side-channels and covert channels are communication channels between two entities in a system, where the entities should not be able to communicate that way.</p>
 <p>A <strong>covert channel</strong> is such a channel where both entities intend to communicate through the channel. A <strong>side-channel</strong> is a such a channel where one end is the victim of an attack using the channel.</p>
@@ -688,7 +723,9 @@ int authenticate() {
 </div>
 <p>Specific bits in the memory address are used for different cache indexing purposes, as illustrated in fig. <a href="#fig:cache-indexing">5</a>. The least-significant <span class="math inline"><em>L</em></span> bits, where <span class="math inline">2<sup><em>L</em></sup></span> is the cache line size, are used to compute an address’s offset within a cache line. The next <span class="math inline"><em>S</em></span> bits, where <span class="math inline">2<sup><em>S</em></sup></span> is the number of cache sets, are used to determine which cache set an address maps to. The remaining top bits are “tag bits”. They are stored alongside a line in the cache so later operations can detect which specific memory address is replicated in that cache line.</p>
 <p>For direct-mapped and fully-associative caches, the mapping of an address to cache locations also works as described above. In fully-associative caches the number of cache sets is 1, so <span class="math inline"><em>S</em></span>=0.</p>
-
+<span class="missingcontent_ref" href="#missingcontent_5"><sup>missingcontent</sup></span>
+<span id="missingcontent_5" class="missingcontent">Also explain cache coherency \index{cache coherency}?}
+\missingcontent{Also say something about TLBs and prefetching?</span>
 <h3 id="operation-of-cache-side-channels"><span class="header-section-number">3.2.2</span> Operation of cache side-channels <a href="#operation-of-cache-side-channels" class="selflink">§</a></h3>
 <p>Cache side-channels typically work by the spy determining whether a memory access was a cache hit or a cache miss. From that information, in specific situations, it may be able to deduce bits of data that only the victim has access to.</p>
 <p>Let’s illustrate this with describing a few well-known cache side-channels:</p>
@@ -700,7 +737,9 @@ int authenticate() {
 <li>The Reload step: The spy accesses the address and measures the access time. A short access time means the address is in the cache; a long access time means it’s not in the cache. In other words, a short access time means that in step 2 the victim accessed the address; a long access time means it did not access the address.</li>
 </ol>
 <p>Knowing if a victim accessed a specific address can leak sensitive information. Such as when accessing a specific array element depends on whether a specific bit is set in secret data. For example, <span class="citation" data-cites="Yarom2014">(Yarom and Falkner <a href="#ref-Yarom2014">2014</a>)</span> demonstrates that a Flush+Reload attack can be used to leak GnuPG private keys.</p>
-
+<span class="missingcontent_ref" href="#missingcontent_6"><sup>missingcontent</sup></span>
+<span id="missingcontent_6" class="missingcontent">Should there be a more elaborate example with code that
+demonstrates in more detail how a flush+reload attack works?</span>
 <h4 id="primeprobe"><span class="header-section-number">3.2.2.2</span> Prime+Probe <a href="#primeprobe" class="selflink">§</a></h4>
 <p>In a Prime+Probe attack, there is no need for memory to be shared between victim and spy. The attack works in 3 steps:</p>
 <ol type="1">
@@ -748,7 +787,8 @@ int authenticate() {
 <p>Another possibility is to clear the cache between times when the victim runs and the spy runs. This is probably going to incur quite a bit of performance overhead, and may also not always possible e.g. when victim and spy are running at the same time on 2 CPUs sharing a cache level.</p>
 <h2 id="resource-contention-channels"><span class="header-section-number">3.3</span> Resource contention channels <a href="#resource-contention-channels" class="selflink">§</a></h2>
 <h2 id="channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors"><span class="header-section-number">3.4</span> Channels making use of aliasing in branch predictors and other predictors <a href="#channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors" class="selflink">§</a></h2>
-
+<span class="missingcontent_ref" href="#missingcontent_7"><sup>missingcontent</sup></span>
+<span id="missingcontent_7" class="missingcontent">Should we also discuss more &quot;covert&quot; channels here such as power analysis, etc?</span>
 <h2 id="transient-execution-attacks"><span class="header-section-number">3.5</span> Transient execution attacks <a href="#transient-execution-attacks" class="selflink">§</a></h2>
 <h3 id="transient-execution"><span class="header-section-number">3.5.1</span> Transient execution <a href="#transient-execution" class="selflink">§</a></h3>
 <p>CPUs execute sequences of instructions. There often are dependencies between instructions in the sequence. That means that the outcome of one instruction influences the execution of a later instruction.</p>
@@ -775,19 +815,26 @@ int authenticate() {
 <p>The <code>b.ge</code> instruction is a conditional branch instruction. It computes whether the next instruction should be the one immediately after, or the one pointed to by label <code>Lbb2</code>. In case it’s the instruction immediately after, the branch is said to not be taken. Instead, if it’s the instruction pointed to be label <code>Lbb2</code>, the branch is said to be taken. When the condition <code>.ge</code> (greater or equal) is true, the branch is taken. That condition is defined or set by the previous instruction, the <code>cmp x0, #0</code> instruction, which compares the value in register <code>x0</code> with 0. Therefore, there is a dependency between the <code>cmp</code> instruction and the <code>b.ge</code> instruction. To overcome this dependency, and be able to execute the <code>cmp</code>, <code>b.ge</code> and potentially more instructions in parallel, the CPU predicts the outcome of the branch instruction. In other words, it predicts whether the branch is taken or not. The CPU will pick up either the <code>neg</code> or the <code>ret</code> instruction to start executing next. This is called <em>speculation</em>, as the CPU <em>speculatively executes</em> either instruction <code>neg</code>, or <code>ret</code>.</p>
 </dd>
 </dl>
-
+<span class="todo_ref" href="#todo_10"><sup>todo</sup></span>
+<span id="todo_10" class="todo">Show a second example of cpu speculation that is not based on
+branch prediction.</span>
 <p>Of course, as with all predictions, the CPU gets the prediction wrong from time to time. In that case, all changes to the system state that affect the correct execution of the program need to be undone. In the above example, if the branch should have been taken, but the CPU predicted it to not be taken, the <code>neg</code> instruction is executed incorrectly and changes the value in register <code>x0</code>. After discovering the branch was mis-predicted, the CPU would have to restore the correct, non-negated, value in register <code>x0</code>.</p>
 <p>Any instructions that are executed under so-called <em>mis-speculation</em>, are called <em>transient instructions</em>.</p>
 <p>The paragraph above says “<em>the system state that affects the correct execution of the program, needs to be undone</em>”. There is a lot of system state that does not affect the correct execution of a program. And the changes to such system state by transient instructions is often not undone.</p>
 <p>For example, a transient load instruction can fetch a value into the cache that was not there before. By bringing that value in the cache, it could have evicted another value from the cache. Whether a value is present in the cache does not influence the correct execution of a program; it merely influences its execution speed. Therefore, the effect of transient execution on the content of the cache is typically not undone when detecting mis-speculation.</p>
 <p>Sometimes, it is said that the <em>architectural effects</em> of transient instructions need to be undone, but the <em>micro-architectural effects</em> do not need to be undone.</p>
-<p>The above explanation describes architectural effects as changes in system state that need to be undone after detecting mis-speculation. In reality, most systems will implement techniques that keep all state changes in micro-architectural buffers until it is clear that all predictions made to execute that instruction were correct. At that point the micro-architectural state is <em>committed</em> to become architectural state. In that way, mis-predictions naturally do not affect architectural state. </p>
+<p>The above explanation describes architectural effects as changes in system state that need to be undone after detecting mis-speculation. In reality, most systems will implement techniques that keep all state changes in micro-architectural buffers until it is clear that all predictions made to execute that instruction were correct. At that point the micro-architectural state is <em>committed</em> to become architectural state. In that way, mis-predictions naturally do not affect architectural state. <span class="todo_ref" href="#todo_6"><sup>todo</sup></span><span id="todo_6" class="todo">Could we find a good reference that explains
+micro-architectural versus architectural state in more detail? Is &quot;Computer
+Architecture: A Quantitative Approach&quot; the best reference available?</span></p>
 <p><em>Transient execution attacks</em> are a category of side-channel attacks that use the micro-architectural side-effects of transient execution as a side channel.</p>
-
+<span class="missingcontent_ref" href="#missingcontent_8"><sup>missingcontent</sup></span>
+<span id="missingcontent_8" class="missingcontent">Write section on transient execution attacks</span>
 <h4 id="site-isolation"><span class="header-section-number">3.5.1.1</span> Site isolation <a href="#site-isolation" class="selflink">§</a></h4>
-
+<span class="missingcontent_ref" href="#missingcontent_9"><sup>missingcontent</sup></span>
+<span id="missingcontent_9" class="missingcontent">Write section on site isolation as a SpectreV1 mitigation</span>
 <h2 id="physical-access-side-channel-attacks"><span class="header-section-number">3.6</span> Physical access side-channel attacks <a href="#physical-access-side-channel-attacks" class="selflink">§</a></h2>
-
+<span class="missingcontent_ref" href="#missingcontent_10"><sup>missingcontent</sup></span>
+<span id="missingcontent_10" class="missingcontent">Write chapter on physical access side-channel attacks.</span>
 <h1 id="supply-chain-attacks"><span class="header-section-number">4</span> Supply chain attacks <a href="#supply-chain-attacks" class="selflink">§</a></h1>
 <p>A software <em>supply chain attack</em> occurs when an attacker interferes with the software development or distribution processes with the intention to impact users of that software.</p>
 <p>Supply chain attacks and their possible mitigations are not specific to compilers. However, compilers are an attractive target for attack because they are widely deployed to developers, in continuous integration systems and as JITs. Also, an infected compiler has the possibility to make a much larger impact if it can silently spread the infection to other software created with or run using it.</p>
@@ -799,9 +846,12 @@ int authenticate() {
 <p>XcodeGhost is the name given to malware first detected in 2015 that infected thousands of iOS applications <span class="citation" data-cites="Cox2015">(Cox <a href="#ref-Cox2015">2015</a>)</span>. The source of the infection was tracked down to a trojanized version of Xcode tools. The malware exists in an extra object file within the Xcode tools and is silently linked into each application as it is built. File sharing sites were used to spread the trojanized Xcode tools to unwitting developers.</p>
 <p>A trojanized linker was found to be involved in a supply chain attack discovered in 2017 named ShadowPad <span class="citation" data-cites="Greenberg2019">(Greenberg <a href="#ref-Greenberg2019">2019</a>)</span>. Some instances of the attack were perpetrated using a trojanized Visual Studio linker that silently incorporates a malicious library into applications as they are built. Related attacks named CCleaner and ShadowHammer used the same approach of a trojanized linker to infect built applications. Infected applications from these attacks were distributed to millions of users world-wide.</p>
 <p>These cases highlight that attacks on compilers, and especially linkers and libraries, are a viable route to silently infect many other applications, and there is no doubt that there will be more such attacks in the future. Let us now explore what we can do about these.</p>
-
+<span class="missingcontent_ref" href="#missingcontent_11"><sup>missingcontent</sup></span>
+<span id="missingcontent_11" class="missingcontent">Explain how these vulnerabilities arise and how to mitigate them.</span>
 <h1 id="physical-attacks"><span class="header-section-number">5</span> Physical attacks <a href="#physical-attacks" class="selflink">§</a></h1>
-
+<span class="todo_ref" href="#todo_11"><sup>todo</sup></span>
+<span id="todo_11" class="todo">This chapter should probably be moved under section &#39;Physical access 
+side-channel attacks&#39; higher-up</span>
 <h2 id="overview"><span class="header-section-number">5.1</span> Overview <a href="#overview" class="selflink">§</a></h2>
 <p>There are many types of physical attacks – these attack methods focus on one or multiple physical properties of systems ( e.g. CPU, GPU, crypto hardware), and can either be</p>
 <ul>
@@ -854,7 +904,8 @@ int authenticate() {
 <li>Using data processing instruction with data independent timing for cryptographic operations. In recent Arm architectures (including Armv8-A and Armv8-M), some instructions are architecturally defined as DIT (Data Independent Timing).</li>
 <li>For conditional branches where the condition is dependent on secret data, use table branch instead might help reduce timing base leakage (both paths result in a branch). It is not necessary to replace all conditional branch. For example, many loop counters in crypto operation can be independent to the crypto key or input data values, so there is no need to change those loops.</li>
 </ul>
-
+<span class="todo_ref" href="#todo_12"><sup>todo</sup></span>
+<span id="todo_12" class="todo">There is overlap with section timing-side-channels. How to best consolidate that?</span>
 <p>There are additional software techniques to mitigate power leakage. One of the most well-known techniques is masking (e.g. Boolean, multiplicative, affine). When applying software mitigation, software developers need to check that optimizations carried out by compilers (C/C++) do not impact the mitigation, as compilers can be very smart and undo the masking in order to perform faster operations (or reducing code size).</p>
 <h2 id="fault-injection-attacks"><span class="header-section-number">5.3</span> Fault injection attacks <a href="#fault-injection-attacks" class="selflink">§</a></h2>
 <h3 id="common-forms-of-fault-injection-attacks"><span class="header-section-number">5.3.1</span> Common forms of Fault injection attacks <a href="#common-forms-of-fault-injection-attacks" class="selflink">§</a></h3>
@@ -873,7 +924,8 @@ int authenticate() {
 </ul></li>
 </ul>
 <p>Such voltage/clock glitch attack could affect multiple parts in the processors, but sometimes the impact might not lead to any visible error in the operation, leaving the only effect that the processor skipping a memory/register write, or writing an incorrect value. Potentially, a glitch attack could result in other observable effect (e.g. register reset, bit toggle). The analysis of fault injection methods (and their physical effect) and the observable effects at the program or instruction execution level are often referred to as fault models, where one can say that a specific fault injection behaves as an instruction skip, etc. More details about the concept of fault models can be found in the paper “Fault Attacks on Secure Embedded Software: Threats, Design and Evaluation” (https://arxiv.org/pdf/2003.10513.pdf), where a good illustration of the concept is shown in figure 1 of that paper.</p>
-
+<span class="todo_ref" href="#todo_13"><sup>todo</sup></span>
+<span id="todo_13" class="todo">Make the above reference to a paper use bibtex.</span>
 <p>Using glitching methods, there are several common ways of attacking a system. For example:</p>
 <ul>
 <li>Skipping an instruction during setup sequence for security features – e.g. skipping the write to the MPU (Memory Protection Unit)/Security Attribution Unit (SAU) so that the MPU/SAU is not enabled.</li>
@@ -885,10 +937,16 @@ int authenticate() {
 <h3 id="countermeasures-1"><span class="header-section-number">5.3.2</span> Countermeasures <a href="#countermeasures-1" class="selflink">§</a></h3>
 <p>Ideally, system designers can use hardware (SoCs or microcontroller) that support protection against fault injection. For example, a hardware circuit can include redundancy logic (spatial and temporal). In addition, software developers can make such attack harder by adding checks after the write operations. When applying software mitigation, software developers need to check that optimizations carried out by compilers (C/C++) do not impact the mitigation.</p>
 <h1 id="other-security-topics-relevant-for-compiler-developers"><span class="header-section-number">6</span> Other security topics relevant for compiler developers <a href="#other-security-topics-relevant-for-compiler-developers" class="selflink">§</a></h1>
-
-
+<span class="missingcontent_ref" href="#missingcontent_12"><sup>missingcontent</sup></span>
+<span id="missingcontent_12" class="missingcontent">Write chapter with other security topics.</span>
+<span class="missingcontent_ref" href="#missingcontent_13"><sup>missingcontent</sup></span>
+<span id="missingcontent_13" class="missingcontent">Write section on securely clearing memory in C/C++ and undefined behaviour.</span>
 <h1 id="appendix-contribution-guidelines" class="unnumbered">Appendix: contribution guidelines <a href="#appendix-contribution-guidelines" class="selflink">§</a></h1>
-
+<span class="missingcontent_ref" href="#missingcontent_14"><sup>missingcontent</sup></span>
+<span id="missingcontent_14" class="missingcontent">Write chapter on contribution guidelines.
+ These should include at least: project locaton on github; how to create pull requests/issues.
+ Where do we discuss - mailing list? Grammar and writing style guidelines.
+ How to use todos and index.</span>
 
 
 <h1 id="references" class="unnumbered">References <a href="#references" class="selflink">§</a></h1>
