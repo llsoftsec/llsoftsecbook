@@ -110,8 +110,8 @@ body {
 :root {
   /* Limit the width of sidenotes on really large display to 376px. Otherwise
      allow up to 23% of the screen width to be used by the sidenotes. */
-  --sidenote-width: calc(min(23vw, 376px));
-  --sidenote-col-width: calc(min(25vw, 400px)); /* including padding to main content. */
+  --sidenote-width: calc(min(23%, 376px));
+  --sidenote-col-width: calc(min(25%, 400px)); /* including padding to main content. */
 }
 
 .sidenote, .todo, .missingcontent {
@@ -151,8 +151,8 @@ body {
 @media (max-width: 767px) {
   :root {
      /* on sizes where it only is visible as an overlay */
-    --toc-sidebar-max-width: 100vw;
-    --main-content-max-width: calc(min(100vw, 576px)); /* = bootstrap md */
+    --toc-sidebar-max-width: 100%;
+    --main-content-max-width: calc(min(100%, 576px)); /* = bootstrap md */
     /* sidenotes are shown inline on smalls screens. */
     --sidenote-col-width: 0px;
   }
@@ -171,8 +171,8 @@ body {
 @media (min-width: 768px) {
   :root {
     /* on sizes where it only is visible as an overlay */
-    --toc-sidebar-max-width: 100vw;
-    --main-content-max-width: calc(min(100vw, 576px)); /* = bootstrap md */
+    --toc-sidebar-max-width: 100%;
+    --main-content-max-width: calc(min(100%, 576px)); /* = bootstrap md */
   }
 }
 
@@ -181,17 +181,17 @@ body {
   :root {
     /* on large displays, show TOC sidebar next to main text.
        Make it 25% of screen width, but no more than 576px wide. */
-    --toc-sidebar-max-width: calc(min(25vw, 576px));
+    --toc-sidebar-max-width: calc(min(25%, 576px));
     /* Make main content at most 75% of screen width to leave room for
        the TOC sidebar, which is 25% width at most, see above.
        576px limits the width to at most the bootstrap md breakpoint. */
-    --main-content-max-width: calc(min(75vw, 576px));
+    --main-content-max-width: calc(min(75%, 576px));
   }
   #main-content-col:not(.without-tocsidebar) {
-    max-width: calc(100vw - var(--toc-sidebar-max-width));
+    max-width: calc(100% - var(--toc-sidebar-max-width));
   }
   #main-content-col .without-tocsidebar {
-    max-width: 100vw;
+    max-width: 100%;
   }
 }
 

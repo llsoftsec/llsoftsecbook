@@ -136,8 +136,8 @@ height: calc(100vh - 56px);
 
 :root {
 
---sidenote-width: calc(min(23vw, 376px));
---sidenote-col-width: calc(min(25vw, 400px)); 
+--sidenote-width: calc(min(23%, 376px));
+--sidenote-col-width: calc(min(25%, 400px)); 
 }
 .sidenote, .todo, .missingcontent {
 float: right; 
@@ -169,8 +169,8 @@ display: none;
 @media (max-width: 767px) {
 :root {
 
---toc-sidebar-max-width: 100vw;
---main-content-max-width: calc(min(100vw, 576px)); 
+--toc-sidebar-max-width: 100%;
+--main-content-max-width: calc(min(100%, 576px)); 
 
 --sidenote-col-width: 0px;
 }
@@ -187,23 +187,23 @@ font-size: 80%;
 @media (min-width: 768px) {
 :root {
 
---toc-sidebar-max-width: 100vw;
---main-content-max-width: calc(min(100vw, 576px)); 
+--toc-sidebar-max-width: 100%;
+--main-content-max-width: calc(min(100%, 576px)); 
 }
 }
 
 @media (min-width: 1200px) {
 :root {
 
---toc-sidebar-max-width: calc(min(25vw, 576px));
+--toc-sidebar-max-width: calc(min(25%, 576px));
 
---main-content-max-width: calc(min(75vw, 576px));
+--main-content-max-width: calc(min(75%, 576px));
 }
 #main-content-col:not(.without-tocsidebar) {
-max-width: calc(100vw - var(--toc-sidebar-max-width));
+max-width: calc(100% - var(--toc-sidebar-max-width));
 }
 #main-content-col .without-tocsidebar {
-max-width: 100vw;
+max-width: 100%;
 }
 }
 #toc-sidebar {
@@ -318,7 +318,7 @@ cursor: pointer;
   <p>
       Copyright 2021-2022 Arm Limited <a href="mailto:open-source-office@arm.com" class="email">open-source-office@arm.com</a><br />
     </p>
-  <p>Version: 0-121-g9f202a2</p>
+  <p>Version: 0-122-gd185f94</p>
 </header>
 
 <main id="content">
