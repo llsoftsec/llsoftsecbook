@@ -222,9 +222,14 @@ $body$
     jQuery("#toc-sidebar a").addClass("link-secondary");
 
     // Needed to enable the bootstrap tooltips:
-    let tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    let tooltipList = [...tooltipTriggerList].map(
-      tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {trigger : 'hover'}));
+    let isTouchScreen = "ontouchstart" in document.documentElement;
+    if (!isTouchScreen) {
+      let tooltipTriggerList =
+        document.querySelectorAll('[data-bs-toggle="tooltip"]');
+      let tooltipList = [...tooltipTriggerList].map(
+        tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl,
+                                                  {trigger : 'hover'}));
+    }
 
     // Make sidenotes toggleable:
     jQuery('.sidenote_ref').click(function(){
