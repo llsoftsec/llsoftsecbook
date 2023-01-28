@@ -318,7 +318,7 @@ cursor: pointer;
   <p>
       Copyright 2021-2022 Arm Limited <a href="mailto:open-source-office@arm.com" class="email">open-source-office@arm.com</a><br />
     </p>
-  <p>Version: 0-122-gd185f94</p>
+  <p>Version: 0-123-gcf87fd6</p>
 </header>
 
 <main id="content">
@@ -1169,9 +1169,14 @@ side-channel attacks&#39; higher-up</span>
     jQuery("#toc-sidebar a").addClass("link-secondary");
 
     // Needed to enable the bootstrap tooltips:
-    let tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    let tooltipList = [...tooltipTriggerList].map(
-      tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {trigger : 'hover'}));
+    let isTouchScreen = "ontouchstart" in document.documentElement;
+    if (!isTouchScreen) {
+      let tooltipTriggerList =
+        document.querySelectorAll('[data-bs-toggle="tooltip"]');
+      let tooltipList = [...tooltipTriggerList].map(
+        tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl,
+                                                  {trigger : 'hover'}));
+    }
 
     // Make sidenotes toggleable:
     jQuery('.sidenote_ref').click(function(){
