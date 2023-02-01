@@ -232,6 +232,15 @@ cursor: pointer;
       <i class="bi bi-github"></i></a>
     <a id="view-source-button" class="btn btn-sm btn-outline-primary" role="button" data-bs-placement="bottom" data-bs-toggle="tooltip" data-bs-title="Suggest an edit" href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md">
       <i class="bi bi-pen"></i></a>
+    <span class="dropdown" id="share-dropdown">
+      <button class="btn btn-outline-primary btn-sm dropdown-toggle" id="share-button" type="button" id="shareDropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="bi bi-share-fill"></i></button>
+      <div class="dropdown-menu" aria-labelledby="shareDropdownMenuButton">
+        <a id="twitter-share-link" class="dropdown-item" href="#" target="_blank">Twitter</a>
+        <a id="mastodon-share-link" class="dropdown-item" href="#" target="_blank">Mastodon</a>
+        <a id="linkedin-share-link" class="dropdown-item" href="#" target="_blank">LinkedIn</a>
+      </div>
+    </span>
     </div>
     <a class="navbar-brand" href="#">LLSoftSecBook</a>
   </div>
@@ -318,7 +327,7 @@ cursor: pointer;
   <p>
       Copyright 2021-2022 Arm Limited <a href="mailto:open-source-office@arm.com" class="email">open-source-office@arm.com</a><br />
     </p>
-  <p>Version: 0-123-gcf87fd6</p>
+  <p>Version: 0-124-g5843c3d</p>
 </header>
 
 <main id="content">
@@ -1168,8 +1177,42 @@ side-channel attacks&#39; higher-up</span>
     // they will be coloured grey, so will be less distracting.
     jQuery("#toc-sidebar a").addClass("link-secondary");
 
-    // Needed to enable the bootstrap tooltips:
+    // Make the share button work:
+    // Use the web Share API where it is supported, on mobile devices,
+    // where it hopefully allows the user to pick any suitable app they
+    // have installed to share.
     let isTouchScreen = "ontouchstart" in document.documentElement;
+    let useNativeShare = isTouchScreen && navigator.share;
+    let shared_title = "Low-Level Software Security for Compiler Developers";
+    let shared_url = "https://llsoftsec.github.io/llsoftsecbook";
+    if (useNativeShare) {
+      let share_button = jQuery('#share-button');
+      share_button.click(function(){
+        navigator.share({ title: shared_title, url: shared_url});
+      });
+      // Disable drop-down functionality of the share button.
+      jQuery('#share-dropdown').removeClass('dropdown');
+      share_button.removeClass('dropdown-toggle');
+      share_button.removeAttr('data-bs-toggle');
+      // and add tooltip to the button now that it's not a drop-down.
+      share_button.attr("data-bs-placement", "bottom");
+      share_button.attr("data-bs-toggle", "tooltip");
+      share_button.attr("data-bs-title", "Share");
+    };
+    let twitter_params = { text: shared_title, url: shared_url,
+                           hashtags: "llsoftsecbook" };
+    jQuery("#twitter-share-link").attr("href",
+      "https://twitter.com/intent/tweet?" + jQuery.param(twitter_params));
+    jQuery("#linkedin-share-link").attr("href",
+      "https://www.linkedin.com/sharing/share-offsite/?"
+      + jQuery.param({url: shared_url}));
+    jQuery("#mastodon-share-link").attr("href",
+      "https://tootpick.org/#"
+      + jQuery.param({text: shared_title + ' ' + shared_url
+                            + ' #llsoftsecbook'}));
+
+
+    // Needed to enable the bootstrap tooltips:
     if (!isTouchScreen) {
       let tooltipTriggerList =
         document.querySelectorAll('[data-bs-toggle="tooltip"]');
