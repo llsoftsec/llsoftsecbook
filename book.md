@@ -1259,9 +1259,18 @@ b) The instructions used to implement the algorithm are from the subset of
    are used, data-independent execution time is guaranteed.
 
 At the moment, we do not know of a compiler implementation that actively helps
-to guarantee both (a) and (b). A great reference giving practical advice on how
-to achieve (a), (b) and more security hardening properties specific for
-cryptographic kernels is found in [@Pornin2018].
+to guarantee both (a) and (b).
+
+Using compiler techniques to transform a function such that it respects property
+(a) is an active research area. [@Wu2018] provides a method to convert a program
+such that it respects property (a), albeit by potentially introducing unsafe
+memory accesses. [@Soares2021] improves on that result by not introducing unsafe
+memory accesses, albeit by potentially needing to change the interface of the
+transformed function.
+
+A great reference giving practical advice on how to achieve (a), (b) and more
+security hardening properties specific for cryptographic kernels is found in
+[@Pornin2018].
 
 As discussed in [@Pornin2018], when implementing cryptographic algorithms, you
 also need to keep cache side-channel attacks in mind, which are discussed in the
