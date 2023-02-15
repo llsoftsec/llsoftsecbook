@@ -1266,7 +1266,8 @@ Using compiler techniques to transform a function such that it respects property
 such that it respects property (a), albeit by potentially introducing unsafe
 memory accesses. [@Soares2021] improves on that result by not introducing unsafe
 memory accesses, albeit by potentially needing to change the interface of the
-transformed function.
+transformed function.\todo{Also discuss the techniques implemented in the
+[Constatine compiler](https://github.com/pietroborrello/constantine).}
 
 A great reference giving practical advice on how to achieve (a), (b) and more
 security hardening properties specific for cryptographic kernels is found in
