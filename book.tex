@@ -166,7 +166,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2021-2022 Arm Limited
   \href{mailto:open-source-office@arm.com}{\nolinkurl{open-source-office@arm.com}}\\
 
-Version 0-126-g39045d6
+Version 0-131-gb58f4f6
 \clearpage
 
 {
@@ -1657,10 +1657,22 @@ both:
 \end{enumerate}
 
 At the moment, we do not know of a compiler implementation that actively
-helps to guarantee both (a) and (b). A great reference giving practical
-advice on how to achieve (a), (b) and more security hardening properties
-specific for cryptographic kernels is found in (Pornin
-\protect\hyperlink{ref-Pornin2018}{2018}).
+helps to guarantee both (a) and (b).
+
+Using compiler techniques to transform a function such that it respects
+property (a) is an active research area. (Wu et al.
+\protect\hyperlink{ref-Wu2018}{2018}) provides a method to convert a
+program such that it respects property (a), albeit by potentially
+introducing unsafe memory accesses. (Soares and Pereira
+\protect\hyperlink{ref-Soares2021}{2021}) improves on that result by not
+introducing unsafe memory accesses, albeit by potentially needing to
+change the interface of the transformed
+function.\todo{Also discuss the techniques implemented in the
+[Constatine compiler](https://github.com/pietroborrello/constantine).}
+
+A great reference giving practical advice on how to achieve (a), (b) and
+more security hardening properties specific for cryptographic kernels is
+found in (Pornin \protect\hyperlink{ref-Pornin2018}{2018}).
 
 As discussed in (Pornin \protect\hyperlink{ref-Pornin2018}{2018}), when
 implementing cryptographic algorithms, you also need to keep cache
@@ -2869,6 +2881,12 @@ Association for Computing Machinery.
 Sharma, Siddharth. 2014. 2014.
 \url{https://www.redhat.com/en/blog/enhance-application-security-fortifysource}.
 
+\leavevmode\hypertarget{ref-Soares2021}{}%
+Soares, Luigi, and Fernando Magno Quintan Pereira. 2021. ``Memory-Safe
+Elimination of Side Channels.'' In \emph{2021 IEEE/ACM International
+Symposium on Code Generation and Optimization (CGO)}. IEEE.
+\url{https://doi.org/10.1109/cgo51591.2021.9370305}.
+
 \leavevmode\hypertarget{ref-Solar1997}{}%
 Solar Designer. 1997. ``Getting Around Non-Executable Stack (and Fix).''
 1997. \url{https://seclists.org/bugtraq/1997/Aug/63}.
@@ -2888,6 +2906,13 @@ Weber, Daniel, Ahmad Ibrahim, Hamed Nemati, Michael Schwarz, and
 Christian Rossow. 2021. ``Osiris: Automated Discovery of
 Microarchitectural Side Channels.'' In \emph{USENIX Security'21}.
 \url{https://arxiv.org/abs/2106.03470}.
+
+\leavevmode\hypertarget{ref-Wu2018}{}%
+Wu, Meng, Shengjian Guo, Patrick Schaumont, and Chao Wang. 2018.
+``Eliminating Timing Side-Channel Leaks Using Program Repair.'' In
+\emph{Proceedings of the 27th ACM SIGSOFT International Symposium on
+Software Testing and Analysis}. ACM.
+\url{https://doi.org/10.1145/3213846.3213851}.
 
 \leavevmode\hypertarget{ref-Yarom2014}{}%
 Yarom, Yuval, and Katrina Falkner. 2014. ``FLUSH+RELOAD: A High

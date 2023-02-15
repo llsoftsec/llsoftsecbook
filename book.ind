@@ -4,7 +4,7 @@
   \item AddressSanitizer (ASan), \hyperpage{25}
   \item anti dependency, \hyperpage{35}
   \item arbitrary code execution, \hyperpage{9}
-  \item architectural effects, \hyperpage{36}
+  \item architectural effects, \hyperpage{37}
   \item ASLR, \hyperpage{18}
 
   \indexspace
@@ -18,16 +18,16 @@
   \item C++, \hyperpage{6, 7}, \hyperpage{12}, \hyperpage{17}, 
 		\hyperpage{19}, \hyperpage{25}
   \item cache, \hyperpage{29}
-  \item cache access time, \hyperpage{29}
+  \item cache access time, \hyperpage{30}
   \item cache block, \hyperpage{30}
-  \item cache coherency, \hyperpage{31}
+  \item cache coherency, \hyperpage{32}
   \item cache eviction, \hyperpage{30}
-  \item cache hit, \hyperpage{29}
+  \item cache hit, \hyperpage{30}
   \item cache line, \hyperpage{30}
-  \item cache miss, \hyperpage{29}
+  \item cache miss, \hyperpage{30}
   \item cache replacement policy, \hyperpage{30}
   \item cache set, \hyperpage{31}
-  \item cache size, \hyperpage{29}
+  \item cache size, \hyperpage{30}
   \item CFI, \hyperpage{18}
   \item Clang, \hyperpage{25}
   \item Collide+Probe, \hyperpage{33}
@@ -39,7 +39,7 @@
   \indexspace
 
   \item data-only attacks, \hyperpage{23}
-  \item direct-mapped cache, \hyperpage{30}
+  \item direct-mapped cache, \hyperpage{31}
   \item dispatcher gadget, \hyperpage{15}
 
   \indexspace
@@ -55,7 +55,7 @@
   \item Flush+Reload, \hyperpage{32}
   \item forward-edge CFI, \hyperpage{18}
   \item free, \hyperpage{25}
-  \item fully-associative cache, \hyperpage{30}
+  \item fully-associative cache, \hyperpage{31}
   \item fuzzing, \hyperpage{25}
 
   \indexspace
@@ -92,13 +92,13 @@
 
   \item malloc, \hyperpage{25}
   \item measurement sequence, \hyperpage{33}
-  \item memory access time, \hyperpage{29}
+  \item memory access time, \hyperpage{30}
   \item Memory Tagging Extension (MTE), \hyperpage{26}
   \item MemorySanitizer, \hyperpage{26}
   \item MemTagSanitizer, \hyperpage{26}
-  \item micro-architectural effects, \hyperpage{36}
+  \item micro-architectural effects, \hyperpage{37}
   \item mis-speculation, \hyperpage{36}
-  \item multi-level cache, \hyperpage{29}
+  \item multi-level cache, \hyperpage{30}
   \item multithreading, \hyperpage{34}
 
   \indexspace
@@ -134,7 +134,7 @@
   \indexspace
 
   \item sanitizers, \hyperpage{25}
-  \item set-associative cache, \hyperpage{30}
+  \item set-associative cache, \hyperpage{31}
   \item shadow memory, \hyperpage{25}
   \item shadow stack, \hyperpage{20}
   \item shellcode, \hyperpage{11}, \hyperpage{13}

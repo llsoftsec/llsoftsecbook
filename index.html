@@ -332,7 +332,7 @@ cursor: pointer;
   <p>
       Copyright 2021-2022 Arm Limited <a href="mailto:open-source-office@arm.com" class="email">open-source-office@arm.com</a><br />
     </p>
-  <p>Version: 0-126-g39045d6</p>
+  <p>Version: 0-131-gb58f4f6</p>
 </header>
 
 <main id="content">
@@ -391,8 +391,8 @@ describing in more detail why the range limitation matters</span>, or</li>
 <li>In an <em>interactive attack</em>, the attacker gives malicious input to the victim program. The malicious input causes the victim program to perform the read the attacker instructed it to, and to output the results of that read. This output could be any kind of output, for example a network packet that the victim transmits. The attacker can observe the result of the read primitive by looking at this output, for example parsing this network packet. This process then repeats: the attacker sends more malicious input to the victim, observes the output and prepares the next input. You can see an example of this type of attack in <span class="citation" data-cites="Beer2020">(Beer <a href="#ref-Beer2020">2020</a>)</span>, which describes a zero-click radio proximity exploit.</li>
 <li>In a <em>non-interactive (one-shot) attack</em>, the attacker provides all malicious input to the victim program at once. The malicious input triggers multiple primitives one after the other, and the primitives are able to observe the effects of the preceding operations through the victim program’s state. The input could be, for example, in the form of a JavaScript program <span class="citation" data-cites="Groß2020">(Groß <a href="#ref-Groß2020">2020</a>)</span>, or a PDF file pretending to be a GIF <span class="citation" data-cites="Beer2021">(Beer and Groß <a href="#ref-Beer2021">2021</a>)</span>.</li>
 </ul>
-<span class="todo_ref" href="#todo_7"><sup>todo</sup></span>
-<span id="todo_7" class="todo">The references in this section describe complicated modern exploits.
+<span class="todo_ref" href="#todo_8"><sup>todo</sup></span>
+<span id="todo_8" class="todo">The references in this section describe complicated modern exploits.
 Consider linking to simpler exploits, as well as some tutorial-level material.</span>
 <p>How does an attacker obtain these kinds of primitives in the first place? The details vary, and in some cases it takes a combination of many techniques, some of which are out of scope for this book. But we will be describing a few of them in this chapter. For example a stack buffer overflow results in a (restricted) write primitive when the input size exceeds what the program expected.</p>
 <p>As part of an attack, the attacker will want to execute each primitive more than once, since a single read or write operation will rarely be enough to achieve their end goal (more on this later). How can primitives be combined to perform multiple reads/writes?</p>
@@ -498,8 +498,8 @@ int main(int argc, char* argv[]) {
     ldr x21, [sp, #16]
     add sp, sp, #0x30
     ret</code></pre>
-<span class="todo_ref" href="#todo_8"><sup>todo</sup></span>
-<span id="todo_8" class="todo">Explain how these gadgets could result from C/C++ code. The current
+<span class="todo_ref" href="#todo_9"><sup>todo</sup></span>
+<span id="todo_9" class="todo">Explain how these gadgets could result from C/C++ code. The current
 versions are slightly tweaked by hand to have more manageable offsets.</span>
 <p>Both gadgets also clobber several uninteresting registers, but since <code>gadget_x2</code> also clears <code>x0</code>, it becomes clear that we should use a ROP chain that:</p>
 <ol type="1">
@@ -530,8 +530,8 @@ versions are slightly tweaked by hand to have more manageable offsets.</span>
 </figure>
 </div>
 <p>In figure <a href="#fig:jop">3</a>, <code>x4</code> initially points to the “dispatch table”, which has been modified by the attacker to contain the addresses of the three gadgets they want to execute. The dispatcher gadget loads each address in the dispatch table one by one and branches to them. The first gadget loads <code>x0</code> and <code>x1</code> from the stack, where the attacker has placed the inputs of their choice. It then loads its return address, also modified by the attacker so that it points back to the dispatcher gadget, and returns to it. The dispatcher branches to the next gadget, which adds <code>x0</code> and <code>x1</code> and leaves the result in <code>x0</code>, branching back to the dispatcher through another value loaded from the stack into <code>x2</code>. The final gadget stores the result of the addition, which remains in <code>x0</code>, to the stack, before branching to <code>x2</code>, which still points to the dispatcher gadget.</p>
-<span class="todo_ref" href="#todo_9"><sup>todo</sup></span>
-<span id="todo_9" class="todo">The gadgets in the figure are made up, chosen to highlight that each
+<span class="todo_ref" href="#todo_10"><sup>todo</sup></span>
+<span id="todo_10" class="todo">The gadgets in the figure are made up, chosen to highlight that each
 gadget can end in a different type of indirect control flow transfer
 instruction. Consider replacing them with more realistic ones.</span>
 <h3 id="counterfeit-object-oriented-programming"><span class="header-section-number">2.4.3</span> Counterfeit Object-oriented programming <a href="#counterfeit-object-oriented-programming" class="selflink">§</a></h3>
@@ -705,7 +705,10 @@ hardware-based, e.g. PAuth-based pointer integrity schemes, MTE etc</span>
 <p>For example, in the Arm architecture, the Armv8.4-A <a href="https://developer.arm.com/documentation/ddi0595/2021-06/AArch64-Registers/DIT--Data-Independent-Timing">DIT extension</a> guarantees that execution time is data-independent for a subset of the AArch64 instructions.</p>
 <p>By ensuring that the extension is enabled and only instructions in the subset are used, data-independent execution time is guaranteed.</p></li>
 </ol>
-<p>At the moment, we do not know of a compiler implementation that actively helps to guarantee both (a) and (b). A great reference giving practical advice on how to achieve (a), (b) and more security hardening properties specific for cryptographic kernels is found in <span class="citation" data-cites="Pornin2018">(Pornin <a href="#ref-Pornin2018">2018</a>)</span>.</p>
+<p>At the moment, we do not know of a compiler implementation that actively helps to guarantee both (a) and (b).</p>
+<p>Using compiler techniques to transform a function such that it respects property (a) is an active research area. <span class="citation" data-cites="Wu2018">(Wu et al. <a href="#ref-Wu2018">2018</a>)</span> provides a method to convert a program such that it respects property (a), albeit by potentially introducing unsafe memory accesses. <span class="citation" data-cites="Soares2021">(Soares and Pereira <a href="#ref-Soares2021">2021</a>)</span> improves on that result by not introducing unsafe memory accesses, albeit by potentially needing to change the interface of the transformed function.<span class="todo_ref" href="#todo_6"><sup>todo</sup></span><span id="todo_6" class="todo">Also discuss the techniques implemented in the
+[Constatine compiler](https://github.com/pietroborrello/constantine).</span></p>
+<p>A great reference giving practical advice on how to achieve (a), (b) and more security hardening properties specific for cryptographic kernels is found in <span class="citation" data-cites="Pornin2018">(Pornin <a href="#ref-Pornin2018">2018</a>)</span>.</p>
 <p>As discussed in <span class="citation" data-cites="Pornin2018">(Pornin <a href="#ref-Pornin2018">2018</a>)</span>, when implementing cryptographic algorithms, you also need to keep cache side-channel attacks in mind, which are discussed in the <a href="#cache-side-channel-attacks">section on cache side-channel attacks</a>.</p>
 <h2 id="cache-side-channels"><span class="header-section-number">3.2</span> Cache side-channels <a href="#cache-side-channels" class="selflink">§</a></h2>
 <p><a href="https://en.wikipedia.org/wiki/Cache_(computing)">Caches</a> are used in almost every computing system. They are small and much faster memories than the main memory. They aim to automatically keep frequently used data accessed by programs, so that average memory access time improves. Various techniques exist where a covert communication can happen between processes that share a cache, without the processes having rights to read or write to the same memory locations. To understand how these techniques work, one needs to understand typical organization and operation of a cache.</p>
@@ -829,15 +832,15 @@ demonstrates in more detail how a flush+reload attack works?</span>
 <p>The <code>b.ge</code> instruction is a conditional branch instruction. It computes whether the next instruction should be the one immediately after, or the one pointed to by label <code>Lbb2</code>. In case it’s the instruction immediately after, the branch is said to not be taken. Instead, if it’s the instruction pointed to be label <code>Lbb2</code>, the branch is said to be taken. When the condition <code>.ge</code> (greater or equal) is true, the branch is taken. That condition is defined or set by the previous instruction, the <code>cmp x0, #0</code> instruction, which compares the value in register <code>x0</code> with 0. Therefore, there is a dependency between the <code>cmp</code> instruction and the <code>b.ge</code> instruction. To overcome this dependency, and be able to execute the <code>cmp</code>, <code>b.ge</code> and potentially more instructions in parallel, the CPU predicts the outcome of the branch instruction. In other words, it predicts whether the branch is taken or not. The CPU will pick up either the <code>neg</code> or the <code>ret</code> instruction to start executing next. This is called <em>speculation</em>, as the CPU <em>speculatively executes</em> either instruction <code>neg</code>, or <code>ret</code>.</p>
 </dd>
 </dl>
-<span class="todo_ref" href="#todo_10"><sup>todo</sup></span>
-<span id="todo_10" class="todo">Show a second example of cpu speculation that is not based on
+<span class="todo_ref" href="#todo_11"><sup>todo</sup></span>
+<span id="todo_11" class="todo">Show a second example of cpu speculation that is not based on
 branch prediction.</span>
 <p>Of course, as with all predictions, the CPU gets the prediction wrong from time to time. In that case, all changes to the system state that affect the correct execution of the program need to be undone. In the above example, if the branch should have been taken, but the CPU predicted it to not be taken, the <code>neg</code> instruction is executed incorrectly and changes the value in register <code>x0</code>. After discovering the branch was mis-predicted, the CPU would have to restore the correct, non-negated, value in register <code>x0</code>.</p>
 <p>Any instructions that are executed under so-called <em>mis-speculation</em>, are called <em>transient instructions</em>.</p>
 <p>The paragraph above says “<em>the system state that affects the correct execution of the program, needs to be undone</em>”. There is a lot of system state that does not affect the correct execution of a program. And the changes to such system state by transient instructions is often not undone.</p>
 <p>For example, a transient load instruction can fetch a value into the cache that was not there before. By bringing that value in the cache, it could have evicted another value from the cache. Whether a value is present in the cache does not influence the correct execution of a program; it merely influences its execution speed. Therefore, the effect of transient execution on the content of the cache is typically not undone when detecting mis-speculation.</p>
 <p>Sometimes, it is said that the <em>architectural effects</em> of transient instructions need to be undone, but the <em>micro-architectural effects</em> do not need to be undone.</p>
-<p>The above explanation describes architectural effects as changes in system state that need to be undone after detecting mis-speculation. In reality, most systems will implement techniques that keep all state changes in micro-architectural buffers until it is clear that all predictions made to execute that instruction were correct. At that point the micro-architectural state is <em>committed</em> to become architectural state. In that way, mis-predictions naturally do not affect architectural state. <span class="todo_ref" href="#todo_6"><sup>todo</sup></span><span id="todo_6" class="todo">Could we find a good reference that explains
+<p>The above explanation describes architectural effects as changes in system state that need to be undone after detecting mis-speculation. In reality, most systems will implement techniques that keep all state changes in micro-architectural buffers until it is clear that all predictions made to execute that instruction were correct. At that point the micro-architectural state is <em>committed</em> to become architectural state. In that way, mis-predictions naturally do not affect architectural state. <span class="todo_ref" href="#todo_7"><sup>todo</sup></span><span id="todo_7" class="todo">Could we find a good reference that explains
 micro-architectural versus architectural state in more detail? Is &quot;Computer
 Architecture: A Quantitative Approach&quot; the best reference available?</span></p>
 <p><em>Transient execution attacks</em> are a category of side-channel attacks that use the micro-architectural side-effects of transient execution as a side channel.</p>
@@ -863,8 +866,8 @@ Architecture: A Quantitative Approach&quot; the best reference available?</span>
 <span class="missingcontent_ref" href="#missingcontent_11"><sup>missingcontent</sup></span>
 <span id="missingcontent_11" class="missingcontent">Explain how these vulnerabilities arise and how to mitigate them.</span>
 <h1 id="physical-attacks"><span class="header-section-number">5</span> Physical attacks <a href="#physical-attacks" class="selflink">§</a></h1>
-<span class="todo_ref" href="#todo_11"><sup>todo</sup></span>
-<span id="todo_11" class="todo">This chapter should probably be moved under section &#39;Physical access 
+<span class="todo_ref" href="#todo_12"><sup>todo</sup></span>
+<span id="todo_12" class="todo">This chapter should probably be moved under section &#39;Physical access 
 side-channel attacks&#39; higher-up</span>
 <h2 id="overview"><span class="header-section-number">5.1</span> Overview <a href="#overview" class="selflink">§</a></h2>
 <p>There are many types of physical attacks – these attack methods focus on one or multiple physical properties of systems ( e.g. CPU, GPU, crypto hardware), and can either be</p>
@@ -918,8 +921,8 @@ side-channel attacks&#39; higher-up</span>
 <li>Using data processing instruction with data independent timing for cryptographic operations. In recent Arm architectures (including Armv8-A and Armv8-M), some instructions are architecturally defined as DIT (Data Independent Timing).</li>
 <li>For conditional branches where the condition is dependent on secret data, use table branch instead might help reduce timing base leakage (both paths result in a branch). It is not necessary to replace all conditional branch. For example, many loop counters in crypto operation can be independent to the crypto key or input data values, so there is no need to change those loops.</li>
 </ul>
-<span class="todo_ref" href="#todo_12"><sup>todo</sup></span>
-<span id="todo_12" class="todo">There is overlap with section timing-side-channels. How to best consolidate that?</span>
+<span class="todo_ref" href="#todo_13"><sup>todo</sup></span>
+<span id="todo_13" class="todo">There is overlap with section timing-side-channels. How to best consolidate that?</span>
 <p>There are additional software techniques to mitigate power leakage. One of the most well-known techniques is masking (e.g. Boolean, multiplicative, affine). When applying software mitigation, software developers need to check that optimizations carried out by compilers (C/C++) do not impact the mitigation, as compilers can be very smart and undo the masking in order to perform faster operations (or reducing code size).</p>
 <h2 id="fault-injection-attacks"><span class="header-section-number">5.3</span> Fault injection attacks <a href="#fault-injection-attacks" class="selflink">§</a></h2>
 <h3 id="common-forms-of-fault-injection-attacks"><span class="header-section-number">5.3.1</span> Common forms of Fault injection attacks <a href="#common-forms-of-fault-injection-attacks" class="selflink">§</a></h3>
@@ -938,8 +941,8 @@ side-channel attacks&#39; higher-up</span>
 </ul></li>
 </ul>
 <p>Such voltage/clock glitch attack could affect multiple parts in the processors, but sometimes the impact might not lead to any visible error in the operation, leaving the only effect that the processor skipping a memory/register write, or writing an incorrect value. Potentially, a glitch attack could result in other observable effect (e.g. register reset, bit toggle). The analysis of fault injection methods (and their physical effect) and the observable effects at the program or instruction execution level are often referred to as fault models, where one can say that a specific fault injection behaves as an instruction skip, etc. More details about the concept of fault models can be found in the paper “Fault Attacks on Secure Embedded Software: Threats, Design and Evaluation” (https://arxiv.org/pdf/2003.10513.pdf), where a good illustration of the concept is shown in figure 1 of that paper.</p>
-<span class="todo_ref" href="#todo_13"><sup>todo</sup></span>
-<span id="todo_13" class="todo">Make the above reference to a paper use bibtex.</span>
+<span class="todo_ref" href="#todo_14"><sup>todo</sup></span>
+<span id="todo_14" class="todo">Make the above reference to a paper use bibtex.</span>
 <p>Using glitching methods, there are several common ways of attacking a system. For example:</p>
 <ul>
 <li>Skipping an instruction during setup sequence for security features – e.g. skipping the write to the MPU (Memory Protection Unit)/Security Attribution Unit (SAU) so that the MPU/SAU is not enabled.</li>
@@ -1082,6 +1085,9 @@ side-channel attacks&#39; higher-up</span>
 <div id="ref-Sharma2014">
 <p>Sharma, Siddharth. 2014. 2014. <a href="https://www.redhat.com/en/blog/enhance-application-security-fortifysource">https://www.redhat.com/en/blog/enhance-application-security-fortifysource</a>.</p>
 </div>
+<div id="ref-Soares2021">
+<p>Soares, Luigi, and Fernando Magno Quintan Pereira. 2021. “Memory-Safe Elimination of Side Channels.” In <em>2021 IEEE/ACM International Symposium on Code Generation and Optimization (CGO)</em>. IEEE. <a href="https://doi.org/10.1109/cgo51591.2021.9370305">https://doi.org/10.1109/cgo51591.2021.9370305</a>.</p>
+</div>
 <div id="ref-Solar1997">
 <p>Solar Designer. 1997. “Getting Around Non-Executable Stack (and Fix).” 1997. <a href="https://seclists.org/bugtraq/1997/Aug/63">https://seclists.org/bugtraq/1997/Aug/63</a>.</p>
 </div>
@@ -1093,6 +1099,9 @@ side-channel attacks&#39; higher-up</span>
 </div>
 <div id="ref-Weber2021">
 <p>Weber, Daniel, Ahmad Ibrahim, Hamed Nemati, Michael Schwarz, and Christian Rossow. 2021. “Osiris: Automated Discovery of Microarchitectural Side Channels.” In <em>USENIX Security’21</em>. <a href="https://arxiv.org/abs/2106.03470">https://arxiv.org/abs/2106.03470</a>.</p>
+</div>
+<div id="ref-Wu2018">
+<p>Wu, Meng, Shengjian Guo, Patrick Schaumont, and Chao Wang. 2018. “Eliminating Timing Side-Channel Leaks Using Program Repair.” In <em>Proceedings of the 27th ACM SIGSOFT International Symposium on Software Testing and Analysis</em>. ACM. <a href="https://doi.org/10.1145/3213846.3213851">https://doi.org/10.1145/3213846.3213851</a>.</p>
 </div>
 <div id="ref-Yarom2014">
 <p>Yarom, Yuval, and Katrina Falkner. 2014. “FLUSH+RELOAD: A High Resolution, Low Noise, L3 Cache Side-Channel Attack.” In <em>23rd Usenix Security Symposium (Usenix Security 14)</em>, 719–32. San Diego, CA: USENIX Association. <a href="https://www.usenix.org/conference/usenixsecurity14/technical-sessions/presentation/yarom">https://www.usenix.org/conference/usenixsecurity14/technical-sessions/presentation/yarom</a>.</p>

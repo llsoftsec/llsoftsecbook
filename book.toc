@@ -29,12 +29,12 @@
 \contentsline {subsection}{\numberline {3.2.2}Operation of cache side-channels}{32}{subsection.3.2.2}%
 \contentsline {subsubsection}{\numberline {3.2.2.1}Flush+Reload}{32}{subsubsection.3.2.2.1}%
 \contentsline {subsubsection}{\numberline {3.2.2.2}Prime+Probe}{32}{subsubsection.3.2.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.2.3}General schema for cache covert channels}{32}{subsubsection.3.2.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.2.3}General schema for cache covert channels}{33}{subsubsection.3.2.2.3}%
 \contentsline {subsection}{\numberline {3.2.3}Mitigating cache side-channel attacks}{33}{subsection.3.2.3}%
 \contentsline {subsubsection}{\numberline {3.2.3.1}Mitigations de-correlating cache state change with sensitive information in the victim program}{33}{subsubsection.3.2.3.1}%
 \contentsline {subsubsection}{\numberline {3.2.3.2}Mitigations disallowing spy programs to share the cache with the victim program}{34}{subsubsection.3.2.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.3.3}Mitigations disabling the spy program to infer a cache status change in the victim program through its own cache status}{34}{subsubsection.3.2.3.3}%
-\contentsline {section}{\numberline {3.3}Resource contention channels}{34}{section.3.3}%
+\contentsline {section}{\numberline {3.3}Resource contention channels}{35}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Channels making use of aliasing in branch predictors and other predictors}{35}{section.3.4}%
 \contentsline {section}{\numberline {3.5}Transient execution attacks}{35}{section.3.5}%
 \contentsline {subsection}{\numberline {3.5.1}Transient execution}{35}{subsection.3.5.1}%
@@ -52,5 +52,5 @@
 \contentsline {subsection}{\numberline {5.3.1}Common forms of Fault injection attacks}{44}{subsection.5.3.1}%
 \contentsline {subsection}{\numberline {5.3.2}Countermeasures}{45}{subsection.5.3.2}%
 \contentsline {chapter}{\numberline {6}Other security topics relevant for compiler developers}{46}{chapter.6}%
-\contentsline {chapter}{Appendix: contribution guidelines}{47}{chapter*.40}%
-\contentsline {chapter}{References}{52}{chapter*.43}%
+\contentsline {chapter}{Appendix: contribution guidelines}{47}{chapter*.41}%
+\contentsline {chapter}{References}{52}{chapter*.44}%

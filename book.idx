@@ -66,12 +66,12 @@
 \indexentry{spy|hyperpage}{28}
 \indexentry{timing attacks|hyperpage}{28}
 \indexentry{cache|hyperpage}{29}
-\indexentry{memory access time|hyperpage}{29}
-\indexentry{cache hit|hyperpage}{29}
-\indexentry{cache miss|hyperpage}{29}
-\indexentry{multi-level cache|hyperpage}{29}
-\indexentry{cache size|hyperpage}{29}
-\indexentry{cache access time|hyperpage}{29}
+\indexentry{memory access time|hyperpage}{30}
+\indexentry{cache hit|hyperpage}{30}
+\indexentry{cache miss|hyperpage}{30}
+\indexentry{multi-level cache|hyperpage}{30}
+\indexentry{cache size|hyperpage}{30}
+\indexentry{cache access time|hyperpage}{30}
 \indexentry{principle of locality|hyperpage}{30}
 \indexentry{locality of reference|hyperpage}{30}
 \indexentry{cache block|hyperpage}{30}
@@ -81,11 +81,11 @@
 \indexentry{LRU replacement policy|hyperpage}{30}
 \indexentry{random replacement policy|hyperpage}{30}
 \indexentry{pseudo-LRU replacement policy|hyperpage}{30}
-\indexentry{fully-associative cache|hyperpage}{30}
-\indexentry{set-associative cache|hyperpage}{30}
-\indexentry{direct-mapped cache|hyperpage}{30}
+\indexentry{fully-associative cache|hyperpage}{31}
+\indexentry{set-associative cache|hyperpage}{31}
+\indexentry{direct-mapped cache|hyperpage}{31}
 \indexentry{cache set|hyperpage}{31}
-\indexentry{cache coherency|hyperpage}{31}
+\indexentry{cache coherency|hyperpage}{32}
 \indexentry{Flush+Reload|hyperpage}{32}
 \indexentry{Prime+Probe|hyperpage}{32}
 \indexentry{reset sequence|hyperpage}{33}
@@ -109,6 +109,6 @@
 \indexentry{speculation|hyperpage}{35}
 \indexentry{mis-speculation|hyperpage}{36}
 \indexentry{transient instructions|hyperpage}{36}
-\indexentry{architectural effects|hyperpage}{36}
-\indexentry{micro-architectural effects|hyperpage}{36}
+\indexentry{architectural effects|hyperpage}{37}
+\indexentry{micro-architectural effects|hyperpage}{37}
 \indexentry{transient execution attacks|hyperpage}{37}
