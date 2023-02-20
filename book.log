@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2023.2.15)  15 FEB 2023 14:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2023.2.20)  20 FEB 2023 10:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1498,9 +1498,6 @@ File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [46
 
 ]
-File: bc-aux-301.mps Graphic file (type mps)
-
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 (build/book.ind [47
 
 ]
@@ -1527,32 +1524,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 142--143
  [51] [52
 
 ] [53]
-Underfull \hbox (badness 10000) in paragraph at lines 2801--2806
+Underfull \hbox (badness 10000) in paragraph at lines 2826--2831
 \T1/lmr/m/n/10 (+20) Security -[] Research / blob / master / presentations / 20
 12 _ 10 _ Breakpoint /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2801--2806
+Underfull \hbox (badness 10000) in paragraph at lines 2826--2831
 \T1/lmr/m/n/10 (+20) BreakPoint2012 _ Miller _ Modeling _ the _ exploitation _ 
 and _ mitigation _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2819--2823
+Underfull \hbox (badness 10000) in paragraph at lines 2844--2848
 \T1/lmr/m/n/10 (+20) publications / conference -[] paper / 1998 / 10 / 08 / pro
 ceedings -[] of -[] the -[] 21st -[] nissc -[]
  []
 
 [54] [55] (build/book.aux)
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: BC25E8760340373004EF7140658FF139;8509.
+(rerunfilecheck)             Checksum: D016C4B4508DFD3F12C8F2A34A645903;8509.
  ) 
 Here is how much of TeX's memory you used:
- 30108 strings out of 480962
- 548880 string characters out of 5908147
- 973023 words of memory out of 5000000
- 46142 multiletter control sequences out of 15000+600000
+ 30101 strings out of 480962
+ 548662 string characters out of 5908147
+ 972974 words of memory out of 5000000
+ 46138 multiletter control sequences out of 15000+600000
  485935 words of font info for 190 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  102i,12n,117p,651b,1259s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1579,10 +1576,10 @@ lic/lm/lmr8.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmri10.pfb></te
 xlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></texlive/2020/texmf-dis
 t/fonts/type1/public/lm/lmtk10.pfb></texlive/2020/texmf-dist/fonts/type1/public
 /lm/lmtt10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
-Output written on build/book.pdf (56 pages, 784744 bytes).
+Output written on build/book.pdf (56 pages, 783919 bytes).
 PDF statistics:
- 1293 PDF objects out of 1440 (max. 8388607)
- 1166 compressed objects within 12 object streams
- 297 named destinations out of 1000 (max. 500000)
+ 1297 PDF objects out of 1440 (max. 8388607)
+ 1170 compressed objects within 12 object streams
+ 296 named destinations out of 1000 (max. 500000)
  45564 words of extra memory for PDF output out of 51595 (max. 10000000)
 
