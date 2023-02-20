@@ -76,17 +76,25 @@ please join [our Discord server](https://discord.gg/Bm55Z9Ppgn).
     remain focussed on a specific topic.
   - We aim for commits fixing style, spelling or other language issues to fix
     one general issue at a time.
-  - When writing new content, do use the ``\todo`` macro to indicate if some
-    detail should or could be added later. Similar to how TODO or FIXME comments
-    are used in code projects, we use ``\todo`` macros to indicate an
-    improvement that should be made later. We hope that by using ``\todo``,
-    contributors will wrestle a bit less with writer's block. For now, to-dos
-    are only visible in the PDF output, where they are put in the margin. An
-    example to-do looks as follows in the source:
-    ``\todo{Also support \todo in the HTML output.}.``
+  - When writing new content, do use todos to indicate if some detail should or
+    could be added later. Similar to how TODO or FIXME comments are used in code
+    projects, we use todos to indicate an improvement that should be made later.
+    We hope that by using todos, contributors will wrestle a bit less with
+    writer's block. For "inline" todos, i.e. a todo that strongly correlates to
+    a specific sentence, we used the pandoc
+    [bracketed span](https://pandoc.org/MANUAL.html#extension-bracketed_spans)
+    syntax. This looks as follows: ``[todo text]{.todo}``
 
-    For completely missing sections of contents, use
-    ``\missingcontent{A description of the missing content goes here.}``
+    For "block" todos, i.e. a todo that is better as a standalone paragraph, for
+    example because it describes an improvement for a whole section, we use the
+    pandoc [fenced div](https://pandoc.org/MANUAL.html#extension-fenced_divs)
+    syntax. That looks as follows:
+
+    ```
+    ::: TODO
+    todo text
+    :::
+    ```
 
 - For now, we keep all text content of the book in a single
   [book.md](https://github.com/llsoftsec/llsoftsecbook/blob/main/book.md) file.

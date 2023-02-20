@@ -20,11 +20,11 @@ header-includes:
   \usepackage[backgroundcolor=white,linecolor=black]{todonotes}
   \let\oldtodo\todo
   \usepackage{bclogo}%  \bcpanchant
-  \renewcommand{\todo}[1]{
+  \newcommand{\todospan}[1]{
     \stepcounter{TodoCounter}
     \oldtodo[caption={\arabic{TodoCounter}. #1}]{\bcpanchant #1}
   }
-  \newcommand{\missingcontent}[1]{
+  \newcommand{\tododiv}[1]{
     \stepcounter{TodoCounter}
     \oldtodo[inline,caption={\arabic{TodoCounter}. #1}]{\bcpanchant \textit{#1}}
   }
@@ -107,7 +107,10 @@ As a reader, you can also contribute to making this book better.  We highly
 encourage feedback, both positive and constructive criticisms.  We prefer
 feedback to be received through <https://github.com/llsoftsec/llsoftsecbook>.
 
-\missingcontent{Add section describing the structure of the rest of the book.}
+
+::: TODO
+Add section describing the structure of the rest of the book.
+:::
  
 # Memory vulnerability based attacks
 
@@ -173,8 +176,8 @@ Given the rich history of memory vulnerabilities and mitigations and the active
 developments in this area, compiler developers are likely to encounter some of
 these issues over the course of their careers. This chapter aims to serve as an
 introduction to this area. We start with a discussion of exploitation
-primitives, which can be useful when analyzing threat models \todo{Discuss
-threat models elsewhere in book and refer to that section here}. We then
+primitives, which can be useful when analyzing threat models [Discuss
+threat models elsewhere in book and refer to that section here]{.todo}. We then
 continue with a more detailed discussion of the various types of
 vulnerabilities, along with their mitigations, presented in a rough
 chronological order of their appearance, and, therefore, complexity.
@@ -202,8 +205,8 @@ for example, may allow:
 
 * writing a fixed value to an attacker-controlled address, or
 * writing to an address consisting of a fixed base and an attacker-controlled
-  offset limited to a specific range (e.g. a 32-bit offset)\todo{Consider
-  describing in more detail why the range limitation matters}, or
+  offset limited to a specific range (e.g. a 32-bit offset)[Consider
+  describing in more detail why the range limitation matters]{.todo}, or
 * writing to an attacker-controlled base address with a fixed offset.
 
 Primitives can be further classified according to more detailed properties.
@@ -243,8 +246,10 @@ This depends on whether the attack is interactive or non-interactive [@Hu2016].
   example, in the form of a JavaScript program [@Groß2020], or a PDF file
   pretending to be a GIF [@Beer2021].
 
-\todo{The references in this section describe complicated modern exploits.
-Consider linking to simpler exploits, as well as some tutorial-level material.}
+::: TODO
+The references in this section describe complicated modern exploits.
+Consider linking to simpler exploits, as well as some tutorial-level material.
+:::
 
 How does an attacker obtain these kinds of primitives in the first place?  The
 details vary, and in some cases it takes a combination of many techniques, some
@@ -570,8 +575,10 @@ Let's assume we have the following gadgets:
     ret
 ```
 
-\todo{Explain how these gadgets could result from C/C++ code. The current
-versions are slightly tweaked by hand to have more manageable offsets.}
+::: TODO
+Explain how these gadgets could result from C/C++ code. The current
+versions are slightly tweaked by hand to have more manageable offsets.
+:::
 
 Both gadgets also clobber several uninteresting registers, but since
 `gadget_x2` also clears `x0`, it becomes clear that we should use a
@@ -642,9 +649,11 @@ into `x2`. The final gadget stores the result of the addition, which remains in
 `x0`, to the stack, before branching to `x2`, which still points to the
 dispatcher gadget.
 
-\todo{The gadgets in the figure are made up, chosen to highlight that each
+::: TODO
+The gadgets in the figure are made up, chosen to highlight that each
 gadget can end in a different type of indirect control flow transfer
-instruction. Consider replacing them with more realistic ones.}
+instruction. Consider replacing them with more realistic ones.
+:::
 
 ### Counterfeit Object-oriented programming
 
@@ -916,14 +925,14 @@ Another backward-edge CFI scheme that uses Pointer Authentication instructions
 is PACStack [@Liljestrand2021], which chains together PACs in order to include
 the full context (all of the previous return addresses in the call stack) when
 signing a return address.
-\todo{Add more references to relevant research}
+[Add more references to relevant research]{.todo}
 
 Pointer Authentication can also be used more widely, for example to implement a
 forward-edge CFI scheme, as is done in the arm64e ABI [@McCall2019].
 The Pointer Authentication instructions, however, are generic enough to also be
 useful in implementing more general memory safety measures, beyond CFI.
-\todo{Mention more Pointer Authentication uses in later section, and add link
-here}
+[Mention more Pointer Authentication uses in later section, and add link
+here]{.todo}
 
 #### BTI
 
@@ -1153,7 +1162,7 @@ and each 16-byte chunk of memory (called "granule") is randomly assigned an
 byte of the pointer to the object. Memory loads and stores are then
 instrumented to check that the tag stored in the pointer matches the tag stored
 in memory, and report an error when a mismatch happens.
-\todo{Add diagram to demonstrate how HWASAN works.}
+[Add diagram to demonstrate how HWASAN works.]{.todo}
 
 For granules shorter than 16 bytes, the value stored in shadow memory is
 not the actual tag, but the length of the granule. The actual tag is stored
@@ -1172,7 +1181,9 @@ Tagging Extension (MTE)}. With MTE, the tag checking is done automatically by
 hardware, and an exception is raised on mismatch. MTE's granule size is 16
 bits, whereas tags are 4-bit.
 
-\missingcontent{Consider adding a whole section on MTE and its applications}
+::: TODO
+Consider adding a whole section on MTE and its applications
+:::
 
 [UndefinedBehaviorSanitizer
 (UBSan)](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#ubsan-checks)
@@ -1201,12 +1212,16 @@ section. For the interested reader, we list a few more:
    suitable for production environments. It performs checks only on a sample of
    allocations.
 
-\missingcontent{Describe other mechanisms for detecting memory errors, both
+::: TODO
+Describe other mechanisms for detecting memory errors, both
 software-based (static analysis, library and buffer hardening) and
-hardware-based, e.g. PAuth-based pointer integrity schemes, MTE etc}
+hardware-based, e.g. PAuth-based pointer integrity schemes, MTE etc
+:::
 
 ## JIT compiler vulnerabilities
-\missingcontent{Write section on JIT compiler vulnerabilities}
+::: TODO
+Write section on JIT compiler vulnerabilities
+:::
 
 # Covert channels and side-channels
 
@@ -1266,8 +1281,8 @@ Using compiler techniques to transform a function such that it respects property
 such that it respects property (a), albeit by potentially introducing unsafe
 memory accesses. [@Soares2021] improves on that result by not introducing unsafe
 memory accesses, albeit by potentially needing to change the interface of the
-transformed function.\todo{Also discuss the techniques implemented in the
-[Constatine compiler](https://github.com/pietroborrello/constantine).}
+transformed function.[Also discuss the techniques implemented in the
+[Constatine compiler](https://github.com/pietroborrello/constantine).]{.todo}
 
 A great reference giving practical advice on how to achieve (a), (b) and more
 security hardening properties specific for cryptographic kernels is found in
@@ -1386,8 +1401,12 @@ For direct-mapped and fully-associative caches, the mapping of an address to
 cache locations also works as described above. In fully-associative caches the
 number of cache sets is 1, so $S$=0.
 
-\missingcontent{Also explain cache coherency \index{cache coherency}?}
-\missingcontent{Also say something about TLBs and prefetching?}
+::: TODO
+Also explain cache coherency \index{cache coherency}?
+:::
+::: TODO
+Also say something about TLBs and prefetching?
+:::
 
 ### Operation of cache side-channels
 
@@ -1417,8 +1436,10 @@ Such as when accessing a specific array element depends on whether a specific
 bit is set in secret data. For example, [@Yarom2014] demonstrates that a
 Flush+Reload attack can be used to leak GnuPG private keys.
 
-\missingcontent{Should there be a more elaborate example with code that
-demonstrates in more detail how a flush+reload attack works?}
+::: TODO
+Should there be a more elaborate example with code that
+demonstrates in more detail how a flush+reload attack works?
+:::
 
 #### Prime+Probe
 
@@ -1556,7 +1577,9 @@ at the same time on 2 CPUs sharing a cache level.
 
 ## Channels making use of aliasing in branch predictors and other predictors
 
-\missingcontent{Should we also discuss more "covert" channels here such as power analysis, etc?}
+::: TODO
+Should we also discuss more "covert" channels here such as power analysis, etc?
+:::
 
 
 ## Transient execution attacks
@@ -1639,8 +1662,10 @@ Let's illustrate that with the following example
       *speculation*, as the CPU *speculatively executes* either instruction
       `neg`, or `ret`.
 
-\todo{Show a second example of cpu speculation that is not based on
-branch prediction.}
+::: TODO
+Show a second example of cpu speculation that is not based on
+branch prediction.
+:::
 
 Of course, as with all predictions, the CPU gets the prediction wrong from time
 to time. In that case, all changes to the system state that affect the correct
@@ -1677,23 +1702,29 @@ will implement techniques that keep all state changes in micro-architectural
 buffers until it is clear that all predictions made to execute that instruction
 were correct. At that point the micro-architectural state is *committed* to
 become architectural state. In that way, mis-predictions naturally do not affect
-architectural state. \todo{Could we find a good reference that explains
+architectural state. [Could we find a good reference that explains
 micro-architectural versus architectural state in more detail? Is "Computer
-Architecture: A Quantitative Approach" the best reference available?}
+Architecture: A Quantitative Approach" the best reference available?]{.todo}
 
 *Transient execution attacks*\index{transient execution attacks} are a category
 of side-channel attacks that use the micro-architectural side-effects of
 transient execution as a side channel.
 
-\missingcontent{Write section on transient execution attacks}
+::: TODO
+Write section on transient execution attacks
+:::
 
 #### Site isolation
 
-\missingcontent{Write section on site isolation as a SpectreV1 mitigation}
+::: TODO
+Write section on site isolation as a SpectreV1 mitigation
+:::
 
 ## Physical access side-channel attacks
 
-\missingcontent{Write chapter on physical access side-channel attacks.}
+::: TODO
+Write chapter on physical access side-channel attacks.
+:::
 
 # Supply chain attacks
 
@@ -1754,12 +1785,16 @@ libraries, are a viable route to silently infect many other applications, and
 there is no doubt that there will be more such attacks in the future. Let us
 now explore what we can do about these.
 
-\missingcontent{Explain how these vulnerabilities arise and how to mitigate them.}
+::: TODO
+Explain how these vulnerabilities arise and how to mitigate them.
+:::
 
 # Physical attacks
 
-\todo{This chapter should probably be moved under section 'Physical access 
-side-channel attacks' higher-up}
+::: TODO
+This chapter should probably be moved under section 'Physical access
+side-channel attacks' higher-up
+:::
 
 
 ## Overview
@@ -1892,7 +1927,9 @@ be reduced:
   crypto key or input data values, so there is no need to change those loops.
 
 
-\todo{There is overlap with section timing-side-channels. How to best consolidate that?}
+::: TODO
+There is overlap with section timing-side-channels. How to best consolidate that?
+:::
 
 There are additional software techniques to mitigate power leakage. One of the 
 most well-known techniques is masking (e.g. Boolean, multiplicative, affine). 
@@ -1941,7 +1978,9 @@ found in the paper "Fault Attacks on Secure Embedded Software: Threats, Design
 and Evaluation” (https://arxiv.org/pdf/2003.10513.pdf), where a good 
 illustration of the concept is shown in figure 1 of that paper. 
 
-\todo{Make the above reference to a paper use bibtex.}
+::: TODO
+Make the above reference to a paper use bibtex.
+:::
 
 Using glitching methods, there are several common ways of attacking a system. 
 For example:
@@ -1974,9 +2013,13 @@ optimizations carried out by compilers (C/C++) do not impact the mitigation.
 
 # Other security topics relevant for compiler developers
 
-\missingcontent{Write chapter with other security topics.}
+::: TODO
+Write chapter with other security topics.
+:::
 
-\missingcontent{Write section on securely clearing memory in C/C++ and undefined behaviour.}
+::: TODO
+Write section on securely clearing memory in C/C++ and undefined behaviour.
+:::
 
 # Appendix: contribution guidelines {-}
 
