@@ -65,6 +65,9 @@ first issue](https://github.com/llsoftsec/llsoftsecbook/issues?q=is%3Aissue+is%3
 If you'd like to get in touch and Issues do not seem to be the right way to
 communicate, please use [Discussions](<https://github.com/llsoftsec/llsoftsecbook/discussions>).
 
+If you prefer to have an interactive chat with other contributors and readers,
+please join [our Discord server](https://discord.gg/Bm55Z9Ppgn).
+
 ## Style and coding conventions
 
 - We use [pandoc markdown](https://pandoc.org/MANUAL.html#pandocs-markdown).
