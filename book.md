@@ -1980,10 +1980,31 @@ optimizations carried out by compilers (C/C++) do not impact the mitigation.
 
 # Appendix: contribution guidelines {-}
 
-\missingcontent{Write chapter on contribution guidelines.
- These should include at least: project locaton on github; how to create pull requests/issues.
- Where do we discuss - mailing list? Grammar and writing style guidelines.
- How to use todos and index.}
+If you'd like to start contributing to this book: please do, we're looking
+forward to your contributions!
+
+The project lives on github at [https://github.com/llsoftsec/llsoftsecbook](https://github.com/llsoftsec/llsoftsecbook).
+We also have a Discord server where you can have an interactive chat with us at
+[https://discord.gg/Bm55Z9Ppgn](https://discord.gg/Bm55Z9Ppgn).
+
+We use [github issues](https://github.com/llsoftsec/llsoftsecbook/issues) as our
+issue tracker and use
+[github pull requests](https://github.com/llsoftsec/llsoftsecbook/pulls) to
+accept edits, changes, additions and more.
+
+If you'd like to contribute, but are not sure where to start, the list of
+open issues labeled with "[good first issue](https://github.com/llsoftsec/llsoftsecbook/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)" may give you inspiration of things to contribute. Please, also
+don't be shy to reach out to us on [Discord](https://discord.gg/Bm55Z9Ppgn).
+
+We follow the
+[Contributor Covenant Code of Conduct](https://github.com/llsoftsec/llsoftsecbook/blob/main/CODE_OF_CONDUCT.md)
+in this project.
+
+For more details on how to write text for the book, please read
+[contributing.md](https://github.com/llsoftsec/llsoftsecbook/blob/main/contributing.md).
+If after reading that, you think some specific aspects could be explained
+better, please do let us know by raising an
+[issue](https://github.com/llsoftsec/llsoftsecbook/issues/new).
 
 \printindex
 
