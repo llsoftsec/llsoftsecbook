@@ -8,15 +8,15 @@
 \contentsline {subsection}{\numberline {2.4.1}Return-oriented programming}{13}{subsection.2.4.1}%
 \contentsline {subsection}{\numberline {2.4.2}Jump-oriented programming}{15}{subsection.2.4.2}%
 \contentsline {subsection}{\numberline {2.4.3}Counterfeit Object-oriented programming}{17}{subsection.2.4.3}%
-\contentsline {subsection}{\numberline {2.4.4}Sigreturn-oriented programming}{17}{subsection.2.4.4}%
+\contentsline {subsection}{\numberline {2.4.4}Sigreturn-oriented programming}{18}{subsection.2.4.4}%
 \contentsline {section}{\numberline {2.5}Mitigations against code reuse attacks}{18}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}ASLR}{18}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}CFI}{18}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.2}CFI}{19}{subsection.2.5.2}%
 \contentsline {subsubsection}{\numberline {2.5.2.1}Clang CFI}{19}{subsubsection.2.5.2.1}%
 \contentsline {subsubsection}{\numberline {2.5.2.2}Clang Shadow Stack}{20}{subsubsection.2.5.2.2}%
-\contentsline {subsubsection}{\numberline {2.5.2.3}Pointer Authentication}{20}{subsubsection.2.5.2.3}%
+\contentsline {subsubsection}{\numberline {2.5.2.3}Pointer Authentication}{21}{subsubsection.2.5.2.3}%
 \contentsline {subsubsection}{\numberline {2.5.2.4}BTI}{22}{subsubsection.2.5.2.4}%
-\contentsline {subsubsection}{\numberline {2.5.2.5}CFI implementation pitfalls}{22}{subsubsection.2.5.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.2.5}CFI implementation pitfalls}{23}{subsubsection.2.5.2.5}%
 \contentsline {section}{\numberline {2.6}Non-control data attacks}{23}{section.2.6}%
 \contentsline {section}{\numberline {2.7}Preventing and detecting memory errors}{25}{section.2.7}%
 \contentsline {subsection}{\numberline {2.7.1}Sanitizers}{25}{subsection.2.7.1}%

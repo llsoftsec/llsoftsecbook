@@ -3,13 +3,13 @@
   \item AArch64, \hyperpage{26}
   \item AddressSanitizer (ASan), \hyperpage{25}
   \item anti dependency, \hyperpage{35}
-  \item arbitrary code execution, \hyperpage{9}
+  \item arbitrary code execution, \hyperpage{10}
   \item architectural effects, \hyperpage{37}
   \item ASLR, \hyperpage{18}
 
   \indexspace
 
-  \item backward-edge CFI, \hyperpage{18}
+  \item backward-edge CFI, \hyperpage{19}
   \item BTI, \hyperpage{22}
 
   \indexspace
@@ -28,7 +28,7 @@
   \item cache replacement policy, \hyperpage{30}
   \item cache set, \hyperpage{31}
   \item cache size, \hyperpage{30}
-  \item CFI, \hyperpage{18}
+  \item CFI, \hyperpage{19}
   \item Clang, \hyperpage{25}
   \item Collide+Probe, \hyperpage{33}
   \item control data, \hyperpage{23}
@@ -40,7 +40,7 @@
 
   \item data-only attacks, \hyperpage{23}
   \item direct-mapped cache, \hyperpage{31}
-  \item dispatcher gadget, \hyperpage{15}
+  \item dispatcher gadget, \hyperpage{17}
 
   \indexspace
 
@@ -53,8 +53,8 @@
   \item Flush+Flush, \hyperpage{33}
   \item Flush+Prefetch, \hyperpage{33}
   \item Flush+Reload, \hyperpage{32}
-  \item forward-edge CFI, \hyperpage{18}
-  \item free, \hyperpage{25}
+  \item forward-edge CFI, \hyperpage{19}
+  \item free, \hyperpage{26}
   \item fully-associative cache, \hyperpage{31}
   \item fuzzing, \hyperpage{25}
 
@@ -90,11 +90,11 @@
 
   \indexspace
 
-  \item malloc, \hyperpage{25}
+  \item malloc, \hyperpage{26}
   \item measurement sequence, \hyperpage{33}
   \item memory access time, \hyperpage{30}
   \item Memory Tagging Extension (MTE), \hyperpage{26}
-  \item MemorySanitizer, \hyperpage{26}
+  \item MemorySanitizer, \hyperpage{27}
   \item MemTagSanitizer, \hyperpage{26}
   \item micro-architectural effects, \hyperpage{37}
   \item mis-speculation, \hyperpage{36}
@@ -113,7 +113,7 @@
 
   \indexspace
 
-  \item Pointer Authentication, \hyperpage{20}
+  \item Pointer Authentication, \hyperpage{21}
   \item pointer extension bits, \hyperpage{21}
   \item pointer substitution attack, \hyperpage{22}
   \item prediction, \hyperpage{35}
@@ -125,7 +125,7 @@
 
   \item random replacement policy, \hyperpage{30}
   \item read primitive, \hyperpage{8}
-  \item redzone, \hyperpage{25}
+  \item redzone, \hyperpage{26}
   \item Reload+Refresh, \hyperpage{33}
   \item reset sequence, \hyperpage{33}
   \item return-oriented programming (ROP), \hyperpage{13}
@@ -137,14 +137,14 @@
   \item set-associative cache, \hyperpage{31}
   \item shadow memory, \hyperpage{25}
   \item shadow stack, \hyperpage{20}
-  \item shellcode, \hyperpage{11}, \hyperpage{13}
+  \item shellcode, \hyperpage{12, 13}
   \item side-channel, \hyperpage{28}
-  \item sigreturn-oriented programming (SROP), \hyperpage{17}
+  \item sigreturn-oriented programming (SROP), \hyperpage{18}
   \item site isolation, \hyperpage{34}
   \item Spectre, \hyperpage{34}
   \item speculation, \hyperpage{35}
   \item spy, \hyperpage{28}
-  \item stack pivoting, \hyperpage{14}
+  \item stack pivoting, \hyperpage{15}
 
   \indexspace
 

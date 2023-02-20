@@ -7,29 +7,29 @@
 \indexentry{read primitive|hyperpage}{8}
 \indexentry{interactive attack|hyperpage}{8}
 \indexentry{non-interactive (one-shot)   attack|hyperpage}{8}
-\indexentry{arbitrary code execution|hyperpage}{9}
-\indexentry{shellcode|hyperpage}{11}
+\indexentry{arbitrary code execution|hyperpage}{10}
+\indexentry{shellcode|hyperpage}{12}
 \indexentry{C|hyperpage}{12}
 \indexentry{C++|hyperpage}{12}
 \indexentry{shellcode|hyperpage}{13}
 \indexentry{gadget|hyperpage}{13}
 \indexentry{return-oriented programming (ROP)|hyperpage}{13}
 \indexentry{ROP chain|hyperpage}{13}
-\indexentry{stack pivoting|hyperpage}{14}
+\indexentry{stack pivoting|hyperpage}{15}
 \indexentry{gadget scanner|hyperpage}{15}
 \indexentry{jump-oriented programming (JOP)|hyperpage}{15}
-\indexentry{dispatcher gadget|hyperpage}{15}
+\indexentry{dispatcher gadget|hyperpage}{17}
 \indexentry{counterfeit object-oriented programming (COOP)|hyperpage}{17}
 \indexentry{C++|hyperpage}{17}
-\indexentry{sigreturn-oriented programming (SROP)|hyperpage}{17}
+\indexentry{sigreturn-oriented programming (SROP)|hyperpage}{18}
 \indexentry{ASLR|hyperpage}{18}
 \indexentry{info leak|hyperpage}{18}
-\indexentry{CFI|hyperpage}{18}
-\indexentry{forward-edge CFI|hyperpage}{18}
-\indexentry{backward-edge CFI|hyperpage}{18}
+\indexentry{CFI|hyperpage}{19}
+\indexentry{forward-edge CFI|hyperpage}{19}
+\indexentry{backward-edge CFI|hyperpage}{19}
 \indexentry{C++|hyperpage}{19}
 \indexentry{shadow stack|hyperpage}{20}
-\indexentry{Pointer Authentication|hyperpage}{20}
+\indexentry{Pointer Authentication|hyperpage}{21}
 \indexentry{pointer extension bits|hyperpage}{21}
 \indexentry{Top-Byte-Ignore (TBI)|hyperpage}{21}
 \indexentry{pointer substitution attack|hyperpage}{22}
@@ -45,11 +45,11 @@
 \indexentry{GCC|hyperpage}{25}
 \indexentry{Clang|hyperpage}{25}
 \indexentry{shadow memory|hyperpage}{25}
-\indexentry{malloc|hyperpage}{25}
-\indexentry{free|hyperpage}{25}
-\indexentry{redzone|hyperpage}{25}
 \indexentry{fuzzing|hyperpage}{25}
 \indexentry{LeakSanitizer|hyperpage}{25}
+\indexentry{malloc|hyperpage}{26}
+\indexentry{free|hyperpage}{26}
+\indexentry{redzone|hyperpage}{26}
 \indexentry{KASAN|hyperpage}{26}
 \indexentry{HWASAN|hyperpage}{26}
 \indexentry{AArch64|hyperpage}{26}
@@ -57,7 +57,7 @@
 \indexentry{MemTagSanitizer|hyperpage}{26}
 \indexentry{Memory Tagging Extension (MTE)|hyperpage}{26}
 \indexentry{UBSan|hyperpage}{26}
-\indexentry{MemorySanitizer|hyperpage}{26}
+\indexentry{MemorySanitizer|hyperpage}{27}
 \indexentry{ThreadSanitizer|hyperpage}{27}
 \indexentry{GWP-ASan|hyperpage}{27}
 \indexentry{covert channel|hyperpage}{28}
