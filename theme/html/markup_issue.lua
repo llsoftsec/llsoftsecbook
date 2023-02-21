@@ -19,6 +19,13 @@ function Span (span)
   local issue_id = pandoc.utils.stringify(span.content);
   assert (isInteger(issue_id), "issue_id '" .. issue_id .. "' is not an integer.");
   local url = github_repo .. '/issues/' .. issue_id;
+  if FORMAT:match 'html' then
+    -- use a more nicely formatted shield to point to the issue
+    local shield_url = 'https://img.shields.io/github/issues/detail/state/llsoftsec/llsoftsecbook/' .. issue_id;
+    return pandoc.Link(
+      pandoc.Image('#'..issue_id, shield_url),
+      url);
+  end
   return pandoc.Link('#'..issue_id, url);
 end
 
