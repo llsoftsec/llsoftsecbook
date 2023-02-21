@@ -23,6 +23,6 @@
 \contentsline {todo}{23. Explain how these vulnerabilities arise and how to mitigate them.}{39}{section*.31}%
 \contentsline {todo}{24. This chapter should probably be moved under section `Physical access side-channel attacks' higher-up}{40}{section*.32}%
 \contentsline {todo}{25. There is overlap with section timing-side-channels. How to best consolidate that?}{43}{section*.36}%
-\contentsline {todo}{26. Make the above reference to a paper use bibtex.}{44}{section*.38}%
+\contentsline {todo}{26. Make the above reference to a paper use bibtex. \href {https://github.com/llsoftsec/llsoftsecbook/issues/159}{\#159}}{44}{section*.38}%
 \contentsline {todo}{27. Write chapter with other security topics.}{46}{section*.39}%
 \contentsline {todo}{28. Write section on securely clearing memory in C/C++ and undefined behaviour.}{46}{section*.40}%

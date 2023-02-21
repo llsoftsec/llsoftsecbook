@@ -332,7 +332,7 @@ cursor: pointer;
   <p>
       Copyright 2021-2022 Arm Limited <a href="mailto:open-source-office@arm.com" class="email">open-source-office@arm.com</a><br />
     </p>
-  <p>Version: 0-137-g119e058</p>
+  <p>Version: 0-139-g9d95caa</p>
 </header>
 
 <main id="content">
@@ -928,7 +928,7 @@ int authenticate() {
 </ul>
 <p>Such voltage/clock glitch attack could affect multiple parts in the processors, but sometimes the impact might not lead to any visible error in the operation, leaving the only effect that the processor skipping a memory/register write, or writing an incorrect value. Potentially, a glitch attack could result in other observable effect (e.g. register reset, bit toggle). The analysis of fault injection methods (and their physical effect) and the observable effects at the program or instruction execution level are often referred to as fault models, where one can say that a specific fault injection behaves as an instruction skip, etc. More details about the concept of fault models can be found in the paper “Fault Attacks on Secure Embedded Software: Threats, Design and Evaluation” (https://arxiv.org/pdf/2003.10513.pdf), where a good illustration of the concept is shown in figure 1 of that paper.</p>
 <span class="todo_ref" href="#todo_26"><sup>todo</sup></span>
-<span id="todo_26" class="todo">Make the above reference to a paper use bibtex.</span>
+<span id="todo_26" class="todo">Make the above reference to a paper use bibtex. <a href="https://github.com/llsoftsec/llsoftsecbook/issues/159"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE1OTogb3BlbiI+PHRpdGxlPmlzc3VlIDE1OTogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTU5PC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNTk8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#159" /></a></span>
 <p>Using glitching methods, there are several common ways of attacking a system. For example:</p>
 <ul>
 <li>Skipping an instruction during setup sequence for security features – e.g. skipping the write to the MPU (Memory Protection Unit)/Security Attribution Unit (SAU) so that the MPU/SAU is not enabled.</li>
