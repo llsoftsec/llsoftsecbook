@@ -31,7 +31,7 @@ end
 -- Also convert Spans with class "todo"
 function Span (span)
   -- FIXME: I should check if any class is .todo, not just the first one.
-  if not span.classes[1] == ".todo" then
+  if not (span.classes[1] == "todo") then
     return span;
   end
   if FORMAT:match 'html' then
