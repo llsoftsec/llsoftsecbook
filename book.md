@@ -1980,6 +1980,7 @@ illustration of the concept is shown in figure 1 of that paper.
 
 ::: TODO
 Make the above reference to a paper use bibtex.
+[159]{.issue}
 :::
 
 Using glitching methods, there are several common ways of attacking a system. 
