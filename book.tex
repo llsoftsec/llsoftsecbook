@@ -166,7 +166,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2021-2022 Arm Limited
   \href{mailto:open-source-office@arm.com}{\nolinkurl{open-source-office@arm.com}}\\
 
-Version 0-139-g9d95caa
+Version 0-140-g9314dc3
 \clearpage
 
 {
@@ -351,10 +351,11 @@ encounter some of these issues over the course of their careers. This
 chapter aims to serve as an introduction to this area. We start with a
 discussion of exploitation primitives, which can be useful when
 analyzing threat models \todospan{{Discuss threat models elsewhere in
-book and refer to that section here}}. We then continue with a more
-detailed discussion of the various types of vulnerabilities, along with
-their mitigations, presented in a rough chronological order of their
-appearance, and, therefore, complexity.
+book and refer to that section here
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/161}{\#161}}}.
+We then continue with a more detailed discussion of the various types of
+vulnerabilities, along with their mitigations, presented in a rough
+chronological order of their appearance, and, therefore, complexity.
 
 \hypertarget{exploitation-primitives}{%
 \section{Exploitation primitives}\label{exploitation-primitives}}
@@ -386,7 +387,9 @@ degrees. The primitive, for example, may allow:
   writing to an address consisting of a fixed base and an
   attacker-controlled offset limited to a specific range (e.g.~a 32-bit
   offset)\todospan{{Consider describing in more detail why the range
-  limitation matters}}, or
+  limitation
+  matters\href{https://github.com/llsoftsec/llsoftsecbook/issues/162}{\#162}}},
+  or
 \item
   writing to an attacker-controlled base address with a fixed offset.
 \end{itemize}
@@ -442,7 +445,8 @@ et al. \protect\hyperlink{ref-Hu2016}{2016}).
 
 \tododiv{The references in this section describe complicated modern
 exploits. Consider linking to simpler exploits, as well as some
-tutorial-level material.}
+tutorial-level material.
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/163}{\#163}}
 
 How does an attacker obtain these kinds of primitives in the first
 place? The details vary, and in some cases it takes a combination of
@@ -852,7 +856,8 @@ Let's assume we have the following gadgets:
 
 \tododiv{Explain how these gadgets could result from C/C++ code. The
 current versions are slightly tweaked by hand to have more manageable
-offsets.}
+offsets.
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/164}{\#164}}
 
 Both gadgets also clobber several uninteresting registers, but since
 \texttt{gadget\_x2} also clears \texttt{x0}, it becomes clear that we
@@ -942,6 +947,11 @@ dispatcher after they're done. This is demonstrated in figure
 }
 \end{figure}
 
+\tododiv{The gadgets in the figure are made up, chosen to highlight that
+each gadget can end in a different type of indirect control flow
+transfer instruction. Consider replacing them with more realistic ones.
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/165}{\#165}}
+
 In figure \ref{fig:jop}, \texttt{x4} initially points to the ``dispatch
 table'', which has been modified by the attacker to contain the
 addresses of the three gadgets they want to execute. The dispatcher
@@ -956,10 +966,6 @@ through another value loaded from the stack into \texttt{x2}. The final
 gadget stores the result of the addition, which remains in \texttt{x0},
 to the stack, before branching to \texttt{x2}, which still points to the
 dispatcher gadget.
-
-\tododiv{The gadgets in the figure are made up, chosen to highlight that
-each gadget can end in a different type of indirect control flow
-transfer instruction. Consider replacing them with more realistic ones.}
 
 \hypertarget{counterfeit-object-oriented-programming}{%
 \subsection{Counterfeit Object-oriented
@@ -1267,7 +1273,8 @@ instructions is PACStack (Liljestrand et al.
 \protect\hyperlink{ref-Liljestrand2021}{2021}), which chains together
 PACs in order to include the full context (all of the previous return
 addresses in the call stack) when signing a return address.
-\todospan{{Add more references to relevant research}}
+\todospan{{Add more references to relevant research
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/166}{\#166}}}
 
 Pointer Authentication can also be used more widely, for example to
 implement a forward-edge CFI scheme, as is done in the arm64e ABI
@@ -1275,7 +1282,8 @@ implement a forward-edge CFI scheme, as is done in the arm64e ABI
 Pointer Authentication instructions, however, are generic enough to also
 be useful in implementing more general memory safety measures, beyond
 CFI. \todospan{{Mention more Pointer Authentication uses in later
-section, and add link here}}
+section, and add link here
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/167}{\#167}}}
 
 \hypertarget{bti}{%
 \subsubsection{BTI}\label{bti}}
@@ -1531,7 +1539,8 @@ shadow memory and is also placed in the top byte of the pointer to the
 object. Memory loads and stores are then instrumented to check that the
 tag stored in the pointer matches the tag stored in memory, and report
 an error when a mismatch happens. \todospan{{Add diagram to demonstrate
-how HWASAN works.}}
+how HWASAN works
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/168}{\#168}}}
 
 For granules shorter than 16 bytes, the value stored in shadow memory is
 not the actual tag, but the length of the granule. The actual tag is
@@ -1549,9 +1558,9 @@ goes one step further and uses the Armv8.5-A
 Tagging Extension (MTE)}\index{Memory
 Tagging Extension (MTE)}. With MTE, the tag checking is done
 automatically by hardware, and an exception is raised on mismatch. MTE's
-granule size is 16 bits, whereas tags are 4-bit.
-
-\tododiv{Consider adding a whole section on MTE and its applications}
+granule size is 16 bits, whereas tags are 4-bit. \todospan{{Consider
+adding a whole section on MTE and its applications
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/169}{\#169}}}
 
 \href{https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html\#ubsan-checks}{UndefinedBehaviorSanitizer
 (UBSan)} \index{UBSan}detects undefined behavior during program
@@ -1589,13 +1598,15 @@ this section. For the interested reader, we list a few more:
 
 \tododiv{Describe other mechanisms for detecting memory errors, both
 software-based (static analysis, library and buffer hardening) and
-hardware-based, e.g.~PAuth-based pointer integrity schemes, MTE etc}
+hardware-based, e.g.~PAuth-based pointer integrity schemes, MTE etc
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/170}{\#170}}
 
 \hypertarget{jit-compiler-vulnerabilities}{%
 \section{JIT compiler
 vulnerabilities}\label{jit-compiler-vulnerabilities}}
 
-\tododiv{Write section on JIT compiler vulnerabilities}
+\tododiv{Write section on JIT compiler vulnerabilities
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/171}{\#171}}
 
 \hypertarget{covert-channels-and-side-channels}{%
 \chapter{Covert channels and
@@ -1670,7 +1681,8 @@ introducing unsafe memory accesses, albeit by potentially needing to
 change the interface of the transformed function.\todospan{{Also discuss
 the techniques implemented in the
 \href{https://github.com/pietroborrello/constantine}{Constatine
-compiler}.}}
+compiler}
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/172}{\#172}}}
 
 A great reference giving practical advice on how to achieve (a), (b) and
 more security hardening properties specific for cryptographic kernels is
@@ -1829,9 +1841,11 @@ For direct-mapped and fully-associative caches, the mapping of an
 address to cache locations also works as described above. In
 fully-associative caches the number of cache sets is 1, so \(S\)=0.
 
-\tododiv{Also explain cache coherency \index{cache coherency}?}
+\tododiv{Also explain cache coherency \index{cache coherency}?
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/173}{\#173}}
 
-\tododiv{Also say something about TLBs and prefetching?}
+\tododiv{Also say something about TLBs and prefetching?
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/174}{\#174}}
 
 \hypertarget{operation-of-cache-side-channels}{%
 \subsection{Operation of cache
@@ -1868,14 +1882,15 @@ with the victim process. The attack works in 3 steps:
   long access time means it did not access the address.
 \end{enumerate}
 
+\tododiv{Should there be a more elaborate example with code that
+demonstrates in more detail how a flush+reload attack works?
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/175}{\#175}}
+
 Knowing if a victim accessed a specific address can leak sensitive
 information. Such as when accessing a specific array element depends on
 whether a specific bit is set in secret data. For example, (Yarom and
 Falkner \protect\hyperlink{ref-Yarom2014}{2014}) demonstrates that a
 Flush+Reload attack can be used to leak GnuPG private keys.
-
-\tododiv{Should there be a more elaborate example with code that
-demonstrates in more detail how a flush+reload attack works?}
 
 \hypertarget{primeprobe}{%
 \subsubsection{Prime+Probe}\label{primeprobe}}
@@ -2075,7 +2090,8 @@ channels}\label{resource-contention-channels}}
 predictors}\label{channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors}}
 
 \tododiv{Should we also discuss more ``covert'' channels here such as
-power analysis, etc?}
+power analysis, etc?
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/176}{\#176}}
 
 \hypertarget{transient-execution-attacks}{%
 \section{Transient execution
@@ -2174,7 +2190,8 @@ start executing next. This is called \emph{speculation}, as the CPU
 \end{description}
 
 \tododiv{Show a second example of cpu speculation that is not based on
-branch prediction.}
+branch prediction.
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/177}{\#177}}
 
 Of course, as with all predictions, the CPU gets the prediction wrong
 from time to time. In that case, all changes to the system state that
@@ -2225,18 +2242,19 @@ reference available?}}
 are a category of side-channel attacks that use the micro-architectural
 side-effects of transient execution as a side channel.
 
-\tododiv{Write section on transient execution attacks}
+\tododiv{Write sections on specific transient execution attacks such as
+Spectre and Meltdown.
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/178}{\#178}}
 
 \hypertarget{site-isolation}{%
 \subsubsection{Site isolation}\label{site-isolation}}
 
-\tododiv{Write section on site isolation as a SpectreV1 mitigation}
+\tododiv{Write section on site isolation as a SpectreV1 mitigation
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/179}{\#179}}
 
 \hypertarget{physical-access-side-channel-attacks}{%
 \section{Physical access side-channel
 attacks}\label{physical-access-side-channel-attacks}}
-
-\tododiv{Write chapter on physical access side-channel attacks.}
 
 \hypertarget{supply-chain-attacks}{%
 \chapter{Supply chain attacks}\label{supply-chain-attacks}}
@@ -2307,13 +2325,15 @@ applications, and there is no doubt that there will be more such attacks
 in the future. Let us now explore what we can do about these.
 
 \tododiv{Explain how these vulnerabilities arise and how to mitigate
-them.}
+them.
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/180}{\#180}}
 
 \hypertarget{physical-attacks}{%
 \chapter{Physical attacks}\label{physical-attacks}}
 
 \tododiv{This chapter should probably be moved under section `Physical
-access side-channel attacks' higher-up}
+access side-channel attacks' higher-up
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/181}{\#181}}
 
 \hypertarget{overview}{%
 \section{Overview}\label{overview}}
@@ -2522,7 +2542,8 @@ of timing signature leakage could be reduced:
 \end{itemize}
 
 \tododiv{There is overlap with section timing-side-channels. How to best
-consolidate that?}
+consolidate that?
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/182}{\#182}}
 
 There are additional software techniques to mitigate power leakage. One
 of the most well-known techniques is masking (e.g.~Boolean,
@@ -2646,7 +2667,8 @@ developers}\label{other-security-topics-relevant-for-compiler-developers}}
 \tododiv{Write chapter with other security topics.}
 
 \tododiv{Write section on securely clearing memory in C/C++ and
-undefined behaviour.}
+undefined behaviour.
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/183}{\#183}}
 
 \hypertarget{appendix-contribution-guidelines}{%
 \chapter*{Appendix: contribution
