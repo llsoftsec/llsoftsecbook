@@ -176,9 +176,9 @@ Given the rich history of memory vulnerabilities and mitigations and the active
 developments in this area, compiler developers are likely to encounter some of
 these issues over the course of their careers. This chapter aims to serve as an
 introduction to this area. We start with a discussion of exploitation
-primitives, which can be useful when analyzing threat models [Discuss
-threat models elsewhere in book and refer to that section here]{.todo}. We then
-continue with a more detailed discussion of the various types of
+primitives, which can be useful when analyzing threat models [Discuss threat
+models elsewhere in book and refer to that section here [161]{.issue}]{.todo}.
+We then continue with a more detailed discussion of the various types of
 vulnerabilities, along with their mitigations, presented in a rough
 chronological order of their appearance, and, therefore, complexity.
 
@@ -205,8 +205,8 @@ for example, may allow:
 
 * writing a fixed value to an attacker-controlled address, or
 * writing to an address consisting of a fixed base and an attacker-controlled
-  offset limited to a specific range (e.g. a 32-bit offset)[Consider
-  describing in more detail why the range limitation matters]{.todo}, or
+  offset limited to a specific range (e.g. a 32-bit offset)[Consider describing
+  in more detail why the range limitation matters[162]{.issue}]{.todo}, or
 * writing to an attacker-controlled base address with a fixed offset.
 
 Primitives can be further classified according to more detailed properties.
@@ -249,6 +249,7 @@ This depends on whether the attack is interactive or non-interactive [@Hu2016].
 ::: TODO
 The references in this section describe complicated modern exploits.
 Consider linking to simpler exploits, as well as some tutorial-level material.
+[163]{.issue}
 :::
 
 How does an attacker obtain these kinds of primitives in the first place?  The
@@ -578,6 +579,7 @@ Let's assume we have the following gadgets:
 ::: TODO
 Explain how these gadgets could result from C/C++ code. The current
 versions are slightly tweaked by hand to have more manageable offsets.
+[164]{.issue}
 :::
 
 Both gadgets also clobber several uninteresting registers, but since
@@ -636,6 +638,13 @@ figure @fig:jop.
 
 ![JOP example](img/jop){ width=50% #fig:jop }
 
+::: TODO
+The gadgets in the figure are made up, chosen to highlight that each
+gadget can end in a different type of indirect control flow transfer
+instruction. Consider replacing them with more realistic ones.
+[165]{.issue}
+:::
+
 In figure @fig:jop, `x4` initially points to the "dispatch table", which has
 been modified by the attacker to contain the addresses of the three gadgets
 they want to execute. The dispatcher gadget loads each address in the dispatch
@@ -649,11 +658,6 @@ into `x2`. The final gadget stores the result of the addition, which remains in
 `x0`, to the stack, before branching to `x2`, which still points to the
 dispatcher gadget.
 
-::: TODO
-The gadgets in the figure are made up, chosen to highlight that each
-gadget can end in a different type of indirect control flow transfer
-instruction. Consider replacing them with more realistic ones.
-:::
 
 ### Counterfeit Object-oriented programming
 
@@ -925,14 +929,14 @@ Another backward-edge CFI scheme that uses Pointer Authentication instructions
 is PACStack [@Liljestrand2021], which chains together PACs in order to include
 the full context (all of the previous return addresses in the call stack) when
 signing a return address.
-[Add more references to relevant research]{.todo}
+[Add more references to relevant research [166]{.issue}]{.todo}
 
 Pointer Authentication can also be used more widely, for example to implement a
 forward-edge CFI scheme, as is done in the arm64e ABI [@McCall2019].
 The Pointer Authentication instructions, however, are generic enough to also be
 useful in implementing more general memory safety measures, beyond CFI.
 [Mention more Pointer Authentication uses in later section, and add link
-here]{.todo}
+here [167]{.issue}]{.todo}
 
 #### BTI
 
@@ -1162,7 +1166,7 @@ and each 16-byte chunk of memory (called "granule") is randomly assigned an
 byte of the pointer to the object. Memory loads and stores are then
 instrumented to check that the tag stored in the pointer matches the tag stored
 in memory, and report an error when a mismatch happens.
-[Add diagram to demonstrate how HWASAN works.]{.todo}
+[Add diagram to demonstrate how HWASAN works [168]{.issue}]{.todo}
 
 For granules shorter than 16 bytes, the value stored in shadow memory is
 not the actual tag, but the length of the granule. The actual tag is stored
@@ -1180,10 +1184,8 @@ goes one step further and uses the Armv8.5-A [Memory Tagging Extension
 Tagging Extension (MTE)}. With MTE, the tag checking is done automatically by
 hardware, and an exception is raised on mismatch. MTE's granule size is 16
 bits, whereas tags are 4-bit.
+[Consider adding a whole section on MTE and its applications [169]{.issue}]{.todo}
 
-::: TODO
-Consider adding a whole section on MTE and its applications
-:::
 
 [UndefinedBehaviorSanitizer
 (UBSan)](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#ubsan-checks)
@@ -1216,11 +1218,13 @@ section. For the interested reader, we list a few more:
 Describe other mechanisms for detecting memory errors, both
 software-based (static analysis, library and buffer hardening) and
 hardware-based, e.g. PAuth-based pointer integrity schemes, MTE etc
+[170]{.issue}
 :::
 
 ## JIT compiler vulnerabilities
 ::: TODO
 Write section on JIT compiler vulnerabilities
+[171]{.issue}
 :::
 
 # Covert channels and side-channels
@@ -1282,7 +1286,8 @@ such that it respects property (a), albeit by potentially introducing unsafe
 memory accesses. [@Soares2021] improves on that result by not introducing unsafe
 memory accesses, albeit by potentially needing to change the interface of the
 transformed function.[Also discuss the techniques implemented in the
-[Constatine compiler](https://github.com/pietroborrello/constantine).]{.todo}
+[Constatine compiler](https://github.com/pietroborrello/constantine)
+[172]{.issue}]{.todo}
 
 A great reference giving practical advice on how to achieve (a), (b) and more
 security hardening properties specific for cryptographic kernels is found in
@@ -1403,9 +1408,11 @@ number of cache sets is 1, so $S$=0.
 
 ::: TODO
 Also explain cache coherency \index{cache coherency}?
+[173]{.issue}
 :::
 ::: TODO
 Also say something about TLBs and prefetching?
+[174]{.issue}
 :::
 
 ### Operation of cache side-channels
@@ -1431,15 +1438,16 @@ process shares memory with the victim process. The attack works in 3 steps:
      in step 2 the victim accessed the address; a long access time means it did
      not access the address.
 
+::: TODO
+Should there be a more elaborate example with code that
+demonstrates in more detail how a flush+reload attack works?
+[175]{.issue}
+:::
+
 Knowing if a victim accessed a specific address can leak sensitive information.
 Such as when accessing a specific array element depends on whether a specific
 bit is set in secret data. For example, [@Yarom2014] demonstrates that a
 Flush+Reload attack can be used to leak GnuPG private keys.
-
-::: TODO
-Should there be a more elaborate example with code that
-demonstrates in more detail how a flush+reload attack works?
-:::
 
 #### Prime+Probe
 
@@ -1579,6 +1587,7 @@ at the same time on 2 CPUs sharing a cache level.
 
 ::: TODO
 Should we also discuss more "covert" channels here such as power analysis, etc?
+[176]{.issue}
 :::
 
 
@@ -1665,6 +1674,7 @@ Let's illustrate that with the following example
 ::: TODO
 Show a second example of cpu speculation that is not based on
 branch prediction.
+[177]{.issue}
 :::
 
 Of course, as with all predictions, the CPU gets the prediction wrong from time
@@ -1711,20 +1721,19 @@ of side-channel attacks that use the micro-architectural side-effects of
 transient execution as a side channel.
 
 ::: TODO
-Write section on transient execution attacks
+Write sections on specific transient execution attacks such as Spectre and
+Meltdown.
+[178]{.issue}
 :::
 
 #### Site isolation
 
 ::: TODO
 Write section on site isolation as a SpectreV1 mitigation
+[179]{.issue}
 :::
 
 ## Physical access side-channel attacks
-
-::: TODO
-Write chapter on physical access side-channel attacks.
-:::
 
 # Supply chain attacks
 
@@ -1787,6 +1796,7 @@ now explore what we can do about these.
 
 ::: TODO
 Explain how these vulnerabilities arise and how to mitigate them.
+[180]{.issue}
 :::
 
 # Physical attacks
@@ -1794,6 +1804,7 @@ Explain how these vulnerabilities arise and how to mitigate them.
 ::: TODO
 This chapter should probably be moved under section 'Physical access
 side-channel attacks' higher-up
+[181]{.issue}
 :::
 
 
@@ -1929,6 +1940,7 @@ be reduced:
 
 ::: TODO
 There is overlap with section timing-side-channels. How to best consolidate that?
+[182]{.issue}
 :::
 
 There are additional software techniques to mitigate power leakage. One of the 
@@ -2020,6 +2032,7 @@ Write chapter with other security topics.
 
 ::: TODO
 Write section on securely clearing memory in C/C++ and undefined behaviour.
+[183]{.issue}
 :::
 
 # Appendix: contribution guidelines {-}
