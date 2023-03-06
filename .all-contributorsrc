@@ -146,6 +146,16 @@
         "ideas",
         "bug"
       ]
+    },
+    {
+      "login": "saagarjha",
+      "name": "Saagar Jha",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13786931?v=4",
+      "profile": "https://saagarjha.com",
+      "contributions": [
+        "bug",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
