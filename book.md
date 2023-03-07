@@ -1122,7 +1122,7 @@ ASan uses shadow memory\index{shadow memory} to keep track of the state of the
 application's memory.  Each byte of shadow memory records information on 8
 bytes of the application's memory. It represents how many of the 8 bytes are
 addressable. When none of the bytes are addressable, it encodes additional
-details (whether the 8 bytes are are out-of-bounds stack, out-of-bounds heap,
+details (whether the 8 bytes are out-of-bounds stack, out-of-bounds heap,
 freed memory, and so on).  Requiring one byte of shadow memory for every 8
 bytes of application memory means that ASan needs to reserve one-eighth of the
 application's virtual address space [@Serebryany2012]. Shadow memory is
@@ -1468,7 +1468,7 @@ extracting AES keys in just a few milliseconds using Prime+Probe.
 
 #### General schema for cache covert channels
 
-An attentative reader may have noticed that the concrete named attacks above
+An attentive reader may have noticed that the concrete named attacks above
 follow a similar 3-step pattern. Indeed, [@Weber2021] describes this general
 pattern and uses it to automatically discover more side-channels that follow
 this 3-step pattern. They describe the general pattern as being:
