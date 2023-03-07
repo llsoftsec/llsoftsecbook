@@ -166,7 +166,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2021-2022 Arm Limited
   \href{mailto:open-source-office@arm.com}{\nolinkurl{open-source-office@arm.com}}\\
 
-Version 0-140-g9314dc3
+Version 0-142-g5174b30
 \clearpage
 
 {
@@ -1489,7 +1489,7 @@ ASan uses shadow memory\index{shadow memory} to keep track of the state
 of the application's memory. Each byte of shadow memory records
 information on 8 bytes of the application's memory. It represents how
 many of the 8 bytes are addressable. When none of the bytes are
-addressable, it encodes additional details (whether the 8 bytes are are
+addressable, it encodes additional details (whether the 8 bytes are
 out-of-bounds stack, out-of-bounds heap, freed memory, and so on).
 Requiring one byte of shadow memory for every 8 bytes of application
 memory means that ASan needs to reserve one-eighth of the application's
@@ -1922,7 +1922,7 @@ AES keys in just a few milliseconds using Prime+Probe.
 \subsubsection{General schema for cache covert
 channels}\label{general-schema-for-cache-covert-channels}}
 
-An attentative reader may have noticed that the concrete named attacks
+An attentive reader may have noticed that the concrete named attacks
 above follow a similar 3-step pattern. Indeed, (Weber et al.
 \protect\hyperlink{ref-Weber2021}{2021}) describes this general pattern
 and uses it to automatically discover more side-channels that follow
