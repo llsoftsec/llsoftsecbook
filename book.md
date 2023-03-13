@@ -34,45 +34,41 @@ header-includes:
 # Introduction
 
 Compilers, assemblers and similar tools generate all the binary code that
-processors execute.  It is no surprise then that for security analysis and
-hardening relevant for binary code, these tools have a major role to play.
+processors execute.  It is no surprise then that these tools play a major role
+in security analysis and hardening of relevant binary code.
+
 Often the only practical way to protect all binaries with a particular security
-hardening method is to let the compiler adapt its automatic code generation.
+hardening method is to have the compiler do it.  And, with software security
+becoming more and more important in recent years, it is no surprise to see an
+ever increasing variety of security hardening features and mitigations against
+vulnerabilities implemented in compilers.  Indeed, compared to a few decades
+ago, today's compiler developer is much more likely to implement security
+features than not.
 
-With software security becoming even more important in recent years, it is no
-surprise to see an ever increasing variety of security hardening features and
-mitigations against vulnerabilities implemented in compilers.
-
-Indeed, compared to a few decades ago, today's compiler developer is much more
-likely to work on security features, at least some of their time.
-
-Furthermore, with the ever-expanding range of techniques implemented, it has
-become very hard to gain a basic understanding of all security
-features implemented in typical compilers.
+Furthermore, with the ever-expanding range of techniques implemented, it's very
+hard to gain a basic understanding of all security features implemented in
+typical compilers.
 
 This poses a practical problem: compiler developers must be able to work on
-security hardening features, yet it is hard to gain a good basic understanding
+security hardening features, yet it's hard to gain a good, basic understanding
 of such compiler features.
 
-This book aims to help developers of code generation tools such as JITs,
-compilers, linkers and assemblers to overcome this.
-
-There is a lot of material that can be found explaining individual
-vulnerabilities or attack vectors. There are also lots of presentations
-explaining specific exploits. But there seems to be a limited set of material
-that gives a structured overview of all vulnerabilities and exploits for which
-a code generator could play a role in protecting against them.
+There're a lot of materials that explain individual vulnerabilities or attack
+vectors. There're also lots of presentations explaining specific exploits.  But
+there seems to be a limited set of materials that give a structured overview of
+all vulnerabilities and exploits against which a code generator plays a role in
+protecting.
 
 This book aims to provide such a structured, broad overview.  It does not
-necessarily go into full details.  Instead it aims to give a thorough
-description of all relevant high-level aspects of attacks, vulnerabilities,
-mitigations and hardening techniques. For further details, this book provides
-pointers to material with more details on specific techniques.
+necessarily go into full details, instead aiming to give a thorough description
+of all relevant high-level aspects of attacks, vulnerabilities, mitigations,
+and hardening techniques.  For further details, this book provides pointers to
+materials with more details on specific techniques.
 
 The purpose of this book is to serve as a guide to every compiler developer
 that needs to learn about software security relevant to compilers.  Even though
 the focus is on compiler developers, we expect that this book will also be
-useful to other people working on low-level software.
+useful to people working on other low-level software.
 
 
 ## Why an open source book?
