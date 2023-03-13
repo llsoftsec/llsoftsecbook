@@ -1759,7 +1759,7 @@ door is inserted into the compiler, which then injects malicious code into
 generated object code. Furthermore, the trap door could be designed to reinsert
 itself into the compiler binary so that future compilers are silently infected
 without needing changes to their source code. This attack method was
-subsequently popularised by Ken Thompson in his 1984 ACM Turing Award
+subsequently popularized by Ken Thompson in his 1984 ACM Turing Award
 acceptance speech _Reflections on Trusting Trust_ [@Thompson1984].
 
 If these cases seem far-fetched then consider that there have been several real
