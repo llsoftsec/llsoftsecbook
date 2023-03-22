@@ -9,6 +9,7 @@ colorlinks: true
 link-citations: true
 github-repo: https://github.com/llsoftsec/llsoftsecbook
 github-edit-link: https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md
+discord-server: https://discord.gg/Bm55Z9Ppgn
 bibliography:
 - book.bib
 header-includes:
