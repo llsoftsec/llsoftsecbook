@@ -2,6 +2,7 @@
 SPDX-License-Identifier: CC-BY-4.0
 copyright:
   - SPDX-FileCopyrightText: Copyright 2021-2022 Arm Limited <open-source-office@arm.com>
+  - SPDX-FileCopyrightText: Copyright 2023 Bill Wendling <morbo@google.com>
 title: 'Low-Level Software Security for Compiler Developers'
 documentclass: report
 papersize: A4
@@ -54,11 +55,11 @@ This poses a practical problem: compiler developers must be able to work on
 security hardening features, yet it's hard to gain a good, basic understanding
 of such compiler features.
 
-There're a lot of materials that explain individual vulnerabilities or attack
-vectors. There're also lots of presentations explaining specific exploits.  But
-there seems to be a limited set of materials that give a structured overview of
-all vulnerabilities and exploits against which a code generator plays a role in
-protecting.
+There are a lot of materials that explain individual vulnerabilities or attack
+vectors. There are also lots of presentations explaining specific exploits.
+But there seems to be a limited set of materials that give a structured
+overview of all vulnerabilities and exploits against which a code generator
+plays a role in protecting.
 
 This book aims to provide such a structured, broad overview.  It does not
 necessarily go into full details, instead aiming to give a thorough description
