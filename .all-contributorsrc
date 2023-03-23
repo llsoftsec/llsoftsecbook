@@ -156,6 +156,15 @@
         "bug",
         "ideas"
       ]
+    },
+    {
+      "login": "bwendling",
+      "name": "Bill Wendling",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5993918?v=4",
+      "profile": "https://github.com/bwendling",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
