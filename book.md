@@ -1220,10 +1220,168 @@ hardware-based, e.g. PAuth-based pointer integrity schemes, MTE etc
 :::
 
 ## JIT compiler vulnerabilities
-::: TODO
-Write section on JIT compiler vulnerabilities
-[171]{.issue}
-:::
+
+Compiler correctness is obviously very important, as miscompilation creates
+buggy programs even when the source code has no bugs. What might be less obvious
+is that these bugs can have security implications. For example, they can introduce
+memory safety errors in languages that are otherwise memory safe. In some
+cases, a bug might leave most programs unaffected and not cause security issues
+in practice before it is detected and fixed. This is, of course, assuming that
+the bug has not been [intentionally injected in the
+compiler](#supply-chain-attacks).
+
+Compiler bugs are an interesting source of security issues for just-in-time
+(JIT) compilers\index{JIT compilers}[^jit]. JIT compilation is often used in
+programs that receive source code as input during program execution, for
+example in web browsers, for executing JavaScript code included in web pages.
+In this context, the input to the JIT compiler comes from arbitrary websites
+and is therefore untrusted. Bugs in such JIT compilers can lead to compromise
+of the whole program (here, the browser) if a malicious input (e.g. coming from
+a malicious website) deliberately triggers miscompilation in order to break
+memory safety of the language being implemented.
+
+[^jit]: [JIT](https://en.wikipedia.org/wiki/Just-in-time_compilation) compilers
+compile code during execution of a program, as opposed to the more traditional
+compilation where code is compiled before the program is executed.
+
+For this section, we will focus on JavaScript, which is a dynamically typed,
+memory safe language, but the concerns we discuss will also apply to other
+languages that are compiled dynamically.
+
+Without statically known types, in order to optimize JavaScript code,
+JavaScript engines resort to type profiling [@Pizlo2020], recording the types
+encountered while executing code. These types are then used during
+optimization, which speculates that the same types will be encountered in
+future runs of the code, and inserts checks to validate that these
+assumptions about types still hold. When a check fails, the optimized code is
+replaced by unoptimized code that can handle all types, a process known as
+deoptimization\index{deoptimization} or on-stack replacement
+(OSR)\index{on-stack replacement (OSR)}. Deoptimization makes sure the state of
+the deoptimized function is recreated correctly for the execution point where
+the type check failed.
+
+For example, a function such as:
+```
+function foo(x, y) {
+  return x + y;
+}
+```
+will return a number when `x` and `y` are numbers, but a string when either is
+a string. An optimizing compiler can use the results of profiling to generate
+optimized code, for example, when both arguments are integers during profiling,
+something that looks like this in pseudocode:
+```
+foo:
+  if x not integer, deoptimize
+  if y not integer, deoptimize
+  result = x + y
+  if overflowed, deoptimize
+  return result
+```
+
+You may be wondering how the type checks are implemented, and this is closely
+related to the representation of values in a JavaScript engine [@Wingo2011]. In
+short, JavaScript engines use specific bit patterns in order to distinguish
+pointers from integers or floating-point values. For example, in the [V8
+JavaScript engine](https://v8.dev/) uses the least significant bit to denote
+that a [value is a
+pointer](https://v8.dev/blog/pointer-compression#value-tagging-in-v8),
+otherwise it is a small integer (which needs to be shifted down to access its
+value). Pointers then point to objects that contain a [hidden
+class](https://v8.dev/docs/hidden-classes) member which is used for type
+checking.
+
+In addition to the values for which typing information is gathered during
+profiling, optimizing JavaScript compilers propagate the profiled types to
+dependent values. For example if a value `x` is expected to be a string, then
+`x + 1` will be a string too. In addition to simple type propagation, they
+usually perform range analysis\index{range analysis} to determine as precise a
+range for a value as possible, which is useful for bounds check
+elimination\index{bounds check elimination}.
+
+Bounds check elimination (BCE) is a common optimization in languages
+that perform bounds checks on array accesses to ensure every accessed index
+is within the bounds of the array. BCE gets rid of bounds checks when they are
+proved to be redundant, e.g. when the array access uses a constant index that's
+known to be smaller than the length of the array. See
+[here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length)
+for details on how out-of-bounds array accesses behave in JavaScript.
+
+Range analysis is a good example of an analysis where a JIT compiler bug can
+introduce a vulnerability. Incorrect range analysis results can be used by
+bounds check elimination to incorrectly eliminate bounds checks that should
+actually have been maintained in the optimized code. For example, for the
+following function:
+```
+function foo(x) {
+  y = bar(x);
+  var a = [0, 1, 2];
+  return a[y];
+}
+```
+If range analysis decides that the value of `y` is in the range `[0, 2]`, but
+in reality the value is in the range `[0, 3]`, the bounds check for the access
+`a[y]` can be eliminated incorrectly, assuming the access is in-bounds.
+[@Glazunov2021] lists a few examples of similar hypothetical vulnerabilities,
+but also real examples of vulnerabilities of this kind.
+
+The type of bug described above provides an attacker with a limited read or
+write primitive, as a linear overflow of the array allocation occurs. The
+attacker can then build on this primitive to get to an arbitrary read/write
+primitive. As JIT compilers generate executable code at runtime, they often use
+memory that is writable and executable at the same time. Such memory is very
+useful to attackers, who can use an arbitrary write primitive to copy their
+payload into this code memory, and then jump to it. Writable and executable
+memory, therefore, makes JITs lucrative targets for attackers.
+
+Bugs related to range analysis are just one of the common types of bugs
+encountered in a JavaScript engine. [@Groß2022] lists some other common types
+of bugs that result in violations of temporal and spatial memory safety, as
+well as type safety, in JavaScript engines.
+
+How can we defend against such vulnerabilities? There are several complementary
+approaches, for example:
+
+  1. Use fuzzing to discover compiler bugs. For JavaScript, a useful fuzzing tool
+     is [Fuzzilli](https://github.com/googleprojectzero/fuzzilli).
+  2. Be more conservative when it comes to error-prone compiler optimizations
+	 such as bounds check elimination. For example, the
+     [V8 JavaScript engine](https://v8.dev/) has introduced
+     [hardening of bounds checks against typer bugs](https://bugs.chromium.org/p/v8/issues/detail?id=8806)
+     [^bypass].
+  3. Instead of trying to prevent compiler (and other) bugs, assume they will be
+     present and introduce mitigations that prevent attackers from building arbitrary
+     read/write primitives on top of the initial limited primitives that bugs
+     provide. For example, for 64-bit architectures, V8 implements a
+     [sandbox](https://docs.google.com/document/d/1FM4fQmIhEqPG8uGp5o9A-mnPB5BOeScZYpkHjo0KKA8/edit),
+     built on top of [pointer compression](https://v8.dev/blog/pointer-compression).
+     With pointer compression, pointers are represented by 32-bit indices off a base
+     pointer instead of as full 64-bit values. By making sure that all pointers
+     inside the sandbox (where the JavaScript heap is located) are compressed,
+     and that compressed pointers always point inside the sandbox,
+     a limited primitive that allows overwriting memory within the sandbox
+     cannot be used to build an arbitrary read/write primitive by overwriting
+     pointer values.
+  4. Preventing code memory from being executable and writable at the same time
+     is also desirable. This is known as [W^X](https://en.wikipedia.org/wiki/W%5EX).
+     A naive implementation of W^X that simply switches memory permissions
+     based on page tables temporarily is not enough to prevent attackers from
+     writing to code memory [@Song2015], when multiple threads are involved.
+     A more effective solution would use a separate compilation process, which
+     is the only process that has write access to the JIT's code memory.
+     Alternatively, some architectures provide special features that can
+     restrict page-based memory permissions from userspace, effectively
+     allowing permissions to be different for different threads. Such features
+     can also be of use in implementing W^X. For AArch64, this feature is called
+     [permission overlays](https://developer.arm.com/documentation/102376/0200/Permission-indirection-and-permission-overlay-extensions).
+
+[^bypass]: This naturally leads to attempts to bypass the hardening too
+[@Fetiveau2019].
+
+In this section, we have discussed JIT compiler security and introduced
+JavaScript compiler bugs that lead to vulnerabilities. Although we haven't
+focused on the details of JavaScript exploitation, an interested reader could
+take a look at [@saelo2021a] and [@saelo2021b].
 
 # Covert channels and side-channels
 
