@@ -1244,8 +1244,8 @@ memory safety of the language being implemented.
 compile code during execution of a program, as opposed to the more traditional
 compilation where code is compiled before the program is executed.
 
-For this section, we will focus on JavaScript, which is a dynamically typed,
-memory safe language, but the concerns we discuss will also apply to other
+For this section, we focus on JavaScript, which is a dynamically typed,
+memory safe language, but the concerns we discuss also apply to other
 languages that are compiled dynamically.
 
 Without statically known types, in order to optimize JavaScript code,
@@ -1256,9 +1256,9 @@ future runs of the code, and inserts checks to validate that these
 assumptions about types still hold. When a check fails, the optimized code is
 replaced by unoptimized code that can handle all types, a process known as
 deoptimization\index{deoptimization} or on-stack replacement
-(OSR)\index{on-stack replacement (OSR)}. Deoptimization makes sure the state of
-the deoptimized function is recreated correctly for the execution point where
-the type check failed.
+(OSR)\index{on-stack replacement (OSR)}. Deoptimization makes sure that the
+state of the deoptimized function is recreated correctly for the point of
+execution where the type check failed.
 
 For example, a function such as:
 ```
@@ -1268,8 +1268,8 @@ function foo(x, y) {
 ```
 will return a number when `x` and `y` are numbers, but a string when either is
 a string. An optimizing compiler can use the results of profiling to generate
-optimized code, for example, when both arguments are integers during profiling,
-something that looks like this in pseudocode:
+optimized code. For example, when both arguments are integers during profiling,
+it can generate code that looks like this in pseudocode:
 ```
 foo:
   if x not integer, deoptimize
@@ -1281,10 +1281,10 @@ foo:
 
 You may be wondering how the type checks are implemented, and this is closely
 related to the representation of values in a JavaScript engine [@Wingo2011]. In
-short, JavaScript engines use specific bit patterns in order to distinguish
-pointers from integers or floating-point values. For example, in the [V8
-JavaScript engine](https://v8.dev/) uses the least significant bit to denote
-that a [value is a
+short, JavaScript engines use specific bit patterns to indicate whether a value
+should be interpreted as a pointer, or as an integer or floating-point value.
+For example, the [V8 JavaScript engine](https://v8.dev/) uses the least
+significant bit to denote that a [value is a
 pointer](https://v8.dev/blog/pointer-compression#value-tagging-in-v8),
 otherwise it is a small integer (which needs to be shifted down to access its
 value). Pointers then point to objects that contain a [hidden
@@ -1293,17 +1293,19 @@ checking.
 
 In addition to the values for which typing information is gathered during
 profiling, optimizing JavaScript compilers propagate the profiled types to
-dependent values. For example if a value `x` is expected to be a string, then
-`x + 1` will be a string too. In addition to simple type propagation, they
+dependent values. For example if a value `x` is expected to be a string, and we
+check this assumption, then `x + 1` will also be a string (and no additional
+check is needed in this case). In addition to simple type propagation, they
 usually perform range analysis\index{range analysis} to determine as precise a
 range for a value as possible, which is useful for bounds check
 elimination\index{bounds check elimination}.
 
-Bounds check elimination (BCE) is a common optimization in languages
-that perform bounds checks on array accesses to ensure every accessed index
-is within the bounds of the array. BCE gets rid of bounds checks when they are
-proved to be redundant, e.g. when the array access uses a constant index that's
-known to be smaller than the length of the array. See
+Bounds check elimination (BCE)\index{bounds check elimination} is a common
+optimization in languages that perform bounds checks on array accesses to
+ensure every accessed index is within the bounds of the array. BCE gets rid of
+bounds checks when they are proven to be redundant, e.g. when the array access
+uses a constant index that's known to be smaller than the length of the array.
+See
 [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length)
 for details on how out-of-bounds array accesses behave in JavaScript.
 
@@ -1323,7 +1325,8 @@ If range analysis decides that the value of `y` is in the range `[0, 2]`, but
 in reality the value is in the range `[0, 3]`, the bounds check for the access
 `a[y]` can be eliminated incorrectly, assuming the access is in-bounds.
 [@Glazunov2021] lists a few examples of similar hypothetical vulnerabilities,
-but also real examples of vulnerabilities of this kind.
+along with examples of vulnerabilities of this type that affected widely-used
+JavaScript engines.
 
 The type of bug described above provides an attacker with a limited read or
 write primitive, as a linear overflow of the array allocation occurs. The
@@ -1354,7 +1357,8 @@ approaches, for example:
      read/write primitives on top of the initial limited primitives that bugs
      provide. For example, for 64-bit architectures, V8 implements a
      [sandbox](https://docs.google.com/document/d/1FM4fQmIhEqPG8uGp5o9A-mnPB5BOeScZYpkHjo0KKA8/edit),
-     built on top of [pointer compression](https://v8.dev/blog/pointer-compression).
+     built on top of [pointer compression](https://v8.dev/blog/pointer-compression)
+     \index{pointer compression}.
      With pointer compression, pointers are represented by 32-bit indices off a base
      pointer instead of as full 64-bit values. By making sure that all pointers
      inside the sandbox (where the JavaScript heap is located) are compressed,
@@ -1363,7 +1367,8 @@ approaches, for example:
      cannot be used to build an arbitrary read/write primitive by overwriting
      pointer values.
   4. Preventing code memory from being executable and writable at the same time
-     is also desirable. This is known as [W^X](https://en.wikipedia.org/wiki/W%5EX).
+     is also desirable. This is known as [W^X](https://en.wikipedia.org/wiki/W%5EX)
+     \index{W^X}.
      A naive implementation of W^X that simply switches memory permissions
      based on page tables temporarily is not enough to prevent attackers from
      writing to code memory [@Song2015], when multiple threads are involved.
@@ -1378,7 +1383,7 @@ approaches, for example:
 [^bypass]: This naturally leads to attempts to bypass the hardening too
 [@Fetiveau2019].
 
-In this section, we have discussed JIT compiler security and introduced
+In this section, we have discussed JIT compiler security and described
 JavaScript compiler bugs that lead to vulnerabilities. Although we haven't
 focused on the details of JavaScript exploitation, an interested reader could
 take a look at [@saelo2021a] and [@saelo2021b].
