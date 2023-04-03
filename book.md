@@ -1368,7 +1368,7 @@ approaches, for example:
      pointer values.
   4. Preventing code memory from being executable and writable at the same time
      is also desirable. This is known as [W^X](https://en.wikipedia.org/wiki/W%5EX)
-     \index{W^X}.
+     \index{W\^{}X}.
      A naive implementation of W^X that simply switches memory permissions
      based on page tables temporarily is not enough to prevent attackers from
      writing to code memory [@Song2015], when multiple threads are involved.
