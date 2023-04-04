@@ -9,19 +9,18 @@
 \contentsline {todo}{9. {Add diagram to demonstrate how HWASAN works \href {https://github.com/llsoftsec/llsoftsecbook/issues/168}{\#168}}}{26}{section*.15}%
 \contentsline {todo}{10. {Consider adding a whole section on MTE and its applications \href {https://github.com/llsoftsec/llsoftsecbook/issues/169}{\#169}}}{26}{section*.16}%
 \contentsline {todo}{11. Describe other mechanisms for detecting memory errors, both software-based (static analysis, library and buffer hardening) and hardware-based, e.g.\nobreakspace {}PAuth-based pointer integrity schemes, MTE etc \href {https://github.com/llsoftsec/llsoftsecbook/issues/170}{\#170}}{27}{section*.17}%
-\contentsline {todo}{12. Write section on JIT compiler vulnerabilities \href {https://github.com/llsoftsec/llsoftsecbook/issues/171}{\#171}}{27}{section*.18}%
-\contentsline {todo}{13. {Also discuss the techniques implemented in the \href {https://github.com/pietroborrello/constantine}{Constatine compiler} \href {https://github.com/llsoftsec/llsoftsecbook/issues/172}{\#172}}}{29}{section*.19}%
-\contentsline {todo}{14. Also explain cache coherency ? \href {https://github.com/llsoftsec/llsoftsecbook/issues/173}{\#173}}{31}{section*.22}%
-\contentsline {todo}{15. Also say something about TLBs and prefetching? \href {https://github.com/llsoftsec/llsoftsecbook/issues/174}{\#174}}{32}{section*.23}%
-\contentsline {todo}{16. Should there be a more elaborate example with code that demonstrates in more detail how a flush+reload attack works? \href {https://github.com/llsoftsec/llsoftsecbook/issues/175}{\#175}}{32}{section*.24}%
-\contentsline {todo}{17. Should we also discuss more ``covert'' channels here such as power analysis, etc? \href {https://github.com/llsoftsec/llsoftsecbook/issues/176}{\#176}}{35}{section*.25}%
-\contentsline {todo}{18. Show a second example of cpu speculation that is not based on branch prediction. \href {https://github.com/llsoftsec/llsoftsecbook/issues/177}{\#177}}{36}{section*.26}%
-\contentsline {todo}{19. {Could we find a good reference that explains micro-architectural versus architectural state in more detail? Is ``Computer Architecture: A Quantitative Approach'' the best reference available?}}{37}{section*.27}%
-\contentsline {todo}{20. Write sections on specific transient execution attacks such as Spectre and Meltdown. \href {https://github.com/llsoftsec/llsoftsecbook/issues/178}{\#178}}{37}{section*.28}%
-\contentsline {todo}{21. Write section on site isolation as a SpectreV1 mitigation \href {https://github.com/llsoftsec/llsoftsecbook/issues/179}{\#179}}{37}{section*.29}%
-\contentsline {todo}{22. Explain how these vulnerabilities arise and how to mitigate them. \href {https://github.com/llsoftsec/llsoftsecbook/issues/180}{\#180}}{39}{section*.30}%
-\contentsline {todo}{23. This chapter should probably be moved under section `Physical access side-channel attacks' higher-up \href {https://github.com/llsoftsec/llsoftsecbook/issues/181}{\#181}}{40}{section*.31}%
-\contentsline {todo}{24. There is overlap with section timing-side-channels. How to best consolidate that? \href {https://github.com/llsoftsec/llsoftsecbook/issues/182}{\#182}}{43}{section*.35}%
-\contentsline {todo}{25. Make the above reference to a paper use bibtex. \href {https://github.com/llsoftsec/llsoftsecbook/issues/159}{\#159}}{44}{section*.37}%
-\contentsline {todo}{26. Write chapter with other security topics.}{46}{section*.38}%
-\contentsline {todo}{27. Write section on securely clearing memory in C/C++ and undefined behaviour. \href {https://github.com/llsoftsec/llsoftsecbook/issues/183}{\#183}}{46}{section*.39}%
+\contentsline {todo}{12. {Also discuss the techniques implemented in the \href {https://github.com/pietroborrello/constantine}{Constatine compiler} \href {https://github.com/llsoftsec/llsoftsecbook/issues/172}{\#172}}}{32}{section*.18}%
+\contentsline {todo}{13. Also explain cache coherency ? \href {https://github.com/llsoftsec/llsoftsecbook/issues/173}{\#173}}{34}{section*.21}%
+\contentsline {todo}{14. Also say something about TLBs and prefetching? \href {https://github.com/llsoftsec/llsoftsecbook/issues/174}{\#174}}{35}{section*.22}%
+\contentsline {todo}{15. Should there be a more elaborate example with code that demonstrates in more detail how a flush+reload attack works? \href {https://github.com/llsoftsec/llsoftsecbook/issues/175}{\#175}}{35}{section*.23}%
+\contentsline {todo}{16. Should we also discuss more ``covert'' channels here such as power analysis, etc? \href {https://github.com/llsoftsec/llsoftsecbook/issues/176}{\#176}}{38}{section*.24}%
+\contentsline {todo}{17. Show a second example of cpu speculation that is not based on branch prediction. \href {https://github.com/llsoftsec/llsoftsecbook/issues/177}{\#177}}{39}{section*.25}%
+\contentsline {todo}{18. {Could we find a good reference that explains micro-architectural versus architectural state in more detail? Is ``Computer Architecture: A Quantitative Approach'' the best reference available?}}{40}{section*.26}%
+\contentsline {todo}{19. Write sections on specific transient execution attacks such as Spectre and Meltdown. \href {https://github.com/llsoftsec/llsoftsecbook/issues/178}{\#178}}{40}{section*.27}%
+\contentsline {todo}{20. Write section on site isolation as a SpectreV1 mitigation \href {https://github.com/llsoftsec/llsoftsecbook/issues/179}{\#179}}{40}{section*.28}%
+\contentsline {todo}{21. Explain how these vulnerabilities arise and how to mitigate them. \href {https://github.com/llsoftsec/llsoftsecbook/issues/180}{\#180}}{42}{section*.29}%
+\contentsline {todo}{22. This chapter should probably be moved under section `Physical access side-channel attacks' higher-up \href {https://github.com/llsoftsec/llsoftsecbook/issues/181}{\#181}}{43}{section*.30}%
+\contentsline {todo}{23. There is overlap with section timing-side-channels. How to best consolidate that? \href {https://github.com/llsoftsec/llsoftsecbook/issues/182}{\#182}}{46}{section*.34}%
+\contentsline {todo}{24. Make the above reference to a paper use bibtex. \href {https://github.com/llsoftsec/llsoftsecbook/issues/159}{\#159}}{47}{section*.36}%
+\contentsline {todo}{25. Write chapter with other security topics.}{49}{section*.37}%
+\contentsline {todo}{26. Write section on securely clearing memory in C/C++ and undefined behaviour. \href {https://github.com/llsoftsec/llsoftsecbook/issues/183}{\#183}}{49}{section*.38}%

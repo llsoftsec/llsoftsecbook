@@ -168,7 +168,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2023 Bill Wendling
   \href{mailto:morbo@google.com}{\nolinkurl{morbo@google.com}}\\
 
-Version 0-145-gfe66de8
+Version 0-147-g19a7017
 \clearpage
 
 {
@@ -1599,8 +1599,201 @@ hardware-based, e.g.~PAuth-based pointer integrity schemes, MTE etc
 \section{JIT compiler
 vulnerabilities}\label{jit-compiler-vulnerabilities}}
 
-\tododiv{Write section on JIT compiler vulnerabilities
-\href{https://github.com/llsoftsec/llsoftsecbook/issues/171}{\#171}}
+Compiler correctness is obviously very important, as miscompilation
+creates buggy programs even when the source code has no bugs. What might
+be less obvious is that these bugs can have security implications. For
+example, they can introduce memory safety errors in languages that are
+otherwise memory safe. In some cases, a bug might leave most programs
+unaffected and not cause security issues in practice before it is
+detected and fixed. This is, of course, assuming that the bug has not
+been \protect\hyperlink{supply-chain-attacks}{intentionally injected in
+the compiler}.
+
+Compiler bugs are an interesting source of security issues for
+\href{https://en.wikipedia.org/wiki/Just-in-time_compilation}{just-in-time
+(JIT)} compilers\index{JIT compilers}\footnote{JIT compilers compile
+  code during execution of a program, as opposed to the more traditional
+  compilation where code is compiled before the program is executed.}.
+JIT compilation is often used in programs that receive source code as
+input during program execution, for example in web browsers, for
+executing JavaScript code included in web pages. In this context, the
+input to the JIT compiler comes from arbitrary websites and is therefore
+untrusted. Bugs in such JIT compilers can lead to compromise of the
+whole program (here, the browser) if a malicious input (e.g.~coming from
+a malicious website) deliberately triggers miscompilation in order to
+break memory safety of the language being implemented.
+
+For this section, we focus on JavaScript, which is a dynamically typed,
+memory safe language, but the concerns we discuss also apply to other
+languages that are compiled dynamically.
+
+Without statically known types, in order to optimize JavaScript code,
+JavaScript engines resort to type profiling (Pizlo
+\protect\hyperlink{ref-Pizlo2020}{2020}), recording the types
+encountered while executing code. These types are then used during
+optimization, which speculates that the same types will be encountered
+in future runs of the code, and inserts checks to validate that these
+assumptions about types still hold. When a check fails, the optimized
+code is replaced by unoptimized code that can handle all types, a
+process known as deoptimization\index{deoptimization} or on-stack
+replacement (OSR)\index{on-stack replacement (OSR)}. Deoptimization
+makes sure that the state of the deoptimized function is recreated
+correctly for the point of execution where the type check failed.
+
+For example, a function such as:
+
+\begin{verbatim}
+function foo(x, y) {
+  return x + y;
+}
+\end{verbatim}
+
+will return a number when \texttt{x} and \texttt{y} are numbers, but a
+string when either is a string. An optimizing compiler can use the
+results of profiling to generate optimized code. For example, when both
+arguments are integers during profiling, it can generate code that looks
+like this in pseudocode:
+
+\begin{verbatim}
+foo:
+  if x not integer, deoptimize
+  if y not integer, deoptimize
+  result = x + y
+  if overflowed, deoptimize
+  return result
+\end{verbatim}
+
+You may be wondering how the type checks are implemented, and this is
+closely related to the representation of values in a JavaScript engine
+(Wingo \protect\hyperlink{ref-Wingo2011}{2011}). In short, JavaScript
+engines use specific bit patterns to indicate whether a value should be
+interpreted as a pointer, or as an integer or floating-point value. For
+example, the \href{https://v8.dev/}{V8 JavaScript engine} uses the least
+significant bit to denote that a
+\href{https://v8.dev/blog/pointer-compression\#value-tagging-in-v8}{value
+is a pointer}, otherwise it is a small integer (which needs to be
+shifted down to access its value). Pointers then point to objects that
+contain a \href{https://v8.dev/docs/hidden-classes}{hidden class} member
+which is used for type checking.
+
+In addition to the values for which typing information is gathered
+during profiling, optimizing JavaScript compilers propagate the profiled
+types to dependent values. For example if a value \texttt{x} is expected
+to be a string, and we check this assumption, then \texttt{x\ +\ 1} will
+also be a string (and no additional check is needed in this case). In
+addition to simple type propagation, they usually perform range
+analysis\index{range analysis} to determine as precise a range for a
+value as possible, which is useful for bounds check
+elimination\index{bounds check elimination}.
+
+Bounds check elimination (BCE)\index{bounds check elimination} is a
+common optimization in languages that perform bounds checks on array
+accesses to ensure every accessed index is within the bounds of the
+array. BCE gets rid of bounds checks when they are proven to be
+redundant, e.g.~when the array access uses a constant index that's known
+to be smaller than the length of the array. See
+\href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length}{here}
+for details on how out-of-bounds array accesses behave in JavaScript.
+
+Range analysis is a good example of an analysis where a JIT compiler bug
+can introduce a vulnerability. Incorrect range analysis results can be
+used by bounds check elimination to incorrectly eliminate bounds checks
+that should actually have been maintained in the optimized code. For
+example, for the following function:
+
+\begin{verbatim}
+function foo(x) {
+  y = bar(x);
+  var a = [0, 1, 2];
+  return a[y];
+}
+\end{verbatim}
+
+If range analysis decides that the value of \texttt{y} is in the range
+\texttt{{[}0,\ 2{]}}, but in reality the value is in the range
+\texttt{{[}0,\ 3{]}}, the bounds check for the access \texttt{a{[}y{]}}
+can be eliminated incorrectly, assuming the access is in-bounds.
+(Glazunov \protect\hyperlink{ref-Glazunov2021}{2021}) lists a few
+examples of similar hypothetical vulnerabilities, along with examples of
+vulnerabilities of this type that affected widely-used JavaScript
+engines.
+
+The type of bug described above provides an attacker with a limited read
+or write primitive, as a linear overflow of the array allocation occurs.
+The attacker can then build on this primitive to get to an arbitrary
+read/write primitive. As JIT compilers generate executable code at
+runtime, they often use memory that is writable and executable at the
+same time. Such memory is very useful to attackers, who can use an
+arbitrary write primitive to copy their payload into this code memory,
+and then jump to it. Writable and executable memory, therefore, makes
+JITs lucrative targets for attackers.
+
+Bugs related to range analysis are just one of the common types of bugs
+encountered in a JavaScript engine. (Groß and Burnett
+\protect\hyperlink{ref-Grouxdf2022}{2022}) lists some other common types
+of bugs that result in violations of temporal and spatial memory safety,
+as well as type safety, in JavaScript engines.
+
+How can we defend against such vulnerabilities? There are several
+complementary approaches, for example:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Use fuzzing to discover compiler bugs. For JavaScript, a useful
+  fuzzing tool is
+  \href{https://github.com/googleprojectzero/fuzzilli}{Fuzzilli}.
+\item
+  Be more conservative when it comes to error-prone compiler
+  optimizations such as bounds check elimination. For example, the
+  \href{https://v8.dev/}{V8 JavaScript engine} has introduced
+  \href{https://bugs.chromium.org/p/v8/issues/detail?id=8806}{hardening
+  of bounds checks against typer bugs}.\footnote{This naturally leads to
+    attempts to bypass the hardening too (Fetiveau
+    \protect\hyperlink{ref-Fetiveau2019}{2019}).}
+\item
+  Instead of trying to prevent compiler (and other) bugs, assume they
+  will be present and introduce mitigations that prevent attackers from
+  building arbitrary read/write primitives on top of the initial limited
+  primitives that bugs provide. For example, for 64-bit architectures,
+  V8 implements a
+  \href{https://docs.google.com/document/d/1FM4fQmIhEqPG8uGp5o9A-mnPB5BOeScZYpkHjo0KKA8/edit}{sandbox},
+  built on top of \href{https://v8.dev/blog/pointer-compression}{pointer
+  compression} \index{pointer compression}. With pointer compression,
+  pointers are represented by 32-bit indices off a base pointer instead
+  of as full 64-bit values. By making sure that all pointers inside the
+  sandbox (where the JavaScript heap is located) are compressed, and
+  that compressed pointers always point inside the sandbox, a limited
+  primitive that allows overwriting memory within the sandbox cannot be
+  used to build an arbitrary read/write primitive by overwriting pointer
+  values.
+\item
+  Preventing code memory from being executable and writable at the same
+  time is also desirable. This is known as
+  \href{https://en.wikipedia.org/wiki/W\%5EX}{W\^{}X} \index{W\^{}X}. A
+  naive implementation of W\^{}X that simply switches memory permissions
+  based on page tables temporarily is not enough to prevent attackers
+  from writing to code memory (Song et al.
+  \protect\hyperlink{ref-Song2015}{2015}), when multiple threads are
+  involved. A more effective solution would use a separate compilation
+  process, which is the only process that has write access to the JIT's
+  code memory. Alternatively, some architectures provide special
+  features that can restrict page-based memory permissions from
+  userspace, effectively allowing permissions to be different for
+  different threads. Such features can also be of use in implementing
+  W\^{}X. For AArch64, this feature is called
+  \href{https://developer.arm.com/documentation/102376/0200/Permission-indirection-and-permission-overlay-extensions}{permission
+  overlays}.
+\end{enumerate}
+
+In this section, we have discussed JIT compiler security and described
+JavaScript compiler bugs that lead to vulnerabilities. Although we
+haven't focused on the details of JavaScript exploitation, an interested
+reader could take a look at (saelo
+\protect\hyperlink{ref-saelo2021a}{2021}\protect\hyperlink{ref-saelo2021a}{b})
+and (saelo
+\protect\hyperlink{ref-saelo2021b}{2021}\protect\hyperlink{ref-saelo2021b}{a}).
 
 \hypertarget{covert-channels-and-side-channels}{%
 \chapter{Covert channels and
@@ -2778,10 +2971,20 @@ Unexploitability.'' \emph{IEEE Transactions on Emerging Topics in
 Computing} 8 (2): 391--403.
 \url{https://doi.org/10.1109/TETC.2017.2785300}.
 
+\leavevmode\hypertarget{ref-Fetiveau2019}{}%
+Fetiveau, Jeremy. 2019. ``Circumventing Chrome's Hardening of Typer
+Bugs.'' 2019.
+\url{https://doar-e.github.io/blog/2019/05/09/circumventing-chromes-hardening-of-typer-bugs/}.
+
 \leavevmode\hypertarget{ref-Dullien2018}{}%
 Flake, Thomas Dullien/Halvar. 2018. ``Turing Completeness, Weird
 Machines, Twitter, and Muddled Terminology.'' 2018.
 \url{http://addxorrol.blogspot.com/2018/10/turing-completeness-weird-machines.html}.
+
+\leavevmode\hypertarget{ref-Glazunov2021}{}%
+Glazunov, Sergei. 2021. ``In-the-Wild Series: Chrome Infinity Bug.''
+2021.
+\url{https://googleprojectzero.blogspot.com/2021/01/in-wild-series-chrome-infinity-bug.html}.
 
 \leavevmode\hypertarget{ref-Gostev2009}{}%
 Gostev, Alexander. 2009. ``A Short History of Induc.'' 2009.
@@ -2795,6 +2998,11 @@ Videogames.'' \emph{WIRED}.
 \leavevmode\hypertarget{ref-Grouxdf2020}{}%
 Groß, Samuel. 2020. ``JITSploitation I: A Jit Bug.'' 2020.
 \url{https://googleprojectzero.blogspot.com/2020/09/jitsploitation-one.html}.
+
+\leavevmode\hypertarget{ref-Grouxdf2022}{}%
+Groß, Samuel, and Amy Burnett. 2022. ``Attacking Javascript Engines in
+2022.'' 2022.
+\url{https://saelo.github.io/presentations/offensivecon_22_attacking_javascript_engines.pdf}.
 
 \leavevmode\hypertarget{ref-Gruss2016}{}%
 Gruss, Daniel, Clémentine Maurice, Anders Fogh, Moritz Lipp, and Stefan
@@ -2874,6 +3082,10 @@ Evaluation: VULNERABILITY Analysis,'' 52.
 Percival, Colin. 2005. ``Cache Missing for Fun and Profit.'' BSDCan.
 \url{https://eprint.iacr.org/2005/271}.
 
+\leavevmode\hypertarget{ref-Pizlo2020}{}%
+Pizlo, Filip. 2020. ``Speculation in Javascriptcore.'' 2020.
+\url{https://webkit.org/blog/10308/speculation-in-javascriptcore/}.
+
 \leavevmode\hypertarget{ref-Pornin2018}{}%
 Pornin, Thomas. 2018. ``Why Constant-Time Crypto?'' 2018.
 \url{https://www.bearssl.org/constanttime.html}.
@@ -2881,6 +3093,15 @@ Pornin, Thomas. 2018. ``Why Constant-Time Crypto?'' 2018.
 \leavevmode\hypertarget{ref-Rutland2017}{}%
 Rutland, Mark. 2017. ``ARMv8.3 Pointer Authentication.'' 2017.
 \url{https://events.static.linuxfound.org/sites/events/files/slides/slides_23.pdf}.
+
+\leavevmode\hypertarget{ref-saelo2021b}{}%
+saelo. 2021a. ``Attacking Javascript Engines: A Case Study of
+Javascriptcore and Cve-2016-4622.'' 2021.
+\url{http://www.phrack.org/issues/70/3.html}.
+
+\leavevmode\hypertarget{ref-saelo2021a}{}%
+---------. 2021b. ``Exploiting Logic Bugs in Javascript Jit Engines.''
+2021. \url{http://www.phrack.org/issues/70/9.html}.
 
 \leavevmode\hypertarget{ref-Schuster2015}{}%
 Schuster, F., T. Tendyck, C. Liebchen, L. Davi, A. Sadeghi, and T. Holz.
@@ -2940,6 +3161,11 @@ Symposium on Code Generation and Optimization (CGO)}. IEEE.
 Solar Designer. 1997. ``Getting Around Non-Executable Stack (and Fix).''
 1997. \url{https://seclists.org/bugtraq/1997/Aug/63}.
 
+\leavevmode\hypertarget{ref-Song2015}{}%
+Song, Chengyu, Chao Zhang, Tielei Wang, Wenke Lee, and David Melski.
+2015. ``Exploiting and Protecting Dynamic Code Generation.'' In
+\emph{NDSS}.
+
 \leavevmode\hypertarget{ref-Su2021}{}%
 Su, Chao, and Qingkai Zeng. 2021. ``Survey of CPU Cache-Based
 Side-Channel Attacks: Systematic Analysis, Security Models, and
@@ -2955,6 +3181,11 @@ Weber, Daniel, Ahmad Ibrahim, Hamed Nemati, Michael Schwarz, and
 Christian Rossow. 2021. ``Osiris: Automated Discovery of
 Microarchitectural Side Channels.'' In \emph{USENIX Security'21}.
 \url{https://arxiv.org/abs/2106.03470}.
+
+\leavevmode\hypertarget{ref-Wingo2011}{}%
+Wingo, Any. 2011. ``Value Representation in Javascript
+Implementations.'' 2011.
+\url{https://wingolog.org/archives/2011/05/18/value-representation-in-javascript-implementations}.
 
 \leavevmode\hypertarget{ref-Wu2018}{}%
 Wu, Meng, Shengjian Guo, Patrick Schaumont, and Chao Wang. 2018.
