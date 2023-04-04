@@ -1230,8 +1230,9 @@ in practice before it is detected and fixed. This is, of course, assuming that
 the bug has not been [intentionally injected in the
 compiler](#supply-chain-attacks).
 
-Compiler bugs are an interesting source of security issues for just-in-time
-(JIT) compilers\index{JIT compilers}[^jit]. JIT compilation is often used in
+Compiler bugs are an interesting source of security issues for [just-in-time
+(JIT)](https://en.wikipedia.org/wiki/Just-in-time_compilation)
+compilers\index{JIT compilers}[^jit]. JIT compilation is often used in
 programs that receive source code as input during program execution, for
 example in web browsers, for executing JavaScript code included in web pages.
 In this context, the input to the JIT compiler comes from arbitrary websites
@@ -1240,9 +1241,9 @@ of the whole program (here, the browser) if a malicious input (e.g. coming from
 a malicious website) deliberately triggers miscompilation in order to break
 memory safety of the language being implemented.
 
-[^jit]: [JIT](https://en.wikipedia.org/wiki/Just-in-time_compilation) compilers
-compile code during execution of a program, as opposed to the more traditional
-compilation where code is compiled before the program is executed.
+[^jit]: JIT compilers compile code during execution of a program, as opposed to
+the more traditional compilation where code is compiled before the program is
+executed.
 
 For this section, we focus on JavaScript, which is a dynamically typed,
 memory safe language, but the concerns we discuss also apply to other
