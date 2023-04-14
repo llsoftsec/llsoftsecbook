@@ -56,10 +56,11 @@ Second, we very much invite and welcome contributions. If you're interested
 in potentially contributing content, please let us know.
 
 As a reader, you can also contribute to making this book better. We highly
-encourage feedback, both positive and constructive criticisms. We prefer
-feedback to be received through the GitHub communication channels
-[Issues](https://github.com/llsoftsec/llsoftsecbook/issues)
-and [Discussions](https://github.com/llsoftsec/llsoftsecbook/discussions)
+encourage feedback, both positive and constructive criticisms. You can share
+your feedback by raising a GitHub
+[Issue](https://github.com/llsoftsec/llsoftsecbook/issues), starting a GitHub
+[Discussion](https://github.com/llsoftsec/llsoftsecbook/discussions), or by
+sharing your thoughts on our [Discord server](https://discord.gg/Bm55Z9Ppgn).
 
 
 ## Live version
