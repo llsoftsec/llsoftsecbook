@@ -158,7 +158,7 @@ automatic memory management. If these languages promise to eliminate
 memory vulnerabilities, why are we still discussing this topic?
 
 On the one hand, C and C++ \index{C}\index{C++} remain very popular languages,
-particular in the implementation of low-level software. On the other hand,
+particularly in the implementation of low-level software. On the other hand,
 programs written in memory safe languages can themselves be vulnerable to
 memory errors as a result of bugs in how they are implemented, e.g. a bug in
 their compiler. Can we fix the problem by also using memory safe languages for
