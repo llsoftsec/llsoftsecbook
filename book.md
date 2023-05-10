@@ -620,15 +620,16 @@ fake call stack somewhere else, for example on the heap, and use a primitive
 that changes the stack pointer's value instead. This is known as stack
 pivoting\index{stack pivoting}.
 
-Note that this fake call stack contains NULL bytes, even without considering
+Note that this fake call stack contains zero bytes, even without considering
 the exact values of the various return addresses included. An overflow bug that
 is based on a C-style string operation would not allow an attacker to replace
 the stack contents with this fake call stack in one go, since C-style strings
-are null-terminated and copying the fake stack contents would stop once the
-first NULL byte is encountered. The ROP chain would therefore need to be
-adjusted so that it doesn't contain NULL bytes, for example by initially
-replacing the NULL bytes with a different byte and adding some more gadgets to
-the ROP chain that write zero to those stack locations.
+are [null-terminated](https://en.wikipedia.org/wiki/Null-terminated_string) and
+copying the fake stack contents would stop once the first zero byte is
+encountered. The ROP chain would therefore need to be adjusted so that it
+doesn't contain zero bytes, for example by initially replacing the zero bytes
+with a different byte and adding some more gadgets to the ROP chain that write
+zero to those stack locations.
 
 A question that comes up when looking at the stack diagram is "how do we
 know the addresses of these gadgets"? We will talk a bit more about this in
