@@ -4,7 +4,7 @@
 [![Build book with docker container CI](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml/badge.svg)](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml)
 [![Discord chat](https://img.shields.io/discord/1073537588234829845?logo=discord)](https://discord.gg/Bm55Z9Ppgn)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This book aims to provide a structured, broad overview of all attacks and
@@ -126,6 +126,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/bwendling"><img src="https://avatars.githubusercontent.com/u/5993918?v=4?s=100" width="100px;" alt="Bill Wendling"/><br /><sub><b>Bill Wendling</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=bwendling" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/acoplan-arm"><img src="https://avatars.githubusercontent.com/u/86676934?v=4?s=100" width="100px;" alt="acoplan-arm"/><br /><sub><b>acoplan-arm</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=acoplan-arm" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/lucic71"><img src="https://avatars.githubusercontent.com/u/44677774?v=4?s=100" width="100px;" alt="Lucian Popescu"/><br /><sub><b>Lucian Popescu</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/issues?q=author%3Alucic71" title="Bug reports">🐛</a> <a href="#ideas-lucic71" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>
