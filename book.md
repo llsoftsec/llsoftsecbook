@@ -3,6 +3,7 @@ SPDX-License-Identifier: CC-BY-4.0
 copyright:
   - SPDX-FileCopyrightText: Copyright 2021-2022 Arm Limited <open-source-office@arm.com>
   - SPDX-FileCopyrightText: Copyright 2023 Bill Wendling <morbo@google.com>
+  - SPDX-FileCopyrightText: Copyright 2023 Lucian Popescu <lucian.popescu187@gmail.com>
 title: 'Low-Level Software Security for Compiler Developers'
 documentclass: report
 papersize: A4
@@ -1963,38 +1964,45 @@ Explain how these vulnerabilities arise and how to mitigate them.
 
 # Compiler introduced security vulnerabilities
 
-Security vulnerabilities introduced by compilers have a long history.  Thompson
-[@Thompson1984] provides one of the oldest and most popular example in this
+Security vulnerabilities introduced by compilers have a long history. Thompson
+[@Thompson1984] provides one of the oldest and most popular examples in this
 area. In his paper, he talks about a compiler that can detect when it is
 compiling the login program and can insert a backdoor so that he can use the
 system as any user.  However most common cases are where involuntary security
 vulnerabilities are added in the generated binary by the compiler.
 
-When discussing about compiler introduced security vulnerabilities,
-undefined behavior plays a major role. Its implications were throughfully
-discussed by various works such as [@wang2012undefined, @d2015correctness,
-@dusilent]. By reading the works of these authors, one can see that even
-projects that went through careful testing, such as Linux, FreeBSD or
-PostgreSQL, could not escape from this class of vulnerabilities. To better
-understand them, this chapter will contain several examples of such
-vulnerabilities, their implications and how they got fixed.
+::: TODO
+Explain how code that results in undefined behaviour can often work as the
+programmer expected until some optimisation is applied, and perhaps even talk a
+bit about why compilers rely on the absence of undefined behaviour in ways that
+appear aggressive in some occasions. 
+[202]{.issue}
+:::
 
-The first example we will go through is a 15 years old vulnerability that
-affected the random number generator (RNG) in Mac OS X [@Wang2015]. At some
-point in the past, this vulnerability affected all *BSD operating systems, as
-they have a common ancestor with Mac OS.
+When discussing compiler introduced security vulnerabilities, undefined behavior
+plays a major role. Its implications were thoroughly discussed by various works
+such as [@wang2012undefined] [@d2015correctness] [@dusilent]. By reading the
+works of these authors, one can see that even projects that went through careful
+testing, such as Linux, FreeBSD or PostgreSQL, could not escape from this class
+of vulnerabilities. To better understand them, this chapter contains several
+examples of such vulnerabilities, their implications and how they got fixed.
+
+The first example is a 15 years old vulnerability that affected the random
+number generator (RNG) in Mac OS X [@Wang2015]. At some point in the past, this
+vulnerability affected all \*BSD operating systems, as they have a common
+ancestor with Mac OS.
 
 In the random number generator of the system, more specifically in
-srandomdev(3), we can spot the following piece of code used in the seeding
+`srandomdev(3)`, we can spot the following piece of code used in the seeding
 logic:
 
-      ``` {.c}
-      struct timeval tv;
-      unsigned long junk;
-      
-      gettimeofday(&tv, NULL);
-      srandom((getpid() << 16) ^ tv.tv_sec ^ tv.tv_usec ^ junk);
-      ```
+``` {.c}
+struct timeval tv;
+unsigned long junk;
+
+gettimeofday(&tv, NULL);
+srandom((getpid() << 16) ^ tv.tv_sec ^ tv.tv_usec ^ junk);
+```
 
 For generating a seed for the RNG, the code uses the current time and an
 uninitialized value from the stack, i.e. `junk`. This triggers undefined
@@ -2004,37 +2012,37 @@ two different Mac OS X releases.
 
 In Mac OS X 10.6 the generated code looked like this:
 
-      ``` {.asm}
-      leaq    0xe0(%rbp),%rdi
-      xorl    %esi,%esi
-      callq   0x001422ca      ; symbol stub for: _gettimeofday
-      callq   0x00142270      ; symbol stub for: _getpid
-      movq    0xe0(%rbp),%rdx
-      movl    0xe8(%rbp),%edi
-      xorl    %edx,%edi
-      shll    $0x10,%eax
-      xorl    %eax,%edi
-      xorl    %ebx,%edi
-      callq   0x00142d68      ; symbol stub for: _srandom
-      ```
+``` {.asm}
+leaq    0xe0(%rbp),%rdi
+xorl    %esi,%esi
+callq   0x001422ca      ; symbol stub for: _gettimeofday
+callq   0x00142270      ; symbol stub for: _getpid
+movq    0xe0(%rbp),%rdx
+movl    0xe8(%rbp),%edi
+xorl    %edx,%edi
+shll    $0x10,%eax
+xorl    %eax,%edi
+xorl    %ebx,%edi
+callq   0x00142d68      ; symbol stub for: _srandom
+```
 
 While for Mac OS X 10.7 the code looked like this:
 
-      ``` {.asm}
-      leaq    0xd8(%rbp),%rdi
-      xorl    %esi,%esi
-      callq   0x000a427e      ; symbol stub for: _gettimeofday
-      callq   0x000a3882      ; symbol stub for: _getpid
-      callq   0x000a4752      ; symbol stub for: _srandom
-      ```
+``` {.asm}
+leaq    0xd8(%rbp),%rdi
+xorl    %esi,%esi
+callq   0x000a427e      ; symbol stub for: _gettimeofday
+callq   0x000a3882      ; symbol stub for: _getpid
+callq   0x000a4752      ; symbol stub for: _srandom
+```
 
 In the shorter version of the generated assembly code, the compiler dropped the
-whole argument of `srandom` as an optimization. While this code respects the
-standard, it leaves room for an attacker to exploit the system because the seed
-of the RNG can now be predicted. 
+whole argument of `srandom` as an optimization. While the optimised code
+respects the standard, it leaves room for an attacker to exploit the system
+because the seed of the RNG can now be predicted. 
 
-In the meantime, this problem has be resovled in FreeBSD [@FbsdJunk], OpenBSD
-[@ObsdJunk].
+In the meantime, this problem has been resolved in FreeBSD [@FbsdJunk] and
+OpenBSD [@ObsdJunk].
 
 Current solutions for detecting this class of vulnerabilities include LLVM's
 MemorySanitizer and Valgrind.
@@ -2045,18 +2053,18 @@ pointers and what might go wrong with this operation. The following piece of
 code is taken from Linux and introduces a vulnerability by dereferencing the
 `tun` pointer before it checks that the pointer is valid:
 
-      ``` {.c}
-      unsigned int
-      tun_chr_poll(struct file *file, poll_table * wait)
-      {
-        struct tun_file *tfile = file->private_data;
-        struct tun_struct *tun = __tun_get(tfile);
-        struct sock *sk = tun->sk;
-        if (!tun)
-          return POLLERR;
-        ...
-      }
-      ```
+``` {.c}
+unsigned int
+tun_chr_poll(struct file *file, poll_table * wait)
+{
+  struct tun_file *tfile = file->private_data;
+  struct tun_struct *tun = __tun_get(tfile);
+  struct sock *sk = tun->sk;
+  if (!tun)
+    return POLLERR;
+  ...
+}
+```
 
 Normally, this would cause a crash in the kernel or the function would return
 POLLERR if address 0 was mapped in the address space. However the compiler
@@ -2067,54 +2075,54 @@ from the final binary. This allows an attacker to continue executing code from
 `tun_chr_poll` when address 0 is mapped.
 
 To mitigate against this situation, GCC developers added a flag called
--fno-delete-null-pointer-checks that Linux integrated in its compiler
+`-fno-delete-null-pointer-checks` that Linux integrated in its compiler
 configuration.
 
 Linux was not the only project that suffered from this problem. Chromium
-[@ChromiumIssue] and Mozilla [@MozillaIssue] had problems in the past with this
+[@ChromiumIssue] and Mozilla [@MozillaIssue] had problems in the past with this.
 
 There are also cases of security vulnerabilities that are not introduced by
 undefined behavior, the following piece of code is such an example. This was
 taken from the Linux kernel. Because the compiler sees that the pointer hash is
 never used after this point, it decides to delete the memset operation. We call
-this dead store optimization (DSO). This has serious security implications
-because the intention of the programmer was to delete the `hash` information
-from memory.
+this dead store optimization (DSO) \index{dead store optimization}. This has
+serious security implications because the intention of the programmer was to
+delete the `hash` information from memory.
 
-      ``` {.c}
-      static void extract_buf(struct entropy_store *r, __u8 *out) {
-        ...
-        - memset(&hash, 0, sizeof(hash));
-        + memzero_explicit(&hash, sizeof(hash));
-      }
-      ```
+``` {.c}
+static void extract_buf(struct entropy_store *r, __u8 *out) {
+  ...
+  - memset(&hash, 0, sizeof(hash));
+  + memzero_explicit(&hash, sizeof(hash));
+}
+```
 
 The solution Linux came with was to add a new function called `memzero_explicit`
 which under the hood looks like this:
 
-      ``` {.c}
-      void memzero_explicit(void *s, size_t count)
-      {
-        memset(s, 0, count);
-        OPTIMIZER_HIDE_VAR(s);
-      }
-      ```
+``` {.c}
+void memzero_explicit(void *s, size_t count)
+{
+  memset(s, 0, count);
+  OPTIMIZER_HIDE_VAR(s);
+}
+```
 
-It still uses _memset_ to delete the associated security sensitive data, but it
-also tries to eliminate the risk of DSO by using the OPTIMIZER_HIDE_VAR macro.
-This, however, is not enough to fully eliminate dead stores [@MemZeroBarrier].
-In case of using LTO, the buffer `s` from is still vulnerable. For this reason,
-Linux maintainers added a further hardening mechanism by using a compiler
-barrier instead:
+It still uses `memset` \index{memset} to delete the associated security
+sensitive data, but it also tries to eliminate the risk of DSO by using the
+OPTIMIZER\_HIDE\_VAR macro.  This, however, is not enough to fully eliminate
+dead stores [@MemZeroBarrier].  In case of using LTO, the buffer `s` is still
+vulnerable. For this reason, Linux maintainers added a further hardening
+mechanism by using a compiler barrier instead:
 
-      ``` {.c}
-      void memzero_explicit(void *s, size_t count)
-      {
-        memset(s, 0, count);
-        - OPTIMIZER_HIDE_VAR(s);
-        + barrier();
-      }
-      ```
+``` {.c}
+void memzero_explicit(void *s, size_t count)
+{
+  memset(s, 0, count);
+  - OPTIMIZER_HIDE_VAR(s);
+  + barrier();
+}
+```
 
 There is still room for improvement regarding the introduced barrier
 [@MemZeroDataBarrier]. If the content of the buffer is present in registers,
@@ -2122,16 +2130,17 @@ then the compiler blindly proves again that the DSO can be triggered and the
 `memset` will be again deleted. To mitigate against this, the following patch
 was proposed:
 
-      ``` {.c}
-      + #define barrier_data(ptr) __asm__ __volatile__("": :"r"(ptr) :"memory")
-      
-      void memzero_explicit(void *s, size_t count)
-      {
-        memset(s, 0, count);
-        - barrier();
-        + barrier_data(s);
-      }
-      ```
+``` {.c}
++ #define barrier_data(ptr) \
++  __asm__ __volatile__("": :"r"(ptr) :"memory")
+
+void memzero_explicit(void *s, size_t count)
+{
+  memset(s, 0, count);
+  - barrier();
+  + barrier_data(s);
+}
+```
 
 In this patch we create a new barrier that will be guaranted to put the content
 of the buffer in memory so that DSO can take no further effect. 
@@ -2142,6 +2151,13 @@ the same end goal, i.e. eliminating the effect of DSO. By making `memset_func` a
 volatile pointer to the actual implementation of `memset`, the compiler is
 forced to dereference the pointer to get to the actual `memset`, thus
 eliminating the risk of optimizing it out.
+
+The C23 committee decided to tackle this problem from another angle, i.e. by
+adding a library function called `memset_explicit` [@MemSetProposal]. This
+function requires the compiler to not optimize the memory overwrite away.
+However it is not trivial to implement such a functionality, as GNU presents in
+[@GNUMemSet]. The information may be present somewhere in the machine, even if
+it was erased from memory.
 
 # Physical attacks
 
