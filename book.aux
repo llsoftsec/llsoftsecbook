@@ -233,58 +233,65 @@
 \newlabel{history-of-supply-chain-attacks@cref}{{[section][1][4]4.1}{[1][41][]41}}
 \@writefile{tdo}{\contentsline {todo}{21. Explain how these vulnerabilities arise and how to mitigate them. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/180}{\#180}}{42}{section*.29}\protected@file@percent }
 \pgfsyspdfmark {pgfid53}{19498269}{31353418}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Physical attacks}{43}{chapter.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Compiler introduced security vulnerabilities}{43}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{physical-attacks}{{5}{43}{Physical attacks}{chapter.5}{}}
-\newlabel{physical-attacks@cref}{{[chapter][5][]5}{[1][43][]43}}
-\@writefile{tdo}{\contentsline {todo}{22. This chapter should probably be moved under section `Physical access side-channel attacks' higher-up \href  {https://github.com/llsoftsec/llsoftsecbook/issues/181}{\#181}}{43}{section*.30}\protected@file@percent }
-\pgfsyspdfmark {pgfid54}{19498269}{32540057}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Overview}{43}{section.5.1}\protected@file@percent }
-\newlabel{overview}{{5.1}{43}{Overview}{section.5.1}{}}
-\newlabel{overview@cref}{{[section][1][5]5.1}{[1][43][]43}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Physical access side-channel attacks}{43}{section.5.2}\protected@file@percent }
-\newlabel{physical-access-side-channel-attacks-1}{{5.2}{43}{Physical access side-channel attacks}{section.5.2}{}}
-\newlabel{physical-access-side-channel-attacks-1@cref}{{[section][2][5]5.2}{[1][43][]43}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}How is information leaked?}{44}{subsection.5.2.1}\protected@file@percent }
-\newlabel{how-is-information-leaked}{{5.2.1}{44}{How is information leaked?}{subsection.5.2.1}{}}
-\newlabel{how-is-information-leaked@cref}{{[subsection][1][5,2]5.2.1}{[1][44][]44}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Side channel leakage at instruction level}{44}{subsection.5.2.2}\protected@file@percent }
-\newlabel{side-channel-leakage-at-instruction-level}{{5.2.2}{44}{Side channel leakage at instruction level}{subsection.5.2.2}{}}
-\newlabel{side-channel-leakage-at-instruction-level@cref}{{[subsection][2][5,2]5.2.2}{[1][44][]44}}
-\@writefile{lof}{\contentsline {figure}{\numberline {figno:3}{\ignorespaces leakage of conditional branch\relax }}{45}{figure.caption.31}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {figno:4}{\ignorespaces leakage of execution cycle\relax }}{45}{figure.caption.32}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {figno:5}{\ignorespaces leakage of number of bit toggled\relax }}{46}{figure.caption.33}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Countermeasures}{46}{subsection.5.2.3}\protected@file@percent }
-\newlabel{countermeasures}{{5.2.3}{46}{Countermeasures}{subsection.5.2.3}{}}
-\newlabel{countermeasures@cref}{{[subsection][3][5,2]5.2.3}{[1][46][]46}}
-\@writefile{tdo}{\contentsline {todo}{23. There is overlap with section timing-side-channels. How to best consolidate that? \href  {https://github.com/llsoftsec/llsoftsecbook/issues/182}{\#182}}{46}{section*.34}\protected@file@percent }
-\pgfsyspdfmark {pgfid55}{19498269}{15342456}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Fault injection attacks}{47}{section.5.3}\protected@file@percent }
-\newlabel{fault-injection-attacks}{{5.3}{47}{Fault injection attacks}{section.5.3}{}}
-\newlabel{fault-injection-attacks@cref}{{[section][3][5]5.3}{[1][46][]47}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Common forms of Fault injection attacks}{47}{subsection.5.3.1}\protected@file@percent }
-\newlabel{common-forms-of-fault-injection-attacks}{{5.3.1}{47}{Common forms of Fault injection attacks}{subsection.5.3.1}{}}
-\newlabel{common-forms-of-fault-injection-attacks@cref}{{[subsection][1][5,3]5.3.1}{[1][47][]47}}
-\@writefile{lof}{\contentsline {figure}{\numberline {figno:6}{\ignorespaces common fault injection attacks\relax }}{47}{figure.caption.35}\protected@file@percent }
-\@writefile{tdo}{\contentsline {todo}{24. Make the above reference to a paper use bibtex. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/159}{\#159}}{47}{section*.36}\protected@file@percent }
-\pgfsyspdfmark {pgfid56}{19498269}{9535143}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Countermeasures}{48}{subsection.5.3.2}\protected@file@percent }
-\newlabel{countermeasures-1}{{5.3.2}{48}{Countermeasures}{subsection.5.3.2}{}}
-\newlabel{countermeasures-1@cref}{{[subsection][2][5,3]5.3.2}{[1][48][]48}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Other security topics relevant for compiler developers}{49}{chapter.6}\protected@file@percent }
+\newlabel{compiler-introduced-security-vulnerabilities}{{5}{43}{Compiler introduced security vulnerabilities}{chapter.5}{}}
+\newlabel{compiler-introduced-security-vulnerabilities@cref}{{[chapter][5][]5}{[1][43][]43}}
+\@writefile{tdo}{\contentsline {todo}{22. Explain how code that results in undefined behaviour can often work as the programmer expected until some optimisation is applied, and perhaps even talk a bit about why compilers rely on the absence of undefined behaviour in ways that appear aggressive in some occasions. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/202}{\#202}}{43}{section*.30}\protected@file@percent }
+\pgfsyspdfmark {pgfid54}{19498269}{24865354}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Physical attacks}{47}{chapter.6}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{other-security-topics-relevant-for-compiler-developers}{{6}{49}{Other security topics relevant for compiler developers}{chapter.6}{}}
-\newlabel{other-security-topics-relevant-for-compiler-developers@cref}{{[chapter][6][]6}{[1][49][]49}}
-\@writefile{tdo}{\contentsline {todo}{25. Write chapter with other security topics.}{49}{section*.37}\protected@file@percent }
-\pgfsyspdfmark {pgfid57}{19498269}{29001113}
-\@writefile{tdo}{\contentsline {todo}{26. Write section on securely clearing memory in C/C++ and undefined behaviour. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/183}{\#183}}{49}{section*.38}\protected@file@percent }
-\pgfsyspdfmark {pgfid58}{19498269}{25866233}
-\newlabel{appendix-contribution-guidelines}{{6}{50}{Appendix: contribution guidelines}{chapter*.39}{}}
-\newlabel{appendix-contribution-guidelines@cref}{{[chapter][6][]6}{[1][50][]50}}
-\@writefile{toc}{\contentsline {chapter}{Appendix: contribution guidelines}{50}{chapter*.39}\protected@file@percent }
-\newlabel{references}{{6}{55}{References}{chapter*.41}{}}
-\newlabel{references@cref}{{[chapter][6][]6}{[1][55][]55}}
-\@writefile{toc}{\contentsline {chapter}{References}{55}{chapter*.41}\protected@file@percent }
-\gdef \@abspage@last{60}
+\newlabel{physical-attacks}{{6}{47}{Physical attacks}{chapter.6}{}}
+\newlabel{physical-attacks@cref}{{[chapter][6][]6}{[1][47][]47}}
+\@writefile{tdo}{\contentsline {todo}{23. This chapter should probably be moved under section `Physical access side-channel attacks' higher-up \href  {https://github.com/llsoftsec/llsoftsecbook/issues/181}{\#181}}{47}{section*.31}\protected@file@percent }
+\pgfsyspdfmark {pgfid55}{19498269}{32540057}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Overview}{47}{section.6.1}\protected@file@percent }
+\newlabel{overview}{{6.1}{47}{Overview}{section.6.1}{}}
+\newlabel{overview@cref}{{[section][1][6]6.1}{[1][47][]47}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Physical access side-channel attacks}{47}{section.6.2}\protected@file@percent }
+\newlabel{physical-access-side-channel-attacks-1}{{6.2}{47}{Physical access side-channel attacks}{section.6.2}{}}
+\newlabel{physical-access-side-channel-attacks-1@cref}{{[section][2][6]6.2}{[1][47][]47}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}How is information leaked?}{48}{subsection.6.2.1}\protected@file@percent }
+\newlabel{how-is-information-leaked}{{6.2.1}{48}{How is information leaked?}{subsection.6.2.1}{}}
+\newlabel{how-is-information-leaked@cref}{{[subsection][1][6,2]6.2.1}{[1][48][]48}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Side channel leakage at instruction level}{48}{subsection.6.2.2}\protected@file@percent }
+\newlabel{side-channel-leakage-at-instruction-level}{{6.2.2}{48}{Side channel leakage at instruction level}{subsection.6.2.2}{}}
+\newlabel{side-channel-leakage-at-instruction-level@cref}{{[subsection][2][6,2]6.2.2}{[1][48][]48}}
+\@writefile{lof}{\contentsline {figure}{\numberline {figno:3}{\ignorespaces leakage of conditional branch\relax }}{49}{figure.caption.32}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {figno:4}{\ignorespaces leakage of execution cycle\relax }}{49}{figure.caption.33}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {figno:5}{\ignorespaces leakage of number of bit toggled\relax }}{50}{figure.caption.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.3}Countermeasures}{50}{subsection.6.2.3}\protected@file@percent }
+\newlabel{countermeasures}{{6.2.3}{50}{Countermeasures}{subsection.6.2.3}{}}
+\newlabel{countermeasures@cref}{{[subsection][3][6,2]6.2.3}{[1][50][]50}}
+\@writefile{tdo}{\contentsline {todo}{24. There is overlap with section timing-side-channels. How to best consolidate that? \href  {https://github.com/llsoftsec/llsoftsecbook/issues/182}{\#182}}{50}{section*.35}\protected@file@percent }
+\pgfsyspdfmark {pgfid56}{19498269}{15342456}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Fault injection attacks}{51}{section.6.3}\protected@file@percent }
+\newlabel{fault-injection-attacks}{{6.3}{51}{Fault injection attacks}{section.6.3}{}}
+\newlabel{fault-injection-attacks@cref}{{[section][3][6]6.3}{[1][50][]51}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}Common forms of Fault injection attacks}{51}{subsection.6.3.1}\protected@file@percent }
+\newlabel{common-forms-of-fault-injection-attacks}{{6.3.1}{51}{Common forms of Fault injection attacks}{subsection.6.3.1}{}}
+\newlabel{common-forms-of-fault-injection-attacks@cref}{{[subsection][1][6,3]6.3.1}{[1][51][]51}}
+\@writefile{lof}{\contentsline {figure}{\numberline {figno:6}{\ignorespaces common fault injection attacks\relax }}{51}{figure.caption.36}\protected@file@percent }
+\@writefile{tdo}{\contentsline {todo}{25. Make the above reference to a paper use bibtex. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/159}{\#159}}{51}{section*.37}\protected@file@percent }
+\pgfsyspdfmark {pgfid57}{19498269}{9535143}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}Countermeasures}{52}{subsection.6.3.2}\protected@file@percent }
+\newlabel{countermeasures-1}{{6.3.2}{52}{Countermeasures}{subsection.6.3.2}{}}
+\newlabel{countermeasures-1@cref}{{[subsection][2][6,3]6.3.2}{[1][52][]52}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Other security topics relevant for compiler developers}{53}{chapter.7}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{other-security-topics-relevant-for-compiler-developers}{{7}{53}{Other security topics relevant for compiler developers}{chapter.7}{}}
+\newlabel{other-security-topics-relevant-for-compiler-developers@cref}{{[chapter][7][]7}{[1][53][]53}}
+\@writefile{tdo}{\contentsline {todo}{26. Write chapter with other security topics.}{53}{section*.38}\protected@file@percent }
+\pgfsyspdfmark {pgfid58}{19498269}{29001113}
+\@writefile{tdo}{\contentsline {todo}{27. Write section on securely clearing memory in C/C++ and undefined behaviour. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/183}{\#183}}{53}{section*.39}\protected@file@percent }
+\pgfsyspdfmark {pgfid59}{19498269}{25866233}
+\newlabel{appendix-contribution-guidelines}{{7}{54}{Appendix: contribution guidelines}{chapter*.40}{}}
+\newlabel{appendix-contribution-guidelines@cref}{{[chapter][7][]7}{[1][54][]54}}
+\@writefile{toc}{\contentsline {chapter}{Appendix: contribution guidelines}{54}{chapter*.40}\protected@file@percent }
+\newlabel{references}{{7}{59}{References}{chapter*.42}{}}
+\newlabel{references@cref}{{[chapter][7][]7}{[1][59][]59}}
+\@writefile{toc}{\contentsline {chapter}{References}{59}{chapter*.42}\protected@file@percent }
+\gdef \@abspage@last{64}

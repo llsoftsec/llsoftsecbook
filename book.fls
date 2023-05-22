@@ -1462,6 +1462,10 @@ INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
 INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
 INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
 INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
+INPUT /texlive/2020/texmf-dist/fonts/tfm/public/lm/ec-lmtti10.tfm
+INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
+INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
+INPUT /texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps
 INPUT ./img/side_channel_leakage_figure_1_branch.pdf
 INPUT ./img/side_channel_leakage_figure_1_branch.pdf
 INPUT img/side_channel_leakage_figure_1_branch.pdf
@@ -1524,3 +1528,4 @@ INPUT /texlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb
 INPUT /texlive/2020/texmf-dist/fonts/type1/public/lm/lmtk10.pfb
 INPUT /texlive/2020/texmf-dist/fonts/type1/public/lm/lmtt10.pfb
 INPUT /texlive/2020/texmf-dist/fonts/type1/public/lm/lmtt8.pfb
+INPUT /texlive/2020/texmf-dist/fonts/type1/public/lm/lmtti10.pfb

@@ -42,15 +42,16 @@
 \contentsline {section}{\numberline {3.6}Physical access side-channel attacks}{40}{section.3.6}%
 \contentsline {chapter}{\numberline {4}Supply chain attacks}{41}{chapter.4}%
 \contentsline {section}{\numberline {4.1}History of supply chain attacks}{41}{section.4.1}%
-\contentsline {chapter}{\numberline {5}Physical attacks}{43}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Overview}{43}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Physical access side-channel attacks}{43}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}How is information leaked?}{44}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Side channel leakage at instruction level}{44}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Countermeasures}{46}{subsection.5.2.3}%
-\contentsline {section}{\numberline {5.3}Fault injection attacks}{47}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Common forms of Fault injection attacks}{47}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Countermeasures}{48}{subsection.5.3.2}%
-\contentsline {chapter}{\numberline {6}Other security topics relevant for compiler developers}{49}{chapter.6}%
-\contentsline {chapter}{Appendix: contribution guidelines}{50}{chapter*.39}%
-\contentsline {chapter}{References}{55}{chapter*.41}%
+\contentsline {chapter}{\numberline {5}Compiler introduced security vulnerabilities}{43}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Physical attacks}{47}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Overview}{47}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Physical access side-channel attacks}{47}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}How is information leaked?}{48}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Side channel leakage at instruction level}{48}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}Countermeasures}{50}{subsection.6.2.3}%
+\contentsline {section}{\numberline {6.3}Fault injection attacks}{51}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Common forms of Fault injection attacks}{51}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Countermeasures}{52}{subsection.6.3.2}%
+\contentsline {chapter}{\numberline {7}Other security topics relevant for compiler developers}{53}{chapter.7}%
+\contentsline {chapter}{Appendix: contribution guidelines}{54}{chapter*.40}%
+\contentsline {chapter}{References}{59}{chapter*.42}%

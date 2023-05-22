@@ -40,6 +40,7 @@
   \indexspace
 
   \item data-only attacks, \hyperpage{23}
+  \item dead store optimization, \hyperpage{45}
   \item deoptimization, \hyperpage{28}
   \item direct-mapped cache, \hyperpage{34}
   \item dispatcher gadget, \hyperpage{17}
@@ -98,6 +99,7 @@
   \item memory access time, \hyperpage{33}
   \item Memory Tagging Extension (MTE), \hyperpage{26}
   \item MemorySanitizer, \hyperpage{27}
+  \item memset, \hyperpage{45}
   \item MemTagSanitizer, \hyperpage{26}
   \item micro-architectural effects, \hyperpage{40}
   \item mis-speculation, \hyperpage{39}

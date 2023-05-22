@@ -120,3 +120,5 @@
 \indexentry{architectural effects|hyperpage}{40}
 \indexentry{micro-architectural effects|hyperpage}{40}
 \indexentry{transient execution attacks|hyperpage}{40}
+\indexentry{dead store optimization|hyperpage}{45}
+\indexentry{memset|hyperpage}{45}
