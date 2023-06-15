@@ -1754,7 +1754,7 @@ at the same time on 2 CPUs sharing a cache level.
 ### Branch predictors
 
 Most CPUs implement one or more
-[instruction pipelines]{https://en.wikipedia.org/wiki/Instruction_pipelining}
+[instruction pipelines](https://en.wikipedia.org/wiki/Instruction_pipelining)
 \index{pipeline}\index{instruction pipeline}. In an instruction pipeline, the
 next instruction is started before the previous instruction has finished
 executing. When the previous instruction is a branch instruction, the next
@@ -1814,8 +1814,8 @@ categorized per branch predictor component they target, are:
   dependent on secret information, this could leak it.
 
 The papers referred to above contain detailed explanations of how they set up
-the attack. All of these attacks therefore use a similar general 3-step approach,
-as with the [cache side channels](#general-schema-for-cache-covert-channels):
+the attack. All of these attacks use a general 3-step approach, similar to
+[cache side channels](#general-schema-for-cache-covert-channels):
 
 1. An instruction sequence that resets the branch predictor state (*reset
    sequence*), run by the spy process.\index{reset sequence}
