@@ -1789,7 +1789,7 @@ categorized per branch predictor component they target, are:
 - PHT: BranchScope [@Evtyushkin2018], BlueThunder [@Huo2019]. These attacks
   infer whether a branch is taken or not taken in a victim process. They do so
   by carefully making sure that a branch in the spy process uses the same branch
-  predictor entry (i.e., aliases) with the targeted branch in the victim
+  predictor entry (i.e. aliases) with the targeted branch in the victim
   process. By measuring whether the branch in the spy process gets predicted
   correctly, one can derive whether the branch in the victim process was taken
   or not.
@@ -1797,7 +1797,7 @@ categorized per branch predictor component they target, are:
   This can be thought of as somewhat akin to the [Prime+Probe
   cache-based side channel attacks](#primeprobe).
 
-  When whether a branch is taken or not depends on a bit in a secret key, this
+  When the outcome of a branch depends on a bit in a secret key, this
   can enable an attacker to derive the value of the secret key. These papers
   demonstrate deriving the secret key from implementations of specific
   cryptographic kernels. It can also be used to break ASLR\index{ASLR}.
