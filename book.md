@@ -1760,7 +1760,8 @@ next instruction is started before the previous instruction has finished
 executing. When the previous instruction is a branch instruction, the next
 instruction that needs to be executed is only known when that branch instruction
 completes. However, waiting for the branch instruction to finish before starting
-the next instruction leads to a big performance loss. Therefore, most CPUs
+the next instruction leads to a big performance
+loss.[^branch-prediction-performance] Therefore, most CPUs
 predict\index{predict} which instruction needs to be executed after a branch,
 before the branch instruction has completed. Correctly and quickly predicting
 the instruction after a branch instruction is so important for performance that
@@ -1780,6 +1781,13 @@ predictor} logic, such as:
 - A component that is specialized to predict the next instruction after a
   function return instruction. Academic literature often calls this a Return
   Stack Buffer (RSB) \index{Return Stack Buffer}.
+
+[^branch-prediction-performance]: Not predicting branch outcomes well would lead
+to huge performance slowdowns. Over time, new CPU designs tend to support having
+more instructions in flight. [@Eyerman2009, section 4.2.3] suggests that branch
+prediction accuracy has to grow more than linear when the number of pipelines,
+or the depth of the pipeline grows. Therefore, there is a constant push to
+increase the accuracy of branch predictors.
 
 ### Side-channels through branch predictors
 
