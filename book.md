@@ -1412,6 +1412,11 @@ called the **victim**\index{victim}. The other entity is sometimes called the
 As we focus on attacks in this book, we'll mostly use the term side-channels
 in the rest of this chapter.
 
+The next few sections describe a variety of side-channels. Each section focusses
+on leakage through a specific so-called micro-architectural
+aspect\index{micro-architectural}, such as execution time, cache state or branch
+predictor state.
+
 ## Timing side-channels
 
 An implementation of a cryptographic algorithm can leak information about the
@@ -1744,9 +1749,98 @@ the spy runs. This is probably going to incur quite a bit of performance
 overhead, and may also not always possible e.g. when victim and spy are running
 at the same time on 2 CPUs sharing a cache level.
 
+## Branch-predictor based side channels
+
+### Branch predictors
+
+Most CPUs implement one or more
+[instruction pipelines](https://en.wikipedia.org/wiki/Instruction_pipelining)
+\index{pipeline}\index{instruction pipeline}. In an instruction pipeline, the
+next instruction is started before the previous instruction has finished
+executing. When the previous instruction is a branch instruction, the next
+instruction that needs to be executed is only known when that branch instruction
+completes. However, waiting for the branch instruction to finish before starting
+the next instruction leads to a big performance
+loss.[^branch-prediction-performance] Therefore, most CPUs
+predict\index{predict} which instruction needs to be executed after a branch,
+before the branch instruction has completed. Correctly and quickly predicting
+the instruction after a branch instruction is so important for performance that
+most CPUs have multiple pieces of
+[branch predictor](https://en.wikipedia.org/wiki/Branch_predictor)\index{branch
+predictor} logic, such as:
+
+- A component that predicts the outcome of a conditional branch: taken or not
+  taken\index{taken branch}. The prediction is typically done based on the
+  outcome of this and other branches in the recent past. In academic literature,
+  this type of component is often called a Pattern History Table (PHT)
+  \index{Pattern History Table (PHT)}.
+- A component that predicts the target of a taken branch, i.e. the address of
+  the next instruction after a taken branch. In academic literature, such a
+  component is often called a Branch Target Buffer (BTB) \index{Branch Target
+  Buffer}.
+- A component that is specialized to predict the next instruction after a
+  function return instruction. Academic literature often calls this a Return
+  Stack Buffer (RSB) \index{Return Stack Buffer}.
+
+[^branch-prediction-performance]: Over time, new CPU designs tend to support
+having more instructions in flight. [@Eyerman2009, section 4.2.3] suggests that
+branch prediction accuracy has to grow more than linearly when the number of
+pipelines, or the depth of the pipeline grows. Therefore, there is a constant
+push to increase the accuracy of branch predictors.
+
+### Side-channels through branch predictors
+
+A number of attacks have been described over the past few years. A few examples,
+categorized per branch predictor component they target, are:
+
+- PHT: BranchScope [@Evtyushkin2018], BlueThunder [@Huo2019]. These attacks
+  infer whether a branch is taken or not taken in a victim process. They do so
+  by carefully making sure that a branch in the spy process uses the same branch
+  predictor entry (i.e. aliases) with the targeted branch in the victim
+  process. By measuring whether the branch in the spy process gets predicted
+  correctly, one can derive whether the branch in the victim process was taken
+  or not.
+
+  This can be thought of as somewhat akin to the [Prime+Probe
+  cache-based side channel attacks](#primeprobe).
+
+  When the outcome of a branch depends on a bit in a secret key, this
+  can enable an attacker to derive the value of the secret key. These papers
+  demonstrate deriving the secret key from implementations of specific
+  cryptographic kernels. It can also be used to break ASLR\index{ASLR}.
+- BTB: SBPA [@Aciicmez2007], BranchShadow [@Lee2017]. These earlier attacks are
+  based on making a branch in the spy process alias in the BTB with a targeted
+  branch in the victim process. They use methods such as timing difference, last
+  branch records, instruction traces or performance counters to measure whether
+  the branch in the spy process caused a specific state change in the BTB.
+- RSB: Hyper-Channel [@Bulygin2008]. In this case, a spy process invokes $N$
+  calls to fill up the return stack predictor. Then it lets the victim process
+  execute. Then, the spy process can measure how many of its return stack
+  entries have been removed from the RSB, by measuring the number of $N$ returns
+  that get mis-predicted. If the number of calls in the victim process is
+  dependent on secret information, this could leak it.
+
+The papers referred to above contain detailed explanations of how they set up
+the attack. All of these attacks use a general 3-step approach, similar to
+[cache side channels](#general-schema-for-cache-covert-channels):
+
+1. An instruction sequence that resets the branch predictor state (*reset
+   sequence*), run by the spy process.\index{reset sequence}
+2. An instruction sequence that triggers a branch predictor state change (*trigger
+   sequence*), run by the victim process.\index{trigger sequence}
+3. An instruction sequence that leaks the branch predictor state (*measurement
+   sequence*), run by the spy process\index{measurement sequence}
+
+### Mitigations
+
+::: TODO
+Describe the mitigations proposed against these side-channel attacks.
+[203]{.issue}
+:::
+
 ## Resource contention channels
 
-## Channels making use of aliasing in branch predictors and other predictors
+## Channels making use of aliasing in other predictors
 
 ::: TODO
 Should we also discuss more "covert" channels here such as power analysis, etc?
