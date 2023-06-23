@@ -1784,7 +1784,7 @@ predictor} logic, such as:
 
 [^branch-prediction-performance]: Over time, new CPU designs tend to support
 having more instructions in flight. [@Eyerman2009, section 4.2.3] suggests that
-branch prediction accuracy has to grow more than linear when the number of
+branch prediction accuracy has to grow more than linearly when the number of
 pipelines, or the depth of the pipeline grows. Therefore, there is a constant
 push to increase the accuracy of branch predictors.
 
