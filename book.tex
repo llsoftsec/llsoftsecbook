@@ -170,7 +170,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2023 Lucian Popescu
   \href{mailto:lucian.popescu187@gmail.com}{\nolinkurl{lucian.popescu187@gmail.com}}\\
 
-Version 0-153-g02cfa2a
+Version 0-154-gad53e39
 \clearpage
 
 {
@@ -1822,6 +1822,11 @@ The entity not intending to communicate is called the
 As we focus on attacks in this book, we'll mostly use the term
 side-channels in the rest of this chapter.
 
+The next few sections describe a variety of side-channels. Each section
+focusses on leakage through a specific so-called micro-architectural
+aspect\index{micro-architectural}, such as execution time, cache state
+or branch predictor state.
+
 \hypertarget{timing-side-channels}{%
 \section{Timing side-channels}\label{timing-side-channels}}
 
@@ -2270,13 +2275,140 @@ runs and the spy runs. This is probably going to incur quite a bit of
 performance overhead, and may also not always possible e.g.~when victim
 and spy are running at the same time on 2 CPUs sharing a cache level.
 
+\hypertarget{branch-predictor-based-side-channels}{%
+\section{Branch-predictor based side
+channels}\label{branch-predictor-based-side-channels}}
+
+\hypertarget{branch-predictors}{%
+\subsection{Branch predictors}\label{branch-predictors}}
+
+Most CPUs implement one or more
+\href{https://en.wikipedia.org/wiki/Instruction_pipelining}{instruction
+pipelines} \index{pipeline}\index{instruction pipeline}. In an
+instruction pipeline, the next instruction is started before the
+previous instruction has finished executing. When the previous
+instruction is a branch instruction, the next instruction that needs to
+be executed is only known when that branch instruction completes.
+However, waiting for the branch instruction to finish before starting
+the next instruction leads to a big performance loss.\footnote{Over
+  time, new CPU designs tend to support having more instructions in
+  flight. (Eyerman et al. \protect\hyperlink{ref-Eyerman2009}{2009},
+  sec. 4.2.3) suggests that branch prediction accuracy has to grow more
+  than linearly when the number of pipelines, or the depth of the
+  pipeline grows. Therefore, there is a constant push to increase the
+  accuracy of branch predictors.} Therefore, most CPUs
+predict\index{predict} which instruction needs to be executed after a
+branch, before the branch instruction has completed. Correctly and
+quickly predicting the instruction after a branch instruction is so
+important for performance that most CPUs have multiple pieces of
+\href{https://en.wikipedia.org/wiki/Branch_predictor}{branch
+predictor}\index{branch
+predictor} logic, such as:
+
+\begin{itemize}
+\tightlist
+\item
+  A component that predicts the outcome of a conditional branch: taken
+  or not taken\index{taken branch}. The prediction is typically done
+  based on the outcome of this and other branches in the recent past. In
+  academic literature, this type of component is often called a Pattern
+  History Table (PHT) \index{Pattern History Table (PHT)}.
+\item
+  A component that predicts the target of a taken branch, i.e.~the
+  address of the next instruction after a taken branch. In academic
+  literature, such a component is often called a Branch Target Buffer
+  (BTB) \index{Branch Target
+  Buffer}.
+\item
+  A component that is specialized to predict the next instruction after
+  a function return instruction. Academic literature often calls this a
+  Return Stack Buffer (RSB) \index{Return Stack Buffer}.
+\end{itemize}
+
+\hypertarget{side-channels-through-branch-predictors}{%
+\subsection{Side-channels through branch
+predictors}\label{side-channels-through-branch-predictors}}
+
+A number of attacks have been described over the past few years. A few
+examples, categorized per branch predictor component they target, are:
+
+\begin{itemize}
+\item
+  PHT: BranchScope (Evtyushkin et al.
+  \protect\hyperlink{ref-Evtyushkin2018}{2018}), BlueThunder (Huo et al.
+  \protect\hyperlink{ref-Huo2019}{2019}). These attacks infer whether a
+  branch is taken or not taken in a victim process. They do so by
+  carefully making sure that a branch in the spy process uses the same
+  branch predictor entry (i.e.~aliases) with the targeted branch in the
+  victim process. By measuring whether the branch in the spy process
+  gets predicted correctly, one can derive whether the branch in the
+  victim process was taken or not.
+
+  This can be thought of as somewhat akin to the
+  \protect\hyperlink{primeprobe}{Prime+Probe cache-based side channel
+  attacks}.
+
+  When the outcome of a branch depends on a bit in a secret key, this
+  can enable an attacker to derive the value of the secret key. These
+  papers demonstrate deriving the secret key from implementations of
+  specific cryptographic kernels. It can also be used to break
+  ASLR\index{ASLR}.
+\item
+  BTB: SBPA (Aciiçmez, Kaya Koç, and Seifert
+  \protect\hyperlink{ref-Aciicmez2007}{2007}), BranchShadow (Lee et al.
+  \protect\hyperlink{ref-Lee2017}{2017}). These earlier attacks are
+  based on making a branch in the spy process alias in the BTB with a
+  targeted branch in the victim process. They use methods such as timing
+  difference, last branch records, instruction traces or performance
+  counters to measure whether the branch in the spy process caused a
+  specific state change in the BTB.
+\item
+  RSB: Hyper-Channel (Bulygin
+  \protect\hyperlink{ref-Bulygin2008}{2008}). In this case, a spy
+  process invokes \(N\) calls to fill up the return stack predictor.
+  Then it lets the victim process execute. Then, the spy process can
+  measure how many of its return stack entries have been removed from
+  the RSB, by measuring the number of \(N\) returns that get
+  mis-predicted. If the number of calls in the victim process is
+  dependent on secret information, this could leak it.
+\end{itemize}
+
+The papers referred to above contain detailed explanations of how they
+set up the attack. All of these attacks use a general 3-step approach,
+similar to
+\protect\hyperlink{general-schema-for-cache-covert-channels}{cache side
+channels}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  An instruction sequence that resets the branch predictor state
+  (\emph{reset sequence}), run by the spy process.\index{reset sequence}
+\item
+  An instruction sequence that triggers a branch predictor state change
+  (\emph{trigger sequence}), run by the victim
+  process.\index{trigger sequence}
+\item
+  An instruction sequence that leaks the branch predictor state
+  (\emph{measurement sequence}), run by the spy
+  process\index{measurement sequence}
+\end{enumerate}
+
+\hypertarget{mitigations}{%
+\subsection{Mitigations}\label{mitigations}}
+
+\tododiv{Describe the mitigations proposed against these side-channel
+attacks.
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/203}{\#203}}
+
 \hypertarget{resource-contention-channels}{%
 \section{Resource contention
 channels}\label{resource-contention-channels}}
 
-\hypertarget{channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors}{%
-\section{Channels making use of aliasing in branch predictors and other
-predictors}\label{channels-making-use-of-aliasing-in-branch-predictors-and-other-predictors}}
+\hypertarget{channels-making-use-of-aliasing-in-other-predictors}{%
+\section{Channels making use of aliasing in other
+predictors}\label{channels-making-use-of-aliasing-in-other-predictors}}
 
 \tododiv{Should we also discuss more ``covert'' channels here such as
 power analysis, etc?
@@ -3137,6 +3269,12 @@ explained better, please do let us know by raising an
 \addcontentsline{toc}{chapter}{References}
 
 \hypertarget{refs}{}
+\leavevmode\hypertarget{ref-Aciicmez2007}{}%
+Aciiçmez, Onur, Çetin Kaya Koç, and Jean-Pierre Seifert. 2007. ``On the
+Power of Simple Branch Prediction Analysis.'' In \emph{Proceedings of
+the 2nd ACM Symposium on Information, Computer and Communications
+Security}. ACM. \url{https://doi.org/10.1145/1229285.1266999}.
+
 \leavevmode\hypertarget{ref-AlephOne1996}{}%
 Aleph One. 1996. ``Smashing the Stack for Fun and Profit.'' 1996.
 \url{http://www.phrack.org/issues/49/14.html\#article}.
@@ -3170,6 +3308,12 @@ Briongos, Samira, Pedro Malagon, Jose M. Moya, and Thomas Eisenbarth.
 Stealthy Cache Attacks.'' In \emph{29th Usenix Security Symposium
 (Usenix Security 20)}.
 \url{https://www.usenix.org/conference/usenixsecurity20/presentation/briongos}.
+
+\leavevmode\hypertarget{ref-Bulygin2008}{}%
+Bulygin, Yuriy. 2008. ``CPU Side-Channels Vs. Virtualization Rootkits:
+The Good, the Bad, or the Ugly.'' In \emph{CPU Side-Channels Vs.
+Virtualization Rootkits: The Good, the Bad, or the Ugly}.
+\url{https://infocondb.org/con/toorcon/toorcon-seattle-2008/cpu-side-channels-vs-virtualization-rootkits-the-good-the-bad-or-the-ugly}.
 
 \leavevmode\hypertarget{ref-Burow2017}{}%
 Burow, Nathan, Scott A. Carr, Joseph Nash, Per Larsen, Michael Franz,
@@ -3216,6 +3360,20 @@ Dullien, Thomas. 2020. ``Weird Machines, Exploitability, and Provable
 Unexploitability.'' \emph{IEEE Transactions on Emerging Topics in
 Computing} 8 (2): 391--403.
 \url{https://doi.org/10.1109/TETC.2017.2785300}.
+
+\leavevmode\hypertarget{ref-Evtyushkin2018}{}%
+Evtyushkin, Dmitry, Ryan Riley, Nael CSE, ECE Abu-Ghazaleh, and Dmitry
+Ponomarev. 2018. ``BranchScope: A New Side-Channel Attack on Directional
+Branch Predictor.'' In \emph{Proceedings of the Twenty-Third
+International Conference on Architectural Support for Programming
+Languages and Operating Systems}.
+\url{https://doi.org/10.1145/3173162.3173204}.
+
+\leavevmode\hypertarget{ref-Eyerman2009}{}%
+Eyerman, Stijn, Lieven Eeckhout, Tejas Karkhanis, and James E. Smith.
+2009. ``A Mechanistic Performance Model for Superscalar Out-of-Order
+Processors.'' \emph{ACM Transactions on Computer Systems} 27 (2).
+\url{https://doi.org/10.1145/1534909.1534910}.
 
 \leavevmode\hypertarget{ref-Fetiveau2019}{}%
 Fetiveau, Jeremy. 2019. ``Circumventing Chrome's Hardening of Typer
@@ -3283,6 +3441,13 @@ Expressiveness of Non-Control Data Attacks.'' In \emph{2016 Ieee
 Symposium on Security and Privacy (Sp)}, 969--86.
 \url{https://doi.org/10.1109/SP.2016.62}.
 
+\leavevmode\hypertarget{ref-Huo2019}{}%
+Huo, Tianlin, Xiaoni Meng, Wenhao Wang, Chunliang Hao, Pei Zhao, Jian
+Zhai, and Mingshu Li. 2019. ``Bluethunder: A 2-Level Directional
+Predictor Based Side-Channel Attack Against SGX.'' \emph{IACR
+Transactions on Cryptographic Hardware and Embedded Systems}, November.
+\url{https://doi.org/10.46586/tches.v2020.i1.321-347}.
+
 \leavevmode\hypertarget{ref-Ispoglou2018}{}%
 Ispoglou, Kyriakos K., Bader AlBassam, Trent Jaeger, and Mathias Payer.
 2018. ``Block Oriented Programming: Automating Data-Only Attacks.'' In
@@ -3294,6 +3459,13 @@ Association for Computing Machinery.
 \leavevmode\hypertarget{ref-ChromiumIssue}{}%
 ``Issue 3782: V8 Is Not -Fsanitize=null Clean.'' 2014. 2014.
 \url{https://bugs.chromium.org/p/v8/issues/detail?id=3782}.
+
+\leavevmode\hypertarget{ref-Lee2017}{}%
+Lee, Sangho, Ming-Wei Shih, Prasun Gera, Taesoo Kim, Hyesoon Kim, and
+Marcus Peinado. 2017. ``Inferring Fine-Grained Control Flow Inside SGX
+Enclaves with Branch Shadowing.'' In \emph{26th Usenix Security
+Symposium (Usenix Security 17)}.
+\url{https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/lee-sangho}.
 
 \leavevmode\hypertarget{ref-Liljestrand2021}{}%
 Liljestrand, Hans, Thomas Nyman, Lachlan J Gunn, Jan-Erik Ekberg, and N
