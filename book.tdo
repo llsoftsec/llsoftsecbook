@@ -25,4 +25,3 @@
 \contentsline {todo}{25. There is overlap with section timing-side-channels. How to best consolidate that? \href {https://github.com/llsoftsec/llsoftsecbook/issues/182}{\#182}}{52}{section*.36}%
 \contentsline {todo}{26. Make the above reference to a paper use bibtex. \href {https://github.com/llsoftsec/llsoftsecbook/issues/159}{\#159}}{53}{section*.38}%
 \contentsline {todo}{27. Write chapter with other security topics.}{55}{section*.39}%
-\contentsline {todo}{28. Write section on securely clearing memory in C/C++ and undefined behaviour. \href {https://github.com/llsoftsec/llsoftsecbook/issues/183}{\#183}}{55}{section*.40}%

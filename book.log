@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2023.6.23)  23 JUN 2023 08:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2023.6.29)  29 JUN 2023 12:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1481,9 +1481,6 @@ youtube.com/watch?v=4u6BAH8mEDw
 [54]
 Chapter 7.
 File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-File: bc-aux-301.mps Graphic file (type mps)
-
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [55
 
 ]
@@ -1509,7 +1506,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 158--159
 \openout8 = `book.tdo'.
 
  [60]
-Overfull \hbox (0.11316pt too wide) in paragraph at lines 3312--3317
+Overfull \hbox (0.11316pt too wide) in paragraph at lines 3308--3313
 \T1/lmr/m/n/10 (+7) seattle -[] 2008 / cpu -[] side -[] channels -[] vs -[] vir
 tualization -[] rootkits -[] the -[] good -[] the -[] bad -[] or -[]
  []
@@ -1517,74 +1514,74 @@ tualization -[] rootkits -[] the -[] good -[] the -[] bad -[] or -[]
 [61
 
 ]
-Overfull \hbox (19.66516pt too wide) in paragraph at lines 3388--3391
+Overfull \hbox (19.66516pt too wide) in paragraph at lines 3384--3387
 \T1/lmr/m/n/10 (-20) github . com / freebsd / freebsd -[] src / commit / 6a762e
 b23ea5f31e65cfa12602937f39a14e9b0c$[][]. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3396--3400
+Underfull \hbox (badness 10000) in paragraph at lines 3392--3396
 [][]$\T1/lmr/m/n/10 (+20) https : / / googleprojectzero . blogspot . com / 2021
  / 01 / in -[] wild -[] series -[] chrome -[]
  []
 
 [62] [63]
-Underfull \hbox (badness 10000) in paragraph at lines 3488--3493
+Underfull \hbox (badness 10000) in paragraph at lines 3484--3489
 \T1/lmr/m/n/10 (+20) Security -[] Research / blob / master / presentations / 20
 12 _ 10 _ Breakpoint /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3488--3493
+Underfull \hbox (badness 10000) in paragraph at lines 3484--3489
 \T1/lmr/m/n/10 (+20) BreakPoint2012 _ Miller _ Modeling _ the _ exploitation _ 
 and _ mitigation _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3510--3514
+Underfull \hbox (badness 10000) in paragraph at lines 3506--3510
 \T1/lmr/m/n/10 (+20) publications / conference -[] paper / 1998 / 10 / 08 / pro
 ceedings -[] of -[] the -[] 21st -[] nissc -[]
  []
 
 [64] [65]
-Underfull \hbox (badness 10000) in paragraph at lines 3629--3633
+Underfull \hbox (badness 10000) in paragraph at lines 3625--3629
 [][]$\T1/lmr/m/n/10 (+18) https : / / wingolog . org / archives / 2011 / 05 / 1
 8 / value -[] representation -[] in -[] javascript -[]
  []
 
 
-Overfull \hbox (88.45438pt too wide) in paragraph at lines 3648--3651
+Overfull \hbox (88.45438pt too wide) in paragraph at lines 3644--3647
 [][]\T1/lmr/m/n/10 (-20) 2015a. 2015. [][]$https : / / github . com / torvalds 
 / linux / commit / 0b053c9518292705736329a8fe20ef4686^^[c8e9$[][]. 
  []
 
 
-Overfull \hbox (97.99307pt too wide) in paragraph at lines 3652--3655
+Overfull \hbox (97.99307pt too wide) in paragraph at lines 3648--3651
 [][]\T1/lmr/m/n/10 (-20) 2015b. 2015. [][]$https : / / github . com / torvalds 
 / linux / commit / 7829fb09a2b4268b30dd9bc782fa5ebee278b137$[][]. 
  []
 
 
-Overfull \hbox (98.6903pt too wide) in paragraph at lines 3656--3659
+Overfull \hbox (98.6903pt too wide) in paragraph at lines 3652--3655
 [][]\T1/lmr/m/n/10 (-20) 2016. 2016. [][]$https : / / github . com / openssl / 
 openssl / commit / 104ce8a9f02d250dd43c255eb7b8747e81b29422$[][]. 
  []
 
 
-Underfull \hbox (badness 1286) in paragraph at lines 3664--3667
+Underfull \hbox (badness 1286) in paragraph at lines 3660--3663
 [][]\T1/lmr/m/n/10 (+20) n.d. [][]$https : / / www . gnu . org / software / /gn
 ulib / manual / html _ node / memset _
  []
 
 [66] (build/book.aux)
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: 9F6C955E81155FCD236186DC8F3B9FE2;9440.
+(rerunfilecheck)             Checksum: 89E96FA41CC4404F1F425FB5C9643D62;9440.
  ) 
 Here is how much of TeX's memory you used:
- 30135 strings out of 480962
- 548354 string characters out of 5908147
- 952415 words of memory out of 5000000
- 46119 multiletter control sequences out of 15000+600000
+ 30130 strings out of 480962
+ 548188 string characters out of 5908147
+ 952366 words of memory out of 5000000
+ 46117 multiletter control sequences out of 15000+600000
  486644 words of font info for 194 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  102i,12n,117p,653b,1259s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1612,10 +1609,10 @@ xlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></texlive/2020/texmf-dis
 t/fonts/type1/public/lm/lmtk10.pfb></texlive/2020/texmf-dist/fonts/type1/public
 /lm/lmtt10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></texl
 ive/2020/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on build/book.pdf (67 pages, 845244 bytes).
+Output written on build/book.pdf (67 pages, 844631 bytes).
 PDF statistics:
- 1614 PDF objects out of 1728 (max. 8388607)
- 1464 compressed objects within 15 object streams
- 354 named destinations out of 1000 (max. 500000)
+ 1609 PDF objects out of 1728 (max. 8388607)
+ 1459 compressed objects within 15 object streams
+ 353 named destinations out of 1000 (max. 500000)
  45604 words of extra memory for PDF output out of 51595 (max. 10000000)
 
