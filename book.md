@@ -2484,11 +2484,6 @@ optimizations carried out by compilers (C/C++) do not impact the mitigation.
 Write chapter with other security topics.
 :::
 
-::: TODO
-Write section on securely clearing memory in C/C++ and undefined behaviour.
-[183]{.issue}
-:::
-
 # Appendix: contribution guidelines {-}
 
 If you'd like to start contributing to this book: please do, we're looking
