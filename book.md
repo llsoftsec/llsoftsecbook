@@ -1769,18 +1769,22 @@ most CPUs have multiple pieces of
 [branch predictor](https://en.wikipedia.org/wiki/Branch_predictor)\index{branch
 predictor} logic, such as:
 
-- A component that predicts the outcome of a conditional branch: taken or not
+- A component that predicts the outcome of a conditional
+  branch\index{Conditional branch direction predictor}: taken or not
   taken\index{taken branch}. The prediction is typically done based on the
   outcome of this and other branches in the recent past. In academic literature,
   this type of component is often called a Pattern History Table (PHT)
-  \index{Pattern History Table (PHT)}.
+  \index{Pattern History Table (PHT)}, referring to a specific implementation of
+  a conditional branch direction predictor.
 - A component that predicts the target of a taken branch, i.e. the address of
   the next instruction after a taken branch. In academic literature, such a
   component is often called a Branch Target Buffer (BTB) \index{Branch Target
-  Buffer}.
+  Buffer}, referring to a specific implementation of a branch target
+  predictor\index{branch target predictor}.
 - A component that is specialized to predict the next instruction after a
   function return instruction. Academic literature often calls this a Return
-  Stack Buffer (RSB) \index{Return Stack Buffer}.
+  Stack Buffer (RSB) \index{Return Stack Buffer}, referring to a specific
+  implementation of a return address predictor\index{return address predictor}.
 
 [^branch-prediction-performance]: Over time, new CPU designs tend to support
 having more instructions in flight. [@Eyerman2009, section 4.2.3] suggests that
@@ -1793,10 +1797,11 @@ push to increase the accuracy of branch predictors.
 A number of attacks have been described over the past few years. A few examples,
 categorized per branch predictor component they target, are:
 
-- PHT: BranchScope [@Evtyushkin2018], BlueThunder [@Huo2019]. These attacks
-  infer whether a branch is taken or not taken in a victim process. They do so
-  by carefully making sure that a branch in the spy process uses the same branch
-  predictor entry (i.e. aliases) with the targeted branch in the victim
+- Conditional branch direction predictor\index{Conditional branch direction
+  predictor}: BranchScope [@Evtyushkin2018], BlueThunder [@Huo2019]. These
+  attacks infer whether a branch is taken or not taken in a victim process. They
+  do so by carefully making sure that a branch in the spy process uses the same
+  branch predictor entry (i.e. aliases) with the targeted branch in the victim
   process. By measuring whether the branch in the spy process gets predicted
   correctly, one can derive whether the branch in the victim process was taken
   or not.
@@ -1808,17 +1813,19 @@ categorized per branch predictor component they target, are:
   can enable an attacker to derive the value of the secret key. These papers
   demonstrate deriving the secret key from implementations of specific
   cryptographic kernels. It can also be used to break ASLR\index{ASLR}.
-- BTB: SBPA [@Aciicmez2007], BranchShadow [@Lee2017]. These earlier attacks are
-  based on making a branch in the spy process alias in the BTB with a targeted
-  branch in the victim process. They use methods such as timing difference, last
-  branch records, instruction traces or performance counters to measure whether
-  the branch in the spy process caused a specific state change in the BTB.
-- RSB: Hyper-Channel [@Bulygin2008]. In this case, a spy process invokes $N$
-  calls to fill up the return stack predictor. Then it lets the victim process
-  execute. Then, the spy process can measure how many of its return stack
-  entries have been removed from the RSB, by measuring the number of $N$ returns
-  that get mis-predicted. If the number of calls in the victim process is
-  dependent on secret information, this could leak it.
+- Branch Target Predictor\index{Branch target predictor}: SBPA [@Aciicmez2007],
+  BranchShadow [@Lee2017]. These earlier attacks are based on making a branch in
+  the spy process alias in the BTB with a targeted branch in the victim process.
+  They use methods such as timing difference, last branch records, instruction
+  traces or performance counters to measure whether the branch in the spy
+  process caused a specific state change in the BTB.
+- Return address predictor\index{return address predictor}: Hyper-Channel
+  [@Bulygin2008]. In this case, a spy process invokes $N$ calls to fill up the
+  return stack predictor. Then it lets the victim process execute. Then, the spy
+  process can measure how many of its return stack entries have been removed
+  from the RSB, by measuring the number of $N$ returns that get mis-predicted.
+  If the number of calls in the victim process is dependent on secret
+  information, this could leak it.
 
 The papers referred to above contain detailed explanations of how they set up
 the attack. All of these attacks use a general 3-step approach, similar to
