@@ -1223,41 +1223,46 @@ hardware-based, e.g. PAuth-based pointer integrity schemes, MTE etc
 ### Bounds checking
 
 Making sure that memory accesses happen within the bounds of each object's
-allocation is a very important part of memory safety, usually described
+allocation is a very important part of memory safety. This is usually described
 with the term "spatial memory safety"\index{spatial memory safety}.
-Out-of-bounds accesses result in partial read/write primitives, which an
-attacker can often easily convert into arbitrary read/write primitives,
-for example by overwriting pointer fields in allocations following the
-object that was the target of the problematic memory access.
+Out-of-bounds accesses result in restricted read/write primitives\index{read
+primitive}\index{write primitive}[^restricted]. An attacker can often easily
+convert these into arbitrary read/write primitives. For example, this can be
+achieved by overwriting pointer fields in allocations following the object that
+was the target of the problematic memory access.
+
+[^restricted]: These primitives are restricted since they can access a
+limited number of bytes past the end of the allocation.
 
 The C and C++ memory languages do not, as a general rule, perform bounds
-checking [^stdarray], which is one of the sources of memory errors in
-C/C++ programs. However, compilers have a history of introducing bounds
-checks, even though the language does not require them, in various scenarios,
-in an effort to improve security of the many important codebases that use
-C/C++.
+checking[^stdarray]. This is one of the sources of memory errors in C/C++
+programs. However, compilers have a history of introducing bounds checks, even
+though the language does not require them, in an effort to improve security of
+existing C/C++ codebases.
 
 [^stdarray]: Some C++ containers have accessors that do perform bounds
 checking, for example `std::array::at()` and `std::vector::at()`.
 
-One of the simplest compiler options is `-Warray-bounds`, which warns
-when an array access is always out of bounds, which restricts it to
-arrays with statically known size. This option is supported by both GCC
-and Clang.
+One of the simplest compiler options is `-Warray-bounds`, which warns when an
+array access is always out of bounds. This is therefore restricted to arrays
+with statically known size. This option is supported by both GCC and Clang.
 
-Another option supported by both compilers is `-fsanitize=bounds`, which is a
-part of [UBSan](#sanitizers), described in the previous section, meant to check
-the bounds for accesses to statically sized arrays.  This is an improvement
-over `-Warray-bounds`, as it can also check accesses to dynamic indices.
-However, it's still limited, as it cannot perform bounds checks on dynamically
-sized arrays, and it is still restricted to array bounds checking.
+Another option supported by both compilers is `-fsanitize=bounds`, included in
+[UBSan](#sanitizers), which checks the bounds for accesses to statically sized
+arrays at runtime. This handles more cases than `-Warray-bounds`, as it can
+also check accesses to dynamic indices. However, it's still limited, as it
+cannot perform bounds checks on dynamically sized arrays, and it is still
+restricted to array bounds checking. A more comprehensive solution would
+also cover pointers in general, especially if pointer arithmetic is
+performed.
 
 You may notice that there is a bit of overlap between the bounds checks
 introduced by `-fsanitize=bounds` and the Address Sanitizer. Although the scope
 of `-fsanitize=bounds` is restricted to statically sized arrays, it's
-interesting to note that it can still catch intra-object overflows on array
-member accesses that the Address Sanitizer would not, because the access is
-still technically within the allocation. For example, given the following code:
+interesting to note that it can still catch intra-object
+overflows\index{intra-object overflow} on array member accesses that the
+Address Sanitizer would not, because the access is still technically within the
+allocation. For example, given the following code:
 ```
 struct foo {
   int a[6];
@@ -1298,9 +1303,17 @@ proposal goes a bit further, introducing a similar annotation that can be
 applied to pointers more generally. The proposal also aims to reduce the
 annotation burden placed on programmers by only requiring the annotations at
 [ABI](https://en.wikipedia.org/wiki/Application_binary_interface)\index{Application
-binary interface (ABI)} boundaries. Local variables, which do not cross ABI
-boundaries, are implicitly converted to use wide pointers, which store bounds
-information alongside the pointer itself.
+binary interface (ABI)} boundaries[^abi-boundary]. Local variables which do
+not cross ABI boundaries are implicitly converted to use wide pointers. These
+wide pointers store bounds information alongside the original pointer.
+
+[^abi-boundary]: This refers to the interface between different binary modules,
+typically a user program and a system library. The ABI describes low-level
+details of that interface, for example the assignment of arguments and return
+values into registers or memory. In many systems, the ABI is expected to change
+rarely, so programs and libraries can be updated independently and still work
+together. This makes ABI changes undesirable, which is why this proposal aims
+to minimise them.
 
 There are also hardening efforts focusing on C++ codebases. For example, the
 ["safe libc++"
@@ -1308,27 +1321,41 @@ mode](https://libcxx.llvm.org/UsingLibcxx.html#enabling-the-safe-libc-mode)
 enables a number of assertions that aim to catch undefined behaviour in the
 library. The [C++ Buffer Hardening
 proposal](https://discourse.llvm.org/t/rfc-c-buffer-hardening/65734) aims to
-extend this library hardening. The proposal will also see pointer arithmetic
-considered unsafe by Clang, to be replaced with safer alternatives from the C++
-library that will include bounds checks.
+extend this library hardening. The proposal will also introduce a programming
+model in which all pointer arithmetic is considered unsafe. Pointer arithmetic
+will have to be replaced with alternatives from the C++ library, for example
+`std::array`. The implementation of these alternatives in the hardened library
+will include bounds checks.
 
-It's important note that successfully using compiler features like the ones
-described so far is not a small undertaking for a large codebase. As a very
-good case-study, [Kees Cook's blog]([@Cook2023]) describes the challenges involved
-in refactoring the Linux kernel to use bounds checks for flexible arrays.
+Successfully using bounds checking compiler features for a large codebase
+requires substantial effort. An example of this is refactoring the Linux kernel
+to use bounds checks for flexible arrays, as described in [Kees Cook's
+blog]([@Cook2023]).
 
-This section would, of course, be incomplete without a mention of a different
-approach to addressing the problem: using a language that has been designed
-with memory safety in mind, that can make sure all memory accesses are
-checked, either at compile-time or runtime. For example, the [Rust programming
-language](https://www.rust-lang.org/), a strongly typed compiled language,
-introduces bounds checks whenever the compiler cannot prove that an access is
-within bounds (among other features that provide temporal memory safety and
-thread-safety). There are many other memory safe languages, with different
-characteristics, for example JavaScript, a dynamically typed, usually
-[JIT-compiled](#jit-compiler-vulnerabilities) language. We'll discuss some
-of the issues that arise when implementing support for such a language in the
-next section.
+There are also hardware-based mitigations for violations of spatial memory
+safety. For example,
+[CHERI](https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/) introduces
+_capabilities_\index{capability} to conventional Instruction Set Architectures.
+Capabilities combine a virtual address with metadata that describes its
+corresponding bounds and permissions. Capabilities cannot be forged, and can
+thus provide very strong guarantees. Arm has developed a prototype architecture
+that adapts CHERI, as well as prototype SoC and development board, as part of
+the [Arm Morello Program](https://www.arm.com/architecture/cpu/morello).
+
+Of course, another approach to mitigating spatial memory safety vulnerabilities
+is using a language that has been designed with spatial memory safety in mind.
+Such languages make sure that all memory accesses are checked, either at
+compile-time or runtime. For example, the [Rust programming
+language](https://www.rust-lang.org/) introduces bounds checks whenever the
+compiler cannot prove that an access is within bounds[^rust]. There are many
+other memory safe languages, with different characteristics. One example is
+JavaScript, a dynamically typed, usually
+[JIT-compiled](#jit-compiler-vulnerabilities) language. We'll discuss some of
+the issues that arise when implementing support for such a language in the next
+section.
+
+[^rust]: Rust also provides features that provide temporal memory safety
+and thread safety.
 
 ## JIT compiler vulnerabilities
 
