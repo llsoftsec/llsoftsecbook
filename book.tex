@@ -170,7 +170,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2023 Lucian Popescu
   \href{mailto:lucian.popescu187@gmail.com}{\nolinkurl{lucian.popescu187@gmail.com}}\\
 
-Version 0-156-g4da42d1
+Version 0-157-g72fb527
 \clearpage
 
 {
@@ -2826,11 +2826,12 @@ The solution Linux came with was to add a new function called
 It still uses \texttt{memset} \index{memset} to delete the associated
 security sensitive data, but it also tries to eliminate the risk of DSO
 by using the OPTIMIZER\_HIDE\_VAR macro. This, however, is not enough to
-fully eliminate dead stores
-(\protect\hyperlink{ref-MemZeroBarrier}{2015}\protect\hyperlink{ref-MemZeroBarrier}{a}).
-In case of using LTO, the buffer \texttt{s} is still vulnerable. For
-this reason, Linux maintainers added a further hardening mechanism by
-using a compiler barrier instead:
+fully eliminate dead stores (``Lib: Memzero\_explicit: Use Barrier
+Instead of OPTIMIZER\_HIDE\_VAR''
+\protect\hyperlink{ref-MemZeroBarrier}{2015}). In case of using LTO, the
+buffer \texttt{s} is still vulnerable. For this reason, Linux
+maintainers added a further hardening mechanism by using a compiler
+barrier instead:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2844,11 +2845,12 @@ using a compiler barrier instead:
 \end{Shaded}
 
 There is still room for improvement regarding the introduced barrier
-(\protect\hyperlink{ref-MemZeroDataBarrier}{2015}\protect\hyperlink{ref-MemZeroDataBarrier}{b}).
-If the content of the buffer is present in registers, then the compiler
-blindly proves again that the DSO can be triggered and the
-\texttt{memset} will be again deleted. To mitigate against this, the
-following patch was proposed:
+(``Lib: Make Memzero\_explicit More Robust Against Dead Store
+Elimination'' \protect\hyperlink{ref-MemZeroDataBarrier}{2015}). If the
+content of the buffer is present in registers, then the compiler blindly
+proves again that the DSO can be triggered and the \texttt{memset} will
+be again deleted. To mitigate against this, the following patch was
+proposed:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2867,8 +2869,9 @@ following patch was proposed:
 In this patch we create a new barrier that will be guaranted to put the
 content of the buffer in memory so that DSO can take no further effect.
 
-Similar efforts were conducted in other projects such as OpenSSL
-(\protect\hyperlink{ref-OpenSSLMemClr}{2016}). The approach OpenSSL used
+Similar efforts were conducted in other projects such as OpenSSL (``Lib:
+Make Memzero\_explicit More Robust Against Dead Store Elimination''
+\protect\hyperlink{ref-OpenSSLMemClr}{2016}). The approach OpenSSL used
 is rather different but it achieves the same end goal, i.e.~eliminating
 the effect of DSO. By making \texttt{memset\_func} a volatile pointer to
 the actual implementation of \texttt{memset}, the compiler is forced to
@@ -2877,11 +2880,12 @@ eliminating the risk of optimizing it out.
 
 The C23 committee decided to tackle this problem from another angle,
 i.e.~by adding a library function called \texttt{memset\_explicit}
-(\protect\hyperlink{ref-MemSetProposal}{2021}). This function requires
-the compiler to not optimize the memory overwrite away. However it is
-not trivial to implement such a functionality, as GNU presents in
-(\protect\hyperlink{ref-GNUMemSet}{n.d.}). The information may be
-present somewhere in the machine, even if it was erased from memory.
+(``Memset\_explicit'' \protect\hyperlink{ref-MemSetProposal}{2021}).
+This function requires the compiler to not optimize the memory overwrite
+away. However it is not trivial to implement such a functionality, as
+GNU presents in (``10.604 Memset\_explicit,''
+\protect\hyperlink{ref-GNUMemSet}{n.d.}). The information may be present
+somewhere in the machine, even if it was erased from memory.
 
 \hypertarget{physical-attacks}{%
 \chapter{Physical attacks}\label{physical-attacks}}
@@ -3265,6 +3269,10 @@ explained better, please do let us know by raising an
 \addcontentsline{toc}{chapter}{References}
 
 \hypertarget{refs}{}
+\leavevmode\hypertarget{ref-GNUMemSet}{}%
+``10.604 Memset\_explicit.'' n.d.
+\url{https://www.gnu.org/software//gnulib/manual/html_node/memset_005fexplicit.html}.
+
 \leavevmode\hypertarget{ref-Aciicmez2007}{}%
 Aciiçmez, Onur, Çetin Kaya Koç, and Jean-Pierre Seifert. 2007. ``On the
 Power of Simple Branch Prediction Analysis.'' In \emph{Proceedings of
@@ -3463,6 +3471,21 @@ Enclaves with Branch Shadowing.'' In \emph{26th Usenix Security
 Symposium (Usenix Security 17)}.
 \url{https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/lee-sangho}.
 
+\leavevmode\hypertarget{ref-MemZeroDataBarrier}{}%
+``Lib: Make Memzero\_explicit More Robust Against Dead Store
+Elimination.'' 2015. 2015.
+\url{https://github.com/torvalds/linux/commit/7829fb09a2b4268b30dd9bc782fa5ebee278b137}.
+
+\leavevmode\hypertarget{ref-OpenSSLMemClr}{}%
+``Lib: Make Memzero\_explicit More Robust Against Dead Store
+Elimination.'' 2016. 2016.
+\url{https://github.com/openssl/openssl/commit/104ce8a9f02d250dd43c255eb7b8747e81b29422}.
+
+\leavevmode\hypertarget{ref-MemZeroBarrier}{}%
+``Lib: Memzero\_explicit: Use Barrier Instead of OPTIMIZER\_HIDE\_VAR.''
+2015. 2015.
+\url{https://github.com/torvalds/linux/commit/0b053c9518292705736329a8fe20ef4686ffc8e9}.
+
 \leavevmode\hypertarget{ref-Liljestrand2021}{}%
 Liljestrand, Hans, Thomas Nyman, Lachlan J Gunn, Jan-Erik Ekberg, and N
 Asokan. 2021. ``\(\{\)PACStack\(\}\): An Authenticated Call Stack.'' In
@@ -3480,6 +3503,10 @@ Communications Security, Asia Ccs 2020}.
 McCall, John, and Ahmed Bougacha. 2019. ``Arm64e: An Abi for Pointer
 Authentication.'' 2019.
 \url{https://llvm.org/devmtg/2019-10/slides/McCall-Bougacha-arm64e.pdf}.
+
+\leavevmode\hypertarget{ref-MemSetProposal}{}%
+``Memset\_explicit.'' 2021. 2021.
+\url{https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2897.htm}.
 
 \leavevmode\hypertarget{ref-Miller2012}{}%
 Miller, Matt. n.d. ``Modeling the Exploitation and Mitigation of Memory
@@ -3640,25 +3667,5 @@ Resolution, Low Noise, L3 Cache Side-Channel Attack.'' In \emph{23rd
 Usenix Security Symposium (Usenix Security 14)}, 719--32. San Diego, CA:
 USENIX Association.
 \url{https://www.usenix.org/conference/usenixsecurity14/technical-sessions/presentation/yarom}.
-
-\leavevmode\hypertarget{ref-MemZeroBarrier}{}%
-2015a. 2015.
-\url{https://github.com/torvalds/linux/commit/0b053c9518292705736329a8fe20ef4686ffc8e9}.
-
-\leavevmode\hypertarget{ref-MemZeroDataBarrier}{}%
-2015b. 2015.
-\url{https://github.com/torvalds/linux/commit/7829fb09a2b4268b30dd9bc782fa5ebee278b137}.
-
-\leavevmode\hypertarget{ref-OpenSSLMemClr}{}%
-2016. 2016.
-\url{https://github.com/openssl/openssl/commit/104ce8a9f02d250dd43c255eb7b8747e81b29422}.
-
-\leavevmode\hypertarget{ref-MemSetProposal}{}%
-2021. 2021.
-\url{https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2897.htm}.
-
-\leavevmode\hypertarget{ref-GNUMemSet}{}%
-n.d.
-\url{https://www.gnu.org/software//gnulib/manual/html_node/memset_005fexplicit.html}.
 
 \end{document}

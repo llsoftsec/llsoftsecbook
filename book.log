@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2023.6.29)  29 JUN 2023 12:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2023.7.3)  3 JUL 2023 08:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1432,28 +1432,28 @@ File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [49
 
 ]
-<img/side_channel_leakage_figure_1_branch.pdf, id=1019, 648.4225pt x 310.15875p
+<img/side_channel_leakage_figure_1_branch.pdf, id=1017, 648.4225pt x 310.15875p
 t>
 File: img/side_channel_leakage_figure_1_branch.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_1_branch.pdf>
 Package pdftex.def Info: img/side_channel_leakage_figure_1_branch.pdf  used on 
-input line 3016.
+input line 3020.
 (pdftex.def)             Requested size: 276.0063pt x 132.02159pt.
 
 [50]
-<img/side_channel_leakage_figure_2_duration.pdf, id=1026, 422.57875pt x 275.027
+<img/side_channel_leakage_figure_2_duration.pdf, id=1024, 422.57875pt x 275.027
 5pt>
 File: img/side_channel_leakage_figure_2_duration.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_2_duration.pdf>
 Package pdftex.def Info: img/side_channel_leakage_figure_2_duration.pdf  used o
-n input line 3031.
+n input line 3035.
 (pdftex.def)             Requested size: 276.00768pt x 179.63445pt.
-<img/side_channel_leakage_figure_3_toggle.pdf, id=1027, 628.3475pt x 291.0875pt
+<img/side_channel_leakage_figure_3_toggle.pdf, id=1025, 628.3475pt x 291.0875pt
 >
 File: img/side_channel_leakage_figure_3_toggle.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_3_toggle.pdf>
 Package pdftex.def Info: img/side_channel_leakage_figure_3_toggle.pdf  used on 
-input line 3063.
+input line 3067.
 (pdftex.def)             Requested size: 275.99435pt x 127.8568pt.
  [51 <./img/side_channel_leakage_figure_1_branch.pdf> <./img/side_channel_leaka
 ge_figure_2_duration.pdf
@@ -1464,16 +1464,16 @@ pdfTeX warning: pdflatex (file ./img/side_channel_leakage_figure_2_duration.pdf
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [52 <./img/side_channel_leakage_figure_3_toggle.pdf>]
-<img/physical_attacks.pdf, id=1066, 468.75125pt x 160.6pt>
+<img/physical_attacks.pdf, id=1064, 468.75125pt x 160.6pt>
 File: img/physical_attacks.pdf Graphic file (type pdf)
 <use img/physical_attacks.pdf>
-Package pdftex.def Info: img/physical_attacks.pdf  used on input line 3128.
+Package pdftex.def Info: img/physical_attacks.pdf  used on input line 3132.
 (pdftex.def)             Requested size: 275.99577pt x 94.55957pt.
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF]
 (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [53 <./img/physical_
 attacks.pdf>]
-Overfull \hbox (80.5624pt too wide) in paragraph at lines 3200--3202
+Overfull \hbox (80.5624pt too wide) in paragraph at lines 3204--3206
 []\T1/lmr/m/n/10 (-20) Example: At-tack on Trust-Zone for Armv8-M: https://www.
 youtube.com/watch?v=4u6BAH8mEDw 
  []
@@ -1506,7 +1506,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 158--159
 \openout8 = `book.tdo'.
 
  [60]
-Overfull \hbox (0.11316pt too wide) in paragraph at lines 3308--3313
+Overfull \hbox (0.11316pt too wide) in paragraph at lines 3316--3321
 \T1/lmr/m/n/10 (+7) seattle -[] 2008 / cpu -[] side -[] channels -[] vs -[] vir
 tualization -[] rootkits -[] the -[] good -[] the -[] bad -[] or -[]
  []
@@ -1514,63 +1514,69 @@ tualization -[] rootkits -[] the -[] good -[] the -[] bad -[] or -[]
 [61
 
 ]
-Overfull \hbox (19.66516pt too wide) in paragraph at lines 3384--3387
+Overfull \hbox (19.66516pt too wide) in paragraph at lines 3392--3395
 \T1/lmr/m/n/10 (-20) github . com / freebsd / freebsd -[] src / commit / 6a762e
 b23ea5f31e65cfa12602937f39a14e9b0c$[][]. 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 3392--3396
+[62]
+Underfull \hbox (badness 10000) in paragraph at lines 3400--3404
 [][]$\T1/lmr/m/n/10 (+20) https : / / googleprojectzero . blogspot . com / 2021
  / 01 / in -[] wild -[] series -[] chrome -[]
  []
 
-[62] [63]
-Underfull \hbox (badness 10000) in paragraph at lines 3484--3489
+[63]
+Underfull \hbox (badness 1043) in paragraph at lines 3474--3478
+[][]\T1/lmr/m/n/10 (+20) ``Lib: Make Memzero_explicit More Ro-bust Against Dead
+ Store Elim-
+ []
+
+
+Underfull \hbox (badness 4205) in paragraph at lines 3474--3478
+\T1/lmr/m/n/10 (+20) i-na-tion.'' 2015. 2015. [][]$https : / / github . com / t
+orvalds / linux / commit /
+ []
+
+
+Underfull \hbox (badness 1043) in paragraph at lines 3479--3483
+[][]\T1/lmr/m/n/10 (+20) ``Lib: Make Memzero_explicit More Ro-bust Against Dead
+ Store Elim-
+ []
+
+
+Underfull \hbox (badness 2799) in paragraph at lines 3479--3483
+\T1/lmr/m/n/10 (+20) i-na-tion.'' 2016. 2016. [][]$https : / / github . com / o
+penssl / openssl / commit /
+ []
+
+
+Overfull \hbox (83.55438pt too wide) in paragraph at lines 3484--3488
+\T1/lmr/m/n/10 (-20) 2015. 2015. [][]$https : / / github . com / torvalds / lin
+ux / commit / 0b053c9518292705736329a8fe20ef4686^^[c8e9$[][]. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3511--3516
 \T1/lmr/m/n/10 (+20) Security -[] Research / blob / master / presentations / 20
 12 _ 10 _ Breakpoint /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3484--3489
+Underfull \hbox (badness 10000) in paragraph at lines 3511--3516
 \T1/lmr/m/n/10 (+20) BreakPoint2012 _ Miller _ Modeling _ the _ exploitation _ 
 and _ mitigation _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3506--3510
+Underfull \hbox (badness 10000) in paragraph at lines 3533--3537
 \T1/lmr/m/n/10 (+20) publications / conference -[] paper / 1998 / 10 / 08 / pro
 ceedings -[] of -[] the -[] 21st -[] nissc -[]
  []
 
 [64] [65]
-Underfull \hbox (badness 10000) in paragraph at lines 3625--3629
+Underfull \hbox (badness 10000) in paragraph at lines 3652--3656
 [][]$\T1/lmr/m/n/10 (+18) https : / / wingolog . org / archives / 2011 / 05 / 1
 8 / value -[] representation -[] in -[] javascript -[]
- []
-
-
-Overfull \hbox (88.45438pt too wide) in paragraph at lines 3644--3647
-[][]\T1/lmr/m/n/10 (-20) 2015a. 2015. [][]$https : / / github . com / torvalds 
-/ linux / commit / 0b053c9518292705736329a8fe20ef4686^^[c8e9$[][]. 
- []
-
-
-Overfull \hbox (97.99307pt too wide) in paragraph at lines 3648--3651
-[][]\T1/lmr/m/n/10 (-20) 2015b. 2015. [][]$https : / / github . com / torvalds 
-/ linux / commit / 7829fb09a2b4268b30dd9bc782fa5ebee278b137$[][]. 
- []
-
-
-Overfull \hbox (98.6903pt too wide) in paragraph at lines 3652--3655
-[][]\T1/lmr/m/n/10 (-20) 2016. 2016. [][]$https : / / github . com / openssl / 
-openssl / commit / 104ce8a9f02d250dd43c255eb7b8747e81b29422$[][]. 
- []
-
-
-Underfull \hbox (badness 1286) in paragraph at lines 3660--3663
-[][]\T1/lmr/m/n/10 (+20) n.d. [][]$https : / / www . gnu . org / software / /gn
-ulib / manual / html _ node / memset _
  []
 
 [66] (build/book.aux)
@@ -1579,8 +1585,8 @@ Package rerunfilecheck Info: File `book.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  30130 strings out of 480962
- 548188 string characters out of 5908147
- 952366 words of memory out of 5000000
+ 548188 string characters out of 5908148
+ 951366 words of memory out of 5000000
  46117 multiletter control sequences out of 15000+600000
  486644 words of font info for 194 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1609,10 +1615,10 @@ xlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></texlive/2020/texmf-dis
 t/fonts/type1/public/lm/lmtk10.pfb></texlive/2020/texmf-dist/fonts/type1/public
 /lm/lmtt10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></texl
 ive/2020/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on build/book.pdf (67 pages, 844631 bytes).
+Output written on build/book.pdf (67 pages, 844985 bytes).
 PDF statistics:
- 1609 PDF objects out of 1728 (max. 8388607)
- 1459 compressed objects within 15 object streams
+ 1610 PDF objects out of 1728 (max. 8388607)
+ 1460 compressed objects within 15 object streams
  353 named destinations out of 1000 (max. 500000)
  45604 words of extra memory for PDF output out of 51595 (max. 10000000)
 
