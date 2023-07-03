@@ -1765,26 +1765,18 @@ loss.[^branch-prediction-performance] Therefore, most CPUs
 predict\index{predict} which instruction needs to be executed after a branch,
 before the branch instruction has completed. Correctly and quickly predicting
 the instruction after a branch instruction is so important for performance that
-most CPUs have multiple pieces of
-[branch predictor](https://en.wikipedia.org/wiki/Branch_predictor)\index{branch
-predictor} logic, such as:
+most CPUs have multiple
+[branch predictors](https://en.wikipedia.org/wiki/Branch_predictor)\index{branch
+predictor}, such as:
 
-- A component that predicts the outcome of a conditional
-  branch\index{Conditional branch direction predictor}: taken or not
-  taken\index{taken branch}. The prediction is typically done based on the
-  outcome of this and other branches in the recent past. In academic literature,
-  this type of component is often called a Pattern History Table (PHT)
-  \index{Pattern History Table (PHT)}, referring to a specific implementation of
-  a conditional branch direction predictor.
-- A component that predicts the target of a taken branch, i.e. the address of
-  the next instruction after a taken branch. In academic literature, such a
-  component is often called a Branch Target Buffer (BTB) \index{Branch Target
-  Buffer}, referring to a specific implementation of a branch target
-  predictor\index{branch target predictor}.
-- A component that is specialized to predict the next instruction after a
-  function return instruction. Academic literature often calls this a Return
-  Stack Buffer (RSB) \index{Return Stack Buffer}, referring to a specific
-  implementation of a return address predictor\index{return address predictor}.
+- A predictor of the outcome of a conditional branch\index{conditional branch
+  direction predictor}: taken or not taken\index{taken branch}. The prediction
+  is typically a history-based branch prediction, i.e., based on the outcome of
+  this and other branches in the recent past.
+- A predictor of the target of a taken branch\index{branch target predictor},
+  i.e. the address of the next instruction after a taken branch.
+- A predictor that is specialized to predict the next instruction after a
+  function return instruction.\index{return address predictor}
 
 [^branch-prediction-performance]: Over time, new CPU designs tend to support
 having more instructions in flight. [@Eyerman2009, section 4.2.3] suggests that
@@ -1797,7 +1789,7 @@ push to increase the accuracy of branch predictors.
 A number of attacks have been described over the past few years. A few examples,
 categorized per branch predictor component they target, are:
 
-- Conditional branch direction predictor\index{Conditional branch direction
+- Conditional branch direction predictor\index{conditional branch direction
   predictor}: BranchScope [@Evtyushkin2018], BlueThunder [@Huo2019]. These
   attacks infer whether a branch is taken or not taken in a victim process. They
   do so by carefully making sure that a branch in the spy process uses the same
