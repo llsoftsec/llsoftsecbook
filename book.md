@@ -1231,7 +1231,7 @@ convert these into arbitrary read/write primitives. For example, this can be
 achieved by overwriting pointer fields in allocations following the object that
 was the target of the problematic memory access.
 
-[^restricted]: These primitives are restricted since they can access a
+[^restricted]: These primitives are restricted since they can only access a
 limited number of bytes past the end of the allocation.
 
 The C and C++ memory languages do not, as a general rule, perform bounds
@@ -1339,7 +1339,7 @@ _capabilities_\index{capability} to conventional Instruction Set Architectures.
 Capabilities combine a virtual address with metadata that describes its
 corresponding bounds and permissions. Capabilities cannot be forged, and can
 thus provide very strong guarantees. Arm has developed a prototype architecture
-that adapts CHERI, as well as prototype SoC and development board, as part of
+that adapts CHERI, as well as a prototype SoC and development board, as part of
 the [Arm Morello Program](https://www.arm.com/architecture/cpu/morello).
 
 Of course, another approach to mitigating spatial memory safety vulnerabilities
