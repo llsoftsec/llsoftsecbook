@@ -751,7 +751,7 @@ context-sensitive analysis and class-hierarchy analysis.
 variety of forward-edge control-flow integrity checks. These include checking
 that the target of an indirect function call is an address-taken function of
 the correct type and checking that a C++ \index{C++} virtual call happens on an
-object of the correct dynamic type
+object of the correct dynamic type.
 
 For example, assume we have a class `A` with a virtual function `foo` and a
 class `B` deriving from `A`, and that these classes are not exported to
@@ -1219,6 +1219,143 @@ software-based (static analysis, library and buffer hardening) and
 hardware-based, e.g. PAuth-based pointer integrity schemes, MTE etc
 [170]{.issue}
 :::
+
+### Bounds checking
+
+Making sure that memory accesses happen within the bounds of each object's
+allocation is a very important part of memory safety. This is usually described
+with the term "spatial memory safety"\index{spatial memory safety}.
+Out-of-bounds accesses result in restricted read/write primitives\index{read
+primitive}\index{write primitive}[^restricted]. An attacker can often easily
+convert these into arbitrary read/write primitives. For example, this can be
+achieved by overwriting pointer fields in allocations following the object that
+was the target of the problematic memory access.
+
+[^restricted]: These primitives are restricted since they can only access a
+limited number of bytes past the end of the allocation.
+
+The C and C++ memory languages do not, as a general rule, perform bounds
+checking[^stdarray]. This is one of the sources of memory errors in C/C++
+programs. However, compilers have a history of introducing bounds checks, even
+though the language does not require them, in an effort to improve security of
+existing C/C++ codebases.
+
+[^stdarray]: Some C++ containers have accessors that do perform bounds
+checking, for example `std::array::at()` and `std::vector::at()`.
+
+One of the simplest compiler options is `-Warray-bounds`, which warns when an
+array access is always out of bounds. This is therefore restricted to arrays
+with statically known size. This option is supported by both GCC and Clang.
+
+Another option supported by both compilers is `-fsanitize=bounds`, included in
+[UBSan](#sanitizers), which checks the bounds for accesses to statically sized
+arrays at runtime. This handles more cases than `-Warray-bounds`, as it can
+also check accesses to dynamic indices. However, it's still limited, as it
+cannot perform bounds checks on dynamically sized arrays, and it is still
+restricted to array bounds checking. A more comprehensive solution would
+also cover pointers in general, especially if pointer arithmetic is
+performed.
+
+You may notice that there is a bit of overlap between the bounds checks
+introduced by `-fsanitize=bounds` and the Address Sanitizer. Although the scope
+of `-fsanitize=bounds` is restricted to statically sized arrays, it's
+interesting to note that it can still catch intra-object
+overflows\index{intra-object overflow} on array member accesses that the
+Address Sanitizer would not, because the access is still technically within the
+allocation. For example, given the following code:
+```
+struct foo {
+  int a[6];
+  int b;
+};
+
+int get(struct foo *x, int i) {
+  return x->a[i];
+}
+```
+a call to `get(f, 6)` will give an error with `-fsanitize=bounds`,
+but not with `-fsanitize=address`.
+
+Clang and GCC also support two builtin functions that return information on
+the size of a variable. `__builtin_object_size` can be used for objects of
+statically known size and always evaluates at compile time, whereas
+`__builtin_dynamic_object_size` can also propagate dynamic information from
+allocation functions that have been marked with the [`alloc_size` function
+attribute](https://gcc.gnu.org/onlinedocs/gcc-4.7.2/gcc/Function-Attributes.html).
+These two builtins can be then used to introduce bounds checks in user or
+library code. For example, the [`_FORTIFY_SOURCE`
+macro](https://man7.org/linux/man-pages/man7/feature_test_macros.7.html)
+instructs `glibc` to introduce bounds checks in various string and memory
+manipulation functions, such as `memcpy`. The number of checks increases as the
+value of the macro increases (the used values are currently 1-3).  For example,
+the lower two levels won't use the `__builtin_dynamic_object_size` builtin,
+as it has a runtime overhead, additional to that of the checks themselves.
+
+In order to support bounds checking for dynamically sized arrays, a recent
+proposal for [GCC](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=108896) and
+[Clang](https://reviews.llvm.org/D148381) proposes the addition of a struct
+member attribute, `element_count`. This attribute will apply to [flexible array
+members](https://en.wikipedia.org/wiki/Flexible_array_member) in structs,
+indicating another member of the struct that expresses the array's length.
+
+The [`-fbounds-safety`](https://discourse.llvm.org/t/rfc-enforcing-bounds-safety-in-c-fbounds-safety/70854)
+proposal goes a bit further, introducing a similar annotation that can be
+applied to pointers more generally. The proposal also aims to reduce the
+annotation burden placed on programmers by only requiring the annotations at
+[ABI](https://en.wikipedia.org/wiki/Application_binary_interface)\index{Application
+binary interface (ABI)} boundaries[^abi-boundary]. Local variables which do
+not cross ABI boundaries are implicitly converted to use wide pointers. These
+wide pointers store bounds information alongside the original pointer.
+
+[^abi-boundary]: This refers to the interface between different binary modules,
+typically a user program and a system library. The ABI describes low-level
+details of that interface, for example the assignment of arguments and return
+values into registers or memory. In many systems, the ABI is expected to change
+rarely, so programs and libraries can be updated independently and still work
+together. This makes ABI changes undesirable, which is why this proposal aims
+to minimise them.
+
+There are also hardening efforts focusing on C++ codebases. For example, the
+["safe libc++"
+mode](https://libcxx.llvm.org/UsingLibcxx.html#enabling-the-safe-libc-mode)
+enables a number of assertions that aim to catch undefined behaviour in the
+library. The [C++ Buffer Hardening
+proposal](https://discourse.llvm.org/t/rfc-c-buffer-hardening/65734) aims to
+extend this library hardening. The proposal will also introduce a programming
+model in which all pointer arithmetic is considered unsafe. Pointer arithmetic
+will have to be replaced with alternatives from the C++ library, for example
+`std::array`. The implementation of these alternatives in the hardened library
+will include bounds checks.
+
+Successfully using bounds checking compiler features for a large codebase
+requires substantial effort. An example of this is refactoring the Linux kernel
+to use bounds checks for flexible arrays, as described in [Kees Cook's
+blog]([@Cook2023]).
+
+There are also hardware-based mitigations for violations of spatial memory
+safety. For example,
+[CHERI](https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/) introduces
+_capabilities_\index{capability} to conventional Instruction Set Architectures.
+Capabilities combine a virtual address with metadata that describes its
+corresponding bounds and permissions. Capabilities cannot be forged, and can
+thus provide very strong guarantees. Arm has developed a prototype architecture
+that adapts CHERI, as well as a prototype SoC and development board, as part of
+the [Arm Morello Program](https://www.arm.com/architecture/cpu/morello).
+
+Of course, another approach to mitigating spatial memory safety vulnerabilities
+is using a language that has been designed with spatial memory safety in mind.
+Such languages make sure that all memory accesses are checked, either at
+compile-time or runtime. For example, the [Rust programming
+language](https://www.rust-lang.org/) introduces bounds checks whenever the
+compiler cannot prove that an access is within bounds[^rust]. There are many
+other memory safe languages, with different characteristics. One example is
+JavaScript, a dynamically typed, usually
+[JIT-compiled](#jit-compiler-vulnerabilities) language. We'll discuss some of
+the issues that arise when implementing support for such a language in the next
+section.
+
+[^rust]: Rust also provides features that provide temporal memory safety
+and thread safety.
 
 ## JIT compiler vulnerabilities
 
