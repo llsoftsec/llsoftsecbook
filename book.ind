@@ -6,14 +6,15 @@
   \item Application binary interface (ABI), \hyperpage{28}
   \item arbitrary code execution, \hyperpage{10}
   \item architectural effects, \hyperpage{43}
-  \item ASLR, \hyperpage{18}, \hyperpage{41}
+  \item ASLR, \hyperpage{18}, \hyperpage{40}
 
   \indexspace
 
   \item backward-edge CFI, \hyperpage{19}
   \item bounds check elimination, \hyperpage{30}
   \item branch predictor, \hyperpage{40}
-  \item Branch Target   Buffer, \hyperpage{40}
+  \item Branch target predictor, \hyperpage{41}
+  \item branch target predictor, \hyperpage{40}
   \item BTI, \hyperpage{22}
 
   \indexspace
@@ -36,6 +37,8 @@
   \item CFI, \hyperpage{19}
   \item Clang, \hyperpage{25}
   \item Collide+Probe, \hyperpage{38}
+  \item conditional branch   direction predictor, \hyperpage{40}
+  \item conditional branch direction   predictor, \hyperpage{40}
   \item control data, \hyperpage{23}
   \item control dependencies, \hyperpage{42}
   \item counterfeit object-oriented programming (COOP), \hyperpage{17}
@@ -126,7 +129,6 @@
 
   \indexspace
 
-  \item Pattern History Table (PHT), \hyperpage{40}
   \item pipeline, \hyperpage{40}
   \item Pointer Authentication, \hyperpage{21}
   \item pointer compression, \hyperpage{31}
@@ -146,7 +148,7 @@
   \item redzone, \hyperpage{26}
   \item Reload+Refresh, \hyperpage{38}
   \item reset sequence, \hyperpage{38}, \hyperpage{41}
-  \item Return Stack Buffer, \hyperpage{40}
+  \item return address predictor, \hyperpage{40, 41}
   \item return-oriented programming (ROP), \hyperpage{13}
   \item ROP chain, \hyperpage{13}
 
@@ -173,7 +175,7 @@
   \item timing attacks, \hyperpage{33}
   \item Top-Byte Ignore (TBI), \hyperpage{26}
   \item Top-Byte-Ignore (TBI), \hyperpage{21}
-  \item transient execution attacks, \hyperpage{44}
+  \item transient execution attacks, \hyperpage{43}
   \item transient instructions, \hyperpage{43}
   \item trigger sequence, \hyperpage{38}, \hyperpage{41}
   \item true data dependency, \hyperpage{42}

@@ -42,7 +42,7 @@
 \contentsline {section}{\numberline {3.4}Resource contention channels}{41}{section.3.4}%
 \contentsline {section}{\numberline {3.5}Channels making use of aliasing in other predictors}{41}{section.3.5}%
 \contentsline {section}{\numberline {3.6}Transient execution attacks}{41}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Transient execution}{42}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.1}Transient execution}{41}{subsection.3.6.1}%
 \contentsline {subsubsection}{\numberline {3.6.1.1}Site isolation}{44}{subsubsection.3.6.1.1}%
 \contentsline {section}{\numberline {3.7}Physical access side-channel attacks}{44}{section.3.7}%
 \contentsline {chapter}{\numberline {4}Supply chain attacks}{45}{chapter.4}%

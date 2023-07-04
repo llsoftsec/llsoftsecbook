@@ -120,11 +120,14 @@
 \indexentry{instruction pipeline|hyperpage}{40}
 \indexentry{predict|hyperpage}{40}
 \indexentry{branch predictor|hyperpage}{40}
+\indexentry{conditional branch   direction predictor|hyperpage}{40}
 \indexentry{taken branch|hyperpage}{40}
-\indexentry{Pattern History Table (PHT)|hyperpage}{40}
-\indexentry{Branch Target   Buffer|hyperpage}{40}
-\indexentry{Return Stack Buffer|hyperpage}{40}
-\indexentry{ASLR|hyperpage}{41}
+\indexentry{branch target predictor|hyperpage}{40}
+\indexentry{return address predictor|hyperpage}{40}
+\indexentry{conditional branch direction   predictor|hyperpage}{40}
+\indexentry{ASLR|hyperpage}{40}
+\indexentry{Branch target predictor|hyperpage}{41}
+\indexentry{return address predictor|hyperpage}{41}
 \indexentry{reset sequence|hyperpage}{41}
 \indexentry{trigger sequence|hyperpage}{41}
 \indexentry{measurement sequence|hyperpage}{41}
@@ -138,6 +141,6 @@
 \indexentry{transient instructions|hyperpage}{43}
 \indexentry{architectural effects|hyperpage}{43}
 \indexentry{micro-architectural effects|hyperpage}{43}
-\indexentry{transient execution attacks|hyperpage}{44}
+\indexentry{transient execution attacks|hyperpage}{43}
 \indexentry{dead store optimization|hyperpage}{49}
 \indexentry{memset|hyperpage}{49}

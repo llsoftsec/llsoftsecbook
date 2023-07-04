@@ -170,7 +170,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2023 Lucian Popescu
   \href{mailto:lucian.popescu187@gmail.com}{\nolinkurl{lucian.popescu187@gmail.com}}\\
 
-Version 0-158-g2adf226
+Version 0-159-ga642eaf
 \clearpage
 
 {
@@ -2451,29 +2451,26 @@ the next instruction leads to a big performance loss.\footnote{Over
 predict\index{predict} which instruction needs to be executed after a
 branch, before the branch instruction has completed. Correctly and
 quickly predicting the instruction after a branch instruction is so
-important for performance that most CPUs have multiple pieces of
+important for performance that most CPUs have multiple
 \href{https://en.wikipedia.org/wiki/Branch_predictor}{branch
-predictor}\index{branch
-predictor} logic, such as:
+predictors}\index{branch
+predictor}, such as:
 
 \begin{itemize}
 \tightlist
 \item
-  A component that predicts the outcome of a conditional branch: taken
-  or not taken\index{taken branch}. The prediction is typically done
-  based on the outcome of this and other branches in the recent past. In
-  academic literature, this type of component is often called a Pattern
-  History Table (PHT) \index{Pattern History Table (PHT)}.
+  A predictor of the outcome of a conditional
+  branch\index{conditional branch
+  direction predictor}: taken or not taken\index{taken branch}. The
+  prediction is typically a history-based branch prediction, i.e., based
+  on the outcome of this and other branches in the recent past.
 \item
-  A component that predicts the target of a taken branch, i.e.~the
-  address of the next instruction after a taken branch. In academic
-  literature, such a component is often called a Branch Target Buffer
-  (BTB) \index{Branch Target
-  Buffer}.
+  A predictor of the target of a taken
+  branch\index{branch target predictor}, i.e.~the address of the next
+  instruction after a taken branch.
 \item
-  A component that is specialized to predict the next instruction after
-  a function return instruction. Academic literature often calls this a
-  Return Stack Buffer (RSB) \index{Return Stack Buffer}.
+  A predictor that is specialized to predict the next instruction after
+  a function return instruction.\index{return address predictor}
 \end{itemize}
 
 \hypertarget{side-channels-through-branch-predictors}{%
@@ -2485,7 +2482,9 @@ examples, categorized per branch predictor component they target, are:
 
 \begin{itemize}
 \item
-  PHT: BranchScope (Evtyushkin et al.
+  Conditional branch direction
+  predictor\index{conditional branch direction
+  predictor}: BranchScope (Evtyushkin et al.
   \protect\hyperlink{ref-Evtyushkin2018}{2018}), BlueThunder (Huo et al.
   \protect\hyperlink{ref-Huo2019}{2019}). These attacks infer whether a
   branch is taken or not taken in a victim process. They do so by
@@ -2505,7 +2504,8 @@ examples, categorized per branch predictor component they target, are:
   specific cryptographic kernels. It can also be used to break
   ASLR\index{ASLR}.
 \item
-  BTB: SBPA (Aciiçmez, Kaya Koç, and Seifert
+  Branch Target Predictor\index{Branch target predictor}: SBPA
+  (Aciiçmez, Kaya Koç, and Seifert
   \protect\hyperlink{ref-Aciicmez2007}{2007}), BranchShadow (Lee et al.
   \protect\hyperlink{ref-Lee2017}{2017}). These earlier attacks are
   based on making a branch in the spy process alias in the BTB with a
@@ -2514,13 +2514,13 @@ examples, categorized per branch predictor component they target, are:
   counters to measure whether the branch in the spy process caused a
   specific state change in the BTB.
 \item
-  RSB: Hyper-Channel (Bulygin
-  \protect\hyperlink{ref-Bulygin2008}{2008}). In this case, a spy
-  process invokes \(N\) calls to fill up the return stack predictor.
-  Then it lets the victim process execute. Then, the spy process can
-  measure how many of its return stack entries have been removed from
-  the RSB, by measuring the number of \(N\) returns that get
-  mis-predicted. If the number of calls in the victim process is
+  Return address predictor\index{return address predictor}:
+  Hyper-Channel (Bulygin \protect\hyperlink{ref-Bulygin2008}{2008}). In
+  this case, a spy process invokes \(N\) calls to fill up the return
+  stack predictor. Then it lets the victim process execute. Then, the
+  spy process can measure how many of its return stack entries have been
+  removed from the RSB, by measuring the number of \(N\) returns that
+  get mis-predicted. If the number of calls in the victim process is
   dependent on secret information, this could leak it.
 \end{itemize}
 

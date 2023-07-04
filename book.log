@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2023.7.3)  3 JUL 2023 10:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2023.7.4)  4 JUL 2023 09:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1397,9 +1397,8 @@ Overfull \hbox (5.11017pt too wide) in paragraph at lines 2711--2711
 \T1/lmr/m/n/10 (-20) architectural 
  []
 
-[43]
 File: bc-aux-301.mps Graphic file (type mps)
- [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [43]
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [44]
@@ -1487,14 +1486,14 @@ File: bc-aux-301.mps Graphic file (type mps)
 (build/book.ind [58
 
 ]
-Underfull \hbox (badness 1092) in paragraph at lines 41--42
+Underfull \hbox (badness 1092) in paragraph at lines 44--45
 []\T1/lmr/m/n/10 (+20) counterfeit object-oriented pro-gram-
  []
 
 [59
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 161--162
+Underfull \hbox (badness 10000) in paragraph at lines 163--164
 []\T1/lmr/m/n/10 (+20) sigreturn-oriented pro-gram-ming
  []
 
@@ -1586,7 +1585,7 @@ Package rerunfilecheck Info: File `book.out' has not changed.
 Here is how much of TeX's memory you used:
  30143 strings out of 480962
  548356 string characters out of 5908148
- 951497 words of memory out of 5000000
+ 955629 words of memory out of 5000000
  46120 multiletter control sequences out of 15000+600000
  486728 words of font info for 195 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1615,10 +1614,10 @@ xlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></texlive/2020/texmf-dis
 t/fonts/type1/public/lm/lmtk10.pfb></texlive/2020/texmf-dist/fonts/type1/public
 /lm/lmtt10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></texl
 ive/2020/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on build/book.pdf (69 pages, 855243 bytes).
+Output written on build/book.pdf (69 pages, 855279 bytes).
 PDF statistics:
- 1658 PDF objects out of 1728 (max. 8388607)
- 1505 compressed objects within 16 object streams
+ 1661 PDF objects out of 1728 (max. 8388607)
+ 1508 compressed objects within 16 object streams
  361 named destinations out of 1000 (max. 500000)
  45612 words of extra memory for PDF output out of 51595 (max. 10000000)
 
