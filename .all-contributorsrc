@@ -196,6 +196,16 @@
         "bug",
         "review"
       ]
+    },
+    {
+      "login": "SuperSonicHub1",
+      "name": "Kyle Anthony Williams",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25624882?v=4",
+      "profile": "https://kawcco.com",
+      "contributions": [
+        "bug",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
