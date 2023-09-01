@@ -4,7 +4,7 @@
 [![Build book with docker container CI](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml/badge.svg)](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml)
 [![Discord chat](https://img.shields.io/discord/1073537588234829845?logo=discord)](https://discord.gg/Bm55Z9Ppgn)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This book aims to provide a structured, broad overview of all attacks and
@@ -128,6 +128,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/acoplan-arm"><img src="https://avatars.githubusercontent.com/u/86676934?v=4?s=100" width="100px;" alt="acoplan-arm"/><br /><sub><b>acoplan-arm</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=acoplan-arm" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/lucic71"><img src="https://avatars.githubusercontent.com/u/44677774?v=4?s=100" width="100px;" alt="Lucian Popescu"/><br /><sub><b>Lucian Popescu</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/issues?q=author%3Alucic71" title="Bug reports">🐛</a> <a href="#ideas-lucic71" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=lucic71" title="Code">💻</a> <a href="#content-lucic71" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/MattPD"><img src="https://avatars.githubusercontent.com/u/130135?v=4?s=100" width="100px;" alt="Matt"/><br /><sub><b>Matt</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/issues?q=author%3AMattPD" title="Bug reports">🐛</a> <a href="https://github.com/llsoftsec/llsoftsecbook/pulls?q=is%3Apr+reviewed-by%3AMattPD" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://kawcco.com"><img src="https://avatars.githubusercontent.com/u/25624882?v=4?s=100" width="100px;" alt="Kyle Anthony Williams"/><br /><sub><b>Kyle Anthony Williams</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/issues?q=author%3ASuperSonicHub1" title="Bug reports">🐛</a> <a href="#ideas-SuperSonicHub1" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>
