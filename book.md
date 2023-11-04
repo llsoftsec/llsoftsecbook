@@ -1582,6 +1582,7 @@ b) The instructions used to implement the algorithm are from the subset of
    By ensuring that the extension is enabled and only instructions in the subset
    are used, data-independent execution time is guaranteed.
 
+
 At the moment, we do not know of a compiler implementation that actively helps
 to guarantee both (a) and (b).
 
@@ -1593,6 +1594,9 @@ memory accesses, albeit by potentially needing to change the interface of the
 transformed function.[Also discuss the techniques implemented in the
 [Constatine compiler](https://github.com/pietroborrello/constantine)
 [172]{.issue}]{.todo}
+[Also discuss the [Jasmin language and compiler](https://members.loria.fr/VLaporte/files/CCS2021_StructuredLeakage.pdf)
+[213]{.issue}]{.todo}
+
 
 A great reference giving practical advice on how to achieve (a), (b) and more
 security hardening properties specific for cryptographic kernels is found in
