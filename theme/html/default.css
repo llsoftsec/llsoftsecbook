@@ -211,3 +211,18 @@ body {
 .sidenote_ref {
   cursor: pointer;
 }
+
+figure {
+ display: block;
+}
+
+figure img {
+  margin: 0px auto;
+  display: block;
+}
+
+figure img + figcaption {
+  margin: 0px auto;
+  display: block;
+  text-align: center;
+}
