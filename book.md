@@ -1529,22 +1529,18 @@ take a look at [@saelo2021a] and [@saelo2021b].
 
 # Covert channels and side-channels
 
-A large class of attacks make use of so-called side-channels, which are attacks
-making use of so-called covert channels. Side-channels and covert channels are
-communication channels between two entities in a system, where the entities
-should not be able to communicate that way.
+Side-channels and covert channels are communication channels between two
+entities in a system, where the entities should not be able to communicate that
+way.
 
-A **covert channel**\index{covert channel} is such a channel where both
-entities intend to communicate through the channel.  A
-**side-channel**\index{side-channel} is a such a channel where one end is the
-victim of an attack using the channel.
+A **covert channel**\index{covert channel} is a channel where both entities
+intend to communicate. A **side-channel**\index{side-channel} is a channel where
+one entity is the victim of an attack using the channel.
 
-In other words, the difference between a covert channel and a side-channel is
-whether both entities intend to communicate. If one entity does not intend to
-communicate, but the other entity nonetheless extracts some data from the first,
-it is called a side-channel attack. The entity not intending to communicate is
-called the **victim**\index{victim}. The other entity is sometimes called the
-**spy**\index{spy}.
+The difference between a covert channel and a side-channel is whether both
+entities intend to communicate. In a side-channel attack, the entity not
+intending to communicate is called the **victim**\index{victim}. The other
+entity is sometimes called the **spy**\index{spy}.
 
 As we focus on attacks in this book, we'll mostly use the term side-channels
 in the rest of this chapter.
