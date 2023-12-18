@@ -356,7 +356,7 @@ text-align: center;
       Copyright 2023 Bill Wendling <a href="mailto:morbo@google.com" class="email">morbo@google.com</a><br />
       Copyright 2023 Lucian Popescu <a href="mailto:lucian.popescu187@gmail.com" class="email">lucian.popescu187@gmail.com</a><br />
     </p>
-  <p>Version: 0-162-g8c6e275</p>
+  <p>Version: 0-164-g1c1227f</p>
 </header>
 
 <main id="content">
@@ -758,9 +758,9 @@ int get(struct foo *x, int i) {
 </ol>
 <p>In this section, we have discussed JIT compiler security and described JavaScript compiler bugs that lead to vulnerabilities. Although we haven’t focused on the details of JavaScript exploitation, an interested reader could take a look at <span class="citation" data-cites="saelo2021a">(saelo <a href="#ref-saelo2021a">2021</a><a href="#ref-saelo2021a">b</a>)</span> and <span class="citation" data-cites="saelo2021b">(saelo <a href="#ref-saelo2021b">2021</a><a href="#ref-saelo2021b">a</a>)</span>.</p>
 <h1 id="covert-channels-and-side-channels"><span class="header-section-number">3</span> Covert channels and side-channels <a href="#covert-channels-and-side-channels" class="selflink">§</a></h1>
-<p>A large class of attacks make use of so-called side-channels, which are attacks making use of so-called covert channels. Side-channels and covert channels are communication channels between two entities in a system, where the entities should not be able to communicate that way.</p>
-<p>A <strong>covert channel</strong> is such a channel where both entities intend to communicate through the channel. A <strong>side-channel</strong> is a such a channel where one end is the victim of an attack using the channel.</p>
-<p>In other words, the difference between a covert channel and a side-channel is whether both entities intend to communicate. If one entity does not intend to communicate, but the other entity nonetheless extracts some data from the first, it is called a side-channel attack. The entity not intending to communicate is called the <strong>victim</strong>. The other entity is sometimes called the <strong>spy</strong>.</p>
+<p>Side-channels and covert channels are communication channels between two entities in a system, where the entities should not be able to communicate that way.</p>
+<p>A <strong>covert channel</strong> is a channel where both entities intend to communicate. A <strong>side-channel</strong> is a channel where one entity is the victim of an attack using the channel.</p>
+<p>The difference between a covert channel and a side-channel is whether both entities intend to communicate. In a side-channel attack, the entity not intending to communicate is called the <strong>victim</strong>. The other entity is sometimes called the <strong>spy</strong>.</p>
 <p>As we focus on attacks in this book, we’ll mostly use the term side-channels in the rest of this chapter.</p>
 <p>The next few sections describe a variety of side-channels. Each section focusses on leakage through a specific so-called micro-architectural aspect, such as execution time, cache state or branch predictor state.</p>
 <h2 id="timing-side-channels"><span class="header-section-number">3.1</span> Timing side-channels <a href="#timing-side-channels" class="selflink">§</a></h2>
