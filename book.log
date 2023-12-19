@@ -1381,28 +1381,25 @@ File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [41]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 2637.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 2635.
  [42]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.11017pt too wide) in paragraph at lines 2725--2725
+Overfull \hbox (5.11017pt too wide) in paragraph at lines 2722--2722
 \T1/lmr/m/n/10 (-20) architectural 
  []
 
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.11017pt too wide) in paragraph at lines 2725--2725
+Overfull \hbox (5.11017pt too wide) in paragraph at lines 2722--2722
 \T1/lmr/m/n/10 (-20) architectural 
  []
 
 [43]
-
-LaTeX Warning: Marginpar on page 44 moved.
-
 File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
+ [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [44]
@@ -1416,7 +1413,7 @@ File: bc-aux-301.mps Graphic file (type mps)
 Chapter 5.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Underfull \hbox (badness 1694) in paragraph at lines 2853--2856
+Underfull \hbox (badness 1694) in paragraph at lines 2850--2853
 []\T1/lmr/m/n/10 (+20) In the ran-dom num-ber gen-er-a-tor of the sys-tem, more
  specif-i-cally in
  []
@@ -1424,7 +1421,7 @@ Underfull \hbox (badness 1694) in paragraph at lines 2853--2856
 [47
 
 ] [48]
-Overfull \hbox (2.91692pt too wide) in paragraph at lines 2978--2980
+Overfull \hbox (2.91692pt too wide) in paragraph at lines 2975--2977
 []\T1/lmr/m/n/10 (-20) The so-lu-tion Linux came with was to add a new func-tio
 n called \T1/lmtt/m/n/10 memzero_explicit
  []
@@ -1440,7 +1437,7 @@ t>
 File: img/side_channel_leakage_figure_1_branch.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_1_branch.pdf>
 Package pdftex.def Info: img/side_channel_leakage_figure_1_branch.pdf  used on 
-input line 3185.
+input line 3182.
 (pdftex.def)             Requested size: 276.0063pt x 132.02159pt.
 
 [52]
@@ -1449,14 +1446,14 @@ input line 3185.
 File: img/side_channel_leakage_figure_2_duration.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_2_duration.pdf>
 Package pdftex.def Info: img/side_channel_leakage_figure_2_duration.pdf  used o
-n input line 3200.
+n input line 3197.
 (pdftex.def)             Requested size: 276.00768pt x 179.63445pt.
 <img/side_channel_leakage_figure_3_toggle.pdf, id=1071, 628.3475pt x 291.0875pt
 >
 File: img/side_channel_leakage_figure_3_toggle.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_3_toggle.pdf>
 Package pdftex.def Info: img/side_channel_leakage_figure_3_toggle.pdf  used on 
-input line 3232.
+input line 3229.
 (pdftex.def)             Requested size: 275.99435pt x 127.8568pt.
  [53 <./img/side_channel_leakage_figure_1_branch.pdf> <./img/side_channel_leaka
 ge_figure_2_duration.pdf
@@ -1470,13 +1467,13 @@ File: bc-aux-301.mps Graphic file (type mps)
 <img/physical_attacks.pdf, id=1111, 468.75125pt x 160.6pt>
 File: img/physical_attacks.pdf Graphic file (type pdf)
 <use img/physical_attacks.pdf>
-Package pdftex.def Info: img/physical_attacks.pdf  used on input line 3297.
+Package pdftex.def Info: img/physical_attacks.pdf  used on input line 3294.
 (pdftex.def)             Requested size: 275.99577pt x 94.55957pt.
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF]
 (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [55 <./img/physical_
 attacks.pdf>]
-Overfull \hbox (80.5624pt too wide) in paragraph at lines 3369--3371
+Overfull \hbox (80.5624pt too wide) in paragraph at lines 3366--3368
 []\T1/lmr/m/n/10 (-20) Example: At-tack on Trust-Zone for Armv8-M: https://www.
 youtube.com/watch?v=4u6BAH8mEDw 
  []
@@ -1509,7 +1506,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 173--174
 \openout8 = `book.tdo'.
 
  [62]
-Overfull \hbox (0.11316pt too wide) in paragraph at lines 3481--3486
+Overfull \hbox (0.11316pt too wide) in paragraph at lines 3478--3483
 \T1/lmr/m/n/10 (+7) seattle -[] 2008 / cpu -[] side -[] channels -[] vs -[] vir
 tualization -[] rootkits -[] the -[] good -[] the -[] bad -[] or -[]
  []
@@ -1517,67 +1514,67 @@ tualization -[] rootkits -[] the -[] good -[] the -[] bad -[] or -[]
 [63
 
 ]
-Overfull \hbox (19.66516pt too wide) in paragraph at lines 3557--3560
+Overfull \hbox (19.66516pt too wide) in paragraph at lines 3554--3557
 \T1/lmr/m/n/10 (-20) github . com / freebsd / freebsd -[] src / commit / 6a762e
 b23ea5f31e65cfa12602937f39a14e9b0c$[][]. 
  []
 
 [64]
-Underfull \hbox (badness 10000) in paragraph at lines 3565--3569
+Underfull \hbox (badness 10000) in paragraph at lines 3562--3566
 [][]$\T1/lmr/m/n/10 (+20) https : / / googleprojectzero . blogspot . com / 2021
  / 01 / in -[] wild -[] series -[] chrome -[]
  []
 
 [65]
-Underfull \hbox (badness 1043) in paragraph at lines 3639--3643
+Underfull \hbox (badness 1043) in paragraph at lines 3636--3640
 [][]\T1/lmr/m/n/10 (+20) ``Lib: Make Memzero_explicit More Ro-bust Against Dead
  Store Elim-
  []
 
 
-Underfull \hbox (badness 4205) in paragraph at lines 3639--3643
+Underfull \hbox (badness 4205) in paragraph at lines 3636--3640
 \T1/lmr/m/n/10 (+20) i-na-tion.'' 2015. 2015. [][]$https : / / github . com / t
 orvalds / linux / commit /
  []
 
 
-Underfull \hbox (badness 1043) in paragraph at lines 3644--3648
+Underfull \hbox (badness 1043) in paragraph at lines 3641--3645
 [][]\T1/lmr/m/n/10 (+20) ``Lib: Make Memzero_explicit More Ro-bust Against Dead
  Store Elim-
  []
 
 
-Underfull \hbox (badness 2799) in paragraph at lines 3644--3648
+Underfull \hbox (badness 2799) in paragraph at lines 3641--3645
 \T1/lmr/m/n/10 (+20) i-na-tion.'' 2016. 2016. [][]$https : / / github . com / o
 penssl / openssl / commit /
  []
 
 
-Overfull \hbox (83.55438pt too wide) in paragraph at lines 3649--3653
+Overfull \hbox (83.55438pt too wide) in paragraph at lines 3646--3650
 \T1/lmr/m/n/10 (-20) 2015. 2015. [][]$https : / / github . com / torvalds / lin
 ux / commit / 0b053c9518292705736329a8fe20ef4686^^[c8e9$[][]. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3676--3681
+Underfull \hbox (badness 10000) in paragraph at lines 3673--3678
 \T1/lmr/m/n/10 (+20) Security -[] Research / blob / master / presentations / 20
 12 _ 10 _ Breakpoint /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3676--3681
+Underfull \hbox (badness 10000) in paragraph at lines 3673--3678
 \T1/lmr/m/n/10 (+20) BreakPoint2012 _ Miller _ Modeling _ the _ exploitation _ 
 and _ mitigation _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3698--3702
+Underfull \hbox (badness 10000) in paragraph at lines 3695--3699
 \T1/lmr/m/n/10 (+20) publications / conference -[] paper / 1998 / 10 / 08 / pro
 ceedings -[] of -[] the -[] 21st -[] nissc -[]
  []
 
 [66] [67]
-Underfull \hbox (badness 10000) in paragraph at lines 3817--3821
+Underfull \hbox (badness 10000) in paragraph at lines 3814--3818
 [][]$\T1/lmr/m/n/10 (+18) https : / / wingolog . org / archives / 2011 / 05 / 1
 8 / value -[] representation -[] in -[] javascript -[]
  []
@@ -1587,11 +1584,11 @@ Package rerunfilecheck Info: File `book.out' has not changed.
 (rerunfilecheck)             Checksum: 90482259319CBB3A9732C7FB020B2158;9580.
  ) 
 Here is how much of TeX's memory you used:
- 30157 strings out of 480962
- 548914 string characters out of 5908146
- 953705 words of memory out of 5000000
+ 30163 strings out of 480962
+ 548986 string characters out of 5908146
+ 952772 words of memory out of 5000000
  46126 multiletter control sequences out of 15000+600000
- 486822 words of font info for 196 fonts, out of 8000000 for 9000
+ 487068 words of font info for 199 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  102i,12n,117p,653b,1259s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{cache-side-channel-attacks} has been referenced b
@@ -1618,7 +1615,7 @@ xlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></texlive/2020/texmf-dis
 t/fonts/type1/public/lm/lmtk10.pfb></texlive/2020/texmf-dist/fonts/type1/public
 /lm/lmtt10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></texl
 ive/2020/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on build/book.pdf (69 pages, 856201 bytes).
+Output written on build/book.pdf (69 pages, 856088 bytes).
 PDF statistics:
  1679 PDF objects out of 1728 (max. 8388607)
  1526 compressed objects within 16 object streams
