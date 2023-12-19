@@ -170,7 +170,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2023 Lucian Popescu
   \href{mailto:lucian.popescu187@gmail.com}{\nolinkurl{lucian.popescu187@gmail.com}}\\
 
-Version 0-167-ga618fad
+Version 0-168-g7ef1a75
 \clearpage
 
 {
@@ -2040,14 +2040,14 @@ side-channel attacks}.
 \section{Cache side-channels}\label{cache-side-channels}}
 
 \href{https://en.wikipedia.org/wiki/Cache_(computing)}{Caches}\index{cache}
-are used in almost every computing system. They are small and much
-faster memories than the main memory. They aim to automatically keep
-frequently used data accessed by programs, so that average memory access
-time improves. Various techniques exist where a covert communication can
-happen between processes that share a cache, without the processes
-having rights to read or write to the same memory locations. To
-understand how these techniques work, one needs to understand typical
-organization and operation of a cache.
+are used in almost every computing system. They are small memories that
+are much faster than the main memory. They automatically keep the most
+frequently used data, so that the average memory access time improves.
+
+When processes share a cache, various techniques exist to establish a
+covert communication channel. These let the processes communicate
+through memory accesses even when they do not share any memory location.
+We first describe how caches work before exploring these techniques.
 
 \hypertarget{typical-cpu-cache-architecture}{%
 \subsection{Typical CPU cache
@@ -2070,11 +2070,11 @@ On every read and write instruction, the cache micro-architecture looks
 up if the data for the requested address happens to be present in the
 cache. If it is, the CPU can continue executing quickly; if not,
 dependent operations will have to wait until the data returns from the
-much slower main memory. A typical access time is 3 to 5 CPU cycles for
-the fastest cache on a CPU versus hundreds of cycles for a main memory
+slower main memory. A typical access time is 3 to 5 CPU cycles for the
+fastest cache on a CPU versus hundreds of cycles for a main memory
 access.\index{memory access time} When data is present in the cache for
-a read or write, it is said to be a cache hit\index{cache hit}.
-Otherwise, it's called a cache miss\index{cache miss}.
+a read or write, it is said to be a \textbf{cache hit}\index{cache
+hit}. Otherwise, it's called a \textbf{cache miss}\index{cache miss}.
 
 Most systems have multiple levels of cache\index{multi-level cache},
 each with a different trade-off between cache size\index{cache size} and
@@ -2084,9 +2084,9 @@ be:
 \begin{itemize}
 \tightlist
 \item
-  L1 (level 1) cache, 32kB in size, with an access time of 4 cycles.
+  L1 (level 1) cache, 32KB in size, with an access time of 4 cycles.
 \item
-  L2 cache, 256Kb in size, with an access time of 10 cycles.
+  L2 cache, 256KB in size, with an access time of 10 cycles.
 \item
   L3 cache, 16MB in size, with an access time of 40 cycles.
 \item
@@ -2114,14 +2114,14 @@ locality}\index{principle
 of locality}\index{locality of reference}.
 
 Data is stored and transferred between cache levels in blocks of aligned
-memory. Such a block is called a cache block\index{cache block} or cache
-line\index{cache line}. Typical sizes are 32, 64 or 128 bytes per cache
-line.
+memory. Such a block is called a \textbf{cache block}\index{cache block}
+or \textbf{cache line}\index{cache line}. Typical sizes are 32, 64 or
+128 bytes per cache line.
 
 When data that wasn't previously in the cache needs to be stored in the
-cache, most of the time, room has to be made for it by removing, or
-evicting\index{cache eviction}, some other address/data from it. How
-that choice gets made is decided by the
+cache, room has to be made for it by removing, or
+\textbf{evicting}\index{cache eviction}, some other address/data from
+it. How that choice gets made is decided by the
 \href{https://en.wikipedia.org/wiki/Cache_replacement_policies}{cache
 replacement policy}\index{cache
 replacement policy}. Popular replacement algorithms are Least Recently
@@ -2133,21 +2133,21 @@ random cache line; and pseudo-LRU approximates choosing the least
 recently used line.
 
 If a cache line can be stored in all locations available in the cache,
-the cache is fully-associative\index{fully-associative cache}. Most
-caches are however not fully-associative, as it's too costly to
+the cache is \textbf{fully-associative}\index{fully-associative cache}.
+Most caches are however not fully-associative, as it's too costly to
 implement. Instead, most caches are
-set-associative\index{set-associative cache}. In an N-way
+\textbf{set-associative}\index{set-associative cache}. In an N-way
 set-associative cache, a specific line can only be stored in one of N
 cache locations. For example, if a line can potentially be stored in one
 of 2 locations, the cache is said to be 2-way set-associative. If it can
 be stored in one of 4 locations, it's called 4-way set-associative, and
 so on. When an address can only be stored in one location in the cache,
-it is said to be direct-mapped\index{direct-mapped
-cache}, rather than 1-way set-associative. Typical organizations are
+it is said to be \textbf{direct-mapped}\index{direct-mapped cache},
+rather than 1-way set-associative. Typical organizations are
 direct-mapped, 2-way, 4-way, 8-way, 16-way or 32-way set-associative.
 
 The set of cache locations that a particular cache line can be stored at
-is called a cache set\index{cache set}.
+is called a \textbf{cache set}\index{cache set}.
 
 \hypertarget{indexing-in-a-set-associative-cache}{%
 \subsubsection{Indexing in a set-associative
@@ -2194,19 +2194,19 @@ fully-associative caches the number of cache sets is 1, so \(S\)=0.
 side-channels}\label{operation-of-cache-side-channels}}
 
 Cache side-channels typically work by the spy determining whether a
-memory access was a cache hit or a cache miss. From that information, in
-specific situations, it may be able to deduce bits of data that only the
-victim has access to.
+memory access was a cache hit or a cache miss. From that information,
+the spy may be able to deduce bits of data that only the victim should
+have access to.
 
-Let's illustrate this with describing a few well-known cache
+Let's illustrate this by describing a few well-known cache
 side-channels:
 
 \hypertarget{flushreload}{%
 \subsubsection{Flush+Reload}\label{flushreload}}
 
-In a so-called Flush+Reload\index{Flush+Reload} attack(Yarom and Falkner
-\protect\hyperlink{ref-Yarom2014}{2014}), the spy process shares memory
-with the victim process. The attack works in 3 steps:
+In a so-called \textbf{Flush+Reload}\index{Flush+Reload} attack(Yarom
+and Falkner \protect\hyperlink{ref-Yarom2014}{2014}), the spy process
+shares memory with the victim process. The attack works in 3 steps:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2237,8 +2237,9 @@ Flush+Reload attack can be used to leak GnuPG private keys.
 \hypertarget{primeprobe}{%
 \subsubsection{Prime+Probe}\label{primeprobe}}
 
-In a Prime+Probe attack\index{Prime+Probe}, there is no need for memory
-to be shared between victim and spy. The attack works in 3 steps:
+In a \textbf{Prime+Probe} attack\index{Prime+Probe}, there is no need
+for memory to be shared between victim and spy. The attack works in 3
+steps:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2253,19 +2254,19 @@ to be shared between victim and spy. The attack works in 3 steps:
   The Probe step: The spy accesses that same data as in the prime step.
   Measuring the time it takes to load the data, it can derive how many
   cache lines the victim evicted from each cache set in step 2, and from
-  that derive information about addresses that the victim accessed.
+  that derive information about addresses the victim accessed.
 \end{enumerate}
 
 (Osvik, Shamir, and Tromer \protect\hyperlink{ref-Osvik2005}{2005})
-which first documented this technique in 2005 demonstrates extracting
-AES keys in just a few milliseconds using Prime+Probe.
+first documented this technique in 2005 and demonstrates extracting AES
+keys in just a few milliseconds.
 
 \hypertarget{general-schema-for-cache-covert-channels}{%
 \subsubsection{General schema for cache covert
 channels}\label{general-schema-for-cache-covert-channels}}
 
-An attentive reader may have noticed that the concrete named attacks
-above follow a similar 3-step pattern. Indeed, (Weber et al.
+An attentive reader may have noticed that the attacks described above
+follow a similar 3-step pattern. (Weber et al.
 \protect\hyperlink{ref-Weber2021}{2021}) describes this general pattern
 and uses it to automatically discover more side-channels that follow
 this 3-step pattern. They describe the general pattern as being:
@@ -2274,14 +2275,14 @@ this 3-step pattern. They describe the general pattern as being:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  An instruction sequence that resets the inner CPU state (\emph{reset
+  An instruction sequence that resets the inner CPU state (\textbf{reset
   sequence}).\index{reset sequence}
 \item
-  An instruction sequence that triggers a state change (\emph{trigger
+  An instruction sequence that triggers a state change (\textbf{trigger
   sequence}).\index{trigger sequence}
 \item
-  An instruction sequence that leaks the inner state (\emph{measurement
-  sequence}).\index{measurement sequence}
+  An instruction sequence that leaks the inner state
+  (\textbf{measurement sequence}).\index{measurement sequence}
 \end{enumerate}
 
 Other cache-based side channel attacks following this general 3-step
@@ -2308,15 +2309,16 @@ succeed:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
   There is a mapping between a state change in the cache and sensitive
   information in the victim program.
 \item
-  The spy program needs to run on a CPU that shares the targeted cache
-  level with the CPU the victim program runs on.
+  The spy runs on a CPU that shares a cache level with the CPU the
+  victim runs on.
 \item
-  The spy program can infer a cache status change caused by the victim
-  program through its own cache status.
+  The spy can infer a cache status change caused by the victim through
+  its own cache status.
 \end{enumerate}
 
 Mitigations against cache side-channel attacks can be categorized
@@ -2407,13 +2409,13 @@ this
 \href{https://developer.mozilla.org/en-US/docs/Web/API/Performance/now}{Firefox
 documentation of the performance.now() method}\index{Spectre}.
 
-Note that this is not always a perfect mitigation - there are often
-surprising ways that an attacker can get a fine-grained enough timer or
-use statistical methods to be able to detect the difference between a
-cache hit or miss. One extreme example is NetSpectre\index{NetSpectre}
-(Schwarz et al. \protect\hyperlink{ref-Schwarz2019}{2019}) where the
-difference between cache hit and cache miss is measured over a network,
-by statistically analyzing delays on network packet responses.
+Note that this is not a perfect mitigation - there are often surprising
+ways that an attacker can get a fine-grained enough timer or use
+statistical methods to be able to detect the difference between a cache
+hit or miss. One extreme example is the NetSpectre\index{NetSpectre}
+attack (Schwarz et al. \protect\hyperlink{ref-Schwarz2019}{2019}) where
+the difference between cache hit and cache miss is measured over a
+network, by statistically analyzing delays on network packet responses.
 Furthermore, (Schwarz et al. \protect\hyperlink{ref-Schwarz2017}{2017})
 demonstrates how to construct high-resolution timers in various indirect
 ways in all browsers that have removed explicit fine-grained timers.

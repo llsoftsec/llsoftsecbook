@@ -92,7 +92,7 @@
 \indexentry{cache block|hyperpage}{35}
 \indexentry{cache line|hyperpage}{35}
 \indexentry{cache eviction|hyperpage}{35}
-\indexentry{cache replacement policy|hyperpage}{36}
+\indexentry{cache replacement policy|hyperpage}{35}
 \indexentry{LRU replacement policy|hyperpage}{36}
 \indexentry{random replacement policy|hyperpage}{36}
 \indexentry{pseudo-LRU replacement policy|hyperpage}{36}
