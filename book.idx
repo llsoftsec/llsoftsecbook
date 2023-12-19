@@ -122,12 +122,22 @@
 \indexentry{branch predictor|hyperpage}{40}
 \indexentry{conditional branch   direction predictor|hyperpage}{40}
 \indexentry{taken branch|hyperpage}{40}
+\indexentry{history-based prediction|hyperpage}{40}
 \indexentry{branch target predictor|hyperpage}{40}
 \indexentry{return address predictor|hyperpage}{40}
-\indexentry{conditional branch direction   predictor|hyperpage}{40}
-\indexentry{ASLR|hyperpage}{40}
+\indexentry{conditional branch direction predictor|hyperpage}{40}
+\indexentry{BranchScope|hyperpage}{40}
+\indexentry{BlueThunder|hyperpage}{40}
+\indexentry{ASLR|hyperpage}{41}
 \indexentry{Branch target predictor|hyperpage}{41}
+\indexentry{SBPA|hyperpage}{41}
+\indexentry{BranchShadow|hyperpage}{41}
+\indexentry{BTB|hyperpage}{41}
+\indexentry{last branch record|hyperpage}{41}
+\indexentry{instruction trace|hyperpage}{41}
+\indexentry{performance counter|hyperpage}{41}
 \indexentry{return address predictor|hyperpage}{41}
+\indexentry{Hyper-Channel|hyperpage}{41}
 \indexentry{reset sequence|hyperpage}{41}
 \indexentry{trigger sequence|hyperpage}{41}
 \indexentry{measurement sequence|hyperpage}{41}
@@ -141,6 +151,6 @@
 \indexentry{transient instructions|hyperpage}{43}
 \indexentry{architectural effects|hyperpage}{43}
 \indexentry{micro-architectural effects|hyperpage}{43}
-\indexentry{transient execution attacks|hyperpage}{43}
+\indexentry{transient execution attacks|hyperpage}{44}
 \indexentry{dead store optimization|hyperpage}{49}
 \indexentry{memset|hyperpage}{49}

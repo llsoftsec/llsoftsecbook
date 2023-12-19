@@ -6,15 +6,19 @@
   \item Application binary interface (ABI), \hyperpage{28}
   \item arbitrary code execution, \hyperpage{10}
   \item architectural effects, \hyperpage{43}
-  \item ASLR, \hyperpage{18}, \hyperpage{40}
+  \item ASLR, \hyperpage{18}, \hyperpage{41}
 
   \indexspace
 
   \item backward-edge CFI, \hyperpage{19}
+  \item BlueThunder, \hyperpage{40}
   \item bounds check elimination, \hyperpage{30}
   \item branch predictor, \hyperpage{40}
   \item Branch target predictor, \hyperpage{41}
   \item branch target predictor, \hyperpage{40}
+  \item BranchScope, \hyperpage{40}
+  \item BranchShadow, \hyperpage{41}
+  \item BTB, \hyperpage{41}
   \item BTI, \hyperpage{22}
 
   \indexspace
@@ -38,7 +42,7 @@
   \item Clang, \hyperpage{25}
   \item Collide+Probe, \hyperpage{38}
   \item conditional branch   direction predictor, \hyperpage{40}
-  \item conditional branch direction   predictor, \hyperpage{40}
+  \item conditional branch direction predictor, \hyperpage{40}
   \item control data, \hyperpage{23}
   \item control dependencies, \hyperpage{42}
   \item counterfeit object-oriented programming (COOP), \hyperpage{17}
@@ -77,12 +81,15 @@
 
   \indexspace
 
+  \item history-based prediction, \hyperpage{40}
   \item HWASAN, \hyperpage{26}
+  \item Hyper-Channel, \hyperpage{41}
 
   \indexspace
 
   \item info leak, \hyperpage{18}
   \item instruction pipeline, \hyperpage{40}
+  \item instruction trace, \hyperpage{41}
   \item interactive attack, \hyperpage{8}
   \item intra-object overflow, \hyperpage{28}
 
@@ -97,6 +104,7 @@
 
   \indexspace
 
+  \item last branch record, \hyperpage{41}
   \item LeakSanitizer, \hyperpage{25}
   \item locality of reference, \hyperpage{35}
   \item LRU replacement policy, \hyperpage{36}
@@ -129,6 +137,7 @@
 
   \indexspace
 
+  \item performance counter, \hyperpage{41}
   \item pipeline, \hyperpage{40}
   \item Pointer Authentication, \hyperpage{21}
   \item pointer compression, \hyperpage{31}
@@ -155,6 +164,7 @@
   \indexspace
 
   \item sanitizers, \hyperpage{25}
+  \item SBPA, \hyperpage{41}
   \item set-associative cache, \hyperpage{36}
   \item shadow memory, \hyperpage{25}
   \item shadow stack, \hyperpage{20}
@@ -175,7 +185,7 @@
   \item timing attacks, \hyperpage{33}
   \item Top-Byte Ignore (TBI), \hyperpage{26}
   \item Top-Byte-Ignore (TBI), \hyperpage{21}
-  \item transient execution attacks, \hyperpage{43}
+  \item transient execution attacks, \hyperpage{44}
   \item transient instructions, \hyperpage{43}
   \item trigger sequence, \hyperpage{38}, \hyperpage{41}
   \item true data dependency, \hyperpage{42}
