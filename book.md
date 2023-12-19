@@ -1984,31 +1984,31 @@ Should we also discuss more "covert" channels here such as power analysis, etc?
 
 ### Transient execution
 
-CPUs execute sequences of instructions. There often are dependencies between
+CPUs execute sequences of instructions. There are often dependencies between
 instructions in the sequence. That means that the outcome of one instruction
 influences the execution of a later instruction.
 
 Apart from the smallest micro-controllers, all CPUs execute multiple
 instructions in parallel. Sometimes even multiple hundreds of them at the same
-time, all in various stages of execution. In other words, instructions start
-executing while potentially hundreds of previous instructions haven't produced
-their results yet. How can a CPU achieve this when the output of a previous
-instruction, which might not have fully executed yet, and hence whose output may
-not yet be ready, may affect the execution of that later instruction?
+time, all in various stages of execution. Instructions start executing while
+potentially hundreds of previous instructions haven't produced their results
+yet. How can a CPU achieve this when the output of a previous instruction, which
+might not have fully executed yet, and hence whose output may not yet be ready,
+may affect the execution of that later instruction? In other words, there may be
+a **dependency** between an instruction that has not finished yet and a later
+instruction that the CPU also already started executing.
 
-In other words, there may be a dependency between an instruction that has not
-finished yet and a later instruction that the CPU also already started
-executing. There are various kinds of dependencies. One kind is *control
-dependencies*\index{control dependencies}, where whether the later instruction
+There are various kinds of dependencies. One kind is **control
+dependencies**\index{control dependencies}, where whether the later instruction
 should be executed at all is dependent on the outcome of the earlier
-instruction. Other kinds are *true data dependencies*\index{true data
-dependency}, *anti-dependencies*\index{anti dependency} and *output
-dependencies*\index{output dependency}. More details about these kinds of
+instruction. Other kinds are **true data dependencies**\index{true data
+dependency}, **anti-dependencies**\index{anti dependency} and **output
+dependencies**\index{output dependency}. More details about these kinds of
 dependencies can be found on
 [the wikipedia page about them](https://en.wikipedia.org/wiki/Data_dependency).
 
 CPUs overcome parallel execution limitations imposed by dependencies by making
-massive numbers of *predictions*\index{prediction}. For example, most CPUs
+massive numbers of **predictions**\index{prediction}. For example, most CPUs
 predict whether conditional branches are taken or not, which is making a
 prediction on control dependencies. Another example is a CPU making a prediction
 on whether a load accesses the same memory address as a preceding store. If they
@@ -2018,47 +2018,41 @@ overlapping memory locations, there is a dependency and the store should
 complete before the load can start executing.
 
 Starting to execute later instructions before all of their dependencies have been
-resolved, based on the predictions, is called *speculation*\index{speculation}.
+resolved, based on the predictions, is called **speculation**\index{speculation}.
 
-Let's illustrate that with the following example
-:     The following C code
+Let's illustrate that with an example. The following C code
 
-      ``` {.c}
-      long abs(long a) {
-        if (a>=0)
-          return a;
-        else
-          return -a;
-        }
-      ```
-
-      can be translated to the following AArch64 assembly code:
-
-      ``` {.asm}
-              cmp     x0, #0
-              b.ge    Lbb2
-      Lbb1:
-              neg     x0, x0
-      Lbb2:
-              ret
-      ```
-
-      The `b.ge` instruction is a conditional branch instruction. It computes
-      whether the next instruction should be the one immediately after, or the
-      one pointed to by label `Lbb2`. In case it's the instruction immediately
-      after, the branch is said to not be taken. Instead, if it's the
-      instruction pointed to be label `Lbb2`, the branch is said to be taken.
-      When the condition `.ge` (greater or equal) is true, the branch is taken.
-      That condition is defined or set by the previous instruction, the
-      `cmp x0, #0` instruction, which compares the value in register `x0` with
-      0. Therefore, there is a dependency between the `cmp` instruction and the
-      `b.ge` instruction. To overcome this dependency, and be able to execute
-      the `cmp`, `b.ge` and potentially more instructions in parallel, the CPU
-      predicts the outcome of the branch instruction. In other words, it
-      predicts whether the branch is taken or not. The CPU will pick up either
-      the `neg` or the `ret` instruction to start executing next. This is called
-      *speculation*, as the CPU *speculatively executes* either instruction
-      `neg`, or `ret`.
+``` {.c}
+long abs(long a) {
+  if (a>=0)
+    return a;
+  else
+    return -a;
+  }
+```
+can be translated to the following AArch64 assembly code:
+``` {.asm}
+        cmp     x0, #0
+        b.ge    Lbb2
+Lbb1:
+        neg     x0, x0
+Lbb2:
+        ret
+```
+The `b.ge` instruction is a conditional branch instruction. It computes whether
+the next instruction should be the one immediately after, or the one pointed to
+by label `Lbb2`. In case it's the instruction immediately after, the branch is
+said to not be taken. Instead, if it's the instruction pointed to be label
+`Lbb2`, the branch is said to be taken. When the condition `.ge` (greater or
+equal) is true, the branch is taken. That condition is defined or set by the
+previous instruction, the `cmp x0, #0` instruction, which compares the value in
+register `x0` with 0. Therefore, there is a dependency between the `cmp`
+instruction and the `b.ge` instruction. To overcome this dependency, and be able
+to execute the `cmp`, `b.ge` and potentially more instructions in parallel, the
+CPU predicts the outcome of the branch instruction. In other words, it predicts
+whether the branch is taken or not. The CPU will pick up either the `neg` or the
+`ret` instruction to start executing next. This is called *speculation*, as the
+CPU *speculatively executes* either instruction `neg`, or `ret`.
 
 ::: TODO
 Show a second example of cpu speculation that is not based on
@@ -2075,8 +2069,8 @@ After discovering the branch was mis-predicted, the CPU would have to restore
 the correct, non-negated, value in register `x0`.
 
 Any instructions that are executed under so-called
-*mis-speculation*\index{mis-speculation}, are called *transient
-instructions*\index{transient instructions}.
+**mis-speculation**\index{mis-speculation}, are called **transient
+instructions**\index{transient instructions}.
 
 The paragraph above says "*the system state that affects the correct execution
 of the program, needs to be undone*". There is a lot of system state that does
@@ -2090,24 +2084,24 @@ influence the correct execution of a program; it merely influences its execution
 speed. Therefore, the effect of transient execution on the content of the cache
 is typically not undone when detecting mis-speculation.
 
-Sometimes, it is said that the *architectural effects*\index{architectural
+Sometimes, it is said that the **architectural effects**\index{architectural
 effects} of transient instructions need to be undone, but the
-*micro-architectural effects*\index{micro-architectural effects} do not need to
-be undone.
+**micro-architectural effects**\index{micro-architectural effects} do not need
+to be undone.
 
 The above explanation describes architectural effects as changes in system state
 that need to be undone after detecting mis-speculation. In reality, most systems
 will implement techniques that keep all state changes in micro-architectural
 buffers until it is clear that all predictions made to execute that instruction
-were correct. At that point the micro-architectural state is *committed* to
+were correct. At that point the micro-architectural state is **committed** to
 become architectural state. In that way, mis-predictions naturally do not affect
 architectural state. [Could we find a good reference that explains
 micro-architectural versus architectural state in more detail? Is "Computer
 Architecture: A Quantitative Approach" the best reference available?]{.todo}
 
-*Transient execution attacks*\index{transient execution attacks} are a category
-of side-channel attacks that use the micro-architectural side-effects of
-transient execution as a side channel.
+**Transient execution attacks**\index{transient execution attacks} are a
+category of side-channel attacks that use the micro-architectural side-effects
+of transient execution as a side channel.
 
 ::: TODO
 Write sections on specific transient execution attacks such as Spectre and
