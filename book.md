@@ -1887,8 +1887,8 @@ at the same time on 2 CPUs sharing a cache level.
 ### Branch predictors
 
 Most CPUs implement one or more
-[instruction pipelines](https://en.wikipedia.org/wiki/Instruction_pipelining)
-\index{pipeline}\index{instruction pipeline}. In an instruction pipeline, the
+[instruction pipelines](https://en.wikipedia.org/wiki/Instruction_pipelining).
+\index{pipeline}\index{instruction pipeline} In an instruction pipeline, the
 next instruction is started before the previous instruction has finished
 executing. When the previous instruction is a branch instruction, the next
 instruction that needs to be executed is only known when that branch instruction
@@ -1904,8 +1904,8 @@ predictor}, such as:
 
 - A predictor of the outcome of a conditional branch\index{conditional branch
   direction predictor}: taken or not taken\index{taken branch}. The prediction
-  is typically a history-based branch prediction, i.e., based on the outcome of
-  this and other branches in the recent past.
+  is typically history-based\index{history-based prediction}, i.e. based on the
+  outcome of this and other branches in the recent past.
 - A predictor of the target of a taken branch\index{branch target predictor},
   i.e. the address of the next instruction after a taken branch.
 - A predictor that is specialized to predict the next instruction after a
@@ -1919,38 +1919,49 @@ push to increase the accuracy of branch predictors.
 
 ### Side-channels through branch predictors
 
-A number of attacks have been described over the past few years. A few examples,
-categorized per branch predictor component they target, are:
+A number of attacks have been described over the past few years. The following
+sections list a few examples, categorized per branch predictor component they
+target.
 
-- Conditional branch direction predictor\index{conditional branch direction
-  predictor}: BranchScope [@Evtyushkin2018], BlueThunder [@Huo2019]. These
-  attacks infer whether a branch is taken or not taken in a victim process. They
-  do so by carefully making sure that a branch in the spy process uses the same
-  branch predictor entry (i.e. aliases) with the targeted branch in the victim
-  process. By measuring whether the branch in the spy process gets predicted
-  correctly, one can derive whether the branch in the victim process was taken
-  or not.
+#### Conditional branch direction predictor side-channel attacks
+\index{conditional branch direction predictor}
 
-  This can be thought of as somewhat akin to the [Prime+Probe
-  cache-based side channel attacks](#primeprobe).
+Two examples are BranchScope [@Evtyushkin2018]\index{BranchScope} and
+BlueThunder [@Huo2019]\index{BlueThunder}. These attacks infer whether a branch
+is taken or not taken in a victim process. They do so by carefully making sure
+that a branch in the spy process uses the same branch predictor entry as the
+targeted branch in the victim process. By measuring whether the branch in the
+spy process gets predicted correctly, one can derive whether the branch in the
+victim process was taken or not.
 
-  When the outcome of a branch depends on a bit in a secret key, this
-  can enable an attacker to derive the value of the secret key. These papers
-  demonstrate deriving the secret key from implementations of specific
-  cryptographic kernels. It can also be used to break ASLR\index{ASLR}.
-- Branch Target Predictor\index{Branch target predictor}: SBPA [@Aciicmez2007],
-  BranchShadow [@Lee2017]. These earlier attacks are based on making a branch in
-  the spy process alias in the BTB with a targeted branch in the victim process.
-  They use methods such as timing difference, last branch records, instruction
-  traces or performance counters to measure whether the branch in the spy
-  process caused a specific state change in the BTB.
-- Return address predictor\index{return address predictor}: Hyper-Channel
-  [@Bulygin2008]. In this case, a spy process invokes $N$ calls to fill up the
-  return stack predictor. Then it lets the victim process execute. Then, the spy
-  process can measure how many of its return stack entries have been removed
-  from the RSB, by measuring the number of $N$ returns that get mis-predicted.
-  If the number of calls in the victim process is dependent on secret
-  information, this could leak it.
+This can be thought of as somewhat akin to the [Prime+Probe cache-based side
+channel attacks](#primeprobe).
+
+When the outcome of a branch depends on a bit in a secret key, this can enable
+an attacker to derive the value of the secret key. These papers demonstrate
+deriving the secret key from implementations of specific cryptographic kernels.
+It can also be used to break [ASLR](#aslr)\index{ASLR}.
+
+#### Branch target predictor side-channel attacks
+\index{Branch target predictor}
+
+Two examples are SBPA [@Aciicmez2007]\index{SBPA} and BranchShadow
+[@Lee2017]\index{BranchShadow}. These earlier attacks are based on making a
+branch in the spy process alias in the BTB\index{BTB} with a targeted branch in
+the victim process. They use methods such as timing difference, last branch
+records\index{last branch record}, instruction traces\index{instruction trace}
+or performance counters\index{performance counter} to measure whether the branch
+in the spy process caused a specific state change in the BTB.
+
+#### Return address predictor side-channel attacks
+\index{return address predictor}
+
+One example is Hyper-Channel [@Bulygin2008]\index{Hyper-Channel}. In this case,
+a spy process invokes $N$ calls to fill up the return stack predictor. Then it
+lets the victim process execute. Then, the spy process can measure how many of
+its return stack entries have been removed from the RSB, by measuring the number
+of $N$ returns that get mis-predicted. If the number of calls in the victim
+process is dependent on secret information, this could leak it.
 
 The papers referred to above contain detailed explanations of how they set up
 the attack. All of these attacks use a general 3-step approach, similar to
