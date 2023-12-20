@@ -1,18 +1,17 @@
 # SPDX-License-Identifier: CC-BY-4.0
 # SPDX-FileCopyrightText: © 2021 Arm Limited <kristof.beyls@arm.com>
 # syntax=docker/dockerfile:1
-FROM ubuntu:20.04
+#FROM ubuntu:23.10
+FROM debian:trixie
 # 1. install pandoc and texlive dependencies
 #    Also install git as we need that for computing version numbers.
 #    Also install librsvg2-bin to enable pandoc to convert SVG images to PDF.
 #    Also install python as the pandoc-fignos filter depends on it.
 RUN apt-get update && \
     DEBIAN_FRONTEND="noninteractive" apt-get install -y \
-            wget perl pandoc make pandoc-citeproc git librsvg2-bin python3-pip && \
+            wget perl pandoc make git librsvg2-bin python3-pip && \
     rm -rf /var/lib/apt/lists/*
-# 2. Install pandoc-fignos filter
-RUN pip3 install pandoc-fignos
-# 3. Install LaTeX directly from stable Texlive 2020 final repo
+# 2. Install LaTeX directly from stable Texlive 2020 final repo
 # (We could alternatively install a base Texlive using "apt-get install
 #  texlive-latex-extra", and then add extra packages using tlmgr.
 #  The drawbacks of that approach are:
@@ -44,14 +43,18 @@ RUN cd /root && \
         -profile texlive.profile \
         -repository https://ftp.tu-chemnitz.de/pub/tug/historic/systems/texlive/2020/tlnet-final && \
     ln -s /texlive/2020/bin/* /texlive/bin
-# 4. Add texlive and pip3 binaries to PATH so they can be used easily.
+# 3. Add texlive binaries to PATH so they can be used easily.
 ENV PATH=/texlive/bin:$PATH
-# 5. install latex too (the minimal scheme selected above does not install latex)
+# 4. install latex too (the minimal scheme selected above does not install latex)
 RUN tlmgr install latex latex-bin latexmk
-# 6. install extra latex packages needed for pandoc:
-RUN tlmgr install amsfonts amsmath lm unicode-math iftex listings fancyvrb booktabs graphics hyperref xcolor ulem geometry setspace babel upquote microtype parskip xurl bookmark footnotehyper mdwtools kvoptions etoolbox pdftexcmds infwarerr grffile cleveref caption
+# 5. install extra latex packages needed for pandoc:
+RUN tlmgr install amsfonts amsmath lm unicode-math iftex listings fancyvrb \
+      booktabs graphics hyperref xcolor ulem geometry setspace babel upquote \
+      microtype parskip xurl bookmark footnotehyper mdwtools kvoptions \
+      etoolbox pdftexcmds infwarerr grffile cleveref caption multirow
 # 6. install extra packages needed for the book specifically:
-RUN tlmgr install todonotes epstopdf-pkg bclogo pstricks pst-grad pst-coil pst-node mdframed zref needspace mptopdf
+RUN tlmgr install todonotes epstopdf-pkg bclogo pstricks pst-grad pst-coil \
+      pst-node mdframed zref needspace mptopdf
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
