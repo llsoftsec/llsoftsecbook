@@ -2121,8 +2121,8 @@ speculate that they do not generate an exception to enable more parallel
 execution.
 
 When an instruction faults, the execution typically continues at another
-location. Any instructions later in the instruction stream which are being
-executed before the fault is detected are also called **transient
+location. Any instructions later in the instruction stream which are
+speculatively executed before the fault is detected are also called **transient
 instructions**\index{transient instructions}.
 
 There is a kind of control dependency between every potentially-faulting
@@ -2130,7 +2130,7 @@ instruction and the next one, as the next instruction to be executed depends on
 whether the instruction generates an exception or not. We call out this
 dependency separately here as the transient execution attacks we'll describe
 next get classified based on whether they make use of transient instructions
-after a misprediction, or transient instructions after a faulting instructions.
+after a misprediction, or transient instructions after a faulting instruction.
 
 ### Transient Execution Attacks
 
