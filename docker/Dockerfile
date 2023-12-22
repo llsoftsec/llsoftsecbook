@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: CC-BY-4.0
 # SPDX-FileCopyrightText: © 2021 Arm Limited <kristof.beyls@arm.com>
 # syntax=docker/dockerfile:1
-#FROM ubuntu:23.10
 FROM debian:trixie
 # 1. install pandoc and texlive dependencies
 #    Also install git as we need that for computing version numbers.
