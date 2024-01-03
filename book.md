@@ -2083,7 +2083,9 @@ the correct, non-negated, value in register `x0`.
 
 Any instructions that are executed under so-called
 **mis-speculation**\index{mis-speculation}, are called **transient
-instructions**\index{transient instructions}.
+instructions**\index{transient instructions}.^[Transient instructions caused by
+incorrect branch-direction prediction have also been called **wrong-path
+instructions**\index{wrong-patch instructions} @Mutlu2004]
 
 The paragraph above says "*the system state that affects the correct execution
 of the program, needs to be undone*". There is a lot of system state that does
@@ -2149,9 +2151,9 @@ may not necessarily help much with gaining a better insight in the common
 characteristics of transient attacks. Therefore, we'll try to put them into a
 few categories and describe the characteristics of each category.
 
-::: TODO
-Decide whether it's useful to talk about alternative categorizations of
-transient execution attacks, and if so, do add content.
+::: TODO Decide whether it's useful to talk about alternative categorizations of
+transient execution attacks, and if so, do add content. Consider pointing to
+[https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md](https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md)
 :::
 
 The categorization below is based on one proposed in [@Bulck2020]. There are
