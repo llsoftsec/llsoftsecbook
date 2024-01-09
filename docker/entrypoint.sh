@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cd /src
-echo $PWD
 ls -al
+echo pandoc version:
+pandoc --version
 sh -c "make $*"
