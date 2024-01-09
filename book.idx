@@ -151,6 +151,11 @@
 \indexentry{transient instructions|hyperpage}{43}
 \indexentry{architectural effects|hyperpage}{43}
 \indexentry{micro-architectural effects|hyperpage}{43}
+\indexentry{wrong-patch instructions|hyperpage}{43}
+\indexentry{faulting instructions|hyperpage}{44}
+\indexentry{transient instructions|hyperpage}{44}
 \indexentry{transient execution attacks|hyperpage}{44}
-\indexentry{dead store optimization|hyperpage}{49}
-\indexentry{memset|hyperpage}{49}
+\indexentry{Spectre|hyperpage}{44}
+\indexentry{Meltdown|hyperpage}{44}
+\indexentry{dead store optimization|hyperpage}{50}
+\indexentry{memset|hyperpage}{50}

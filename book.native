@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-169-g0df6bfd" )
+          , ( "VERSION" , MetaString "0-170-ga969559" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -28610,9 +28610,7 @@ Pandoc
       , Space
       , Str "based"
       , Space
-      , Str "side"
-      , Space
-      , Str "channels"
+      , Str "side-channels"
       ]
   , Header
       3
@@ -30158,6 +30156,10 @@ Pandoc
       3
       ( "transient-execution" , [] , [] )
       [ Str "Transient" , Space , Str "execution" ]
+  , Header
+      4
+      ( "speculative-execution" , [] , [] )
+      [ Str "Speculative" , Space , Str "execution" ]
   , Para
       [ Str "CPUs"
       , Space
@@ -31452,6 +31454,48 @@ Pandoc
           [ Str "transient" , SoftBreak , Str "instructions" ]
       , RawInline (Format "tex") "\\index{transient instructions}"
       , Str "."
+      , Note
+          [ Para
+              [ Str "Transient"
+              , Space
+              , Str "instructions"
+              , Space
+              , Str "caused"
+              , Space
+              , Str "by"
+              , SoftBreak
+              , Str "incorrect"
+              , Space
+              , Str "branch-direction"
+              , Space
+              , Str "prediction"
+              , Space
+              , Str "have"
+              , Space
+              , Str "also"
+              , Space
+              , Str "been"
+              , Space
+              , Str "called"
+              , Space
+              , Strong
+                  [ Str "wrong-path" , SoftBreak , Str "instructions" ]
+              , RawInline
+                  (Format "tex") "\\index{wrong-patch instructions}"
+              , Space
+              , Cite
+                  [ Citation
+                      { citationId = "Mutlu2004"
+                      , citationPrefix = []
+                      , citationSuffix = []
+                      , citationMode = AuthorInText
+                      , citationNoteNum = 93
+                      , citationHash = 0
+                      }
+                  ]
+                  [ Str "@Mutlu2004" ]
+              ]
+          ]
       ]
   , Para
       [ Str "The"
@@ -31962,6 +32006,339 @@ Pandoc
           ]
       ]
   , Para
+      [ Strong [ Str "Faulting" , Space , Str "instructions" ]
+      , RawInline (Format "tex") "\\index{faulting instructions}"
+      , Space
+      , Str "are"
+      , Space
+      , Str "instructions"
+      , Space
+      , Str "that"
+      , SoftBreak
+      , Str "generate"
+      , Space
+      , Str "an"
+      , Space
+      , Str "exception"
+      , Space
+      , Str "at"
+      , Space
+      , Str "run-time."
+      , Space
+      , Str "Many"
+      , Space
+      , Str "instructions"
+      , Space
+      , Str "can"
+      , Space
+      , Str "generate"
+      , Space
+      , Str "an"
+      , Space
+      , Str "exception,"
+      , SoftBreak
+      , Str "and"
+      , Space
+      , Str "are"
+      , Space
+      , Str "hence"
+      , Space
+      , Strong [ Str "potentially" , Space , Str "faulting" ]
+      , Str "."
+      , Space
+      , Str "For"
+      , Space
+      , Str "example"
+      , Space
+      , Str "most"
+      , Space
+      , Str "load"
+      , Space
+      , Str "and"
+      , Space
+      , Str "store"
+      , SoftBreak
+      , Str "instructions"
+      , Space
+      , Str "generate"
+      , Space
+      , Str "an"
+      , Space
+      , Str "exception"
+      , Space
+      , Str "when"
+      , Space
+      , Str "the"
+      , Space
+      , Str "accessed"
+      , Space
+      , Str "address"
+      , Space
+      , Str "is"
+      , Space
+      , Str "not"
+      , Space
+      , Str "mapped."
+      , SoftBreak
+      , Str "Since"
+      , Space
+      , Str "so"
+      , Space
+      , Str "many"
+      , Space
+      , Str "instructions"
+      , Space
+      , Str "can"
+      , Space
+      , Str "generate"
+      , Space
+      , Str "an"
+      , Space
+      , Str "exception,"
+      , Space
+      , Str "processors"
+      , Space
+      , Str "typically"
+      , SoftBreak
+      , Str "speculate"
+      , Space
+      , Str "that"
+      , Space
+      , Str "they"
+      , Space
+      , Str "do"
+      , Space
+      , Str "not"
+      , Space
+      , Str "generate"
+      , Space
+      , Str "an"
+      , Space
+      , Str "exception"
+      , Space
+      , Str "to"
+      , Space
+      , Str "enable"
+      , Space
+      , Str "more"
+      , Space
+      , Str "parallel"
+      , SoftBreak
+      , Str "execution."
+      ]
+  , Para
+      [ Str "When"
+      , Space
+      , Str "an"
+      , Space
+      , Str "instruction"
+      , Space
+      , Str "faults,"
+      , Space
+      , Str "the"
+      , Space
+      , Str "execution"
+      , Space
+      , Str "typically"
+      , Space
+      , Str "continues"
+      , Space
+      , Str "at"
+      , Space
+      , Str "another"
+      , SoftBreak
+      , Str "location."
+      , Space
+      , Str "Any"
+      , Space
+      , Str "instructions"
+      , Space
+      , Str "later"
+      , Space
+      , Str "in"
+      , Space
+      , Str "the"
+      , Space
+      , Str "instruction"
+      , Space
+      , Str "stream"
+      , Space
+      , Str "which"
+      , Space
+      , Str "are"
+      , SoftBreak
+      , Str "speculatively"
+      , Space
+      , Str "executed"
+      , Space
+      , Str "before"
+      , Space
+      , Str "the"
+      , Space
+      , Str "fault"
+      , Space
+      , Str "is"
+      , Space
+      , Str "detected"
+      , Space
+      , Str "are"
+      , Space
+      , Str "also"
+      , Space
+      , Str "called"
+      , Space
+      , Strong
+          [ Str "transient" , SoftBreak , Str "instructions" ]
+      , RawInline (Format "tex") "\\index{transient instructions}"
+      , Str "."
+      ]
+  , Para
+      [ Str "There"
+      , Space
+      , Str "is"
+      , Space
+      , Str "a"
+      , Space
+      , Str "kind"
+      , Space
+      , Str "of"
+      , Space
+      , Str "control"
+      , Space
+      , Str "dependency"
+      , Space
+      , Str "between"
+      , Space
+      , Str "every"
+      , Space
+      , Str "potentially-faulting"
+      , SoftBreak
+      , Str "instruction"
+      , Space
+      , Str "and"
+      , Space
+      , Str "the"
+      , Space
+      , Str "next"
+      , Space
+      , Str "one,"
+      , Space
+      , Str "as"
+      , Space
+      , Str "the"
+      , Space
+      , Str "next"
+      , Space
+      , Str "instruction"
+      , Space
+      , Str "to"
+      , Space
+      , Str "be"
+      , Space
+      , Str "executed"
+      , Space
+      , Str "depends"
+      , Space
+      , Str "on"
+      , SoftBreak
+      , Str "whether"
+      , Space
+      , Str "the"
+      , Space
+      , Str "instruction"
+      , Space
+      , Str "generates"
+      , Space
+      , Str "an"
+      , Space
+      , Str "exception"
+      , Space
+      , Str "or"
+      , Space
+      , Str "not."
+      , Space
+      , Str "We"
+      , Space
+      , Str "call"
+      , Space
+      , Str "out"
+      , Space
+      , Str "this"
+      , SoftBreak
+      , Str "dependency"
+      , Space
+      , Str "separately"
+      , Space
+      , Str "here"
+      , Space
+      , Str "as"
+      , Space
+      , Str "the"
+      , Space
+      , Str "transient"
+      , Space
+      , Str "execution"
+      , Space
+      , Str "attacks"
+      , Space
+      , Str "we\8217ll"
+      , Space
+      , Str "describe"
+      , SoftBreak
+      , Str "next"
+      , Space
+      , Str "get"
+      , Space
+      , Str "classified"
+      , Space
+      , Str "based"
+      , Space
+      , Str "on"
+      , Space
+      , Str "whether"
+      , Space
+      , Str "they"
+      , Space
+      , Str "make"
+      , Space
+      , Str "use"
+      , Space
+      , Str "of"
+      , Space
+      , Str "transient"
+      , Space
+      , Str "instructions"
+      , SoftBreak
+      , Str "after"
+      , Space
+      , Str "a"
+      , Space
+      , Str "misprediction,"
+      , Space
+      , Str "or"
+      , Space
+      , Str "transient"
+      , Space
+      , Str "instructions"
+      , Space
+      , Str "after"
+      , Space
+      , Str "a"
+      , Space
+      , Str "faulting"
+      , Space
+      , Str "instruction."
+      ]
+  , Header
+      3
+      ( "transient-execution-attacks-1" , [] , [] )
+      [ Str "Transient"
+      , Space
+      , Str "Execution"
+      , Space
+      , Str "Attacks"
+      ]
+  , Para
       [ Strong
           [ Str "Transient"
           , Space
@@ -32008,20 +32385,606 @@ Pandoc
       , Space
       , Str "channel."
       ]
+  , Para
+      [ Str "The"
+      , Space
+      , Str "publication"
+      , Space
+      , Str "of"
+      , Space
+      , Str "the"
+      , Space
+      , Str "Spectre"
+      , RawInline (Format "tex") "\\index{Spectre}"
+      , Space
+      , Cite
+          [ Citation
+              { citationId = "Kocher2019"
+              , citationPrefix = []
+              , citationSuffix = []
+              , citationMode = NormalCitation
+              , citationNoteNum = 94
+              , citationHash = 0
+              }
+          ]
+          [ Str "[@Kocher2019]" ]
+      , Space
+      , Str "and"
+      , SoftBreak
+      , Str "Meltdown"
+      , RawInline (Format "tex") "\\index{Meltdown}"
+      , Space
+      , Cite
+          [ Citation
+              { citationId = "Lipp2018"
+              , citationPrefix = []
+              , citationSuffix = []
+              , citationMode = NormalCitation
+              , citationNoteNum = 95
+              , citationHash = 0
+              }
+          ]
+          [ Str "[@Lipp2018]" ]
+      , Space
+      , Str "attacks"
+      , Space
+      , Str "in"
+      , Space
+      , Str "2018"
+      , Space
+      , Str "started"
+      , Space
+      , Str "a"
+      , Space
+      , Str "period"
+      , Space
+      , Str "in"
+      , Space
+      , Str "which"
+      , Space
+      , Str "a"
+      , SoftBreak
+      , Str "large"
+      , Space
+      , Str "number"
+      , Space
+      , Str "of"
+      , Space
+      , Str "transient"
+      , Space
+      , Str "attacks"
+      , Space
+      , Str "were"
+      , Space
+      , Str "discovered"
+      , Space
+      , Str "and"
+      , Space
+      , Str "published."
+      , Space
+      , Str "Most"
+      , Space
+      , Str "of"
+      , Space
+      , Str "them"
+      , SoftBreak
+      , Str "were"
+      , Space
+      , Str "given"
+      , Space
+      , Str "specific"
+      , Space
+      , Str "names,"
+      , Space
+      , Str "such"
+      , Space
+      , Str "as"
+      , Space
+      , Str "ZombieLoad,"
+      , Space
+      , Str "NetSpectre,"
+      , Space
+      , Str "LVI,"
+      , Space
+      , Str "Straight-line"
+      , SoftBreak
+      , Str "Speculation,"
+      , Space
+      , Str "etc."
+      , Space
+      , Str "New"
+      , Space
+      , Str "variants"
+      , Space
+      , Str "continue"
+      , Space
+      , Str "to"
+      , Space
+      , Str "be"
+      , Space
+      , Str "published"
+      , Space
+      , Str "regularly."
+      ]
+  , Para
+      [ Str "Covering"
+      , Space
+      , Str "each"
+      , Space
+      , Str "one"
+      , Space
+      , Str "of"
+      , Space
+      , Str "them"
+      , Space
+      , Str "in"
+      , Space
+      , Str "detail"
+      , Space
+      , Str "here"
+      , Space
+      , Str "would"
+      , Space
+      , Str "make"
+      , Space
+      , Str "the"
+      , Space
+      , Str "book"
+      , Space
+      , Str "overly"
+      , Space
+      , Str "lengthy,"
+      , Space
+      , Str "and"
+      , SoftBreak
+      , Str "may"
+      , Space
+      , Str "not"
+      , Space
+      , Str "necessarily"
+      , Space
+      , Str "help"
+      , Space
+      , Str "much"
+      , Space
+      , Str "with"
+      , Space
+      , Str "gaining"
+      , Space
+      , Str "a"
+      , Space
+      , Str "better"
+      , Space
+      , Str "insight"
+      , Space
+      , Str "in"
+      , Space
+      , Str "the"
+      , Space
+      , Str "common"
+      , SoftBreak
+      , Str "characteristics"
+      , Space
+      , Str "of"
+      , Space
+      , Str "transient"
+      , Space
+      , Str "attacks."
+      , Space
+      , Str "Therefore,"
+      , Space
+      , Str "we\8217ll"
+      , Space
+      , Str "try"
+      , Space
+      , Str "to"
+      , Space
+      , Str "put"
+      , Space
+      , Str "them"
+      , Space
+      , Str "into"
+      , Space
+      , Str "a"
+      , SoftBreak
+      , Str "few"
+      , Space
+      , Str "categories"
+      , Space
+      , Str "and"
+      , Space
+      , Str "describe"
+      , Space
+      , Str "the"
+      , Space
+      , Str "characteristics"
+      , Space
+      , Str "of"
+      , Space
+      , Str "each"
+      , Space
+      , Str "category."
+      ]
+  , Para
+      [ Str ":::"
+      , Space
+      , Str "TODO"
+      , Space
+      , Str "Decide"
+      , Space
+      , Str "whether"
+      , Space
+      , Str "it\8217s"
+      , Space
+      , Str "useful"
+      , Space
+      , Str "to"
+      , Space
+      , Str "talk"
+      , Space
+      , Str "about"
+      , Space
+      , Str "alternative"
+      , Space
+      , Str "categorizations"
+      , Space
+      , Str "of"
+      , SoftBreak
+      , Str "transient"
+      , Space
+      , Str "execution"
+      , Space
+      , Str "attacks,"
+      , Space
+      , Str "and"
+      , Space
+      , Str "if"
+      , Space
+      , Str "so,"
+      , Space
+      , Str "do"
+      , Space
+      , Str "add"
+      , Space
+      , Str "content."
+      , Space
+      , Str "Consider"
+      , Space
+      , Str "pointing"
+      , Space
+      , Str "to"
+      , SoftBreak
+      , Link
+          ( "" , [] , [] )
+          [ Str
+              "https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md"
+          ]
+          ( "https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md"
+          , ""
+          )
+      , SoftBreak
+      , Str ":::"
+      ]
+  , Para
+      [ Str "The"
+      , Space
+      , Str "categorization"
+      , Space
+      , Str "below"
+      , Space
+      , Str "is"
+      , Space
+      , Str "based"
+      , Space
+      , Str "on"
+      , Space
+      , Str "one"
+      , Space
+      , Str "proposed"
+      , Space
+      , Str "in"
+      , Space
+      , Cite
+          [ Citation
+              { citationId = "Bulck2020"
+              , citationPrefix = []
+              , citationSuffix = []
+              , citationMode = NormalCitation
+              , citationNoteNum = 96
+              , citationHash = 0
+              }
+          ]
+          [ Str "[@Bulck2020]" ]
+      , Str "."
+      , Space
+      , Str "There"
+      , Space
+      , Str "are"
+      , SoftBreak
+      , Str "alternative"
+      , Space
+      , Str "categorizations."
+      , Space
+      , Cite
+          [ Citation
+              { citationId = "Bulck2020"
+              , citationPrefix = []
+              , citationSuffix = []
+              , citationMode = NormalCitation
+              , citationNoteNum = 97
+              , citationHash = 0
+              }
+          ]
+          [ Str "[@Bulck2020]" ]
+      , Space
+      , Str "defines"
+      , Space
+      , Str "4"
+      , Space
+      , Str "big"
+      , Space
+      , Str "classes"
+      , Space
+      , Str "of"
+      , Space
+      , Str "transient"
+      , SoftBreak
+      , Str "side-channel"
+      , Space
+      , Str "attack"
+      , Space
+      , Str "categories,"
+      , Space
+      , Str "based"
+      , Space
+      , Str "on"
+      , Space
+      , Str "whether:"
+      ]
+  , OrderedList
+      ( 1 , Decimal , Period )
+      [ [ Plain
+            [ Str "The"
+            , Space
+            , Str "transient"
+            , Space
+            , Str "execution"
+            , Space
+            , Str "happens"
+            , Space
+            , Str "because"
+            , Space
+            , Str "of"
+            , Space
+            , Str "a"
+            , Space
+            , Str "misprediction,"
+            , Space
+            , Str "or"
+            , Space
+            , Str "a"
+            , Space
+            , Str "faulting"
+            , SoftBreak
+            , Str "instruction."
+            ]
+        ]
+      , [ Plain
+            [ Str "The"
+            , Space
+            , Str "attacker"
+            , Space
+            , Str "actively"
+            , Space
+            , Str "steers"
+            , Space
+            , Str "data"
+            , Space
+            , Str "or"
+            , Space
+            , Str "control"
+            , Space
+            , Str "flow"
+            , Space
+            , Str "of"
+            , Space
+            , Str "the"
+            , Space
+            , Str "transient"
+            , Space
+            , Str "execution"
+            , SoftBreak
+            , Str "or"
+            , Space
+            , Str "not."
+            ]
+        ]
+      ]
+  , Para
+      [ Str "This"
+      , Space
+      , Str "gives"
+      , Space
+      , Str "the"
+      , Space
+      , Str "following"
+      , Space
+      , Str "4"
+      , Space
+      , Str "categories:"
+      ]
+  , Table
+      ( "" , [] , [] )
+      (Caption Nothing [])
+      [ ( AlignDefault , ColWidth 0.2361111111111111 )
+      , ( AlignDefault , ColWidth 0.3611111111111111 )
+      , ( AlignDefault , ColWidth 0.3472222222222222 )
+      ]
+      (TableHead
+         ( "" , [] , [] )
+         [ Row
+             ( "" , [] , [] )
+             [ Cell
+                 ( "" , [] , [] )
+                 AlignDefault
+                 (RowSpan 2)
+                 (ColSpan 1)
+                 []
+             , Cell
+                 ( "" , [] , [] )
+                 AlignDefault
+                 (RowSpan 1)
+                 (ColSpan 2)
+                 [ Plain
+                     [ Str "Steering"
+                     , Space
+                     , Str "of"
+                     , Space
+                     , Str "transient"
+                     , Space
+                     , Str "execution"
+                     , Space
+                     , Str "by"
+                     , Space
+                     , Str "attacker?"
+                     ]
+                 ]
+             ]
+         , Row
+             ( "" , [] , [] )
+             [ Cell
+                 ( "" , [] , [] )
+                 AlignDefault
+                 (RowSpan 1)
+                 (ColSpan 1)
+                 [ Plain [ Str "No" , Space , Str "(Leakage)" ] ]
+             , Cell
+                 ( "" , [] , [] )
+                 AlignDefault
+                 (RowSpan 1)
+                 (ColSpan 1)
+                 [ Plain [ Str "Yes" , Space , Str "(Injection)" ] ]
+             ]
+         ])
+      [ TableBody
+          ( "" , [] , [] )
+          (RowHeadColumns 0)
+          []
+          [ Row
+              ( "" , [] , [] )
+              [ Cell
+                  ( "" , [] , [] )
+                  AlignDefault
+                  (RowSpan 1)
+                  (ColSpan 1)
+                  [ Plain [ Str "Misprediction" ] ]
+              , Cell
+                  ( "" , [] , [] )
+                  AlignDefault
+                  (RowSpan 1)
+                  (ColSpan 1)
+                  [ Plain
+                      [ Str "Branch-predictor"
+                      , Space
+                      , Str "based"
+                      , SoftBreak
+                      , Str "side-channels"
+                      ]
+                  ]
+              , Cell
+                  ( "" , [] , [] )
+                  AlignDefault
+                  (RowSpan 1)
+                  (ColSpan 1)
+                  [ Plain
+                      [ Str "Spectre-style" , Space , Str "attacks" ]
+                  ]
+              ]
+          , Row
+              ( "" , [] , [] )
+              [ Cell
+                  ( "" , [] , [] )
+                  AlignDefault
+                  (RowSpan 1)
+                  (ColSpan 1)
+                  [ Plain [ Str "Faulting" ] ]
+              , Cell
+                  ( "" , [] , [] )
+                  AlignDefault
+                  (RowSpan 1)
+                  (ColSpan 1)
+                  [ Plain
+                      [ Str "Meltdown-style" , Space , Str "attacks" ]
+                  ]
+              , Cell
+                  ( "" , [] , [] )
+                  AlignDefault
+                  (RowSpan 1)
+                  (ColSpan 1)
+                  [ Plain [ Str "LVI-style" , Space , Str "attacks" ] ]
+              ]
+          ]
+      ]
+      (TableFoot ( "" , [] , [] ) [])
+  , Header
+      4
+      ( "branch-predictor-based-side-channel-attacks" , [] , [] )
+      [ Str "Branch"
+      , Space
+      , Str "predictor-based"
+      , Space
+      , Str "side-channel"
+      , Space
+      , Str "attacks"
+      ]
+  , Para
+      [ Str "We"
+      , Space
+      , Str "discussed"
+      , Space
+      , Str "this"
+      , Space
+      , Str "category"
+      , Space
+      , Str "already"
+      , Space
+      , Str "in"
+      , Space
+      , Str "the"
+      , Space
+      , Str "section"
+      , Space
+      , Str "on"
+      , SoftBreak
+      , Link
+          ( "" , [] , [] )
+          [ Str "Side-channels"
+          , Space
+          , Str "through"
+          , Space
+          , Str "branch"
+          , Space
+          , Str "predictors"
+          ]
+          ( "#side-channels-through-branch-predictors" , "" )
+      , Str "."
+      ]
+  , Header
+      4
+      ( "spectre-style-attacks" , [] , [] )
+      [ Str "Spectre-style" , Space , Str "attacks" ]
   , Div
       ( "" , [ "TODO" ] , [] )
       [ Para
-          [ Str "Write"
+          [ Str "Add"
           , Space
-          , Str "sections"
+          , Str "a"
           , Space
-          , Str "on"
+          , Str "description"
           , Space
-          , Str "specific"
+          , Str "of"
           , Space
-          , Str "transient"
-          , Space
-          , Str "execution"
+          , Str "Spectre-style"
           , Space
           , Str "attacks"
           , Space
@@ -32029,14 +32992,102 @@ Pandoc
           , Space
           , Str "as"
           , Space
-          , Str "Spectre"
+          , Str "Spectre-PHT,"
           , Space
-          , Str "and"
+          , Str "Spectre-BTB,"
           , SoftBreak
-          , Str "Meltdown."
+          , Str "Spectre-RSB,"
+          , Space
+          , Str "Spectre-STL,"
+          , Space
+          , Str "SpectreV1,"
+          , Space
+          , Str "SpectreV2,"
+          , Space
+          , Str "SpectreV3,"
+          , Space
+          , Str "SpectreV4,"
+          , SoftBreak
+          , Str "NetSpectre."
           , SoftBreak
           , Span ( "" , [ "issue" ] , [] ) [ Str "178" ]
           ]
+      ]
+  , Header
+      4
+      ( "meltdown-style-attacks" , [] , [] )
+      [ Str "Meltdown-style" , Space , Str "attacks" ]
+  , Div
+      ( "" , [ "TODO" ] , [] )
+      [ Para
+          [ Str "Add"
+          , Space
+          , Str "a"
+          , Space
+          , Str "description"
+          , Space
+          , Str "of"
+          , Space
+          , Str "Meltdown-style"
+          , Space
+          , Str "attacks"
+          , Space
+          , Str "such"
+          , Space
+          , Str "as"
+          , Space
+          , Str "Meltdown,"
+          , Space
+          , Str "Foreshadow,"
+          , SoftBreak
+          , Str "LazyFP,"
+          , Space
+          , Str "Fallout,"
+          , Space
+          , Str "ZombieLoad,"
+          , Space
+          , Str "RIDL."
+          , SoftBreak
+          , Span ( "" , [ "issue" ] , [] ) [ Str "178" ]
+          ]
+      ]
+  , Header
+      4
+      ( "lvi-style-attacks" , [] , [] )
+      [ Str "LVI-style" , Space , Str "attacks" ]
+  , Div
+      ( "" , [ "TODO" ] , [] )
+      [ Para
+          [ Str "Add"
+          , Space
+          , Str "a"
+          , Space
+          , Str "description"
+          , Space
+          , Str "of"
+          , Space
+          , Str "LVI-style"
+          , Space
+          , Str "attacks."
+          , SoftBreak
+          , Span ( "" , [ "issue" ] , [] ) [ Str "178" ]
+          ]
+      ]
+  , Header
+      3
+      ( "mitigations-against-transient-execution-attacks"
+      , []
+      , []
+      )
+      [ Str "Mitigations"
+      , Space
+      , Str "against"
+      , Space
+      , Str "transient"
+      , Space
+      , Str "execution"
+      , Space
+      , Str "attacks"
       ]
   , Header
       4
@@ -32371,7 +33422,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 93
+              , citationNoteNum = 98
               , citationHash = 0
               }
           ]
@@ -32524,7 +33575,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 94
+              , citationNoteNum = 99
               , citationHash = 0
               }
           ]
@@ -32617,7 +33668,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 95
+              , citationNoteNum = 100
               , citationHash = 0
               }
           ]
@@ -32803,7 +33854,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 96
+              , citationNoteNum = 101
               , citationHash = 0
               }
           ]
@@ -32957,7 +34008,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 97
+              , citationNoteNum = 102
               , citationHash = 0
               }
           ]
@@ -33233,7 +34284,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 98
+              , citationNoteNum = 103
               , citationHash = 0
               }
           ]
@@ -33510,7 +34561,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 99
+              , citationNoteNum = 104
               , citationHash = 0
               }
           ]
@@ -33522,7 +34573,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 100
+              , citationNoteNum = 105
               , citationHash = 0
               }
           ]
@@ -33534,7 +34585,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 101
+              , citationNoteNum = 106
               , citationHash = 0
               }
           ]
@@ -33690,7 +34741,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 102
+              , citationNoteNum = 107
               , citationHash = 0
               }
           ]
@@ -34085,7 +35136,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 103
+              , citationNoteNum = 108
               , citationHash = 0
               }
           ]
@@ -34101,7 +35152,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 104
+              , citationNoteNum = 109
               , citationHash = 0
               }
           ]
@@ -34492,7 +35543,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 105
+              , citationNoteNum = 110
               , citationHash = 0
               }
           ]
@@ -34508,7 +35559,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 106
+              , citationNoteNum = 111
               , citationHash = 0
               }
           ]
@@ -34815,7 +35866,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 107
+              , citationNoteNum = 112
               , citationHash = 0
               }
           ]
@@ -34906,7 +35957,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 108
+              , citationNoteNum = 113
               , citationHash = 0
               }
           ]
@@ -35078,7 +36129,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 109
+              , citationNoteNum = 114
               , citationHash = 0
               }
           ]
@@ -35236,7 +36287,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 110
+              , citationNoteNum = 115
               , citationHash = 0
               }
           ]
@@ -35301,7 +36352,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 111
+              , citationNoteNum = 116
               , citationHash = 0
               }
           ]

@@ -51,7 +51,7 @@
   \indexspace
 
   \item data-only attacks, \hyperpage{23}
-  \item dead store optimization, \hyperpage{49}
+  \item dead store optimization, \hyperpage{50}
   \item deoptimization, \hyperpage{30}
   \item direct-mapped cache, \hyperpage{36}
   \item dispatcher gadget, \hyperpage{17}
@@ -64,6 +64,7 @@
 
   \indexspace
 
+  \item faulting instructions, \hyperpage{44}
   \item Flush+Flush, \hyperpage{38}
   \item Flush+Prefetch, \hyperpage{38}
   \item Flush+Reload, \hyperpage{37}
@@ -113,10 +114,11 @@
 
   \item malloc, \hyperpage{26}
   \item measurement sequence, \hyperpage{38}, \hyperpage{41}
+  \item Meltdown, \hyperpage{44}
   \item memory access time, \hyperpage{35}
   \item Memory Tagging Extension (MTE), \hyperpage{26}
   \item MemorySanitizer, \hyperpage{27}
-  \item memset, \hyperpage{49}
+  \item memset, \hyperpage{50}
   \item MemTagSanitizer, \hyperpage{26}
   \item micro-architectural, \hyperpage{33}
   \item micro-architectural effects, \hyperpage{43}
@@ -173,7 +175,7 @@
   \item sigreturn-oriented programming (SROP), \hyperpage{18}
   \item site isolation, \hyperpage{39}
   \item spatial memory safety, \hyperpage{27}
-  \item Spectre, \hyperpage{39}
+  \item Spectre, \hyperpage{39}, \hyperpage{44}
   \item speculation, \hyperpage{42}
   \item spy, \hyperpage{33}
   \item stack pivoting, \hyperpage{15}
@@ -186,7 +188,7 @@
   \item Top-Byte Ignore (TBI), \hyperpage{26}
   \item Top-Byte-Ignore (TBI), \hyperpage{21}
   \item transient execution attacks, \hyperpage{44}
-  \item transient instructions, \hyperpage{43}
+  \item transient instructions, \hyperpage{43, 44}
   \item trigger sequence, \hyperpage{38}, \hyperpage{41}
   \item true data dependency, \hyperpage{42}
 
@@ -202,5 +204,6 @@
 
   \item W\^{}X, \hyperpage{32}
   \item write primitive, \hyperpage{7}, \hyperpage{27}
+  \item wrong-patch instructions, \hyperpage{43}
 
 \end{theindex}

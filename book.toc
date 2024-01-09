@@ -35,7 +35,7 @@
 \contentsline {subsubsection}{\numberline {3.2.3.1}Mitigations de-correlating cache state change with sensitive information in the victim program}{38}{subsubsection.3.2.3.1}%
 \contentsline {subsubsection}{\numberline {3.2.3.2}Mitigations disallowing spy programs to share the cache with the victim program}{39}{subsubsection.3.2.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.3.3}Mitigations disabling the spy program to infer a cache status change in the victim program through its own cache status}{39}{subsubsection.3.2.3.3}%
-\contentsline {section}{\numberline {3.3}Branch-predictor based side channels}{40}{section.3.3}%
+\contentsline {section}{\numberline {3.3}Branch-predictor based side-channels}{40}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Branch predictors}{40}{subsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.3.2}Side-channels through branch predictors}{40}{subsection.3.3.2}%
 \contentsline {subsubsection}{\numberline {3.3.2.1}Conditional branch direction predictor side-channel attacks}{40}{subsubsection.3.3.2.1}%
@@ -46,20 +46,27 @@
 \contentsline {section}{\numberline {3.5}Channels making use of aliasing in other predictors}{41}{section.3.5}%
 \contentsline {section}{\numberline {3.6}Transient execution attacks}{42}{section.3.6}%
 \contentsline {subsection}{\numberline {3.6.1}Transient execution}{42}{subsection.3.6.1}%
-\contentsline {subsubsection}{\numberline {3.6.1.1}Site isolation}{44}{subsubsection.3.6.1.1}%
-\contentsline {section}{\numberline {3.7}Physical access side-channel attacks}{44}{section.3.7}%
-\contentsline {chapter}{\numberline {4}Supply chain attacks}{45}{chapter.4}%
-\contentsline {section}{\numberline {4.1}History of supply chain attacks}{45}{section.4.1}%
-\contentsline {chapter}{\numberline {5}Compiler introduced security vulnerabilities}{47}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Physical attacks}{51}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Overview}{51}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Physical access side-channel attacks}{51}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}How is information leaked?}{52}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Side channel leakage at instruction level}{52}{subsection.6.2.2}%
-\contentsline {subsection}{\numberline {6.2.3}Countermeasures}{54}{subsection.6.2.3}%
-\contentsline {section}{\numberline {6.3}Fault injection attacks}{55}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Common forms of Fault injection attacks}{55}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Countermeasures}{56}{subsection.6.3.2}%
-\contentsline {chapter}{\numberline {7}Other security topics relevant for compiler developers}{57}{chapter.7}%
-\contentsline {chapter}{Appendix: contribution guidelines}{58}{chapter*.40}%
-\contentsline {chapter}{References}{63}{chapter*.42}%
+\contentsline {subsubsection}{\numberline {3.6.1.1}Speculative execution}{42}{subsubsection.3.6.1.1}%
+\contentsline {subsection}{\numberline {3.6.2}Transient Execution Attacks}{44}{subsection.3.6.2}%
+\contentsline {subsubsection}{\numberline {3.6.2.1}Branch predictor-based side-channel attacks}{45}{subsubsection.3.6.2.1}%
+\contentsline {subsubsection}{\numberline {3.6.2.2}Spectre-style attacks}{45}{subsubsection.3.6.2.2}%
+\contentsline {subsubsection}{\numberline {3.6.2.3}Meltdown-style attacks}{45}{subsubsection.3.6.2.3}%
+\contentsline {subsubsection}{\numberline {3.6.2.4}LVI-style attacks}{45}{subsubsection.3.6.2.4}%
+\contentsline {subsection}{\numberline {3.6.3}Mitigations against transient execution attacks}{45}{subsection.3.6.3}%
+\contentsline {subsubsection}{\numberline {3.6.3.1}Site isolation}{45}{subsubsection.3.6.3.1}%
+\contentsline {section}{\numberline {3.7}Physical access side-channel attacks}{45}{section.3.7}%
+\contentsline {chapter}{\numberline {4}Supply chain attacks}{46}{chapter.4}%
+\contentsline {section}{\numberline {4.1}History of supply chain attacks}{46}{section.4.1}%
+\contentsline {chapter}{\numberline {5}Compiler introduced security vulnerabilities}{48}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Physical attacks}{52}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Overview}{52}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Physical access side-channel attacks}{52}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}How is information leaked?}{53}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Side channel leakage at instruction level}{53}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}Countermeasures}{55}{subsection.6.2.3}%
+\contentsline {section}{\numberline {6.3}Fault injection attacks}{56}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Common forms of Fault injection attacks}{56}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Countermeasures}{57}{subsection.6.3.2}%
+\contentsline {chapter}{\numberline {7}Other security topics relevant for compiler developers}{58}{chapter.7}%
+\contentsline {chapter}{Appendix: contribution guidelines}{59}{chapter*.42}%
+\contentsline {chapter}{References}{64}{chapter*.44}%

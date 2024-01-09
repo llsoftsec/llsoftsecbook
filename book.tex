@@ -84,6 +84,17 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{multirow}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -167,7 +178,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2023 Lucian Popescu
 \href{mailto:lucian.popescu187@gmail.com}{\nolinkurl{lucian.popescu187@gmail.com}}\\
 
-Version 0-169-g0df6bfd
+Version 0-170-ga969559
 \clearpage
 
 {
@@ -2418,8 +2429,8 @@ performance overhead, and may also not always possible e.g.~when victim
 and spy are running at the same time on 2 CPUs sharing a cache level.
 
 \hypertarget{branch-predictor-based-side-channels}{%
-\section{Branch-predictor based side
-channels}\label{branch-predictor-based-side-channels}}
+\section{Branch-predictor based
+side-channels}\label{branch-predictor-based-side-channels}}
 
 \hypertarget{branch-predictors}{%
 \subsection{Branch predictors}\label{branch-predictors}}
@@ -2581,6 +2592,9 @@ attacks}\label{transient-execution-attacks}}
 \hypertarget{transient-execution}{%
 \subsection{Transient execution}\label{transient-execution}}
 
+\hypertarget{speculative-execution}{%
+\subsubsection{Speculative execution}\label{speculative-execution}}
+
 CPUs execute sequences of instructions. There are often dependencies
 between instructions in the sequence. That means that the outcome of one
 instruction influences the execution of a later instruction.
@@ -2682,7 +2696,12 @@ the correct, non-negated, value in register \texttt{x0}.
 
 Any instructions that are executed under so-called
 \textbf{mis-speculation}\index{mis-speculation}, are called
-\textbf{transient instructions}\index{transient instructions}.
+\textbf{transient
+instructions}\index{transient instructions}.\footnote{Transient
+  instructions caused by incorrect branch-direction prediction have also
+  been called \textbf{wrong-path
+  instructions}\index{wrong-patch instructions} Mutlu et al.
+  (\protect\hyperlink{ref-Mutlu2004}{2004})}
 
 The paragraph above says ``\emph{the system state that affects the
 correct execution of the program, needs to be undone}''. There is a lot
@@ -2716,13 +2735,131 @@ that explains micro-architectural versus architectural state in more
 detail? Is ``Computer Architecture: A Quantitative Approach'' the best
 reference available?}}
 
+\textbf{Faulting instructions}\index{faulting instructions} are
+instructions that generate an exception at run-time. Many instructions
+can generate an exception, and are hence \textbf{potentially faulting}.
+For example most load and store instructions generate an exception when
+the accessed address is not mapped. Since so many instructions can
+generate an exception, processors typically speculate that they do not
+generate an exception to enable more parallel execution.
+
+When an instruction faults, the execution typically continues at another
+location. Any instructions later in the instruction stream which are
+speculatively executed before the fault is detected are also called
+\textbf{transient instructions}\index{transient instructions}.
+
+There is a kind of control dependency between every potentially-faulting
+instruction and the next one, as the next instruction to be executed
+depends on whether the instruction generates an exception or not. We
+call out this dependency separately here as the transient execution
+attacks we'll describe next get classified based on whether they make
+use of transient instructions after a misprediction, or transient
+instructions after a faulting instruction.
+
+\hypertarget{transient-execution-attacks-1}{%
+\subsection{Transient Execution
+Attacks}\label{transient-execution-attacks-1}}
+
 \textbf{Transient execution attacks}\index{transient execution attacks}
 are a category of side-channel attacks that use the micro-architectural
 side-effects of transient execution as a side channel.
 
-\tododiv{Write sections on specific transient execution attacks such as
-Spectre and Meltdown.
+The publication of the Spectre\index{Spectre}
+(\protect\hyperlink{ref-Kocher2019}{Kocher et al. 2019}) and
+Meltdown\index{Meltdown} (\protect\hyperlink{ref-Lipp2018}{Lipp et al.
+2018}) attacks in 2018 started a period in which a large number of
+transient attacks were discovered and published. Most of them were given
+specific names, such as ZombieLoad, NetSpectre, LVI, Straight-line
+Speculation, etc. New variants continue to be published regularly.
+
+Covering each one of them in detail here would make the book overly
+lengthy, and may not necessarily help much with gaining a better insight
+in the common characteristics of transient attacks. Therefore, we'll try
+to put them into a few categories and describe the characteristics of
+each category.
+
+::: TODO Decide whether it's useful to talk about alternative
+categorizations of transient execution attacks, and if so, do add
+content. Consider pointing to
+\url{https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md}
+:::
+
+The categorization below is based on one proposed in
+(\protect\hyperlink{ref-Bulck2020}{Bulck et al., n.d.}). There are
+alternative categorizations. (\protect\hyperlink{ref-Bulck2020}{Bulck et
+al., n.d.}) defines 4 big classes of transient side-channel attack
+categories, based on whether:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The transient execution happens because of a misprediction, or a
+  faulting instruction.
+\item
+  The attacker actively steers data or control flow of the transient
+  execution or not.
+\end{enumerate}
+
+This gives the following 4 categories:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2361}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3611}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3472}}@{}}
+\toprule\noalign{}
+\multirow{2}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage}} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.7083} + 2\tabcolsep}@{}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+Steering of transient execution by attacker?
+\end{minipage}} \\
+& \begin{minipage}[b]{\linewidth}\raggedright
+No (Leakage)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Yes (Injection)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Misprediction & Branch-predictor based side-channels & Spectre-style
+attacks \\
+Faulting & Meltdown-style attacks & LVI-style attacks \\
+\end{longtable}
+
+\hypertarget{branch-predictor-based-side-channel-attacks}{%
+\subsubsection{Branch predictor-based side-channel
+attacks}\label{branch-predictor-based-side-channel-attacks}}
+
+We discussed this category already in the section on
+\protect\hyperlink{side-channels-through-branch-predictors}{Side-channels
+through branch predictors}.
+
+\hypertarget{spectre-style-attacks}{%
+\subsubsection{Spectre-style attacks}\label{spectre-style-attacks}}
+
+\tododiv{Add a description of Spectre-style attacks such as Spectre-PHT,
+Spectre-BTB, Spectre-RSB, Spectre-STL, SpectreV1, SpectreV2, SpectreV3,
+SpectreV4, NetSpectre.
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/178}{\#178}}
+
+\hypertarget{meltdown-style-attacks}{%
+\subsubsection{Meltdown-style attacks}\label{meltdown-style-attacks}}
+
+\tododiv{Add a description of Meltdown-style attacks such as Meltdown,
+Foreshadow, LazyFP, Fallout, ZombieLoad, RIDL.
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/178}{\#178}}
+
+\hypertarget{lvi-style-attacks}{%
+\subsubsection{LVI-style attacks}\label{lvi-style-attacks}}
+
+\tododiv{Add a description of LVI-style attacks.
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/178}{\#178}}
+
+\hypertarget{mitigations-against-transient-execution-attacks}{%
+\subsection{Mitigations against transient execution
+attacks}\label{mitigations-against-transient-execution-attacks}}
 
 \hypertarget{site-isolation}{%
 \subsubsection{Site isolation}\label{site-isolation}}
@@ -3456,6 +3593,13 @@ Stealthy Cache Attacks.''} In \emph{29th USENIX Security Symposium
 (USENIX Security 20)}.
 \url{https://www.usenix.org/conference/usenixsecurity20/presentation/briongos}.
 
+\leavevmode\vadjust pre{\hypertarget{ref-Bulck2020}{}}%
+Bulck, Jo Van, Daniel Moghimi, Michael Schwarz, Moritz Lippi, Marina
+Minkin, Daniel Genkin, Yuval Yarom, Berk Sunar, Daniel Gruss, and Frank
+Piessens. n.d. {``{LVI}: Hijacking Transient Execution Through
+Microarchitectural Load Value Injection.''} In \emph{2020 {IEEE}
+Symposium on Security and Privacy ({SP})}.
+
 \leavevmode\vadjust pre{\hypertarget{ref-Bulygin2008}{}}%
 Bulygin, Yuriy. 2008. {``{CPU} Side-Channels Vs. Virtualization
 Rootkits: The Good, the Bad, or the Ugly.''} In \emph{CPU Side-Channels
@@ -3607,6 +3751,12 @@ Association for Computing Machinery.
 {``Issue 3782: V8 Is Not -Fsanitize=null Clean.''} 2014. 2014.
 \url{https://bugs.chromium.org/p/v8/issues/detail?id=3782}.
 
+\leavevmode\vadjust pre{\hypertarget{ref-Kocher2019}{}}%
+Kocher, Paul, Jann Horn, Anders Fogh, Daniel Genkin, Daniel Gruss,
+Werner Haas, Mike Hamburg, et al. 2019. {``Spectre Attacks: Exploiting
+Speculative Execution.''} In \emph{2019 {IEEE} Symposium on Security and
+Privacy ({SP})}. {IEEE}. \url{https://doi.org/10.1109/sp.2019.00002}.
+
 \leavevmode\vadjust pre{\hypertarget{ref-Lee2017}{}}%
 Lee, Sangho, Ming-Wei Shih, Prasun Gera, Taesoo Kim, Hyesoon Kim, and
 Marcus Peinado. 2017. {``Inferring Fine-Grained Control Flow Inside
@@ -3641,6 +3791,13 @@ the Security Implications of AMD's Cache Way Predictors.''} In
 Communications Security, ASIA CCS 2020}.
 \url{https://doi.org/10.1145/3320269.3384746}.
 
+\leavevmode\vadjust pre{\hypertarget{ref-Lipp2018}{}}%
+Lipp, Moritz, Michael Schwarz, Daniel Gruss, Thomas Prescher, Werner
+Haas, Anders Fogh, Jann Horn, et al. 2018. {``Meltdown: Reading Kernel
+Memory from User Space.''} In \emph{27th USENIX Security Symposium
+(USENIX Security 18)}.
+\url{https://www.usenix.org/conference/usenixsecurity18/presentation/lipp}.
+
 \leavevmode\vadjust pre{\hypertarget{ref-McCall2019}{}}%
 McCall, John, and Ahmed Bougacha. 2019. {``Arm64e: An ABI for Pointer
 Authentication.''} 2019.
@@ -3662,6 +3819,14 @@ Bhatti, and Guy Gogniat. 2020. {``Winter Is Here! A Decade of
 Cache-Based Side-Channel Attacks, Detection \& Mitigation for {RSA}.''}
 \emph{Information Systems}, September.
 \url{https://doi.org/10.1016/j.is.2020.101524}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Mutlu2004}{}}%
+Mutlu, Onur, Hyesoon Kim, David N. Armstrong, and Yale N. Patt. 2004.
+{``Understanding the Effects of Wrong-Path Memory References on
+Processor Performance.''} In \emph{Proceedings of the 3rd Workshop on
+Memory Performance Issues in Conjunction with the 31st International
+Symposium on Computer Architecture - WMPI '04}.
+\url{https://doi.org/10.1145/1054943.1054951}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-ObsdJunk}{}}%
 {``OpenBSD Mitigation for Srandom Undefined Behavior.''} 2002. 2002.
