@@ -43,20 +43,22 @@ body {
   font-size: 0.875em;
 }
 
-/* Hide header link by default
-   except on mouse hover, or
-   click/tap (for mobile users) */
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-  visibility: hidden;
-  font-size: 85%;
+.selflink {
+  text-decoration: none;
 }
-h1:hover a, h1:active a,
-h2:hover a, h2:active a,
-h3:hover a, h3:active a,
-h4:hover a, h4:active a,
-h5:hover a, h5:active a,
-h6:hover a, h6:active a {
-  visibility: visible;
+.selflink::after {
+  content: ' 🔗';
+  font-size: 14pt;
+  vertical-align: middle;
+  opacity: 0.5;
+}
+h1:hover > .selflink::after,
+h2:hover > .selflink::after,
+h3:hover > .selflink::after,
+h4:hover > .selflink::after,
+h5:hover > .selflink::after,
+h6:hover > .selflink::after {
+  opacity: 1;
 }
 
 /* Set layout and size for top-level divs:
