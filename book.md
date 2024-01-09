@@ -1882,7 +1882,7 @@ the spy runs. This is probably going to incur quite a bit of performance
 overhead, and may also not always possible e.g. when victim and spy are running
 at the same time on 2 CPUs sharing a cache level.
 
-## Branch-predictor based side channels
+## Branch-predictor based side-channels
 
 ### Branch predictors
 
@@ -1995,6 +1995,8 @@ Should we also discuss more "covert" channels here such as power analysis, etc?
 
 ### Transient execution
 
+#### Speculative execution
+
 CPUs execute sequences of instructions. There are often dependencies between
 instructions in the sequence. That means that the outcome of one instruction
 influences the execution of a later instruction.
@@ -2081,7 +2083,9 @@ the correct, non-negated, value in register `x0`.
 
 Any instructions that are executed under so-called
 **mis-speculation**\index{mis-speculation}, are called **transient
-instructions**\index{transient instructions}.
+instructions**\index{transient instructions}.^[Transient instructions caused by
+incorrect branch-direction prediction have also been called **wrong-path
+instructions**\index{wrong-patch instructions} @Mutlu2004]
 
 The paragraph above says "*the system state that affects the correct execution
 of the program, needs to be undone*". There is a lot of system state that does
@@ -2110,15 +2114,100 @@ architectural state. [Could we find a good reference that explains
 micro-architectural versus architectural state in more detail? Is "Computer
 Architecture: A Quantitative Approach" the best reference available?]{.todo}
 
+**Faulting instructions**\index{faulting instructions} are instructions that
+generate an exception at run-time. Many instructions can generate an exception,
+and are hence **potentially faulting**. For example most load and store
+instructions generate an exception when the accessed address is not mapped.
+Since so many instructions can generate an exception, processors typically
+speculate that they do not generate an exception to enable more parallel
+execution.
+
+When an instruction faults, the execution typically continues at another
+location. Any instructions later in the instruction stream which are
+speculatively executed before the fault is detected are also called **transient
+instructions**\index{transient instructions}.
+
+There is a kind of control dependency between every potentially-faulting
+instruction and the next one, as the next instruction to be executed depends on
+whether the instruction generates an exception or not. We call out this
+dependency separately here as the transient execution attacks we'll describe
+next get classified based on whether they make use of transient instructions
+after a misprediction, or transient instructions after a faulting instruction.
+
+### Transient Execution Attacks
+
 **Transient execution attacks**\index{transient execution attacks} are a
 category of side-channel attacks that use the micro-architectural side-effects
 of transient execution as a side channel.
 
+The publication of the Spectre\index{Spectre} [@Kocher2019] and
+Meltdown\index{Meltdown} [@Lipp2018] attacks in 2018 started a period in which a
+large number of transient attacks were discovered and published. Most of them
+were given specific names, such as ZombieLoad, NetSpectre, LVI, Straight-line
+Speculation, etc. New variants continue to be published regularly.
+
+Covering each one of them in detail here would make the book overly lengthy, and
+may not necessarily help much with gaining a better insight in the common
+characteristics of transient attacks. Therefore, we'll try to put them into a
+few categories and describe the characteristics of each category.
+
+::: TODO Decide whether it's useful to talk about alternative categorizations of
+transient execution attacks, and if so, do add content. Consider pointing to
+[https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md](https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md)
+:::
+
+The categorization below is based on one proposed in [@Bulck2020]. There are
+alternative categorizations. [@Bulck2020] defines 4 big classes of transient
+side-channel attack categories, based on whether:
+
+1. The transient execution happens because of a misprediction, or a faulting
+   instruction.
+2. The attacker actively steers data or control flow of the transient execution
+   or not.
+
+This gives the following 4 categories:
+
++----------------+-------------------------+------------------------+
+|                | Steering of transient execution by attacker?     |
+|                +-------------------------+------------------------+
+|                | No (Leakage)            |  Yes (Injection)       |
++================+=========================+========================+
+| Misprediction  | Branch-predictor based  | Spectre-style attacks  |
+|                | side-channels           |                        |
++----------------+-------------------------+------------------------+
+| Faulting       | Meltdown-style attacks  | LVI-style attacks      |
++----------------+-------------------------+------------------------+
+
+#### Branch predictor-based side-channel attacks
+
+We discussed this category already in the section on
+[Side-channels through branch predictors](#side-channels-through-branch-predictors).
+
+#### Spectre-style attacks
+
 ::: TODO
-Write sections on specific transient execution attacks such as Spectre and
-Meltdown.
+Add a description of Spectre-style attacks such as Spectre-PHT, Spectre-BTB,
+Spectre-RSB, Spectre-STL, SpectreV1, SpectreV2, SpectreV3, SpectreV4,
+NetSpectre.
 [178]{.issue}
 :::
+
+#### Meltdown-style attacks
+
+::: TODO
+Add a description of Meltdown-style attacks such as Meltdown, Foreshadow,
+LazyFP, Fallout, ZombieLoad, RIDL.
+[178]{.issue}
+:::
+
+#### LVI-style attacks
+
+::: TODO
+Add a description of LVI-style attacks.
+[178]{.issue}
+:::
+
+### Mitigations against transient execution attacks
 
 #### Site isolation
 
