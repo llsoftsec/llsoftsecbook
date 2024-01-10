@@ -411,7 +411,7 @@ Developers</h1>
       Copyright 2023 Bill Wendling <a href="mailto:morbo@google.com" class="email">morbo@google.com</a><br />
       Copyright 2023 Lucian Popescu <a href="mailto:lucian.popescu187@gmail.com" class="email">lucian.popescu187@gmail.com</a><br />
     </p>
-  <p>Version: 0-170-ga969559</p>
+  <p>Version: 0-171-ga4be28c</p>
 </header>
 
 <main id="content">
@@ -2326,10 +2326,10 @@ lengthy, and may not necessarily help much with gaining a better insight
 in the common characteristics of transient attacks. Therefore, we’ll try
 to put them into a few categories and describe the characteristics of
 each category.</p>
-<p>::: TODO Decide whether it’s useful to talk about alternative
-categorizations of transient execution attacks, and if so, do add
-content. Consider pointing to <a href="https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md">https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md</a>
-:::</p>
+<span class="todo_ref" href="#todo_20"><sup>todo</sup></span>
+<span id="todo_20" class="todo">Decide whether it’s useful to talk about
+alternative categorizations of transient execution attacks, and if so,
+do add content. Consider pointing to <a href="https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md">https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md</a></span>
 <p>The categorization below is based on one proposed in <span class="citation" data-cites="Bulck2020">(<a href="#ref-Bulck2020" role="doc-biblioref">Bulck et al., n.d.</a>)</span>. There are
 alternative categorizations. <span class="citation" data-cites="Bulck2020">(<a href="#ref-Bulck2020" role="doc-biblioref">Bulck et al., n.d.</a>)</span> defines 4 big
 classes of transient side-channel attack categories, based on
@@ -2375,24 +2375,24 @@ side-channel attacks<a href="#branch-predictor-based-side-channel-attacks" class
 <p>We discussed this category already in the section on <a href="#side-channels-through-branch-predictors">Side-channels through
 branch predictors</a>.</p>
 <h4 data-number="3.6.2.2" id="spectre-style-attacks"><span class="header-section-number">3.6.2.2</span> Spectre-style attacks<a href="#spectre-style-attacks" class="selflink"></a></h4>
-<span class="todo_ref" href="#todo_20"><sup>todo</sup></span>
-<span id="todo_20" class="todo">Add a description of Spectre-style
+<span class="todo_ref" href="#todo_21"><sup>todo</sup></span>
+<span id="todo_21" class="todo">Add a description of Spectre-style
 attacks such as Spectre-PHT, Spectre-BTB, Spectre-RSB, Spectre-STL,
 SpectreV1, SpectreV2, SpectreV3, SpectreV4, NetSpectre. <a href="https://github.com/llsoftsec/llsoftsecbook/issues/178"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE3ODogb3BlbiI+PHRpdGxlPmlzc3VlIDE3ODogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTc4PC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNzg8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#178" /></a></span>
 <h4 data-number="3.6.2.3" id="meltdown-style-attacks"><span class="header-section-number">3.6.2.3</span> Meltdown-style attacks<a href="#meltdown-style-attacks" class="selflink"></a></h4>
-<span class="todo_ref" href="#todo_21"><sup>todo</sup></span>
-<span id="todo_21" class="todo">Add a description of Meltdown-style
+<span class="todo_ref" href="#todo_22"><sup>todo</sup></span>
+<span id="todo_22" class="todo">Add a description of Meltdown-style
 attacks such as Meltdown, Foreshadow, LazyFP, Fallout, ZombieLoad, RIDL.
 <a href="https://github.com/llsoftsec/llsoftsecbook/issues/178"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE3ODogb3BlbiI+PHRpdGxlPmlzc3VlIDE3ODogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTc4PC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNzg8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#178" /></a></span>
 <h4 data-number="3.6.2.4" id="lvi-style-attacks"><span class="header-section-number">3.6.2.4</span> LVI-style attacks<a href="#lvi-style-attacks" class="selflink"></a></h4>
-<span class="todo_ref" href="#todo_22"><sup>todo</sup></span>
-<span id="todo_22" class="todo">Add a description of LVI-style attacks.
+<span class="todo_ref" href="#todo_23"><sup>todo</sup></span>
+<span id="todo_23" class="todo">Add a description of LVI-style attacks.
 <a href="https://github.com/llsoftsec/llsoftsecbook/issues/178"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE3ODogb3BlbiI+PHRpdGxlPmlzc3VlIDE3ODogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTc4PC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNzg8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#178" /></a></span>
 <h3 data-number="3.6.3" id="mitigations-against-transient-execution-attacks"><span class="header-section-number">3.6.3</span> Mitigations against transient
 execution attacks<a href="#mitigations-against-transient-execution-attacks" class="selflink"></a></h3>
 <h4 data-number="3.6.3.1" id="site-isolation"><span class="header-section-number">3.6.3.1</span> Site isolation<a href="#site-isolation" class="selflink"></a></h4>
-<span class="todo_ref" href="#todo_23"><sup>todo</sup></span>
-<span id="todo_23" class="todo">Write section on site isolation as a
+<span class="todo_ref" href="#todo_24"><sup>todo</sup></span>
+<span id="todo_24" class="todo">Write section on site isolation as a
 SpectreV1 mitigation <a href="https://github.com/llsoftsec/llsoftsecbook/issues/179"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE3OTogb3BlbiI+PHRpdGxlPmlzc3VlIDE3OTogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTc5PC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNzk8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#179" /></a></span>
 <h2 data-number="3.7" id="physical-access-side-channel-attacks"><span class="header-section-number">3.7</span> Physical access side-channel
 attacks<a href="#physical-access-side-channel-attacks" class="selflink"></a></h2>
@@ -2448,8 +2448,8 @@ world-wide.</p>
 linkers and libraries, are a viable route to silently infect many other
 applications, and there is no doubt that there will be more such attacks
 in the future. Let us now explore what we can do about these.</p>
-<span class="todo_ref" href="#todo_24"><sup>todo</sup></span>
-<span id="todo_24" class="todo">Explain how these vulnerabilities arise
+<span class="todo_ref" href="#todo_25"><sup>todo</sup></span>
+<span id="todo_25" class="todo">Explain how these vulnerabilities arise
 and how to mitigate them. <a href="https://github.com/llsoftsec/llsoftsecbook/issues/180"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE4MDogb3BlbiI+PHRpdGxlPmlzc3VlIDE4MDogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTgwPC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxODA8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#180" /></a></span>
 <h1 data-number="5" id="compiler-introduced-security-vulnerabilities"><span class="header-section-number">5</span> Compiler introduced security
 vulnerabilities<a href="#compiler-introduced-security-vulnerabilities" class="selflink"></a></h1>
@@ -2461,8 +2461,8 @@ compiling the login program and can insert a backdoor so that he can use
 the system as any user. However most common cases are where involuntary
 security vulnerabilities are added in the generated binary by the
 compiler.</p>
-<span class="todo_ref" href="#todo_25"><sup>todo</sup></span>
-<span id="todo_25" class="todo">Explain how code that results in
+<span class="todo_ref" href="#todo_26"><sup>todo</sup></span>
+<span id="todo_26" class="todo">Explain how code that results in
 undefined behaviour can often work as the programmer expected until some
 optimisation is applied, and perhaps even talk a bit about why compilers
 rely on the absence of undefined behaviour in ways that appear
@@ -2624,8 +2624,8 @@ GNU presents in <span class="citation" data-cites="GNUMemSet">(<a href="#ref-GNU
 Memset_explicit,”</span> n.d.</a>)</span>. The information may be
 present somewhere in the machine, even if it was erased from memory.</p>
 <h1 data-number="6" id="physical-attacks"><span class="header-section-number">6</span> Physical attacks<a href="#physical-attacks" class="selflink"></a></h1>
-<span class="todo_ref" href="#todo_26"><sup>todo</sup></span>
-<span id="todo_26" class="todo">This chapter should probably be moved
+<span class="todo_ref" href="#todo_27"><sup>todo</sup></span>
+<span id="todo_27" class="todo">This chapter should probably be moved
 under section ‘Physical access side-channel attacks’ higher-up <a href="https://github.com/llsoftsec/llsoftsecbook/issues/181"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE4MTogb3BlbiI+PHRpdGxlPmlzc3VlIDE4MTogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTgxPC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxODE8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#181" /></a></span>
 <h2 data-number="6.1" id="overview"><span class="header-section-number">6.1</span> Overview<a href="#overview" class="selflink"></a></h2>
 <p>There are many types of physical attacks – these attack methods focus
@@ -2770,8 +2770,8 @@ conditional branch. For example, many loop counters in crypto operation
 can be independent to the crypto key or input data values, so there is
 no need to change those loops.</li>
 </ul>
-<span class="todo_ref" href="#todo_27"><sup>todo</sup></span>
-<span id="todo_27" class="todo">There is overlap with section
+<span class="todo_ref" href="#todo_28"><sup>todo</sup></span>
+<span id="todo_28" class="todo">There is overlap with section
 timing-side-channels. How to best consolidate that? <a href="https://github.com/llsoftsec/llsoftsecbook/issues/182"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE4Mjogb3BlbiI+PHRpdGxlPmlzc3VlIDE4Mjogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTgyPC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxODI8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#182" /></a></span>
 <p>There are additional software techniques to mitigate power leakage.
 One of the most well-known techniques is masking (e.g. Boolean,
@@ -2826,8 +2826,8 @@ skip, etc. More details about the concept of fault models can be found
 in the paper “Fault Attacks on Secure Embedded Software: Threats, Design
 and Evaluation” (https://arxiv.org/pdf/2003.10513.pdf), where a good
 illustration of the concept is shown in figure 1 of that paper.</p>
-<span class="todo_ref" href="#todo_28"><sup>todo</sup></span>
-<span id="todo_28" class="todo">Make the above reference to a paper use
+<span class="todo_ref" href="#todo_29"><sup>todo</sup></span>
+<span id="todo_29" class="todo">Make the above reference to a paper use
 bibtex. <a href="https://github.com/llsoftsec/llsoftsecbook/issues/159"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE1OTogb3BlbiI+PHRpdGxlPmlzc3VlIDE1OTogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTU5PC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNTk8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#159" /></a></span>
 <p>Using glitching methods, there are several common ways of attacking a
 system. For example:</p>
@@ -2857,8 +2857,8 @@ software developers need to check that optimizations carried out by
 compilers (C/C++) do not impact the mitigation.</p>
 <h1 data-number="7" id="other-security-topics-relevant-for-compiler-developers"><span class="header-section-number">7</span> Other security topics relevant
 for compiler developers<a href="#other-security-topics-relevant-for-compiler-developers" class="selflink"></a></h1>
-<span class="todo_ref" href="#todo_29"><sup>todo</sup></span>
-<span id="todo_29" class="todo">Write chapter with other security
+<span class="todo_ref" href="#todo_30"><sup>todo</sup></span>
+<span id="todo_30" class="todo">Write chapter with other security
 topics.</span>
 <h1 class="unnumbered" id="appendix-contribution-guidelines">Appendix:
 contribution guidelines<a href="#appendix-contribution-guidelines" class="selflink"></a></h1>

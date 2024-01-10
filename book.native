@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-170-ga969559" )
+          , ( "VERSION" , MetaString "0-171-ga4be28c" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -32605,65 +32605,62 @@ Pandoc
       , Space
       , Str "category."
       ]
-  , Para
-      [ Str ":::"
-      , Space
-      , Str "TODO"
-      , Space
-      , Str "Decide"
-      , Space
-      , Str "whether"
-      , Space
-      , Str "it\8217s"
-      , Space
-      , Str "useful"
-      , Space
-      , Str "to"
-      , Space
-      , Str "talk"
-      , Space
-      , Str "about"
-      , Space
-      , Str "alternative"
-      , Space
-      , Str "categorizations"
-      , Space
-      , Str "of"
-      , SoftBreak
-      , Str "transient"
-      , Space
-      , Str "execution"
-      , Space
-      , Str "attacks,"
-      , Space
-      , Str "and"
-      , Space
-      , Str "if"
-      , Space
-      , Str "so,"
-      , Space
-      , Str "do"
-      , Space
-      , Str "add"
-      , Space
-      , Str "content."
-      , Space
-      , Str "Consider"
-      , Space
-      , Str "pointing"
-      , Space
-      , Str "to"
-      , SoftBreak
-      , Link
-          ( "" , [] , [] )
-          [ Str
-              "https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md"
+  , Div
+      ( "" , [ "TODO" ] , [] )
+      [ Para
+          [ Str "Decide"
+          , Space
+          , Str "whether"
+          , Space
+          , Str "it\8217s"
+          , Space
+          , Str "useful"
+          , Space
+          , Str "to"
+          , Space
+          , Str "talk"
+          , Space
+          , Str "about"
+          , Space
+          , Str "alternative"
+          , Space
+          , Str "categorizations"
+          , Space
+          , Str "of"
+          , SoftBreak
+          , Str "transient"
+          , Space
+          , Str "execution"
+          , Space
+          , Str "attacks,"
+          , Space
+          , Str "and"
+          , Space
+          , Str "if"
+          , Space
+          , Str "so,"
+          , Space
+          , Str "do"
+          , Space
+          , Str "add"
+          , Space
+          , Str "content."
+          , Space
+          , Str "Consider"
+          , Space
+          , Str "pointing"
+          , Space
+          , Str "to"
+          , SoftBreak
+          , Link
+              ( "" , [] , [] )
+              [ Str
+                  "https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md"
+              ]
+              ( "https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md"
+              , ""
+              )
           ]
-          ( "https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md"
-          , ""
-          )
-      , SoftBreak
-      , Str ":::"
       ]
   , Para
       [ Str "The"
