@@ -2151,7 +2151,8 @@ may not necessarily help much with gaining a better insight in the common
 characteristics of transient attacks. Therefore, we'll try to put them into a
 few categories and describe the characteristics of each category.
 
-::: TODO Decide whether it's useful to talk about alternative categorizations of
+::: TODO
+Decide whether it's useful to talk about alternative categorizations of
 transient execution attacks, and if so, do add content. Consider pointing to
 [https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md](https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md)
 :::
