@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-171-ga4be28c" )
+          , ( "VERSION" , MetaString "0-172-g690e134" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -23793,6 +23793,37 @@ Pandoc
               ( "https://github.com/pietroborrello/constantine" , "" )
           , SoftBreak
           , Span ( "" , [ "issue" ] , [] ) [ Str "172" ]
+          ]
+      , SoftBreak
+      , Span
+          ( "" , [ "todo" ] , [] )
+          [ Str "Also"
+          , Space
+          , Str "discuss"
+          , Space
+          , Str "the"
+          , Space
+          , Str "Jasmin"
+          , Space
+          , Str "language"
+          , Space
+          , Str "and"
+          , Space
+          , Str "compiler"
+          , SoftBreak
+          , Link
+              ( "" , [] , [] )
+              [ Str "1" ]
+              ( "https://members.loria.fr/VLaporte/files/CCS2021_StructuredLeakage.pdf"
+              , ""
+              )
+          , SoftBreak
+          , Link
+              ( "" , [] , [] )
+              [ Str "2" ]
+              ( "https://dl.acm.org/doi/10.1145/3548606.3560689" , "" )
+          , SoftBreak
+          , Span ( "" , [ "issue" ] , [] ) [ Str "213" ]
           ]
       ]
   , Para
