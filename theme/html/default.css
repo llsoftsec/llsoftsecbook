@@ -60,6 +60,23 @@ h5:hover > .selflink::after,
 h6:hover > .selflink::after {
   opacity: 1;
 }
+.suggestedit {
+  text-decoration: none;
+}
+.suggestedit::after {
+  content: ' ✎';
+  font-size: 14pt;
+  vertical-align: middle;
+  opacity: 0.5;
+}
+h1:hover > .suggestedit::after,
+h2:hover > .suggestedit::after,
+h3:hover > .suggestedit::after,
+h4:hover > .suggestedit::after,
+h5:hover > .suggestedit::after,
+h6:hover > .suggestedit::after {
+  opacity: 1;
+}
 
 /* Set layout and size for top-level divs:
   +-------------------------------------------------------+

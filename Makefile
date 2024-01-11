@@ -46,6 +46,7 @@ build/book.html: book.md book.bib Makefile build theme/html/pandoc_template.html
 				 theme/html/markup_issue.lua \
 				 theme/html/markup_todo.lua \
 				 theme/fignos.lua \
+				 theme/html/add_edit_to_headers.lua \
 				 build/default.css $(svgimages)
 	pandoc $< -t html \
 		--template theme/html/pandoc_template.html \
@@ -53,6 +54,7 @@ build/book.html: book.md book.bib Makefile build theme/html/pandoc_template.html
 		--lua-filter theme/html/markup_issue.lua \
 		--lua-filter theme/html/markup_todo.lua \
 		--lua-filter theme/html/convert_to_sidenote.lua \
+		--lua-filter theme/html/add_edit_to_headers.lua \
 		-M css=build/default.css \
 		--default-image-extension=svg \
 		-o $@ $(PANDOCFLAGS) $(COMMONFILTERS)
