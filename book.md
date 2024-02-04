@@ -1331,8 +1331,7 @@ will include bounds checks.
 
 Successfully using bounds checking compiler features for a large codebase
 requires substantial effort. An example of this is refactoring the Linux kernel
-to use bounds checks for flexible arrays, as described in [Kees Cook's
-blog]([@Cook2023]).
+to use bounds checks for flexible arrays, as described in [@Cook2023].
 
 There are also hardware-based mitigations for violations of spatial memory
 safety. For example,
