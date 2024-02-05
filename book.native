@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-173-g9c0b133" )
+          , ( "VERSION" , MetaString "0-175-gb742df0" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -19780,15 +19780,17 @@ Pandoc
       , Space
       , Str "in"
       , Space
-      , Link
-          ( "" , [] , [] )
-          [ Str "Kees"
-          , Space
-          , Str "Cook\8217s"
-          , SoftBreak
-          , Str "blog"
+      , Cite
+          [ Citation
+              { citationId = "Cook2023"
+              , citationPrefix = []
+              , citationSuffix = []
+              , citationMode = NormalCitation
+              , citationNoteNum = 57
+              , citationHash = 0
+              }
           ]
-          ( "%5B@Cook2023%5D" , "" )
+          [ Str "[@Cook2023]" ]
       , Str "."
       ]
   , Para
@@ -20717,7 +20719,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 59
+              , citationNoteNum = 60
               , citationHash = 0
               }
           ]
@@ -21082,7 +21084,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 60
+              , citationNoteNum = 61
               , citationHash = 0
               }
           ]
@@ -21779,7 +21781,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 61
+              , citationNoteNum = 62
               , citationHash = 0
               }
           ]
@@ -22071,7 +22073,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 62
+              , citationNoteNum = 63
               , citationHash = 0
               }
           ]
@@ -22291,7 +22293,7 @@ Pandoc
                             , citationPrefix = []
                             , citationSuffix = []
                             , citationMode = NormalCitation
-                            , citationNoteNum = 63
+                            , citationNoteNum = 64
                             , citationHash = 0
                             }
                         ]
@@ -22655,7 +22657,7 @@ Pandoc
                     , citationPrefix = []
                     , citationSuffix = []
                     , citationMode = NormalCitation
-                    , citationNoteNum = 64
+                    , citationNoteNum = 65
                     , citationHash = 0
                     }
                 ]
@@ -22887,7 +22889,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 65
+              , citationNoteNum = 66
               , citationHash = 0
               }
           ]
@@ -22901,7 +22903,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 66
+              , citationNoteNum = 67
               , citationHash = 0
               }
           ]
@@ -23670,7 +23672,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 67
+              , citationNoteNum = 68
               , citationHash = 0
               }
           ]
@@ -23722,7 +23724,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 68
+              , citationNoteNum = 69
               , citationHash = 0
               }
           ]
@@ -23881,7 +23883,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 69
+              , citationNoteNum = 70
               , citationHash = 0
               }
           ]
@@ -23901,7 +23903,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 70
+              , citationNoteNum = 71
               , citationHash = 0
               }
           ]
@@ -25803,7 +25805,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = AuthorInText
-              , citationNoteNum = 71
+              , citationNoteNum = 72
               , citationHash = 0
               }
           ]
@@ -26194,7 +26196,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 72
+              , citationNoteNum = 73
               , citationHash = 0
               }
           ]
@@ -26553,7 +26555,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 73
+              , citationNoteNum = 74
               , citationHash = 0
               }
           ]
@@ -26841,7 +26843,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 74
+              , citationNoteNum = 75
               , citationHash = 0
               }
           ]
@@ -26933,7 +26935,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 75
+              , citationNoteNum = 76
               , citationHash = 0
               }
           ]
@@ -27092,7 +27094,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 76
+              , citationNoteNum = 77
               , citationHash = 0
               }
           ]
@@ -27107,7 +27109,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 77
+              , citationNoteNum = 78
               , citationHash = 0
               }
           ]
@@ -27122,7 +27124,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 78
+              , citationNoteNum = 79
               , citationHash = 0
               }
           ]
@@ -27137,7 +27139,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 79
+              , citationNoteNum = 80
               , citationHash = 0
               }
           ]
@@ -27152,7 +27154,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 80
+              , citationNoteNum = 81
               , citationHash = 0
               }
           ]
@@ -27167,7 +27169,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 81
+              , citationNoteNum = 82
               , citationHash = 0
               }
           ]
@@ -27200,7 +27202,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 82
+              , citationNoteNum = 83
               , citationHash = 0
               }
           ]
@@ -27833,7 +27835,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 83
+              , citationNoteNum = 84
               , citationHash = 0
               }
           ]
@@ -27847,7 +27849,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 84
+              , citationNoteNum = 85
               , citationHash = 0
               }
           ]
@@ -28427,7 +28429,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 85
+              , citationNoteNum = 86
               , citationHash = 0
               }
           ]
@@ -28485,7 +28487,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 86
+              , citationNoteNum = 87
               , citationHash = 0
               }
           ]
@@ -28828,7 +28830,7 @@ Pandoc
                           , Str "4.2.3"
                           ]
                       , citationMode = NormalCitation
-                      , citationNoteNum = 87
+                      , citationNoteNum = 88
                       , citationHash = 0
                       }
                   ]
@@ -29257,7 +29259,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 88
+              , citationNoteNum = 89
               , citationHash = 0
               }
           ]
@@ -29274,7 +29276,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 89
+              , citationNoteNum = 90
               , citationHash = 0
               }
           ]
@@ -29587,7 +29589,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 90
+              , citationNoteNum = 91
               , citationHash = 0
               }
           ]
@@ -29604,7 +29606,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 91
+              , citationNoteNum = 92
               , citationHash = 0
               }
           ]
@@ -29766,7 +29768,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 92
+              , citationNoteNum = 93
               , citationHash = 0
               }
           ]
@@ -31520,7 +31522,7 @@ Pandoc
                       , citationPrefix = []
                       , citationSuffix = []
                       , citationMode = AuthorInText
-                      , citationNoteNum = 93
+                      , citationNoteNum = 94
                       , citationHash = 0
                       }
                   ]
@@ -32434,7 +32436,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 94
+              , citationNoteNum = 95
               , citationHash = 0
               }
           ]
@@ -32451,7 +32453,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 95
+              , citationNoteNum = 96
               , citationHash = 0
               }
           ]
@@ -32718,7 +32720,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 96
+              , citationNoteNum = 97
               , citationHash = 0
               }
           ]
@@ -32739,7 +32741,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 97
+              , citationNoteNum = 98
               , citationHash = 0
               }
           ]
@@ -33450,7 +33452,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 98
+              , citationNoteNum = 99
               , citationHash = 0
               }
           ]
@@ -33603,7 +33605,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 99
+              , citationNoteNum = 100
               , citationHash = 0
               }
           ]
@@ -33696,7 +33698,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 100
+              , citationNoteNum = 101
               , citationHash = 0
               }
           ]
@@ -33882,7 +33884,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 101
+              , citationNoteNum = 102
               , citationHash = 0
               }
           ]
@@ -34036,7 +34038,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 102
+              , citationNoteNum = 103
               , citationHash = 0
               }
           ]
@@ -34312,7 +34314,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 103
+              , citationNoteNum = 104
               , citationHash = 0
               }
           ]
@@ -34589,7 +34591,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 104
+              , citationNoteNum = 105
               , citationHash = 0
               }
           ]
@@ -34601,7 +34603,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 105
+              , citationNoteNum = 106
               , citationHash = 0
               }
           ]
@@ -34613,7 +34615,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 106
+              , citationNoteNum = 107
               , citationHash = 0
               }
           ]
@@ -34769,7 +34771,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 107
+              , citationNoteNum = 108
               , citationHash = 0
               }
           ]
@@ -35164,7 +35166,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 108
+              , citationNoteNum = 109
               , citationHash = 0
               }
           ]
@@ -35180,7 +35182,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 109
+              , citationNoteNum = 110
               , citationHash = 0
               }
           ]
@@ -35571,7 +35573,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 110
+              , citationNoteNum = 111
               , citationHash = 0
               }
           ]
@@ -35587,7 +35589,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 111
+              , citationNoteNum = 112
               , citationHash = 0
               }
           ]
@@ -35894,7 +35896,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 112
+              , citationNoteNum = 113
               , citationHash = 0
               }
           ]
@@ -35985,7 +35987,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 113
+              , citationNoteNum = 114
               , citationHash = 0
               }
           ]
@@ -36157,7 +36159,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 114
+              , citationNoteNum = 115
               , citationHash = 0
               }
           ]
@@ -36315,7 +36317,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 115
+              , citationNoteNum = 116
               , citationHash = 0
               }
           ]
@@ -36380,7 +36382,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 116
+              , citationNoteNum = 117
               , citationHash = 0
               }
           ]

@@ -178,7 +178,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2023 Lucian Popescu
 \href{mailto:lucian.popescu187@gmail.com}{\nolinkurl{lucian.popescu187@gmail.com}}\\
 
-Version 0-173-g9c0b133
+Version 0-175-gb742df0
 \clearpage
 
 {
@@ -1725,7 +1725,7 @@ hardened library will include bounds checks.
 Successfully using bounds checking compiler features for a large
 codebase requires substantial effort. An example of this is refactoring
 the Linux kernel to use bounds checks for flexible arrays, as described
-in \href{\%5B@Cook2023\%5D}{Kees Cook's blog}.
+in (\protect\hyperlink{ref-Cook2023}{Cook 2023}).
 
 There are also hardware-based mitigations for violations of spatial
 memory safety. For example,
@@ -2812,8 +2812,7 @@ This gives the following 4 categories:
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3472}}@{}}
 \toprule\noalign{}
 \multirow{2}{*}{\begin{minipage}[b]{\linewidth}\raggedright
-\end{minipage}} &
-\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.7083} + 2\tabcolsep}@{}}{%
+\end{minipage}} & \multicolumn{2}{l@{}}{%
 \begin{minipage}[b]{\linewidth}\raggedright
 Steering of transient execution by attacker?
 \end{minipage}} \\
@@ -3628,6 +3627,10 @@ Integrity Under Stack Attacks.''} In \emph{Proceedings of the 22nd ACM
 SIGSAC Conference on Computer and Communications Security}, 952--63. CCS
 '15. New York, NY, USA: Association for Computing Machinery.
 \url{https://doi.org/10.1145/2810103.2813671}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Cook2023}{}}%
+Cook, Kees. 2023. {``Bounded Flexible Arrays in {C}.''} 2023.
+\url{https://people.kernel.org/kees/bounded-flexible-arrays-in-c}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Cox2015}{}}%
 Cox, Joseph. 2015. {``Hack Brief: Malware Sneaks into the Chinese iOS
