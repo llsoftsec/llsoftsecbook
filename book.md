@@ -1,7 +1,7 @@
 ---
 SPDX-License-Identifier: CC-BY-4.0
 copyright:
-  - SPDX-FileCopyrightText: Copyright 2021-2022 Arm Limited <open-source-office@arm.com>
+  - SPDX-FileCopyrightText: Copyright 2021-2024 Arm Limited <open-source-office@arm.com>
   - SPDX-FileCopyrightText: Copyright 2023 Bill Wendling <morbo@google.com>
   - SPDX-FileCopyrightText: Copyright 2023 Lucian Popescu <lucian.popescu187@gmail.com>
 title: 'Low-Level Software Security for Compiler Developers'
