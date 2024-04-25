@@ -18,10 +18,11 @@ COMMONFILTERS = \
           --citeproc
 
 .PHONY: all clean pdf html
-all: pdf html default_pandoc_html_template default_pandoc_latex_template native
+all: pdf html default_pandoc_html_template default_pandoc_latex_template native epub
 pdf: build/book.pdf
 html: build/book.html build/default.css build/index.html
 native: build/book.native
+epub: build/book.epub
 
 # The source of images are in SVG format.
 # The below lines define to convert the SVG source images to PDF images such
@@ -61,6 +62,9 @@ build/book.html: book.md book.bib Makefile build theme/html/pandoc_template.html
 
 build/book.native: book.md book.bib Makefile build
 	pandoc $< -t native -o $@ $(PANDOCFLAGS)
+
+build/book.epub: book.md book.bib Makefile build
+	pandoc $< -t epub3 --default-image-extension=svg -o $@ $(PANDOCFLAGS)
 
 build/index.html: build/book.html build
 	cp build/book.html build/index.html
