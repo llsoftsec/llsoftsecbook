@@ -4,7 +4,7 @@
 [![Build book with docker container CI](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml/badge.svg)](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml)
 [![Discord chat](https://img.shields.io/discord/1073537588234829845?logo=discord)](https://discord.gg/Bm55Z9Ppgn)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-22-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This book aims to provide a structured, broad overview of all attacks and
@@ -131,6 +131,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://kawcco.com"><img src="https://avatars.githubusercontent.com/u/25624882?v=4?s=100" width="100px;" alt="Kyle Anthony Williams"/><br /><sub><b>Kyle Anthony Williams</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/issues?q=author%3ASuperSonicHub1" title="Bug reports">🐛</a> <a href="#ideas-SuperSonicHub1" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/swarnpriya"><img src="https://avatars.githubusercontent.com/u/50599825?v=4?s=100" width="100px;" alt="Swarn Priya"/><br /><sub><b>Swarn Priya</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/issues?q=author%3Aswarnpriya" title="Bug reports">🐛</a> <a href="#ideas-swarnpriya" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://fosstodon.org/@kees"><img src="https://avatars.githubusercontent.com/u/1110841?v=4?s=100" width="100px;" alt="Kees Cook"/><br /><sub><b>Kees Cook</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=kees" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/rommelDB"><img src="https://avatars.githubusercontent.com/u/39778106?v=4?s=100" width="100px;" alt="Rommel Quintanilla"/><br /><sub><b>Rommel Quintanilla</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=rommelDB" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
