@@ -63,6 +63,20 @@ $-- Implement the button row at the top of the screen.
       data-bs-placement="bottom">
       <span class="navbar-toggler-icon"></span>
     </a>
+    <span class="dropdown" id="download-dropdown">
+      <button
+        class="btn btn-outline-primary btn-sm dropdown-toggle"
+        id="download-button"
+        type="button" id="downloadDropdownMenuButton"
+        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+        >
+        <i class="bi bi-download"></i></button>
+      <div class="dropdown-menu" aria-labelledby="downloadDropdownMenuButton">
+        <a id="html-download-link" class="dropdown-item" href="LLSoftSecBook.html" target="_blank">HTML</a>
+        <a id="pdf-download-link" class="dropdown-item" href="LLSoftSecBook.pdf" target="_blank">PDF</a>
+        <a id="epub-download-link" class="dropdown-item" href="LLSoftSecBook.epub" target="_blank">EPub</a>
+      </div>
+    </span>
     <a id="view-source-button"
       class="btn btn-sm btn-outline-primary" role="button"
       data-bs-placement="bottom"
