@@ -18,11 +18,13 @@ COMMONFILTERS = \
           --citeproc
 
 .PHONY: all clean pdf html
-all: pdf html default_pandoc_html_template default_pandoc_latex_template native epub
+all: pdf html default_pandoc_html_template default_pandoc_latex_template native epub \
+     downloads
 pdf: build/book.pdf
 html: build/book.html build/default.css build/index.html
 native: build/book.native
 epub: build/book.epub
+downloads: build/LLSoftSecBook.pdf build/LLSoftSecBook.html build/LLSoftSecBook.epub
 
 # The source of images are in SVG format.
 # The below lines define to convert the SVG source images to PDF images such
@@ -68,6 +70,15 @@ build/book.epub: book.md book.bib Makefile build
 
 build/index.html: build/book.html build
 	cp build/book.html build/index.html
+
+build/LLSoftSecBook.pdf: build/book.pdf build
+	cp build/book.pdf build/LLSoftSecBook.pdf
+
+build/LLSoftSecBook.html: build/book.html build
+	cp build/book.html build/LLSoftSecBook.html
+
+build/LLSoftSecBook.epub: build/book.epub build
+	cp build/book.epub build/LLSoftSecBook.epub
 
 build/book.tex: book.md book.bib Makefile build theme/tex/pandoc_template.tex \
 				theme/html/markup_issue.lua \
