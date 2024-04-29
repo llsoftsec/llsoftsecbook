@@ -19,14 +19,15 @@ jobs:
     - name: build
       run: ./build_with_docker.sh
 
-    - name: Archive PDF and HTML output
+    - name: Archive PDF, HTML and EPUB output
       uses: actions/upload-artifact@v2
       with:
-        name: HTML and PDF books
+        name: HTML, PDF and EPUB books
         path: |
           build/*.pdf
           build/*.html
           build/*.css
+          build/*.epub
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
