@@ -1,0 +1,24 @@
+.todo,
+.TODO,
+.missingcontent {
+    color: gray;
+    font-style: italic;
+}
+
+.todo::before,
+.TODO::before {
+    font-weight: bold;
+    color: navy;
+    content: "Todo ";
+}
+
+.missingcontent::before {
+    font-weight: bold;
+    color: navy;
+    content: "Missing content ";
+}
+
+.todo_ref,
+.missingcontent_ref {
+    display: none;
+}
