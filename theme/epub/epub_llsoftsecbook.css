@@ -3,6 +3,7 @@
 .missingcontent {
     color: gray;
     font-style: italic;
+    background-color: whitesmoke;
 }
 
 .todo::before,
