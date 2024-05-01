@@ -65,8 +65,11 @@ build/book.html: book.md book.bib Makefile build theme/html/pandoc_template.html
 build/book.native: book.md book.bib Makefile build
 	pandoc $< -t native -o $@ $(PANDOCFLAGS)
 
-build/book.epub: book.md book.bib Makefile build
-	pandoc $< -t epub3 --default-image-extension=svg -o $@ $(PANDOCFLAGS)
+build/book.epub: book.md book.bib Makefile build theme/epub/epub_llsoftsecbook.css
+	pandoc $< -t epub3 --default-image-extension=svg \
+		--css=theme/epub/epub_llsoftsecbook.css \
+		--lua-filter theme/html/markup_issue.lua \
+		-o $@ $(PANDOCFLAGS)
 
 build/index.html: build/book.html build
 	cp build/book.html build/index.html
