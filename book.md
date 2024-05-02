@@ -2485,6 +2485,137 @@ However it is not trivial to implement such a functionality, as GNU presents in
 [@GNUMemSet]. The information may be present somewhere in the machine, even if
 it was erased from memory.
 
+# Underhanded code
+
+**Underhanded code** is code that looks like it is doing one thing but
+actually does something else. It usually refers to code nefariously
+written in this way to sneak malicious behavior not obviously visible
+on code inspection. However the same applies also when the
+underhanded behavior has been added by mistake - in fact the ideal
+attack would also give the attacker the possibility to say it was a
+honest mistake.
+
+[@Wheeler2020] provides a more systematic view of underhanded code
+than is given here. This chapter present some examples to give an
+overview of the attack and how a compiler can (and can't) help,
+although this probably doesn't classify as "low level" software
+security.
+
+## Assignment and equality confusion
+
+Probably the most classic example of underhanded code in C-style
+languages is code that takes advantage of the fact that assignment
+(`=`) and equality operator `==` visually looks very similar.
+
+```
+void somefunction(UserPermissionLevel permission_level) {
+
+   if (permission_level = LEVEL_ADMIN) {
+       do_admin_action();
+	   return;
+   }
+   report_access_violation();
+}
+```
+
+Here `permission_level` is not compared to `LEVEL_ADMIN`, but rather
+assigned that value. Meaning that if `LEVEL_ADMIN` is a non-zero value
+the if condition will evaluate to true.
+
+Both clang and gcc detects this example with warning option
+`-Wparentheses`. Adding a pair of parentheses around the assignment
+silences that warning. Those extra parentheses would probably draw a
+reviewer's attention in this specific example but had the condition
+been more complex with multiple subexpressions combined with `||` and
+`&&` the parentheses had looked normal.
+
+This could be written off as a language design problem. Traditionally
+Python has not supported using assignment as expressions, effectively
+sidestepping this particular problem. When assignment expressions were
+added to the language [@pep572] (in python 3.8) the more visually
+distinct "walrus operator" `:=` was used to avoid this risk of
+confusing with comparison operator. Even in cases where it is an
+existing language the compiler can provide options to forbid risky
+constructs for those how want and can opt in to it, essentially
+creating a new language that is a subset of the original language.
+
+## goto fail
+
+The "goto-fail" bug, officially known as CVE-2014-1266, caused Apple
+devices to not correctly validate certificates in TLS connections. It
+effectively disables the verification the function is supposed to do,
+and is easy to miss in code review. This was most likely a mistake
+that was not added intentionally, but still has the characteristics of
+underhanded code.
+
+The bug was caused by a duplicated "goto fail" line, which was
+indented making it look like it was guarded by previous if clause,
+when it in fact always was executed. Since the `err` variable was set
+to 0 (i.e no error) inside the if, the function would always return 0.
+
+```
+OSStatus
+SSLVerifySignedServerKeyExchange(...)
+{
+    OSStatus err;
+    ...
+
+    if ((err = SSLHashSHA1.update(&hashCtx, &serverRandom)) != 0)
+        goto fail;
+    if ((err = SSLHashSHA1.update(&hashCtx, &signedParams)) != 0)
+        goto fail;
+        goto fail;
+    if ((err = SSLHashSHA1.final(&hashCtx, &hashOut)) != 0)
+        goto fail;
+    ...
+
+fail:
+    return err;
+}
+```
+
+At the time of they bug they didn't but nowadays both gcc and clang
+have a `-Wmisleading-indentation` option that detects kind this
+problem.
+
+Also automatic formatting such as clang-format would help finding this
+issue as it will fix the misleading indentation.
+
+## Trojan Source
+
+"Trojan Source" attacks described by [@Boucher2023] is another way
+underhanded code could be achieved by doing something that makes the
+editor (or other thing that displays code to user) render the code in
+a different way than the compiler parses it.
+
+This is done by using unicode features. Support for bidirectional text
+is one such feature, where it has special chars to mark regions of
+text to be right-to-left or left-to-right to allow mixing e.g Arabic
+and English in the same document. If these are used in cunning ways
+they can make the text render in a way that makes a word look like it
+is inside a comment but to the compiler which parses it in the order
+it appears in the file it is after the comment.
+
+`gcc` provides `-Wbidi-chars` to detect usage of writing direction
+markers.
+
+Another variant of "trojan source" is usage of homoglyphs, different
+characters that looks similar or even identical (depending on
+font). As an example unicode contains the character "Division Slash"
+(U+2215) which is different from the ordinary ascii slash "Solidus"
+(U+002F).
+
+```
+/* Important comment */
+check_permissions();
+/* Another comment */
+```
+
+If the final slash on the first line isn't a slash but another
+similarly looking character that the compiler doesn't understand as
+end of comment it means that the whole snippet is commented out.
+
+
 # Physical attacks
 
 ::: TODO
