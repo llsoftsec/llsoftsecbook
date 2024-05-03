@@ -235,6 +235,17 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "wanders",
+      "name": "Anders Waldenborg",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1566016?v=4",
+      "profile": "https://github.com/wanders",
+      "contributions": [
+        "bug",
+        "ideas",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
