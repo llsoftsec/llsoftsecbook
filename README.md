@@ -4,7 +4,7 @@
 [![Build book with docker container CI](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml/badge.svg)](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml)
 [![Discord chat](https://img.shields.io/discord/1073537588234829845?logo=discord)](https://discord.gg/Bm55Z9Ppgn)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-22-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-23-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This book aims to provide a structured, broad overview of all attacks and
@@ -134,6 +134,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/rommelDB"><img src="https://avatars.githubusercontent.com/u/39778106?v=4?s=100" width="100px;" alt="Rommel Quintanilla"/><br /><sub><b>Rommel Quintanilla</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=rommelDB" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/wanders"><img src="https://avatars.githubusercontent.com/u/1566016?v=4?s=100" width="100px;" alt="Anders Waldenborg"/><br /><sub><b>Anders Waldenborg</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/issues?q=author%3Awanders" title="Bug reports">🐛</a> <a href="#ideas-wanders" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=wanders" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
