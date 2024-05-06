@@ -627,6 +627,15 @@ of gadgets automatically. Such tools can also be useful to a compiler engineer
 working on a code reuse attack mitigation, as they can point out code sequences
 that should be protected and have been missed.
 
+On architectures such as x86 that has variable length instruction encoding
+where instructions doesn't have any alignment requirements there will also
+exist gadgets that the compiler has not emitted as instructions. For example,
+the compiler might have emitted the instruction `mov $0xc35f, %ax` which is
+encoded as the four bytes `66 b8 5f c3`. If the attacker can divert execution
+two bytes into that 4-byte instruction it will execute `5f c3`. Those bytes
+corresponds to the two single byte instructions `pop %rdi; ret` which is a
+useful ROP gadget.
+
 ### Jump-oriented programming
 
 Jump-oriented programming (JOP)\index{jump-oriented programming (JOP)}
