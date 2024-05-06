@@ -246,6 +246,16 @@
         "ideas",
         "code"
       ]
+    },
+    {
+      "login": "Flakebi",
+      "name": "Sebastian Neubauer",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6499211?v=4",
+      "profile": "https://github.com/Flakebi",
+      "contributions": [
+        "bug",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
