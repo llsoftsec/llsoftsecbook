@@ -637,6 +637,17 @@ of gadgets automatically. Such tools can also be useful to a compiler engineer
 working on a code reuse attack mitigation, as they can point out code sequences
 that should be protected and have been missed.
 
+Anything in executable memory can potentially be used as a ROP gadget, even if
+the compiler has not intended it to be code. This includes literal pools which
+are intermingled with code, and, on architectures with variable length
+instruction encoding, returning to the middle of an instruction. In a JIT
+compiler where the attacker might influence what literals are generated this
+can be particularly powerful. For example, on x86, the compiler might have
+emitted the instruction `mov $0xc35f, %ax` which is encoded as the four bytes
+`66 b8 5f c3`. If the attacker can divert execution two bytes into that 4-byte
+instruction it will execute `5f c3`. Those bytes corresponds to the two single
+byte instructions `pop %rdi; ret` which is a useful ROP gadget.
+
 ### Jump-oriented programming
 
 Jump-oriented programming (JOP)\index{jump-oriented programming (JOP)}
