@@ -177,8 +177,10 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 \href{mailto:morbo@google.com}{\nolinkurl{morbo@google.com}}\\
   Copyright 2023 Lucian Popescu
 \href{mailto:lucian.popescu187@gmail.com}{\nolinkurl{lucian.popescu187@gmail.com}}\\
+  Copyright 2024 Anders Waldenborg
+\href{mailto:anders@0x63.nu}{\nolinkurl{anders@0x63.nu}}\\
 
-Version 0-182-g1e2536a
+Version 0-185-gc206ccc
 \clearpage
 
 {
@@ -3184,6 +3186,148 @@ GNU presents in (\protect\hyperlink{ref-GNUMemSet}{{``10.604
 Memset\_explicit,''} n.d.}). The information may be present somewhere in
 the machine, even if it was erased from memory.
 
+\hypertarget{underhanded-code}{%
+\chapter{Underhanded code}\label{underhanded-code}}
+
+\textbf{Underhanded code} is code that looks like it is doing one thing
+but actually does something else. It usually refers to code nefariously
+written in this way to sneak malicious behavior not obviously visible on
+code inspection. However the same applies also when the underhanded
+behavior has been added by mistake - in fact the ideal attack would also
+give the attacker the possibility to say it was an honest mistake.
+
+(\protect\hyperlink{ref-Wheeler2020}{Wheeler 2020}) provides a more
+systematic view of underhanded code than is given here. This chapter
+presents some examples to give an overview of the attack and how a
+compiler can (and can't) help, although this probably doesn't classify
+as ``low level'' software security.
+
+\hypertarget{assignment-and-equality-confusion}{%
+\section{Assignment and equality
+confusion}\label{assignment-and-equality-confusion}}
+
+Probably the most classic example of underhanded code in C-style
+languages is code that takes advantage of the fact that the assignment
+(\texttt{=}) and the equality operator (\texttt{==}) look very similar.
+
+\begin{verbatim}
+void somefunction(UserPermissionLevel permission_level) {
+
+   if (permission_level = LEVEL_ADMIN) {
+       do_admin_action();
+       return;
+   }
+   report_access_violation();
+}
+\end{verbatim}
+
+Here \texttt{permission\_level} is not compared to
+\texttt{LEVEL\_ADMIN}, but rather assigned that value. Meaning that if
+\texttt{LEVEL\_ADMIN} is a non-zero value the if condition will evaluate
+to true.
+
+Both Clang and GCC detects this example with warning option
+\texttt{-Wparentheses}. Adding a pair of parentheses around the
+assignment silences that warning. Those extra parentheses would probably
+draw a reviewer's attention in this specific example but had the
+condition been more complex with multiple subexpressions combined with
+\texttt{\textbar{}\textbar{}} and \texttt{\&\&} the parentheses had
+looked normal.
+
+This could be written off as a language design problem. Traditionally
+Python has not supported using assignment as expressions, effectively
+sidestepping this particular problem. When assignment expressions were
+added to the language (\protect\hyperlink{ref-pep572}{Angelico, Peters,
+and Rossum 2018}) (in python 3.8) the more visually distinct ``walrus
+operator'' \texttt{:=} was used to avoid this risk of confusing with the
+comparison operator. Even in cases where it is an existing language the
+compiler can provide options to forbid risky constructs for those who
+want and can opt in to it, essentially creating a new language that is a
+subset of the original language.
+
+\hypertarget{goto-fail}{%
+\section{goto fail}\label{goto-fail}}
+
+The ``goto-fail'' bug, officially known as
+\href{https://nvd.nist.gov/vuln/detail/CVE-2014-1266}{CVE-2014-1266},
+caused Apple devices to not correctly validate certificates in TLS
+connections. It effectively disables the verification the function is
+supposed to do, and is easy to miss in code review. This was most likely
+a mistake that was not added intentionally, but still has the
+characteristics of underhanded code.
+
+The bug was caused by a duplicated ``goto fail'' line, which was
+indented making it look like it was guarded by previous if clause, when
+it in fact always was executed. Since the \texttt{err} variable was set
+to 0 (i.e no error) inside the if, the function would always return 0.
+
+\begin{verbatim}
+OSStatus
+SSLVerifySignedServerKeyExchange(...)
+{
+    OSStatus err;
+    ...
+
+    if ((err = SSLHashSHA1.update(&hashCtx, &serverRandom)) != 0)
+        goto fail;
+    if ((err = SSLHashSHA1.update(&hashCtx, &signedParams)) != 0)
+        goto fail;
+        goto fail;
+    if ((err = SSLHashSHA1.final(&hashCtx, &hashOut)) != 0)
+        goto fail;
+    ...
+
+fail:
+    return err;
+}
+\end{verbatim}
+
+At the time of the bug they didn't but nowadays both GCC and Clang have
+a \texttt{-Wmisleading-indentation} option that detects this kind
+problem.
+
+Also automatic code formatting tools such as clang-format would help
+finding this issue as it will fix the misleading indentation.
+
+\hypertarget{trojan-source}{%
+\section{Trojan Source}\label{trojan-source}}
+
+``Trojan Source'' attacks described by
+(\protect\hyperlink{ref-Boucher2023}{Boucher and Anderson 2023}) is
+another way underhanded code could be achieved by doing something that
+makes the editor (or other thing that displays code to the user) render
+the code in a different way than the compiler parses it.
+
+This is done by using unicode features. Support for bidirectional text
+is one such feature, where it has special characters to mark regions of
+text to be right-to-left or left-to-right to allow mixing e.g Arabic and
+English in the same document. If these are used in cunning ways they can
+make the text render in a way that makes a word look like it is
+\emph{inside} a comment but to the compiler, which parses it in the
+order it appears in the file, sees it is \emph{after} the comment.
+
+GCC provides
+\href{https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html\#index-Wbidi-chars_003d}{\texttt{-Wbidi-chars}}
+to detect usage of writing direction markers. Clang compiler
+\href{https://bugs.chromium.org/p/llvm/issues/detail?id=11\#c9}{doesn't}
+provide such warning, but has a check in
+\href{https://clang.llvm.org/extra/clang-tidy/checks/misc/misleading-bidirectional.html}{clang-tidy}
+
+Another variant of ``trojan source'' is usage of homoglyphs, different
+characters that looks similar or even identical (depending on font). As
+an example, unicode contains the character ``Division Slash'' (U+2215)
+which is different from the ordinary ascii slash ``Solidus'' (U+002F).
+
+\begin{verbatim}
+/* Important comment */
+check_permissions();
+/* Another comment */
+\end{verbatim}
+
+If the final slash on the first line isn't a slash but another similarly
+looking character that the compiler doesn't understand as end of comment
+it means that the whole snippet is commented out.
+
 \hypertarget{physical-attacks}{%
 \chapter{Physical attacks}\label{physical-attacks}}
 
@@ -3565,6 +3709,10 @@ Security}. {ACM}. \url{https://doi.org/10.1145/1229285.1266999}.
 Aleph One. 1996. {``Smashing the Stack for Fun and Profit.''} 1996.
 \url{http://www.phrack.org/issues/49/14.html\#article}.
 
+\leavevmode\vadjust pre{\hypertarget{ref-pep572}{}}%
+Angelico, Chris, Tim Peters, and Guido van Rossum. 2018. {``Assignment
+Expressions.''} PEP 572. \url{https://peps.python.org/pep-0572/}.
+
 \leavevmode\vadjust pre{\hypertarget{ref-Beer2020}{}}%
 Beer, Ian. 2020. {``An iOS Zero-Click Radio Proximity Exploit
 Odyssey.''} 2020.
@@ -3587,6 +3735,12 @@ Association for Computing Machinery.
 Bosman, Erik, and Herbert Bos. 2014. {``Framing Signals - a Return to
 Portable Shellcode.''} In \emph{2014 IEEE Symposium on Security and
 Privacy}, 243--58. \url{https://doi.org/10.1109/SP.2014.23}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Boucher2023}{}}%
+Boucher, Nicholas, and Ross Anderson. 2023. {``Trojan Source: Invisible
+Vulnerabilities.''} In \emph{32nd USENIX Security Symposium (USENIX
+Security 23)}. Anaheim, CA: USENIX Association.
+\url{https://arxiv.org/abs/2111.00169}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Briongos2020}{}}%
 Briongos, Samira, Pedro Malagon, Jose M. Moya, and Thomas Eisenbarth.
@@ -3962,6 +4116,11 @@ Weber, Daniel, Ahmad Ibrahim, Hamed Nemati, Michael Schwarz, and
 Christian Rossow. 2021. {``Osiris: Automated Discovery of
 Microarchitectural Side Channels.''} In \emph{USENIX Security'21}.
 \url{https://arxiv.org/abs/2106.03470}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Wheeler2020}{}}%
+Wheeler, David A. 2020. {``Initial Analysis of Underhanded Source
+Code.''} Institute for Defense Analyses.
+\url{https://www.ida.org/research-and-publications/publications/all/i/in/initial-analysis-of-underhanded-source-code}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Wingo2011}{}}%
 Wingo, Any. 2011. {``Value Representation in JavaScript

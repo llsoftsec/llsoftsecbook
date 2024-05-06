@@ -25,7 +25,7 @@
 \contentsline {todo}{25. Write section on site isolation as a SpectreV1 mitigation \href {https://github.com/llsoftsec/llsoftsecbook/issues/179}{\#179}}{45}{section*.33}%
 \contentsline {todo}{26. Explain how these vulnerabilities arise and how to mitigate them. \href {https://github.com/llsoftsec/llsoftsecbook/issues/180}{\#180}}{47}{section*.34}%
 \contentsline {todo}{27. Explain how code that results in undefined behaviour can often work as the programmer expected until some optimisation is applied, and perhaps even talk a bit about why compilers rely on the absence of undefined behaviour in ways that appear aggressive in some occasions. \href {https://github.com/llsoftsec/llsoftsecbook/issues/202}{\#202}}{48}{section*.35}%
-\contentsline {todo}{28. This chapter should probably be moved under section `Physical access side-channel attacks' higher-up \href {https://github.com/llsoftsec/llsoftsecbook/issues/181}{\#181}}{52}{section*.36}%
-\contentsline {todo}{29. There is overlap with section timing-side-channels. How to best consolidate that? \href {https://github.com/llsoftsec/llsoftsecbook/issues/182}{\#182}}{55}{section*.40}%
-\contentsline {todo}{30. Make the above reference to a paper use bibtex. \href {https://github.com/llsoftsec/llsoftsecbook/issues/159}{\#159}}{56}{section*.42}%
-\contentsline {todo}{31. Write chapter with other security topics.}{58}{section*.43}%
+\contentsline {todo}{28. This chapter should probably be moved under section `Physical access side-channel attacks' higher-up \href {https://github.com/llsoftsec/llsoftsecbook/issues/181}{\#181}}{55}{section*.36}%
+\contentsline {todo}{29. There is overlap with section timing-side-channels. How to best consolidate that? \href {https://github.com/llsoftsec/llsoftsecbook/issues/182}{\#182}}{58}{section*.40}%
+\contentsline {todo}{30. Make the above reference to a paper use bibtex. \href {https://github.com/llsoftsec/llsoftsecbook/issues/159}{\#159}}{59}{section*.42}%
+\contentsline {todo}{31. Write chapter with other security topics.}{61}{section*.43}%

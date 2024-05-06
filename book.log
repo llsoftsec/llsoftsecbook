@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2024.5.1)  1 MAY 2024 07:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2024.5.6)  6 MAY 2024 08:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1180,7 +1180,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 175.
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--180
+Underfull \hbox (badness 10000) in paragraph at lines 174--182
 
  []
 
@@ -1188,7 +1188,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.182 \clearpage
+l.184 \clearpage
                  [1
 
 ] (build/book.toc [2
@@ -1204,13 +1204,13 @@ Chapter 1.
 
 ]
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 267.
+ine 269.
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [5]
 Chapter 2.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
-85.
+87.
 (/texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [6
@@ -1225,13 +1225,13 @@ File: bc-aux-301.mps Graphic file (type mps)
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF]
 (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.3377pt too wide) in paragraph at lines 395--395
+Overfull \hbox (5.3377pt too wide) in paragraph at lines 397--397
 [][][][]\T1/lmr/m/n/10 (-20) Consider 
  []
 
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.3377pt too wide) in paragraph at lines 395--395
+Overfull \hbox (5.3377pt too wide) in paragraph at lines 397--397
 [][][][]\T1/lmr/m/n/10 (-20) Consider 
  []
 
@@ -1240,21 +1240,21 @@ File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [8] [9]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 6
-03.
+05.
  (/texlive/2020/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [10]
 
 pdfTeX warning: pdflatex (file ./img/stack-buffer-overflow.pdf): PDF inclusion:
  found PDF version <1.7>, but at most version <1.5> allowed
-<img/stack-buffer-overflow.pdf, id=264, 483.72719pt x 334.3692pt>
+<img/stack-buffer-overflow.pdf, id=273, 483.72719pt x 334.3692pt>
 File: img/stack-buffer-overflow.pdf Graphic file (type pdf)
 <use img/stack-buffer-overflow.pdf>
-Package pdftex.def Info: img/stack-buffer-overflow.pdf  used on input line 633.
+Package pdftex.def Info: img/stack-buffer-overflow.pdf  used on input line 635.
 
 (pdftex.def)             Requested size: 276.00046pt x 190.78119pt.
 
-Underfull \hbox (badness 1681) in paragraph at lines 641--650
+Underfull \hbox (badness 1681) in paragraph at lines 643--652
 []\T1/lmr/m/n/10 (+20) As can be seen the stack di-a-gram, an over-flow-ing wri
 te in func-tion
  []
@@ -1266,39 +1266,39 @@ File: bc-aux-301.mps Graphic file (type mps)
 
 pdfTeX warning: pdflatex (file ./img/rop-control-flow.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<img/rop-control-flow.pdf, id=306, 142.61281pt x 281.13028pt>
+<img/rop-control-flow.pdf, id=315, 142.61281pt x 281.13028pt>
 File: img/rop-control-flow.pdf Graphic file (type pdf)
 <use img/rop-control-flow.pdf>
-Package pdftex.def Info: img/rop-control-flow.pdf  used on input line 887.
+Package pdftex.def Info: img/rop-control-flow.pdf  used on input line 889.
 (pdftex.def)             Requested size: 103.50151pt x 204.03085pt.
 
 
 pdfTeX warning: pdflatex (file ./img/rop-call-stack.pdf): PDF inclusion: found 
 PDF version <1.7>, but at most version <1.5> allowed
-<img/rop-call-stack.pdf, id=307, 435.54718pt x 605.3817pt>
+<img/rop-call-stack.pdf, id=316, 435.54718pt x 605.3817pt>
 File: img/rop-call-stack.pdf Graphic file (type pdf)
 <use img/rop-call-stack.pdf>
-Package pdftex.def Info: img/rop-call-stack.pdf  used on input line 896.
+Package pdftex.def Info: img/rop-call-stack.pdf  used on input line 898.
 (pdftex.def)             Requested size: 276.00447pt x 383.62793pt.
 [14] [15 <./img/rop-control-flow.pdf>] [16 <./img/rop-call-stack.pdf>]
 
 pdfTeX warning: pdflatex (file ./img/jop.pdf): PDF inclusion: found PDF version
  <1.7>, but at most version <1.5> allowed
-<img/jop.pdf, id=340, 268.12169pt x 305.22029pt>
+<img/jop.pdf, id=349, 268.12169pt x 305.22029pt>
 File: img/jop.pdf Graphic file (type pdf)
 <use img/jop.pdf>
-Package pdftex.def Info: img/jop.pdf  used on input line 950.
+Package pdftex.def Info: img/jop.pdf  used on input line 952.
 (pdftex.def)             Requested size: 172.50554pt x 196.37424pt.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [17 <./i
 mg/jop.pdf>] [18] [19]
-Overfull \hbox (1.499pt too wide) in paragraph at lines 1134--1134
+Overfull \hbox (1.499pt too wide) in paragraph at lines 1136--1136
 []  \T1/lmtt/m/n/10 4006d8:       540000a2        b.cs    4006ec <call_foo(A*)+
 0x38>[] 
  []
 
 
-Underfull \hbox (badness 2469) in paragraph at lines 1160--1168
+Underfull \hbox (badness 2469) in paragraph at lines 1162--1170
 []\T1/lmr/m/n/10 (+20) As an ex-am-ple, when com-pil-ing with \T1/lmtt/m/n/10 -
 fsanitize=shadow-call-stack
  []
@@ -1311,13 +1311,13 @@ File: bc-aux-301.mps Graphic file (type mps)
 File: bc-aux-301.mps Graphic file (type mps)
 
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (3.27332pt too wide) in paragraph at lines 1288--1288
+Overfull \hbox (3.27332pt too wide) in paragraph at lines 1290--1290
 [][][][]\T1/lmr/m/n/10 (-20) Mention 
  []
 
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (3.27332pt too wide) in paragraph at lines 1288--1288
+Overfull \hbox (3.27332pt too wide) in paragraph at lines 1290--1290
 [][][][]\T1/lmr/m/n/10 (-20) Mention 
  []
 
@@ -1325,7 +1325,7 @@ Overfull \hbox (3.27332pt too wide) in paragraph at lines 1288--1288
 LaTeX Warning: Marginpar on page 22 moved.
 
 
-Underfull \hbox (badness 1688) in paragraph at lines 1302--1306
+Underfull \hbox (badness 1688) in paragraph at lines 1304--1308
 []\T1/lmr/m/n/10 (+20) Both Clang and GCC sup-port gen-er-at-ing BTI in-struc-t
 ions, with the
  []
@@ -1334,11 +1334,11 @@ ions, with the
 
 pdfTeX warning: pdflatex (file ./img/non-control-data-attack.pdf): PDF inclusio
 n: found PDF version <1.7>, but at most version <1.5> allowed
-<img/non-control-data-attack.pdf, id=447, 325.215pt x 243.79079pt>
+<img/non-control-data-attack.pdf, id=456, 325.215pt x 243.79079pt>
 File: img/non-control-data-attack.pdf Graphic file (type pdf)
 <use img/non-control-data-attack.pdf>
 Package pdftex.def Info: img/non-control-data-attack.pdf  used on input line 13
-89.
+91.
 (pdftex.def)             Requested size: 207.00546pt x 155.17741pt.
 [24 <./img/non-control-data-attack.pdf>] [25]
 File: bc-aux-301.mps Graphic file (type mps)
@@ -1350,13 +1350,13 @@ File: bc-aux-301.mps Graphic file (type mps)
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF]
 (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.3377pt too wide) in paragraph at lines 1564--1564
+Overfull \hbox (5.3377pt too wide) in paragraph at lines 1566--1566
 [][][][]\T1/lmr/m/n/10 (-20) Consider 
  []
 
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.3377pt too wide) in paragraph at lines 1564--1564
+Overfull \hbox (5.3377pt too wide) in paragraph at lines 1566--1566
 [][][][]\T1/lmr/m/n/10 (-20) Consider 
  []
 
@@ -1386,19 +1386,19 @@ LaTeX Warning: Marginpar on page 34 moved.
 
 pdfTeX warning: pdflatex (file ./img/CacheLevels.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<img/CacheLevels.pdf, id=641, 173.89969pt x 241.65282pt>
+<img/CacheLevels.pdf, id=650, 173.89969pt x 241.65282pt>
 File: img/CacheLevels.pdf Graphic file (type pdf)
 <use img/CacheLevels.pdf>
-Package pdftex.def Info: img/CacheLevels.pdf  used on input line 2106.
+Package pdftex.def Info: img/CacheLevels.pdf  used on input line 2108.
 (pdftex.def)             Requested size: 138.00279pt x 191.77014pt.
 [35 <./img/CacheLevels.pdf>]
 
 pdfTeX warning: pdflatex (file ./img/CacheIndexing.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<img/CacheIndexing.pdf, id=658, 528.47438pt x 208.52907pt>
+<img/CacheIndexing.pdf, id=667, 528.47438pt x 208.52907pt>
 File: img/CacheIndexing.pdf Graphic file (type pdf)
 <use img/CacheIndexing.pdf>
-Package pdftex.def Info: img/CacheIndexing.pdf  used on input line 2172.
+Package pdftex.def Info: img/CacheIndexing.pdf  used on input line 2174.
 (pdftex.def)             Requested size: 344.99608pt x 136.13092pt.
 [36 <./img/CacheIndexing.pdf>]
 File: bc-aux-301.mps Graphic file (type mps)
@@ -1410,25 +1410,25 @@ File: bc-aux-301.mps Graphic file (type mps)
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF]
 (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [37]
-Underfull \hbox (badness 1490) in paragraph at lines 2293--2307
+Underfull \hbox (badness 1490) in paragraph at lines 2295--2309
 \T1/lmr/m/n/10 (+20) proach in-clude: Flush+Flush[]([][]Gruss, Mau-rice, Wag-ne
 r, et al. 2016[][]),
  []
 
 
-Overfull \hbox (0.2491pt too wide) in paragraph at lines 2360--2360
+Overfull \hbox (0.2491pt too wide) in paragraph at lines 2362--2362
  []\T1/lmtt/m/n/10 * exponent bits as an array index would be an obvious leak o
 f[] 
  []
 
 [38]
-Overfull \hbox (10.74907pt too wide) in paragraph at lines 2360--2360
+Overfull \hbox (10.74907pt too wide) in paragraph at lines 2362--2362
  []\T1/lmtt/m/n/10 * iteration, we read _all_ the table entries, and do a seque
 nce[] 
  []
 
 
-Overfull \hbox (15.99905pt too wide) in paragraph at lines 2360--2360
+Overfull \hbox (15.99905pt too wide) in paragraph at lines 2362--2362
  []\T1/lmtt/m/n/10 * of mp_select operations to leave just the one we wanted in
  the[] 
  []
@@ -1440,19 +1440,19 @@ File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [41]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 2648.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 2650.
  [42]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.11017pt too wide) in paragraph at lines 2740--2740
+Overfull \hbox (5.11017pt too wide) in paragraph at lines 2742--2742
 \T1/lmr/m/n/10 (-20) architectural 
  []
 
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.11017pt too wide) in paragraph at lines 2740--2740
+Overfull \hbox (5.11017pt too wide) in paragraph at lines 2742--2742
 \T1/lmr/m/n/10 (-20) architectural 
  []
 
@@ -1460,17 +1460,17 @@ Overfull \hbox (5.11017pt too wide) in paragraph at lines 2740--2740
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [44]
-Overfull \hbox (87.78787pt too wide) in alignment at lines 2812--2825
+Overfull \hbox (87.78787pt too wide) in alignment at lines 2814--2827
  [] [] [] 
  []
 
 
-Overfull \hbox (87.78787pt too wide) in alignment at lines 2825--2827
+Overfull \hbox (87.78787pt too wide) in alignment at lines 2827--2829
  [] [] [] 
  []
 
 
-Overfull \hbox (87.78787pt too wide) in alignment at lines 2827--2831
+Overfull \hbox (87.78787pt too wide) in alignment at lines 2829--2833
  [] [] [] 
  []
 
@@ -1495,7 +1495,7 @@ File: bc-aux-301.mps Graphic file (type mps)
 Chapter 5.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Underfull \hbox (badness 1694) in paragraph at lines 2985--2988
+Underfull \hbox (badness 1694) in paragraph at lines 2987--2990
 []\T1/lmr/m/n/10 (+20) In the ran-dom num-ber gen-er-a-tor of the sys-tem, more
  specif-i-cally in
  []
@@ -1503,50 +1503,54 @@ Underfull \hbox (badness 1694) in paragraph at lines 2985--2988
 [48
 
 ] [49]
-Overfull \hbox (2.91692pt too wide) in paragraph at lines 3110--3112
+Overfull \hbox (2.91692pt too wide) in paragraph at lines 3112--3114
 []\T1/lmr/m/n/10 (-20) The so-lu-tion Linux came with was to add a new func-tio
 n called \T1/lmtt/m/n/10 memzero_explicit
  []
 
 [50] [51]
 Chapter 6.
+[52
+
+] [53] [54]
+Chapter 7.
 File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [52
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [55
 
 ]
 
 pdfTeX warning: pdflatex (file ./img/side_channel_leakage_figure_1_branch.pdf):
  PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/side_channel_leakage_figure_1_branch.pdf, id=986, 518.68181pt x 248.38115p
-t>
+<img/side_channel_leakage_figure_1_branch.pdf, id=1022, 518.68181pt x 248.38115
+pt>
 File: img/side_channel_leakage_figure_1_branch.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_1_branch.pdf>
 Package pdftex.def Info: img/side_channel_leakage_figure_1_branch.pdf  used on 
-input line 3315.
+input line 3459.
 (pdftex.def)             Requested size: 276.00806pt x 132.17197pt.
-[53]
+[56]
 
 pdfTeX warning: pdflatex (file ./img/side_channel_leakage_figure_2_duration.pdf
 ): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/side_channel_leakage_figure_2_duration.pdf, id=993, 337.96272pt x 219.9284
-5pt>
+<img/side_channel_leakage_figure_2_duration.pdf, id=1029, 337.96272pt x 219.928
+45pt>
 File: img/side_channel_leakage_figure_2_duration.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_2_duration.pdf>
 Package pdftex.def Info: img/side_channel_leakage_figure_2_duration.pdf  used o
-n input line 3326.
+n input line 3470.
 (pdftex.def)             Requested size: 276.01733pt x 179.61763pt.
 
 
 pdfTeX warning: pdflatex (file ./img/side_channel_leakage_figure_3_toggle.pdf):
  PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/side_channel_leakage_figure_3_toggle.pdf, id=994, 502.94427pt x 232.68701p
-t>
+<img/side_channel_leakage_figure_3_toggle.pdf, id=1030, 502.94427pt x 232.68701
+pt>
 File: img/side_channel_leakage_figure_3_toggle.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_3_toggle.pdf>
 Package pdftex.def Info: img/side_channel_leakage_figure_3_toggle.pdf  used on 
-input line 3354.
+input line 3498.
 (pdftex.def)             Requested size: 275.99858pt x 127.69064pt.
-[54 <./img/side_channel_leakage_figure_1_branch.pdf> <./img/side_channel_leakag
+[57 <./img/side_channel_leakage_figure_1_branch.pdf> <./img/side_channel_leakag
 e_figure_2_duration.pdf
 
 pdfTeX warning: pdflatex (file ./img/side_channel_leakage_figure_2_duration.pdf
@@ -1554,66 +1558,66 @@ pdfTeX warning: pdflatex (file ./img/side_channel_leakage_figure_2_duration.pdf
 >]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-[55 <./img/side_channel_leakage_figure_3_toggle.pdf>]
+[58 <./img/side_channel_leakage_figure_3_toggle.pdf>]
 
 pdfTeX warning: pdflatex (file ./img/physical_attacks.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<img/physical_attacks.pdf, id=1034, 374.83124pt x 128.53943pt>
+<img/physical_attacks.pdf, id=1070, 374.83124pt x 128.53943pt>
 File: img/physical_attacks.pdf Graphic file (type pdf)
 <use img/physical_attacks.pdf>
-Package pdftex.def Info: img/physical_attacks.pdf  used on input line 3415.
+Package pdftex.def Info: img/physical_attacks.pdf  used on input line 3559.
 (pdftex.def)             Requested size: 276.00954pt x 94.65086pt.
 File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [56 <./i
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [59 <./i
 mg/physical_attacks.pdf>]
-Overfull \hbox (80.5624pt too wide) in paragraph at lines 3485--3487
+Overfull \hbox (80.5624pt too wide) in paragraph at lines 3629--3631
 []\T1/lmr/m/n/10 (-20) Example: At-tack on Trust-Zone for Armv8-M: https://www.
 youtube.com/watch?v=4u6BAH8mEDw 
  []
 
-[57]
-Chapter 7.
+[60]
+Chapter 8.
 File: bc-aux-301.mps Graphic file (type mps)
-[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [58
+[MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [61
 
 ]
-(build/book.ind [59
+(build/book.ind [62
 
 ]
 Underfull \hbox (badness 1092) in paragraph at lines 48--49
 []\T1/lmr/m/n/10 (+20) counterfeit object-oriented pro-gram-
  []
 
-[60
+[63
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 175--176
 []\T1/lmr/m/n/10 (+20) sigreturn-oriented pro-gram-ming
  []
 
-[61]) (build/book.tdo [62
+[64]) (build/book.tdo [65
 
 
 ])
 \tf@tdo=\write7
 \openout7 = `book.tdo'.
 
- [63]
-Overfull \hbox (0.1575pt too wide) in paragraph at lines 3605--3610
+ [66]
+Overfull \hbox (0.1575pt too wide) in paragraph at lines 3759--3764
 \T1/lmr/m/n/10 (+18) c o n / t o o r c o n -[] s e a t t l e -[] 2 0 0 8 / c pu
  -[] s i de -[] c h a n n e ls -[] vs -[] v i r t u a l i z a t i on -[] r o o 
 t k i ts -[] t h e -[]
  []
 
-[64
+[67
 
-] [65] [66] [67] [68] [69] (build/book.aux) ) 
+] [68] [69] [70] [71] [72] (build/book.aux) ) 
 Here is how much of TeX's memory you used:
- 29641 strings out of 480962
- 526991 string characters out of 5908148
- 992424 words of memory out of 5000000
- 45531 multiletter control sequences out of 15000+600000
- 494230 words of font info for 213 fonts, out of 8000000 for 9000
+ 29667 strings out of 480962
+ 527316 string characters out of 5908148
+ 991603 words of memory out of 5000000
+ 45539 multiletter control sequences out of 15000+600000
+ 494454 words of font info for 215 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  102i,12n,117p,702b,1258s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{cache-
@@ -1642,10 +1646,10 @@ live/2020/texmf-dist/fonts/type1/public/lm/lmri10.pfb></texlive/2020/texmf-dist
 lm/lmtk10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></texl
 ive/2020/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></texlive/2020/texmf-dist/f
 onts/type1/public/lm/lmtti10.pfb>
-Output written on build/book.pdf (70 pages, 888853 bytes).
+Output written on build/book.pdf (73 pages, 898003 bytes).
 PDF statistics:
- 1797 PDF objects out of 2073 (max. 8388607)
- 1638 compressed objects within 17 object streams
- 395 named destinations out of 1000 (max. 500000)
- 49724 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 1854 PDF objects out of 2073 (max. 8388607)
+ 1692 compressed objects within 17 object streams
+ 409 named destinations out of 1000 (max. 500000)
+ 49756 words of extra memory for PDF output out of 51595 (max. 10000000)
 

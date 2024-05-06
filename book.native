@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-182-g1e2536a" )
+          , ( "VERSION" , MetaString "0-185-gc206ccc" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -70,6 +70,25 @@ Pandoc
                                  ( "mailto:lucian.popescu187@gmail.com"
                                  , ""
                                  )
+                             ]
+                         )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "SPDX-FileCopyrightText"
+                         , MetaInlines
+                             [ Str "Copyright"
+                             , Space
+                             , Str "2024"
+                             , Space
+                             , Str "Anders"
+                             , Space
+                             , Str "Waldenborg"
+                             , Space
+                             , Link
+                                 ( "" , [ "email" ] , [] )
+                                 [ Str "anders@0x63.nu" ]
+                                 ( "mailto:anders@0x63.nu" , "" )
                              ]
                          )
                        ])
@@ -36420,6 +36439,1496 @@ Pandoc
       , Str "from"
       , Space
       , Str "memory."
+      ]
+  , Header
+      1
+      ( "underhanded-code" , [] , [] )
+      [ Str "Underhanded" , Space , Str "code" ]
+  , Para
+      [ Strong [ Str "Underhanded" , Space , Str "code" ]
+      , Space
+      , Str "is"
+      , Space
+      , Str "code"
+      , Space
+      , Str "that"
+      , Space
+      , Str "looks"
+      , Space
+      , Str "like"
+      , Space
+      , Str "it"
+      , Space
+      , Str "is"
+      , Space
+      , Str "doing"
+      , Space
+      , Str "one"
+      , Space
+      , Str "thing"
+      , Space
+      , Str "but"
+      , SoftBreak
+      , Str "actually"
+      , Space
+      , Str "does"
+      , Space
+      , Str "something"
+      , Space
+      , Str "else."
+      , Space
+      , Str "It"
+      , Space
+      , Str "usually"
+      , Space
+      , Str "refers"
+      , Space
+      , Str "to"
+      , Space
+      , Str "code"
+      , Space
+      , Str "nefariously"
+      , SoftBreak
+      , Str "written"
+      , Space
+      , Str "in"
+      , Space
+      , Str "this"
+      , Space
+      , Str "way"
+      , Space
+      , Str "to"
+      , Space
+      , Str "sneak"
+      , Space
+      , Str "malicious"
+      , Space
+      , Str "behavior"
+      , Space
+      , Str "not"
+      , Space
+      , Str "obviously"
+      , Space
+      , Str "visible"
+      , SoftBreak
+      , Str "on"
+      , Space
+      , Str "code"
+      , Space
+      , Str "inspection."
+      , Space
+      , Str "However"
+      , Space
+      , Str "the"
+      , Space
+      , Str "same"
+      , Space
+      , Str "applies"
+      , Space
+      , Str "also"
+      , Space
+      , Str "when"
+      , Space
+      , Str "the"
+      , SoftBreak
+      , Str "underhanded"
+      , Space
+      , Str "behavior"
+      , Space
+      , Str "has"
+      , Space
+      , Str "been"
+      , Space
+      , Str "added"
+      , Space
+      , Str "by"
+      , Space
+      , Str "mistake"
+      , Space
+      , Str "-"
+      , Space
+      , Str "in"
+      , Space
+      , Str "fact"
+      , Space
+      , Str "the"
+      , Space
+      , Str "ideal"
+      , SoftBreak
+      , Str "attack"
+      , Space
+      , Str "would"
+      , Space
+      , Str "also"
+      , Space
+      , Str "give"
+      , Space
+      , Str "the"
+      , Space
+      , Str "attacker"
+      , Space
+      , Str "the"
+      , Space
+      , Str "possibility"
+      , Space
+      , Str "to"
+      , Space
+      , Str "say"
+      , Space
+      , Str "it"
+      , Space
+      , Str "was"
+      , Space
+      , Str "an"
+      , SoftBreak
+      , Str "honest"
+      , Space
+      , Str "mistake."
+      ]
+  , Para
+      [ Cite
+          [ Citation
+              { citationId = "Wheeler2020"
+              , citationPrefix = []
+              , citationSuffix = []
+              , citationMode = NormalCitation
+              , citationNoteNum = 118
+              , citationHash = 0
+              }
+          ]
+          [ Str "[@Wheeler2020]" ]
+      , Space
+      , Str "provides"
+      , Space
+      , Str "a"
+      , Space
+      , Str "more"
+      , Space
+      , Str "systematic"
+      , Space
+      , Str "view"
+      , Space
+      , Str "of"
+      , Space
+      , Str "underhanded"
+      , Space
+      , Str "code"
+      , SoftBreak
+      , Str "than"
+      , Space
+      , Str "is"
+      , Space
+      , Str "given"
+      , Space
+      , Str "here."
+      , Space
+      , Str "This"
+      , Space
+      , Str "chapter"
+      , Space
+      , Str "presents"
+      , Space
+      , Str "some"
+      , Space
+      , Str "examples"
+      , Space
+      , Str "to"
+      , Space
+      , Str "give"
+      , Space
+      , Str "an"
+      , SoftBreak
+      , Str "overview"
+      , Space
+      , Str "of"
+      , Space
+      , Str "the"
+      , Space
+      , Str "attack"
+      , Space
+      , Str "and"
+      , Space
+      , Str "how"
+      , Space
+      , Str "a"
+      , Space
+      , Str "compiler"
+      , Space
+      , Str "can"
+      , Space
+      , Str "(and"
+      , Space
+      , Str "can\8217t)"
+      , Space
+      , Str "help,"
+      , SoftBreak
+      , Str "although"
+      , Space
+      , Str "this"
+      , Space
+      , Str "probably"
+      , Space
+      , Str "doesn\8217t"
+      , Space
+      , Str "classify"
+      , Space
+      , Str "as"
+      , Space
+      , Quoted DoubleQuote [ Str "low" , Space , Str "level" ]
+      , Space
+      , Str "software"
+      , SoftBreak
+      , Str "security."
+      ]
+  , Header
+      2
+      ( "assignment-and-equality-confusion" , [] , [] )
+      [ Str "Assignment"
+      , Space
+      , Str "and"
+      , Space
+      , Str "equality"
+      , Space
+      , Str "confusion"
+      ]
+  , Para
+      [ Str "Probably"
+      , Space
+      , Str "the"
+      , Space
+      , Str "most"
+      , Space
+      , Str "classic"
+      , Space
+      , Str "example"
+      , Space
+      , Str "of"
+      , Space
+      , Str "underhanded"
+      , Space
+      , Str "code"
+      , Space
+      , Str "in"
+      , Space
+      , Str "C-style"
+      , SoftBreak
+      , Str "languages"
+      , Space
+      , Str "is"
+      , Space
+      , Str "code"
+      , Space
+      , Str "that"
+      , Space
+      , Str "takes"
+      , Space
+      , Str "advantage"
+      , Space
+      , Str "of"
+      , Space
+      , Str "the"
+      , Space
+      , Str "fact"
+      , Space
+      , Str "that"
+      , Space
+      , Str "the"
+      , Space
+      , Str "assignment"
+      , SoftBreak
+      , Str "("
+      , Code ( "" , [] , [] ) "="
+      , Str ")"
+      , Space
+      , Str "and"
+      , Space
+      , Str "the"
+      , Space
+      , Str "equality"
+      , Space
+      , Str "operator"
+      , Space
+      , Str "("
+      , Code ( "" , [] , [] ) "=="
+      , Str ")"
+      , Space
+      , Str "look"
+      , Space
+      , Str "very"
+      , Space
+      , Str "similar."
+      ]
+  , CodeBlock
+      ( "" , [] , [] )
+      "void somefunction(UserPermissionLevel permission_level) {\n\n   if (permission_level = LEVEL_ADMIN) {\n       do_admin_action();\n       return;\n   }\n   report_access_violation();\n}"
+  , Para
+      [ Str "Here"
+      , Space
+      , Code ( "" , [] , [] ) "permission_level"
+      , Space
+      , Str "is"
+      , Space
+      , Str "not"
+      , Space
+      , Str "compared"
+      , Space
+      , Str "to"
+      , Space
+      , Code ( "" , [] , [] ) "LEVEL_ADMIN"
+      , Str ","
+      , Space
+      , Str "but"
+      , Space
+      , Str "rather"
+      , SoftBreak
+      , Str "assigned"
+      , Space
+      , Str "that"
+      , Space
+      , Str "value."
+      , Space
+      , Str "Meaning"
+      , Space
+      , Str "that"
+      , Space
+      , Str "if"
+      , Space
+      , Code ( "" , [] , [] ) "LEVEL_ADMIN"
+      , Space
+      , Str "is"
+      , Space
+      , Str "a"
+      , Space
+      , Str "non-zero"
+      , Space
+      , Str "value"
+      , SoftBreak
+      , Str "the"
+      , Space
+      , Str "if"
+      , Space
+      , Str "condition"
+      , Space
+      , Str "will"
+      , Space
+      , Str "evaluate"
+      , Space
+      , Str "to"
+      , Space
+      , Str "true."
+      ]
+  , Para
+      [ Str "Both"
+      , Space
+      , Str "Clang"
+      , Space
+      , Str "and"
+      , Space
+      , Str "GCC"
+      , Space
+      , Str "detects"
+      , Space
+      , Str "this"
+      , Space
+      , Str "example"
+      , Space
+      , Str "with"
+      , Space
+      , Str "warning"
+      , Space
+      , Str "option"
+      , SoftBreak
+      , Code ( "" , [] , [] ) "-Wparentheses"
+      , Str "."
+      , Space
+      , Str "Adding"
+      , Space
+      , Str "a"
+      , Space
+      , Str "pair"
+      , Space
+      , Str "of"
+      , Space
+      , Str "parentheses"
+      , Space
+      , Str "around"
+      , Space
+      , Str "the"
+      , Space
+      , Str "assignment"
+      , SoftBreak
+      , Str "silences"
+      , Space
+      , Str "that"
+      , Space
+      , Str "warning."
+      , Space
+      , Str "Those"
+      , Space
+      , Str "extra"
+      , Space
+      , Str "parentheses"
+      , Space
+      , Str "would"
+      , Space
+      , Str "probably"
+      , Space
+      , Str "draw"
+      , Space
+      , Str "a"
+      , SoftBreak
+      , Str "reviewer\8217s"
+      , Space
+      , Str "attention"
+      , Space
+      , Str "in"
+      , Space
+      , Str "this"
+      , Space
+      , Str "specific"
+      , Space
+      , Str "example"
+      , Space
+      , Str "but"
+      , Space
+      , Str "had"
+      , Space
+      , Str "the"
+      , Space
+      , Str "condition"
+      , SoftBreak
+      , Str "been"
+      , Space
+      , Str "more"
+      , Space
+      , Str "complex"
+      , Space
+      , Str "with"
+      , Space
+      , Str "multiple"
+      , Space
+      , Str "subexpressions"
+      , Space
+      , Str "combined"
+      , Space
+      , Str "with"
+      , Space
+      , Code ( "" , [] , [] ) "||"
+      , Space
+      , Str "and"
+      , SoftBreak
+      , Code ( "" , [] , [] ) "&&"
+      , Space
+      , Str "the"
+      , Space
+      , Str "parentheses"
+      , Space
+      , Str "had"
+      , Space
+      , Str "looked"
+      , Space
+      , Str "normal."
+      ]
+  , Para
+      [ Str "This"
+      , Space
+      , Str "could"
+      , Space
+      , Str "be"
+      , Space
+      , Str "written"
+      , Space
+      , Str "off"
+      , Space
+      , Str "as"
+      , Space
+      , Str "a"
+      , Space
+      , Str "language"
+      , Space
+      , Str "design"
+      , Space
+      , Str "problem."
+      , Space
+      , Str "Traditionally"
+      , SoftBreak
+      , Str "Python"
+      , Space
+      , Str "has"
+      , Space
+      , Str "not"
+      , Space
+      , Str "supported"
+      , Space
+      , Str "using"
+      , Space
+      , Str "assignment"
+      , Space
+      , Str "as"
+      , Space
+      , Str "expressions,"
+      , Space
+      , Str "effectively"
+      , SoftBreak
+      , Str "sidestepping"
+      , Space
+      , Str "this"
+      , Space
+      , Str "particular"
+      , Space
+      , Str "problem."
+      , Space
+      , Str "When"
+      , Space
+      , Str "assignment"
+      , Space
+      , Str "expressions"
+      , Space
+      , Str "were"
+      , SoftBreak
+      , Str "added"
+      , Space
+      , Str "to"
+      , Space
+      , Str "the"
+      , Space
+      , Str "language"
+      , Space
+      , Cite
+          [ Citation
+              { citationId = "pep572"
+              , citationPrefix = []
+              , citationSuffix = []
+              , citationMode = NormalCitation
+              , citationNoteNum = 119
+              , citationHash = 0
+              }
+          ]
+          [ Str "[@pep572]" ]
+      , Space
+      , Str "(in"
+      , Space
+      , Str "python"
+      , Space
+      , Str "3.8)"
+      , Space
+      , Str "the"
+      , Space
+      , Str "more"
+      , Space
+      , Str "visually"
+      , SoftBreak
+      , Str "distinct"
+      , Space
+      , Quoted
+          DoubleQuote [ Str "walrus" , Space , Str "operator" ]
+      , Space
+      , Code ( "" , [] , [] ) ":="
+      , Space
+      , Str "was"
+      , Space
+      , Str "used"
+      , Space
+      , Str "to"
+      , Space
+      , Str "avoid"
+      , Space
+      , Str "this"
+      , Space
+      , Str "risk"
+      , Space
+      , Str "of"
+      , SoftBreak
+      , Str "confusing"
+      , Space
+      , Str "with"
+      , Space
+      , Str "the"
+      , Space
+      , Str "comparison"
+      , Space
+      , Str "operator."
+      , Space
+      , Str "Even"
+      , Space
+      , Str "in"
+      , Space
+      , Str "cases"
+      , Space
+      , Str "where"
+      , Space
+      , Str "it"
+      , Space
+      , Str "is"
+      , Space
+      , Str "an"
+      , SoftBreak
+      , Str "existing"
+      , Space
+      , Str "language"
+      , Space
+      , Str "the"
+      , Space
+      , Str "compiler"
+      , Space
+      , Str "can"
+      , Space
+      , Str "provide"
+      , Space
+      , Str "options"
+      , Space
+      , Str "to"
+      , Space
+      , Str "forbid"
+      , Space
+      , Str "risky"
+      , SoftBreak
+      , Str "constructs"
+      , Space
+      , Str "for"
+      , Space
+      , Str "those"
+      , Space
+      , Str "who"
+      , Space
+      , Str "want"
+      , Space
+      , Str "and"
+      , Space
+      , Str "can"
+      , Space
+      , Str "opt"
+      , Space
+      , Str "in"
+      , Space
+      , Str "to"
+      , Space
+      , Str "it,"
+      , Space
+      , Str "essentially"
+      , SoftBreak
+      , Str "creating"
+      , Space
+      , Str "a"
+      , Space
+      , Str "new"
+      , Space
+      , Str "language"
+      , Space
+      , Str "that"
+      , Space
+      , Str "is"
+      , Space
+      , Str "a"
+      , Space
+      , Str "subset"
+      , Space
+      , Str "of"
+      , Space
+      , Str "the"
+      , Space
+      , Str "original"
+      , Space
+      , Str "language."
+      ]
+  , Header
+      2
+      ( "goto-fail" , [] , [] )
+      [ Str "goto" , Space , Str "fail" ]
+  , Para
+      [ Str "The"
+      , Space
+      , Quoted DoubleQuote [ Str "goto-fail" ]
+      , Space
+      , Str "bug,"
+      , Space
+      , Str "officially"
+      , Space
+      , Str "known"
+      , Space
+      , Str "as"
+      , SoftBreak
+      , Link
+          ( "" , [] , [] )
+          [ Str "CVE-2014-1266" ]
+          ( "https://nvd.nist.gov/vuln/detail/CVE-2014-1266" , "" )
+      , Str ","
+      , SoftBreak
+      , Str "caused"
+      , Space
+      , Str "Apple"
+      , Space
+      , Str "devices"
+      , Space
+      , Str "to"
+      , Space
+      , Str "not"
+      , Space
+      , Str "correctly"
+      , Space
+      , Str "validate"
+      , Space
+      , Str "certificates"
+      , Space
+      , Str "in"
+      , Space
+      , Str "TLS"
+      , SoftBreak
+      , Str "connections."
+      , Space
+      , Str "It"
+      , Space
+      , Str "effectively"
+      , Space
+      , Str "disables"
+      , Space
+      , Str "the"
+      , Space
+      , Str "verification"
+      , Space
+      , Str "the"
+      , Space
+      , Str "function"
+      , Space
+      , Str "is"
+      , SoftBreak
+      , Str "supposed"
+      , Space
+      , Str "to"
+      , Space
+      , Str "do,"
+      , Space
+      , Str "and"
+      , Space
+      , Str "is"
+      , Space
+      , Str "easy"
+      , Space
+      , Str "to"
+      , Space
+      , Str "miss"
+      , Space
+      , Str "in"
+      , Space
+      , Str "code"
+      , Space
+      , Str "review."
+      , Space
+      , Str "This"
+      , Space
+      , Str "was"
+      , Space
+      , Str "most"
+      , SoftBreak
+      , Str "likely"
+      , Space
+      , Str "a"
+      , Space
+      , Str "mistake"
+      , Space
+      , Str "that"
+      , Space
+      , Str "was"
+      , Space
+      , Str "not"
+      , Space
+      , Str "added"
+      , Space
+      , Str "intentionally,"
+      , Space
+      , Str "but"
+      , Space
+      , Str "still"
+      , Space
+      , Str "has"
+      , Space
+      , Str "the"
+      , SoftBreak
+      , Str "characteristics"
+      , Space
+      , Str "of"
+      , Space
+      , Str "underhanded"
+      , Space
+      , Str "code."
+      ]
+  , Para
+      [ Str "The"
+      , Space
+      , Str "bug"
+      , Space
+      , Str "was"
+      , Space
+      , Str "caused"
+      , Space
+      , Str "by"
+      , Space
+      , Str "a"
+      , Space
+      , Str "duplicated"
+      , Space
+      , Quoted DoubleQuote [ Str "goto" , Space , Str "fail" ]
+      , Space
+      , Str "line,"
+      , Space
+      , Str "which"
+      , Space
+      , Str "was"
+      , SoftBreak
+      , Str "indented"
+      , Space
+      , Str "making"
+      , Space
+      , Str "it"
+      , Space
+      , Str "look"
+      , Space
+      , Str "like"
+      , Space
+      , Str "it"
+      , Space
+      , Str "was"
+      , Space
+      , Str "guarded"
+      , Space
+      , Str "by"
+      , Space
+      , Str "previous"
+      , Space
+      , Str "if"
+      , Space
+      , Str "clause,"
+      , SoftBreak
+      , Str "when"
+      , Space
+      , Str "it"
+      , Space
+      , Str "in"
+      , Space
+      , Str "fact"
+      , Space
+      , Str "always"
+      , Space
+      , Str "was"
+      , Space
+      , Str "executed."
+      , Space
+      , Str "Since"
+      , Space
+      , Str "the"
+      , Space
+      , Code ( "" , [] , [] ) "err"
+      , Space
+      , Str "variable"
+      , Space
+      , Str "was"
+      , Space
+      , Str "set"
+      , SoftBreak
+      , Str "to"
+      , Space
+      , Str "0"
+      , Space
+      , Str "(i.e"
+      , Space
+      , Str "no"
+      , Space
+      , Str "error)"
+      , Space
+      , Str "inside"
+      , Space
+      , Str "the"
+      , Space
+      , Str "if,"
+      , Space
+      , Str "the"
+      , Space
+      , Str "function"
+      , Space
+      , Str "would"
+      , Space
+      , Str "always"
+      , Space
+      , Str "return"
+      , Space
+      , Str "0."
+      ]
+  , CodeBlock
+      ( "" , [] , [] )
+      "OSStatus\nSSLVerifySignedServerKeyExchange(...)\n{\n    OSStatus err;\n    ...\n\n    if ((err = SSLHashSHA1.update(&hashCtx, &serverRandom)) != 0)\n        goto fail;\n    if ((err = SSLHashSHA1.update(&hashCtx, &signedParams)) != 0)\n        goto fail;\n        goto fail;\n    if ((err = SSLHashSHA1.final(&hashCtx, &hashOut)) != 0)\n        goto fail;\n    ...\n\nfail:\n    return err;\n}"
+  , Para
+      [ Str "At"
+      , Space
+      , Str "the"
+      , Space
+      , Str "time"
+      , Space
+      , Str "of"
+      , Space
+      , Str "the"
+      , Space
+      , Str "bug"
+      , Space
+      , Str "they"
+      , Space
+      , Str "didn\8217t"
+      , Space
+      , Str "but"
+      , Space
+      , Str "nowadays"
+      , Space
+      , Str "both"
+      , Space
+      , Str "GCC"
+      , Space
+      , Str "and"
+      , Space
+      , Str "Clang"
+      , SoftBreak
+      , Str "have"
+      , Space
+      , Str "a"
+      , Space
+      , Code ( "" , [] , [] ) "-Wmisleading-indentation"
+      , Space
+      , Str "option"
+      , Space
+      , Str "that"
+      , Space
+      , Str "detects"
+      , Space
+      , Str "this"
+      , Space
+      , Str "kind"
+      , SoftBreak
+      , Str "problem."
+      ]
+  , Para
+      [ Str "Also"
+      , Space
+      , Str "automatic"
+      , Space
+      , Str "code"
+      , Space
+      , Str "formatting"
+      , Space
+      , Str "tools"
+      , Space
+      , Str "such"
+      , Space
+      , Str "as"
+      , Space
+      , Str "clang-format"
+      , Space
+      , Str "would"
+      , Space
+      , Str "help"
+      , SoftBreak
+      , Str "finding"
+      , Space
+      , Str "this"
+      , Space
+      , Str "issue"
+      , Space
+      , Str "as"
+      , Space
+      , Str "it"
+      , Space
+      , Str "will"
+      , Space
+      , Str "fix"
+      , Space
+      , Str "the"
+      , Space
+      , Str "misleading"
+      , Space
+      , Str "indentation."
+      ]
+  , Header
+      2
+      ( "trojan-source" , [] , [] )
+      [ Str "Trojan" , Space , Str "Source" ]
+  , Para
+      [ Quoted DoubleQuote [ Str "Trojan" , Space , Str "Source" ]
+      , Space
+      , Str "attacks"
+      , Space
+      , Str "described"
+      , Space
+      , Str "by"
+      , Space
+      , Cite
+          [ Citation
+              { citationId = "Boucher2023"
+              , citationPrefix = []
+              , citationSuffix = []
+              , citationMode = NormalCitation
+              , citationNoteNum = 120
+              , citationHash = 0
+              }
+          ]
+          [ Str "[@Boucher2023]" ]
+      , Space
+      , Str "is"
+      , Space
+      , Str "another"
+      , Space
+      , Str "way"
+      , SoftBreak
+      , Str "underhanded"
+      , Space
+      , Str "code"
+      , Space
+      , Str "could"
+      , Space
+      , Str "be"
+      , Space
+      , Str "achieved"
+      , Space
+      , Str "by"
+      , Space
+      , Str "doing"
+      , Space
+      , Str "something"
+      , Space
+      , Str "that"
+      , Space
+      , Str "makes"
+      , Space
+      , Str "the"
+      , SoftBreak
+      , Str "editor"
+      , Space
+      , Str "(or"
+      , Space
+      , Str "other"
+      , Space
+      , Str "thing"
+      , Space
+      , Str "that"
+      , Space
+      , Str "displays"
+      , Space
+      , Str "code"
+      , Space
+      , Str "to"
+      , Space
+      , Str "the"
+      , Space
+      , Str "user)"
+      , Space
+      , Str "render"
+      , Space
+      , Str "the"
+      , Space
+      , Str "code"
+      , SoftBreak
+      , Str "in"
+      , Space
+      , Str "a"
+      , Space
+      , Str "different"
+      , Space
+      , Str "way"
+      , Space
+      , Str "than"
+      , Space
+      , Str "the"
+      , Space
+      , Str "compiler"
+      , Space
+      , Str "parses"
+      , Space
+      , Str "it."
+      ]
+  , Para
+      [ Str "This"
+      , Space
+      , Str "is"
+      , Space
+      , Str "done"
+      , Space
+      , Str "by"
+      , Space
+      , Str "using"
+      , Space
+      , Str "unicode"
+      , Space
+      , Str "features."
+      , Space
+      , Str "Support"
+      , Space
+      , Str "for"
+      , Space
+      , Str "bidirectional"
+      , Space
+      , Str "text"
+      , SoftBreak
+      , Str "is"
+      , Space
+      , Str "one"
+      , Space
+      , Str "such"
+      , Space
+      , Str "feature,"
+      , Space
+      , Str "where"
+      , Space
+      , Str "it"
+      , Space
+      , Str "has"
+      , Space
+      , Str "special"
+      , Space
+      , Str "characters"
+      , Space
+      , Str "to"
+      , Space
+      , Str "mark"
+      , Space
+      , Str "regions"
+      , SoftBreak
+      , Str "of"
+      , Space
+      , Str "text"
+      , Space
+      , Str "to"
+      , Space
+      , Str "be"
+      , Space
+      , Str "right-to-left"
+      , Space
+      , Str "or"
+      , Space
+      , Str "left-to-right"
+      , Space
+      , Str "to"
+      , Space
+      , Str "allow"
+      , Space
+      , Str "mixing"
+      , Space
+      , Str "e.g"
+      , SoftBreak
+      , Str "Arabic"
+      , Space
+      , Str "and"
+      , Space
+      , Str "English"
+      , Space
+      , Str "in"
+      , Space
+      , Str "the"
+      , Space
+      , Str "same"
+      , Space
+      , Str "document."
+      , Space
+      , Str "If"
+      , Space
+      , Str "these"
+      , Space
+      , Str "are"
+      , Space
+      , Str "used"
+      , Space
+      , Str "in"
+      , Space
+      , Str "cunning"
+      , SoftBreak
+      , Str "ways"
+      , Space
+      , Str "they"
+      , Space
+      , Str "can"
+      , Space
+      , Str "make"
+      , Space
+      , Str "the"
+      , Space
+      , Str "text"
+      , Space
+      , Str "render"
+      , Space
+      , Str "in"
+      , Space
+      , Str "a"
+      , Space
+      , Str "way"
+      , Space
+      , Str "that"
+      , Space
+      , Str "makes"
+      , Space
+      , Str "a"
+      , Space
+      , Str "word"
+      , Space
+      , Str "look"
+      , SoftBreak
+      , Str "like"
+      , Space
+      , Str "it"
+      , Space
+      , Str "is"
+      , Space
+      , Emph [ Str "inside" ]
+      , Space
+      , Str "a"
+      , Space
+      , Str "comment"
+      , Space
+      , Str "but"
+      , Space
+      , Str "to"
+      , Space
+      , Str "the"
+      , Space
+      , Str "compiler,"
+      , Space
+      , Str "which"
+      , Space
+      , Str "parses"
+      , Space
+      , Str "it"
+      , Space
+      , Str "in"
+      , SoftBreak
+      , Str "the"
+      , Space
+      , Str "order"
+      , Space
+      , Str "it"
+      , Space
+      , Str "appears"
+      , Space
+      , Str "in"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file,"
+      , Space
+      , Str "sees"
+      , Space
+      , Str "it"
+      , Space
+      , Str "is"
+      , Space
+      , Emph [ Str "after" ]
+      , Space
+      , Str "the"
+      , Space
+      , Str "comment."
+      ]
+  , Para
+      [ Str "GCC"
+      , Space
+      , Str "provides"
+      , SoftBreak
+      , Link
+          ( "" , [] , [] )
+          [ Code ( "" , [] , [] ) "-Wbidi-chars" ]
+          ( "https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wbidi-chars_003d"
+          , ""
+          )
+      , SoftBreak
+      , Str "to"
+      , Space
+      , Str "detect"
+      , Space
+      , Str "usage"
+      , Space
+      , Str "of"
+      , Space
+      , Str "writing"
+      , Space
+      , Str "direction"
+      , Space
+      , Str "markers."
+      , Space
+      , Str "Clang"
+      , Space
+      , Str "compiler"
+      , SoftBreak
+      , Link
+          ( "" , [] , [] )
+          [ Str "doesn\8217t" ]
+          ( "https://bugs.chromium.org/p/llvm/issues/detail?id=11#c9"
+          , ""
+          )
+      , SoftBreak
+      , Str "provide"
+      , Space
+      , Str "such"
+      , Space
+      , Str "warning,"
+      , Space
+      , Str "but"
+      , Space
+      , Str "has"
+      , Space
+      , Str "a"
+      , Space
+      , Str "check"
+      , Space
+      , Str "in"
+      , SoftBreak
+      , Link
+          ( "" , [] , [] )
+          [ Str "clang-tidy" ]
+          ( "https://clang.llvm.org/extra/clang-tidy/checks/misc/misleading-bidirectional.html"
+          , ""
+          )
+      ]
+  , Para
+      [ Str "Another"
+      , Space
+      , Str "variant"
+      , Space
+      , Str "of"
+      , Space
+      , Quoted DoubleQuote [ Str "trojan" , Space , Str "source" ]
+      , Space
+      , Str "is"
+      , Space
+      , Str "usage"
+      , Space
+      , Str "of"
+      , Space
+      , Str "homoglyphs,"
+      , Space
+      , Str "different"
+      , SoftBreak
+      , Str "characters"
+      , Space
+      , Str "that"
+      , Space
+      , Str "looks"
+      , Space
+      , Str "similar"
+      , Space
+      , Str "or"
+      , Space
+      , Str "even"
+      , Space
+      , Str "identical"
+      , Space
+      , Str "(depending"
+      , Space
+      , Str "on"
+      , SoftBreak
+      , Str "font)."
+      , Space
+      , Str "As"
+      , Space
+      , Str "an"
+      , Space
+      , Str "example,"
+      , Space
+      , Str "unicode"
+      , Space
+      , Str "contains"
+      , Space
+      , Str "the"
+      , Space
+      , Str "character"
+      , Space
+      , Quoted
+          DoubleQuote [ Str "Division" , Space , Str "Slash" ]
+      , SoftBreak
+      , Str "(U+2215)"
+      , Space
+      , Str "which"
+      , Space
+      , Str "is"
+      , Space
+      , Str "different"
+      , Space
+      , Str "from"
+      , Space
+      , Str "the"
+      , Space
+      , Str "ordinary"
+      , Space
+      , Str "ascii"
+      , Space
+      , Str "slash"
+      , Space
+      , Quoted DoubleQuote [ Str "Solidus" ]
+      , SoftBreak
+      , Str "(U+002F)."
+      ]
+  , CodeBlock
+      ( "" , [] , [] )
+      "/* Important comment */\ncheck_permissions();\n/* Another comment */"
+  , Para
+      [ Str "If"
+      , Space
+      , Str "the"
+      , Space
+      , Str "final"
+      , Space
+      , Str "slash"
+      , Space
+      , Str "on"
+      , Space
+      , Str "the"
+      , Space
+      , Str "first"
+      , Space
+      , Str "line"
+      , Space
+      , Str "isn\8217t"
+      , Space
+      , Str "a"
+      , Space
+      , Str "slash"
+      , Space
+      , Str "but"
+      , Space
+      , Str "another"
+      , SoftBreak
+      , Str "similarly"
+      , Space
+      , Str "looking"
+      , Space
+      , Str "character"
+      , Space
+      , Str "that"
+      , Space
+      , Str "the"
+      , Space
+      , Str "compiler"
+      , Space
+      , Str "doesn\8217t"
+      , Space
+      , Str "understand"
+      , Space
+      , Str "as"
+      , SoftBreak
+      , Str "end"
+      , Space
+      , Str "of"
+      , Space
+      , Str "comment"
+      , Space
+      , Str "it"
+      , Space
+      , Str "means"
+      , Space
+      , Str "that"
+      , Space
+      , Str "the"
+      , Space
+      , Str "whole"
+      , Space
+      , Str "snippet"
+      , Space
+      , Str "is"
+      , Space
+      , Str "commented"
+      , Space
+      , Str "out."
       ]
   , Header
       1
