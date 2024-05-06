@@ -100,19 +100,29 @@ relevant topics?  It is two-fold.
 First, by studying specific topics, they hope to gain enough knowledge to write
 up a good summary for this book.
 
-Second, they very much invite and welcome contributions. If you're interested
-in potentially contributing content, please go to the home location for the
-open source project at <https://github.com/llsoftsec/llsoftsecbook>.
+Second, they very much invite and welcome contributions. If you're interested in
+potentially contributing content, please go to the home location for the open
+source project at <https://github.com/llsoftsec/llsoftsecbook>.
 
-As a reader, you can also contribute to making this book better.  We highly
-encourage feedback, both positive and constructive criticisms.  We prefer
-feedback to be received through <https://github.com/llsoftsec/llsoftsecbook>.
+As this book is very much a work in progress, you will notice plenty of "TODO"
+items throughout this book. [This is an example "TODO" item]{.todo}
 
+We think that keeping the TODOs clearly visible helps both readers and potential
+contributors. Readers get hints of what kind of further content is still
+missing. Potential contributors get hints for where we need help to further
+improve this book.
+
+As a reader, you can also contribute to making this book better. We highly
+encourage feedback, both positive and constructive criticisms. We prefer
+feedback through either <https://github.com/llsoftsec/llsoftsecbook>, for
+example by raising an issue there, or through our
+[Discord server](https://discord.gg/Bm55Z9Ppgn). Interested potential
+contributors can reach the LLSoftSec community through the same channels.
 
 ::: TODO
 Add section describing the structure of the rest of the book.
 :::
- 
+
 # Memory vulnerability based attacks
 
 ## A bit of background on memory vulnerabilities
