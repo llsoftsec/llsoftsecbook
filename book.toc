@@ -72,5 +72,5 @@
 \contentsline {subsection}{\numberline {7.3.1}Common forms of Fault injection attacks}{59}{subsection.7.3.1}%
 \contentsline {subsection}{\numberline {7.3.2}Countermeasures}{60}{subsection.7.3.2}%
 \contentsline {chapter}{\numberline {8}Other security topics relevant for compiler developers}{61}{chapter.8}%
-\contentsline {chapter}{Appendix: contribution guidelines}{62}{chapter*.44}%
-\contentsline {chapter}{References}{67}{chapter*.46}%
+\contentsline {chapter}{Appendix: contribution guidelines}{62}{chapter*.45}%
+\contentsline {chapter}{References}{67}{chapter*.47}%

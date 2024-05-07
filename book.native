@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-185-gc206ccc" )
+          , ( "VERSION" , MetaString "0-186-g1f53896" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -1228,9 +1228,9 @@ Pandoc
       , Str "you\8217re"
       , Space
       , Str "interested"
-      , SoftBreak
-      , Str "in"
       , Space
+      , Str "in"
+      , SoftBreak
       , Str "potentially"
       , Space
       , Str "contributing"
@@ -1252,9 +1252,9 @@ Pandoc
       , Str "for"
       , Space
       , Str "the"
-      , SoftBreak
-      , Str "open"
       , Space
+      , Str "open"
+      , SoftBreak
       , Str "source"
       , Space
       , Str "project"
@@ -1266,6 +1266,143 @@ Pandoc
           [ Str "https://github.com/llsoftsec/llsoftsecbook" ]
           ( "https://github.com/llsoftsec/llsoftsecbook" , "" )
       , Str "."
+      ]
+  , Para
+      [ Str "As"
+      , Space
+      , Str "this"
+      , Space
+      , Str "book"
+      , Space
+      , Str "is"
+      , Space
+      , Str "very"
+      , Space
+      , Str "much"
+      , Space
+      , Str "a"
+      , Space
+      , Str "work"
+      , Space
+      , Str "in"
+      , Space
+      , Str "progress,"
+      , Space
+      , Str "you"
+      , Space
+      , Str "will"
+      , Space
+      , Str "notice"
+      , Space
+      , Str "plenty"
+      , Space
+      , Str "of"
+      , Space
+      , Quoted DoubleQuote [ Str "TODO" ]
+      , SoftBreak
+      , Str "items"
+      , Space
+      , Str "throughout"
+      , Space
+      , Str "this"
+      , Space
+      , Str "book."
+      , Space
+      , Span
+          ( "" , [ "todo" ] , [] )
+          [ Str "This"
+          , Space
+          , Str "is"
+          , Space
+          , Str "an"
+          , Space
+          , Str "example"
+          , Space
+          , Quoted DoubleQuote [ Str "TODO" ]
+          , Space
+          , Str "item"
+          ]
+      ]
+  , Para
+      [ Str "We"
+      , Space
+      , Str "think"
+      , Space
+      , Str "that"
+      , Space
+      , Str "keeping"
+      , Space
+      , Str "the"
+      , Space
+      , Str "TODOs"
+      , Space
+      , Str "clearly"
+      , Space
+      , Str "visible"
+      , Space
+      , Str "helps"
+      , Space
+      , Str "both"
+      , Space
+      , Str "readers"
+      , Space
+      , Str "and"
+      , Space
+      , Str "potential"
+      , SoftBreak
+      , Str "contributors."
+      , Space
+      , Str "Readers"
+      , Space
+      , Str "get"
+      , Space
+      , Str "hints"
+      , Space
+      , Str "of"
+      , Space
+      , Str "what"
+      , Space
+      , Str "kind"
+      , Space
+      , Str "of"
+      , Space
+      , Str "further"
+      , Space
+      , Str "content"
+      , Space
+      , Str "is"
+      , Space
+      , Str "still"
+      , SoftBreak
+      , Str "missing."
+      , Space
+      , Str "Potential"
+      , Space
+      , Str "contributors"
+      , Space
+      , Str "get"
+      , Space
+      , Str "hints"
+      , Space
+      , Str "for"
+      , Space
+      , Str "where"
+      , Space
+      , Str "we"
+      , Space
+      , Str "need"
+      , Space
+      , Str "help"
+      , Space
+      , Str "to"
+      , Space
+      , Str "further"
+      , SoftBreak
+      , Str "improve"
+      , Space
+      , Str "this"
+      , Space
+      , Str "book."
       ]
   , Para
       [ Str "As"
@@ -1316,19 +1453,65 @@ Pandoc
       , SoftBreak
       , Str "feedback"
       , Space
-      , Str "to"
-      , Space
-      , Str "be"
-      , Space
-      , Str "received"
-      , Space
       , Str "through"
+      , Space
+      , Str "either"
       , Space
       , Link
           ( "" , [ "uri" ] , [] )
           [ Str "https://github.com/llsoftsec/llsoftsecbook" ]
           ( "https://github.com/llsoftsec/llsoftsecbook" , "" )
+      , Str ","
+      , Space
+      , Str "for"
+      , SoftBreak
+      , Str "example"
+      , Space
+      , Str "by"
+      , Space
+      , Str "raising"
+      , Space
+      , Str "an"
+      , Space
+      , Str "issue"
+      , Space
+      , Str "there,"
+      , Space
+      , Str "or"
+      , Space
+      , Str "through"
+      , Space
+      , Str "our"
+      , SoftBreak
+      , Link
+          ( "" , [] , [] )
+          [ Str "Discord" , Space , Str "server" ]
+          ( "https://discord.gg/Bm55Z9Ppgn" , "" )
       , Str "."
+      , Space
+      , Str "Interested"
+      , Space
+      , Str "potential"
+      , SoftBreak
+      , Str "contributors"
+      , Space
+      , Str "can"
+      , Space
+      , Str "reach"
+      , Space
+      , Str "the"
+      , Space
+      , Str "LLSoftSec"
+      , Space
+      , Str "community"
+      , Space
+      , Str "through"
+      , Space
+      , Str "the"
+      , Space
+      , Str "same"
+      , Space
+      , Str "channels."
       ]
   , Div
       ( "" , [ "TODO" ] , [] )
