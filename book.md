@@ -2905,8 +2905,6 @@ better, please do let us know by raising an
 
 \printindex
 
-\listoftodos
-
 # References {-}
 ::: {#refs}
 :::
