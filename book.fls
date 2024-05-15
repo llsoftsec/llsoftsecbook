@@ -1558,10 +1558,6 @@ INPUT build/book.ind
 INPUT build/book.ind
 INPUT build/book.ind
 INPUT build/book.ind
-INPUT build/book.tdo
-INPUT build/book.tdo
-INPUT build/book.tdo
-OUTPUT build/book.tdo
 INPUT /texlive/2020/texmf-dist/fonts/tfm/public/lm/ec-lmr5.tfm
 INPUT build/book.aux
 INPUT /texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc

@@ -6,8 +6,8 @@
 \contentsline {section}{\numberline {2.3}Stack buffer overflows}{10}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Code reuse attacks}{13}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Return-oriented programming}{13}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Jump-oriented programming}{15}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Counterfeit Object-oriented programming}{17}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.2}Jump-oriented programming}{17}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Counterfeit Object-oriented programming}{18}{subsection.2.4.3}%
 \contentsline {subsection}{\numberline {2.4.4}Sigreturn-oriented programming}{18}{subsection.2.4.4}%
 \contentsline {section}{\numberline {2.5}Mitigations against code reuse attacks}{18}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}ASLR}{18}{subsection.2.5.1}%
@@ -73,4 +73,4 @@
 \contentsline {subsection}{\numberline {7.3.2}Countermeasures}{60}{subsection.7.3.2}%
 \contentsline {chapter}{\numberline {8}Other security topics relevant for compiler developers}{61}{chapter.8}%
 \contentsline {chapter}{Appendix: contribution guidelines}{62}{chapter*.45}%
-\contentsline {chapter}{References}{67}{chapter*.47}%
+\contentsline {chapter}{References}{65}{chapter*.46}%

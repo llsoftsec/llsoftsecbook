@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-186-g1f53896" )
+          , ( "VERSION" , MetaString "0-188-g2c5a367" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -9705,6 +9705,243 @@ Pandoc
       , Str "been"
       , Space
       , Str "missed."
+      ]
+  , Para
+      [ Str "Anything"
+      , Space
+      , Str "in"
+      , Space
+      , Str "executable"
+      , Space
+      , Str "memory"
+      , Space
+      , Str "can"
+      , Space
+      , Str "potentially"
+      , Space
+      , Str "be"
+      , Space
+      , Str "used"
+      , Space
+      , Str "as"
+      , Space
+      , Str "a"
+      , Space
+      , Str "ROP"
+      , Space
+      , Str "gadget,"
+      , Space
+      , Str "even"
+      , Space
+      , Str "if"
+      , SoftBreak
+      , Str "the"
+      , Space
+      , Str "compiler"
+      , Space
+      , Str "has"
+      , Space
+      , Str "not"
+      , Space
+      , Str "intended"
+      , Space
+      , Str "it"
+      , Space
+      , Str "to"
+      , Space
+      , Str "be"
+      , Space
+      , Str "code."
+      , Space
+      , Str "This"
+      , Space
+      , Str "includes"
+      , Space
+      , Str "literal"
+      , Space
+      , Str "pools"
+      , Space
+      , Str "which"
+      , SoftBreak
+      , Str "are"
+      , Space
+      , Str "intermingled"
+      , Space
+      , Str "with"
+      , Space
+      , Str "code,"
+      , Space
+      , Str "and,"
+      , Space
+      , Str "on"
+      , Space
+      , Str "architectures"
+      , Space
+      , Str "with"
+      , Space
+      , Str "variable"
+      , Space
+      , Str "length"
+      , SoftBreak
+      , Str "instruction"
+      , Space
+      , Str "encoding,"
+      , Space
+      , Str "returning"
+      , Space
+      , Str "to"
+      , Space
+      , Str "the"
+      , Space
+      , Str "middle"
+      , Space
+      , Str "of"
+      , Space
+      , Str "an"
+      , Space
+      , Str "instruction."
+      , Space
+      , Str "In"
+      , Space
+      , Str "a"
+      , Space
+      , Str "JIT"
+      , SoftBreak
+      , Str "compiler"
+      , Space
+      , Str "where"
+      , Space
+      , Str "the"
+      , Space
+      , Str "attacker"
+      , Space
+      , Str "might"
+      , Space
+      , Str "influence"
+      , Space
+      , Str "what"
+      , Space
+      , Str "literals"
+      , Space
+      , Str "are"
+      , Space
+      , Str "generated"
+      , Space
+      , Str "this"
+      , SoftBreak
+      , Str "can"
+      , Space
+      , Str "be"
+      , Space
+      , Str "particularly"
+      , Space
+      , Str "powerful."
+      , Space
+      , Str "For"
+      , Space
+      , Str "example,"
+      , Space
+      , Str "on"
+      , Space
+      , Str "x86,"
+      , Space
+      , Str "the"
+      , Space
+      , Str "compiler"
+      , Space
+      , Str "might"
+      , Space
+      , Str "have"
+      , SoftBreak
+      , Str "emitted"
+      , Space
+      , Str "the"
+      , Space
+      , Str "instruction"
+      , Space
+      , Code ( "" , [] , [] ) "mov $0xc35f, %ax"
+      , Space
+      , Str "which"
+      , Space
+      , Str "is"
+      , Space
+      , Str "encoded"
+      , Space
+      , Str "as"
+      , Space
+      , Str "the"
+      , Space
+      , Str "four"
+      , Space
+      , Str "bytes"
+      , SoftBreak
+      , Code ( "" , [] , [] ) "66 b8 5f c3"
+      , Str "."
+      , Space
+      , Str "If"
+      , Space
+      , Str "the"
+      , Space
+      , Str "attacker"
+      , Space
+      , Str "can"
+      , Space
+      , Str "divert"
+      , Space
+      , Str "execution"
+      , Space
+      , Str "two"
+      , Space
+      , Str "bytes"
+      , Space
+      , Str "into"
+      , Space
+      , Str "that"
+      , Space
+      , Str "4-byte"
+      , SoftBreak
+      , Str "instruction"
+      , Space
+      , Str "it"
+      , Space
+      , Str "will"
+      , Space
+      , Str "execute"
+      , Space
+      , Code ( "" , [] , [] ) "5f c3"
+      , Str "."
+      , Space
+      , Str "Those"
+      , Space
+      , Str "bytes"
+      , Space
+      , Str "corresponds"
+      , Space
+      , Str "to"
+      , Space
+      , Str "the"
+      , Space
+      , Str "two"
+      , Space
+      , Str "single"
+      , SoftBreak
+      , Str "byte"
+      , Space
+      , Str "instructions"
+      , Space
+      , Code ( "" , [] , [] ) "pop %rdi; ret"
+      , Space
+      , Str "which"
+      , Space
+      , Str "is"
+      , Space
+      , Str "a"
+      , Space
+      , Str "useful"
+      , Space
+      , Str "ROP"
+      , Space
+      , Str "gadget."
       ]
   , Header
       3
@@ -42154,7 +42391,6 @@ Pandoc
       , Str "."
       ]
   , RawBlock (Format "tex") "\\printindex"
-  , RawBlock (Format "tex") "\\listoftodos"
   , Header
       1
       ( "references" , [ "unnumbered" ] , [] )

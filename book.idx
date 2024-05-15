@@ -17,13 +17,13 @@
 \indexentry{ROP chain|hyperpage}{13}
 \indexentry{stack pivoting|hyperpage}{15}
 \indexentry{gadget scanner|hyperpage}{15}
-\indexentry{jump-oriented programming (JOP)|hyperpage}{15}
+\indexentry{jump-oriented programming (JOP)|hyperpage}{17}
 \indexentry{dispatcher gadget|hyperpage}{17}
-\indexentry{counterfeit object-oriented programming (COOP)|hyperpage}{17}
-\indexentry{C++|hyperpage}{17}
+\indexentry{counterfeit object-oriented programming (COOP)|hyperpage}{18}
+\indexentry{C++|hyperpage}{18}
 \indexentry{sigreturn-oriented programming (SROP)|hyperpage}{18}
 \indexentry{ASLR|hyperpage}{18}
-\indexentry{info leak|hyperpage}{18}
+\indexentry{info leak|hyperpage}{19}
 \indexentry{CFI|hyperpage}{19}
 \indexentry{forward-edge CFI|hyperpage}{19}
 \indexentry{backward-edge CFI|hyperpage}{19}
@@ -42,11 +42,10 @@
 \indexentry{sanitizers|hyperpage}{25}
 \indexentry{fuzzing|hyperpage}{25}
 \indexentry{AddressSanitizer (ASan)|hyperpage}{25}
-\indexentry{GCC|hyperpage}{25}
-\indexentry{Clang|hyperpage}{25}
-\indexentry{shadow memory|hyperpage}{25}
 \indexentry{fuzzing|hyperpage}{25}
-\indexentry{LeakSanitizer|hyperpage}{25}
+\indexentry{GCC|hyperpage}{26}
+\indexentry{Clang|hyperpage}{26}
+\indexentry{shadow memory|hyperpage}{26}
 \indexentry{malloc|hyperpage}{26}
 \indexentry{free|hyperpage}{26}
 \indexentry{redzone|hyperpage}{26}
@@ -54,9 +53,10 @@
 \indexentry{HWASAN|hyperpage}{26}
 \indexentry{AArch64|hyperpage}{26}
 \indexentry{Top-Byte Ignore (TBI)|hyperpage}{26}
-\indexentry{MemTagSanitizer|hyperpage}{26}
-\indexentry{Memory Tagging Extension (MTE)|hyperpage}{26}
-\indexentry{UBSan|hyperpage}{26}
+\indexentry{LeakSanitizer|hyperpage}{26}
+\indexentry{MemTagSanitizer|hyperpage}{27}
+\indexentry{Memory Tagging Extension (MTE)|hyperpage}{27}
+\indexentry{UBSan|hyperpage}{27}
 \indexentry{MemorySanitizer|hyperpage}{27}
 \indexentry{ThreadSanitizer|hyperpage}{27}
 \indexentry{GWP-ASan|hyperpage}{27}
@@ -64,15 +64,15 @@
 \indexentry{read primitive|hyperpage}{27}
 \indexentry{write primitive|hyperpage}{27}
 \indexentry{intra-object overflow|hyperpage}{28}
-\indexentry{Application binary interface (ABI)|hyperpage}{28}
+\indexentry{Application binary interface (ABI)|hyperpage}{29}
 \indexentry{capability|hyperpage}{29}
-\indexentry{JIT compilers|hyperpage}{29}
+\indexentry{JIT compilers|hyperpage}{30}
 \indexentry{deoptimization|hyperpage}{30}
 \indexentry{on-stack replacement (OSR)|hyperpage}{30}
-\indexentry{range analysis|hyperpage}{30}
-\indexentry{bounds check elimination|hyperpage}{30}
-\indexentry{bounds check elimination|hyperpage}{30}
-\indexentry{pointer compression|hyperpage}{31}
+\indexentry{range analysis|hyperpage}{31}
+\indexentry{bounds check elimination|hyperpage}{31}
+\indexentry{bounds check elimination|hyperpage}{31}
+\indexentry{pointer compression|hyperpage}{32}
 \indexentry{W\^{}X|hyperpage}{32}
 \indexentry{covert channel|hyperpage}{33}
 \indexentry{side-channel|hyperpage}{33}
