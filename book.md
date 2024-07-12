@@ -1340,9 +1340,8 @@ together. This makes ABI changes undesirable, which is why this proposal aims
 to minimise them.
 
 There are also hardening efforts focusing on C++ codebases. For example, the
-["safe libc++"
-mode](https://libcxx.llvm.org/UsingLibcxx.html#enabling-the-safe-libc-mode)
-enables a number of assertions that aim to catch undefined behaviour in the
+[libc++ hardening modes](https://libcxx.llvm.org/Hardening.html)
+enable a number of assertions that aim to catch undefined behaviour in the
 library. The [C++ Buffer Hardening
 proposal](https://discourse.llvm.org/t/rfc-c-buffer-hardening/65734) aims to
 extend this library hardening. The proposal will also introduce a programming
