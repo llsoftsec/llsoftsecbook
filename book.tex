@@ -180,7 +180,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2024 Anders Waldenborg
 \href{mailto:anders@0x63.nu}{\nolinkurl{anders@0x63.nu}}\\
 
-Version 0-189-ga9e58b4
+Version 0-193-g56147e9
 \clearpage
 
 {
@@ -2552,9 +2552,9 @@ Two examples are SBPA (\protect\hyperlink{ref-Aciicmez2007}{Aciiçmez,
 Kaya Koç, and Seifert 2007})\index{SBPA} and BranchShadow
 (\protect\hyperlink{ref-Lee2017}{Lee et al. 2017})\index{BranchShadow}.
 These earlier attacks are based on making a branch in the spy process
-alias in the BTB\index{BTB} with a targeted branch in the victim
-process. They use methods such as timing difference, last branch
-records\index{last branch record}, instruction
+alias in the Branch Target Buffer (BTB\index{BTB}) with a targeted
+branch in the victim process. They use methods such as timing
+difference, last branch records\index{last branch record}, instruction
 traces\index{instruction trace} or performance
 counters\index{performance counter} to measure whether the branch in the
 spy process caused a specific state change in the BTB.
@@ -2570,10 +2570,10 @@ One example is Hyper-Channel
 2008})\index{Hyper-Channel}. In this case, a spy process invokes \(N\)
 calls to fill up the return stack predictor. Then it lets the victim
 process execute. Then, the spy process can measure how many of its
-return stack entries have been removed from the RSB, by measuring the
-number of \(N\) returns that get mis-predicted. If the number of calls
-in the victim process is dependent on secret information, this could
-leak it.
+return stack entries have been removed from the Return Stack Buffer
+(RSB), by measuring the number of \(N\) returns that get mis-predicted.
+If the number of calls in the victim process is dependent on secret
+information, this could leak it.
 
 The papers referred to above contain detailed explanations of how they
 set up the attack. All of these attacks use a general 3-step approach,

@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-189-ga9e58b4" )
+          , ( "VERSION" , MetaString "0-193-g56147e9" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -30085,9 +30085,16 @@ Pandoc
       , Space
       , Str "the"
       , Space
-      , Str "BTB"
-      , RawInline (Format "tex") "\\index{BTB}"
+      , Str "Branch"
       , Space
+      , Str "Target"
+      , Space
+      , Str "Buffer"
+      , Space
+      , Str "(BTB"
+      , RawInline (Format "tex") "\\index{BTB}"
+      , Str ")"
+      , SoftBreak
       , Str "with"
       , Space
       , Str "a"
@@ -30097,13 +30104,13 @@ Pandoc
       , Str "branch"
       , Space
       , Str "in"
-      , SoftBreak
+      , Space
       , Str "the"
       , Space
       , Str "victim"
       , Space
       , Str "process."
-      , Space
+      , SoftBreak
       , Str "They"
       , Space
       , Str "use"
@@ -30297,8 +30304,14 @@ Pandoc
       , Space
       , Str "the"
       , Space
-      , Str "RSB,"
+      , Str "Return"
       , Space
+      , Str "Stack"
+      , Space
+      , Str "Buffer"
+      , Space
+      , Str "(RSB),"
+      , SoftBreak
       , Str "by"
       , Space
       , Str "measuring"
@@ -30306,7 +30319,7 @@ Pandoc
       , Str "the"
       , Space
       , Str "number"
-      , SoftBreak
+      , Space
       , Str "of"
       , Space
       , Math InlineMath "N"
@@ -30318,7 +30331,7 @@ Pandoc
       , Str "get"
       , Space
       , Str "mis-predicted."
-      , Space
+      , SoftBreak
       , Str "If"
       , Space
       , Str "the"
