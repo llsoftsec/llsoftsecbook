@@ -1973,8 +1973,9 @@ It can also be used to break [ASLR](#aslr)\index{ASLR}.
 
 Two examples are SBPA [@Aciicmez2007]\index{SBPA} and BranchShadow
 [@Lee2017]\index{BranchShadow}. These earlier attacks are based on making a
-branch in the spy process alias in the BTB\index{BTB} with a targeted branch in
-the victim process. They use methods such as timing difference, last branch
+branch in the spy process alias in the Branch Target Buffer (BTB\index{BTB})
+with a targeted branch in the victim process.
+They use methods such as timing difference, last branch
 records\index{last branch record}, instruction traces\index{instruction trace}
 or performance counters\index{performance counter} to measure whether the branch
 in the spy process caused a specific state change in the BTB.
