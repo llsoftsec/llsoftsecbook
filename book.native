@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-188-g2c5a367" )
+          , ( "VERSION" , MetaString "0-189-ga9e58b4" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -19999,15 +19999,15 @@ Pandoc
       , SoftBreak
       , Link
           ( "" , [] , [] )
-          [ Quoted DoubleQuote [ Str "safe" , Space , Str "libc++" ]
-          , SoftBreak
-          , Str "mode"
+          [ Str "libc++"
+          , Space
+          , Str "hardening"
+          , Space
+          , Str "modes"
           ]
-          ( "https://libcxx.llvm.org/UsingLibcxx.html#enabling-the-safe-libc-mode"
-          , ""
-          )
+          ( "https://libcxx.llvm.org/Hardening.html" , "" )
       , SoftBreak
-      , Str "enables"
+      , Str "enable"
       , Space
       , Str "a"
       , Space

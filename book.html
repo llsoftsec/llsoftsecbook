@@ -445,7 +445,7 @@ Developers</h1>
       Copyright 2023 Lucian Popescu <a href="mailto:lucian.popescu187@gmail.com" class="email">lucian.popescu187@gmail.com</a><br />
       Copyright 2024 Anders Waldenborg <a href="mailto:anders@0x63.nu" class="email">anders@0x63.nu</a><br />
     </p>
-  <p>Version: 0-188-g2c5a367</p>
+  <p>Version: 0-189-ga9e58b4</p>
 </header>
 
 <main id="content">
@@ -1634,8 +1634,8 @@ minimise them.</span>. Local variables which do not cross ABI boundaries
 are implicitly converted to use wide pointers. These wide pointers store
 bounds information alongside the original pointer.</p>
 <p>There are also hardening efforts focusing on C++ codebases. For
-example, the <a href="https://libcxx.llvm.org/UsingLibcxx.html#enabling-the-safe-libc-mode">“safe
-libc++” mode</a> enables a number of assertions that aim to catch
+example, the <a href="https://libcxx.llvm.org/Hardening.html">libc++
+hardening modes</a> enable a number of assertions that aim to catch
 undefined behaviour in the library. The <a href="https://discourse.llvm.org/t/rfc-c-buffer-hardening/65734">C++
 Buffer Hardening proposal</a> aims to extend this library hardening. The
 proposal will also introduce a programming model in which all pointer
@@ -1667,7 +1667,7 @@ safe languages, with different characteristics. One example is
 JavaScript, a dynamically typed, usually <a href="#jit-compiler-vulnerabilities">JIT-compiled</a> language. We’ll
 discuss some of the issues that arise when implementing support for such
 a language in the next section.</p>
-<h2 data-number="2.8" id="jit-compiler-vulnerabilities"><span class="header-section-number">2.8</span> JIT compiler vulnerabilities<a href="#jit-compiler-vulnerabilities" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1383" class="suggestedit" title="Suggest an edit"></a></h2>
+<h2 data-number="2.8" id="jit-compiler-vulnerabilities"><span class="header-section-number">2.8</span> JIT compiler vulnerabilities<a href="#jit-compiler-vulnerabilities" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1382" class="suggestedit" title="Suggest an edit"></a></h2>
 <p>Compiler correctness is obviously very important, as miscompilation
 creates buggy programs even when the source code has no bugs. What might
 be less obvious is that these bugs can have security implications. For
@@ -1818,7 +1818,7 @@ described JavaScript compiler bugs that lead to vulnerabilities.
 Although we haven’t focused on the details of JavaScript exploitation,
 an interested reader could take a look at <span class="citation" data-cites="saelo2021a">(<a href="#ref-saelo2021a" role="doc-biblioref">saelo 2021b</a>)</span> and <span class="citation" data-cites="saelo2021b">(<a href="#ref-saelo2021b" role="doc-biblioref">saelo 2021a</a>)</span>.</p>
 <h1 data-number="3" id="covert-channels-and-side-channels"><span class="header-section-number">3</span> Covert channels and
-side-channels<a href="#covert-channels-and-side-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1553" class="suggestedit" title="Suggest an edit"></a></h1>
+side-channels<a href="#covert-channels-and-side-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1552" class="suggestedit" title="Suggest an edit"></a></h1>
 <p>Side-channels and covert channels are communication channels between
 two entities in a system, where the entities should not be able to
 communicate that way.</p>
@@ -1836,7 +1836,7 @@ side-channels in the rest of this chapter.</p>
 section focusses on leakage through a specific so-called
 micro-architectural aspect, such as execution time, cache state or
 branch predictor state.</p>
-<h2 data-number="3.1" id="timing-side-channels"><span class="header-section-number">3.1</span> Timing side-channels<a href="#timing-side-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1576" class="suggestedit" title="Suggest an edit"></a></h2>
+<h2 data-number="3.1" id="timing-side-channels"><span class="header-section-number">3.1</span> Timing side-channels<a href="#timing-side-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1575" class="suggestedit" title="Suggest an edit"></a></h2>
 <p>An implementation of a cryptographic algorithm can leak information
 about the data it processes if its run time is influenced by the value
 of the processed data. Attacks making use of this are called timing
@@ -1881,7 +1881,7 @@ kernels is found in <span class="citation" data-cites="Pornin2018">(<a href="#re
 when implementing cryptographic algorithms, you also need to keep cache
 side-channel attacks in mind, which are discussed in the <a href="#cache-side-channel-attacks">section on cache side-channel
 attacks</a>.</p>
-<h2 data-number="3.2" id="cache-side-channels"><span class="header-section-number">3.2</span> Cache side-channels<a href="#cache-side-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1631" class="suggestedit" title="Suggest an edit"></a></h2>
+<h2 data-number="3.2" id="cache-side-channels"><span class="header-section-number">3.2</span> Cache side-channels<a href="#cache-side-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1630" class="suggestedit" title="Suggest an edit"></a></h2>
 <p><a href="https://en.wikipedia.org/wiki/Cache_(computing)">Caches</a>
 are used in almost every computing system. They are small memories that
 are much faster than the main memory. They automatically keep the most
@@ -1892,7 +1892,7 @@ covert communication channel. These let the processes communicate
 through memory accesses even when they do not share any memory location.
 We first describe how caches work before exploring these techniques.</p>
 <h3 data-number="3.2.1" id="typical-cpu-cache-architecture"><span class="header-section-number">3.2.1</span> Typical CPU cache
-architecture<a href="#typical-cpu-cache-architecture" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1643" class="suggestedit" title="Suggest an edit"></a></h3>
+architecture<a href="#typical-cpu-cache-architecture" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1642" class="suggestedit" title="Suggest an edit"></a></h3>
 <p>There is a wide variety in <a href="https://en.wikipedia.org/wiki/CPU_cache">CPU cache
 micro-architecture</a> details, but the main characteristics that are
 important to set up a covert channel tend to be similar across most
@@ -1963,7 +1963,7 @@ set-associative. Typical organizations are direct-mapped, 2-way, 4-way,
 <p>The set of cache locations that a particular cache line can be stored
 at is called a <strong>cache set</strong>.</p>
 <h4 data-number="3.2.1.1" id="indexing-in-a-set-associative-cache"><span class="header-section-number">3.2.1.1</span> Indexing in a
-set-associative cache<a href="#indexing-in-a-set-associative-cache" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1714" class="suggestedit" title="Suggest an edit"></a></h4>
+set-associative cache<a href="#indexing-in-a-set-associative-cache" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1713" class="suggestedit" title="Suggest an edit"></a></h4>
 <p>For some cache covert channels, it is essential to know exactly how a
 memory address maps to a specific cache set.</p>
 <figure id="fig:cache-indexing">
@@ -1991,14 +1991,14 @@ fully-associative caches the number of cache sets is 1, so <span class="math inl
 <span id="todo_17" class="todo">Also say something about TLBs and
 prefetching? <a href="https://github.com/llsoftsec/llsoftsecbook/issues/174"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE3NDogb3BlbiI+PHRpdGxlPmlzc3VlIDE3NDogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTc0PC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNzQ8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#174" /></a></span>
 <h3 data-number="3.2.2" id="operation-of-cache-side-channels"><span class="header-section-number">3.2.2</span> Operation of cache
-side-channels<a href="#operation-of-cache-side-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1749" class="suggestedit" title="Suggest an edit"></a></h3>
+side-channels<a href="#operation-of-cache-side-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1748" class="suggestedit" title="Suggest an edit"></a></h3>
 <p>Cache side-channels typically work by the spy determining whether a
 memory access was a cache hit or a cache miss. From that information,
 the spy may be able to deduce bits of data that only the victim should
 have access to.</p>
 <p>Let’s illustrate this by describing a few well-known cache
 side-channels:</p>
-<h4 data-number="3.2.2.1" id="flushreload"><span class="header-section-number">3.2.2.1</span> Flush+Reload<a href="#flushreload" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1757" class="suggestedit" title="Suggest an edit"></a></h4>
+<h4 data-number="3.2.2.1" id="flushreload"><span class="header-section-number">3.2.2.1</span> Flush+Reload<a href="#flushreload" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1756" class="suggestedit" title="Suggest an edit"></a></h4>
 <p>In a so-called <strong>Flush+Reload</strong> attack<span class="citation" data-cites="Yarom2014">(<a href="#ref-Yarom2014" role="doc-biblioref">Yarom and Falkner 2014</a>)</span>, the spy process
 shares memory with the victim process. The attack works in 3 steps:</p>
 <ol type="1">
@@ -2020,7 +2020,7 @@ works? <a href="https://github.com/llsoftsec/llsoftsecbook/issues/175"><img src=
 information. Such as when accessing a specific array element depends on
 whether a specific bit is set in secret data. For example, <span class="citation" data-cites="Yarom2014">(<a href="#ref-Yarom2014" role="doc-biblioref">Yarom and Falkner 2014</a>)</span> demonstrates
 that a Flush+Reload attack can be used to leak GnuPG private keys.</p>
-<h4 data-number="3.2.2.2" id="primeprobe"><span class="header-section-number">3.2.2.2</span> Prime+Probe<a href="#primeprobe" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1782" class="suggestedit" title="Suggest an edit"></a></h4>
+<h4 data-number="3.2.2.2" id="primeprobe"><span class="header-section-number">3.2.2.2</span> Prime+Probe<a href="#primeprobe" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1781" class="suggestedit" title="Suggest an edit"></a></h4>
 <p>In a <strong>Prime+Probe</strong> attack, there is no need for memory
 to be shared between victim and spy. The attack works in 3 steps:</p>
 <ol type="1">
@@ -2037,7 +2037,7 @@ from that derive information about addresses the victim accessed.</li>
 2005</a>)</span> first documented this technique in 2005 and
 demonstrates extracting AES keys in just a few milliseconds.</p>
 <h4 data-number="3.2.2.3" id="general-schema-for-cache-covert-channels"><span class="header-section-number">3.2.2.3</span> General schema for cache
-covert channels<a href="#general-schema-for-cache-covert-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1799" class="suggestedit" title="Suggest an edit"></a></h4>
+covert channels<a href="#general-schema-for-cache-covert-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1798" class="suggestedit" title="Suggest an edit"></a></h4>
 <p>An attentive reader may have noticed that the attacks described above
 follow a similar 3-step pattern. <span class="citation" data-cites="Weber2021">(<a href="#ref-Weber2021" role="doc-biblioref">Weber et al. 2021</a>)</span> describes this
 general pattern and uses it to automatically discover more side-channels
@@ -2059,7 +2059,7 @@ Reload+Refresh<span class="citation" data-cites="Briongos2020">(<a href="#ref-Br
 2020</a>)</span>, Collide+Probe<span class="citation" data-cites="Lipp2020">(<a href="#ref-Lipp2020" role="doc-biblioref">Lipp
 et al. 2020</a>)</span>, etc.</p>
 <h3 data-number="3.2.3" id="mitigating-cache-side-channel-attacks"><span class="header-section-number">3.2.3</span> Mitigating cache side-channel
-attacks<a href="#mitigating-cache-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1821" class="suggestedit" title="Suggest an edit"></a></h3>
+attacks<a href="#mitigating-cache-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1820" class="suggestedit" title="Suggest an edit"></a></h3>
 <p>As described in <span class="citation" data-cites="Su2021">(<a href="#ref-Su2021" role="doc-biblioref">Su and Zeng 2021</a>)</span>, 3
 conditions need to be met for a cache-based side-channel attack to
 succeed:</p>
@@ -2075,7 +2075,7 @@ its own cache status.</li>
 according to which of the 3 conditions above they aim to prevent from
 happening:</p>
 <h4 data-number="3.2.3.1" id="mitigations-de-correlating-cache-state-change-with-sensitive-information-in-the-victim-program"><span class="header-section-number">3.2.3.1</span> Mitigations de-correlating
-cache state change with sensitive information in the victim program<a href="#mitigations-de-correlating-cache-state-change-with-sensitive-information-in-the-victim-program" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1836" class="suggestedit" title="Suggest an edit"></a></h4>
+cache state change with sensitive information in the victim program<a href="#mitigations-de-correlating-cache-state-change-with-sensitive-information-in-the-victim-program" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1835" class="suggestedit" title="Suggest an edit"></a></h4>
 <p>A typical example of when a cache state change could be correlated to
 sensitive information is when a program uses secret information to index
 into an array. An attacker could derive bits of the secret information
@@ -2095,7 +2095,7 @@ in <a href="https://git.tartarus.org/?p=simon/putty.git;a=commitdiff;h=46fbe375b
 * variable</code></pre>
 </blockquote>
 <h4 data-number="3.2.3.2" id="mitigations-disallowing-spy-programs-to-share-the-cache-with-the-victim-program"><span class="header-section-number">3.2.3.2</span> Mitigations disallowing spy
-programs to share the cache with the victim program<a href="#mitigations-disallowing-spy-programs-to-share-the-cache-with-the-victim-program" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1858" class="suggestedit" title="Suggest an edit"></a></h4>
+programs to share the cache with the victim program<a href="#mitigations-disallowing-spy-programs-to-share-the-cache-with-the-victim-program" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1857" class="suggestedit" title="Suggest an edit"></a></h4>
 <p>If the victim and the spy do not share a common channel – in this
 case a cache level – then a side channel cannot be created.</p>
 <p>One way to achieve this is to only allow one program to run at the
@@ -2121,7 +2121,7 @@ also falls into this category. Site isolation is described in more
 detail in <a href="#site-isolation">its own section</a>.</p>
 <h4 data-number="3.2.3.3" id="mitigations-disabling-the-spy-program-to-infer-a-cache-status-change-in-the-victim-program-through-its-own-cache-status"><span class="header-section-number">3.2.3.3</span> Mitigations disabling the
 spy program to infer a cache status change in the victim program through
-its own cache status<a href="#mitigations-disabling-the-spy-program-to-infer-a-cache-status-change-in-the-victim-program-through-its-own-cache-status" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1887" class="suggestedit" title="Suggest an edit"></a></h4>
+its own cache status<a href="#mitigations-disabling-the-spy-program-to-infer-a-cache-status-change-in-the-victim-program-through-its-own-cache-status" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1886" class="suggestedit" title="Suggest an edit"></a></h4>
 <p>In some contexts, the resolution of the smallest time increment
 measurable by the spy program can be reduced so much that it becomes
 much harder to distinguish between a cache hit and a cache miss.
@@ -2147,8 +2147,8 @@ bit of performance overhead, and may also not always possible e.g. when
 victim and spy are running at the same time on 2 CPUs sharing a cache
 level.</p>
 <h2 data-number="3.3" id="branch-predictor-based-side-channels"><span class="header-section-number">3.3</span> Branch-predictor based
-side-channels<a href="#branch-predictor-based-side-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1912" class="suggestedit" title="Suggest an edit"></a></h2>
-<h3 data-number="3.3.1" id="branch-predictors"><span class="header-section-number">3.3.1</span> Branch predictors<a href="#branch-predictors" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1914" class="suggestedit" title="Suggest an edit"></a></h3>
+side-channels<a href="#branch-predictor-based-side-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1911" class="suggestedit" title="Suggest an edit"></a></h2>
+<h3 data-number="3.3.1" id="branch-predictors"><span class="header-section-number">3.3.1</span> Branch predictors<a href="#branch-predictors" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1913" class="suggestedit" title="Suggest an edit"></a></h3>
 <p>Most CPUs implement one or more <a href="https://en.wikipedia.org/wiki/Instruction_pipelining">instruction
 pipelines</a>. In an instruction pipeline, the next instruction is
 started before the previous instruction has finished executing. When the
@@ -2176,12 +2176,12 @@ next instruction after a taken branch.</li>
 after a function return instruction.</li>
 </ul>
 <h3 data-number="3.3.2" id="side-channels-through-branch-predictors"><span class="header-section-number">3.3.2</span> Side-channels through branch
-predictors<a href="#side-channels-through-branch-predictors" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1947" class="suggestedit" title="Suggest an edit"></a></h3>
+predictors<a href="#side-channels-through-branch-predictors" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1946" class="suggestedit" title="Suggest an edit"></a></h3>
 <p>A number of attacks have been described over the past few years. The
 following sections list a few examples, categorized per branch predictor
 component they target.</p>
 <h4 data-number="3.3.2.1" id="conditional-branch-direction-predictor-side-channel-attacks"><span class="header-section-number">3.3.2.1</span> Conditional branch
-direction predictor side-channel attacks<a href="#conditional-branch-direction-predictor-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1953" class="suggestedit" title="Suggest an edit"></a></h4>
+direction predictor side-channel attacks<a href="#conditional-branch-direction-predictor-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1952" class="suggestedit" title="Suggest an edit"></a></h4>
 <p></p>
 <p>Two examples are BranchScope <span class="citation" data-cites="Evtyushkin2018">(<a href="#ref-Evtyushkin2018" role="doc-biblioref">Evtyushkin et al. 2018</a>)</span> and BlueThunder
 <span class="citation" data-cites="Huo2019">(<a href="#ref-Huo2019" role="doc-biblioref">Huo et al. 2019</a>)</span>. These attacks infer
@@ -2197,7 +2197,7 @@ can enable an attacker to derive the value of the secret key. These
 papers demonstrate deriving the secret key from implementations of
 specific cryptographic kernels. It can also be used to break <a href="#aslr">ASLR</a>.</p>
 <h4 data-number="3.3.2.2" id="branch-target-predictor-side-channel-attacks"><span class="header-section-number">3.3.2.2</span> Branch target predictor
-side-channel attacks<a href="#branch-target-predictor-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1972" class="suggestedit" title="Suggest an edit"></a></h4>
+side-channel attacks<a href="#branch-target-predictor-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1971" class="suggestedit" title="Suggest an edit"></a></h4>
 <p></p>
 <p>Two examples are SBPA <span class="citation" data-cites="Aciicmez2007">(<a href="#ref-Aciicmez2007" role="doc-biblioref">Aciiçmez, Kaya Koç, and Seifert 2007</a>)</span>
 and BranchShadow <span class="citation" data-cites="Lee2017">(<a href="#ref-Lee2017" role="doc-biblioref">Lee et al. 2017</a>)</span>.
@@ -2207,7 +2207,7 @@ methods such as timing difference, last branch records, instruction
 traces or performance counters to measure whether the branch in the spy
 process caused a specific state change in the BTB.</p>
 <h4 data-number="3.3.2.3" id="return-address-predictor-side-channel-attacks"><span class="header-section-number">3.3.2.3</span> Return address predictor
-side-channel attacks<a href="#return-address-predictor-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1983" class="suggestedit" title="Suggest an edit"></a></h4>
+side-channel attacks<a href="#return-address-predictor-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1982" class="suggestedit" title="Suggest an edit"></a></h4>
 <p></p>
 <p>One example is Hyper-Channel <span class="citation" data-cites="Bulygin2008">(<a href="#ref-Bulygin2008" role="doc-biblioref">Bulygin 2008</a>)</span>. In this case, a spy
 process invokes <span class="math inline"><em>N</em></span> calls to
@@ -2228,19 +2228,19 @@ change (<em>trigger sequence</em>), run by the victim process.</li>
 <li>An instruction sequence that leaks the branch predictor state
 (<em>measurement sequence</em>), run by the spy process</li>
 </ol>
-<h3 data-number="3.3.3" id="mitigations"><span class="header-section-number">3.3.3</span> Mitigations<a href="#mitigations" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2004" class="suggestedit" title="Suggest an edit"></a></h3>
+<h3 data-number="3.3.3" id="mitigations"><span class="header-section-number">3.3.3</span> Mitigations<a href="#mitigations" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2003" class="suggestedit" title="Suggest an edit"></a></h3>
 <span class="todo_ref" href="#todo_19"><sup>todo</sup></span>
 <span id="todo_19" class="todo">Describe the mitigations proposed
 against these side-channel attacks. <a href="https://github.com/llsoftsec/llsoftsecbook/issues/203"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDIwMzogb3BlbiI+PHRpdGxlPmlzc3VlIDIwMzogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMjAzPC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAyMDM8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#203" /></a></span>
-<h2 data-number="3.4" id="resource-contention-channels"><span class="header-section-number">3.4</span> Resource contention channels<a href="#resource-contention-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2011" class="suggestedit" title="Suggest an edit"></a></h2>
+<h2 data-number="3.4" id="resource-contention-channels"><span class="header-section-number">3.4</span> Resource contention channels<a href="#resource-contention-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2010" class="suggestedit" title="Suggest an edit"></a></h2>
 <h2 data-number="3.5" id="channels-making-use-of-aliasing-in-other-predictors"><span class="header-section-number">3.5</span> Channels making use of aliasing
-in other predictors<a href="#channels-making-use-of-aliasing-in-other-predictors" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2013" class="suggestedit" title="Suggest an edit"></a></h2>
+in other predictors<a href="#channels-making-use-of-aliasing-in-other-predictors" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2012" class="suggestedit" title="Suggest an edit"></a></h2>
 <span class="todo_ref" href="#todo_20"><sup>todo</sup></span>
 <span id="todo_20" class="todo">Should we also discuss more “covert”
 channels here such as power analysis, etc? <a href="https://github.com/llsoftsec/llsoftsecbook/issues/176"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE3Njogb3BlbiI+PHRpdGxlPmlzc3VlIDE3Njogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTc2PC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNzY8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#176" /></a></span>
-<h2 data-number="3.6" id="transient-execution-attacks"><span class="header-section-number">3.6</span> Transient execution attacks<a href="#transient-execution-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2021" class="suggestedit" title="Suggest an edit"></a></h2>
-<h3 data-number="3.6.1" id="transient-execution"><span class="header-section-number">3.6.1</span> Transient execution<a href="#transient-execution" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2023" class="suggestedit" title="Suggest an edit"></a></h3>
-<h4 data-number="3.6.1.1" id="speculative-execution"><span class="header-section-number">3.6.1.1</span> Speculative execution<a href="#speculative-execution" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2025" class="suggestedit" title="Suggest an edit"></a></h4>
+<h2 data-number="3.6" id="transient-execution-attacks"><span class="header-section-number">3.6</span> Transient execution attacks<a href="#transient-execution-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2020" class="suggestedit" title="Suggest an edit"></a></h2>
+<h3 data-number="3.6.1" id="transient-execution"><span class="header-section-number">3.6.1</span> Transient execution<a href="#transient-execution" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2022" class="suggestedit" title="Suggest an edit"></a></h3>
+<h4 data-number="3.6.1.1" id="speculative-execution"><span class="header-section-number">3.6.1.1</span> Speculative execution<a href="#speculative-execution" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2024" class="suggestedit" title="Suggest an edit"></a></h4>
 <p>CPUs execute sequences of instructions. There are often dependencies
 between instructions in the sequence. That means that the outcome of one
 instruction influences the execution of a later instruction.</p>
@@ -2370,7 +2370,7 @@ an exception or not. We call out this dependency separately here as the
 transient execution attacks we’ll describe next get classified based on
 whether they make use of transient instructions after a misprediction,
 or transient instructions after a faulting instruction.</p>
-<h3 data-number="3.6.2" id="transient-execution-attacks-1"><span class="header-section-number">3.6.2</span> Transient Execution Attacks<a href="#transient-execution-attacks-1" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2164" class="suggestedit" title="Suggest an edit"></a></h3>
+<h3 data-number="3.6.2" id="transient-execution-attacks-1"><span class="header-section-number">3.6.2</span> Transient Execution Attacks<a href="#transient-execution-attacks-1" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2163" class="suggestedit" title="Suggest an edit"></a></h3>
 <p><strong>Transient execution attacks</strong> are a category of
 side-channel attacks that use the micro-architectural side-effects of
 transient execution as a side channel.</p>
@@ -2429,32 +2429,32 @@ execution or not.</li>
 </tbody>
 </table>
 <h4 data-number="3.6.2.1" id="branch-predictor-based-side-channel-attacks"><span class="header-section-number">3.6.2.1</span> Branch predictor-based
-side-channel attacks<a href="#branch-predictor-based-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2209" class="suggestedit" title="Suggest an edit"></a></h4>
+side-channel attacks<a href="#branch-predictor-based-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2208" class="suggestedit" title="Suggest an edit"></a></h4>
 <p>We discussed this category already in the section on <a href="#side-channels-through-branch-predictors">Side-channels through
 branch predictors</a>.</p>
-<h4 data-number="3.6.2.2" id="spectre-style-attacks"><span class="header-section-number">3.6.2.2</span> Spectre-style attacks<a href="#spectre-style-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2214" class="suggestedit" title="Suggest an edit"></a></h4>
+<h4 data-number="3.6.2.2" id="spectre-style-attacks"><span class="header-section-number">3.6.2.2</span> Spectre-style attacks<a href="#spectre-style-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2213" class="suggestedit" title="Suggest an edit"></a></h4>
 <span class="todo_ref" href="#todo_23"><sup>todo</sup></span>
 <span id="todo_23" class="todo">Add a description of Spectre-style
 attacks such as Spectre-PHT, Spectre-BTB, Spectre-RSB, Spectre-STL,
 SpectreV1, SpectreV2, SpectreV3, SpectreV4, NetSpectre. <a href="https://github.com/llsoftsec/llsoftsecbook/issues/178"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE3ODogb3BlbiI+PHRpdGxlPmlzc3VlIDE3ODogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTc4PC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNzg8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#178" /></a></span>
-<h4 data-number="3.6.2.3" id="meltdown-style-attacks"><span class="header-section-number">3.6.2.3</span> Meltdown-style attacks<a href="#meltdown-style-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2223" class="suggestedit" title="Suggest an edit"></a></h4>
+<h4 data-number="3.6.2.3" id="meltdown-style-attacks"><span class="header-section-number">3.6.2.3</span> Meltdown-style attacks<a href="#meltdown-style-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2222" class="suggestedit" title="Suggest an edit"></a></h4>
 <span class="todo_ref" href="#todo_24"><sup>todo</sup></span>
 <span id="todo_24" class="todo">Add a description of Meltdown-style
 attacks such as Meltdown, Foreshadow, LazyFP, Fallout, ZombieLoad, RIDL.
 <a href="https://github.com/llsoftsec/llsoftsecbook/issues/178"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE3ODogb3BlbiI+PHRpdGxlPmlzc3VlIDE3ODogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTc4PC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNzg8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#178" /></a></span>
-<h4 data-number="3.6.2.4" id="lvi-style-attacks"><span class="header-section-number">3.6.2.4</span> LVI-style attacks<a href="#lvi-style-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2231" class="suggestedit" title="Suggest an edit"></a></h4>
+<h4 data-number="3.6.2.4" id="lvi-style-attacks"><span class="header-section-number">3.6.2.4</span> LVI-style attacks<a href="#lvi-style-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2230" class="suggestedit" title="Suggest an edit"></a></h4>
 <span class="todo_ref" href="#todo_25"><sup>todo</sup></span>
 <span id="todo_25" class="todo">Add a description of LVI-style attacks.
 <a href="https://github.com/llsoftsec/llsoftsecbook/issues/178"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE3ODogb3BlbiI+PHRpdGxlPmlzc3VlIDE3ODogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTc4PC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNzg8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#178" /></a></span>
 <h3 data-number="3.6.3" id="mitigations-against-transient-execution-attacks"><span class="header-section-number">3.6.3</span> Mitigations against transient
-execution attacks<a href="#mitigations-against-transient-execution-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2238" class="suggestedit" title="Suggest an edit"></a></h3>
-<h4 data-number="3.6.3.1" id="site-isolation"><span class="header-section-number">3.6.3.1</span> Site isolation<a href="#site-isolation" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2240" class="suggestedit" title="Suggest an edit"></a></h4>
+execution attacks<a href="#mitigations-against-transient-execution-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2237" class="suggestedit" title="Suggest an edit"></a></h3>
+<h4 data-number="3.6.3.1" id="site-isolation"><span class="header-section-number">3.6.3.1</span> Site isolation<a href="#site-isolation" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2239" class="suggestedit" title="Suggest an edit"></a></h4>
 <span class="todo_ref" href="#todo_26"><sup>todo</sup></span>
 <span id="todo_26" class="todo">Write section on site isolation as a
 SpectreV1 mitigation <a href="https://github.com/llsoftsec/llsoftsecbook/issues/179"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE3OTogb3BlbiI+PHRpdGxlPmlzc3VlIDE3OTogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTc5PC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNzk8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#179" /></a></span>
 <h2 data-number="3.7" id="physical-access-side-channel-attacks"><span class="header-section-number">3.7</span> Physical access side-channel
-attacks<a href="#physical-access-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2247" class="suggestedit" title="Suggest an edit"></a></h2>
-<h1 data-number="4" id="supply-chain-attacks"><span class="header-section-number">4</span> Supply chain attacks<a href="#supply-chain-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2249" class="suggestedit" title="Suggest an edit"></a></h1>
+attacks<a href="#physical-access-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2246" class="suggestedit" title="Suggest an edit"></a></h2>
+<h1 data-number="4" id="supply-chain-attacks"><span class="header-section-number">4</span> Supply chain attacks<a href="#supply-chain-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2248" class="suggestedit" title="Suggest an edit"></a></h1>
 <p>A software <em>supply chain attack</em> occurs when an attacker
 interferes with the software development or distribution processes with
 the intention to impact users of that software.</p>
@@ -2467,7 +2467,7 @@ infection to other software created with or run using it.</p>
 <p>This chapter explores the history of supply chain attacks that
 involve compilers and what can be done to prevent them.</p>
 <h2 data-number="4.1" id="history-of-supply-chain-attacks"><span class="header-section-number">4.1</span> History of supply chain
-attacks<a href="#history-of-supply-chain-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2265" class="suggestedit" title="Suggest an edit"></a></h2>
+attacks<a href="#history-of-supply-chain-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2264" class="suggestedit" title="Suggest an edit"></a></h2>
 <p>As far back as 1974 Karger &amp; Schell theorized about an attack on
 the Multics operating system via the PL/I compiler <span class="citation" data-cites="Karger1974">(<a href="#ref-Karger1974" role="doc-biblioref">Paul A. and Roger R. 1974</a>)</span>. In this
 attack, a trap door is inserted into the compiler, which then injects
@@ -2510,7 +2510,7 @@ in the future. Let us now explore what we can do about these.</p>
 <span id="todo_27" class="todo">Explain how these vulnerabilities arise
 and how to mitigate them. <a href="https://github.com/llsoftsec/llsoftsecbook/issues/180"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE4MDogb3BlbiI+PHRpdGxlPmlzc3VlIDE4MDogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTgwPC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxODA8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#180" /></a></span>
 <h1 data-number="5" id="compiler-introduced-security-vulnerabilities"><span class="header-section-number">5</span> Compiler introduced security
-vulnerabilities<a href="#compiler-introduced-security-vulnerabilities" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2313" class="suggestedit" title="Suggest an edit"></a></h1>
+vulnerabilities<a href="#compiler-introduced-security-vulnerabilities" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2312" class="suggestedit" title="Suggest an edit"></a></h1>
 <p>Security vulnerabilities introduced by compilers have a long history.
 Thompson <span class="citation" data-cites="Thompson1984">(<a href="#ref-Thompson1984" role="doc-biblioref">Thompson 1984</a>)</span>
 provides one of the oldest and most popular examples in this area. In
@@ -2681,7 +2681,7 @@ away. However it is not trivial to implement such a functionality, as
 GNU presents in <span class="citation" data-cites="GNUMemSet">(<a href="#ref-GNUMemSet" role="doc-biblioref"><span>“10.604
 Memset_explicit,”</span> n.d.</a>)</span>. The information may be
 present somewhere in the machine, even if it was erased from memory.</p>
-<h1 data-number="6" id="underhanded-code"><span class="header-section-number">6</span> Underhanded code<a href="#underhanded-code" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2510" class="suggestedit" title="Suggest an edit"></a></h1>
+<h1 data-number="6" id="underhanded-code"><span class="header-section-number">6</span> Underhanded code<a href="#underhanded-code" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2509" class="suggestedit" title="Suggest an edit"></a></h1>
 <p><strong>Underhanded code</strong> is code that looks like it is doing
 one thing but actually does something else. It usually refers to code
 nefariously written in this way to sneak malicious behavior not
@@ -2695,7 +2695,7 @@ This chapter presents some examples to give an overview of the attack
 and how a compiler can (and can’t) help, although this probably doesn’t
 classify as “low level” software security.</p>
 <h2 data-number="6.1" id="assignment-and-equality-confusion"><span class="header-section-number">6.1</span> Assignment and equality
-confusion<a href="#assignment-and-equality-confusion" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2526" class="suggestedit" title="Suggest an edit"></a></h2>
+confusion<a href="#assignment-and-equality-confusion" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2525" class="suggestedit" title="Suggest an edit"></a></h2>
 <p>Probably the most classic example of underhanded code in C-style
 languages is code that takes advantage of the fact that the assignment
 (<code>=</code>) and the equality operator (<code>==</code>) look very
@@ -2729,7 +2729,7 @@ the comparison operator. Even in cases where it is an existing language
 the compiler can provide options to forbid risky constructs for those
 who want and can opt in to it, essentially creating a new language that
 is a subset of the original language.</p>
-<h2 data-number="6.2" id="goto-fail"><span class="header-section-number">6.2</span> goto fail<a href="#goto-fail" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2564" class="suggestedit" title="Suggest an edit"></a></h2>
+<h2 data-number="6.2" id="goto-fail"><span class="header-section-number">6.2</span> goto fail<a href="#goto-fail" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2563" class="suggestedit" title="Suggest an edit"></a></h2>
 <p>The “goto-fail” bug, officially known as <a href="https://nvd.nist.gov/vuln/detail/CVE-2014-1266">CVE-2014-1266</a>,
 caused Apple devices to not correctly validate certificates in TLS
 connections. It effectively disables the verification the function is
@@ -2764,7 +2764,7 @@ have a <code>-Wmisleading-indentation</code> option that detects this
 kind problem.</p>
 <p>Also automatic code formatting tools such as clang-format would help
 finding this issue as it will fix the misleading indentation.</p>
-<h2 data-number="6.3" id="trojan-source"><span class="header-section-number">6.3</span> Trojan Source<a href="#trojan-source" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2607" class="suggestedit" title="Suggest an edit"></a></h2>
+<h2 data-number="6.3" id="trojan-source"><span class="header-section-number">6.3</span> Trojan Source<a href="#trojan-source" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2606" class="suggestedit" title="Suggest an edit"></a></h2>
 <p>“Trojan Source” attacks described by <span class="citation" data-cites="Boucher2023">(<a href="#ref-Boucher2023" role="doc-biblioref">Boucher and Anderson 2023</a>)</span> is another
 way underhanded code could be achieved by doing something that makes the
 editor (or other thing that displays code to the user) render the code
@@ -2790,11 +2790,11 @@ check_permissions();
 <p>If the final slash on the first line isn’t a slash but another
 similarly looking character that the compiler doesn’t understand as end
 of comment it means that the whole snippet is commented out.</p>
-<h1 data-number="7" id="physical-attacks"><span class="header-section-number">7</span> Physical attacks<a href="#physical-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2647" class="suggestedit" title="Suggest an edit"></a></h1>
+<h1 data-number="7" id="physical-attacks"><span class="header-section-number">7</span> Physical attacks<a href="#physical-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2646" class="suggestedit" title="Suggest an edit"></a></h1>
 <span class="todo_ref" href="#todo_29"><sup>todo</sup></span>
 <span id="todo_29" class="todo">This chapter should probably be moved
 under section ‘Physical access side-channel attacks’ higher-up <a href="https://github.com/llsoftsec/llsoftsecbook/issues/181"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imlzc3VlIDE4MTogb3BlbiI+PHRpdGxlPmlzc3VlIDE4MTogb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2MyIgd2lkdGg9IjM3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMmNiZTRlIi8+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUzMCI+aXNzdWUgMTgxPC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxODE8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjgwNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjcwIj5vcGVuPC90ZXh0PjwvZz48L3N2Zz4=" alt="#181" /></a></span>
-<h2 data-number="7.1" id="overview"><span class="header-section-number">7.1</span> Overview<a href="#overview" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2656" class="suggestedit" title="Suggest an edit"></a></h2>
+<h2 data-number="7.1" id="overview"><span class="header-section-number">7.1</span> Overview<a href="#overview" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2655" class="suggestedit" title="Suggest an edit"></a></h2>
 <p>There are many types of physical attacks – these attack methods focus
 on one or multiple physical properties of systems ( e.g. CPU, GPU,
 crypto hardware), and can either be</p>
@@ -2822,7 +2822,7 @@ hardware, and have been widely demonstrated by researchers on SoCs or
 microcontrollers developed for IoT (Internet-of-Things)
 applications.</p>
 <h2 data-number="7.2" id="physical-access-side-channel-attacks-1"><span class="header-section-number">7.2</span> Physical access side-channel
-attacks<a href="#physical-access-side-channel-attacks-1" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2680" class="suggestedit" title="Suggest an edit"></a></h2>
+attacks<a href="#physical-access-side-channel-attacks-1" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2679" class="suggestedit" title="Suggest an edit"></a></h2>
 <p>If an attacker has physical access to a device, even without debug
 access, the attacker can collect side channel information about the
 program execution on a processor. If the processor is used to handle
@@ -2831,7 +2831,7 @@ deduce the crypto key(s) or the data being processed. Please note that
 some forms of physical attacks (e.g. fault injection attacks like
 rowhammer and voltjockey) do not require physical access, but those
 attacks are not covered in this section.</p>
-<h3 data-number="7.2.1" id="how-is-information-leaked"><span class="header-section-number">7.2.1</span> How is information leaked?<a href="#how-is-information-leaked" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2689" class="suggestedit" title="Suggest an edit"></a></h3>
+<h3 data-number="7.2.1" id="how-is-information-leaked"><span class="header-section-number">7.2.1</span> How is information leaked?<a href="#how-is-information-leaked" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2688" class="suggestedit" title="Suggest an edit"></a></h3>
 <p>The most common physical access side channel attack method is to
 capture the voltage or current consumption of the device during its
 operation. Every time a flip-flop toggles, the switching activity
@@ -2872,7 +2872,7 @@ affects the accuracy of signal measurement. In a “noisy” environment,
 the RF signals from various wireless communication gadgets nearby might
 drown out the signals from the device being monitored.</p>
 <h3 data-number="7.2.2" id="side-channel-leakage-at-instruction-level"><span class="header-section-number">7.2.2</span> Side channel leakage at
-instruction level<a href="#side-channel-leakage-at-instruction-level" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2726" class="suggestedit" title="Suggest an edit"></a></h3>
+instruction level<a href="#side-channel-leakage-at-instruction-level" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2725" class="suggestedit" title="Suggest an edit"></a></h3>
 <p>Instruction executions can result in various forms of side channel
 leakage:</p>
 <p>Cycle timing resulting from conditional branch – A code sequence
@@ -2920,7 +2920,7 @@ effect of the operations can be much higher than the effect of data
 value changes in the register banks. In such case the program execution
 flow can be observed, and as a result, might also indirectly leak
 information about the data that it is processing.</p>
-<h3 data-number="7.2.3" id="countermeasures"><span class="header-section-number">7.2.3</span> Countermeasures<a href="#countermeasures" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2769" class="suggestedit" title="Suggest an edit"></a></h3>
+<h3 data-number="7.2.3" id="countermeasures"><span class="header-section-number">7.2.3</span> Countermeasures<a href="#countermeasures" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2768" class="suggestedit" title="Suggest an edit"></a></h3>
 <p>For normal embedded devices that don’t have physical protection
 features, there is a much higher chance that power/voltage/radiation
 side channels can result in information leakage. However, some aspects
@@ -2947,9 +2947,9 @@ developers need to check that optimizations carried out by compilers
 (C/C++) do not impact the mitigation, as compilers can be very smart and
 undo the masking in order to perform faster operations (or reducing code
 size).</p>
-<h2 data-number="7.3" id="fault-injection-attacks"><span class="header-section-number">7.3</span> Fault injection attacks<a href="#fault-injection-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2798" class="suggestedit" title="Suggest an edit"></a></h2>
+<h2 data-number="7.3" id="fault-injection-attacks"><span class="header-section-number">7.3</span> Fault injection attacks<a href="#fault-injection-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2797" class="suggestedit" title="Suggest an edit"></a></h2>
 <h3 data-number="7.3.1" id="common-forms-of-fault-injection-attacks"><span class="header-section-number">7.3.1</span> Common forms of Fault
-injection attacks<a href="#common-forms-of-fault-injection-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2799" class="suggestedit" title="Suggest an edit"></a></h3>
+injection attacks<a href="#common-forms-of-fault-injection-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2798" class="suggestedit" title="Suggest an edit"></a></h3>
 <p>If an attacker has physical access to a device, they can also choose
 to use physical attacks to modify the behavior of the software, for
 example, prevent the software from setting up certain security features
@@ -3014,7 +3014,7 @@ https://www.youtube.com/watch?v=4u6BAH8mEDw</p>
 <p>There are other forms of physical attacks, but most of them requires
 significant effort or cost (e.g. cut open the chip package can carry out
 fault injection or readout secret data on chip).</p>
-<h3 data-number="7.3.2" id="countermeasures-1"><span class="header-section-number">7.3.2</span> Countermeasures<a href="#countermeasures-1" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2862" class="suggestedit" title="Suggest an edit"></a></h3>
+<h3 data-number="7.3.2" id="countermeasures-1"><span class="header-section-number">7.3.2</span> Countermeasures<a href="#countermeasures-1" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2861" class="suggestedit" title="Suggest an edit"></a></h3>
 <p>Ideally, system designers can use hardware (SoCs or microcontroller)
 that support protection against fault injection. For example, a hardware
 circuit can include redundancy logic (spatial and temporal). In
@@ -3023,12 +3023,12 @@ checks after the write operations. When applying software mitigation,
 software developers need to check that optimizations carried out by
 compilers (C/C++) do not impact the mitigation.</p>
 <h1 data-number="8" id="other-security-topics-relevant-for-compiler-developers"><span class="header-section-number">8</span> Other security topics relevant
-for compiler developers<a href="#other-security-topics-relevant-for-compiler-developers" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2872" class="suggestedit" title="Suggest an edit"></a></h1>
+for compiler developers<a href="#other-security-topics-relevant-for-compiler-developers" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2871" class="suggestedit" title="Suggest an edit"></a></h1>
 <span class="todo_ref" href="#todo_32"><sup>todo</sup></span>
 <span id="todo_32" class="todo">Write chapter with other security
 topics.</span>
 <h1 class="unnumbered" id="appendix-contribution-guidelines">Appendix:
-contribution guidelines<a href="#appendix-contribution-guidelines" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2878" class="suggestedit" title="Suggest an edit"></a></h1>
+contribution guidelines<a href="#appendix-contribution-guidelines" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2877" class="suggestedit" title="Suggest an edit"></a></h1>
 <p>If you’d like to start contributing to this book: please do, we’re
 looking forward to your contributions!</p>
 <p>The project lives on github at <a href="https://github.com/llsoftsec/llsoftsecbook">https://github.com/llsoftsec/llsoftsecbook</a>.
@@ -3046,7 +3046,7 @@ Covenant Code of Conduct</a> in this project.</p>
 <p>For more details on how to write text for the book, please read <a href="https://github.com/llsoftsec/llsoftsecbook/blob/main/contributing.md">contributing.md</a>.
 If after reading that, you think some specific aspects could be
 explained better, please do let us know by raising an <a href="https://github.com/llsoftsec/llsoftsecbook/issues/new">issue</a>.</p>
-<h1 class="unnumbered" id="references">References<a href="#references" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2908" class="suggestedit" title="Suggest an edit"></a></h1>
+<h1 class="unnumbered" id="references">References<a href="#references" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2907" class="suggestedit" title="Suggest an edit"></a></h1>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-GNUMemSet" class="csl-entry" role="listitem">
 <span>“10.604 Memset_explicit.”</span> n.d. <a href="https://www.gnu.org/software//gnulib/manual/html_node/memset_005fexplicit.html">https://www.gnu.org/software//gnulib/manual/html_node/memset_005fexplicit.html</a>.

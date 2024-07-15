@@ -180,7 +180,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2024 Anders Waldenborg
 \href{mailto:anders@0x63.nu}{\nolinkurl{anders@0x63.nu}}\\
 
-Version 0-188-g2c5a367
+Version 0-189-ga9e58b4
 \clearpage
 
 {
@@ -1738,10 +1738,9 @@ These wide pointers store bounds information alongside the original
 pointer.
 
 There are also hardening efforts focusing on C++ codebases. For example,
-the
-\href{https://libcxx.llvm.org/UsingLibcxx.html\#enabling-the-safe-libc-mode}{``safe
-libc++'' mode} enables a number of assertions that aim to catch
-undefined behaviour in the library. The
+the \href{https://libcxx.llvm.org/Hardening.html}{libc++ hardening
+modes} enable a number of assertions that aim to catch undefined
+behaviour in the library. The
 \href{https://discourse.llvm.org/t/rfc-c-buffer-hardening/65734}{C++
 Buffer Hardening proposal} aims to extend this library hardening. The
 proposal will also introduce a programming model in which all pointer
