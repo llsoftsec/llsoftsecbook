@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-193-g56147e9" )
+          , ( "VERSION" , MetaString "0-194-g05b0c3d" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -31315,7 +31315,7 @@ Pandoc
       ]
   , CodeBlock
       ( "" , [ "c" ] , [] )
-      "long abs(long a) {\n  if (a>=0)\n    return a;\n  else\n    return -a;\n  }"
+      "long abs(long a) {\n  if (a >= 0)\n    return a;\n  else\n    return -a;\n}"
   , Para
       [ Str "can"
       , Space

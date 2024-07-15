@@ -445,7 +445,7 @@ Developers</h1>
       Copyright 2023 Lucian Popescu <a href="mailto:lucian.popescu187@gmail.com" class="email">lucian.popescu187@gmail.com</a><br />
       Copyright 2024 Anders Waldenborg <a href="mailto:anders@0x63.nu" class="email">anders@0x63.nu</a><br />
     </p>
-  <p>Version: 0-193-g56147e9</p>
+  <p>Version: 0-194-g05b0c3d</p>
 </header>
 
 <main id="content">
@@ -2280,11 +2280,11 @@ dependencies have been resolved, based on the predictions, is called
 <strong>speculation</strong>.</p>
 <p>Let’s illustrate that with an example. The following C code</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> abs<span class="op">(</span><span class="dt">long</span> a<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>a<span class="op">&gt;=</span><span class="dv">0</span><span class="op">)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>a <span class="op">&gt;=</span> <span class="dv">0</span><span class="op">)</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">;</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>a<span class="op">;</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code></pre></div>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>can be translated to the following AArch64 assembly code:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>        <span class="bu">cmp</span>     x0<span class="op">,</span> <span class="op">#</span><span class="dv">0</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>        b<span class="op">.</span>ge    Lbb2</span>
