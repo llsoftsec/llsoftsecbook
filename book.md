@@ -2065,11 +2065,11 @@ Let's illustrate that with an example. The following C code
 
 ``` {.c}
 long abs(long a) {
-  if (a>=0)
+  if (a >= 0)
     return a;
   else
     return -a;
-  }
+}
 ```
 can be translated to the following AArch64 assembly code:
 ``` {.asm}
