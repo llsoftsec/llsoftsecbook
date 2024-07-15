@@ -1986,8 +1986,9 @@ in the spy process caused a specific state change in the BTB.
 One example is Hyper-Channel [@Bulygin2008]\index{Hyper-Channel}. In this case,
 a spy process invokes $N$ calls to fill up the return stack predictor. Then it
 lets the victim process execute. Then, the spy process can measure how many of
-its return stack entries have been removed from the RSB, by measuring the number
-of $N$ returns that get mis-predicted. If the number of calls in the victim
+its return stack entries have been removed from the Return Stack Buffer (RSB),
+by measuring the number of $N$ returns that get mis-predicted.
+If the number of calls in the victim
 process is dependent on secret information, this could leak it.
 
 The papers referred to above contain detailed explanations of how they set up
