@@ -2854,7 +2854,7 @@ For example:
   writing a crypto key to a crypto accelerator, forcing the key value written
   to be zero (caused to low voltage on bus hardware).
 
-Example: Attack on TrustZone for Armv8-M: https://www.youtube.com/watch?v=4u6BAH8mEDw 
+Example: [Attack on TrustZone for Armv8-M](https://www.youtube.com/watch?v=4u6BAH8mEDw)
 
 There are other forms of physical attacks, but most of them requires 
 significant effort or cost (e.g. cut open the chip package can carry out 
