@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-196-g248bd20" )
+          , ( "VERSION" , MetaString "0-195-g62a1c65" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -41803,19 +41803,17 @@ Pandoc
   , Para
       [ Str "Example:"
       , Space
-      , Link
-          ( "" , [] , [] )
-          [ Str "Attack"
-          , Space
-          , Str "on"
-          , Space
-          , Str "TrustZone"
-          , Space
-          , Str "for"
-          , Space
-          , Str "Armv8-M"
-          ]
-          ( "https://www.youtube.com/watch?v=4u6BAH8mEDw" , "" )
+      , Str "Attack"
+      , Space
+      , Str "on"
+      , Space
+      , Str "TrustZone"
+      , Space
+      , Str "for"
+      , Space
+      , Str "Armv8-M:"
+      , Space
+      , Str "https://www.youtube.com/watch?v=4u6BAH8mEDw"
       ]
   , Para
       [ Str "There"
