@@ -2832,8 +2832,8 @@ injection methods (and their physical effect) and the observable effects at
 the program or instruction execution level are often referred to as fault 
 models, where one can say that a specific fault injection behaves as an 
 instruction skip, etc. More details about the concept of fault models can be 
-found in the paper "Fault Attacks on Secure Embedded Software: Threats, Design 
-and Evaluation” (https://arxiv.org/pdf/2003.10513.pdf), where a good 
+found in the paper ["Fault Attacks on Secure Embedded Software: Threats, Design 
+and Evaluation”](https://arxiv.org/pdf/2003.10513.pdf), where a good 
 illustration of the concept is shown in figure 1 of that paper. 
 
 ::: TODO
