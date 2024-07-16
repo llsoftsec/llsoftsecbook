@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-194-g05b0c3d" )
+          , ( "VERSION" , MetaString "0-196-g248bd20" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -41483,30 +41483,33 @@ Pandoc
       , Space
       , Str "paper"
       , Space
-      , Quoted
-          DoubleQuote
-          [ Str "Fault"
-          , Space
-          , Str "Attacks"
-          , Space
-          , Str "on"
-          , Space
-          , Str "Secure"
-          , Space
-          , Str "Embedded"
-          , Space
-          , Str "Software:"
-          , Space
-          , Str "Threats,"
-          , Space
-          , Str "Design"
-          , SoftBreak
-          , Str "and"
-          , Space
-          , Str "Evaluation"
+      , Link
+          ( "" , [] , [] )
+          [ Quoted
+              DoubleQuote
+              [ Str "Fault"
+              , Space
+              , Str "Attacks"
+              , Space
+              , Str "on"
+              , Space
+              , Str "Secure"
+              , Space
+              , Str "Embedded"
+              , Space
+              , Str "Software:"
+              , Space
+              , Str "Threats,"
+              , Space
+              , Str "Design"
+              , SoftBreak
+              , Str "and"
+              , Space
+              , Str "Evaluation"
+              ]
           ]
-      , Space
-      , Str "(https://arxiv.org/pdf/2003.10513.pdf),"
+          ( "https://arxiv.org/pdf/2003.10513.pdf" , "" )
+      , Str ","
       , Space
       , Str "where"
       , Space
@@ -41800,17 +41803,19 @@ Pandoc
   , Para
       [ Str "Example:"
       , Space
-      , Str "Attack"
-      , Space
-      , Str "on"
-      , Space
-      , Str "TrustZone"
-      , Space
-      , Str "for"
-      , Space
-      , Str "Armv8-M:"
-      , Space
-      , Str "https://www.youtube.com/watch?v=4u6BAH8mEDw"
+      , Link
+          ( "" , [] , [] )
+          [ Str "Attack"
+          , Space
+          , Str "on"
+          , Space
+          , Str "TrustZone"
+          , Space
+          , Str "for"
+          , Space
+          , Str "Armv8-M"
+          ]
+          ( "https://www.youtube.com/watch?v=4u6BAH8mEDw" , "" )
       ]
   , Para
       [ Str "There"
