@@ -265,6 +265,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "BetaRays",
+      "name": "BetaRays",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26482956?v=4",
+      "profile": "https://github.com/BetaRays",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
