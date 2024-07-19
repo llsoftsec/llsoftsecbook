@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2024.7.16)  16 JUL 2024 14:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2024.7.19)  19 JUL 2024 07:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1573,13 +1573,7 @@ Package pdftex.def Info: img/physical_attacks.pdf  used on input line 3584.
 (pdftex.def)             Requested size: 276.00954pt x 94.65086pt.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [59 <./i
-mg/physical_attacks.pdf>]
-Overfull \hbox (80.5624pt too wide) in paragraph at lines 3654--3656
-[]\T1/lmr/m/n/10 (-20) Example: At-tack on Trust-Zone for Armv8-M: https://www.
-youtube.com/watch?v=4u6BAH8mEDw 
- []
-
-[60]
+mg/physical_attacks.pdf>] [60]
 Chapter 8.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2020/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [61
@@ -1613,7 +1607,7 @@ t k i ts -[] t h e -[]
 Here is how much of TeX's memory you used:
  29674 strings out of 480962
  527717 string characters out of 5908147
- 992935 words of memory out of 5000000
+ 992934 words of memory out of 5000000
  45547 multiletter control sequences out of 15000+600000
  494454 words of font info for 215 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1644,10 +1638,10 @@ live/2020/texmf-dist/fonts/type1/public/lm/lmri10.pfb></texlive/2020/texmf-dist
 lm/lmtk10.pfb></texlive/2020/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></texl
 ive/2020/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></texlive/2020/texmf-dist/f
 onts/type1/public/lm/lmtti10.pfb>
-Output written on build/book.pdf (71 pages, 891718 bytes).
+Output written on build/book.pdf (71 pages, 891770 bytes).
 PDF statistics:
- 1753 PDF objects out of 2073 (max. 8388607)
- 1594 compressed objects within 16 object streams
+ 1754 PDF objects out of 2073 (max. 8388607)
+ 1595 compressed objects within 16 object streams
  407 named destinations out of 1000 (max. 500000)
  49756 words of extra memory for PDF output out of 51595 (max. 10000000)
 
