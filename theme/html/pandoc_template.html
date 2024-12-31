@@ -104,6 +104,7 @@ $-- Implement the button row at the top of the screen.
         >
         <i class="bi bi-share-fill"></i></button>
       <div class="dropdown-menu" aria-labelledby="shareDropdownMenuButton">
+        <a id="bluesky-share-link" class="dropdown-item" href="#" target="_blank">Bluesky</a>
         <a id="twitter-share-link" class="dropdown-item" href="#" target="_blank">Twitter</a>
         <a id="mastodon-share-link" class="dropdown-item" href="#" target="_blank">Mastodon</a>
         <a id="linkedin-share-link" class="dropdown-item" href="#" target="_blank">LinkedIn</a>
@@ -294,6 +295,10 @@ $body$
       "https://tootpick.org/#"
       + jQuery.param({text: shared_title + ' ' + shared_url
                             + ' #llsoftsecbook'}));
+    jQuery("#bluesky-share-link").attr("href",
+      "https://bsky.app/intent/compose/?"
+      + jQuery.param({text: shared_title + ' ' + shared_url
+      + ' #llsoftsecbook'}));
 
 
     // Needed to enable the bootstrap tooltips:
