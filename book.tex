@@ -112,28 +112,38 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+\begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+% allow citations to break across lines
+\let\@cite@ofmt\@firstofone
+% avoid brackets around text for \cite:
+\def\@biblabel#1{}
+\def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
 \newlength{\csllabelwidth}
 \setlength{\csllabelwidth}{3em}
-\newlength{\cslentryspacingunit} % times entry-spacing
-\setlength{\cslentryspacingunit}{\parskip}
-\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
- {% don't indent paragraphs
-  \setlength{\parindent}{0pt}
-  % turn on hanging indent if param 1 is 1
-  \ifodd #1
-  \let\oldpar\par
-  \def\par{\hangindent=\cslhangindent\oldpar}
-  \fi
-  % set entry spacing
-  \setlength{\parskip}{#2\cslentryspacingunit}
- }%
- {}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+{\begin{list}{}{%
+	\setlength{\itemindent}{0pt}
+	\setlength{\leftmargin}{0pt}
+	\setlength{\parsep}{0pt}
+	% turn on hanging indent if param 1 is 1
+	\ifodd #1
+	\setlength{\leftmargin}{\cslhangindent}
+	\setlength{\itemindent}{-1\cslhangindent}
+	\fi
+	% set entry spacing
+	\setlength{\itemsep}{#2\baselineskip}}}
+{\end{list}}
 \usepackage{calc}
-\newcommand{\CSLBlock}[1]{#1\hfill\break}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 \usepackage{makeidx}
 \makeindex
@@ -180,7 +190,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2024 Anders Waldenborg
 \href{mailto:anders@0x63.nu}{\nolinkurl{anders@0x63.nu}}\\
 
-Version 0-197-g27c14a8
+Version 0-200-g12eff1e
 \clearpage
 
 {
@@ -188,8 +198,7 @@ Version 0-197-g27c14a8
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
-\hypertarget{introduction}{%
-\chapter{Introduction}\label{introduction}}
+\chapter{Introduction}\label{introduction}
 
 Compilers, assemblers and similar tools generate all the binary code
 that processors execute. It is no surprise then that these tools play a
@@ -230,8 +239,7 @@ compilers. Even though the focus is on compiler developers, we expect
 that this book will also be useful to people working on other low-level
 software.
 
-\hypertarget{why-an-open-source-book}{%
-\section{Why an open source book?}\label{why-an-open-source-book}}
+\section{Why an open source book?}\label{why-an-open-source-book}
 
 The idea for this book emerged out of a frustration of not finding a
 good overview on this topic. Kristof Beyls and Georgia Kouveli, both
@@ -281,18 +289,16 @@ same channels.
 
 \tododiv{Add section describing the structure of the rest of the book.}
 
-\hypertarget{memory-vulnerability-based-attacks}{%
 \chapter{Memory vulnerability based
-attacks}\label{memory-vulnerability-based-attacks}}
+attacks}\label{memory-vulnerability-based-attacks}
 
-\hypertarget{a-bit-of-background-on-memory-vulnerabilities}{%
 \section{A bit of background on memory
-vulnerabilities}\label{a-bit-of-background-on-memory-vulnerabilities}}
+vulnerabilities}\label{a-bit-of-background-on-memory-vulnerabilities}
 
 Memory access errors describe memory accesses that, although permitted
 by a program, were not intended by the programmer. These types of errors
-are usually defined (\protect\hyperlink{ref-Hicks2014}{Hicks 2014}) by
-explicitly listing their types, which include:
+are usually defined (\citeproc{ref-Hicks2014}{Hicks 2014}) by explicitly
+listing their types, which include:
 
 \begin{itemize}
 \tightlist
@@ -320,32 +326,28 @@ Memory vulnerabilities have a long history. The
 \href{https://en.wikipedia.org/wiki/Morris_worm}{Morris worm} in 1988
 was the first widely publicized attack exploiting a buffer overflow.
 Later, in the mid-90s, a few famous write-ups describing buffer
-overflows appeared (\protect\hyperlink{ref-AlephOne1996}{Aleph One
-1996}). \protect\hyperlink{stack-buffer-overflows}{Stack buffer
-overflows} were mitigated with
-\protect\hyperlink{stack-buffer-overflows}{stack canaries} and
-\protect\hyperlink{stack-buffer-overflows}{non-executable stacks}. The
-answer was more ingenious ways to bypass these mitigations:
-\protect\hyperlink{code-reuse-attacks}{code reuse attacks}, starting
-with attacks like
-\protect\hyperlink{code-reuse-attacks}{return-into-libc}
-(\protect\hyperlink{ref-Solar1997}{Solar Designer 1997}). Code reuse
-attacks later evolved to
-\protect\hyperlink{return-oriented-programming}{Return-Oriented
-Programming (ROP)} (\protect\hyperlink{ref-Shacham2007}{Shacham 2007})
-and even more complex techniques.
+overflows appeared (\citeproc{ref-AlephOne1996}{Aleph One 1996}).
+\hyperref[stack-buffer-overflows]{Stack buffer overflows} were mitigated
+with \hyperref[stack-buffer-overflows]{stack canaries} and
+\hyperref[stack-buffer-overflows]{non-executable stacks}. The answer was
+more ingenious ways to bypass these mitigations:
+\hyperref[code-reuse-attacks]{code reuse attacks}, starting with attacks
+like \hyperref[code-reuse-attacks]{return-into-libc}
+(\citeproc{ref-Solar1997}{Solar Designer 1997}). Code reuse attacks
+later evolved to \hyperref[return-oriented-programming]{Return-Oriented
+Programming (ROP)} (\citeproc{ref-Shacham2007}{Shacham 2007}) and even
+more complex techniques.
 
-To defend against code reuse attacks, the
-\protect\hyperlink{aslr}{Address Space Layout Randomization (ASLR)} and
-\protect\hyperlink{cfi}{Control-Flow Integrity (CFI)} measures were
-introduced. This interaction between offensive and defensive security
-research has been essential to improving security, and continues to this
-day. Each newly deployed mitigation results in attempts, often
-successful, to bypass it, or in alternative, more complex exploitation
-techniques, and even tools to automate them.
+To defend against code reuse attacks, the \hyperref[aslr]{Address Space
+Layout Randomization (ASLR)} and \hyperref[cfi]{Control-Flow Integrity
+(CFI)} measures were introduced. This interaction between offensive and
+defensive security research has been essential to improving security,
+and continues to this day. Each newly deployed mitigation results in
+attempts, often successful, to bypass it, or in alternative, more
+complex exploitation techniques, and even tools to automate them.
 
-Memory safe (\protect\hyperlink{ref-Hicks2014}{Hicks 2014}) languages
-are designed with prevention of such vulnerabilities in mind and use
+Memory safe (\citeproc{ref-Hicks2014}{Hicks 2014}) languages are
+designed with prevention of such vulnerabilities in mind and use
 techniques such as bounds checking and automatic memory management. If
 these languages promise to eliminate memory vulnerabilities, why are we
 still discussing this topic?
@@ -362,7 +364,7 @@ protect against. For example, a logical error in the implementation of a
 compiler or runtime for a memory safe language can lead to a memory
 access error not being detected. We will see examples of such logic
 errors in compiler optimizations in a
-\protect\hyperlink{jit-compiler-vulnerabilities}{later section}.
+\hyperref[jit-compiler-vulnerabilities]{later section}.
 
 Given the rich history of memory vulnerabilities and mitigations and the
 active developments in this area, compiler developers are likely to
@@ -376,8 +378,7 @@ We then continue with a more detailed discussion of the various types of
 vulnerabilities, along with their mitigations, presented in a rough
 chronological order of their appearance, and, therefore, complexity.
 
-\hypertarget{exploitation-primitives}{%
-\section{Exploitation primitives}\label{exploitation-primitives}}
+\section{Exploitation primitives}\label{exploitation-primitives}
 
 Newcomers to the area of software security may find themselves lost in
 many blog posts and other publications describing specific memory
@@ -414,8 +415,8 @@ degrees. The primitive, for example, may allow:
 \end{itemize}
 
 Primitives can be further classified according to more detailed
-properties. See slide 11 of (\protect\hyperlink{ref-Miller2012}{Miller,
-n.d.}) for an example.
+properties. See slide 11 of (\citeproc{ref-Miller2012}{Miller, n.d.})
+for an example.
 
 The most powerful version of a write primitive is an \emph{arbitrary
 write} primitive, where both the address and the value are fully
@@ -433,7 +434,7 @@ has obvious side-effects: a value is written to the victim program's
 memory. But how can an attacker observe the result of a read primitive?
 
 This depends on whether the attack is interactive or non-interactive
-(\protect\hyperlink{ref-Hu2016}{Hu et al. 2016}).
+(\citeproc{ref-Hu2016}{Hu et al. 2016}).
 
 \begin{itemize}
 \tightlist
@@ -448,8 +449,8 @@ This depends on whether the attack is interactive or non-interactive
   packet. This process then repeats: the attacker sends more malicious
   input to the victim, observes the output and prepares the next input.
   You can see an example of this type of attack in
-  (\protect\hyperlink{ref-Beer2020}{Beer 2020}), which describes a
-  zero-click radio proximity exploit.
+  (\citeproc{ref-Beer2020}{Beer 2020}), which describes a zero-click
+  radio proximity exploit.
 \item
   In a \emph{non-interactive (one-shot)
   attack}\index{non-interactive (one-shot)
@@ -458,9 +459,8 @@ This depends on whether the attack is interactive or non-interactive
   after the other, and the primitives are able to observe the effects of
   the preceding operations through the victim program's state. The input
   could be, for example, in the form of a JavaScript program
-  (\protect\hyperlink{ref-Grouxdf2020}{Groß 2020}), or a PDF file
-  pretending to be a GIF (\protect\hyperlink{ref-Beer2021}{Beer and Groß
-  2021}).
+  (\citeproc{ref-Grouxdf2020}{Groß 2020}), or a PDF file pretending to
+  be a GIF (\citeproc{ref-Beer2021}{Beer and Groß 2021}).
 \end{itemize}
 
 \tododiv{The references in this section describe complicated modern
@@ -502,7 +502,7 @@ carefully constructed inputs to the victim program, the attacker can
 view these inputs as \emph{instructions} to the victim program. The
 victim program effectively implements an interpreter unintentionally,
 and the attacker can send instructions to this interpreter. This is
-explored further in (\protect\hyperlink{ref-Dullien2020}{Dullien 2020}).
+explored further in (\citeproc{ref-Dullien2020}{Dullien 2020}).
 
 In the case of a non-interactive attack, all computation happens within
 the victim program. The duality of input data and code is even more
@@ -517,19 +517,19 @@ have access to. The primitives can be chained together with arbitrary
 computations, also expressed in JavaScript.
 
 There are, however, cases where the correspondence between data and code
-isn't as obvious. For example, in (\protect\hyperlink{ref-Beer2021}{Beer
-and Groß 2021}), the malicious input consists of a PDF file,
-masquerading as a GIF. Due to an integer overflow bug in the PDF
-decoder, the malicious input leads to an unbounded buffer access,
-therefore to an arbitrary read/write primitive. In the case of
-JavaScript engine exploitation, the attacker would normally be able to
-use JavaScript operations and perform arbitrary computations, making
-exploitation more straightforward. In this case, there are no scripting
-capabilities officially supported. The attackers, however, take
-advantage of the compression format intricacies to implement a small
-computer architecture, in thousands of simple commands to the decoder.
-In this way, they effectively \emph{introduce} scripting capabilities
-and are able to express their exploit as a program to this architecture.
+isn't as obvious. For example, in (\citeproc{ref-Beer2021}{Beer and Groß
+2021}), the malicious input consists of a PDF file, masquerading as a
+GIF. Due to an integer overflow bug in the PDF decoder, the malicious
+input leads to an unbounded buffer access, therefore to an arbitrary
+read/write primitive. In the case of JavaScript engine exploitation, the
+attacker would normally be able to use JavaScript operations and perform
+arbitrary computations, making exploitation more straightforward. In
+this case, there are no scripting capabilities officially supported. The
+attackers, however, take advantage of the compression format intricacies
+to implement a small computer architecture, in thousands of simple
+commands to the decoder. In this way, they effectively \emph{introduce}
+scripting capabilities and are able to express their exploit as a
+program to this architecture.
 
 So far, we have described read/write primitives. We have also discussed
 how an attacker might perform arbitrary computations:
@@ -563,8 +563,8 @@ Some examples of how the attacker may use the obtained primitives:
   Leak information, such as pointers to specific data structures or
   code, or the stack pointer.
 \item
-  Overwrite the stack contents, e.g.~to perform a
-  \protect\hyperlink{rop}{ROP attack}.
+  Overwrite the stack contents, e.g.~to perform a \hyperref[rop]{ROP
+  attack}.
 \item
   Overwrite non-control data, e.g.~authorization state. Sometimes this
   step is sufficient to achieve the attacker's goal, bypassing the need
@@ -583,11 +583,10 @@ the purposes of this chapter we will focus on:
   the attacker from obtaining powerful read/write primitives.
 \item
   Mitigating the effects of read/write primitives, e.g.~with mechanisms
-  to maintain \protect\hyperlink{cfi}{Control-Flow Integrity (CFI)}.
+  to maintain \hyperref[cfi]{Control-Flow Integrity (CFI)}.
 \end{itemize}
 
-\hypertarget{stack-buffer-overflows}{%
-\section{Stack buffer overflows}\label{stack-buffer-overflows}}
+\section{Stack buffer overflows}\label{stack-buffer-overflows}
 
 A buffer overflow occurs when a read from or write to a
 \href{https://en.wikipedia.org/wiki/Data_buffer}{data buffer} exceeds
@@ -669,8 +668,8 @@ write shellcode\footnote{A shellcode is a short instruction sequence
   that performs an action such as starting a shell on the victim
   machine.}\index{shellcode} to the stack and overwrite the return
 address so that it points to the shellcode.
-(\protect\hyperlink{ref-AlephOne1996}{Aleph One 1996}) is a classic
-example of this technique.
+(\citeproc{ref-AlephOne1996}{Aleph One 1996}) is a classic example of
+this technique.
 
 The obvious solution to this issue is to use memory protection features
 of the processor in order to mark the stack (along with other data
@@ -728,13 +727,13 @@ Many buffer overflow vulnerabilities result from the use of unsafe
 library functions, such as \texttt{gets}, or from the unsafe use of
 library functions such as \texttt{strcpy}. There is extensive literature
 on writing secure C/C++\index{C}\index{C++} code, for example
-(\protect\hyperlink{ref-Seacord2013}{Seacord 2013}) and
-(\protect\hyperlink{ref-Dowd2006}{Dowd, McDonald, and Schuh 2006}). A
-different approach to limiting the effects of overflows is library
-function hardening, which aims to detect buffer overflows and terminate
-the program gracefully. This involves the introduction of feature macros
-like \texttt{\_FORTIFY\_SOURCE}
-(\protect\hyperlink{ref-Sharma2014}{Sharma 2014}).
+(\citeproc{ref-Seacord2013}{Seacord 2013}) and
+(\citeproc{ref-Dowd2006}{Dowd, McDonald, and Schuh 2006}). A different
+approach to limiting the effects of overflows is library function
+hardening, which aims to detect buffer overflows and terminate the
+program gracefully. This involves the introduction of feature macros
+like \texttt{\_FORTIFY\_SOURCE} (\citeproc{ref-Sharma2014}{Sharma
+2014}).
 
 Finally, it's important to mention that not all buffer overflows aim to
 overwrite a saved return address. There are many cases where a buffer
@@ -745,15 +744,14 @@ control flow according to the attacker's wishes.
 
 Some of these vulnerabilities can be mitigated with the measures
 described in this section, but often more general measures to ensure
-memory safety or \protect\hyperlink{cfi}{Control-Flow Integrity} are
-necessary. For example, in addition to the hardening of specific library
-functions, compilers can also implement automatic bounds checking for
-arrays where the array bound can be statically determined
+memory safety or \hyperref[cfi]{Control-Flow Integrity} are necessary.
+For example, in addition to the hardening of specific library functions,
+compilers can also implement automatic bounds checking for arrays where
+the array bound can be statically determined
 (\texttt{-fsanitize=bounds}), as well as various other ``sanitizers''.
 We will describe these measures in following sections.
 
-\hypertarget{code-reuse-attacks}{%
-\section{Code reuse attacks}\label{code-reuse-attacks}}
+\section{Code reuse attacks}\label{code-reuse-attacks}
 
 In the early days of memory vulnerability exploitation, attackers could
 simply place shellcode\index{shellcode} of their choice in executable
@@ -763,16 +761,15 @@ application's binary and linked libraries instead. A variety of
 different techniques to this effect came to light.
 
 The simplest of these techniques is return-to-libc
-(\protect\hyperlink{ref-Solar1997}{Solar Designer 1997}). Instead of
-returning to shellcode that the attacker has injected, the return
-address is modified to return into a library function, such as
-\texttt{system} or \texttt{exec}. This technique is simpler to use when
-arguments are also passed on the stack and can therefore be controlled
-with the same stack buffer overflow that is used to modify the address.
+(\citeproc{ref-Solar1997}{Solar Designer 1997}). Instead of returning to
+shellcode that the attacker has injected, the return address is modified
+to return into a library function, such as \texttt{system} or
+\texttt{exec}. This technique is simpler to use when arguments are also
+passed on the stack and can therefore be controlled with the same stack
+buffer overflow that is used to modify the address.
 
-\hypertarget{return-oriented-programming}{%
 \subsection{Return-oriented
-programming}\label{return-oriented-programming}}
+programming}\label{return-oriented-programming}
 
 Return-to-libc attacks restrict an attacker to whole library functions.
 While this can lead to powerful attacks, it has also been demonstrated
@@ -785,10 +782,10 @@ that provides each control transfer instruction's target.
 
 In return-oriented programming
 (ROP)\index{return-oriented programming (ROP)}
-(\protect\hyperlink{ref-Shacham2007}{Shacham 2007}), each gadget
-performs a simple operation, for example setting a register, then pops a
-return address from the stack and returns to it. The attacker constructs
-a fake call stack (often called a ROP chain\index{ROP
+(\citeproc{ref-Shacham2007}{Shacham 2007}), each gadget performs a
+simple operation, for example setting a register, then pops a return
+address from the stack and returns to it. The attacker constructs a fake
+call stack (often called a ROP chain\index{ROP
 chain}) which ensures a number of gadgets are executed one after
 another, in order to perform a more complex operation.
 
@@ -891,33 +888,28 @@ should use a ROP chain that:
   Returns to \texttt{execve}.
 \end{enumerate}
 
-Figure \protect\hyperlink{fig:rop-control-flow}{1} shows this control
-flow.
+Figure \hyperref[fig:rop-control-flow]{1} shows this control flow.
 
 \begin{figure}
-\hypertarget{fig:rop-control-flow}{%
 \centering
 \includegraphics[width=0.3\textwidth,height=\textheight]{img/rop-control-flow.pdf}
 \caption{Figure 1: ROP example control flow}\label{fig:rop-control-flow}
-}
 \end{figure}
 
 \begin{figure}
-\hypertarget{fig:rop-call-stack}{%
 \centering
 \includegraphics[width=0.8\textwidth,height=\textheight]{img/rop-call-stack.pdf}
 \caption{Figure 2: ROP example fake call
 stack}\label{fig:rop-call-stack}
-}
 \end{figure}
 
 We can achieve this by constructing the fake call stack shown in figure
-\protect\hyperlink{fig:rop-call-stack}{2}, where ``Original frame''
-marks the frame in which the address of \texttt{gadget\_x2} has replaced
-a saved return address that will be loaded and returned to in the
-future. As an alternative, an attacker could place this fake call stack
-somewhere else, for example on the heap, and use a primitive that
-changes the stack pointer's value instead. This is known as stack
+\hyperref[fig:rop-call-stack]{2}, where ``Original frame'' marks the
+frame in which the address of \texttt{gadget\_x2} has replaced a saved
+return address that will be loaded and returned to in the future. As an
+alternative, an attacker could place this fake call stack somewhere
+else, for example on the heap, and use a primitive that changes the
+stack pointer's value instead. This is known as stack
 pivoting\index{stack pivoting}.
 
 Note that this fake call stack contains NULL bytes, even without
@@ -956,26 +948,22 @@ into that 4-byte instruction it will execute \texttt{5f\ c3}. Those
 bytes corresponds to the two single byte instructions
 \texttt{pop\ \%rdi;\ ret} which is a useful ROP gadget.
 
-\hypertarget{jump-oriented-programming}{%
-\subsection{Jump-oriented programming}\label{jump-oriented-programming}}
+\subsection{Jump-oriented programming}\label{jump-oriented-programming}
 
 Jump-oriented programming (JOP)\index{jump-oriented programming (JOP)}
-(\protect\hyperlink{ref-Bletsch2011}{Bletsch et al. 2011}) is a
-variation on ROP, where gadgets can also end in indirect branch
-instructions instead of return instructions. The attacker chains a
-number of such gadgets through a dispatcher
-gadget\index{dispatcher gadget}, which loads pointers one after another
-from an array of pointers, and branches to each one in return. The
-gadgets used must be set up so that they branch or return back to the
-dispatcher after they're done. This is demonstrated in figure
-\protect\hyperlink{fig:jop}{3}.
+(\citeproc{ref-Bletsch2011}{Bletsch et al. 2011}) is a variation on ROP,
+where gadgets can also end in indirect branch instructions instead of
+return instructions. The attacker chains a number of such gadgets
+through a dispatcher gadget\index{dispatcher gadget}, which loads
+pointers one after another from an array of pointers, and branches to
+each one in return. The gadgets used must be set up so that they branch
+or return back to the dispatcher after they're done. This is
+demonstrated in figure \hyperref[fig:jop]{3}.
 
 \begin{figure}
-\hypertarget{fig:jop}{%
 \centering
 \includegraphics[width=0.5\textwidth,height=\textheight]{img/jop.pdf}
 \caption{Figure 3: JOP example}\label{fig:jop}
-}
 \end{figure}
 
 \tododiv{The gadgets in the figure are made up, chosen to highlight that
@@ -983,29 +971,28 @@ each gadget can end in a different type of indirect control flow
 transfer instruction. Consider replacing them with more realistic ones.
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/165}{\#165}}
 
-In figure \protect\hyperlink{fig:jop}{3}, \texttt{x4} initially points
-to the ``dispatch table'', which has been modified by the attacker to
-contain the addresses of the three gadgets they want to execute. The
-dispatcher gadget loads each address in the dispatch table one by one
-and branches to them. The first gadget loads \texttt{x0} and \texttt{x1}
-from the stack, where the attacker has placed the inputs of their
-choice. It then loads its return address, also modified by the attacker
-so that it points back to the dispatcher gadget, and returns to it. The
-dispatcher branches to the next gadget, which adds \texttt{x0} and
-\texttt{x1} and leaves the result in \texttt{x0}, branching back to the
-dispatcher through another value loaded from the stack into \texttt{x2}.
-The final gadget stores the result of the addition, which remains in
-\texttt{x0}, to the stack, before branching to \texttt{x2}, which still
-points to the dispatcher gadget.
+In figure \hyperref[fig:jop]{3}, \texttt{x4} initially points to the
+``dispatch table'', which has been modified by the attacker to contain
+the addresses of the three gadgets they want to execute. The dispatcher
+gadget loads each address in the dispatch table one by one and branches
+to them. The first gadget loads \texttt{x0} and \texttt{x1} from the
+stack, where the attacker has placed the inputs of their choice. It then
+loads its return address, also modified by the attacker so that it
+points back to the dispatcher gadget, and returns to it. The dispatcher
+branches to the next gadget, which adds \texttt{x0} and \texttt{x1} and
+leaves the result in \texttt{x0}, branching back to the dispatcher
+through another value loaded from the stack into \texttt{x2}. The final
+gadget stores the result of the addition, which remains in \texttt{x0},
+to the stack, before branching to \texttt{x2}, which still points to the
+dispatcher gadget.
 
-\hypertarget{counterfeit-object-oriented-programming}{%
 \subsection{Counterfeit Object-oriented
-programming}\label{counterfeit-object-oriented-programming}}
+programming}\label{counterfeit-object-oriented-programming}
 
 Counterfeit Object-oriented programming (COOP)\index{counterfeit
 object-oriented programming (COOP)}
-(\protect\hyperlink{ref-Schuster2015}{Schuster et al. 2015}) is a code
-reuse technique that takes advantage of C++ \index{C++} virtual function
+(\citeproc{ref-Schuster2015}{Schuster et al. 2015}) is a code reuse
+technique that takes advantage of C++ \index{C++} virtual function
 calls. A COOP attack takes advantage of existing virtual functions and
 \href{https://en.wikipedia.org/wiki/Virtual_method_table}{vtables}, and
 creates fake objects pointing to these existing vtables. The virtual
@@ -1013,23 +1000,22 @@ functions used as gadgets in the attack are called vfgadgets. To chain
 vfgadgets together, the attacker uses a ``main loop gadget'', similar to
 JOP's dispatcher gadget, which is itself a virtual function that loops
 over a container of pointers to C++ objects and invokes a virtual
-function on these objects.
-(\protect\hyperlink{ref-Schuster2015}{Schuster et al. 2015}) describes
-the attack in more detail. It is specifically mentioned here as an
-example of an attack that doesn't depend on directly replacing return
-addresses and code pointers, like ROP and JOP do. Such language-specific
-attacks are important to consider when considering mitigations against
-code reuse attacks, which will be the topic of the next section.
+function on these objects. (\citeproc{ref-Schuster2015}{Schuster et al.
+2015}) describes the attack in more detail. It is specifically mentioned
+here as an example of an attack that doesn't depend on directly
+replacing return addresses and code pointers, like ROP and JOP do. Such
+language-specific attacks are important to consider when considering
+mitigations against code reuse attacks, which will be the topic of the
+next section.
 
-\hypertarget{sigreturn-oriented-programming}{%
 \subsection{Sigreturn-oriented
-programming}\label{sigreturn-oriented-programming}}
+programming}\label{sigreturn-oriented-programming}
 
 One last example of a code reuse attack that is worth mentioning here is
 sigreturn-oriented programming
 (SROP)\index{sigreturn-oriented programming
-(SROP)} (\protect\hyperlink{ref-Bosman2014}{Bosman and Bos 2014}). It is
-a special case of ROP where the attacker creates a fake signal handler
+(SROP)} (\citeproc{ref-Bosman2014}{Bosman and Bos 2014}). It is a
+special case of ROP where the attacker creates a fake signal handler
 frame and calls \texttt{sigreturn}. \texttt{sigreturn} is a system call
 on many UNIX-type systems which is normally called upon return from a
 signal handler, and restores the state of the process based on the state
@@ -1038,9 +1024,8 @@ previously, on entry to the signal handler. The ability to fake a signal
 handler frame and call \texttt{sigreturn} gives an attacker a simple way
 to control the state of the program.
 
-\hypertarget{mitigations-against-code-reuse-attacks}{%
 \section{Mitigations against code reuse
-attacks}\label{mitigations-against-code-reuse-attacks}}
+attacks}\label{mitigations-against-code-reuse-attacks}
 
 When discussing mitigations against code reuse attacks, it is important
 to keep in mind that there are two capabilities the attacker must have
@@ -1061,8 +1046,7 @@ stack base was predictable, and libraries were loaded in predictable
 memory locations. This made code reuse attacks simple, as all of the
 addresses needed for a successful exploit were easy to discover.
 
-\hypertarget{aslr}{%
-\subsection{ASLR}\label{aslr}}
+\subsection{ASLR}\label{aslr}
 
 \href{https://en.wikipedia.org/wiki/Address_space_layout_randomization}{Address
 space layout randomization (ASLR)}\index{ASLR} makes this more difficult
@@ -1076,19 +1060,18 @@ Does this mean that code reuse attacks have been made redundant by ASLR?
 Unfortunately, this is not the case. There are various ways in which an
 attacker can discover the memory layout of the victim program. This is
 often referred to as an ``info leak''\index{info leak}
-(\protect\hyperlink{ref-Serna2012}{Serna 2012}).
+(\citeproc{ref-Serna2012}{Serna 2012}).
 
 Since we can not exclude code reuse attacks solely by making addresses
 hard to guess, we need to also consider mitigations that prevent
 attackers from overwriting return addresses and other code pointers.
 Some of the mitigations described
-\protect\hyperlink{stack-buffer-overflows}{earlier}, like stack canaries
-and library function hardening, can help in specific situations, but for
-the more general case where an attacker has obtained arbitrary read and
+\hyperref[stack-buffer-overflows]{earlier}, like stack canaries and
+library function hardening, can help in specific situations, but for the
+more general case where an attacker has obtained arbitrary read and
 write primitives, we need something more.
 
-\hypertarget{cfi}{%
-\subsection{CFI}\label{cfi}}
+\subsection{CFI}\label{cfi}
 
 \href{https://en.wikipedia.org/wiki/Control-flow_integrity}{Control-flow
 integrity (CFI)}\index{CFI} is a family of mitigations that aim to
@@ -1101,15 +1084,13 @@ Ideally, a CFI scheme would not allow any control flow transfers that
 don't occur in a correct program execution, however different schemes
 have varying granularities. They often rely on function type checks or
 use static analysis (points-to analysis) to identify potential control
-flow transfer targets. (\protect\hyperlink{ref-Burow2017}{Burow et al.
-2017}) compares a number of available CFI schemes based on the
-precision. For forward-edge CFI schemes, for example, schemes are
-classified based on whether or not they perform, among others,
-flow-sensitive analysis, context-sensitive analysis and class-hierarchy
-analysis.
+flow transfer targets. (\citeproc{ref-Burow2017}{Burow et al. 2017})
+compares a number of available CFI schemes based on the precision. For
+forward-edge CFI schemes, for example, schemes are classified based on
+whether or not they perform, among others, flow-sensitive analysis,
+context-sensitive analysis and class-hierarchy analysis.
 
-\hypertarget{clang-cfi}{%
-\subsubsection{Clang CFI}\label{clang-cfi}}
+\subsubsection{Clang CFI}\label{clang-cfi}
 
 \href{https://clang.llvm.org/docs/ControlFlowIntegrity.html}{Clang's
 CFI} includes a variety of forward-edge control-flow integrity checks.
@@ -1172,8 +1153,7 @@ Another implementation of forward-edge CFI is Windows
 Flow Guard}, which only allows indirect calls to functions that are
 marked as valid indirect control flow targets.
 
-\hypertarget{clang-shadow-stack}{%
-\subsubsection{Clang Shadow Stack}\label{clang-shadow-stack}}
+\subsubsection{Clang Shadow Stack}\label{clang-shadow-stack}
 
 Clang also implements a backward-edge CFI scheme known as
 \href{https://clang.llvm.org/docs/ShadowCallStack.html}{Shadow
@@ -1191,8 +1171,8 @@ As an example, when compiling with
   register as reserved, and is required by
   \texttt{-fsanitize=shadow-call-stack} on some platforms.}, the code
 generated for the \texttt{main} function from the
-\protect\hyperlink{stack-buffer-overflow}{earlier stack buffer overflow
-example} will look something like:
+\hyperref[stack-buffer-overflow]{earlier stack buffer overflow example}
+will look something like:
 
 \begin{verbatim}
 main:
@@ -1214,8 +1194,7 @@ You can see that the shadow stack address is kept in \texttt{x18}. The
 return address is also saved on the ``normal'' stack for compatibility
 with unwinders, but it's not actually used for the function return.
 
-\hypertarget{pointer-authentication}{%
-\subsubsection{Pointer Authentication}\label{pointer-authentication}}
+\subsubsection{Pointer Authentication}\label{pointer-authentication}
 
 In addition to software implementations, there are a number of
 hardware-based CFI implementations. A hardware-based implementation has
@@ -1223,7 +1202,7 @@ the potential to offer improved protection and performance compared to
 an equivalent software-only CFI scheme.
 
 One such example is Pointer Authentication\index{Pointer Authentication}
-(\protect\hyperlink{ref-Rutland2017}{Rutland 2017}), an Armv8.3 feature,
+(\citeproc{ref-Rutland2017}{Rutland 2017}), an Armv8.3 feature,
 supported only in AArch64 state, that can be used to mitigate code reuse
 attacks. Pointer Authentication introduces instructions that generate a
 pointer \emph{signature}, called a Pointer Authentication Code (PAC),
@@ -1250,8 +1229,8 @@ and \href{https://gcc.gnu.org/onlinedocs/gcc/AArch64-Options.html}{GCC}
 both use Pointer Authentication for return address signing, when
 compiling with the \texttt{-mbranch-protection=pac-ret} flag. When
 compiling with Clang using this flag, the \texttt{main} function from
-the \protect\hyperlink{stack-buffer-overflow}{earlier stack buffer
-overflow example} looks like:
+the \hyperref[stack-buffer-overflow]{earlier stack buffer overflow
+example} looks like:
 
 \begin{verbatim}
 main:
@@ -1299,24 +1278,23 @@ replaced with a different pointer that has also been signed with the
 same modifier.
 
 Another backward-edge CFI scheme that uses Pointer Authentication
-instructions is PACStack
-(\protect\hyperlink{ref-Liljestrand2021}{Liljestrand et al. 2021}),
-which chains together PACs in order to include the full context (all of
-the previous return addresses in the call stack) when signing a return
-address. \todospan{{Add more references to relevant research
+instructions is PACStack (\citeproc{ref-Liljestrand2021}{Liljestrand et
+al. 2021}), which chains together PACs in order to include the full
+context (all of the previous return addresses in the call stack) when
+signing a return address. \todospan{{Add more references to relevant
+research
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/166}{\#166}}}
 
 Pointer Authentication can also be used more widely, for example to
 implement a forward-edge CFI scheme, as is done in the arm64e ABI
-(\protect\hyperlink{ref-McCall2019}{McCall and Bougacha 2019}). The
-Pointer Authentication instructions, however, are generic enough to also
-be useful in implementing more general memory safety measures, beyond
-CFI. \todospan{{Mention more Pointer Authentication uses in later
-section, and add link here
+(\citeproc{ref-McCall2019}{McCall and Bougacha 2019}). The Pointer
+Authentication instructions, however, are generic enough to also be
+useful in implementing more general memory safety measures, beyond CFI.
+\todospan{{Mention more Pointer Authentication uses in later section,
+and add link here
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/167}{\#167}}}
 
-\hypertarget{bti}{%
-\subsubsection{BTI}\label{bti}}
+\subsubsection{BTI}\label{bti}
 
 \href{https://developer.arm.com/documentation/102433/0100/Jump-oriented-programming?lang=en}{Branch
 Target Identification (BTI)} \index{BTI}, introduced in Armv8.5, offers
@@ -1339,13 +1317,12 @@ this, the BTI instruction has been assigned to the hint space, therefore
 it will be executed as a no-op in cores that do not support BTI, aiding
 its adoption.
 
-\hypertarget{cfi-implementation-pitfalls}{%
 \subsubsection{CFI implementation
-pitfalls}\label{cfi-implementation-pitfalls}}
+pitfalls}\label{cfi-implementation-pitfalls}
 
 When implementing CFI measures like the ones described here, it is
 important to be aware of known weaknesses that affect similar schemes.
-(\protect\hyperlink{ref-Conti2015}{Conti et al. 2015}) describes how CFI
+(\citeproc{ref-Conti2015}{Conti et al. 2015}) describes how CFI
 implementations can suffer when certain registers are spilled on the
 stack, where they could be controlled by an attacker. For example, if a
 register that contains a function pointer that has just been validated
@@ -1357,8 +1334,7 @@ time to turn our attention to a different type of attacks, which do not
 try to overwrite code pointers: attacks against non-control data, which
 will be the topic of the next section.
 
-\hypertarget{non-control-data-attacks}{%
-\section{Non-control data attacks}\label{non-control-data-attacks}}
+\section{Non-control data attacks}\label{non-control-data-attacks}
 
 In the previous sections, we have focused on subverting control flow by
 overwriting control data\index{control data}, which are used to change
@@ -1372,8 +1348,8 @@ these mitigations protect.
 
 Non-control data attacks can range from very simple attacks targeting a
 single piece of data to very elaborate attacks with very high
-expressiveness (\protect\hyperlink{ref-Beer2021}{Beer and Groß 2021}). A
-very simple example may look something like this:
+expressiveness (\citeproc{ref-Beer2021}{Beer and Groß 2021}). A very
+simple example may look something like this:
 
 \begin{verbatim}
 // Returns zero for failure, non-zero for success.
@@ -1399,49 +1375,47 @@ successful or not. The function contains a very obvious buffer overflow,
 as the string length limit passed to \texttt{fgets} does not match the
 buffer size.
 
-Figure \protect\hyperlink{fig:non-control-data-attack}{4} shows the
-stack frame layout for this function when the code is compiled for
-AArch64 with Clang 10.0\footnote{The stack frame layout may be
-  significantly different for other architectures and compilers.}. As
-the figure shows, an overflow of \texttt{passphrase} will overwrite
+Figure \hyperref[fig:non-control-data-attack]{4} shows the stack frame
+layout for this function when the code is compiled for AArch64 with
+Clang 10.0\footnote{The stack frame layout may be significantly
+  different for other architectures and compilers.}. As the figure
+shows, an overflow of \texttt{passphrase} will overwrite
 \texttt{authenticated}, setting it to a non-zero value, even though the
 passphrase was incorrect. The \texttt{authenticate} function will then
 return a non-zero value, incorrectly indicating authentication success.
 
 \begin{figure}
-\hypertarget{fig:non-control-data-attack}{%
 \centering
 \includegraphics[width=0.6\textwidth,height=\textheight]{img/non-control-data-attack.pdf}
 \caption{Figure 4: Stack frame for
 \texttt{authenticate}}\label{fig:non-control-data-attack}
-}
 \end{figure}
 
 For many more simple examples of data-only attacks that can occur in
-real applications, see (\protect\hyperlink{ref-Chen2005}{Chen et al.
-2005}). Although this makes it clear that data-only attacks are a real
-issue, it leaves open a very important question: what are the limits of
-such attacks? It is tempting to assume that data-only attacks are
-somehow inherently limited, however it has been demonstrated in
-(\protect\hyperlink{ref-Hu2016}{Hu et al. 2016}) that they can, in fact,
-be very expressive. (\protect\hyperlink{ref-Hu2016}{Hu et al. 2016})
-describes Data-Oriented Programming (DOP), a general method for building
-data-only attacks against a vulnerable program, starting from a known
-memory error in the program\footnote{The authors describe how DOP
-  gadgets can be chained to simulate a Turing machine, making DOP
-  attacks Turing-complete (it's not possible to simulate the infinite
-  tape of a Turing machine on any actual hardware, of course).
-  Turing-completeness is not, however, a particularly useful measure of
-  exploitability, as explained in
-  (\protect\hyperlink{ref-Dullien2018}{Flake 2018}). Many applications
-  offer their users the ability to perform arbitrary computation, for
-  example JavaScript engines, and those capabilities can be useful to an
-  attacker, but performing a computation without affecting normal
-  program behavior does not constitute ``exploitation''.}.
+real applications, see (\citeproc{ref-Chen2005}{Chen et al. 2005}).
+Although this makes it clear that data-only attacks are a real issue, it
+leaves open a very important question: what are the limits of such
+attacks? It is tempting to assume that data-only attacks are somehow
+inherently limited, however it has been demonstrated in
+(\citeproc{ref-Hu2016}{Hu et al. 2016}) that they can, in fact, be very
+expressive. (\citeproc{ref-Hu2016}{Hu et al. 2016}) describes
+Data-Oriented Programming (DOP), a general method for building data-only
+attacks against a vulnerable program, starting from a known memory error
+in the program\footnote{The authors describe how DOP gadgets can be
+  chained to simulate a Turing machine, making DOP attacks
+  Turing-complete (it's not possible to simulate the infinite tape of a
+  Turing machine on any actual hardware, of course). Turing-completeness
+  is not, however, a particularly useful measure of exploitability, as
+  explained in (\citeproc{ref-Dullien2018}{Flake 2018}). Many
+  applications offer their users the ability to perform arbitrary
+  computation, for example JavaScript engines, and those capabilities
+  can be useful to an attacker, but performing a computation without
+  affecting normal program behavior does not constitute
+  ``exploitation''.}.
 
-The authors of (\protect\hyperlink{ref-Hu2016}{Hu et al. 2016}) describe
-a small language called MINDOP, with a virtual instruction set and
-virtual registers. The virtual registers of MINDOP correspond to memory
+The authors of (\citeproc{ref-Hu2016}{Hu et al. 2016}) describe a small
+language called MINDOP, with a virtual instruction set and virtual
+registers. The virtual registers of MINDOP correspond to memory
 locations. The MINDOP instructions correspond to operations on these
 virtual registers, for example loading a value into a virtual register,
 storing a value from a virtual register, arithmetic operations and even
@@ -1459,17 +1433,16 @@ well, used in conjunction with a memory location that provides a virtual
 program counter.
 
 The process of creating a DOP attack is not so simple and not fully
-automated. Related literature
-(\protect\hyperlink{ref-Ispoglou2018}{Ispoglou et al. 2018}) focuses on
-automating data-only attacks.
+automated. Related literature (\citeproc{ref-Ispoglou2018}{Ispoglou et
+al. 2018}) focuses on automating data-only attacks.
 
 When reading write-ups on recent security issues, instead of terminology
 related to data-oriented gadgets, you are more likely to encounter the
 term ``primitive'', which has been described in
-\protect\hyperlink{exploitation-primitives}{an earlier section}. These
-concepts are related: an arbitrary read primitive, for example, can be
-produced by chaining a (possibly large) number of DOP gadgets. Talking
-about primitives offers a nicer level of abstraction, as it tends to be
+\hyperref[exploitation-primitives]{an earlier section}. These concepts
+are related: an arbitrary read primitive, for example, can be produced
+by chaining a (possibly large) number of DOP gadgets. Talking about
+primitives offers a nicer level of abstraction, as it tends to be
 simpler to reason in terms of higher-level operations instead of many
 small pieces of code that need to be stitched together to perform the
 operations.
@@ -1480,19 +1453,17 @@ they are by design inadequate to protect against this different type of
 attacks. In the next section, we will look at what we can do to address
 them at their source: memory errors.
 
-\hypertarget{preventing-and-detecting-memory-errors}{%
 \section{Preventing and detecting memory
-errors}\label{preventing-and-detecting-memory-errors}}
+errors}\label{preventing-and-detecting-memory-errors}
 
 We have so far discussed how languages that are
-\protect\hyperlink{a-bit-of-background-on-memory-vulnerabilities}{not
-memory safe}, like C and C++, are vulnerable to memory errors and
-therefore exploitation. In this section, we will discuss tools that are
-available to C/C++ \index{C}\index{C++}programmers to help them detect
+\hyperref[a-bit-of-background-on-memory-vulnerabilities]{not memory
+safe}, like C and C++, are vulnerable to memory errors and therefore
+exploitation. In this section, we will discuss tools that are available
+to C/C++ \index{C}\index{C++}programmers to help them detect
 vulnerabilities that can lead to memory errors.
 
-\hypertarget{sanitizers}{%
-\subsection{Sanitizers}\label{sanitizers}}
+\subsection{Sanitizers}\label{sanitizers}
 
 Sanitizers \index{sanitizers} are tools that detect bugs during program
 execution. Sanitizers usually have two components: a compiler
@@ -1523,9 +1494,9 @@ addressable, it encodes additional details (whether the 8 bytes are
 out-of-bounds stack, out-of-bounds heap, freed memory, and so on).
 Requiring one byte of shadow memory for every 8 bytes of application
 memory means that ASan needs to reserve one-eighth of the application's
-virtual address space (\protect\hyperlink{ref-Serebryany2012}{Serebryany
-et al. 2012}). Shadow memory is allocated in one contiguous chunk, which
-keeps mapping application memory to shadow memory simple.
+virtual address space (\citeproc{ref-Serebryany2012}{Serebryany et al.
+2012}). Shadow memory is allocated in one contiguous chunk, which keeps
+mapping application memory to shadow memory simple.
 
 ASan's runtime library replaces memory allocation functions like
 \texttt{malloc}\index{malloc} and \texttt{free}\index{free} with its own
@@ -1630,8 +1601,7 @@ software-based (static analysis, library and buffer hardening) and
 hardware-based, e.g.~PAuth-based pointer integrity schemes, MTE etc
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/170}{\#170}}
 
-\hypertarget{bounds-checking}{%
-\subsection{Bounds checking}\label{bounds-checking}}
+\subsection{Bounds checking}\label{bounds-checking}
 
 Making sure that memory accesses happen within the bounds of each
 object's allocation is a very important part of memory safety. This is
@@ -1659,14 +1629,14 @@ restricted to arrays with statically known size. This option is
 supported by both GCC and Clang.
 
 Another option supported by both compilers is
-\texttt{-fsanitize=bounds}, included in
-\protect\hyperlink{sanitizers}{UBSan}, which checks the bounds for
-accesses to statically sized arrays at runtime. This handles more cases
-than \texttt{-Warray-bounds}, as it can also check accesses to dynamic
-indices. However, it's still limited, as it cannot perform bounds checks
-on dynamically sized arrays, and it is still restricted to array bounds
-checking. A more comprehensive solution would also cover pointers in
-general, especially if pointer arithmetic is performed.
+\texttt{-fsanitize=bounds}, included in \hyperref[sanitizers]{UBSan},
+which checks the bounds for accesses to statically sized arrays at
+runtime. This handles more cases than \texttt{-Warray-bounds}, as it can
+also check accesses to dynamic indices. However, it's still limited, as
+it cannot perform bounds checks on dynamically sized arrays, and it is
+still restricted to array bounds checking. A more comprehensive solution
+would also cover pointers in general, especially if pointer arithmetic
+is performed.
 
 You may notice that there is a bit of overlap between the bounds checks
 introduced by \texttt{-fsanitize=bounds} and the Address Sanitizer.
@@ -1752,7 +1722,7 @@ hardened library will include bounds checks.
 Successfully using bounds checking compiler features for a large
 codebase requires substantial effort. An example of this is refactoring
 the Linux kernel to use bounds checks for flexible arrays, as described
-in (\protect\hyperlink{ref-Cook2023}{Cook 2023}).
+in (\citeproc{ref-Cook2023}{Cook 2023}).
 
 There are also hardware-based mitigations for violations of spatial
 memory safety. For example,
@@ -1776,13 +1746,12 @@ within bounds\footnote{Rust also provides features that provide temporal
   memory safety and thread safety.}. There are many other memory safe
 languages, with different characteristics. One example is JavaScript, a
 dynamically typed, usually
-\protect\hyperlink{jit-compiler-vulnerabilities}{JIT-compiled} language.
-We'll discuss some of the issues that arise when implementing support
-for such a language in the next section.
+\hyperref[jit-compiler-vulnerabilities]{JIT-compiled} language. We'll
+discuss some of the issues that arise when implementing support for such
+a language in the next section.
 
-\hypertarget{jit-compiler-vulnerabilities}{%
 \section{JIT compiler
-vulnerabilities}\label{jit-compiler-vulnerabilities}}
+vulnerabilities}\label{jit-compiler-vulnerabilities}
 
 Compiler correctness is obviously very important, as miscompilation
 creates buggy programs even when the source code has no bugs. What might
@@ -1791,8 +1760,8 @@ example, they can introduce memory safety errors in languages that are
 otherwise memory safe. In some cases, a bug might leave most programs
 unaffected and not cause security issues in practice before it is
 detected and fixed. This is, of course, assuming that the bug has not
-been \protect\hyperlink{supply-chain-attacks}{intentionally injected in
-the compiler}.
+been \hyperref[supply-chain-attacks]{intentionally injected in the
+compiler}.
 
 Compiler bugs are an interesting source of security issues for
 \href{https://en.wikipedia.org/wiki/Just-in-time_compilation}{just-in-time
@@ -1814,16 +1783,16 @@ languages that are compiled dynamically.
 
 Without statically known types, in order to optimize JavaScript code,
 JavaScript engines resort to type profiling
-(\protect\hyperlink{ref-Pizlo2020}{Pizlo 2020}), recording the types
-encountered while executing code. These types are then used during
-optimization, which speculates that the same types will be encountered
-in future runs of the code, and inserts checks to validate that these
-assumptions about types still hold. When a check fails, the optimized
-code is replaced by unoptimized code that can handle all types, a
-process known as deoptimization\index{deoptimization} or on-stack
-replacement (OSR)\index{on-stack replacement (OSR)}. Deoptimization
-makes sure that the state of the deoptimized function is recreated
-correctly for the point of execution where the type check failed.
+(\citeproc{ref-Pizlo2020}{Pizlo 2020}), recording the types encountered
+while executing code. These types are then used during optimization,
+which speculates that the same types will be encountered in future runs
+of the code, and inserts checks to validate that these assumptions about
+types still hold. When a check fails, the optimized code is replaced by
+unoptimized code that can handle all types, a process known as
+deoptimization\index{deoptimization} or on-stack replacement
+(OSR)\index{on-stack replacement (OSR)}. Deoptimization makes sure that
+the state of the deoptimized function is recreated correctly for the
+point of execution where the type check failed.
 
 For example, a function such as:
 
@@ -1850,11 +1819,11 @@ foo:
 
 You may be wondering how the type checks are implemented, and this is
 closely related to the representation of values in a JavaScript engine
-(\protect\hyperlink{ref-Wingo2011}{Wingo 2011}). In short, JavaScript
-engines use specific bit patterns to indicate whether a value should be
-interpreted as a pointer, or as an integer or floating-point value. For
-example, the \href{https://v8.dev/}{V8 JavaScript engine} uses the least
-significant bit to denote that a
+(\citeproc{ref-Wingo2011}{Wingo 2011}). In short, JavaScript engines use
+specific bit patterns to indicate whether a value should be interpreted
+as a pointer, or as an integer or floating-point value. For example, the
+\href{https://v8.dev/}{V8 JavaScript engine} uses the least significant
+bit to denote that a
 \href{https://v8.dev/blog/pointer-compression\#value-tagging-in-v8}{value
 is a pointer}, otherwise it is a small integer (which needs to be
 shifted down to access its value). Pointers then point to objects that
@@ -1898,8 +1867,8 @@ If range analysis decides that the value of \texttt{y} is in the range
 \texttt{{[}0,\ 2{]}}, but in reality the value is in the range
 \texttt{{[}0,\ 3{]}}, the bounds check for the access \texttt{a{[}y{]}}
 can be eliminated incorrectly, assuming the access is in-bounds.
-(\protect\hyperlink{ref-Glazunov2021}{Glazunov 2021}) lists a few
-examples of similar hypothetical vulnerabilities, along with examples of
+(\citeproc{ref-Glazunov2021}{Glazunov 2021}) lists a few examples of
+similar hypothetical vulnerabilities, along with examples of
 vulnerabilities of this type that affected widely-used JavaScript
 engines.
 
@@ -1914,10 +1883,10 @@ and then jump to it. Writable and executable memory, therefore, makes
 JITs lucrative targets for attackers.
 
 Bugs related to range analysis are just one of the common types of bugs
-encountered in a JavaScript engine.
-(\protect\hyperlink{ref-Grouxdf2022}{Groß and Burnett 2022}) lists some
-other common types of bugs that result in violations of temporal and
-spatial memory safety, as well as type safety, in JavaScript engines.
+encountered in a JavaScript engine. (\citeproc{ref-Grouxdf2022}{Groß and
+Burnett 2022}) lists some other common types of bugs that result in
+violations of temporal and spatial memory safety, as well as type
+safety, in JavaScript engines.
 
 How can we defend against such vulnerabilities? There are several
 complementary approaches, for example:
@@ -1936,7 +1905,7 @@ complementary approaches, for example:
   \href{https://bugs.chromium.org/p/v8/issues/detail?id=8806}{hardening
   of bounds checks against typer bugs} \footnote{This naturally leads to
     attempts to bypass the hardening too
-    (\protect\hyperlink{ref-Fetiveau2019}{Fetiveau 2019}).}.
+    (\citeproc{ref-Fetiveau2019}{Fetiveau 2019}).}.
 \item
   Instead of trying to prevent compiler (and other) bugs, assume they
   will be present and introduce mitigations that prevent attackers from
@@ -1959,15 +1928,14 @@ complementary approaches, for example:
   \href{https://en.wikipedia.org/wiki/W\%5EX}{W\^{}X} \index{W\^{}X}. A
   naive implementation of W\^{}X that simply switches memory permissions
   based on page tables temporarily is not enough to prevent attackers
-  from writing to code memory (\protect\hyperlink{ref-Song2015}{Song et
-  al. 2015}), when multiple threads are involved. A more effective
-  solution would use a separate compilation process, which is the only
-  process that has write access to the JIT's code memory. Alternatively,
-  some architectures provide special features that can restrict
-  page-based memory permissions from userspace, effectively allowing
-  permissions to be different for different threads. Such features can
-  also be of use in implementing W\^{}X. For AArch64, this feature is
-  called
+  from writing to code memory (\citeproc{ref-Song2015}{Song et al.
+  2015}), when multiple threads are involved. A more effective solution
+  would use a separate compilation process, which is the only process
+  that has write access to the JIT's code memory. Alternatively, some
+  architectures provide special features that can restrict page-based
+  memory permissions from userspace, effectively allowing permissions to
+  be different for different threads. Such features can also be of use
+  in implementing W\^{}X. For AArch64, this feature is called
   \href{https://developer.arm.com/documentation/102376/0200/Permission-indirection-and-permission-overlay-extensions}{permission
   overlays}.
 \end{enumerate}
@@ -1975,12 +1943,11 @@ complementary approaches, for example:
 In this section, we have discussed JIT compiler security and described
 JavaScript compiler bugs that lead to vulnerabilities. Although we
 haven't focused on the details of JavaScript exploitation, an interested
-reader could take a look at (\protect\hyperlink{ref-saelo2021a}{saelo
-2021b}) and (\protect\hyperlink{ref-saelo2021b}{saelo 2021a}).
+reader could take a look at (\citeproc{ref-saelo2021a}{saelo 2021b}) and
+(\citeproc{ref-saelo2021b}{saelo 2021a}).
 
-\hypertarget{covert-channels-and-side-channels}{%
 \chapter{Covert channels and
-side-channels}\label{covert-channels-and-side-channels}}
+side-channels}\label{covert-channels-and-side-channels}
 
 Side-channels and covert channels are communication channels between two
 entities in a system, where the entities should not be able to
@@ -2005,8 +1972,7 @@ focusses on leakage through a specific so-called micro-architectural
 aspect\index{micro-architectural}, such as execution time, cache state
 or branch predictor state.
 
-\hypertarget{timing-side-channels}{%
-\section{Timing side-channels}\label{timing-side-channels}}
+\section{Timing side-channels}\label{timing-side-channels}
 
 An implementation of a cryptographic algorithm can leak information
 about the data it processes if its run time is influenced by the value
@@ -2044,13 +2010,12 @@ At the moment, we do not know of a compiler implementation that actively
 helps to guarantee both (a) and (b).
 
 Using compiler techniques to transform a function such that it respects
-property (a) is an active research area.
-(\protect\hyperlink{ref-Wu2018}{Wu et al. 2018}) provides a method to
-convert a program such that it respects property (a), albeit by
-potentially introducing unsafe memory accesses.
-(\protect\hyperlink{ref-Soares2021}{Soares and Pereira 2021}) improves
-on that result by not introducing unsafe memory accesses, albeit by
-potentially needing to change the interface of the transformed
+property (a) is an active research area. (\citeproc{ref-Wu2018}{Wu et
+al. 2018}) provides a method to convert a program such that it respects
+property (a), albeit by potentially introducing unsafe memory accesses.
+(\citeproc{ref-Soares2021}{Soares and Pereira 2021}) improves on that
+result by not introducing unsafe memory accesses, albeit by potentially
+needing to change the interface of the transformed
 function.\todospan{{Also discuss the techniques implemented in the
 \href{https://github.com/pietroborrello/constantine}{Constatine
 compiler}
@@ -2062,16 +2027,15 @@ compiler}
 
 A great reference giving practical advice on how to achieve (a), (b) and
 more security hardening properties specific for cryptographic kernels is
-found in (\protect\hyperlink{ref-Pornin2018}{Pornin 2018}).
+found in (\citeproc{ref-Pornin2018}{Pornin 2018}).
 
-As discussed in (\protect\hyperlink{ref-Pornin2018}{Pornin 2018}), when
+As discussed in (\citeproc{ref-Pornin2018}{Pornin 2018}), when
 implementing cryptographic algorithms, you also need to keep cache
 side-channel attacks in mind, which are discussed in the
-\protect\hyperlink{cache-side-channel-attacks}{section on cache
-side-channel attacks}.
+\hyperref[cache-side-channel-attacks]{section on cache side-channel
+attacks}.
 
-\hypertarget{cache-side-channels}{%
-\section{Cache side-channels}\label{cache-side-channels}}
+\section{Cache side-channels}\label{cache-side-channels}
 
 \href{https://en.wikipedia.org/wiki/Cache_(computing)}{Caches}\index{cache}
 are used in almost every computing system. They are small memories that
@@ -2083,9 +2047,8 @@ covert communication channel. These let the processes communicate
 through memory accesses even when they do not share any memory location.
 We first describe how caches work before exploring these techniques.
 
-\hypertarget{typical-cpu-cache-architecture}{%
 \subsection{Typical CPU cache
-architecture}\label{typical-cpu-cache-architecture}}
+architecture}\label{typical-cpu-cache-architecture}
 
 There is a wide variety in
 \href{https://en.wikipedia.org/wiki/CPU_cache}{CPU cache
@@ -2179,15 +2142,13 @@ direct-mapped, 2-way, 4-way, 8-way, 16-way or 32-way set-associative.
 The set of cache locations that a particular cache line can be stored at
 is called a \textbf{cache set}\index{cache set}.
 
-\hypertarget{indexing-in-a-set-associative-cache}{%
 \subsubsection{Indexing in a set-associative
-cache}\label{indexing-in-a-set-associative-cache}}
+cache}\label{indexing-in-a-set-associative-cache}
 
 For some cache covert channels, it is essential to know exactly how a
 memory address maps to a specific cache set.
 
 \begin{figure}
-\hypertarget{fig:cache-indexing}{%
 \centering
 \includegraphics[width=1\textwidth,height=\textheight]{img/CacheIndexing.pdf}
 \caption{Figure 5: Illustration of indexing into a set-associative
@@ -2196,18 +2157,17 @@ cache. In this example: \(L\) = 6 bits, hence the cache line size is
 \(N\) can be independent of address bits used to index the cache. If we
 assume \(N=12\) for a 12-way set-associative cache, the total cache size
 is \(N*2^L*2^S=12*64*32=24\)KB.}\label{fig:cache-indexing}
-}
 \end{figure}
 
 Specific bits in the memory address are used for different cache
 indexing purposes, as illustrated in figure
-\protect\hyperlink{fig:cache-indexing}{5}. The least-significant \(L\)
-bits, where \(2^L\) is the cache line size, are used to compute an
-address's offset within a cache line. The next \(S\) bits, where \(2^S\)
-is the number of cache sets, are used to determine which cache set an
-address maps to. The remaining top bits are ``tag bits''. They are
-stored alongside a line in the cache so later operations can detect
-which specific memory address is replicated in that cache line.
+\hyperref[fig:cache-indexing]{5}. The least-significant \(L\) bits,
+where \(2^L\) is the cache line size, are used to compute an address's
+offset within a cache line. The next \(S\) bits, where \(2^S\) is the
+number of cache sets, are used to determine which cache set an address
+maps to. The remaining top bits are ``tag bits''. They are stored
+alongside a line in the cache so later operations can detect which
+specific memory address is replicated in that cache line.
 
 For direct-mapped and fully-associative caches, the mapping of an
 address to cache locations also works as described above. In
@@ -2219,9 +2179,8 @@ fully-associative caches the number of cache sets is 1, so \(S\)=0.
 \tododiv{Also say something about TLBs and prefetching?
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/174}{\#174}}
 
-\hypertarget{operation-of-cache-side-channels}{%
 \subsection{Operation of cache
-side-channels}\label{operation-of-cache-side-channels}}
+side-channels}\label{operation-of-cache-side-channels}
 
 Cache side-channels typically work by the spy determining whether a
 memory access was a cache hit or a cache miss. From that information,
@@ -2231,12 +2190,11 @@ have access to.
 Let's illustrate this by describing a few well-known cache
 side-channels:
 
-\hypertarget{flushreload}{%
-\subsubsection{Flush+Reload}\label{flushreload}}
+\subsubsection{Flush+Reload}\label{flushreload}
 
 In a so-called \textbf{Flush+Reload}\index{Flush+Reload}
-attack(\protect\hyperlink{ref-Yarom2014}{Yarom and Falkner 2014}), the
-spy process shares memory with the victim process. The attack works in 3
+attack(\citeproc{ref-Yarom2014}{Yarom and Falkner 2014}), the spy
+process shares memory with the victim process. The attack works in 3
 steps:
 
 \begin{enumerate}
@@ -2262,11 +2220,10 @@ demonstrates in more detail how a flush+reload attack works?
 Knowing if a victim accessed a specific address can leak sensitive
 information. Such as when accessing a specific array element depends on
 whether a specific bit is set in secret data. For example,
-(\protect\hyperlink{ref-Yarom2014}{Yarom and Falkner 2014}) demonstrates
-that a Flush+Reload attack can be used to leak GnuPG private keys.
+(\citeproc{ref-Yarom2014}{Yarom and Falkner 2014}) demonstrates that a
+Flush+Reload attack can be used to leak GnuPG private keys.
 
-\hypertarget{primeprobe}{%
-\subsubsection{Prime+Probe}\label{primeprobe}}
+\subsubsection{Prime+Probe}\label{primeprobe}
 
 In a \textbf{Prime+Probe} attack\index{Prime+Probe}, there is no need
 for memory to be shared between victim and spy. The attack works in 3
@@ -2288,20 +2245,18 @@ steps:
   that derive information about addresses the victim accessed.
 \end{enumerate}
 
-(\protect\hyperlink{ref-Osvik2005}{Osvik, Shamir, and Tromer 2005})
-first documented this technique in 2005 and demonstrates extracting AES
-keys in just a few milliseconds.
+(\citeproc{ref-Osvik2005}{Osvik, Shamir, and Tromer 2005}) first
+documented this technique in 2005 and demonstrates extracting AES keys
+in just a few milliseconds.
 
-\hypertarget{general-schema-for-cache-covert-channels}{%
 \subsubsection{General schema for cache covert
-channels}\label{general-schema-for-cache-covert-channels}}
+channels}\label{general-schema-for-cache-covert-channels}
 
 An attentive reader may have noticed that the attacks described above
-follow a similar 3-step pattern.
-(\protect\hyperlink{ref-Weber2021}{Weber et al. 2021}) describes this
-general pattern and uses it to automatically discover more side-channels
-that follow this 3-step pattern. They describe the general pattern as
-being:
+follow a similar 3-step pattern. (\citeproc{ref-Weber2021}{Weber et al.
+2021}) describes this general pattern and uses it to automatically
+discover more side-channels that follow this 3-step pattern. They
+describe the general pattern as being:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2319,26 +2274,23 @@ being:
 
 Other cache-based side channel attacks following this general 3-step
 approach include:
-Flush+Flush\index{Flush+Flush}(\protect\hyperlink{ref-Gruss2016a}{Gruss,
-Maurice, Wagner, et al. 2016}),
-Flush+Prefetch\index{Flush+Prefetch}(\protect\hyperlink{ref-Gruss2016}{Gruss,
+Flush+Flush\index{Flush+Flush}(\citeproc{ref-Gruss2016a}{Gruss, Maurice,
+Wagner, et al. 2016}),
+Flush+Prefetch\index{Flush+Prefetch}(\citeproc{ref-Gruss2016}{Gruss,
 Maurice, Fogh, et al. 2016}),
-Evict+Reload\index{Evict+Reload}(\protect\hyperlink{ref-Percival2005}{Percival
-2005}),
-Evict+Time\index{Evict+Time}(\protect\hyperlink{ref-Osvik2005}{Osvik,
+Evict+Reload\index{Evict+Reload}(\citeproc{ref-Percival2005}{Percival
+2005}), Evict+Time\index{Evict+Time}(\citeproc{ref-Osvik2005}{Osvik,
 Shamir, and Tromer 2005}),
-Reload+Refresh\index{Reload+Refresh}(\protect\hyperlink{ref-Briongos2020}{Briongos
+Reload+Refresh\index{Reload+Refresh}(\citeproc{ref-Briongos2020}{Briongos
 et al. 2020}),
-Collide+Probe\index{Collide+Probe}(\protect\hyperlink{ref-Lipp2020}{Lipp
-et al. 2020}), etc.
+Collide+Probe\index{Collide+Probe}(\citeproc{ref-Lipp2020}{Lipp et al.
+2020}), etc.
 
-\hypertarget{mitigating-cache-side-channel-attacks}{%
 \subsection{Mitigating cache side-channel
-attacks}\label{mitigating-cache-side-channel-attacks}}
+attacks}\label{mitigating-cache-side-channel-attacks}
 
-As described in (\protect\hyperlink{ref-Su2021}{Su and Zeng 2021}), 3
-conditions need to be met for a cache-based side-channel attack to
-succeed:
+As described in (\citeproc{ref-Su2021}{Su and Zeng 2021}), 3 conditions
+need to be met for a cache-based side-channel attack to succeed:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2358,10 +2310,9 @@ Mitigations against cache side-channel attacks can be categorized
 according to which of the 3 conditions above they aim to prevent from
 happening:
 
-\hypertarget{mitigations-de-correlating-cache-state-change-with-sensitive-information-in-the-victim-program}{%
 \subsubsection{Mitigations de-correlating cache state change with
 sensitive information in the victim
-program}\label{mitigations-de-correlating-cache-state-change-with-sensitive-information-in-the-victim-program}}
+program}\label{mitigations-de-correlating-cache-state-change-with-sensitive-information-in-the-victim-program}
 
 A typical example of when a cache state change could be correlated to
 sensitive information is when a program uses secret information to index
@@ -2387,10 +2338,9 @@ in
 \end{verbatim}
 \end{quote}
 
-\hypertarget{mitigations-disallowing-spy-programs-to-share-the-cache-with-the-victim-program}{%
 \subsubsection{Mitigations disallowing spy programs to share the cache
 with the victim
-program}\label{mitigations-disallowing-spy-programs-to-share-the-cache-with-the-victim-program}}
+program}\label{mitigations-disallowing-spy-programs-to-share-the-cache-with-the-victim-program}
 
 If the victim and the spy do not share a common channel -- in this case
 a cache level -- then a side channel cannot be created.
@@ -2401,10 +2351,9 @@ Obviously, this has a huge performance impact, especially in systems
 with multiple cores and with large caches. Therefore, a wide variety of
 mitigations have been proposed that aim to make attacks somewhat harder
 without losing too much system efficiency.
-(\protect\hyperlink{ref-Mushtaq2020}{Mushtaq et al. 2020}) and
-(\protect\hyperlink{ref-Su2021}{Su and Zeng 2021}) summarize dozens of
-proposals and implementations -- too many to try to describe them all
-here.
+(\citeproc{ref-Mushtaq2020}{Mushtaq et al. 2020}) and
+(\citeproc{ref-Su2021}{Su and Zeng 2021}) summarize dozens of proposals
+and implementations -- too many to try to describe them all here.
 
 One popular such mitigation is disabling
 \href{https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)}{cpu
@@ -2425,12 +2374,11 @@ One could argue that
 isolation}\index{site
 isolation} as implemented in many web browsers is a mitigation that also
 falls into this category. Site isolation is described in more detail in
-\protect\hyperlink{site-isolation}{its own section}.
+\hyperref[site-isolation]{its own section}.
 
-\hypertarget{mitigations-disabling-the-spy-program-to-infer-a-cache-status-change-in-the-victim-program-through-its-own-cache-status}{%
 \subsubsection{Mitigations disabling the spy program to infer a cache
 status change in the victim program through its own cache
-status}\label{mitigations-disabling-the-spy-program-to-infer-a-cache-status-change-in-the-victim-program-through-its-own-cache-status}}
+status}\label{mitigations-disabling-the-spy-program-to-infer-a-cache-status-change-in-the-victim-program-through-its-own-cache-status}
 
 In some contexts, the resolution of the smallest time increment
 measurable by the spy program can be reduced so much that it becomes
@@ -2447,10 +2395,10 @@ Note that this is not a perfect mitigation - there are often surprising
 ways that an attacker can get a fine-grained enough timer or use
 statistical methods to be able to detect the difference between a cache
 hit or miss. One extreme example is the NetSpectre\index{NetSpectre}
-attack (\protect\hyperlink{ref-Schwarz2019}{Schwarz et al. 2019}) where
-the difference between cache hit and cache miss is measured over a
-network, by statistically analyzing delays on network packet responses.
-Furthermore, (\protect\hyperlink{ref-Schwarz2017}{Schwarz et al. 2017})
+attack (\citeproc{ref-Schwarz2019}{Schwarz et al. 2019}) where the
+difference between cache hit and cache miss is measured over a network,
+by statistically analyzing delays on network packet responses.
+Furthermore, (\citeproc{ref-Schwarz2017}{Schwarz et al. 2017})
 demonstrates how to construct high-resolution timers in various indirect
 ways in all browsers that have removed explicit fine-grained timers.
 
@@ -2459,12 +2407,10 @@ runs and the spy runs. This is probably going to incur quite a bit of
 performance overhead, and may also not always possible e.g.~when victim
 and spy are running at the same time on 2 CPUs sharing a cache level.
 
-\hypertarget{branch-predictor-based-side-channels}{%
 \section{Branch-predictor based
-side-channels}\label{branch-predictor-based-side-channels}}
+side-channels}\label{branch-predictor-based-side-channels}
 
-\hypertarget{branch-predictors}{%
-\subsection{Branch predictors}\label{branch-predictors}}
+\subsection{Branch predictors}\label{branch-predictors}
 
 Most CPUs implement one or more
 \href{https://en.wikipedia.org/wiki/Instruction_pipelining}{instruction
@@ -2476,8 +2422,8 @@ be executed is only known when that branch instruction completes.
 However, waiting for the branch instruction to finish before starting
 the next instruction leads to a big performance loss.\footnote{Over
   time, new CPU designs tend to support having more instructions in
-  flight. (\protect\hyperlink{ref-Eyerman2009}{Eyerman et al. 2009, sec.
-  4.2.3}) suggests that branch prediction accuracy has to grow more than
+  flight. (\citeproc{ref-Eyerman2009}{Eyerman et al. 2009, sec. 4.2.3})
+  suggests that branch prediction accuracy has to grow more than
   linearly when the number of pipelines, or the depth of the pipeline
   grows. Therefore, there is a constant push to increase the accuracy of
   branch predictors.} Therefore, most CPUs predict\index{predict} which
@@ -2507,25 +2453,22 @@ predictor}, such as:
   a function return instruction.\index{return address predictor}
 \end{itemize}
 
-\hypertarget{side-channels-through-branch-predictors}{%
 \subsection{Side-channels through branch
-predictors}\label{side-channels-through-branch-predictors}}
+predictors}\label{side-channels-through-branch-predictors}
 
 A number of attacks have been described over the past few years. The
 following sections list a few examples, categorized per branch predictor
 component they target.
 
-\hypertarget{conditional-branch-direction-predictor-side-channel-attacks}{%
 \subsubsection{Conditional branch direction predictor side-channel
-attacks}\label{conditional-branch-direction-predictor-side-channel-attacks}}
+attacks}\label{conditional-branch-direction-predictor-side-channel-attacks}
 
 \index{conditional branch direction predictor}
 
-Two examples are BranchScope
-(\protect\hyperlink{ref-Evtyushkin2018}{Evtyushkin et al.
-2018})\index{BranchScope} and BlueThunder
-(\protect\hyperlink{ref-Huo2019}{Huo et al. 2019})\index{BlueThunder}.
-These attacks infer whether a branch is taken or not taken in a victim
+Two examples are BranchScope (\citeproc{ref-Evtyushkin2018}{Evtyushkin
+et al. 2018})\index{BranchScope} and BlueThunder
+(\citeproc{ref-Huo2019}{Huo et al. 2019})\index{BlueThunder}. These
+attacks infer whether a branch is taken or not taken in a victim
 process. They do so by carefully making sure that a branch in the spy
 process uses the same branch predictor entry as the targeted branch in
 the victim process. By measuring whether the branch in the spy process
@@ -2533,40 +2476,36 @@ gets predicted correctly, one can derive whether the branch in the
 victim process was taken or not.
 
 This can be thought of as somewhat akin to the
-\protect\hyperlink{primeprobe}{Prime+Probe cache-based side channel
-attacks}.
+\hyperref[primeprobe]{Prime+Probe cache-based side channel attacks}.
 
 When the outcome of a branch depends on a bit in a secret key, this can
 enable an attacker to derive the value of the secret key. These papers
 demonstrate deriving the secret key from implementations of specific
 cryptographic kernels. It can also be used to break
-\protect\hyperlink{aslr}{ASLR}\index{ASLR}.
+\hyperref[aslr]{ASLR}\index{ASLR}.
 
-\hypertarget{branch-target-predictor-side-channel-attacks}{%
 \subsubsection{Branch target predictor side-channel
-attacks}\label{branch-target-predictor-side-channel-attacks}}
+attacks}\label{branch-target-predictor-side-channel-attacks}
 
 \index{Branch target predictor}
 
-Two examples are SBPA (\protect\hyperlink{ref-Aciicmez2007}{Aciiçmez,
-Kaya Koç, and Seifert 2007})\index{SBPA} and BranchShadow
-(\protect\hyperlink{ref-Lee2017}{Lee et al. 2017})\index{BranchShadow}.
-These earlier attacks are based on making a branch in the spy process
-alias in the Branch Target Buffer (BTB\index{BTB}) with a targeted
-branch in the victim process. They use methods such as timing
-difference, last branch records\index{last branch record}, instruction
+Two examples are SBPA (\citeproc{ref-Aciicmez2007}{Aciiçmez, Kaya Koç,
+and Seifert 2007})\index{SBPA} and BranchShadow
+(\citeproc{ref-Lee2017}{Lee et al. 2017})\index{BranchShadow}. These
+earlier attacks are based on making a branch in the spy process alias in
+the Branch Target Buffer (BTB\index{BTB}) with a targeted branch in the
+victim process. They use methods such as timing difference, last branch
+records\index{last branch record}, instruction
 traces\index{instruction trace} or performance
 counters\index{performance counter} to measure whether the branch in the
 spy process caused a specific state change in the BTB.
 
-\hypertarget{return-address-predictor-side-channel-attacks}{%
 \subsubsection{Return address predictor side-channel
-attacks}\label{return-address-predictor-side-channel-attacks}}
+attacks}\label{return-address-predictor-side-channel-attacks}
 
 \index{return address predictor}
 
-One example is Hyper-Channel
-(\protect\hyperlink{ref-Bulygin2008}{Bulygin
+One example is Hyper-Channel (\citeproc{ref-Bulygin2008}{Bulygin
 2008})\index{Hyper-Channel}. In this case, a spy process invokes \(N\)
 calls to fill up the return stack predictor. Then it lets the victim
 process execute. Then, the spy process can measure how many of its
@@ -2577,9 +2516,8 @@ information, this could leak it.
 
 The papers referred to above contain detailed explanations of how they
 set up the attack. All of these attacks use a general 3-step approach,
-similar to
-\protect\hyperlink{general-schema-for-cache-covert-channels}{cache side
-channels}:
+similar to \hyperref[general-schema-for-cache-covert-channels]{cache
+side channels}:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2597,34 +2535,27 @@ channels}:
   process\index{measurement sequence}
 \end{enumerate}
 
-\hypertarget{mitigations}{%
-\subsection{Mitigations}\label{mitigations}}
+\subsection{Mitigations}\label{mitigations}
 
 \tododiv{Describe the mitigations proposed against these side-channel
 attacks.
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/203}{\#203}}
 
-\hypertarget{resource-contention-channels}{%
 \section{Resource contention
-channels}\label{resource-contention-channels}}
+channels}\label{resource-contention-channels}
 
-\hypertarget{channels-making-use-of-aliasing-in-other-predictors}{%
 \section{Channels making use of aliasing in other
-predictors}\label{channels-making-use-of-aliasing-in-other-predictors}}
+predictors}\label{channels-making-use-of-aliasing-in-other-predictors}
 
 \tododiv{Should we also discuss more ``covert'' channels here such as
 power analysis, etc?
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/176}{\#176}}
 
-\hypertarget{transient-execution-attacks}{%
-\section{Transient execution
-attacks}\label{transient-execution-attacks}}
+\section{Transient execution attacks}\label{transient-execution-attacks}
 
-\hypertarget{transient-execution}{%
-\subsection{Transient execution}\label{transient-execution}}
+\subsection{Transient execution}\label{transient-execution}
 
-\hypertarget{speculative-execution}{%
-\subsubsection{Speculative execution}\label{speculative-execution}}
+\subsubsection{Speculative execution}\label{speculative-execution}
 
 CPUs execute sequences of instructions. There are often dependencies
 between instructions in the sequence. That means that the outcome of one
@@ -2732,7 +2663,7 @@ instructions}\index{transient instructions}.\footnote{Transient
   instructions caused by incorrect branch-direction prediction have also
   been called \textbf{wrong-path
   instructions}\index{wrong-patch instructions} Mutlu et al.
-  (\protect\hyperlink{ref-Mutlu2004}{2004})}
+  (\citeproc{ref-Mutlu2004}{2004})}
 
 The paragraph above says ``\emph{the system state that affects the
 correct execution of the program, needs to be undone}''. There is a lot
@@ -2787,21 +2718,20 @@ attacks we'll describe next get classified based on whether they make
 use of transient instructions after a misprediction, or transient
 instructions after a faulting instruction.
 
-\hypertarget{transient-execution-attacks-1}{%
 \subsection{Transient Execution
-Attacks}\label{transient-execution-attacks-1}}
+Attacks}\label{transient-execution-attacks-1}
 
 \textbf{Transient execution attacks}\index{transient execution attacks}
 are a category of side-channel attacks that use the micro-architectural
 side-effects of transient execution as a side channel.
 
 The publication of the Spectre\index{Spectre}
-(\protect\hyperlink{ref-Kocher2019}{Kocher et al. 2019}) and
-Meltdown\index{Meltdown} (\protect\hyperlink{ref-Lipp2018}{Lipp et al.
-2018}) attacks in 2018 started a period in which a large number of
-transient attacks were discovered and published. Most of them were given
-specific names, such as ZombieLoad, NetSpectre, LVI, Straight-line
-Speculation, etc. New variants continue to be published regularly.
+(\citeproc{ref-Kocher2019}{Kocher et al. 2019}) and
+Meltdown\index{Meltdown} (\citeproc{ref-Lipp2018}{Lipp et al. 2018})
+attacks in 2018 started a period in which a large number of transient
+attacks were discovered and published. Most of them were given specific
+names, such as ZombieLoad, NetSpectre, LVI, Straight-line Speculation,
+etc. New variants continue to be published regularly.
 
 Covering each one of them in detail here would make the book overly
 lengthy, and may not necessarily help much with gaining a better insight
@@ -2815,10 +2745,10 @@ content. Consider pointing to
 \url{https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md}}
 
 The categorization below is based on one proposed in
-(\protect\hyperlink{ref-Bulck2020}{Bulck et al., n.d.}). There are
-alternative categorizations. (\protect\hyperlink{ref-Bulck2020}{Bulck et
-al., n.d.}) defines 4 big classes of transient side-channel attack
-categories, based on whether:
+(\citeproc{ref-Bulck2020}{Bulck et al., n.d.}). There are alternative
+categorizations. (\citeproc{ref-Bulck2020}{Bulck et al., n.d.}) defines
+4 big classes of transient side-channel attack categories, based on
+whether:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2838,8 +2768,9 @@ This gives the following 4 categories:
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3611}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3472}}@{}}
 \toprule\noalign{}
-\multirow{2}{*}{\begin{minipage}[b]{\linewidth}\raggedright
-\end{minipage}} & \multicolumn{2}{l@{}}{%
+\multirow{2}{=}{\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage}} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.7083} + 2\tabcolsep}@{}}{%
 \begin{minipage}[b]{\linewidth}\raggedright
 Steering of transient execution by attacker?
 \end{minipage}} \\
@@ -2857,51 +2788,43 @@ attacks \\
 Faulting & Meltdown-style attacks & LVI-style attacks \\
 \end{longtable}
 
-\hypertarget{branch-predictor-based-side-channel-attacks}{%
 \subsubsection{Branch predictor-based side-channel
-attacks}\label{branch-predictor-based-side-channel-attacks}}
+attacks}\label{branch-predictor-based-side-channel-attacks}
 
 We discussed this category already in the section on
-\protect\hyperlink{side-channels-through-branch-predictors}{Side-channels
-through branch predictors}.
+\hyperref[side-channels-through-branch-predictors]{Side-channels through
+branch predictors}.
 
-\hypertarget{spectre-style-attacks}{%
-\subsubsection{Spectre-style attacks}\label{spectre-style-attacks}}
+\subsubsection{Spectre-style attacks}\label{spectre-style-attacks}
 
 \tododiv{Add a description of Spectre-style attacks such as Spectre-PHT,
 Spectre-BTB, Spectre-RSB, Spectre-STL, SpectreV1, SpectreV2, SpectreV3,
 SpectreV4, NetSpectre.
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/178}{\#178}}
 
-\hypertarget{meltdown-style-attacks}{%
-\subsubsection{Meltdown-style attacks}\label{meltdown-style-attacks}}
+\subsubsection{Meltdown-style attacks}\label{meltdown-style-attacks}
 
 \tododiv{Add a description of Meltdown-style attacks such as Meltdown,
 Foreshadow, LazyFP, Fallout, ZombieLoad, RIDL.
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/178}{\#178}}
 
-\hypertarget{lvi-style-attacks}{%
-\subsubsection{LVI-style attacks}\label{lvi-style-attacks}}
+\subsubsection{LVI-style attacks}\label{lvi-style-attacks}
 
 \tododiv{Add a description of LVI-style attacks.
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/178}{\#178}}
 
-\hypertarget{mitigations-against-transient-execution-attacks}{%
 \subsection{Mitigations against transient execution
-attacks}\label{mitigations-against-transient-execution-attacks}}
+attacks}\label{mitigations-against-transient-execution-attacks}
 
-\hypertarget{site-isolation}{%
-\subsubsection{Site isolation}\label{site-isolation}}
+\subsubsection{Site isolation}\label{site-isolation}
 
 \tododiv{Write section on site isolation as a SpectreV1 mitigation
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/179}{\#179}}
 
-\hypertarget{physical-access-side-channel-attacks}{%
 \section{Physical access side-channel
-attacks}\label{physical-access-side-channel-attacks}}
+attacks}\label{physical-access-side-channel-attacks}
 
-\hypertarget{supply-chain-attacks}{%
-\chapter{Supply chain attacks}\label{supply-chain-attacks}}
+\chapter{Supply chain attacks}\label{supply-chain-attacks}
 
 A software \emph{supply chain attack} occurs when an attacker interferes
 with the software development or distribution processes with the
@@ -2917,50 +2840,47 @@ infection to other software created with or run using it.
 This chapter explores the history of supply chain attacks that involve
 compilers and what can be done to prevent them.
 
-\hypertarget{history-of-supply-chain-attacks}{%
 \section{History of supply chain
-attacks}\label{history-of-supply-chain-attacks}}
+attacks}\label{history-of-supply-chain-attacks}
 
 As far back as 1974 Karger \& Schell theorized about an attack on the
 Multics operating system via the PL/I compiler
-(\protect\hyperlink{ref-Karger1974}{Paul A. and Roger R. 1974}). In this
-attack, a trap door is inserted into the compiler, which then injects
-malicious code into generated object code. Furthermore, the trap door
-could be designed to reinsert itself into the compiler binary so that
-future compilers are silently infected without needing changes to their
-source code. This attack method was subsequently popularized by Ken
-Thompson in his 1984 ACM Turing Award acceptance speech
-\emph{Reflections on Trusting Trust}
-(\protect\hyperlink{ref-Thompson1984}{Thompson 1984}).
+(\citeproc{ref-Karger1974}{Paul A. and Roger R. 1974}). In this attack,
+a trap door is inserted into the compiler, which then injects malicious
+code into generated object code. Furthermore, the trap door could be
+designed to reinsert itself into the compiler binary so that future
+compilers are silently infected without needing changes to their source
+code. This attack method was subsequently popularized by Ken Thompson in
+his 1984 ACM Turing Award acceptance speech \emph{Reflections on
+Trusting Trust} (\citeproc{ref-Thompson1984}{Thompson 1984}).
 
 If these cases seem far-fetched then consider that there have been
 several real examples of supply chain attacks on development tools.
 
 Induc is a family of viruses that infects a pre-compiled library in the
-Delphi toolchain with malicious code
-(\protect\hyperlink{ref-Gostev2009}{Gostev 2009}). When Delphi compiles
-a project the malicious library is included into the resulting
-executable, thus enabling the virus to spread. The virus was first
-detected in 2009 and was circulating undetected for at least a year
-beforehand. Several popular applications are known to have been
-infected, including a chat client and a media player. Overall, in excess
-of a hundred thousand infected computers were detected world-wide by
-anti-virus solutions.
+Delphi toolchain with malicious code (\citeproc{ref-Gostev2009}{Gostev
+2009}). When Delphi compiles a project the malicious library is included
+into the resulting executable, thus enabling the virus to spread. The
+virus was first detected in 2009 and was circulating undetected for at
+least a year beforehand. Several popular applications are known to have
+been infected, including a chat client and a media player. Overall, in
+excess of a hundred thousand infected computers were detected world-wide
+by anti-virus solutions.
 
 XcodeGhost is the name given to malware first detected in 2015 that
-infected thousands of iOS applications
-(\protect\hyperlink{ref-Cox2015}{Cox 2015}). The source of the infection
-was tracked down to a trojanized version of Xcode tools. The malware
-exists in an extra object file within the Xcode tools and is silently
-linked into each application as it is built. File sharing sites were
-used to spread the trojanized Xcode tools to unwitting developers.
+infected thousands of iOS applications (\citeproc{ref-Cox2015}{Cox
+2015}). The source of the infection was tracked down to a trojanized
+version of Xcode tools. The malware exists in an extra object file
+within the Xcode tools and is silently linked into each application as
+it is built. File sharing sites were used to spread the trojanized Xcode
+tools to unwitting developers.
 
 A trojanized linker was found to be involved in a supply chain attack
 discovered in 2017 named ShadowPad
-(\protect\hyperlink{ref-Greenberg2019}{Greenberg 2019}). Some instances
-of the attack were perpetrated using a trojanized Visual Studio linker
-that silently incorporates a malicious library into applications as they
-are built. Related attacks named CCleaner and ShadowHammer used the same
+(\citeproc{ref-Greenberg2019}{Greenberg 2019}). Some instances of the
+attack were perpetrated using a trojanized Visual Studio linker that
+silently incorporates a malicious library into applications as they are
+built. Related attacks named CCleaner and ShadowHammer used the same
 approach of a trojanized linker to infect built applications. Infected
 applications from these attacks were distributed to millions of users
 world-wide.
@@ -2974,14 +2894,13 @@ in the future. Let us now explore what we can do about these.
 them.
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/180}{\#180}}
 
-\hypertarget{compiler-introduced-security-vulnerabilities}{%
 \chapter{Compiler introduced security
-vulnerabilities}\label{compiler-introduced-security-vulnerabilities}}
+vulnerabilities}\label{compiler-introduced-security-vulnerabilities}
 
 Security vulnerabilities introduced by compilers have a long history.
-Thompson (\protect\hyperlink{ref-Thompson1984}{Thompson 1984}) provides
-one of the oldest and most popular examples in this area. In his paper,
-he talks about a compiler that can detect when it is compiling the login
+Thompson (\citeproc{ref-Thompson1984}{Thompson 1984}) provides one of
+the oldest and most popular examples in this area. In his paper, he
+talks about a compiler that can detect when it is compiling the login
 program and can insert a backdoor so that he can use the system as any
 user. However most common cases are where involuntary security
 vulnerabilities are added in the generated binary by the compiler.
@@ -2994,20 +2913,19 @@ undefined behaviour in ways that appear aggressive in some occasions.
 
 When discussing compiler introduced security vulnerabilities, undefined
 behavior plays a major role. Its implications were thoroughly discussed
-by various works such as (\protect\hyperlink{ref-wang2012undefined}{Wang
-et al. 2012}) (\protect\hyperlink{ref-d2015correctness}{D'Silva, Payer,
-and Song 2015}) (\protect\hyperlink{ref-dusilent}{Du, Wu, and Mao,
-n.d.}). By reading the works of these authors, one can see that even
-projects that went through careful testing, such as Linux, FreeBSD or
-PostgreSQL, could not escape from this class of vulnerabilities. To
-better understand them, this chapter contains several examples of such
-vulnerabilities, their implications and how they got fixed.
+by various works such as (\citeproc{ref-wang2012undefined}{Wang et al.
+2012}) (\citeproc{ref-d2015correctness}{D'Silva, Payer, and Song 2015})
+(\citeproc{ref-dusilent}{Du, Wu, and Mao, n.d.}). By reading the works
+of these authors, one can see that even projects that went through
+careful testing, such as Linux, FreeBSD or PostgreSQL, could not escape
+from this class of vulnerabilities. To better understand them, this
+chapter contains several examples of such vulnerabilities, their
+implications and how they got fixed.
 
 The first example is a 15 years old vulnerability that affected the
-random number generator (RNG) in Mac OS X
-(\protect\hyperlink{ref-Wang2015}{Wang 2015}). At some point in the
-past, this vulnerability affected all *BSD operating systems, as they
-have a common ancestor with Mac OS.
+random number generator (RNG) in Mac OS X (\citeproc{ref-Wang2015}{Wang
+2015}). At some point in the past, this vulnerability affected all *BSD
+operating systems, as they have a common ancestor with Mac OS.
 
 In the random number generator of the system, more specifically in
 \texttt{srandomdev(3)}, we can spot the following piece of code used in
@@ -3065,10 +2983,9 @@ the optimised code respects the standard, it leaves room for an attacker
 to exploit the system because the seed of the RNG can now be predicted.
 
 In the meantime, this problem has been resolved in FreeBSD
-(\protect\hyperlink{ref-FbsdJunk}{{``FreeBSD Mitigation for Srandom
-Undefined Behavior''} 2012}) and OpenBSD
-(\protect\hyperlink{ref-ObsdJunk}{{``OpenBSD Mitigation for Srandom
-Undefined Behavior''} 2002}).
+(\citeproc{ref-FbsdJunk}{{``FreeBSD Mitigation for Srandom Undefined
+Behavior''} 2012}) and OpenBSD (\citeproc{ref-ObsdJunk}{{``OpenBSD
+Mitigation for Srandom Undefined Behavior''} 2002}).
 
 Current solutions for detecting this class of vulnerabilities include
 LLVM's MemorySanitizer and Valgrind.
@@ -3109,11 +3026,10 @@ To mitigate against this situation, GCC developers added a flag called
 compiler configuration.
 
 Linux was not the only project that suffered from this problem. Chromium
-(\protect\hyperlink{ref-ChromiumIssue}{{``Issue 3782: V8 Is Not
--Fsanitize=null Clean''} 2014}) and Mozilla
-(\protect\hyperlink{ref-MozillaIssue}{{``GCC6 - TB Crashes Due to
-Removed Null Pointer Checks for "This"''} 2016}) had problems in the
-past with this.
+(\citeproc{ref-ChromiumIssue}{{``Issue 3782: V8 Is Not -Fsanitize=null
+Clean''} 2014}) and Mozilla (\citeproc{ref-MozillaIssue}{{``GCC6 - TB
+Crashes Due to Removed Null Pointer Checks for "This"''} 2016}) had
+problems in the past with this.
 
 There are also cases of security vulnerabilities that are not introduced
 by undefined behavior, the following piece of code is such an example.
@@ -3150,12 +3066,11 @@ The solution Linux came with was to add a new function called
 It still uses \texttt{memset} \index{memset} to delete the associated
 security sensitive data, but it also tries to eliminate the risk of DSO
 by using the OPTIMIZER\_HIDE\_VAR macro. This, however, is not enough to
-fully eliminate dead stores
-(\protect\hyperlink{ref-MemZeroBarrier}{{``Lib: Memzero\_explicit: Use
-Barrier Instead of {OPTIMIZER\_HIDE\_VAR}''} 2015}). In case of using
-LTO, the buffer \texttt{s} is still vulnerable. For this reason, Linux
-maintainers added a further hardening mechanism by using a compiler
-barrier instead:
+fully eliminate dead stores (\citeproc{ref-MemZeroBarrier}{{``Lib:
+Memzero\_explicit: Use Barrier Instead of {OPTIMIZER\_HIDE\_VAR}''}
+2015}). In case of using LTO, the buffer \texttt{s} is still vulnerable.
+For this reason, Linux maintainers added a further hardening mechanism
+by using a compiler barrier instead:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3169,12 +3084,11 @@ barrier instead:
 \end{Shaded}
 
 There is still room for improvement regarding the introduced barrier
-(\protect\hyperlink{ref-MemZeroDataBarrier}{{``Lib: Make
-Memzero\_explicit More Robust Against Dead Store Elimination''} 2015}).
-If the content of the buffer is present in registers, then the compiler
-blindly proves again that the DSO can be triggered and the
-\texttt{memset} will be again deleted. To mitigate against this, the
-following patch was proposed:
+(\citeproc{ref-MemZeroDataBarrier}{{``Lib: Make Memzero\_explicit More
+Robust Against Dead Store Elimination''} 2015}). If the content of the
+buffer is present in registers, then the compiler blindly proves again
+that the DSO can be triggered and the \texttt{memset} will be again
+deleted. To mitigate against this, the following patch was proposed:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3194,25 +3108,24 @@ In this patch we create a new barrier that will be guaranted to put the
 content of the buffer in memory so that DSO can take no further effect.
 
 Similar efforts were conducted in other projects such as OpenSSL
-(\protect\hyperlink{ref-OpenSSLMemClr}{{``Lib: Make Memzero\_explicit
-More Robust Against Dead Store Elimination''} 2016}). The approach
-OpenSSL used is rather different but it achieves the same end goal,
-i.e.~eliminating the effect of DSO. By making \texttt{memset\_func} a
-volatile pointer to the actual implementation of \texttt{memset}, the
-compiler is forced to dereference the pointer to get to the actual
-\texttt{memset}, thus eliminating the risk of optimizing it out.
+(\citeproc{ref-OpenSSLMemClr}{{``Lib: Make Memzero\_explicit More Robust
+Against Dead Store Elimination''} 2016}). The approach OpenSSL used is
+rather different but it achieves the same end goal, i.e.~eliminating the
+effect of DSO. By making \texttt{memset\_func} a volatile pointer to the
+actual implementation of \texttt{memset}, the compiler is forced to
+dereference the pointer to get to the actual \texttt{memset}, thus
+eliminating the risk of optimizing it out.
 
 The C23 committee decided to tackle this problem from another angle,
 i.e.~by adding a library function called \texttt{memset\_explicit}
-(\protect\hyperlink{ref-MemSetProposal}{{``Memset\_explicit''} 2021}).
-This function requires the compiler to not optimize the memory overwrite
+(\citeproc{ref-MemSetProposal}{{``Memset\_explicit''} 2021}). This
+function requires the compiler to not optimize the memory overwrite
 away. However it is not trivial to implement such a functionality, as
-GNU presents in (\protect\hyperlink{ref-GNUMemSet}{{``10.604
-Memset\_explicit,''} n.d.}). The information may be present somewhere in
-the machine, even if it was erased from memory.
+GNU presents in (\citeproc{ref-GNUMemSet}{{``10.604 Memset\_explicit,''}
+n.d.}). The information may be present somewhere in the machine, even if
+it was erased from memory.
 
-\hypertarget{underhanded-code}{%
-\chapter{Underhanded code}\label{underhanded-code}}
+\chapter{Underhanded code}\label{underhanded-code}
 
 \textbf{Underhanded code} is code that looks like it is doing one thing
 but actually does something else. It usually refers to code nefariously
@@ -3221,15 +3134,14 @@ code inspection. However the same applies also when the underhanded
 behavior has been added by mistake - in fact the ideal attack would also
 give the attacker the possibility to say it was an honest mistake.
 
-(\protect\hyperlink{ref-Wheeler2020}{Wheeler 2020}) provides a more
-systematic view of underhanded code than is given here. This chapter
-presents some examples to give an overview of the attack and how a
-compiler can (and can't) help, although this probably doesn't classify
-as ``low level'' software security.
+(\citeproc{ref-Wheeler2020}{Wheeler 2020}) provides a more systematic
+view of underhanded code than is given here. This chapter presents some
+examples to give an overview of the attack and how a compiler can (and
+can't) help, although this probably doesn't classify as ``low level''
+software security.
 
-\hypertarget{assignment-and-equality-confusion}{%
 \section{Assignment and equality
-confusion}\label{assignment-and-equality-confusion}}
+confusion}\label{assignment-and-equality-confusion}
 
 Probably the most classic example of underhanded code in C-style
 languages is code that takes advantage of the fact that the assignment
@@ -3262,16 +3174,15 @@ looked normal.
 This could be written off as a language design problem. Traditionally
 Python has not supported using assignment as expressions, effectively
 sidestepping this particular problem. When assignment expressions were
-added to the language (\protect\hyperlink{ref-pep572}{Angelico, Peters,
-and Rossum 2018}) (in python 3.8) the more visually distinct ``walrus
+added to the language (\citeproc{ref-pep572}{Angelico, Peters, and
+Rossum 2018}) (in python 3.8) the more visually distinct ``walrus
 operator'' \texttt{:=} was used to avoid this risk of confusing with the
 comparison operator. Even in cases where it is an existing language the
 compiler can provide options to forbid risky constructs for those who
 want and can opt in to it, essentially creating a new language that is a
 subset of the original language.
 
-\hypertarget{goto-fail}{%
-\section{goto fail}\label{goto-fail}}
+\section{goto fail}\label{goto-fail}
 
 The ``goto-fail'' bug, officially known as
 \href{https://nvd.nist.gov/vuln/detail/CVE-2014-1266}{CVE-2014-1266},
@@ -3314,14 +3225,13 @@ problem.
 Also automatic code formatting tools such as clang-format would help
 finding this issue as it will fix the misleading indentation.
 
-\hypertarget{trojan-source}{%
-\section{Trojan Source}\label{trojan-source}}
+\section{Trojan Source}\label{trojan-source}
 
 ``Trojan Source'' attacks described by
-(\protect\hyperlink{ref-Boucher2023}{Boucher and Anderson 2023}) is
-another way underhanded code could be achieved by doing something that
-makes the editor (or other thing that displays code to the user) render
-the code in a different way than the compiler parses it.
+(\citeproc{ref-Boucher2023}{Boucher and Anderson 2023}) is another way
+underhanded code could be achieved by doing something that makes the
+editor (or other thing that displays code to the user) render the code
+in a different way than the compiler parses it.
 
 This is done by using unicode features. Support for bidirectional text
 is one such feature, where it has special characters to mark regions of
@@ -3353,15 +3263,13 @@ If the final slash on the first line isn't a slash but another similarly
 looking character that the compiler doesn't understand as end of comment
 it means that the whole snippet is commented out.
 
-\hypertarget{physical-attacks}{%
-\chapter{Physical attacks}\label{physical-attacks}}
+\chapter{Physical attacks}\label{physical-attacks}
 
 \tododiv{This chapter should probably be moved under section `Physical
 access side-channel attacks' higher-up
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/181}{\#181}}
 
-\hypertarget{overview}{%
-\section{Overview}\label{overview}}
+\section{Overview}\label{overview}
 
 There are many types of physical attacks -- these attack methods focus
 on one or multiple physical properties of systems ( e.g.~CPU, GPU,
@@ -3404,9 +3312,8 @@ These two forms of attacks can be carried out using low cost hardware,
 and have been widely demonstrated by researchers on SoCs or
 microcontrollers developed for IoT (Internet-of-Things) applications.
 
-\hypertarget{physical-access-side-channel-attacks-1}{%
 \section{Physical access side-channel
-attacks}\label{physical-access-side-channel-attacks-1}}
+attacks}\label{physical-access-side-channel-attacks-1}
 
 If an attacker has physical access to a device, even without debug
 access, the attacker can collect side channel information about the
@@ -3417,9 +3324,7 @@ some forms of physical attacks (e.g.~fault injection attacks like
 rowhammer and voltjockey) do not require physical access, but those
 attacks are not covered in this section.
 
-\hypertarget{how-is-information-leaked}{%
-\subsection{How is information
-leaked?}\label{how-is-information-leaked}}
+\subsection{How is information leaked?}\label{how-is-information-leaked}
 
 The most common physical access side channel attack method is to capture
 the voltage or current consumption of the device during its operation.
@@ -3466,9 +3371,8 @@ accuracy of signal measurement. In a ``noisy'' environment, the RF
 signals from various wireless communication gadgets nearby might drown
 out the signals from the device being monitored.
 
-\hypertarget{side-channel-leakage-at-instruction-level}{%
 \subsection{Side channel leakage at instruction
-level}\label{side-channel-leakage-at-instruction-level}}
+level}\label{side-channel-leakage-at-instruction-level}
 
 Instruction executions can result in various forms of side channel
 leakage:
@@ -3530,8 +3434,7 @@ changes in the register banks. In such case the program execution flow
 can be observed, and as a result, might also indirectly leak information
 about the data that it is processing.
 
-\hypertarget{countermeasures}{%
-\subsection{Countermeasures}\label{countermeasures}}
+\subsection{Countermeasures}\label{countermeasures}
 
 For normal embedded devices that don't have physical protection
 features, there is a much higher chance that power/voltage/radiation
@@ -3566,12 +3469,10 @@ developers need to check that optimizations carried out by compilers
 undo the masking in order to perform faster operations (or reducing code
 size).
 
-\hypertarget{fault-injection-attacks}{%
-\section{Fault injection attacks}\label{fault-injection-attacks}}
+\section{Fault injection attacks}\label{fault-injection-attacks}
 
-\hypertarget{common-forms-of-fault-injection-attacks}{%
 \subsection{Common forms of Fault injection
-attacks}\label{common-forms-of-fault-injection-attacks}}
+attacks}\label{common-forms-of-fault-injection-attacks}
 
 If an attacker has physical access to a device, they can also choose to
 use physical attacks to modify the behavior of the software, for
@@ -3658,8 +3559,7 @@ There are other forms of physical attacks, but most of them requires
 significant effort or cost (e.g.~cut open the chip package can carry out
 fault injection or readout secret data on chip).
 
-\hypertarget{countermeasures-1}{%
-\subsection{Countermeasures}\label{countermeasures-1}}
+\subsection{Countermeasures}\label{countermeasures-1}
 
 Ideally, system designers can use hardware (SoCs or microcontroller)
 that support protection against fault injection. For example, a hardware
@@ -3669,15 +3569,13 @@ checks after the write operations. When applying software mitigation,
 software developers need to check that optimizations carried out by
 compilers (C/C++) do not impact the mitigation.
 
-\hypertarget{other-security-topics-relevant-for-compiler-developers}{%
 \chapter{Other security topics relevant for compiler
-developers}\label{other-security-topics-relevant-for-compiler-developers}}
+developers}\label{other-security-topics-relevant-for-compiler-developers}
 
 \tododiv{Write chapter with other security topics.}
 
-\hypertarget{appendix-contribution-guidelines}{%
 \chapter*{Appendix: contribution
-guidelines}\label{appendix-contribution-guidelines}}
+guidelines}\label{appendix-contribution-guidelines}
 \addcontentsline{toc}{chapter}{Appendix: contribution guidelines}
 
 If you'd like to start contributing to this book: please do, we're
@@ -3712,41 +3610,40 @@ explained better, please do let us know by raising an
 
 \printindex
 
-\hypertarget{references}{%
-\chapter*{References}\label{references}}
+\chapter*{References}\label{references}
 \addcontentsline{toc}{chapter}{References}
 
-\hypertarget{refs}{}
+\phantomsection\label{refs}
 \begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-GNUMemSet}{}}%
+\bibitem[\citeproctext]{ref-GNUMemSet}
 {``10.604 Memset\_explicit.''} n.d.
 \url{https://www.gnu.org/software//gnulib/manual/html_node/memset_005fexplicit.html}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Aciicmez2007}{}}%
+\bibitem[\citeproctext]{ref-Aciicmez2007}
 Aciiçmez, Onur, Çetin Kaya Koç, and Jean-Pierre Seifert. 2007. {``On the
 Power of Simple Branch Prediction Analysis.''} In \emph{Proceedings of
 the 2nd {ACM} Symposium on Information, Computer and Communications
 Security}. {ACM}. \url{https://doi.org/10.1145/1229285.1266999}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-AlephOne1996}{}}%
+\bibitem[\citeproctext]{ref-AlephOne1996}
 Aleph One. 1996. {``Smashing the Stack for Fun and Profit.''} 1996.
 \url{http://www.phrack.org/issues/49/14.html\#article}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-pep572}{}}%
+\bibitem[\citeproctext]{ref-pep572}
 Angelico, Chris, Tim Peters, and Guido van Rossum. 2018. {``Assignment
 Expressions.''} PEP 572. \url{https://peps.python.org/pep-0572/}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Beer2020}{}}%
+\bibitem[\citeproctext]{ref-Beer2020}
 Beer, Ian. 2020. {``An iOS Zero-Click Radio Proximity Exploit
 Odyssey.''} 2020.
 \url{https://googleprojectzero.blogspot.com/2020/12/an-ios-zero-click-radio-proximity.html}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Beer2021}{}}%
+\bibitem[\citeproctext]{ref-Beer2021}
 Beer, Ian, and Samuel Groß. 2021. {``A Deep Dive into an NSO Zero-Click
 iMessage Exploit: Remote Code Execution.''} 2021.
 \url{https://googleprojectzero.blogspot.com/2021/12/a-deep-dive-into-nso-zero-click.html}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Bletsch2011}{}}%
+\bibitem[\citeproctext]{ref-Bletsch2011}
 Bletsch, Tyler, Xuxian Jiang, Vince W. Freeh, and Zhenkai Liang. 2011.
 {``Jump-Oriented Programming: A New Class of Code-Reuse Attack.''} In
 \emph{Proceedings of the 6th ACM Symposium on Information, Computer and
@@ -3754,49 +3651,49 @@ Communications Security}, 30--40. ASIACCS '11. New York, NY, USA:
 Association for Computing Machinery.
 \url{https://doi.org/10.1145/1966913.1966919}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Bosman2014}{}}%
+\bibitem[\citeproctext]{ref-Bosman2014}
 Bosman, Erik, and Herbert Bos. 2014. {``Framing Signals - a Return to
 Portable Shellcode.''} In \emph{2014 IEEE Symposium on Security and
 Privacy}, 243--58. \url{https://doi.org/10.1109/SP.2014.23}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Boucher2023}{}}%
+\bibitem[\citeproctext]{ref-Boucher2023}
 Boucher, Nicholas, and Ross Anderson. 2023. {``Trojan Source: Invisible
 Vulnerabilities.''} In \emph{32nd USENIX Security Symposium (USENIX
 Security 23)}. Anaheim, CA: USENIX Association.
 \url{https://arxiv.org/abs/2111.00169}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Briongos2020}{}}%
+\bibitem[\citeproctext]{ref-Briongos2020}
 Briongos, Samira, Pedro Malagon, Jose M. Moya, and Thomas Eisenbarth.
 2020. {``{RELOAD+REFRESH}: Abusing Cache Replacement Policies to Perform
 Stealthy Cache Attacks.''} In \emph{29th USENIX Security Symposium
 (USENIX Security 20)}.
 \url{https://www.usenix.org/conference/usenixsecurity20/presentation/briongos}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Bulck2020}{}}%
+\bibitem[\citeproctext]{ref-Bulck2020}
 Bulck, Jo Van, Daniel Moghimi, Michael Schwarz, Moritz Lippi, Marina
 Minkin, Daniel Genkin, Yuval Yarom, Berk Sunar, Daniel Gruss, and Frank
 Piessens. n.d. {``{LVI}: Hijacking Transient Execution Through
 Microarchitectural Load Value Injection.''} In \emph{2020 {IEEE}
 Symposium on Security and Privacy ({SP})}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Bulygin2008}{}}%
+\bibitem[\citeproctext]{ref-Bulygin2008}
 Bulygin, Yuriy. 2008. {``{CPU} Side-Channels Vs. Virtualization
 Rootkits: The Good, the Bad, or the Ugly.''} In \emph{CPU Side-Channels
 Vs. Virtualization Rootkits: The Good, the Bad, or the Ugly}.
 \url{https://infocondb.org/con/toorcon/toorcon-seattle-2008/cpu-side-channels-vs-virtualization-rootkits-the-good-the-bad-or-the-ugly}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Burow2017}{}}%
+\bibitem[\citeproctext]{ref-Burow2017}
 Burow, Nathan, Scott A. Carr, Joseph Nash, Per Larsen, Michael Franz,
 Stefan Brunthaler, and Mathias Payer. 2017. {``Control-Flow Integrity:
 Precision, Security, and Performance.''} \emph{ACM Comput. Surv.} 50
 (1). \url{https://doi.org/10.1145/3054924}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Chen2005}{}}%
+\bibitem[\citeproctext]{ref-Chen2005}
 Chen, Shuo, Jun Xu, Emre Can Sezer, Prachi Gauriar, and Ravishankar K
 Iyer. 2005. {``Non-Control-Data Attacks Are Realistic Threats.''} In
 \emph{USENIX Security Symposium}, 5:146.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Conti2015}{}}%
+\bibitem[\citeproctext]{ref-Conti2015}
 Conti, Mauro, Stephen Crane, Lucas Davi, Michael Franz, Per Larsen,
 Marco Negro, Christopher Liebchen, Mohaned Qunaibit, and Ahmad-Reza
 Sadeghi. 2015. {``Losing Control: On the Effectiveness of Control-Flow
@@ -3805,37 +3702,37 @@ SIGSAC Conference on Computer and Communications Security}, 952--63. CCS
 '15. New York, NY, USA: Association for Computing Machinery.
 \url{https://doi.org/10.1145/2810103.2813671}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Cook2023}{}}%
+\bibitem[\citeproctext]{ref-Cook2023}
 Cook, Kees. 2023. {``Bounded Flexible Arrays in {C}.''} 2023.
 \url{https://people.kernel.org/kees/bounded-flexible-arrays-in-c}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Cox2015}{}}%
+\bibitem[\citeproctext]{ref-Cox2015}
 Cox, Joseph. 2015. {``Hack Brief: Malware Sneaks into the Chinese iOS
 App Store.''} \emph{WIRED}.
 \url{https://www.wired.com/2015/09/hack-brief-malware-sneaks-chinese-ios-app-store/}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-d2015correctness}{}}%
+\bibitem[\citeproctext]{ref-d2015correctness}
 D'Silva, Vijay, Mathias Payer, and Dawn Song. 2015. {``The
 Correctness-Security Gap in Compiler Optimization.''} In \emph{2015 IEEE
 Security and Privacy Workshops}, 73--87. IEEE.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Dowd2006}{}}%
+\bibitem[\citeproctext]{ref-Dowd2006}
 Dowd, Mark, John McDonald, and Justin Schuh. 2006. \emph{The Art of
 Software Security Assessment: Identifying and Preventing Software
 Vulnerabilities}. Addison-Wesley Professional.
 
-\leavevmode\vadjust pre{\hypertarget{ref-dusilent}{}}%
+\bibitem[\citeproctext]{ref-dusilent}
 Du, Jianhao Xu1 Kangjie Lu2 Zhengjie, Zhu Ding1 Linke Li1 Qiushi Wu, and
 Mathias Payer3 Bing Mao. n.d. {``Silent Bugs Matter: A Study of
 Compiler-Introduced Security Bugs.''}
 
-\leavevmode\vadjust pre{\hypertarget{ref-Dullien2020}{}}%
+\bibitem[\citeproctext]{ref-Dullien2020}
 Dullien, Thomas. 2020. {``Weird Machines, Exploitability, and Provable
 Unexploitability.''} \emph{IEEE Transactions on Emerging Topics in
 Computing} 8 (2): 391--403.
 \url{https://doi.org/10.1109/TETC.2017.2785299}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Evtyushkin2018}{}}%
+\bibitem[\citeproctext]{ref-Evtyushkin2018}
 Evtyushkin, Dmitry, Ryan Riley, Nael CSE, ECE Abu-Ghazaleh, and Dmitry
 Ponomarev. 2018. {``BranchScope: A New Side-Channel Attack on
 Directional Branch Predictor.''} In \emph{Proceedings of the
@@ -3843,86 +3740,86 @@ Twenty-Third International Conference on Architectural Support for
 Programming Languages and Operating Systems}.
 \url{https://doi.org/10.1145/3173162.3173204}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Eyerman2009}{}}%
+\bibitem[\citeproctext]{ref-Eyerman2009}
 Eyerman, Stijn, Lieven Eeckhout, Tejas Karkhanis, and James E. Smith.
 2009. {``A Mechanistic Performance Model for Superscalar Out-of-Order
 Processors.''} \emph{{ACM} Transactions on Computer Systems} 27 (2).
 \url{https://doi.org/10.1145/1534909.1534910}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Fetiveau2019}{}}%
+\bibitem[\citeproctext]{ref-Fetiveau2019}
 Fetiveau, Jeremy. 2019. {``Circumventing Chrome's Hardening of Typer
 Bugs.''} 2019.
 \url{https://doar-e.github.io/blog/2019/05/09/circumventing-chromes-hardening-of-typer-bugs/}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Dullien2018}{}}%
+\bibitem[\citeproctext]{ref-Dullien2018}
 Flake, Thomas Dullien/Halvar. 2018. {``Turing Completeness, Weird
 Machines, Twitter, and Muddled Terminology.''} 2018.
 \url{http://addxorrol.blogspot.com/2018/10/turing-completeness-weird-machines.html}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-FbsdJunk}{}}%
+\bibitem[\citeproctext]{ref-FbsdJunk}
 {``FreeBSD Mitigation for Srandom Undefined Behavior.''} 2012. 2012.
 \url{https://github.com/freebsd/freebsd-src/commit/6a762eb23ea5f31e65cfa12602937f39a14e9b0c}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-MozillaIssue}{}}%
+\bibitem[\citeproctext]{ref-MozillaIssue}
 {``GCC6 - TB Crashes Due to Removed Null Pointer Checks for "This".''}
 2016. 2016. \url{https://bugzilla.mozilla.org/show_bug.cgi?id=1251576}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Glazunov2021}{}}%
+\bibitem[\citeproctext]{ref-Glazunov2021}
 Glazunov, Sergei. 2021. {``In-the-Wild Series: Chrome Infinity Bug.''}
 2021.
 \url{https://googleprojectzero.blogspot.com/2021/01/in-wild-series-chrome-infinity-bug.html}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Gostev2009}{}}%
+\bibitem[\citeproctext]{ref-Gostev2009}
 Gostev, Alexander. 2009. {``A Short History of Induc.''} 2009.
 \url{https://securelist.com/a-short-history-of-induc/30555/}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Greenberg2019}{}}%
+\bibitem[\citeproctext]{ref-Greenberg2019}
 Greenberg, Andy. 2019. {``Supply Chain Hackers Snuck Malware into
 Videogames.''} \emph{WIRED}.
 \url{https://www.wired.com/story/supply-chain-hackers-videogames-asus-ccleaner/}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Grouxdf2020}{}}%
+\bibitem[\citeproctext]{ref-Grouxdf2020}
 Groß, Samuel. 2020. {``JITSploitation i: A JIT Bug.''} 2020.
 \url{https://googleprojectzero.blogspot.com/2020/09/jitsploitation-one.html}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Grouxdf2022}{}}%
+\bibitem[\citeproctext]{ref-Grouxdf2022}
 Groß, Samuel, and Amy Burnett. 2022. {``Attacking JavaScript Engines in
 2022.''} 2022.
 \url{https://saelo.github.io/presentations/offensivecon_22_attacking_javascript_engines.pdf}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Gruss2016}{}}%
+\bibitem[\citeproctext]{ref-Gruss2016}
 Gruss, Daniel, Clémentine Maurice, Anders Fogh, Moritz Lipp, and Stefan
 Mangard. 2016. {``Prefetch Side-Channel Attacks: Bypassing SMAP and
 Kernel ASLR.''} In \emph{Proceedings of the 2016 ACM SIGSAC Conference
 on Computer and Communications Security}. CCS '16.
 \url{https://doi.org/10.1145/2976749.2978356}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Gruss2016a}{}}%
+\bibitem[\citeproctext]{ref-Gruss2016a}
 Gruss, Daniel, Clémentine Maurice, Klaus Wagner, and Stefan Mangard.
 2016. {``Flush+flush: A Fast and Stealthy Cache Attack.''} In
 \emph{Proceedings of the 13th International Conference on Detection of
 Intrusions and Malware, and Vulnerability Assessment - Volume 9721},
 279--99. DIMVA 2016. \url{https://doi.org/10.1007/978-3-319-40667-1_14}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Hicks2014}{}}%
+\bibitem[\citeproctext]{ref-Hicks2014}
 Hicks, Michael. 2014. {``What Is Memory Safety?''} 2014.
 \url{http://www.pl-enthusiast.net/2014/07/21/memory-safety/}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Hu2016}{}}%
+\bibitem[\citeproctext]{ref-Hu2016}
 Hu, Hong, Shweta Shinde, Sendroiu Adrian, Zheng Leong Chua, Prateek
 Saxena, and Zhenkai Liang. 2016. {``Data-Oriented Programming: On the
 Expressiveness of Non-Control Data Attacks.''} In \emph{2016 IEEE
 Symposium on Security and Privacy (SP)}, 969--86.
 \url{https://doi.org/10.1109/SP.2016.62}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Huo2019}{}}%
+\bibitem[\citeproctext]{ref-Huo2019}
 Huo, Tianlin, Xiaoni Meng, Wenhao Wang, Chunliang Hao, Pei Zhao, Jian
 Zhai, and Mingshu Li. 2019. {``Bluethunder: A 2-Level Directional
 Predictor Based Side-Channel Attack Against {SGX}.''} \emph{{IACR}
 Transactions on Cryptographic Hardware and Embedded Systems}, November.
 \url{https://doi.org/10.46586/tches.v2020.i1.321-347}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Ispoglou2018}{}}%
+\bibitem[\citeproctext]{ref-Ispoglou2018}
 Ispoglou, Kyriakos K., Bader AlBassam, Trent Jaeger, and Mathias Payer.
 2018. {``Block Oriented Programming: Automating Data-Only Attacks.''} In
 \emph{Proceedings of the 2018 ACM SIGSAC Conference on Computer and
@@ -3930,43 +3827,43 @@ Communications Security}, 1868--82. CCS '18. New York, NY, USA:
 Association for Computing Machinery.
 \url{https://doi.org/10.1145/3243734.3243739}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-ChromiumIssue}{}}%
+\bibitem[\citeproctext]{ref-ChromiumIssue}
 {``Issue 3782: V8 Is Not -Fsanitize=null Clean.''} 2014. 2014.
 \url{https://bugs.chromium.org/p/v8/issues/detail?id=3782}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Kocher2019}{}}%
+\bibitem[\citeproctext]{ref-Kocher2019}
 Kocher, Paul, Jann Horn, Anders Fogh, Daniel Genkin, Daniel Gruss,
 Werner Haas, Mike Hamburg, et al. 2019. {``Spectre Attacks: Exploiting
 Speculative Execution.''} In \emph{2019 {IEEE} Symposium on Security and
 Privacy ({SP})}. {IEEE}. \url{https://doi.org/10.1109/sp.2019.00002}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Lee2017}{}}%
+\bibitem[\citeproctext]{ref-Lee2017}
 Lee, Sangho, Ming-Wei Shih, Prasun Gera, Taesoo Kim, Hyesoon Kim, and
 Marcus Peinado. 2017. {``Inferring Fine-Grained Control Flow Inside
 {SGX} Enclaves with Branch Shadowing.''} In \emph{26th USENIX Security
 Symposium (USENIX Security 17)}.
 \url{https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/lee-sangho}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-MemZeroDataBarrier}{}}%
+\bibitem[\citeproctext]{ref-MemZeroDataBarrier}
 {``Lib: Make Memzero\_explicit More Robust Against Dead Store
 Elimination.''} 2015. 2015.
 \url{https://github.com/torvalds/linux/commit/7829fb09a2b4268b30dd9bc782fa5ebee278b137}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-OpenSSLMemClr}{}}%
+\bibitem[\citeproctext]{ref-OpenSSLMemClr}
 ---------. 2016. 2016.
 \url{https://github.com/openssl/openssl/commit/104ce8a9f02d250dd43c255eb7b8747e81b29422}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-MemZeroBarrier}{}}%
+\bibitem[\citeproctext]{ref-MemZeroBarrier}
 {``Lib: Memzero\_explicit: Use Barrier Instead of
 {OPTIMIZER\_HIDE\_VAR}.''} 2015. 2015.
 \url{https://github.com/torvalds/linux/commit/0b053c9518292705736329a8fe20ef4686ffc8e9}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Liljestrand2021}{}}%
+\bibitem[\citeproctext]{ref-Liljestrand2021}
 Liljestrand, Hans, Thomas Nyman, Lachlan J Gunn, Jan-Erik Ekberg, and N
 Asokan. 2021. {``\(\{\)PACStack\(\}\): An Authenticated Call Stack.''}
 In \emph{30th USENIX Security Symposium (USENIX Security 21)}, 357--74.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Lipp2020}{}}%
+\bibitem[\citeproctext]{ref-Lipp2020}
 Lipp, Moritz, Vedad Hadzic, Michael Schwarz, Arthur Perais, Clementine
 Lucie Noemie Maurice, and Daniel Gruß. 2020. {``Take a Way: Exploring
 the Security Implications of AMD's Cache Way Predictors.''} In
@@ -3974,36 +3871,36 @@ the Security Implications of AMD's Cache Way Predictors.''} In
 Communications Security, ASIA CCS 2020}.
 \url{https://doi.org/10.1145/3320269.3384746}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Lipp2018}{}}%
+\bibitem[\citeproctext]{ref-Lipp2018}
 Lipp, Moritz, Michael Schwarz, Daniel Gruss, Thomas Prescher, Werner
 Haas, Anders Fogh, Jann Horn, et al. 2018. {``Meltdown: Reading Kernel
 Memory from User Space.''} In \emph{27th USENIX Security Symposium
 (USENIX Security 18)}.
 \url{https://www.usenix.org/conference/usenixsecurity18/presentation/lipp}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-McCall2019}{}}%
+\bibitem[\citeproctext]{ref-McCall2019}
 McCall, John, and Ahmed Bougacha. 2019. {``Arm64e: An ABI for Pointer
 Authentication.''} 2019.
 \url{https://llvm.org/devmtg/2019-10/slides/McCall-Bougacha-arm64e.pdf}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-MemSetProposal}{}}%
+\bibitem[\citeproctext]{ref-MemSetProposal}
 {``Memset\_explicit.''} 2021. 2021.
 \url{https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2897.htm}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Miller2012}{}}%
+\bibitem[\citeproctext]{ref-Miller2012}
 Miller, Matt. n.d. {``Modeling the Exploitation and Mitigation of Memory
 Safety Vulnerabilities.''}
 \href{https://2012.ruxconbreakpoint.com/}{Breakpoint 2012}.
 \url{https://github.com/Microsoft/MSRC-Security-Research/blob/master/presentations/2012_10_Breakpoint/BreakPoint2012_Miller_Modeling_the_exploitation_and_mitigation_of_memory_safety_vulnerabilities.pdf}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Mushtaq2020}{}}%
+\bibitem[\citeproctext]{ref-Mushtaq2020}
 Mushtaq, Maria, Muhammad Asim Mukhtar, Vianney Lapotre, Muhammad Khurram
 Bhatti, and Guy Gogniat. 2020. {``Winter Is Here! A Decade of
 Cache-Based Side-Channel Attacks, Detection \& Mitigation for {RSA}.''}
 \emph{Information Systems}, September.
 \url{https://doi.org/10.1016/j.is.2020.101524}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Mutlu2004}{}}%
+\bibitem[\citeproctext]{ref-Mutlu2004}
 Mutlu, Onur, Hyesoon Kim, David N. Armstrong, and Yale N. Patt. 2004.
 {``Understanding the Effects of Wrong-Path Memory References on
 Processor Performance.''} In \emph{Proceedings of the 3rd Workshop on
@@ -4011,60 +3908,60 @@ Memory Performance Issues in Conjunction with the 31st International
 Symposium on Computer Architecture - WMPI '04}.
 \url{https://doi.org/10.1145/1054943.1054951}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-ObsdJunk}{}}%
+\bibitem[\citeproctext]{ref-ObsdJunk}
 {``OpenBSD Mitigation for Srandom Undefined Behavior.''} 2002. 2002.
 \url{https://github.com/openbsd/src/commit/99d815f892ce481695caf21f08f773f563820a66}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Osvik2005}{}}%
+\bibitem[\citeproctext]{ref-Osvik2005}
 Osvik, Dag Arne, Adi Shamir, and Eran Tromer. 2005. {``Cache Attacks and
 Countermeasures: The Case of AES.''} In \emph{IACR Cryptology ePrint
 Archive}. \url{https://doi.org/10.1007/11605805_1}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Karger1974}{}}%
+\bibitem[\citeproctext]{ref-Karger1974}
 Paul A., Karger, and Schell Roger R. 1974. {``MULTICS SECURITY
 EVALUATION: VULNERABILITY ANALYSIS,''} 52.
 \url{https://csrc.nist.gov/csrc/media/publications/conference-paper/1998/10/08/proceedings-of-the-21st-nissc-1998/documents/early-cs-papers/karg74.pdf}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Percival2005}{}}%
+\bibitem[\citeproctext]{ref-Percival2005}
 Percival, Colin. 2005. {``Cache Missing for Fun and Profit.''} BSDCan.
 \url{https://eprint.iacr.org/2005/271}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Pizlo2020}{}}%
+\bibitem[\citeproctext]{ref-Pizlo2020}
 Pizlo, Filip. 2020. {``Speculation in JavaScriptCore.''} 2020.
 \url{https://webkit.org/blog/10308/speculation-in-javascriptcore/}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Pornin2018}{}}%
+\bibitem[\citeproctext]{ref-Pornin2018}
 Pornin, Thomas. 2018. {``Why Constant-Time Crypto?''} 2018.
 \url{https://www.bearssl.org/constanttime.html}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Rutland2017}{}}%
+\bibitem[\citeproctext]{ref-Rutland2017}
 Rutland, Mark. 2017. {``ARMv8.3 Pointer Authentication.''} 2017.
 \url{https://events.static.linuxfound.org/sites/events/files/slides/slides_23.pdf}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-saelo2021b}{}}%
+\bibitem[\citeproctext]{ref-saelo2021b}
 saelo. 2021a. {``Attacking JavaScript Engines: A Case Study of
 JavaScriptCore and CVE-2016-4622.''} 2021.
 \url{http://www.phrack.org/issues/70/3.html}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-saelo2021a}{}}%
+\bibitem[\citeproctext]{ref-saelo2021a}
 ---------. 2021b. {``Exploiting Logic Bugs in JavaScript JIT Engines.''}
 2021. \url{http://www.phrack.org/issues/70/9.html}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Schuster2015}{}}%
+\bibitem[\citeproctext]{ref-Schuster2015}
 Schuster, F., T. Tendyck, C. Liebchen, L. Davi, A. Sadeghi, and T. Holz.
 2015. {``Counterfeit Object-Oriented Programming: On the Difficulty of
 Preventing Code Reuse Attacks in c++ Applications.''} In \emph{2015 IEEE
 Symposium on Security and Privacy (SP)}, 745--62. Los Alamitos, CA, USA:
 IEEE Computer Society. \url{https://doi.org/10.1109/SP.2015.51}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Schwarz2017}{}}%
+\bibitem[\citeproctext]{ref-Schwarz2017}
 Schwarz, Michael, Clémentine Maurice, Daniel Gruss, and Stefan Mangard.
 2017. {``Fantastic Timers and Where to Find Them: High-Resolution
 Microarchitectural Attacks in {JavaScript}.''} In \emph{Financial
 Cryptography and Data Security}, 247--67. Springer International
 Publishing.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Schwarz2019}{}}%
+\bibitem[\citeproctext]{ref-Schwarz2019}
 Schwarz, Michael, Martin Schwarzl, Moritz Lipp, Jon Masters, and Daniel
 Gruss. 2019. {``NetSpectre: Read Arbitrary Memory over Network.''} In
 \emph{Computer Security - {ESORICS} 2019 - 24th European Symposium on
@@ -4072,21 +3969,21 @@ Research in Computer Security, Luxembourg, September 23-27, 2019,
 Proceedings, Part {I}}, 11735:279--99. Lecture Notes in Computer
 Science. Springer.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Seacord2013}{}}%
+\bibitem[\citeproctext]{ref-Seacord2013}
 Seacord, Robert C. 2013. \emph{Secure Coding in c and c++}. 2nd ed.
 Addison-Wesley Professional.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Serebryany2012}{}}%
+\bibitem[\citeproctext]{ref-Serebryany2012}
 Serebryany, Konstantin, Derek Bruening, Alexander Potapenko, and Dmitriy
 Vyukov. 2012. {``\(\{\)AddressSanitizer\(\}\): A Fast Address Sanity
 Checker.''} In \emph{2012 USENIX Annual Technical Conference (USENIX ATC
 12)}, 309--18.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Serna2012}{}}%
+\bibitem[\citeproctext]{ref-Serna2012}
 Serna, Fermin J. 2012. {``The Info Leak Era on Software Exploitation.''}
 2012. \url{https://www.youtube.com/watch?v=VgWoPa8Whmc}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Shacham2007}{}}%
+\bibitem[\citeproctext]{ref-Shacham2007}
 Shacham, Hovav. 2007. {``The Geometry of Innocent Flesh on the Bone:
 Return-into-Libc Without Function Calls (on the X86).''} In
 \emph{Proceedings of the 14th ACM Conference on Computer and
@@ -4094,70 +3991,70 @@ Communications Security}, 552--61. CCS '07. New York, NY, USA:
 Association for Computing Machinery.
 \url{https://doi.org/10.1145/1315245.1315313}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Sharma2014}{}}%
+\bibitem[\citeproctext]{ref-Sharma2014}
 Sharma, Siddharth. 2014. {``Enhance Application Security with
 FORTIFY\_SOURCE.''} 2014.
 \url{https://www.redhat.com/en/blog/enhance-application-security-fortifysource}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Soares2021}{}}%
+\bibitem[\citeproctext]{ref-Soares2021}
 Soares, Luigi, and Fernando Magno Quintan Pereira. 2021. {``Memory-Safe
 Elimination of Side Channels.''} In \emph{2021 {IEEE}/{ACM}
 International Symposium on Code Generation and Optimization ({CGO})}.
 {IEEE}. \url{https://doi.org/10.1109/cgo51591.2021.9370305}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Solar1997}{}}%
+\bibitem[\citeproctext]{ref-Solar1997}
 Solar Designer. 1997. {``Getting Around Non-Executable Stack (and
 Fix).''} 1997. \url{https://seclists.org/bugtraq/1997/Aug/63}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Song2015}{}}%
+\bibitem[\citeproctext]{ref-Song2015}
 Song, Chengyu, Chao Zhang, Tielei Wang, Wenke Lee, and David Melski.
 2015. {``Exploiting and Protecting Dynamic Code Generation.''} In
 \emph{NDSS}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Su2021}{}}%
+\bibitem[\citeproctext]{ref-Su2021}
 Su, Chao, and Qingkai Zeng. 2021. {``Survey of {CPU} Cache-Based
 Side-Channel Attacks: Systematic Analysis, Security Models, and
 Countermeasures.''} \emph{Security and Communication Networks}, June.
 \url{https://doi.org/10.1155/2021/5559552}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Thompson1984}{}}%
+\bibitem[\citeproctext]{ref-Thompson1984}
 Thompson, Ken. 1984. {``Reflections on Trusting Trust.''}
 \url{https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Wang2015}{}}%
+\bibitem[\citeproctext]{ref-Wang2015}
 Wang, Xi. 2015. {``More Randomness or Less.''} 2015.
 \url{https://kqueue.org/blog/2012/06/25/more-randomness-or-less/}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-wang2012undefined}{}}%
+\bibitem[\citeproctext]{ref-wang2012undefined}
 Wang, Xi, Haogang Chen, Alvin Cheung, Zhihao Jia, Nickolai Zeldovich,
 and M Frans Kaashoek. 2012. {``Undefined Behavior: What Happened to My
 Code?''} In \emph{Proceedings of the Asia-Pacific Workshop on Systems},
 1--7.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Weber2021}{}}%
+\bibitem[\citeproctext]{ref-Weber2021}
 Weber, Daniel, Ahmad Ibrahim, Hamed Nemati, Michael Schwarz, and
 Christian Rossow. 2021. {``Osiris: Automated Discovery of
 Microarchitectural Side Channels.''} In \emph{USENIX Security'21}.
 \url{https://arxiv.org/abs/2106.03470}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Wheeler2020}{}}%
+\bibitem[\citeproctext]{ref-Wheeler2020}
 Wheeler, David A. 2020. {``Initial Analysis of Underhanded Source
 Code.''} Institute for Defense Analyses.
 \url{https://www.ida.org/research-and-publications/publications/all/i/in/initial-analysis-of-underhanded-source-code}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Wingo2011}{}}%
+\bibitem[\citeproctext]{ref-Wingo2011}
 Wingo, Any. 2011. {``Value Representation in JavaScript
 Implementations.''} 2011.
 \url{https://wingolog.org/archives/2011/05/18/value-representation-in-javascript-implementations}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Wu2018}{}}%
+\bibitem[\citeproctext]{ref-Wu2018}
 Wu, Meng, Shengjian Guo, Patrick Schaumont, and Chao Wang. 2018.
 {``Eliminating Timing Side-Channel Leaks Using Program Repair.''} In
 \emph{Proceedings of the 27th {ACM} {SIGSOFT} International Symposium on
 Software Testing and Analysis}. {ACM}.
 \url{https://doi.org/10.1145/3213846.3213851}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Yarom2014}{}}%
+\bibitem[\citeproctext]{ref-Yarom2014}
 Yarom, Yuval, and Katrina Falkner. 2014. {``{FLUSH+RELOAD}: A High
 Resolution, Low Noise, L3 Cache {Side-Channel} Attack.''} In \emph{23rd
 USENIX Security Symposium (USENIX Security 14)}, 719--32. San Diego, CA:
