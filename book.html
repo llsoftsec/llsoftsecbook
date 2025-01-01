@@ -286,6 +286,7 @@ text-align: center;
       <button class="btn btn-outline-primary btn-sm dropdown-toggle" id="share-button" type="button" id="shareDropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="bi bi-share-fill"></i></button>
       <div class="dropdown-menu" aria-labelledby="shareDropdownMenuButton">
+        <a id="bluesky-share-link" class="dropdown-item" href="#" target="_blank">Bluesky</a>
         <a id="twitter-share-link" class="dropdown-item" href="#" target="_blank">Twitter</a>
         <a id="mastodon-share-link" class="dropdown-item" href="#" target="_blank">Mastodon</a>
         <a id="linkedin-share-link" class="dropdown-item" href="#" target="_blank">LinkedIn</a>
@@ -445,7 +446,7 @@ Developers</h1>
       Copyright 2023 Lucian Popescu <a href="mailto:lucian.popescu187@gmail.com" class="email">lucian.popescu187@gmail.com</a><br />
       Copyright 2024 Anders Waldenborg <a href="mailto:anders@0x63.nu" class="email">anders@0x63.nu</a><br />
     </p>
-  <p>Version: 0-200-g12eff1e</p>
+  <p>Version: 0-201-g834e2b2</p>
 </header>
 
 <main id="content">
@@ -6840,6 +6841,10 @@ Association. <a href="https://www.usenix.org/conference/usenixsecurity14/technic
       "https://tootpick.org/#"
       + jQuery.param({text: shared_title + ' ' + shared_url
                             + ' #llsoftsecbook'}));
+    jQuery("#bluesky-share-link").attr("href",
+      "https://bsky.app/intent/compose/?"
+      + jQuery.param({text: shared_title + ' ' + shared_url
+      + ' #llsoftsecbook'}));
 
 
     // Needed to enable the bootstrap tooltips:
