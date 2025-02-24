@@ -1,6 +1,6 @@
-This is makeindex, version 2.15 [TeX Live 2020] (kpathsea + Thai support).
-Scanning input file build/book.idx....done (161 entries accepted, 0 rejected).
+This is makeindex, version 2.17 [TeX Live 2023] (kpathsea + Thai support).
+Scanning input file book.idx....done (161 entries accepted, 0 rejected).
 Sorting entries....done (1224 comparisons).
-Generating output file build/book.ind....done (209 lines written, 0 warnings).
-Output written in build/book.ind.
-Transcript written in build/book.ilg.
+Generating output file book.ind....done (209 lines written, 0 warnings).
+Output written in book.ind.
+Transcript written in book.ilg.
