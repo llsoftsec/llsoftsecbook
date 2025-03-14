@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.2.24)  24 FEB 2025 08:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.3.14)  14 MAR 2025 13:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1637,7 +1637,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  31156 strings out of 476076
  566143 string characters out of 5793495
- 1986187 words of memory out of 5000000
+ 1985187 words of memory out of 5000000
  52010 multiletter control sequences out of 15000+600000
  646947 words of font info for 224 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
