@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-203-g7763a89" )
+          , ( "VERSION" , MetaString "0-204-g7a70952" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -14086,11 +14086,11 @@ Pandoc
           ]
           [ Str "[@McCall2019]" ]
       , Str "."
-      , SoftBreak
+      , Space
       , Str "The"
       , Space
       , Str "Pointer"
-      , Space
+      , SoftBreak
       , Str "Authentication"
       , Space
       , Str "instructions,"
@@ -14108,11 +14108,11 @@ Pandoc
       , Str "also"
       , Space
       , Str "be"
-      , SoftBreak
+      , Space
       , Str "useful"
       , Space
       , Str "in"
-      , Space
+      , SoftBreak
       , Str "implementing"
       , Space
       , Str "more"
@@ -14128,13 +14128,13 @@ Pandoc
       , Str "beyond"
       , Space
       , Str "CFI."
-      , SoftBreak
+      , Space
       , Span
           ( "" , [ "todo" ] , [] )
           [ Str "Mention"
           , Space
           , Str "more"
-          , Space
+          , SoftBreak
           , Str "Pointer"
           , Space
           , Str "Authentication"
@@ -14152,10 +14152,59 @@ Pandoc
           , Str "add"
           , Space
           , Str "link"
-          , SoftBreak
-          , Str "here"
           , Space
+          , Str "here"
+          , SoftBreak
           , Span ( "" , [ "issue" ] , [] ) [ Str "167" ]
+          ]
+      , Space
+      , Span
+          ( "" , [ "todo" ] , [] )
+          [ Str "The"
+          , Space
+          , Str "use"
+          , Space
+          , Str "of"
+          , Space
+          , Str "pauth"
+          , Space
+          , Str "in"
+          , Space
+          , Str "arm64e"
+          , Space
+          , Str "or"
+          , Space
+          , Str "pauthabi"
+          , Space
+          , Str "should"
+          , Space
+          , Str "be"
+          , SoftBreak
+          , Str "explained"
+          , Space
+          , Str "in"
+          , Space
+          , Str "more"
+          , Space
+          , Str "detail,"
+          , Space
+          , Str "including"
+          , Space
+          , Str "the"
+          , Space
+          , Str "concepts"
+          , Space
+          , Str "of"
+          , Space
+          , Str "signing"
+          , Space
+          , Str "and"
+          , Space
+          , Str "authentication"
+          , SoftBreak
+          , Str "oracles"
+          , Space
+          , Span ( "" , [ "issue" ] , [] ) [ Str "259" ]
           ]
       ]
   , Header 4 ( "bti" , [] , [] ) [ Str "BTI" ]
