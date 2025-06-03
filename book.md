@@ -684,21 +684,26 @@ dispatcher gadget.
 
 ### Counterfeit Object-oriented programming
 
-Counterfeit Object-oriented programming (COOP)\index{counterfeit
-object-oriented programming (COOP)} [@Schuster2015] is a code reuse technique
-that takes advantage of C++ \index{C++} virtual function calls.  A COOP attack
-takes advantage of existing virtual functions and
+Counterfeit Object-oriented programming (COOP)\index{counterfeit object-oriented
+programming (COOP)} [@Schuster2015] is a code reuse technique that takes
+advantage of C++ \index{C++} virtual function calls. A COOP attack takes
+advantage of existing virtual functions and
 [vtables](https://en.wikipedia.org/wiki/Virtual_method_table), and creates fake
 objects pointing to these existing vtables. The virtual functions used as
-gadgets in the attack are called vfgadgets. To chain vfgadgets together, the
-attacker uses a "main loop gadget", similar to JOP's dispatcher gadget, which
-is itself a virtual function that loops over a container of pointers to C++
-objects and invokes a virtual function on these objects. [@Schuster2015]
-describes the attack in more detail. It is specifically mentioned here as an
-example of an attack that doesn't depend on directly replacing return addresses
-and code pointers, like ROP and JOP do. Such language-specific attacks are
-important to consider when considering mitigations against code reuse attacks,
-which will be the topic of the next section.
+gadgets in the attack are called vfgadgets\index{vfgadget}. To chain vfgadgets
+together, the attacker uses a "main loop gadget", similar to JOP's dispatcher
+gadget, which is itself a virtual function that loops over a container of
+pointers to C++ objects and invokes a virtual function on these objects.
+[@Schuster2015] describes the attack in more detail. It is specifically
+mentioned here as an example of an attack that doesn't depend on directly
+replacing return addresses and code pointers, like ROP and JOP do. Such
+language-specific attacks are important to consider when considering mitigations
+against code reuse attacks, which will be the topic of the next section.
+
+::: TODO
+It would be nice to have a small example of a COOP attack, similar to the JOP
+example in the previous section. [261]{.issue}
+:::
 
 ### Sigreturn-oriented programming
 
