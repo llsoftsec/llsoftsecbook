@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-204-g7a70952" )
+          , ( "VERSION" , MetaString "0-205-g7f09f04" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -10545,7 +10545,7 @@ Pandoc
       , Str "(COOP)"
       , RawInline
           (Format "tex")
-          "\\index{counterfeit\nobject-oriented programming (COOP)}"
+          "\\index{counterfeit object-oriented\nprogramming (COOP)}"
       , Space
       , Cite
           [ Citation
@@ -10568,11 +10568,11 @@ Pandoc
       , Str "reuse"
       , Space
       , Str "technique"
-      , SoftBreak
+      , Space
       , Str "that"
       , Space
       , Str "takes"
-      , Space
+      , SoftBreak
       , Str "advantage"
       , Space
       , Str "of"
@@ -10592,9 +10592,9 @@ Pandoc
       , Str "COOP"
       , Space
       , Str "attack"
-      , SoftBreak
-      , Str "takes"
       , Space
+      , Str "takes"
+      , SoftBreak
       , Str "advantage"
       , Space
       , Str "of"
@@ -10655,18 +10655,20 @@ Pandoc
       , Space
       , Str "called"
       , Space
-      , Str "vfgadgets."
+      , Str "vfgadgets"
+      , RawInline (Format "tex") "\\index{vfgadget}"
+      , Str "."
       , Space
       , Str "To"
       , Space
       , Str "chain"
       , Space
       , Str "vfgadgets"
-      , Space
+      , SoftBreak
       , Str "together,"
       , Space
       , Str "the"
-      , SoftBreak
+      , Space
       , Str "attacker"
       , Space
       , Str "uses"
@@ -10685,11 +10687,11 @@ Pandoc
       , Str "JOP\8217s"
       , Space
       , Str "dispatcher"
-      , Space
+      , SoftBreak
       , Str "gadget,"
       , Space
       , Str "which"
-      , SoftBreak
+      , Space
       , Str "is"
       , Space
       , Str "itself"
@@ -10711,13 +10713,13 @@ Pandoc
       , Str "container"
       , Space
       , Str "of"
-      , Space
+      , SoftBreak
       , Str "pointers"
       , Space
       , Str "to"
       , Space
       , Str "C++"
-      , SoftBreak
+      , Space
       , Str "objects"
       , Space
       , Str "and"
@@ -10735,7 +10737,7 @@ Pandoc
       , Str "these"
       , Space
       , Str "objects."
-      , Space
+      , SoftBreak
       , Cite
           [ Citation
               { citationId = "Schuster2015"
@@ -10747,7 +10749,7 @@ Pandoc
               }
           ]
           [ Str "[@Schuster2015]" ]
-      , SoftBreak
+      , Space
       , Str "describes"
       , Space
       , Str "the"
@@ -10765,7 +10767,7 @@ Pandoc
       , Str "is"
       , Space
       , Str "specifically"
-      , Space
+      , SoftBreak
       , Str "mentioned"
       , Space
       , Str "here"
@@ -10773,7 +10775,7 @@ Pandoc
       , Str "as"
       , Space
       , Str "an"
-      , SoftBreak
+      , Space
       , Str "example"
       , Space
       , Str "of"
@@ -10791,13 +10793,13 @@ Pandoc
       , Str "on"
       , Space
       , Str "directly"
-      , Space
+      , SoftBreak
       , Str "replacing"
       , Space
       , Str "return"
       , Space
       , Str "addresses"
-      , SoftBreak
+      , Space
       , Str "and"
       , Space
       , Str "code"
@@ -10815,13 +10817,13 @@ Pandoc
       , Str "do."
       , Space
       , Str "Such"
-      , Space
+      , SoftBreak
       , Str "language-specific"
       , Space
       , Str "attacks"
       , Space
       , Str "are"
-      , SoftBreak
+      , Space
       , Str "important"
       , Space
       , Str "to"
@@ -10833,7 +10835,7 @@ Pandoc
       , Str "considering"
       , Space
       , Str "mitigations"
-      , Space
+      , SoftBreak
       , Str "against"
       , Space
       , Str "code"
@@ -10841,7 +10843,7 @@ Pandoc
       , Str "reuse"
       , Space
       , Str "attacks,"
-      , SoftBreak
+      , Space
       , Str "which"
       , Space
       , Str "will"
@@ -10859,6 +10861,56 @@ Pandoc
       , Str "next"
       , Space
       , Str "section."
+      ]
+  , Div
+      ( "" , [ "TODO" ] , [] )
+      [ Para
+          [ Str "It"
+          , Space
+          , Str "would"
+          , Space
+          , Str "be"
+          , Space
+          , Str "nice"
+          , Space
+          , Str "to"
+          , Space
+          , Str "have"
+          , Space
+          , Str "a"
+          , Space
+          , Str "small"
+          , Space
+          , Str "example"
+          , Space
+          , Str "of"
+          , Space
+          , Str "a"
+          , Space
+          , Str "COOP"
+          , Space
+          , Str "attack,"
+          , Space
+          , Str "similar"
+          , Space
+          , Str "to"
+          , Space
+          , Str "the"
+          , Space
+          , Str "JOP"
+          , SoftBreak
+          , Str "example"
+          , Space
+          , Str "in"
+          , Space
+          , Str "the"
+          , Space
+          , Str "previous"
+          , Space
+          , Str "section."
+          , Space
+          , Span ( "" , [ "issue" ] , [] ) [ Str "261" ]
+          ]
       ]
   , Header
       3

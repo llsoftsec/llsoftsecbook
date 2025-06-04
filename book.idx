@@ -21,8 +21,9 @@
 \indexentry{dispatcher gadget|hyperpage}{17}
 \indexentry{counterfeit object-oriented programming (COOP)|hyperpage}{18}
 \indexentry{C++|hyperpage}{18}
+\indexentry{vfgadget|hyperpage}{18}
 \indexentry{sigreturn-oriented programming (SROP)|hyperpage}{18}
-\indexentry{ASLR|hyperpage}{18}
+\indexentry{ASLR|hyperpage}{19}
 \indexentry{info leak|hyperpage}{19}
 \indexentry{CFI|hyperpage}{19}
 \indexentry{forward-edge CFI|hyperpage}{19}
@@ -41,8 +42,8 @@
 \indexentry{C++|hyperpage}{25}
 \indexentry{sanitizers|hyperpage}{25}
 \indexentry{fuzzing|hyperpage}{25}
-\indexentry{AddressSanitizer (ASan)|hyperpage}{25}
 \indexentry{fuzzing|hyperpage}{25}
+\indexentry{AddressSanitizer (ASan)|hyperpage}{26}
 \indexentry{GCC|hyperpage}{26}
 \indexentry{Clang|hyperpage}{26}
 \indexentry{shadow memory|hyperpage}{26}

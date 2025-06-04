@@ -1,12 +1,12 @@
 \begin{theindex}
 
   \item AArch64, \hyperpage{26}
-  \item AddressSanitizer (ASan), \hyperpage{25}
+  \item AddressSanitizer (ASan), \hyperpage{26}
   \item anti dependency, \hyperpage{42}
   \item Application binary interface (ABI), \hyperpage{29}
   \item arbitrary code execution, \hyperpage{10}
   \item architectural effects, \hyperpage{43}
-  \item ASLR, \hyperpage{18}, \hyperpage{41}
+  \item ASLR, \hyperpage{19}, \hyperpage{41}
 
   \indexspace
 
@@ -198,6 +198,7 @@
 
   \indexspace
 
+  \item vfgadget, \hyperpage{18}
   \item victim, \hyperpage{33}
 
   \indexspace

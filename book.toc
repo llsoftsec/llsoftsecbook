@@ -10,7 +10,7 @@
 \contentsline {subsection}{\numberline {2.4.3}Counterfeit Object-oriented programming}{18}{subsection.2.4.3}%
 \contentsline {subsection}{\numberline {2.4.4}Sigreturn-oriented programming}{18}{subsection.2.4.4}%
 \contentsline {section}{\numberline {2.5}Mitigations against code reuse attacks}{18}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}ASLR}{18}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.1}ASLR}{19}{subsection.2.5.1}%
 \contentsline {subsection}{\numberline {2.5.2}CFI}{19}{subsection.2.5.2}%
 \contentsline {subsubsection}{\numberline {2.5.2.1}Clang CFI}{19}{subsubsection.2.5.2.1}%
 \contentsline {subsubsection}{\numberline {2.5.2.2}Clang Shadow Stack}{20}{subsubsection.2.5.2.2}%
@@ -72,5 +72,5 @@
 \contentsline {subsection}{\numberline {7.3.1}Common forms of Fault injection attacks}{59}{subsection.7.3.1}%
 \contentsline {subsection}{\numberline {7.3.2}Countermeasures}{60}{subsection.7.3.2}%
 \contentsline {chapter}{\numberline {8}Other security topics relevant for compiler developers}{61}{chapter.8}%
-\contentsline {chapter}{Appendix: contribution guidelines}{62}{chapter*.46}%
-\contentsline {chapter}{References}{65}{chapter*.47}%
+\contentsline {chapter}{Appendix: contribution guidelines}{62}{chapter*.47}%
+\contentsline {chapter}{References}{65}{chapter*.48}%
