@@ -1312,7 +1312,8 @@ attacks\index{pointer substitution attack}, where a pointer that has been signed
 with a given modifier is replaced with a different pointer that has also been
 signed with the same modifier. In the `pac-ret` scheme, this is mitigated by
 using the stack pointer as the modifier, which limits reuse of signed return
-address pointers to functions that happen to have the same stack pointer value.
+address pointers to function frames that happen to have the same stack pointer
+value.
 
 ###### arm64e and pauthabi: Forward-Edge CFI { #sec:arm64e-pauthabi }
 
