@@ -1203,7 +1203,7 @@ on which kinds of pointers get signed, such as only return addresses, all functi
 pointers, or more.
 
 An essential aspect of pointer authentication being useful is to make it hard
-for an attacker to guess the correct PAC that will pass authentication. To
+for an attacker to construct the correct PAC that will pass authentication. To
 achieve that, next to the address, 2 other inputs are used to compute the PAC: a
 so-called key\index{key} and a modifier\index{modifier}:
 
