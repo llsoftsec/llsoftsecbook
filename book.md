@@ -1044,10 +1044,15 @@ f:
 Most backward-edge CFI schemes add checks before executing the return
 instruction to verify that the return address hasn't been tampered with.
 
-Shadow stack\index{shadow stack} approaches store the return address also on a
-second stack, on the side. Before the return is executed, it verifies that the
-return value on both the regular stack and the shadow stack are equal. A
-software-only implementation is the clang shadow stack, which is explained in
+Shadow stack\index{shadow stack} approaches store the return address on a second
+stack, on the side. Some shadow stack approaches also store the return address
+in the original location in the normal stack. In those, before the return is
+executed, it verifies that the return value on both the regular stack and the
+shadow stack are equal. The approaches that only store the return address on the
+shadow stack have other mechanisms to make it hard to impossible for an attacker
+to overwrite the return address on the shadow stack.
+
+A software-only implementation is the clang shadow stack, which is explained in
 more detail in section @sec:clang-shadow-stack. Hardware-supported shadow stacks
 include
 [Arm's Guarded control stack (GCS)](https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/arm-a-profile-architecture-2022),
