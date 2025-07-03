@@ -159,12 +159,12 @@ attacks later evolved to [Return-Oriented Programming
 techniques.
 
 To defend against code reuse attacks, the [Address Space Layout Randomization
-(ASLR)](#aslr) and [Control-Flow Integrity (CFI)](#cfi) measures were
-introduced. This interaction between offensive and defensive security research
-has been essential to improving security, and continues to this day. Each newly
-deployed mitigation results in attempts, often successful, to bypass it, or in
-alternative, more complex exploitation techniques, and even tools to automate
-them.
+(ASLR)](#aslr) and [Control-Flow Integrity (CFI)](#control-flow-integrity-cfi)
+measures were introduced. This interaction between offensive and defensive
+security research has been essential to improving security, and continues to
+this day. Each newly deployed mitigation results in attempts, often successful,
+to bypass it, or in alternative, more complex exploitation techniques, and even
+tools to automate them.
 
 Memory safe [@Hicks2014] languages are designed with prevention of such
 vulnerabilities in mind and use techniques such as bounds checking and
@@ -356,8 +356,8 @@ purposes of this chapter we will focus on:
 
 * Preventing memory vulnerabilities in the first place, thus stopping
   the attacker from obtaining powerful read/write primitives.
-* Mitigating the effects of read/write primitives, e.g. with mechanisms
-  to maintain [Control-Flow Integrity (CFI)](#cfi).
+* Mitigating the effects of read/write primitives, e.g. with mechanisms to
+  maintain [Control-Flow Integrity (CFI)](#control-flow-integrity-cfi).
 
 ## Stack buffer overflows
 
@@ -506,11 +506,11 @@ the attacker's wishes.
 
 Some of these vulnerabilities can be mitigated with the measures described in
 this section, but often more general measures to ensure memory safety or
-[Control-Flow Integrity](#cfi) are necessary. For example, in addition to the
-hardening of specific library functions, compilers can also implement automatic
-bounds checking for arrays where the array bound can be statically determined
-(`-fsanitize=bounds`), as well as various other "sanitizers". We will describe
-these measures in following sections.
+[Control-Flow Integrity](#control-flow-integrity-cfi) are necessary. For
+example, in addition to the hardening of specific library functions, compilers
+can also implement automatic bounds checking for arrays where the array bound
+can be statically determined (`-fsanitize=bounds`), as well as various other
+"sanitizers". We will describe these measures in following sections.
 
 ## Code reuse attacks
 
