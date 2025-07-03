@@ -1009,8 +1009,8 @@ lJTI0_0:
 When a function is called, the address of the instruction after the call
 instruction is stored in a register or on the stack. That address of the next
 instruction is called the "return address"\index{return address}. When the
-called function returns, it will use an instruction to jump to the return
-address. This is an indirect control flow, since the target of the jump isn't
+called function returns, it will use an instruction to branch to the return
+address. This is an indirect control flow, since the target of the branch isn't
 hard-coded in the instruction, but comes from a register or a memory location.
 If an attacker can change the value of the return address, they can redirect the
 control flow.
