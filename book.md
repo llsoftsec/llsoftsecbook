@@ -1236,7 +1236,9 @@ arm64e/pauthabi.
 
 Other hardening schemes based on Pointer Authentication which we're not covering
 further include: PACStack [@Liljestrand2021], Camouflage [@DenisCourmont2021],
-PAL [@Yoo2021], PTAuth [@farkhani2021], PAC it up [@Liljestrand2019], FIPAC [@Schilling2022], and more.
+PAL [@Yoo2021], PTAuth [@farkhani2021], PAC it up [@Liljestrand2019], FIPAC
+[@Schilling2022], and more. Some of these harden binaries against attacks also
+in other ways than protecting control flow.
 
 ###### pac-ret: Backward-Edge CFI { #sec:pac-ret }
 
