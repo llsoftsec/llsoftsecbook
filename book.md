@@ -1328,7 +1328,7 @@ forward-edge CFI scheme, as is done in the arm64e ABI [@McCall2019]. The Pointer
 Authentication instructions, however, are generic enough to also be useful in
 implementing more general memory safety measures, beyond CFI.
 
-##### BTI { #sec:bti }
+##### BTI and other coarse-grained CFI schemes { #sec:bti }
 
 [Branch Target Identification
 (BTI)](https://developer.arm.com/documentation/102433/0100/Jump-oriented-programming?lang=en)
