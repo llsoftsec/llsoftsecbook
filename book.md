@@ -1217,9 +1217,14 @@ so-called key\index{key} and a modifier\index{modifier}:
   hardening schemes will use different modifiers. Two examples of different
   hardening schemes built on top of Pointer Authentication are described in
   sections @sec:pac-ret (the pac-ret hardening scheme) and @sec:arm64e-pauthabi
-  (the arm64e/pauthabi hardening scheme).
-  The modifier can be thought of as a
+  (the arm64e/pauthabi hardening scheme). The modifier can be thought of as a
   [salt](https://en.wikipedia.org/wiki/Salt_(cryptography)).
+
+  When an attacker successfully takes a signed pointer from one context and
+  overwrites another pointer in another context with it, this is called a
+  pointer substitution attack\index{pointer substitution attack}. Using
+  different modifiers for different contexts makes pointer substitution attacks
+  harder.
 
 ![AArch64 sign and authenticate operations to convert raw pointers to signed
  pointers and vice versa](img/pauth_sign_auth){width=100% #fig:pauth-sign-auth }
