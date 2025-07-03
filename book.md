@@ -1317,12 +1317,16 @@ value.
 
 ###### arm64e and pauthabi: Forward-Edge CFI { #sec:arm64e-pauthabi }
 
+::: TODO
+The use of pauth
+in arm64e or pauthabi should be explained in more detail, including the concepts
+of signing and authentication oracles [259]{.issue}
+:::
+
 Pointer Authentication can also be used more widely, for example to implement a
 forward-edge CFI scheme, as is done in the arm64e ABI [@McCall2019]. The Pointer
 Authentication instructions, however, are generic enough to also be useful in
-implementing more general memory safety measures, beyond CFI. [The use of pauth
-in arm64e or pauthabi should be explained in more detail, including the concepts
-of signing and authentication oracles [259]{.issue}]{.todo}
+implementing more general memory safety measures, beyond CFI.
 
 ##### BTI { #sec:bti }
 
