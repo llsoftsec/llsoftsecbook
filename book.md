@@ -778,9 +778,8 @@ CFI schemes are sometimes classified as coarse-grained\index{coarse-grained CFI}
 or fine-grained\index{fine-grained CFI}. While there is no precise definition of
 these terms, coarse-grained CFI schemes typically have relatively coarse
 granularity. For example, a CFI scheme that allows an indirect function call to
-continue the execution at the start of any function, rather than for example
-only at the start of functions with a specific signature, is considered
-coarse-grained.
+continue the execution at the start of any function, rather than only at the
+start of functions with a specific signature, is considered coarse-grained.
 
 Forward-edge CFI schemes often rely on function type checks or use static
 analysis (points-to analysis) to identify potential control flow transfer
@@ -789,9 +788,9 @@ precision. For forward-edge CFI schemes, for example, schemes are classified
 based on whether or not they perform, among others, flow-sensitive analysis,
 context-sensitive analysis and class-hierarchy analysis.
 
-The next few subsections go into a bit more detail on the common approaches the
-most popular deployed, in-production, CFI schemes use to harden specific kinds
-of control flow transfers. CFI schemes used in production include:
+The next few subsections go into a bit more detail on the common CFI schemes.
+These CFI schemes are used in production to harden specific kinds of control
+flow transfers. They include:
 
 - [Clang CFI](https://clang.llvm.org/docs/ControlFlowIntegrityDesign.html)
 - arm64e, see @McCall2019 and pauthabi, see @Korobeynikov2024
@@ -818,7 +817,7 @@ For C code, most CFI schemes either put all functions into a single equivalence
 class, or partition functions based on their signature\index{function signature}.
 
 For example, arm64e\index{arm64e} and pauthabi\index{pauthabi} put all C
-functions in a single equivalence class, see @McCall2019. Examples of CFI schemes
+functions in a single equivalence class see @McCall2019. Examples of CFI schemes
 that partition C functions based on their signature include
 [kcfi](https://reviews.llvm.org/D119296) and
 [clang cfi](https://clang.llvm.org/docs/ControlFlowIntegrityDesign.html#forward-edge-cfi-for-indirect-function-calls).
@@ -1021,7 +1020,7 @@ control flow.
   ...
   ;; the bl instruction jumps to function f and
   ;; stores the return address, i.e. the address of
-  ;; the 'add' instruction in register x30
+  ;; the 'add' instruction, in register x30
   bl f
   add x0, x0, x1
   ...
@@ -1045,12 +1044,12 @@ Most backward-edge CFI schemes add checks before executing the return
 instruction to verify that the return address hasn't been tampered with.
 
 Shadow stack\index{shadow stack} approaches store the return address on a second
-stack, on the side. Some shadow stack approaches also store the return address
-in the original location in the normal stack. In those, before the return is
-executed, it verifies that the return value on both the regular stack and the
-shadow stack are equal. The approaches that only store the return address on the
-shadow stack have other mechanisms to make it hard to impossible for an attacker
-to overwrite the return address on the shadow stack.
+stack. Some shadow stack approaches also store the return address in the
+original location in the normal stack. In those, before the return is executed,
+it verifies that the return value on both the regular stack and the shadow stack
+are equal. The approaches that only store the return address on the shadow stack
+have other mechanisms to make it hard to impossible for an attacker to overwrite
+the return address on the shadow stack.
 
 A software-only implementation is the clang shadow stack, which is explained in
 more detail in section @sec:clang-shadow-stack. Hardware-supported shadow stacks
@@ -1279,7 +1278,7 @@ following "inputs":
 1. The address in `x30`, which is the return address,
 2. Secret key `IA`, as indicated by the `ia` in instruction `paciasp`. That key
    is not accessible by the program.
-3. As modifier, the current value of the stack pointer (`sp`), as indicated by
+3. As a modifier, the current value of the stack pointer (`sp`), as indicated by
    `sp` in the instruction `paciasp`.
 
 After the `paciasp` instruction, the value in `x30` is a signed pointer. The
