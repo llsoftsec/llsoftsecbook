@@ -727,15 +727,36 @@ When discussing mitigations against code reuse attacks, it is important to keep
 in mind that there are two capabilities the attacker must have for such attacks
 to work:
 
-* the ability to overwrite return addresses or function pointers
-* knowledge of the target addresses to overwrite them with (e.g. libc function
+- the ability to overwrite return addresses, function pointers or other code
+  pointers.
+- knowledge of the target addresses to overwrite them with (e.g. libc function
   entry points).
 
 When code reuse attacks were first described, programs used to contain absolute
 code pointers, and needed to be loaded at fixed addresses. The stack base was
 predictable, and libraries were loaded in predictable memory locations. This
 made code reuse attacks simple, as all of the addresses needed for a successful
-exploit were easy to discover.
+exploit were easy to discover. In this section, we're going to discuss
+mitigations that make it harder for an attacker to obtain these capabilities.
+
+The ability for an attacker to overwrite code pointers often boils down to the
+being able to overwrite them while they are stored in memory, rather than in
+machine registers\index{register}. Overwriting value in machine registers
+directly is often not possible. Attackers use memory
+vulnerabilities\index{memory vulnerability} to be able to overwrite pointers in
+memory. With that in mind, one could assume that code reuse mitigations are not
+necessary for programs written in memory-safe languages, as they should not have
+any memory vulnerabilities. However, most real-life programs written in
+memory-safe languages still contain at least portions of binary code written in
+unsafe languages. An attacker could obtain a write primitive in the unsafe
+portion of the program, and use it to overwrite code pointers in the memory-safe
+portion of the program. Therefore, mitigations against code reuse attacks are
+still relevant for programs written in memory-safe languages.
+
+Another reason that attackers could obtain write primitives in memory-safe
+programs is due to bugs in the compiler or the runtime. This is especially true
+for JIT-based languages, see section @sec:jit-compiler-vulnerabilities for more
+details.
 
 ### ASLR
 
@@ -1773,7 +1794,7 @@ section.
 [^rust]: Rust also provides features that provide temporal memory safety
 and thread safety.
 
-## JIT compiler vulnerabilities
+## JIT compiler vulnerabilities { #sec:jit-compiler-vulnerabilities }
 
 Compiler correctness is obviously very important, as miscompilation creates
 buggy programs even when the source code has no bugs. What might be less obvious
