@@ -801,6 +801,27 @@ flow transfers. They include:
 - [Microsoft Control Flow Guard
 (CFG)](https://learn.microsoft.com/en-us/windows/win32/secbp/control-flow-guard)
 
+Table: A few of the key properties of the most common CFI schemes.
+
++---------------------+-------------+------------+-----------+------------+
+| Name                | forward-    | backward-  | fine-     | hardware-  |
+|                     | edge?       | edge?      | grained?  | based?     |
++=====================+=============+============+===========+============+
+| Clang CFI           | Yes         | No         | Yes       | No         |
++---------------------+-------------+------------+-----------+------------+
+| arm64e/pauthabi     | Yes         | No         | Yes       | Yes        |
++---------------------+-------------+------------+-----------+------------+
+| kcfi                | Yes         | No         | Yes       | No         |
++---------------------+-------------+------------+-----------+------------+
+| shadow stack        | No          | Yes        | Yes       | Depends    |
++---------------------+-------------+------------+-----------+------------+
+| pac-ret             | No          | Yes        | Yes       | Yes        |
++---------------------+-------------+------------+-----------+------------+
+| BTI, IBT            | Yes         | No         | No        | Yes        |
++---------------------+-------------+------------+-----------+------------+
+| Control Flow Guard  | Yes         | No         | No        | No         |
++---------------------+-------------+------------+-----------+------------+
+
 There are many more CFI approaches, often academic, but many of them are not
 widely used in production. This book focuses mostly on the deployed CFI schemes.
 
