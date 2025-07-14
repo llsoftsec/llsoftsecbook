@@ -1068,9 +1068,8 @@ Shadow stack\index{shadow stack} approaches store the return address on a second
 stack. Some shadow stack approaches also store the return address in the
 original location in the normal stack. In those, before the return is executed,
 it verifies that the return value on both the regular stack and the shadow stack
-are equal. The approaches that only store the return address on the shadow stack
-have other mechanisms to make it hard to impossible for an attacker to overwrite
-the return address on the shadow stack.
+are equal. All shadow stack approaches have mechanisms to make it hard to
+impossible for an attacker to overwrite the return address on the shadow stack.
 
 A software-only implementation is the clang shadow stack, which is explained in
 more detail in section @sec:clang-shadow-stack. Hardware-supported shadow stacks
