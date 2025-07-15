@@ -274,6 +274,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "pcc",
+      "name": "Peter Collingbourne",
+      "avatar_url": "https://avatars.githubusercontent.com/u/425024?v=4",
+      "profile": "https://github.com/pcc",
+      "contributions": [
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
