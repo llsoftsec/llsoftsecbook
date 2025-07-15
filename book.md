@@ -942,8 +942,7 @@ sure either `A::f`, `B::f`, `C::f` or `D::f` gets called and no other function.
 Similarly, the call `b->f()` should only be allowed if it ends up calling either
 `B::f` or `D::f`, but not `A::f` or `C::f`.
 
-It seems that clang-cfi implements this very fine-grained CFI scheme when
-enabling the
+clang-cfi implements this very fine-grained CFI scheme when enabling the
 [`-fsanitize=cfi-cast-strict` option](https://clang.llvm.org/docs/ControlFlowIntegrity.html#strictness),
 whereas arm64e and pauthabi implement a more coarse-grained CFI scheme that only
 (probabilistically) checks whether any call to method `f` is one of the
