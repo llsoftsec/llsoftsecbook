@@ -195,9 +195,24 @@ $body$
     return width>=1200;
   }
 
+  // Make sure that on reload, the scroll position of the main content
+  // is restored to the current position. The next few lines store the
+  // current scroll position before the page is unloaded.
+  // The actual restoring happens in the document.ready function.
+  jQuery(window).on('beforeunload', function () {
+    sessionStorage.setItem('mainScrollTop',
+                           jQuery('#main-content-col').scrollTop());
+  });
+
   jQuery(document).ready(function() {
     let toc_sidebar = jQuery('#toc-sidebar');
     let main_content_col = jQuery('#main-content-col');
+
+    // Restore scroll position of the main content column.
+    var savedScroll = sessionStorage.getItem('mainScrollTop');
+    if (savedScroll !== null) {
+      main_content_col.scrollTop(parseInt(savedScroll, 10));
+    }
 
     function setTocVisibility(visible) {
       if (visible) {
