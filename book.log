@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.6.23)  23 JUN 2025 14:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.7.15)  15 JUL 2025 14:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1651,7 +1651,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  31186 strings out of 476076
  566857 string characters out of 5793495
- 1987187 words of memory out of 5000000
+ 1986187 words of memory out of 5000000
  52032 multiletter control sequences out of 15000+600000
  646947 words of font info for 224 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1668,7 +1668,7 @@ ri10.pfb></texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></texlive/2
 023/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></texlive/2023/texmf-dist/fonts
 /type1/public/lm/lmtt10.pfb></texlive/2023/texmf-dist/fonts/type1/public/lm/lmt
 t8.pfb></texlive/2023/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on build/book.pdf (71 pages, 904685 bytes).
+Output written on build/book.pdf (71 pages, 904682 bytes).
 PDF statistics:
  1649 PDF objects out of 1728 (max. 8388607)
  1487 compressed objects within 15 object streams
