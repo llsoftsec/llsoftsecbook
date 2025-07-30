@@ -508,6 +508,161 @@ bounds checking for arrays where the array bound can be statically determined
 (`-fsanitize=bounds`), as well as various other "sanitizers". We will describe
 these measures in following sections.
 
+## Use After Free (UaF)
+
+A _[use after free]{.index entry="Use after free (UaF)"}_ (UaF) occurs when a variable is used (read and/or written)
+after it has been freed. Although this description assumes manual memory management using
+malloc/new and free/delete (heap allocation), if we think about memory as a resource
+one may apply the same idea more broadly. For example, getting a reference to a variable in the
+stack and using it after it has ended its scope, or somehow getting access to freed memory
+from a garbage collector. It is important to note that, although seemingly related, some
+authors prefer to not mix the definitions. For example, the
+[Common Weakness Enumeration]{.index entry="Common Weakness Enumeration (CWE)"} (CWE) page
+[only gives examples](https://cwe.mitre.org/data/definitions/416.html)
+using raw malloc/frees, without any mentions to cases with stack or garbage collector. Unless
+explicitly stated, the rest of this section assumes raw memory management with malloc/new and
+free/delete.
+
+Although some cases of UaF may just lead to unexpected software behavior
+or crashes, other cases may enable attackers to poison data and thereby alter program flow.
+There are many possibilities on how this can happen. Some of them
+depend on how the memory allocator manages its data. For example,
+if the attacker can trick the allocator to return the same address for two
+different allocation, that could lead to controllable data. This is shown in more
+detail in Example @ex:use-after-free. For an overview of heap exploiting techniques, see
+[@dhavalkapil2022].
+
+::: {.example #ex:use-after-free
+     caption="Simple UaF example"}
+
+```c
+struct auth_t {
+  char name[32];
+  int logged_in;
+};
+ 
+int main(int argc, char** argv) {
+  char line[50];
+ 
+  while(1) {
+    printf("[ auth = %p, service = %p ]\n", auth, service);
+ 
+    if (fgets(line, sizeof(line), stdin) == NULL) break;
+ 
+    // Usage: auth <name>
+    if (strncmp(line, "auth ", 5) == 0) {
+      auth = (struct auth_t*)malloc(sizeof(struct auth_t));
+
+      // Memory is only set to 0 here, not on free[1]
+      memset(auth, 0, sizeof(struct auth_t));
+
+      if (strlen(line + 5) < 31) {
+        strcpy(auth->name, line + 5);
+      }
+    }
+ 
+    // Usage: reset
+    else if (strncmp(line, "reset", 5) == 0) {
+      // [1]
+      free(auth);
+    }
+
+    // Usage: service <service-name>
+    else if (strncmp(line, "service ", 8) == 0) {
+      service = strdup(line + 8);
+    }
+
+    // Usage: login
+    else if (strncmp(line, "login", 5) == 0) {
+      // Possible use-after-free:
+      if (auth && auth->logged_in) {
+        printf("You are already logged in!\n");
+      } else {
+        printf("NOT AUTHORIZED!\n");
+      }
+    }
+  }
+
+  return 0;
+}
+```
+
+
+The exploit below may not work in every system, as it assumes that
+calling malloc+free+malloc will result in both calls to malloc returning the same pointer.
+The example execution below tricks the software into thinking the user is logged in, by
+taking advantage of the UaF to change the boolean:
+
+```
+> auth admin                                   
+[ auth = 0x78322e1000, service = 0x0 ]       
+> reset                                        
+[ auth = 0x78322e1000, service = 0x0 ]       
+> service aaaaaaaaa0aaaaaaaaa0aaaaaaaaa0121    
+[ auth = 0x78322e1000, service = 0x78322e1000 ]
+> login                                        
+You are already logged in!
+```
+
+In this example, four commands are issued:
+
+1) `auth admin`  will allocate the `auth_t` structure for the first time. At
+this point, the user has a name, but is not authorized (`logged_in` is `false`).
+
+2) `reset`  will free the memory (but pointer to `auth` is not set to `nullptr`).
+`service (...)` will allocate a new string, potentially at the same address
+where the `auth_t` structure was previously allocated. 
+
+3) `service aaaaaaaaa0aaaaaaaaa0aaaaaaaaa0121` will end up setting the memory
+previously pointing to an `auth_t`.
+
+4) `login` will use the dangling `auth_t` pointer. If this memory has been
+reallocated to the attacker controlled string, it will appear as if the field
+`name` is set to `aaaaaaaaa0aaaaaaaaa0aaaaaaaaa012` and the boolean
+`logged_in` to `true`.
+
+:::
+
+Detecting UaFs is usually not an easy task, as it depends not only on
+user inputs, but sometimes also on the execution flow. It can get even more
+complicated in multi-threaded environments. Therefore, many different UaF
+detection tools have been built, based on a number of different approaches:
+
+Some detectors intercept calls to delete / free to inject a known value to
+the variables and then run the software looking for crashes that include
+that value. Another useful tool for detecting UaF is Arm's
+MTE (Memory Tagging Extension), discussed in section
+@sec:preventing-and-detecting-memory-errors.
+
+Fuzzing (generating random inputs) can also be useful, potentially used at
+the same time as other tools.
+
+One could also include different algorithms to reduce the probability of exploiting
+use-after-free in allocators as a mitigation strategy, garbage collectors or
+reference-count based memory allocators.
+
+Preventing UaF from happening may involve multiple approaches, depending on the
+context. From simple code changes, such as initializing allocated variables, to
+more elaborate changes, such as changing how the memory allocator works to
+avoid reusing specific memory locations. On top of that, decreasing relevance
+of UaF for attackers can be another interesting perspective (meaning, even if
+a UaF is present, decreasing the likelihood of it being exploitable). For
+example, MTE sync mode can force an application crash as soon as the UaF occurs,
+while Pointer Authentication (PAC) can be used to sign pointers so that even if
+they get poisoned, they cannot be used (more details in
+section @sec:pointer-authentication ).
+
+::: TODO
+Dive more into UaF detection and mitigations. Suggested starting points:
+
+- Allocators using different algorithms to reduce the probability of exploiting use-after-free (this might be a whole section of it's own?)
+- Type-aware allocation and deallocation functions, which explains the motivation for this feature at https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2025/p2719r5.html#a-concrete-use-case.
+- Languages that use garbage collection or reference counting
+:::
+
+Those are not exaustive lists of tools to detect, mitigate and prevent UaFs.
+But this section's goal was to give a brief introduction to the topic.
+
 ## Code reuse attacks
 
 In the early days of memory vulnerability exploitation, attackers could simply
@@ -876,7 +1031,7 @@ it's not actually used for the function return.
   register as reserved, and is required by `-fsanitize=shadow-call-stack`
   on some platforms.
 
-#### Pointer Authentication
+#### Pointer Authentication { #sec:pointer-authentication }
 
 In addition to software implementations, there are a number of hardware-based
 CFI implementations. A hardware-based implementation has the potential to offer
@@ -1115,7 +1270,7 @@ by design inadequate to protect against this different type of attacks.  In the
 next section, we will look at what we can do to address them at their source:
 memory errors.
 
-## Preventing and detecting memory errors
+## Preventing and detecting memory errors { #sec:preventing-and-detecting-memory-errors }
 
 We have so far discussed how languages that are [not memory
 safe](#a-bit-of-background-on-memory-vulnerabilities), like C and C++, are
