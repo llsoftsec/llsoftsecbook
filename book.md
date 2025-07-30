@@ -508,6 +508,124 @@ bounds checking for arrays where the array bound can be statically determined
 (`-fsanitize=bounds`), as well as various other "sanitizers". We will describe
 these measures in following sections.
 
+## Use After Free (UaF)
+
+An use-after-free (UaF) occurs when a variable is used (read and/or written)
+after it has been freed. Although some UaF may be just harmless bugs that leads
+to weird software behavior or application crashes, there are some cases where
+they can potentially result in data being poisoned to change the intended
+program flow. There are many possibilities on how this can happen, some of them
+depend on how the software's memory allocator manages it's data. For example,
+if the attacker can trick the allocator to return the same address for two
+different allocations (see example below), that could lead to controllable data.
+The attacker's goal of taking advantage of an UaF can also vary. From simply
+changing booleans (e.g. is\_logged\_in) to function pointers that can corrupt the
+control flow, allowing the attacker to call unintended functions in the system.
+
+There are many sources of information regarding how to exploit UaF over the
+internet. A summary of heap exploiting techniques
+[can be found here](https://heap-exploitation.dhavalkapil.com/attacks). But for
+the sake of completeness, a very simple example code is shown bellow in this
+textbook. The exploit below may not work in any system, as it assumes that
+calling malloc+free+malloc will return the same pointer in the two calls.
+
+```
+struct auth_t {
+  char name[32];
+  int logged_in;
+};
+ 
+int main(int argc, char** argv) {
+  char line[50];
+ 
+  while(1) {
+    printf("[ auth = %p, service = %p ]\n", auth, service);
+ 
+    if (fgets(line, sizeof(line), stdin) == NULL) break;
+ 
+    // Usage: auth <name>
+    if (strncmp(line, "auth ", 5) == 0) {
+      auth = (struct auth_t*)malloc(sizeof(struct auth_t));
+      memset(auth, 0, sizeof(struct auth_t));               // Memory is only set to 0 here, not on free[1]
+      if (strlen(line + 5) < 31) {
+        strcpy(auth->name, line + 5);
+      }
+    }
+ 
+    // Usage: reset
+    else if (strncmp(line, "reset", 5) == 0) {
+      free(auth);                                           // [1]
+    }
+
+    // Usage: service <service-name>
+    else if (strncmp(line, "service ", 8) == 0) {
+      service = strdup(line + 8);
+    }
+
+    // Usage: login
+    else if (strncmp(line, "login", 5) == 0) {
+      if (auth && auth->logged_in) {                        // Possible use-after-free
+        printf("You are already logged in!\n");
+      } else {
+        printf("NOT AUTHORIZED!\n");
+      }
+    }
+  }
+
+  return 0;
+}
+```
+
+The example below tricks the software into thinking the user is logged in, by
+taking advantage of the UaF to change the boolean:
+
+```
+auth admin                                   
+[ auth = 0x78322e1000, service = 0x0 ]       
+reset                                        
+[ auth = 0x78322e1000, service = 0x0 ]       
+service aaaaaaaaa0aaaaaaaaa0aaaaaaaaa0121    
+[ auth = 0x78322e1000, service = 0x78322e1000 ]
+login                                        
+You are already logged in!
+```
+
+In this example, four commands are issued:
+1) 'auth admin'  will allocate the auth\_t structure for the first time. At
+this point, the user has a name, but is not authorized (logged\_in is false).
+2) 'reset'  will free the memory. service (...)  will allocate a new string
+which, if it's initialized at the same memory location as auth, can be used to
+change data in the auth\_t structure.
+3) The structure is composed by 32 chars and a boolean, so
+'service aaaaaaaaa0aaaaaaaaa0aaaaaaaaa0121' is setting the field "name" to
+aaaaaaaaa0aaaaaaaaa0aaaaaaaaa012 and the boolean logged\_in to true (1).
+Therefore, the next call to login  will say that the user is logged in.
+4) 'login' will show that the user is logged in (it shouldn't)
+
+Detecting use-after-frees is usually not an easy task, as it depend not only on
+user inputs, but sometimes also on the execution flow. It can get even more
+complicated in multi-threaded environments. Some UaF detectors intercept calls
+for delete / free to inject a known value to the variables and then run the
+software looking for crashes that include that value. Another useful tool for
+detecting UaF is Arm's MTE (Memory Tagging Extension), discussed in
+[another section](#preventing-and-detecting-memory-errors). And finally,
+fuzzing (generating random inputs) can also be useful, potentially used at
+the same time as other tools. In the specific cases where UaF is used to
+corrupt function pointers, Arm's PAC (Pointer Authentication Code) may be
+used. PAC is discussed in [another section](#pointer-authentication) in this
+book.
+
+Preventing UaF from happening may involve multiple approaches, depending on the
+context. From simple code changes, such as initializing allocated variables, to
+more elaborate changes, such as changing how the memory allocator works to
+avoid reusing specific memory locations. On top of that, decreasing relevance
+of UaF for attackers can be another interesting perspective (meaning, even if
+an UaF is present, decreasing the likelihood of it being exploitable). For
+example, MTE sync mode can force an application crash as soon as the UaF occurs,
+while Pointer Authentication (PAC) can be used to sign pointers so that even if
+they get poisoned, they cannot be used (more details in
+[this section](#pointer-authentication)).
+
 ## Code reuse attacks
 
 In the early days of memory vulnerability exploitation, attackers could simply
