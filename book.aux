@@ -31,7 +31,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}A bit of background on memory vulnerabilities}{6}{section.2.1}\protected@file@percent }
 \newlabel{a-bit-of-background-on-memory-vulnerabilities}{{2.1}{6}{A bit of background on memory vulnerabilities}{section.2.1}{}}
 \citation{ref-Hicks2014}
-\BKM@entry{id=5,dest={73656374696F6E2E322E32},srcline={392}}{5C3337365C3337375C303030455C303030785C303030705C3030306C5C3030306F5C303030695C303030745C303030615C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030705C303030725C303030695C3030306D5C303030695C303030745C303030695C303030765C303030655C30303073}
+\BKM@entry{id=5,dest={73656374696F6E2E322E32},srcline={393}}{5C3337365C3337375C303030455C303030785C303030705C3030306C5C3030306F5C303030695C303030745C303030615C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030705C303030725C303030695C3030306D5C303030695C303030745C303030695C303030765C303030655C30303073}
 \citation{ref-Miller2012}
 \@writefile{tdo}{\contentsline {todo}{3. {Discuss threat models elsewhere in book and refer to that section here \href  {https://github.com/llsoftsec/llsoftsecbook/issues/161}{\#161}}}{7}{section*.4}\protected@file@percent }
 \pgfsyspdfmark {pgfid7}{23284078}{28967303}
@@ -51,121 +51,162 @@
 \pgfsyspdfmark {pgfid17}{19498269}{19127312}
 \citation{ref-Dullien2020}
 \citation{ref-Beer2021}
-\BKM@entry{id=6,dest={73656374696F6E2E322E33},srcline={600}}{5C3337365C3337375C303030535C303030745C303030615C303030635C3030306B5C3030305C3034305C303030625C303030755C303030665C303030665C303030655C303030725C3030305C3034305C3030306F5C303030765C303030655C303030725C303030665C3030306C5C3030306F5C303030775C30303073}
+\BKM@entry{id=6,dest={73656374696F6E2E322E33},srcline={602}}{5C3337365C3337375C303030535C303030745C303030615C303030635C3030306B5C3030305C3034305C303030625C303030755C303030665C303030665C303030655C303030725C3030305C3034305C3030306F5C303030765C303030655C303030725C303030665C3030306C5C3030306F5C303030775C30303073}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Stack buffer overflows}{10}{section.2.3}\protected@file@percent }
 \newlabel{stack-buffer-overflows}{{2.3}{10}{Stack buffer overflows}{section.2.3}{}}
+\newlabel{ex:stack-buffer-overflow}{{2.3}{10}{Stack buffer overflows}{section*.7}{}}
+\newlabel{ex:stack-buffer-overflow}{{1}{10}{Stack buffer overflows}{example.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Stack frame layout for stack buffer overflow example}}{11}{figure.caption.8}\protected@file@percent }
 \citation{ref-AlephOne1996}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Stack frame layout for stack buffer overflow example}}{11}{figure.caption.7}\protected@file@percent }
 \citation{ref-Seacord2013}
 \citation{ref-Dowd2006}
 \citation{ref-Sharma2014}
-\BKM@entry{id=7,dest={73656374696F6E2E322E34},srcline={765}}{5C3337365C3337375C303030435C3030306F5C303030645C303030655C3030305C3034305C303030725C303030655C303030755C303030735C303030655C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
+\BKM@entry{id=7,dest={73656374696F6E2E322E34},srcline={778}}{5C3337365C3337375C303030435C3030306F5C303030645C303030655C3030305C3034305C303030725C303030655C303030755C303030735C303030655C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
 \citation{ref-Solar1997}
-\BKM@entry{id=8,dest={73756273656374696F6E2E322E342E31},srcline={783}}{5C3337365C3337375C303030525C303030655C303030745C303030755C303030725C3030306E5C3030302D5C3030306F5C303030725C303030695C303030655C3030306E5C303030745C303030655C303030645C3030305C3034305C303030705C303030725C3030306F5C303030675C303030725C303030615C3030306D5C3030306D5C303030695C3030306E5C30303067}
+\BKM@entry{id=8,dest={73756273656374696F6E2E322E342E31},srcline={796}}{5C3337365C3337375C303030525C303030655C303030745C303030755C303030725C3030306E5C3030302D5C3030306F5C303030725C303030695C303030655C3030306E5C303030745C303030655C303030645C3030305C3034305C303030705C303030725C3030306F5C303030675C303030725C303030615C3030306D5C3030306D5C303030695C3030306E5C30303067}
 \citation{ref-Shacham2007}
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Code reuse attacks}{13}{section.2.4}\protected@file@percent }
 \newlabel{code-reuse-attacks}{{2.4}{13}{Code reuse attacks}{section.2.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Return-oriented programming}{13}{subsection.2.4.1}\protected@file@percent }
 \newlabel{return-oriented-programming}{{2.4.1}{13}{Return-oriented programming}{subsection.2.4.1}{}}
-\@writefile{tdo}{\contentsline {todo}{6. Explain how these gadgets could result from C/C++ code. The current versions are slightly tweaked by hand to have more manageable offsets. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/164}{\#164}}{14}{section*.8}\protected@file@percent }
-\pgfsyspdfmark {pgfid18}{19498269}{17325072}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Figure 1: ROP example control flow}}{15}{figure.caption.9}\protected@file@percent }
+\@writefile{tdo}{\contentsline {todo}{6. Explain how these gadgets could result from C/C++ code. The current versions are slightly tweaked by hand to have more manageable offsets. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/164}{\#164}}{14}{section*.9}\protected@file@percent }
+\pgfsyspdfmark {pgfid18}{19498269}{15752208}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Figure 1: ROP example control flow}}{15}{figure.caption.10}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:rop-control-flow}{{2.2}{15}{Figure 1: ROP example control flow}{figure.caption.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Figure 2: ROP example fake call stack}}{16}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:rop-call-stack}{{2.3}{16}{Figure 2: ROP example fake call stack}{figure.caption.10}{}}
-\BKM@entry{id=9,dest={73756273656374696F6E2E322E342E32},srcline={962}}{5C3337365C3337375C3030304A5C303030755C3030306D5C303030705C3030302D5C3030306F5C303030725C303030695C303030655C3030306E5C303030745C303030655C303030645C3030305C3034305C303030705C303030725C3030306F5C303030675C303030725C303030615C3030306D5C3030306D5C303030695C3030306E5C30303067}
+\newlabel{fig:rop-control-flow}{{2.2}{15}{Figure 1: ROP example control flow}{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Figure 2: ROP example fake call stack}}{16}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:rop-call-stack}{{2.3}{16}{Figure 2: ROP example fake call stack}{figure.caption.11}{}}
+\BKM@entry{id=9,dest={73756273656374696F6E2E322E342E32},srcline={975}}{5C3337365C3337375C3030304A5C303030755C3030306D5C303030705C3030302D5C3030306F5C303030725C303030695C303030655C3030306E5C303030745C303030655C303030645C3030305C3034305C303030705C303030725C3030306F5C303030675C303030725C303030615C3030306D5C3030306D5C303030695C3030306E5C30303067}
 \citation{ref-Bletsch2011}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Jump-oriented programming}{17}{subsection.2.4.2}\protected@file@percent }
 \newlabel{jump-oriented-programming}{{2.4.2}{17}{Jump-oriented programming}{subsection.2.4.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Figure 3: JOP example}}{17}{figure.caption.11}\protected@file@percent }
-\newlabel{fig:jop}{{2.4}{17}{Figure 3: JOP example}{figure.caption.11}{}}
-\@writefile{tdo}{\contentsline {todo}{7. The gadgets in the figure are made up, chosen to highlight that each gadget can end in a different type of indirect control flow transfer instruction. Consider replacing them with more realistic ones. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/165}{\#165}}{17}{section*.12}\protected@file@percent }
-\pgfsyspdfmark {pgfid19}{19498269}{17536769}
-\BKM@entry{id=10,dest={73756273656374696F6E2E322E342E33},srcline={1001}}{5C3337365C3337375C303030435C3030306F5C303030755C3030306E5C303030745C303030655C303030725C303030665C303030655C303030695C303030745C3030305C3034305C3030304F5C303030625C3030306A5C303030655C303030635C303030745C3030302D5C3030306F5C303030725C303030695C303030655C3030306E5C303030745C303030655C303030645C3030305C3034305C303030705C303030725C3030306F5C303030675C303030725C303030615C3030306D5C3030306D5C303030695C3030306E5C30303067}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Figure 3: JOP example}}{17}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:jop}{{2.4}{17}{Figure 3: JOP example}{figure.caption.12}{}}
+\@writefile{tdo}{\contentsline {todo}{7. The gadgets in the figure are made up, chosen to highlight that each gadget can end in a different type of indirect control flow transfer instruction. Consider replacing them with more realistic ones. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/165}{\#165}}{17}{section*.13}\protected@file@percent }
+\pgfsyspdfmark {pgfid19}{19498269}{15963905}
+\BKM@entry{id=10,dest={73756273656374696F6E2E322E342E33},srcline={1014}}{5C3337365C3337375C303030435C3030306F5C303030755C3030306E5C303030745C303030655C303030725C303030665C303030655C303030695C303030745C3030305C3034305C3030304F5C303030625C3030306A5C303030655C303030635C303030745C3030302D5C3030306F5C303030725C303030695C303030655C3030306E5C303030745C303030655C303030645C3030305C3034305C303030705C303030725C3030306F5C303030675C303030725C303030615C3030306D5C3030306D5C303030695C3030306E5C30303067}
 \citation{ref-Schuster2015}
 \citation{ref-Schuster2015}
-\BKM@entry{id=11,dest={73756273656374696F6E2E322E342E34},srcline={1028}}{5C3337365C3337375C303030535C303030695C303030675C303030725C303030655C303030745C303030755C303030725C3030306E5C3030302D5C3030306F5C303030725C303030695C303030655C3030306E5C303030745C303030655C303030645C3030305C3034305C303030705C303030725C3030306F5C303030675C303030725C303030615C3030306D5C3030306D5C303030695C3030306E5C30303067}
+\BKM@entry{id=11,dest={73756273656374696F6E2E322E342E34},srcline={1041}}{5C3337365C3337375C303030535C303030695C303030675C303030725C303030655C303030745C303030755C303030725C3030306E5C3030302D5C3030306F5C303030725C303030695C303030655C3030306E5C303030745C303030655C303030645C3030305C3034305C303030705C303030725C3030306F5C303030675C303030725C303030615C3030306D5C3030306D5C303030695C3030306E5C30303067}
 \citation{ref-Bosman2014}
-\BKM@entry{id=12,dest={73656374696F6E2E322E35},srcline={1044}}{5C3337365C3337375C3030304D5C303030695C303030745C303030695C303030675C303030615C303030745C303030695C3030306F5C3030306E5C303030735C3030305C3034305C303030615C303030675C303030615C303030695C3030306E5C303030735C303030745C3030305C3034305C303030635C3030306F5C303030645C303030655C3030305C3034305C303030725C303030655C303030755C303030735C303030655C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
-\BKM@entry{id=13,dest={73756273656374696F6E2E322E352E31},srcline={1065}}{5C3337365C3337375C303030415C303030535C3030304C5C30303052}
+\BKM@entry{id=12,dest={73656374696F6E2E322E35},srcline={1057}}{5C3337365C3337375C3030304D5C303030695C303030745C303030695C303030675C303030615C303030745C303030695C3030306F5C3030306E5C303030735C3030305C3034305C303030615C303030675C303030615C303030695C3030306E5C303030735C303030745C3030305C3034305C303030635C3030306F5C303030645C303030655C3030305C3034305C303030725C303030655C303030755C303030735C303030655C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Counterfeit Object-oriented programming}{18}{subsection.2.4.3}\protected@file@percent }
 \newlabel{counterfeit-object-oriented-programming}{{2.4.3}{18}{Counterfeit Object-oriented programming}{subsection.2.4.3}{}}
-\@writefile{tdo}{\contentsline {todo}{8. It would be nice to have a small example of a COOP attack, similar to the JOP example in the previous section. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/261}{\#261}}{18}{section*.13}\protected@file@percent }
-\pgfsyspdfmark {pgfid20}{19498269}{31061711}
+\@writefile{tdo}{\contentsline {todo}{8. It would be nice to have a small example of a COOP attack, similar to the JOP example in the previous section. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/261}{\#261}}{18}{section*.14}\protected@file@percent }
+\pgfsyspdfmark {pgfid20}{19498269}{29488847}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.4}Sigreturn-oriented programming}{18}{subsection.2.4.4}\protected@file@percent }
-\newlabel{sigreturn-oriented-programming}{{2.4.4}{18}{Sigreturn-oriented programming}{subsection.2.4.4}{}}
+\newlabel{sec:sigreturn-oriented-programming}{{2.4.4}{18}{Sigreturn-oriented programming}{subsection.2.4.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.5}Mitigations against code reuse attacks}{18}{section.2.5}\protected@file@percent }
 \newlabel{mitigations-against-code-reuse-attacks}{{2.5}{18}{Mitigations against code reuse attacks}{section.2.5}{}}
+\BKM@entry{id=13,dest={73756273656374696F6E2E322E352E31},srcline={1102}}{5C3337365C3337375C303030415C303030535C3030304C5C30303052}
 \citation{ref-Serna2012}
-\BKM@entry{id=14,dest={73756273656374696F6E2E322E352E32},srcline={1090}}{5C3337365C3337375C303030435C303030465C30303049}
-\citation{ref-Burow2017}
+\BKM@entry{id=14,dest={73756273656374696F6E2E322E352E32},srcline={1128}}{5C3337365C3337375C303030435C3030306F5C3030306E5C303030745C303030725C3030306F5C3030306C5C3030302D5C303030665C3030306C5C3030306F5C303030775C3030305C3034305C303030495C3030306E5C303030745C303030655C303030675C303030725C303030695C303030745C303030795C3030305C3034305C3030305C3035305C303030435C303030465C303030495C3030305C303531}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}ASLR}{19}{subsection.2.5.1}\protected@file@percent }
 \newlabel{aslr}{{2.5.1}{19}{ASLR}{subsection.2.5.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}CFI}{19}{subsection.2.5.2}\protected@file@percent }
-\newlabel{cfi}{{2.5.2}{19}{CFI}{subsection.2.5.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.2.1}Clang CFI}{19}{subsubsection.2.5.2.1}\protected@file@percent }
-\newlabel{clang-cfi}{{2.5.2.1}{19}{Clang CFI}{subsubsection.2.5.2.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.2.2}Clang Shadow Stack}{20}{subsubsection.2.5.2.2}\protected@file@percent }
-\newlabel{clang-shadow-stack}{{2.5.2.2}{20}{Clang Shadow Stack}{subsubsection.2.5.2.2}{}}
-\citation{ref-Rutland2017}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.2.3}Pointer Authentication}{21}{subsubsection.2.5.2.3}\protected@file@percent }
-\newlabel{pointer-authentication}{{2.5.2.3}{21}{Pointer Authentication}{subsubsection.2.5.2.3}{}}
-\citation{ref-Liljestrand2021}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Control-flow Integrity (CFI)}{19}{subsection.2.5.2}\protected@file@percent }
+\newlabel{control-flow-integrity-cfi}{{2.5.2}{19}{Control-flow Integrity (CFI)}{subsection.2.5.2}{}}
+\citation{ref-Burow2017}
 \citation{ref-McCall2019}
-\@writefile{tdo}{\contentsline {todo}{9. {Add more references to relevant research \href  {https://github.com/llsoftsec/llsoftsecbook/issues/166}{\#166}}}{22}{section*.14}\protected@file@percent }
-\pgfsyspdfmark {pgfid21}{17850818}{17170823}
-\pgfsyspdfmark {pgfid24}{33391901}{17184930}
-\pgfsyspdfmark {pgfid25}{35243292}{16959200}
-\@writefile{tdo}{\contentsline {todo}{10. {Mention more Pointer Authentication uses in later section, and add link here \href  {https://github.com/llsoftsec/llsoftsecbook/issues/167}{\#167}}}{22}{section*.15}\protected@file@percent }
-\pgfsyspdfmark {pgfid26}{10184865}{12845447}
-\@writefile{tdo}{\contentsline {todo}{11. {The use of pauth in arm64e or pauthabi should be explained in more detail, including the concepts of signing and authentication oracles \href  {https://github.com/llsoftsec/llsoftsecbook/issues/259}{\#259}}}{22}{section*.16}\protected@file@percent }
-\pgfsyspdfmark {pgfid31}{10403318}{12845447}
-\pgfsyspdfmark {pgfid29}{33391901}{10642178}
-\pgfsyspdfmark {pgfid30}{35243292}{10416448}
-\pgfsyspdfmark {pgfid34}{33391901}{953698}
-\pgfsyspdfmark {pgfid35}{35243292}{727968}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.2.4}BTI}{22}{subsubsection.2.5.2.4}\protected@file@percent }
-\newlabel{bti}{{2.5.2.4}{22}{BTI}{subsubsection.2.5.2.4}{}}
+\citation{ref-Korobeynikov2024}
+\citation{ref-Cheeseman2019}
+\gdef \LT@i {\LT@entry 
+    {1}{90.85455pt}\LT@entry 
+    {1}{65.99258pt}\LT@entry 
+    {1}{62.13144pt}\LT@entry 
+    {1}{58.27483pt}\LT@entry 
+    {1}{56.13144pt}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces A few of the key properties of the most common CFI schemes.}}{20}{table.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.2.1}General CFI principles}{20}{subsubsection.2.5.2.1}\protected@file@percent }
+\newlabel{general-cfi-principles}{{2.5.2.1}{20}{General CFI principles}{subsubsection.2.5.2.1}{}}
+\newlabel{protecting-forward-indirect-function-calls}{{2.5.2.1.1}{20}{Protecting (forward) indirect function calls}{paragraph.2.5.2.1.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.5.2.1.1}Protecting (forward) indirect function calls}{20}{paragraph.2.5.2.1.1}\protected@file@percent }
+\citation{ref-McCall2019}
+\newlabel{}{{2}{21}{Protecting (forward) indirect function calls}{example.2}{}}
+\newlabel{ex:qsort-cfi}{{2.5.2.1.1}{21}{Protecting (forward) indirect function calls}{section*.15}{}}
+\newlabel{ex:qsort-cfi}{{3}{21}{Protecting (forward) indirect function calls}{example.3}{}}
+\newlabel{protecting-forward-virtual-calls}{{2.5.2.1.2}{21}{Protecting (forward) virtual calls}{paragraph.2.5.2.1.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.5.2.1.2}Protecting (forward) virtual calls}{21}{paragraph.2.5.2.1.2}\protected@file@percent }
+\newlabel{}{{4}{21}{Protecting (forward) virtual calls}{example.4}{}}
+\citation{ref-McCall2019}
+\newlabel{protecting-forward-switch-jumps}{{2.5.2.1.3}{22}{Protecting (forward) switch jumps}{paragraph.2.5.2.1.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.5.2.1.3}Protecting (forward) switch jumps}{22}{paragraph.2.5.2.1.3}\protected@file@percent }
+\newlabel{}{{5}{22}{Protecting (forward) switch jumps}{example.5}{}}
+\newlabel{protecting-backward-edge-returns}{{2.5.2.1.4}{24}{Protecting (backward-edge) returns}{paragraph.2.5.2.1.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.5.2.1.4}Protecting (backward-edge) returns}{24}{paragraph.2.5.2.1.4}\protected@file@percent }
+\newlabel{}{{6}{24}{Protecting (backward-edge) returns}{example.6}{}}
+\newlabel{other-code-pointers-that-may-need-protection}{{2.5.2.1.5}{25}{Other code pointers that may need protection}{paragraph.2.5.2.1.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.5.2.1.5}Other code pointers that may need protection}{25}{paragraph.2.5.2.1.5}\protected@file@percent }
+\@writefile{tdo}{\contentsline {todo}{9. {Should we list examples of indirect control flow from other languages too?}}{25}{section*.16}\protected@file@percent }
+\pgfsyspdfmark {pgfid21}{15407717}{34472327}
+\pgfsyspdfmark {pgfid24}{33391901}{34486434}
+\pgfsyspdfmark {pgfid25}{35243292}{34260704}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.2.2}Detailed descriptions of a few CFI schemes}{25}{subsubsection.2.5.2.2}\protected@file@percent }
+\newlabel{detailed-descriptions-of-a-few-cfi-schemes}{{2.5.2.2}{25}{Detailed descriptions of a few CFI schemes}{subsubsection.2.5.2.2}{}}
+\newlabel{sec:clang-cfi}{{2.5.2.2.1}{25}{Clang CFI}{paragraph.2.5.2.2.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.5.2.2.1}Clang CFI}{25}{paragraph.2.5.2.2.1}\protected@file@percent }
+\citation{ref-Rutland2017}
+\newlabel{sec:clang-shadow-stack}{{2.5.2.2.2}{26}{Clang Shadow Stack}{paragraph.2.5.2.2.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.5.2.2.2}Clang Shadow Stack}{26}{paragraph.2.5.2.2.2}\protected@file@percent }
+\newlabel{sec:pointer-authentication}{{2.5.2.2.3}{26}{Pointer Authentication}{paragraph.2.5.2.2.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.5.2.2.3}Pointer Authentication}{26}{paragraph.2.5.2.2.3}\protected@file@percent }
+\citation{ref-Liljestrand2021}
+\citation{ref-DenisCourmont2021}
+\citation{ref-Yoo2021}
+\citation{ref-farkhani2021}
+\citation{ref-Liljestrand2019}
+\citation{ref-Schilling2022}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Figure 4: AArch64 sign and authenticate operations to convert raw pointers to signed pointers and vice versa}}{27}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:pauth-sign-auth}{{2.5}{27}{Figure 4: AArch64 sign and authenticate operations to convert raw pointers to signed pointers and vice versa}{figure.caption.17}{}}
+\newlabel{sec:pac-ret}{{2.5.2.2.3.1}{28}{pac-ret: Backward-Edge CFI}{subparagraph.2.5.2.2.3.1}{}}
+\@writefile{toc}{\contentsline {subparagraph}{\numberline {2.5.2.2.3.1}pac-ret: Backward-Edge CFI}{28}{subparagraph.2.5.2.2.3.1}\protected@file@percent }
+\newlabel{ex:pac-ret}{{2.5.2.2.3.1}{28}{pac-ret: Backward-Edge CFI}{section*.18}{}}
+\newlabel{ex:pac-ret}{{7}{28}{pac-ret: Backward-Edge CFI}{example.7}{}}
+\citation{ref-McCall2019}
+\newlabel{sec:arm64e-pauthabi}{{2.5.2.2.3.2}{29}{arm64e and pauthabi: Forward-Edge CFI}{subparagraph.2.5.2.2.3.2}{}}
+\@writefile{toc}{\contentsline {subparagraph}{\numberline {2.5.2.2.3.2}arm64e and pauthabi: Forward-Edge CFI}{29}{subparagraph.2.5.2.2.3.2}\protected@file@percent }
+\@writefile{tdo}{\contentsline {todo}{10. The use of pauth in arm64e or pauthabi should be explained in more detail, including the concepts of signing and authentication oracles \href  {https://github.com/llsoftsec/llsoftsecbook/issues/259}{\#259}}{29}{section*.19}\protected@file@percent }
+\pgfsyspdfmark {pgfid26}{19498269}{28077086}
+\newlabel{sec:bti}{{2.5.2.2.4}{29}{BTI and other coarse-grained CFI schemes}{paragraph.2.5.2.2.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.5.2.2.4}BTI and other coarse-grained CFI schemes}{29}{paragraph.2.5.2.2.4}\protected@file@percent }
 \citation{ref-Conti2015}
-\BKM@entry{id=15,dest={73656374696F6E2E322E36},srcline={1357}}{5C3337365C3337375C3030304E5C3030306F5C3030306E5C3030302D5C303030635C3030306F5C3030306E5C303030745C303030725C3030306F5C3030306C5C3030305C3034305C303030645C303030615C303030745C303030615C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
+\BKM@entry{id=15,dest={73656374696F6E2E322E36},srcline={1940}}{5C3337365C3337375C3030304E5C3030306F5C3030306E5C3030302D5C303030635C3030306F5C3030306E5C303030745C303030725C3030306F5C3030306C5C3030305C3034305C303030645C303030615C303030745C303030615C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
 \citation{ref-Beer2021}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.2.5}CFI implementation pitfalls}{23}{subsubsection.2.5.2.5}\protected@file@percent }
-\newlabel{cfi-implementation-pitfalls}{{2.5.2.5}{23}{CFI implementation pitfalls}{subsubsection.2.5.2.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.6}Non-control data attacks}{23}{section.2.6}\protected@file@percent }
-\newlabel{non-control-data-attacks}{{2.6}{23}{Non-control data attacks}{section.2.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.2.3}CFI implementation pitfalls}{30}{subsubsection.2.5.2.3}\protected@file@percent }
+\newlabel{cfi-implementation-pitfalls}{{2.5.2.3}{30}{CFI implementation pitfalls}{subsubsection.2.5.2.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}Non-control data attacks}{30}{section.2.6}\protected@file@percent }
+\newlabel{non-control-data-attacks}{{2.6}{30}{Non-control data attacks}{section.2.6}{}}
 \citation{ref-Chen2005}
 \citation{ref-Hu2016}
 \citation{ref-Hu2016}
 \citation{ref-Dullien2018}
 \citation{ref-Hu2016}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Figure 4: Stack frame for \texttt  {authenticate}}}{24}{figure.caption.17}\protected@file@percent }
-\newlabel{fig:non-control-data-attack}{{2.5}{24}{Figure 4: Stack frame for \texttt {authenticate}}{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces Figure 5: Stack frame for \texttt  {authenticate}}}{31}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:non-control-data-attack}{{2.6}{31}{Figure 5: Stack frame for \texttt {authenticate}}{figure.caption.20}{}}
 \citation{ref-Ispoglou2018}
-\BKM@entry{id=16,dest={73656374696F6E2E322E37},srcline={1477}}{5C3337365C3337375C303030505C303030725C303030655C303030765C303030655C3030306E5C303030745C303030695C3030306E5C303030675C3030305C3034305C303030615C3030306E5C303030645C3030305C3034305C303030645C303030655C303030745C303030655C303030635C303030745C303030695C3030306E5C303030675C3030305C3034305C3030306D5C303030655C3030306D5C3030306F5C303030725C303030795C3030305C3034305C303030655C303030725C303030725C3030306F5C303030725C30303073}
-\BKM@entry{id=17,dest={73756273656374696F6E2E322E372E31},srcline={1486}}{5C3337365C3337375C303030535C303030615C3030306E5C303030695C303030745C303030695C3030307A5C303030655C303030725C30303073}
-\@writefile{toc}{\contentsline {section}{\numberline {2.7}Preventing and detecting memory errors}{25}{section.2.7}\protected@file@percent }
-\newlabel{preventing-and-detecting-memory-errors}{{2.7}{25}{Preventing and detecting memory errors}{section.2.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.1}Sanitizers}{25}{subsection.2.7.1}\protected@file@percent }
-\newlabel{sanitizers}{{2.7.1}{25}{Sanitizers}{subsection.2.7.1}{}}
+\BKM@entry{id=16,dest={73656374696F6E2E322E37},srcline={2060}}{5C3337365C3337375C303030505C303030725C303030655C303030765C303030655C3030306E5C303030745C303030695C3030306E5C303030675C3030305C3034305C303030615C3030306E5C303030645C3030305C3034305C303030645C303030655C303030745C303030655C303030635C303030745C303030695C3030306E5C303030675C3030305C3034305C3030306D5C303030655C3030306D5C3030306F5C303030725C303030795C3030305C3034305C303030655C303030725C303030725C3030306F5C303030725C30303073}
+\BKM@entry{id=17,dest={73756273656374696F6E2E322E372E31},srcline={2069}}{5C3337365C3337375C303030535C303030615C3030306E5C303030695C303030745C303030695C3030307A5C303030655C303030725C30303073}
 \citation{ref-Serebryany2012}
-\@writefile{tdo}{\contentsline {todo}{12. {Add diagram to demonstrate how HWASAN works \href  {https://github.com/llsoftsec/llsoftsecbook/issues/168}{\#168}}}{26}{section*.18}\protected@file@percent }
-\pgfsyspdfmark {pgfid36}{30278868}{13631879}
-\pgfsyspdfmark {pgfid39}{33391901}{13645986}
-\pgfsyspdfmark {pgfid40}{35243292}{13420256}
-\BKM@entry{id=18,dest={73756273656374696F6E2E322E372E32},srcline={1624}}{5C3337365C3337375C303030425C3030306F5C303030755C3030306E5C303030645C303030735C3030305C3034305C303030635C303030685C303030655C303030635C3030306B5C303030695C3030306E5C30303067}
-\@writefile{tdo}{\contentsline {todo}{13. {Consider adding a whole section on MTE and its applications \href  {https://github.com/llsoftsec/llsoftsecbook/issues/169}{\#169}}}{27}{section*.19}\protected@file@percent }
-\pgfsyspdfmark {pgfid41}{17035219}{42336647}
-\pgfsyspdfmark {pgfid44}{33391901}{42350754}
-\pgfsyspdfmark {pgfid45}{35243292}{42125024}
-\@writefile{tdo}{\contentsline {todo}{14. Describe other mechanisms for detecting memory errors, both software-based (static analysis, library and buffer hardening) and hardware-based, e.g.~PAuth-based pointer integrity schemes, MTE etc \href  {https://github.com/llsoftsec/llsoftsecbook/issues/170}{\#170}}{27}{section*.20}\protected@file@percent }
-\pgfsyspdfmark {pgfid46}{19498269}{23882314}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.2}Bounds checking}{27}{subsection.2.7.2}\protected@file@percent }
-\newlabel{bounds-checking}{{2.7.2}{27}{Bounds checking}{subsection.2.7.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}Preventing and detecting memory errors}{32}{section.2.7}\protected@file@percent }
+\newlabel{preventing-and-detecting-memory-errors}{{2.7}{32}{Preventing and detecting memory errors}{section.2.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.1}Sanitizers}{32}{subsection.2.7.1}\protected@file@percent }
+\newlabel{sanitizers}{{2.7.1}{32}{Sanitizers}{subsection.2.7.1}{}}
+\@writefile{tdo}{\contentsline {todo}{11. {Add diagram to demonstrate how HWASAN works \href  {https://github.com/llsoftsec/llsoftsecbook/issues/168}{\#168}}}{33}{section*.21}\protected@file@percent }
+\pgfsyspdfmark {pgfid27}{30278868}{18743687}
+\pgfsyspdfmark {pgfid30}{33391901}{18757794}
+\pgfsyspdfmark {pgfid31}{35243292}{18532064}
+\@writefile{tdo}{\contentsline {todo}{12. {Consider adding a whole section on MTE and its applications \href  {https://github.com/llsoftsec/llsoftsecbook/issues/169}{\#169}}}{33}{section*.22}\protected@file@percent }
+\pgfsyspdfmark {pgfid32}{17035219}{8913287}
+\pgfsyspdfmark {pgfid35}{33391901}{8927394}
+\pgfsyspdfmark {pgfid36}{35243292}{8701664}
+\BKM@entry{id=18,dest={73756273656374696F6E2E322E372E32},srcline={2207}}{5C3337365C3337375C303030425C3030306F5C303030755C3030306E5C303030645C303030735C3030305C3034305C303030635C303030685C303030655C303030635C3030306B5C303030695C3030306E5C30303067}
+\@writefile{tdo}{\contentsline {todo}{13. Describe other mechanisms for detecting memory errors, both software-based (static analysis, library and buffer hardening) and hardware-based, e.g.~PAuth-based pointer integrity schemes, MTE etc \href  {https://github.com/llsoftsec/llsoftsecbook/issues/170}{\#170}}{34}{section*.23}\protected@file@percent }
+\pgfsyspdfmark {pgfid37}{19498269}{29387338}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.2}Bounds checking}{34}{subsection.2.7.2}\protected@file@percent }
+\newlabel{bounds-checking}{{2.7.2}{34}{Bounds checking}{subsection.2.7.2}{}}
 \citation{ref-Cook2023}
-\BKM@entry{id=19,dest={73656374696F6E2E322E38},srcline={1774}}{5C3337365C3337375C3030304A5C303030495C303030545C3030305C3034305C303030635C3030306F5C3030306D5C303030705C303030695C3030306C5C303030655C303030725C3030305C3034305C303030765C303030755C3030306C5C3030306E5C303030655C303030725C303030615C303030625C303030695C3030306C5C303030695C303030745C303030695C303030655C30303073}
-\@writefile{toc}{\contentsline {section}{\numberline {2.8}JIT compiler vulnerabilities}{29}{section.2.8}\protected@file@percent }
-\newlabel{jit-compiler-vulnerabilities}{{2.8}{29}{JIT compiler vulnerabilities}{section.2.8}{}}
+\BKM@entry{id=19,dest={73656374696F6E2E322E38},srcline={2357}}{5C3337365C3337375C3030304A5C303030495C303030545C3030305C3034305C303030635C3030306F5C3030306D5C303030705C303030695C3030306C5C303030655C303030725C3030305C3034305C303030765C303030755C3030306C5C3030306E5C303030655C303030725C303030615C303030625C303030695C3030306C5C303030695C303030745C303030695C303030655C30303073}
+\@writefile{toc}{\contentsline {section}{\numberline {2.8}JIT compiler vulnerabilities}{36}{section.2.8}\protected@file@percent }
+\newlabel{sec:jit-compiler-vulnerabilities}{{2.8}{36}{JIT compiler vulnerabilities}{section.2.8}{}}
 \citation{ref-Pizlo2020}
 \citation{ref-Wingo2011}
 \citation{ref-Glazunov2021}
@@ -174,52 +215,52 @@
 \citation{ref-Song2015}
 \citation{ref-saelo2021a}
 \citation{ref-saelo2021b}
-\BKM@entry{id=20,dest={636861707465722E33},srcline={1970}}{5C3337365C3337375C303030435C3030306F5C303030765C303030655C303030725C303030745C3030305C3034305C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C303030735C3030305C3034305C303030615C3030306E5C303030645C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C30303073}
-\BKM@entry{id=21,dest={73656374696F6E2E332E31},srcline={1995}}{5C3337365C3337375C303030545C303030695C3030306D5C303030695C3030306E5C303030675C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C30303073}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Covert channels and side-channels}{33}{chapter.3}\protected@file@percent }
+\BKM@entry{id=20,dest={636861707465722E33},srcline={2553}}{5C3337365C3337375C303030435C3030306F5C303030765C303030655C303030725C303030745C3030305C3034305C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C303030735C3030305C3034305C303030615C3030306E5C303030645C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C30303073}
+\BKM@entry{id=21,dest={73656374696F6E2E332E31},srcline={2578}}{5C3337365C3337375C303030545C303030695C3030306D5C303030695C3030306E5C303030675C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C30303073}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Covert channels and side-channels}{40}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{covert-channels-and-side-channels}{{3}{33}{Covert channels and side-channels}{chapter.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Timing side-channels}{33}{section.3.1}\protected@file@percent }
-\newlabel{timing-side-channels}{{3.1}{33}{Timing side-channels}{section.3.1}{}}
+\newlabel{covert-channels-and-side-channels}{{3}{40}{Covert channels and side-channels}{chapter.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Timing side-channels}{40}{section.3.1}\protected@file@percent }
+\newlabel{timing-side-channels}{{3.1}{40}{Timing side-channels}{section.3.1}{}}
 \citation{ref-Wu2018}
 \citation{ref-Soares2021}
 \citation{ref-Pornin2018}
 \citation{ref-Pornin2018}
-\BKM@entry{id=22,dest={73656374696F6E2E332E32},srcline={2058}}{5C3337365C3337375C303030435C303030615C303030635C303030685C303030655C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C30303073}
-\BKM@entry{id=23,dest={73756273656374696F6E2E332E322E31},srcline={2071}}{5C3337365C3337375C303030545C303030795C303030705C303030695C303030635C303030615C3030306C5C3030305C3034305C303030435C303030505C303030555C3030305C3034305C303030635C303030615C303030635C303030685C303030655C3030305C3034305C303030615C303030725C303030635C303030685C303030695C303030745C303030655C303030635C303030745C303030755C303030725C30303065}
-\@writefile{tdo}{\contentsline {todo}{15. {Also discuss the techniques implemented in the \href  {https://github.com/pietroborrello/constantine}{Constatine compiler} \href  {https://github.com/llsoftsec/llsoftsecbook/issues/172}{\#172}}}{34}{section*.21}\protected@file@percent }
-\pgfsyspdfmark {pgfid47}{20652426}{31326599}
-\@writefile{tdo}{\contentsline {todo}{16. {Also discuss the Jasmin language and compiler \href  {https://members.loria.fr/VLaporte/files/CCS2021_StructuredLeakage.pdf}{1} \href  {https://dl.acm.org/doi/10.1145/3548606.3560689}{2} \href  {https://github.com/llsoftsec/llsoftsecbook/issues/213}{\#213}}}{34}{section*.22}\protected@file@percent }
-\pgfsyspdfmark {pgfid52}{20943697}{31326599}
-\pgfsyspdfmark {pgfid50}{33391901}{31340706}
-\pgfsyspdfmark {pgfid51}{35243292}{31114976}
-\pgfsyspdfmark {pgfid55}{33391901}{22438658}
-\pgfsyspdfmark {pgfid56}{35243292}{22212928}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Cache side-channels}{34}{section.3.2}\protected@file@percent }
-\newlabel{cache-side-channels}{{3.2}{34}{Cache side-channels}{section.3.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Typical CPU cache architecture}{34}{subsection.3.2.1}\protected@file@percent }
-\newlabel{typical-cpu-cache-architecture}{{3.2.1}{34}{Typical CPU cache architecture}{subsection.3.2.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Illustration of cache levels in a typical system}}{35}{figure.caption.23}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1.1}Indexing in a set-associative cache}{36}{subsubsection.3.2.1.1}\protected@file@percent }
-\newlabel{indexing-in-a-set-associative-cache}{{3.2.1.1}{36}{Indexing in a set-associative cache}{subsubsection.3.2.1.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Figure 5: Illustration of indexing into a set-associative cache. In this example: \(L\) = 6 bits, hence the cache line size is \(2^6=64\) bytes. \(S\) = 5 bits, so there are \(2^5=32\) cache sets. \(N\) can be independent of address bits used to index the cache. If we assume \(N=12\) for a 12-way set-associative cache, the total cache size is \(N*2^L*2^S=12*64*32=24\)KB.}}{36}{figure.caption.24}\protected@file@percent }
-\newlabel{fig:cache-indexing}{{3.2}{36}{Figure 5: Illustration of indexing into a set-associative cache. In this example: \(L\) = 6 bits, hence the cache line size is \(2^6=64\) bytes. \(S\) = 5 bits, so there are \(2^5=32\) cache sets. \(N\) can be independent of address bits used to index the cache. If we assume \(N=12\) for a 12-way set-associative cache, the total cache size is \(N*2^L*2^S=12*64*32=24\)KB}{figure.caption.24}{}}
-\BKM@entry{id=24,dest={73756273656374696F6E2E332E322E32},srcline={2203}}{5C3337365C3337375C3030304F5C303030705C303030655C303030725C303030615C303030745C303030695C3030306F5C3030306E5C3030305C3034305C3030306F5C303030665C3030305C3034305C303030635C303030615C303030635C303030685C303030655C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C30303073}
+\BKM@entry{id=22,dest={73656374696F6E2E332E32},srcline={2641}}{5C3337365C3337375C303030435C303030615C303030635C303030685C303030655C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C30303073}
+\BKM@entry{id=23,dest={73756273656374696F6E2E332E322E31},srcline={2654}}{5C3337365C3337375C303030545C303030795C303030705C303030695C303030635C303030615C3030306C5C3030305C3034305C303030435C303030505C303030555C3030305C3034305C303030635C303030615C303030635C303030685C303030655C3030305C3034305C303030615C303030725C303030635C303030685C303030695C303030745C303030655C303030635C303030745C303030755C303030725C30303065}
+\@writefile{tdo}{\contentsline {todo}{14. {Also discuss the techniques implemented in the \href  {https://github.com/pietroborrello/constantine}{Constatine compiler} \href  {https://github.com/llsoftsec/llsoftsecbook/issues/172}{\#172}}}{41}{section*.24}\protected@file@percent }
+\pgfsyspdfmark {pgfid38}{20652426}{31326599}
+\@writefile{tdo}{\contentsline {todo}{15. {Also discuss the Jasmin language and compiler \href  {https://members.loria.fr/VLaporte/files/CCS2021_StructuredLeakage.pdf}{1} \href  {https://dl.acm.org/doi/10.1145/3548606.3560689}{2} \href  {https://github.com/llsoftsec/llsoftsecbook/issues/213}{\#213}}}{41}{section*.25}\protected@file@percent }
+\pgfsyspdfmark {pgfid43}{20943697}{31326599}
+\pgfsyspdfmark {pgfid41}{33391901}{31340706}
+\pgfsyspdfmark {pgfid42}{35243292}{31114976}
+\pgfsyspdfmark {pgfid46}{33391901}{22438658}
+\pgfsyspdfmark {pgfid47}{35243292}{22212928}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Cache side-channels}{41}{section.3.2}\protected@file@percent }
+\newlabel{cache-side-channels}{{3.2}{41}{Cache side-channels}{section.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Typical CPU cache architecture}{41}{subsection.3.2.1}\protected@file@percent }
+\newlabel{typical-cpu-cache-architecture}{{3.2.1}{41}{Typical CPU cache architecture}{subsection.3.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Illustration of cache levels in a typical system}}{42}{figure.caption.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1.1}Indexing in a set-associative cache}{43}{subsubsection.3.2.1.1}\protected@file@percent }
+\newlabel{indexing-in-a-set-associative-cache}{{3.2.1.1}{43}{Indexing in a set-associative cache}{subsubsection.3.2.1.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Figure 6: Illustration of indexing into a set-associative cache. In this example: \(L\) = 6 bits, hence the cache line size is \(2^6=64\) bytes. \(S\) = 5 bits, so there are \(2^5=32\) cache sets. \(N\) can be independent of address bits used to index the cache. If we assume \(N=12\) for a 12-way set-associative cache, the total cache size is \(N*2^L*2^S=12*64*32=24\)KB.}}{43}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:cache-indexing}{{3.2}{43}{Figure 6: Illustration of indexing into a set-associative cache. In this example: \(L\) = 6 bits, hence the cache line size is \(2^6=64\) bytes. \(S\) = 5 bits, so there are \(2^5=32\) cache sets. \(N\) can be independent of address bits used to index the cache. If we assume \(N=12\) for a 12-way set-associative cache, the total cache size is \(N*2^L*2^S=12*64*32=24\)KB}{figure.caption.27}{}}
+\BKM@entry{id=24,dest={73756273656374696F6E2E332E322E32},srcline={2786}}{5C3337365C3337375C3030304F5C303030705C303030655C303030725C303030615C303030745C303030695C3030306F5C3030306E5C3030305C3034305C3030306F5C303030665C3030305C3034305C303030635C303030615C303030635C303030685C303030655C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C30303073}
 \citation{ref-Yarom2014}
 \citation{ref-Yarom2014}
-\@writefile{tdo}{\contentsline {todo}{17. Also explain cache coherency ? \href  {https://github.com/llsoftsec/llsoftsecbook/issues/173}{\#173}}{37}{section*.25}\protected@file@percent }
-\pgfsyspdfmark {pgfid57}{19498269}{43936330}
-\@writefile{tdo}{\contentsline {todo}{18. Also say something about TLBs and prefetching? \href  {https://github.com/llsoftsec/llsoftsecbook/issues/174}{\#174}}{37}{section*.26}\protected@file@percent }
-\pgfsyspdfmark {pgfid58}{19498269}{41194666}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Operation of cache side-channels}{37}{subsection.3.2.2}\protected@file@percent }
-\newlabel{operation-of-cache-side-channels}{{3.2.2}{37}{Operation of cache side-channels}{subsection.3.2.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.1}Flush+Reload}{37}{subsubsection.3.2.2.1}\protected@file@percent }
-\newlabel{flushreload}{{3.2.2.1}{37}{Flush+Reload}{subsubsection.3.2.2.1}{}}
-\@writefile{tdo}{\contentsline {todo}{19. Should there be a more elaborate example with code that demonstrates in more detail how a flush+reload attack works? \href  {https://github.com/llsoftsec/llsoftsecbook/issues/175}{\#175}}{37}{section*.27}\protected@file@percent }
-\pgfsyspdfmark {pgfid59}{19498269}{21878804}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.2}Prime+Probe}{37}{subsubsection.3.2.2.2}\protected@file@percent }
-\newlabel{primeprobe}{{3.2.2.2}{37}{Prime+Probe}{subsubsection.3.2.2.2}{}}
+\@writefile{tdo}{\contentsline {todo}{16. Also explain cache coherency ? \href  {https://github.com/llsoftsec/llsoftsecbook/issues/173}{\#173}}{44}{section*.28}\protected@file@percent }
+\pgfsyspdfmark {pgfid48}{19498269}{43936330}
+\@writefile{tdo}{\contentsline {todo}{17. Also say something about TLBs and prefetching? \href  {https://github.com/llsoftsec/llsoftsecbook/issues/174}{\#174}}{44}{section*.29}\protected@file@percent }
+\pgfsyspdfmark {pgfid49}{19498269}{41194666}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Operation of cache side-channels}{44}{subsection.3.2.2}\protected@file@percent }
+\newlabel{operation-of-cache-side-channels}{{3.2.2}{44}{Operation of cache side-channels}{subsection.3.2.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.1}Flush+Reload}{44}{subsubsection.3.2.2.1}\protected@file@percent }
+\newlabel{flushreload}{{3.2.2.1}{44}{Flush+Reload}{subsubsection.3.2.2.1}{}}
+\@writefile{tdo}{\contentsline {todo}{18. Should there be a more elaborate example with code that demonstrates in more detail how a flush+reload attack works? \href  {https://github.com/llsoftsec/llsoftsecbook/issues/175}{\#175}}{44}{section*.30}\protected@file@percent }
+\pgfsyspdfmark {pgfid50}{19498269}{21878804}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.2}Prime+Probe}{44}{subsubsection.3.2.2.2}\protected@file@percent }
+\newlabel{primeprobe}{{3.2.2.2}{44}{Prime+Probe}{subsubsection.3.2.2.2}{}}
 \citation{ref-Osvik2005}
 \citation{ref-Weber2021}
 \citation{ref-Gruss2016a}
@@ -228,135 +269,135 @@
 \citation{ref-Osvik2005}
 \citation{ref-Briongos2020}
 \citation{ref-Lipp2020}
-\BKM@entry{id=25,dest={73756273656374696F6E2E332E322E33},srcline={2310}}{5C3337365C3337375C3030304D5C303030695C303030745C303030695C303030675C303030615C303030745C303030695C3030306E5C303030675C3030305C3034305C303030635C303030615C303030635C303030685C303030655C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
+\BKM@entry{id=25,dest={73756273656374696F6E2E332E322E33},srcline={2893}}{5C3337365C3337375C3030304D5C303030695C303030745C303030695C303030675C303030615C303030745C303030695C3030306E5C303030675C3030305C3034305C303030635C303030615C303030635C303030685C303030655C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
 \citation{ref-Su2021}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.3}General schema for cache covert channels}{38}{subsubsection.3.2.2.3}\protected@file@percent }
-\newlabel{general-schema-for-cache-covert-channels}{{3.2.2.3}{38}{General schema for cache covert channels}{subsubsection.3.2.2.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Mitigating cache side-channel attacks}{38}{subsection.3.2.3}\protected@file@percent }
-\newlabel{mitigating-cache-side-channel-attacks}{{3.2.3}{38}{Mitigating cache side-channel attacks}{subsection.3.2.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3.1}Mitigations de-correlating cache state change with sensitive information in the victim program}{38}{subsubsection.3.2.3.1}\protected@file@percent }
-\newlabel{mitigations-de-correlating-cache-state-change-with-sensitive-information-in-the-victim-program}{{3.2.3.1}{38}{Mitigations de-correlating cache state change with sensitive information in the victim program}{subsubsection.3.2.3.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.3}General schema for cache covert channels}{45}{subsubsection.3.2.2.3}\protected@file@percent }
+\newlabel{general-schema-for-cache-covert-channels}{{3.2.2.3}{45}{General schema for cache covert channels}{subsubsection.3.2.2.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Mitigating cache side-channel attacks}{45}{subsection.3.2.3}\protected@file@percent }
+\newlabel{mitigating-cache-side-channel-attacks}{{3.2.3}{45}{Mitigating cache side-channel attacks}{subsection.3.2.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3.1}Mitigations de-correlating cache state change with sensitive information in the victim program}{45}{subsubsection.3.2.3.1}\protected@file@percent }
+\newlabel{mitigations-de-correlating-cache-state-change-with-sensitive-information-in-the-victim-program}{{3.2.3.1}{45}{Mitigations de-correlating cache state change with sensitive information in the victim program}{subsubsection.3.2.3.1}{}}
 \citation{ref-Mushtaq2020}
 \citation{ref-Su2021}
 \citation{ref-Schwarz2019}
 \citation{ref-Schwarz2017}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3.2}Mitigations disallowing spy programs to share the cache with the victim program}{39}{subsubsection.3.2.3.2}\protected@file@percent }
-\newlabel{mitigations-disallowing-spy-programs-to-share-the-cache-with-the-victim-program}{{3.2.3.2}{39}{Mitigations disallowing spy programs to share the cache with the victim program}{subsubsection.3.2.3.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3.3}Mitigations disabling the spy program to infer a cache status change in the victim program through its own cache status}{39}{subsubsection.3.2.3.3}\protected@file@percent }
-\newlabel{mitigations-disabling-the-spy-program-to-infer-a-cache-status-change-in-the-victim-program-through-its-own-cache-status}{{3.2.3.3}{39}{Mitigations disabling the spy program to infer a cache status change in the victim program through its own cache status}{subsubsection.3.2.3.3}{}}
-\BKM@entry{id=26,dest={73656374696F6E2E332E33},srcline={2431}}{5C3337365C3337375C303030425C303030725C303030615C3030306E5C303030635C303030685C3030302D5C303030705C303030725C303030655C303030645C303030695C303030635C303030745C3030306F5C303030725C3030305C3034305C303030625C303030615C303030735C303030655C303030645C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C30303073}
-\BKM@entry{id=27,dest={73756273656374696F6E2E332E332E31},srcline={2433}}{5C3337365C3337375C303030425C303030725C303030615C3030306E5C303030635C303030685C3030305C3034305C303030705C303030725C303030655C303030645C303030695C303030635C303030745C3030306F5C303030725C30303073}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3.2}Mitigations disallowing spy programs to share the cache with the victim program}{46}{subsubsection.3.2.3.2}\protected@file@percent }
+\newlabel{mitigations-disallowing-spy-programs-to-share-the-cache-with-the-victim-program}{{3.2.3.2}{46}{Mitigations disallowing spy programs to share the cache with the victim program}{subsubsection.3.2.3.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3.3}Mitigations disabling the spy program to infer a cache status change in the victim program through its own cache status}{46}{subsubsection.3.2.3.3}\protected@file@percent }
+\newlabel{mitigations-disabling-the-spy-program-to-infer-a-cache-status-change-in-the-victim-program-through-its-own-cache-status}{{3.2.3.3}{46}{Mitigations disabling the spy program to infer a cache status change in the victim program through its own cache status}{subsubsection.3.2.3.3}{}}
+\BKM@entry{id=26,dest={73656374696F6E2E332E33},srcline={3014}}{5C3337365C3337375C303030425C303030725C303030615C3030306E5C303030635C303030685C3030302D5C303030705C303030725C303030655C303030645C303030695C303030635C303030745C3030306F5C303030725C3030305C3034305C303030625C303030615C303030735C303030655C303030645C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C30303073}
+\BKM@entry{id=27,dest={73756273656374696F6E2E332E332E31},srcline={3016}}{5C3337365C3337375C303030425C303030725C303030615C3030306E5C303030635C303030685C3030305C3034305C303030705C303030725C303030655C303030645C303030695C303030635C303030745C3030306F5C303030725C30303073}
 \citation{ref-Eyerman2009}
-\BKM@entry{id=28,dest={73756273656374696F6E2E332E332E32},srcline={2477}}{5C3337365C3337375C303030535C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C303030735C3030305C3034305C303030745C303030685C303030725C3030306F5C303030755C303030675C303030685C3030305C3034305C303030625C303030725C303030615C3030306E5C303030635C303030685C3030305C3034305C303030705C303030725C303030655C303030645C303030695C303030635C303030745C3030306F5C303030725C30303073}
+\BKM@entry{id=28,dest={73756273656374696F6E2E332E332E32},srcline={3060}}{5C3337365C3337375C303030535C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C303030735C3030305C3034305C303030745C303030685C303030725C3030306F5C303030755C303030675C303030685C3030305C3034305C303030625C303030725C303030615C3030306E5C303030635C303030685C3030305C3034305C303030705C303030725C303030655C303030645C303030695C303030635C303030745C3030306F5C303030725C30303073}
 \citation{ref-Evtyushkin2018}
 \citation{ref-Huo2019}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Branch-predictor based side-channels}{40}{section.3.3}\protected@file@percent }
-\newlabel{branch-predictor-based-side-channels}{{3.3}{40}{Branch-predictor based side-channels}{section.3.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Branch predictors}{40}{subsection.3.3.1}\protected@file@percent }
-\newlabel{branch-predictors}{{3.3.1}{40}{Branch predictors}{subsection.3.3.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Side-channels through branch predictors}{40}{subsection.3.3.2}\protected@file@percent }
-\newlabel{side-channels-through-branch-predictors}{{3.3.2}{40}{Side-channels through branch predictors}{subsection.3.3.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2.1}Conditional branch direction predictor side-channel attacks}{40}{subsubsection.3.3.2.1}\protected@file@percent }
-\newlabel{conditional-branch-direction-predictor-side-channel-attacks}{{3.3.2.1}{40}{Conditional branch direction predictor side-channel attacks}{subsubsection.3.3.2.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Branch-predictor based side-channels}{47}{section.3.3}\protected@file@percent }
+\newlabel{branch-predictor-based-side-channels}{{3.3}{47}{Branch-predictor based side-channels}{section.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Branch predictors}{47}{subsection.3.3.1}\protected@file@percent }
+\newlabel{branch-predictors}{{3.3.1}{47}{Branch predictors}{subsection.3.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Side-channels through branch predictors}{47}{subsection.3.3.2}\protected@file@percent }
+\newlabel{side-channels-through-branch-predictors}{{3.3.2}{47}{Side-channels through branch predictors}{subsection.3.3.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2.1}Conditional branch direction predictor side-channel attacks}{47}{subsubsection.3.3.2.1}\protected@file@percent }
+\newlabel{conditional-branch-direction-predictor-side-channel-attacks}{{3.3.2.1}{47}{Conditional branch direction predictor side-channel attacks}{subsubsection.3.3.2.1}{}}
 \citation{ref-Aciicmez2007}
 \citation{ref-Lee2017}
 \citation{ref-Bulygin2008}
-\BKM@entry{id=29,dest={73756273656374696F6E2E332E332E33},srcline={2558}}{5C3337365C3337375C3030304D5C303030695C303030745C303030695C303030675C303030615C303030745C303030695C3030306F5C3030306E5C30303073}
-\BKM@entry{id=30,dest={73656374696F6E2E332E34},srcline={2565}}{5C3337365C3337375C303030525C303030655C303030735C3030306F5C303030755C303030725C303030635C303030655C3030305C3034305C303030635C3030306F5C3030306E5C303030745C303030655C3030306E5C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C30303073}
-\BKM@entry{id=31,dest={73656374696F6E2E332E35},srcline={2568}}{5C3337365C3337375C303030435C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C303030735C3030305C3034305C3030306D5C303030615C3030306B5C303030695C3030306E5C303030675C3030305C3034305C303030755C303030735C303030655C3030305C3034305C3030306F5C303030665C3030305C3034305C303030615C3030306C5C303030695C303030615C303030735C303030695C3030306E5C303030675C3030305C3034305C303030695C3030306E5C3030305C3034305C3030306F5C303030745C303030685C303030655C303030725C3030305C3034305C303030705C303030725C303030655C303030645C303030695C303030635C303030745C3030306F5C303030725C30303073}
-\BKM@entry{id=32,dest={73656374696F6E2E332E36},srcline={2574}}{5C3337365C3337375C303030545C303030725C303030615C3030306E5C303030735C303030695C303030655C3030306E5C303030745C3030305C3034305C303030655C303030785C303030655C303030635C303030755C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
-\BKM@entry{id=33,dest={73756273656374696F6E2E332E362E31},srcline={2576}}{5C3337365C3337375C303030545C303030725C303030615C3030306E5C303030735C303030695C303030655C3030306E5C303030745C3030305C3034305C303030655C303030785C303030655C303030635C303030755C303030745C303030695C3030306F5C3030306E}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2.2}Branch target predictor side-channel attacks}{41}{subsubsection.3.3.2.2}\protected@file@percent }
-\newlabel{branch-target-predictor-side-channel-attacks}{{3.3.2.2}{41}{Branch target predictor side-channel attacks}{subsubsection.3.3.2.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2.3}Return address predictor side-channel attacks}{41}{subsubsection.3.3.2.3}\protected@file@percent }
-\newlabel{return-address-predictor-side-channel-attacks}{{3.3.2.3}{41}{Return address predictor side-channel attacks}{subsubsection.3.3.2.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Mitigations}{41}{subsection.3.3.3}\protected@file@percent }
-\newlabel{mitigations}{{3.3.3}{41}{Mitigations}{subsection.3.3.3}{}}
-\@writefile{tdo}{\contentsline {todo}{20. Describe the mitigations proposed against these side-channel attacks. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/203}{\#203}}{41}{section*.28}\protected@file@percent }
-\pgfsyspdfmark {pgfid60}{19498269}{19311691}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Resource contention channels}{41}{section.3.4}\protected@file@percent }
-\newlabel{resource-contention-channels}{{3.4}{41}{Resource contention channels}{section.3.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Channels making use of aliasing in other predictors}{41}{section.3.5}\protected@file@percent }
-\newlabel{channels-making-use-of-aliasing-in-other-predictors}{{3.5}{41}{Channels making use of aliasing in other predictors}{section.3.5}{}}
-\@writefile{tdo}{\contentsline {todo}{21. Should we also discuss more ``covert'' channels here such as power analysis, etc? \href  {https://github.com/llsoftsec/llsoftsecbook/issues/176}{\#176}}{41}{section*.29}\protected@file@percent }
-\pgfsyspdfmark {pgfid61}{19498269}{10168830}
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Transient execution attacks}{42}{section.3.6}\protected@file@percent }
-\newlabel{transient-execution-attacks}{{3.6}{42}{Transient execution attacks}{section.3.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}Transient execution}{42}{subsection.3.6.1}\protected@file@percent }
-\newlabel{transient-execution}{{3.6.1}{42}{Transient execution}{subsection.3.6.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.1}Speculative execution}{42}{subsubsection.3.6.1.1}\protected@file@percent }
-\newlabel{speculative-execution}{{3.6.1.1}{42}{Speculative execution}{subsubsection.3.6.1.1}{}}
+\BKM@entry{id=29,dest={73756273656374696F6E2E332E332E33},srcline={3141}}{5C3337365C3337375C3030304D5C303030695C303030745C303030695C303030675C303030615C303030745C303030695C3030306F5C3030306E5C30303073}
+\BKM@entry{id=30,dest={73656374696F6E2E332E34},srcline={3148}}{5C3337365C3337375C303030525C303030655C303030735C3030306F5C303030755C303030725C303030635C303030655C3030305C3034305C303030635C3030306F5C3030306E5C303030745C303030655C3030306E5C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C30303073}
+\BKM@entry{id=31,dest={73656374696F6E2E332E35},srcline={3151}}{5C3337365C3337375C303030435C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C303030735C3030305C3034305C3030306D5C303030615C3030306B5C303030695C3030306E5C303030675C3030305C3034305C303030755C303030735C303030655C3030305C3034305C3030306F5C303030665C3030305C3034305C303030615C3030306C5C303030695C303030615C303030735C303030695C3030306E5C303030675C3030305C3034305C303030695C3030306E5C3030305C3034305C3030306F5C303030745C303030685C303030655C303030725C3030305C3034305C303030705C303030725C303030655C303030645C303030695C303030635C303030745C3030306F5C303030725C30303073}
+\BKM@entry{id=32,dest={73656374696F6E2E332E36},srcline={3157}}{5C3337365C3337375C303030545C303030725C303030615C3030306E5C303030735C303030695C303030655C3030306E5C303030745C3030305C3034305C303030655C303030785C303030655C303030635C303030755C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
+\BKM@entry{id=33,dest={73756273656374696F6E2E332E362E31},srcline={3159}}{5C3337365C3337375C303030545C303030725C303030615C3030306E5C303030735C303030695C303030655C3030306E5C303030745C3030305C3034305C303030655C303030785C303030655C303030635C303030755C303030745C303030695C3030306F5C3030306E}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2.2}Branch target predictor side-channel attacks}{48}{subsubsection.3.3.2.2}\protected@file@percent }
+\newlabel{branch-target-predictor-side-channel-attacks}{{3.3.2.2}{48}{Branch target predictor side-channel attacks}{subsubsection.3.3.2.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2.3}Return address predictor side-channel attacks}{48}{subsubsection.3.3.2.3}\protected@file@percent }
+\newlabel{return-address-predictor-side-channel-attacks}{{3.3.2.3}{48}{Return address predictor side-channel attacks}{subsubsection.3.3.2.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Mitigations}{48}{subsection.3.3.3}\protected@file@percent }
+\newlabel{mitigations}{{3.3.3}{48}{Mitigations}{subsection.3.3.3}{}}
+\@writefile{tdo}{\contentsline {todo}{19. Describe the mitigations proposed against these side-channel attacks. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/203}{\#203}}{48}{section*.31}\protected@file@percent }
+\pgfsyspdfmark {pgfid51}{19498269}{19311691}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Resource contention channels}{48}{section.3.4}\protected@file@percent }
+\newlabel{resource-contention-channels}{{3.4}{48}{Resource contention channels}{section.3.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Channels making use of aliasing in other predictors}{48}{section.3.5}\protected@file@percent }
+\newlabel{channels-making-use-of-aliasing-in-other-predictors}{{3.5}{48}{Channels making use of aliasing in other predictors}{section.3.5}{}}
+\@writefile{tdo}{\contentsline {todo}{20. Should we also discuss more ``covert'' channels here such as power analysis, etc? \href  {https://github.com/llsoftsec/llsoftsecbook/issues/176}{\#176}}{48}{section*.32}\protected@file@percent }
+\pgfsyspdfmark {pgfid52}{19498269}{10168830}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Transient execution attacks}{49}{section.3.6}\protected@file@percent }
+\newlabel{transient-execution-attacks}{{3.6}{49}{Transient execution attacks}{section.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}Transient execution}{49}{subsection.3.6.1}\protected@file@percent }
+\newlabel{transient-execution}{{3.6.1}{49}{Transient execution}{subsection.3.6.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.1}Speculative execution}{49}{subsubsection.3.6.1.1}\protected@file@percent }
+\newlabel{speculative-execution}{{3.6.1.1}{49}{Speculative execution}{subsubsection.3.6.1.1}{}}
 \citation{ref-Mutlu2004}
-\@writefile{tdo}{\contentsline {todo}{22. Show a second example of cpu speculation that is not based on branch prediction. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/177}{\#177}}{43}{section*.30}\protected@file@percent }
-\pgfsyspdfmark {pgfid62}{19498269}{32121644}
-\BKM@entry{id=34,dest={73756273656374696F6E2E332E362E32},srcline={2742}}{5C3337365C3337375C303030545C303030725C303030615C3030306E5C303030735C303030695C303030655C3030306E5C303030745C3030305C3034305C303030455C303030785C303030655C303030635C303030755C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030415C303030745C303030745C303030615C303030635C3030306B5C30303073}
+\@writefile{tdo}{\contentsline {todo}{21. Show a second example of cpu speculation that is not based on branch prediction. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/177}{\#177}}{50}{section*.33}\protected@file@percent }
+\pgfsyspdfmark {pgfid53}{19498269}{32121644}
+\BKM@entry{id=34,dest={73756273656374696F6E2E332E362E32},srcline={3325}}{5C3337365C3337375C303030545C303030725C303030615C3030306E5C303030735C303030695C303030655C3030306E5C303030745C3030305C3034305C303030455C303030785C303030655C303030635C303030755C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030415C303030745C303030745C303030615C303030635C3030306B5C30303073}
 \citation{ref-Kocher2019}
 \citation{ref-Lipp2018}
 \citation{ref-Bulck2020}
 \citation{ref-Bulck2020}
-\@writefile{tdo}{\contentsline {todo}{23. {Could we find a good reference that explains micro-architectural versus architectural state in more detail? Is ``Computer Architecture: A Quantitative Approach'' the best reference available?}}{44}{section*.31}\protected@file@percent }
-\pgfsyspdfmark {pgfid63}{14497546}{42729863}
-\pgfsyspdfmark {pgfid66}{33391901}{42743970}
-\pgfsyspdfmark {pgfid67}{35243292}{42518240}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}Transient Execution Attacks}{44}{subsection.3.6.2}\protected@file@percent }
-\newlabel{transient-execution-attacks-1}{{3.6.2}{44}{Transient Execution Attacks}{subsection.3.6.2}{}}
-\@writefile{tdo}{\contentsline {todo}{24. Decide whether it's useful to talk about alternative categorizations of transient execution attacks, and if so, do add content. Consider pointing to \url  {https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md}}{44}{section*.32}\protected@file@percent }
-\pgfsyspdfmark {pgfid68}{19498269}{15003570}
-\gdef \LT@i {\LT@entry 
+\@writefile{tdo}{\contentsline {todo}{22. {Could we find a good reference that explains micro-architectural versus architectural state in more detail? Is ``Computer Architecture: A Quantitative Approach'' the best reference available?}}{51}{section*.34}\protected@file@percent }
+\pgfsyspdfmark {pgfid54}{14497546}{42729863}
+\pgfsyspdfmark {pgfid57}{33391901}{42743970}
+\pgfsyspdfmark {pgfid58}{35243292}{42518240}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}Transient Execution Attacks}{51}{subsection.3.6.2}\protected@file@percent }
+\newlabel{transient-execution-attacks-1}{{3.6.2}{51}{Transient Execution Attacks}{subsection.3.6.2}{}}
+\@writefile{tdo}{\contentsline {todo}{23. Decide whether it's useful to talk about alternative categorizations of transient execution attacks, and if so, do add content. Consider pointing to \url  {https://github.com/MattPD/cpplinks/blob/master/comparch.micro.channels.md}}{51}{section*.35}\protected@file@percent }
+\pgfsyspdfmark {pgfid59}{19498269}{15003570}
+\gdef \LT@ii {\LT@entry 
     {1}{81.78786pt}\LT@entry 
     {1}{127.91286pt}\LT@entry 
     {1}{117.45071pt}}
-\BKM@entry{id=35,dest={73756273656374696F6E2E332E362E33},srcline={2837}}{5C3337365C3337375C3030304D5C303030695C303030745C303030695C303030675C303030615C303030745C303030695C3030306F5C3030306E5C303030735C3030305C3034305C303030615C303030675C303030615C303030695C3030306E5C303030735C303030745C3030305C3034305C303030745C303030725C303030615C3030306E5C303030735C303030695C303030655C3030306E5C303030745C3030305C3034305C303030655C303030785C303030655C303030635C303030755C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
-\BKM@entry{id=36,dest={73656374696F6E2E332E37},srcline={2845}}{5C3337365C3337375C303030505C303030685C303030795C303030735C303030695C303030635C303030615C3030306C5C3030305C3034305C303030615C303030635C303030635C303030655C303030735C303030735C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.1}Branch predictor-based side-channel attacks}{45}{subsubsection.3.6.2.1}\protected@file@percent }
-\newlabel{branch-predictor-based-side-channel-attacks}{{3.6.2.1}{45}{Branch predictor-based side-channel attacks}{subsubsection.3.6.2.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.2}Spectre-style attacks}{45}{subsubsection.3.6.2.2}\protected@file@percent }
-\newlabel{spectre-style-attacks}{{3.6.2.2}{45}{Spectre-style attacks}{subsubsection.3.6.2.2}{}}
-\@writefile{tdo}{\contentsline {todo}{25. Add a description of Spectre-style attacks such as Spectre-PHT, Spectre-BTB, Spectre-RSB, Spectre-STL, SpectreV1, SpectreV2, SpectreV3, SpectreV4, NetSpectre. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/178}{\#178}}{45}{section*.33}\protected@file@percent }
-\pgfsyspdfmark {pgfid69}{19498269}{30698541}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.3}Meltdown-style attacks}{45}{subsubsection.3.6.2.3}\protected@file@percent }
-\newlabel{meltdown-style-attacks}{{3.6.2.3}{45}{Meltdown-style attacks}{subsubsection.3.6.2.3}{}}
-\@writefile{tdo}{\contentsline {todo}{26. Add a description of Meltdown-style attacks such as Meltdown, Foreshadow, LazyFP, Fallout, ZombieLoad, RIDL. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/178}{\#178}}{45}{section*.34}\protected@file@percent }
-\pgfsyspdfmark {pgfid70}{19498269}{24916300}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.4}LVI-style attacks}{45}{subsubsection.3.6.2.4}\protected@file@percent }
-\newlabel{lvi-style-attacks}{{3.6.2.4}{45}{LVI-style attacks}{subsubsection.3.6.2.4}{}}
-\@writefile{tdo}{\contentsline {todo}{27. Add a description of LVI-style attacks. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/178}{\#178}}{45}{section*.35}\protected@file@percent }
-\pgfsyspdfmark {pgfid71}{19498269}{19920491}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}Mitigations against transient execution attacks}{45}{subsection.3.6.3}\protected@file@percent }
-\newlabel{mitigations-against-transient-execution-attacks}{{3.6.3}{45}{Mitigations against transient execution attacks}{subsection.3.6.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.3.1}Site isolation}{45}{subsubsection.3.6.3.1}\protected@file@percent }
-\newlabel{site-isolation}{{3.6.3.1}{45}{Site isolation}{subsubsection.3.6.3.1}{}}
-\@writefile{tdo}{\contentsline {todo}{28. Write section on site isolation as a SpectreV1 mitigation \href  {https://github.com/llsoftsec/llsoftsecbook/issues/179}{\#179}}{45}{section*.36}\protected@file@percent }
-\pgfsyspdfmark {pgfid72}{19498269}{14104577}
-\@writefile{toc}{\contentsline {section}{\numberline {3.7}Physical access side-channel attacks}{45}{section.3.7}\protected@file@percent }
-\newlabel{physical-access-side-channel-attacks}{{3.7}{45}{Physical access side-channel attacks}{section.3.7}{}}
-\BKM@entry{id=37,dest={636861707465722E34},srcline={2847}}{5C3337365C3337375C303030535C303030755C303030705C303030705C3030306C5C303030795C3030305C3034305C303030635C303030685C303030615C303030695C3030306E5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
-\BKM@entry{id=38,dest={73656374696F6E2E342E31},srcline={2864}}{5C3337365C3337375C303030485C303030695C303030735C303030745C3030306F5C303030725C303030795C3030305C3034305C3030306F5C303030665C3030305C3034305C303030735C303030755C303030705C303030705C3030306C5C303030795C3030305C3034305C303030635C303030685C303030615C303030695C3030306E5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
+\BKM@entry{id=35,dest={73756273656374696F6E2E332E362E33},srcline={3420}}{5C3337365C3337375C3030304D5C303030695C303030745C303030695C303030675C303030615C303030745C303030695C3030306F5C3030306E5C303030735C3030305C3034305C303030615C303030675C303030615C303030695C3030306E5C303030735C303030745C3030305C3034305C303030745C303030725C303030615C3030306E5C303030735C303030695C303030655C3030306E5C303030745C3030305C3034305C303030655C303030785C303030655C303030635C303030755C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
+\BKM@entry{id=36,dest={73656374696F6E2E332E37},srcline={3428}}{5C3337365C3337375C303030505C303030685C303030795C303030735C303030695C303030635C303030615C3030306C5C3030305C3034305C303030615C303030635C303030635C303030655C303030735C303030735C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.1}Branch predictor-based side-channel attacks}{52}{subsubsection.3.6.2.1}\protected@file@percent }
+\newlabel{branch-predictor-based-side-channel-attacks}{{3.6.2.1}{52}{Branch predictor-based side-channel attacks}{subsubsection.3.6.2.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.2}Spectre-style attacks}{52}{subsubsection.3.6.2.2}\protected@file@percent }
+\newlabel{spectre-style-attacks}{{3.6.2.2}{52}{Spectre-style attacks}{subsubsection.3.6.2.2}{}}
+\@writefile{tdo}{\contentsline {todo}{24. Add a description of Spectre-style attacks such as Spectre-PHT, Spectre-BTB, Spectre-RSB, Spectre-STL, SpectreV1, SpectreV2, SpectreV3, SpectreV4, NetSpectre. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/178}{\#178}}{52}{section*.36}\protected@file@percent }
+\pgfsyspdfmark {pgfid60}{19498269}{30698541}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.3}Meltdown-style attacks}{52}{subsubsection.3.6.2.3}\protected@file@percent }
+\newlabel{meltdown-style-attacks}{{3.6.2.3}{52}{Meltdown-style attacks}{subsubsection.3.6.2.3}{}}
+\@writefile{tdo}{\contentsline {todo}{25. Add a description of Meltdown-style attacks such as Meltdown, Foreshadow, LazyFP, Fallout, ZombieLoad, RIDL. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/178}{\#178}}{52}{section*.37}\protected@file@percent }
+\pgfsyspdfmark {pgfid61}{19498269}{24916300}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.4}LVI-style attacks}{52}{subsubsection.3.6.2.4}\protected@file@percent }
+\newlabel{lvi-style-attacks}{{3.6.2.4}{52}{LVI-style attacks}{subsubsection.3.6.2.4}{}}
+\@writefile{tdo}{\contentsline {todo}{26. Add a description of LVI-style attacks. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/178}{\#178}}{52}{section*.38}\protected@file@percent }
+\pgfsyspdfmark {pgfid62}{19498269}{19920491}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}Mitigations against transient execution attacks}{52}{subsection.3.6.3}\protected@file@percent }
+\newlabel{mitigations-against-transient-execution-attacks}{{3.6.3}{52}{Mitigations against transient execution attacks}{subsection.3.6.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.3.1}Site isolation}{52}{subsubsection.3.6.3.1}\protected@file@percent }
+\newlabel{site-isolation}{{3.6.3.1}{52}{Site isolation}{subsubsection.3.6.3.1}{}}
+\@writefile{tdo}{\contentsline {todo}{27. Write section on site isolation as a SpectreV1 mitigation \href  {https://github.com/llsoftsec/llsoftsecbook/issues/179}{\#179}}{52}{section*.39}\protected@file@percent }
+\pgfsyspdfmark {pgfid63}{19498269}{14104577}
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}Physical access side-channel attacks}{52}{section.3.7}\protected@file@percent }
+\newlabel{physical-access-side-channel-attacks}{{3.7}{52}{Physical access side-channel attacks}{section.3.7}{}}
+\BKM@entry{id=37,dest={636861707465722E34},srcline={3430}}{5C3337365C3337375C303030535C303030755C303030705C303030705C3030306C5C303030795C3030305C3034305C303030635C303030685C303030615C303030695C3030306E5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
+\BKM@entry{id=38,dest={73656374696F6E2E342E31},srcline={3447}}{5C3337365C3337375C303030485C303030695C303030735C303030745C3030306F5C303030725C303030795C3030305C3034305C3030306F5C303030665C3030305C3034305C303030735C303030755C303030705C303030705C3030306C5C303030795C3030305C3034305C303030635C303030685C303030615C303030695C3030306E5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
 \citation{ref-Karger1974}
 \citation{ref-Thompson1984}
 \citation{ref-Gostev2009}
 \citation{ref-Cox2015}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Supply chain attacks}{46}{chapter.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Supply chain attacks}{53}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{supply-chain-attacks}{{4}{46}{Supply chain attacks}{chapter.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}History of supply chain attacks}{46}{section.4.1}\protected@file@percent }
-\newlabel{history-of-supply-chain-attacks}{{4.1}{46}{History of supply chain attacks}{section.4.1}{}}
+\newlabel{supply-chain-attacks}{{4}{53}{Supply chain attacks}{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}History of supply chain attacks}{53}{section.4.1}\protected@file@percent }
+\newlabel{history-of-supply-chain-attacks}{{4.1}{53}{History of supply chain attacks}{section.4.1}{}}
 \citation{ref-Greenberg2019}
-\@writefile{tdo}{\contentsline {todo}{29. Explain how these vulnerabilities arise and how to mitigate them. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/180}{\#180}}{47}{section*.37}\protected@file@percent }
-\pgfsyspdfmark {pgfid73}{19498269}{31353418}
-\BKM@entry{id=39,dest={636861707465722E35},srcline={2918}}{5C3337365C3337375C303030435C3030306F5C3030306D5C303030705C303030695C3030306C5C303030655C303030725C3030305C3034305C303030695C3030306E5C303030745C303030725C3030306F5C303030645C303030755C303030635C303030655C303030645C3030305C3034305C303030735C303030655C303030635C303030755C303030725C303030695C303030745C303030795C3030305C3034305C303030765C303030755C3030306C5C3030306E5C303030655C303030725C303030615C303030625C303030695C3030306C5C303030695C303030745C303030695C303030655C30303073}
+\@writefile{tdo}{\contentsline {todo}{28. Explain how these vulnerabilities arise and how to mitigate them. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/180}{\#180}}{54}{section*.40}\protected@file@percent }
+\pgfsyspdfmark {pgfid64}{19498269}{31353418}
+\BKM@entry{id=39,dest={636861707465722E35},srcline={3501}}{5C3337365C3337375C303030435C3030306F5C3030306D5C303030705C303030695C3030306C5C303030655C303030725C3030305C3034305C303030695C3030306E5C303030745C303030725C3030306F5C303030645C303030755C303030635C303030655C303030645C3030305C3034305C303030735C303030655C303030635C303030755C303030725C303030695C303030745C303030795C3030305C3034305C303030765C303030755C3030306C5C3030306E5C303030655C303030725C303030615C303030625C303030695C3030306C5C303030695C303030745C303030695C303030655C30303073}
 \citation{ref-Thompson1984}
 \citation{ref-wang2012undefined}
 \citation{ref-d2015correctness}
 \citation{ref-dusilent}
 \citation{ref-Wang2015}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Compiler introduced security vulnerabilities}{48}{chapter.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Compiler introduced security vulnerabilities}{55}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{compiler-introduced-security-vulnerabilities}{{5}{48}{Compiler introduced security vulnerabilities}{chapter.5}{}}
-\@writefile{tdo}{\contentsline {todo}{30. Explain how code that results in undefined behaviour can often work as the programmer expected until some optimisation is applied, and perhaps even talk a bit about why compilers rely on the absence of undefined behaviour in ways that appear aggressive in some occasions. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/202}{\#202}}{48}{section*.38}\protected@file@percent }
-\pgfsyspdfmark {pgfid74}{19498269}{24865354}
+\newlabel{compiler-introduced-security-vulnerabilities}{{5}{55}{Compiler introduced security vulnerabilities}{chapter.5}{}}
+\@writefile{tdo}{\contentsline {todo}{29. Explain how code that results in undefined behaviour can often work as the programmer expected until some optimisation is applied, and perhaps even talk a bit about why compilers rely on the absence of undefined behaviour in ways that appear aggressive in some occasions. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/202}{\#202}}{55}{section*.41}\protected@file@percent }
+\pgfsyspdfmark {pgfid65}{19498269}{24865354}
 \citation{ref-FbsdJunk}
 \citation{ref-ObsdJunk}
 \citation{ref-ChromiumIssue}
@@ -366,73 +407,73 @@
 \citation{ref-OpenSSLMemClr}
 \citation{ref-MemSetProposal}
 \citation{ref-GNUMemSet}
-\BKM@entry{id=40,dest={636861707465722E36},srcline={3148}}{5C3337365C3337375C303030555C3030306E5C303030645C303030655C303030725C303030685C303030615C3030306E5C303030645C303030655C303030645C3030305C3034305C303030635C3030306F5C303030645C30303065}
+\BKM@entry{id=40,dest={636861707465722E36},srcline={3731}}{5C3337365C3337375C303030555C3030306E5C303030645C303030655C303030725C303030685C303030615C3030306E5C303030645C303030655C303030645C3030305C3034305C303030635C3030306F5C303030645C30303065}
 \citation{ref-Wheeler2020}
-\BKM@entry{id=41,dest={73656374696F6E2E362E31},srcline={3164}}{5C3337365C3337375C303030415C303030735C303030735C303030695C303030675C3030306E5C3030306D5C303030655C3030306E5C303030745C3030305C3034305C303030615C3030306E5C303030645C3030305C3034305C303030655C303030715C303030755C303030615C3030306C5C303030695C303030745C303030795C3030305C3034305C303030635C3030306F5C3030306E5C303030665C303030755C303030735C303030695C3030306F5C3030306E}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Underhanded code}{52}{chapter.6}\protected@file@percent }
+\BKM@entry{id=41,dest={73656374696F6E2E362E31},srcline={3747}}{5C3337365C3337375C303030415C303030735C303030735C303030695C303030675C3030306E5C3030306D5C303030655C3030306E5C303030745C3030305C3034305C303030615C3030306E5C303030645C3030305C3034305C303030655C303030715C303030755C303030615C3030306C5C303030695C303030745C303030795C3030305C3034305C303030635C3030306F5C3030306E5C303030665C303030755C303030735C303030695C3030306F5C3030306E}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Underhanded code}{59}{chapter.6}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{underhanded-code}{{6}{52}{Underhanded code}{chapter.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Assignment and equality confusion}{52}{section.6.1}\protected@file@percent }
-\newlabel{assignment-and-equality-confusion}{{6.1}{52}{Assignment and equality confusion}{section.6.1}{}}
+\newlabel{underhanded-code}{{6}{59}{Underhanded code}{chapter.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Assignment and equality confusion}{59}{section.6.1}\protected@file@percent }
+\newlabel{assignment-and-equality-confusion}{{6.1}{59}{Assignment and equality confusion}{section.6.1}{}}
 \citation{ref-pep572}
-\BKM@entry{id=42,dest={73656374696F6E2E362E32},srcline={3205}}{5C3337365C3337375C303030675C3030306F5C303030745C3030306F5C3030305C3034305C303030665C303030615C303030695C3030306C}
-\BKM@entry{id=43,dest={73656374696F6E2E362E33},srcline={3248}}{5C3337365C3337375C303030545C303030725C3030306F5C3030306A5C303030615C3030306E5C3030305C3034305C303030535C3030306F5C303030755C303030725C303030635C30303065}
+\BKM@entry{id=42,dest={73656374696F6E2E362E32},srcline={3788}}{5C3337365C3337375C303030675C3030306F5C303030745C3030306F5C3030305C3034305C303030665C303030615C303030695C3030306C}
+\BKM@entry{id=43,dest={73656374696F6E2E362E33},srcline={3831}}{5C3337365C3337375C303030545C303030725C3030306F5C3030306A5C303030615C3030306E5C3030305C3034305C303030535C3030306F5C303030755C303030725C303030635C30303065}
 \citation{ref-Boucher2023}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}goto fail}{53}{section.6.2}\protected@file@percent }
-\newlabel{goto-fail}{{6.2}{53}{goto fail}{section.6.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}Trojan Source}{54}{section.6.3}\protected@file@percent }
-\newlabel{trojan-source}{{6.3}{54}{Trojan Source}{section.6.3}{}}
-\BKM@entry{id=44,dest={636861707465722E37},srcline={3286}}{5C3337365C3337375C303030505C303030685C303030795C303030735C303030695C303030635C303030615C3030306C5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
-\BKM@entry{id=45,dest={73656374696F6E2E372E31},srcline={3292}}{5C3337365C3337375C3030304F5C303030765C303030655C303030725C303030765C303030695C303030655C30303077}
-\BKM@entry{id=46,dest={73656374696F6E2E372E32},srcline={3336}}{5C3337365C3337375C303030505C303030685C303030795C303030735C303030695C303030635C303030615C3030306C5C3030305C3034305C303030615C303030635C303030635C303030655C303030735C303030735C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Physical attacks}{55}{chapter.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}goto fail}{60}{section.6.2}\protected@file@percent }
+\newlabel{goto-fail}{{6.2}{60}{goto fail}{section.6.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Trojan Source}{61}{section.6.3}\protected@file@percent }
+\newlabel{trojan-source}{{6.3}{61}{Trojan Source}{section.6.3}{}}
+\BKM@entry{id=44,dest={636861707465722E37},srcline={3869}}{5C3337365C3337375C303030505C303030685C303030795C303030735C303030695C303030635C303030615C3030306C5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
+\BKM@entry{id=45,dest={73656374696F6E2E372E31},srcline={3875}}{5C3337365C3337375C3030304F5C303030765C303030655C303030725C303030765C303030695C303030655C30303077}
+\BKM@entry{id=46,dest={73656374696F6E2E372E32},srcline={3919}}{5C3337365C3337375C303030505C303030685C303030795C303030735C303030695C303030635C303030615C3030306C5C3030305C3034305C303030615C303030635C303030635C303030655C303030735C303030735C3030305C3034305C303030735C303030695C303030645C303030655C3030302D5C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Physical attacks}{62}{chapter.7}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{physical-attacks}{{7}{55}{Physical attacks}{chapter.7}{}}
-\@writefile{tdo}{\contentsline {todo}{31. This chapter should probably be moved under section `Physical access side-channel attacks' higher-up \href  {https://github.com/llsoftsec/llsoftsecbook/issues/181}{\#181}}{55}{section*.39}\protected@file@percent }
-\pgfsyspdfmark {pgfid75}{19498269}{32540057}
-\@writefile{toc}{\contentsline {section}{\numberline {7.1}Overview}{55}{section.7.1}\protected@file@percent }
-\newlabel{overview}{{7.1}{55}{Overview}{section.7.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.2}Physical access side-channel attacks}{55}{section.7.2}\protected@file@percent }
-\newlabel{physical-access-side-channel-attacks-1}{{7.2}{55}{Physical access side-channel attacks}{section.7.2}{}}
-\BKM@entry{id=47,dest={73756273656374696F6E2E372E322E31},srcline={3347}}{5C3337365C3337375C303030485C3030306F5C303030775C3030305C3034305C303030695C303030735C3030305C3034305C303030695C3030306E5C303030665C3030306F5C303030725C3030306D5C303030615C303030745C303030695C3030306F5C3030306E5C3030305C3034305C3030306C5C303030655C303030615C3030306B5C303030655C303030645C3030303F}
-\BKM@entry{id=48,dest={73756273656374696F6E2E372E322E32},srcline={3395}}{5C3337365C3337375C303030535C303030695C303030645C303030655C3030305C3034305C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C3030305C3034305C3030306C5C303030655C303030615C3030306B5C303030615C303030675C303030655C3030305C3034305C303030615C303030745C3030305C3034305C303030695C3030306E5C303030735C303030745C303030725C303030755C303030635C303030745C303030695C3030306F5C3030306E5C3030305C3034305C3030306C5C303030655C303030765C303030655C3030306C}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}How is information leaked?}{56}{subsection.7.2.1}\protected@file@percent }
-\newlabel{how-is-information-leaked}{{7.2.1}{56}{How is information leaked?}{subsection.7.2.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.2}Side channel leakage at instruction level}{56}{subsection.7.2.2}\protected@file@percent }
-\newlabel{side-channel-leakage-at-instruction-level}{{7.2.2}{56}{Side channel leakage at instruction level}{subsection.7.2.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces leakage of conditional branch}}{57}{figure.caption.40}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces leakage of execution cycle}}{57}{figure.caption.41}\protected@file@percent }
-\BKM@entry{id=49,dest={73756273656374696F6E2E372E322E33},srcline={3457}}{5C3337365C3337375C303030435C3030306F5C303030755C3030306E5C303030745C303030655C303030725C3030306D5C303030655C303030615C303030735C303030755C303030725C303030655C30303073}
-\BKM@entry{id=50,dest={73656374696F6E2E372E33},srcline={3492}}{5C3337365C3337375C303030465C303030615C303030755C3030306C5C303030745C3030305C3034305C303030695C3030306E5C3030306A5C303030655C303030635C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
-\BKM@entry{id=51,dest={73756273656374696F6E2E372E332E31},srcline={3495}}{5C3337365C3337375C303030435C3030306F5C3030306D5C3030306D5C3030306F5C3030306E5C3030305C3034305C303030665C3030306F5C303030725C3030306D5C303030735C3030305C3034305C3030306F5C303030665C3030305C3034305C303030465C303030615C303030755C3030306C5C303030745C3030305C3034305C303030695C3030306E5C3030306A5C303030655C303030635C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces leakage of number of bit toggled}}{58}{figure.caption.42}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.3}Countermeasures}{58}{subsection.7.2.3}\protected@file@percent }
-\newlabel{countermeasures}{{7.2.3}{58}{Countermeasures}{subsection.7.2.3}{}}
-\@writefile{tdo}{\contentsline {todo}{32. There is overlap with section timing-side-channels. How to best consolidate that? \href  {https://github.com/llsoftsec/llsoftsecbook/issues/182}{\#182}}{58}{section*.43}\protected@file@percent }
-\pgfsyspdfmark {pgfid76}{19498269}{15353345}
-\@writefile{toc}{\contentsline {section}{\numberline {7.3}Fault injection attacks}{59}{section.7.3}\protected@file@percent }
-\newlabel{fault-injection-attacks}{{7.3}{59}{Fault injection attacks}{section.7.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.1}Common forms of Fault injection attacks}{59}{subsection.7.3.1}\protected@file@percent }
-\newlabel{common-forms-of-fault-injection-attacks}{{7.3.1}{59}{Common forms of Fault injection attacks}{subsection.7.3.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.4}{\ignorespaces common fault injection attacks}}{59}{figure.caption.44}\protected@file@percent }
-\@writefile{tdo}{\contentsline {todo}{33. Make the above reference to a paper use bibtex. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/159}{\#159}}{59}{section*.45}\protected@file@percent }
-\pgfsyspdfmark {pgfid77}{19498269}{9529160}
-\BKM@entry{id=52,dest={73756273656374696F6E2E372E332E32},srcline={3582}}{5C3337365C3337375C303030435C3030306F5C303030755C3030306E5C303030745C303030655C303030725C3030306D5C303030655C303030615C303030735C303030755C303030725C303030655C30303073}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.2}Countermeasures}{60}{subsection.7.3.2}\protected@file@percent }
-\newlabel{countermeasures-1}{{7.3.2}{60}{Countermeasures}{subsection.7.3.2}{}}
-\BKM@entry{id=53,dest={636861707465722E38},srcline={3593}}{5C3337365C3337375C3030304F5C303030745C303030685C303030655C303030725C3030305C3034305C303030735C303030655C303030635C303030755C303030725C303030695C303030745C303030795C3030305C3034305C303030745C3030306F5C303030705C303030695C303030635C303030735C3030305C3034305C303030725C303030655C3030306C5C303030655C303030765C303030615C3030306E5C303030745C3030305C3034305C303030665C3030306F5C303030725C3030305C3034305C303030635C3030306F5C3030306D5C303030705C303030695C3030306C5C303030655C303030725C3030305C3034305C303030645C303030655C303030765C303030655C3030306C5C3030306F5C303030705C303030655C303030725C30303073}
-\@writefile{toc}{\contentsline {chapter}{\numberline {8}Other security topics relevant for compiler developers}{61}{chapter.8}\protected@file@percent }
+\newlabel{physical-attacks}{{7}{62}{Physical attacks}{chapter.7}{}}
+\@writefile{tdo}{\contentsline {todo}{30. This chapter should probably be moved under section `Physical access side-channel attacks' higher-up \href  {https://github.com/llsoftsec/llsoftsecbook/issues/181}{\#181}}{62}{section*.42}\protected@file@percent }
+\pgfsyspdfmark {pgfid66}{19498269}{32540057}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Overview}{62}{section.7.1}\protected@file@percent }
+\newlabel{overview}{{7.1}{62}{Overview}{section.7.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Physical access side-channel attacks}{62}{section.7.2}\protected@file@percent }
+\newlabel{physical-access-side-channel-attacks-1}{{7.2}{62}{Physical access side-channel attacks}{section.7.2}{}}
+\BKM@entry{id=47,dest={73756273656374696F6E2E372E322E31},srcline={3930}}{5C3337365C3337375C303030485C3030306F5C303030775C3030305C3034305C303030695C303030735C3030305C3034305C303030695C3030306E5C303030665C3030306F5C303030725C3030306D5C303030615C303030745C303030695C3030306F5C3030306E5C3030305C3034305C3030306C5C303030655C303030615C3030306B5C303030655C303030645C3030303F}
+\BKM@entry{id=48,dest={73756273656374696F6E2E372E322E32},srcline={3978}}{5C3337365C3337375C303030535C303030695C303030645C303030655C3030305C3034305C303030635C303030685C303030615C3030306E5C3030306E5C303030655C3030306C5C3030305C3034305C3030306C5C303030655C303030615C3030306B5C303030615C303030675C303030655C3030305C3034305C303030615C303030745C3030305C3034305C303030695C3030306E5C303030735C303030745C303030725C303030755C303030635C303030745C303030695C3030306F5C3030306E5C3030305C3034305C3030306C5C303030655C303030765C303030655C3030306C}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}How is information leaked?}{63}{subsection.7.2.1}\protected@file@percent }
+\newlabel{how-is-information-leaked}{{7.2.1}{63}{How is information leaked?}{subsection.7.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.2}Side channel leakage at instruction level}{63}{subsection.7.2.2}\protected@file@percent }
+\newlabel{side-channel-leakage-at-instruction-level}{{7.2.2}{63}{Side channel leakage at instruction level}{subsection.7.2.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces leakage of conditional branch}}{64}{figure.caption.43}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces leakage of execution cycle}}{64}{figure.caption.44}\protected@file@percent }
+\BKM@entry{id=49,dest={73756273656374696F6E2E372E322E33},srcline={4040}}{5C3337365C3337375C303030435C3030306F5C303030755C3030306E5C303030745C303030655C303030725C3030306D5C303030655C303030615C303030735C303030755C303030725C303030655C30303073}
+\BKM@entry{id=50,dest={73656374696F6E2E372E33},srcline={4075}}{5C3337365C3337375C303030465C303030615C303030755C3030306C5C303030745C3030305C3034305C303030695C3030306E5C3030306A5C303030655C303030635C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
+\BKM@entry{id=51,dest={73756273656374696F6E2E372E332E31},srcline={4078}}{5C3337365C3337375C303030435C3030306F5C3030306D5C3030306D5C3030306F5C3030306E5C3030305C3034305C303030665C3030306F5C303030725C3030306D5C303030735C3030305C3034305C3030306F5C303030665C3030305C3034305C303030465C303030615C303030755C3030306C5C303030745C3030305C3034305C303030695C3030306E5C3030306A5C303030655C303030635C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030615C303030745C303030745C303030615C303030635C3030306B5C30303073}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces leakage of number of bit toggled}}{65}{figure.caption.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.3}Countermeasures}{65}{subsection.7.2.3}\protected@file@percent }
+\newlabel{countermeasures}{{7.2.3}{65}{Countermeasures}{subsection.7.2.3}{}}
+\@writefile{tdo}{\contentsline {todo}{31. There is overlap with section timing-side-channels. How to best consolidate that? \href  {https://github.com/llsoftsec/llsoftsecbook/issues/182}{\#182}}{65}{section*.46}\protected@file@percent }
+\pgfsyspdfmark {pgfid67}{19498269}{15353345}
+\@writefile{toc}{\contentsline {section}{\numberline {7.3}Fault injection attacks}{66}{section.7.3}\protected@file@percent }
+\newlabel{fault-injection-attacks}{{7.3}{66}{Fault injection attacks}{section.7.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.1}Common forms of Fault injection attacks}{66}{subsection.7.3.1}\protected@file@percent }
+\newlabel{common-forms-of-fault-injection-attacks}{{7.3.1}{66}{Common forms of Fault injection attacks}{subsection.7.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.4}{\ignorespaces common fault injection attacks}}{66}{figure.caption.47}\protected@file@percent }
+\@writefile{tdo}{\contentsline {todo}{32. Make the above reference to a paper use bibtex. \href  {https://github.com/llsoftsec/llsoftsecbook/issues/159}{\#159}}{66}{section*.48}\protected@file@percent }
+\pgfsyspdfmark {pgfid68}{19498269}{9529160}
+\BKM@entry{id=52,dest={73756273656374696F6E2E372E332E32},srcline={4165}}{5C3337365C3337375C303030435C3030306F5C303030755C3030306E5C303030745C303030655C303030725C3030306D5C303030655C303030615C303030735C303030755C303030725C303030655C30303073}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.2}Countermeasures}{67}{subsection.7.3.2}\protected@file@percent }
+\newlabel{countermeasures-1}{{7.3.2}{67}{Countermeasures}{subsection.7.3.2}{}}
+\BKM@entry{id=53,dest={636861707465722E38},srcline={4176}}{5C3337365C3337375C3030304F5C303030745C303030685C303030655C303030725C3030305C3034305C303030735C303030655C303030635C303030755C303030725C303030695C303030745C303030795C3030305C3034305C303030745C3030306F5C303030705C303030695C303030635C303030735C3030305C3034305C303030725C303030655C3030306C5C303030655C303030765C303030615C3030306E5C303030745C3030305C3034305C303030665C3030306F5C303030725C3030305C3034305C303030635C3030306F5C3030306D5C303030705C303030695C3030306C5C303030655C303030725C3030305C3034305C303030645C303030655C303030765C303030655C3030306C5C3030306F5C303030705C303030655C303030725C30303073}
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}Other security topics relevant for compiler developers}{68}{chapter.8}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{other-security-topics-relevant-for-compiler-developers}{{8}{61}{Other security topics relevant for compiler developers}{chapter.8}{}}
-\@writefile{tdo}{\contentsline {todo}{34. Write chapter with other security topics.}{61}{section*.46}\protected@file@percent }
-\pgfsyspdfmark {pgfid78}{19498269}{29001113}
-\BKM@entry{id=54,dest={636861707465722A2E3437},srcline={3599}}{5C3337365C3337375C303030415C303030705C303030705C303030655C3030306E5C303030645C303030695C303030785C3030303A5C3030305C3034305C303030635C3030306F5C3030306E5C303030745C303030725C303030695C303030625C303030755C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030675C303030755C303030695C303030645C303030655C3030306C5C303030695C3030306E5C303030655C30303073}
-\newlabel{appendix-contribution-guidelines}{{8}{62}{Appendix: contribution guidelines}{chapter*.47}{}}
-\@writefile{toc}{\contentsline {chapter}{Appendix: contribution guidelines}{62}{chapter*.47}\protected@file@percent }
-\BKM@entry{id=55,dest={636861707465722A2E3438},srcline={3634}}{5C3337365C3337375C303030525C303030655C303030665C303030655C303030725C303030655C3030306E5C303030635C303030655C30303073}
+\newlabel{other-security-topics-relevant-for-compiler-developers}{{8}{68}{Other security topics relevant for compiler developers}{chapter.8}{}}
+\@writefile{tdo}{\contentsline {todo}{33. Write chapter with other security topics.}{68}{section*.49}\protected@file@percent }
+\pgfsyspdfmark {pgfid69}{19498269}{29001113}
+\BKM@entry{id=54,dest={636861707465722A2E3530},srcline={4182}}{5C3337365C3337375C303030415C303030705C303030705C303030655C3030306E5C303030645C303030695C303030785C3030303A5C3030305C3034305C303030635C3030306F5C3030306E5C303030745C303030725C303030695C303030625C303030755C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030675C303030755C303030695C303030645C303030655C3030306C5C303030695C3030306E5C303030655C30303073}
+\newlabel{appendix-contribution-guidelines}{{8}{69}{Appendix: contribution guidelines}{chapter*.50}{}}
+\@writefile{toc}{\contentsline {chapter}{Appendix: contribution guidelines}{69}{chapter*.50}\protected@file@percent }
+\BKM@entry{id=55,dest={636861707465722A2E3531},srcline={4217}}{5C3337365C3337375C303030525C303030655C303030665C303030655C303030725C303030655C3030306E5C303030635C303030655C30303073}
 \bibcite{ref-GNUMemSet}{\citeproctext }
 \bibcite{ref-Aciicmez2007}{\citeproctext }
 \bibcite{ref-AlephOne1996}{\citeproctext }
@@ -445,20 +486,23 @@
 \bibcite{ref-Briongos2020}{\citeproctext }
 \bibcite{ref-Bulck2020}{\citeproctext }
 \bibcite{ref-Bulygin2008}{\citeproctext }
-\newlabel{references}{{8}{65}{References}{chapter*.48}{}}
-\@writefile{toc}{\contentsline {chapter}{References}{65}{chapter*.48}\protected@file@percent }
-\newlabel{refs}{{8}{65}{References}{section*.49}{}}
+\newlabel{references}{{8}{72}{References}{chapter*.51}{}}
+\@writefile{toc}{\contentsline {chapter}{References}{72}{chapter*.51}\protected@file@percent }
+\newlabel{refs}{{8}{72}{References}{section*.52}{}}
 \bibcite{ref-Burow2017}{\citeproctext }
+\bibcite{ref-Cheeseman2019}{\citeproctext }
 \bibcite{ref-Chen2005}{\citeproctext }
 \bibcite{ref-Conti2015}{\citeproctext }
 \bibcite{ref-Cook2023}{\citeproctext }
 \bibcite{ref-Cox2015}{\citeproctext }
 \bibcite{ref-d2015correctness}{\citeproctext }
+\bibcite{ref-DenisCourmont2021}{\citeproctext }
 \bibcite{ref-Dowd2006}{\citeproctext }
 \bibcite{ref-dusilent}{\citeproctext }
 \bibcite{ref-Dullien2020}{\citeproctext }
 \bibcite{ref-Evtyushkin2018}{\citeproctext }
 \bibcite{ref-Eyerman2009}{\citeproctext }
+\bibcite{ref-farkhani2021}{\citeproctext }
 \bibcite{ref-Fetiveau2019}{\citeproctext }
 \bibcite{ref-Dullien2018}{\citeproctext }
 \bibcite{ref-FbsdJunk}{\citeproctext }
@@ -476,11 +520,13 @@
 \bibcite{ref-Ispoglou2018}{\citeproctext }
 \bibcite{ref-ChromiumIssue}{\citeproctext }
 \bibcite{ref-Kocher2019}{\citeproctext }
+\bibcite{ref-Korobeynikov2024}{\citeproctext }
 \bibcite{ref-Lee2017}{\citeproctext }
 \bibcite{ref-MemZeroDataBarrier}{\citeproctext }
 \bibcite{ref-OpenSSLMemClr}{\citeproctext }
 \bibcite{ref-MemZeroBarrier}{\citeproctext }
 \bibcite{ref-Liljestrand2021}{\citeproctext }
+\bibcite{ref-Liljestrand2019}{\citeproctext }
 \bibcite{ref-Lipp2020}{\citeproctext }
 \bibcite{ref-Lipp2018}{\citeproctext }
 \bibcite{ref-McCall2019}{\citeproctext }
@@ -497,6 +543,7 @@
 \bibcite{ref-Rutland2017}{\citeproctext }
 \bibcite{ref-saelo2021b}{\citeproctext }
 \bibcite{ref-saelo2021a}{\citeproctext }
+\bibcite{ref-Schilling2022}{\citeproctext }
 \bibcite{ref-Schuster2015}{\citeproctext }
 \bibcite{ref-Schwarz2017}{\citeproctext }
 \bibcite{ref-Schwarz2019}{\citeproctext }
@@ -517,4 +564,5 @@
 \bibcite{ref-Wingo2011}{\citeproctext }
 \bibcite{ref-Wu2018}{\citeproctext }
 \bibcite{ref-Yarom2014}{\citeproctext }
-\gdef \@abspage@last{71}
+\bibcite{ref-Yoo2021}{\citeproctext }
+\gdef \@abspage@last{79}

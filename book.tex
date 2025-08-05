@@ -200,7 +200,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2024 Anders Waldenborg
 \href{mailto:anders@0x63.nu}{\nolinkurl{anders@0x63.nu}}\\
 
-Version 0-208-g6cd7a1d
+Version 0-210-g0105faf
 \clearpage
 % end of llsoftsecbook-specific template part
 
@@ -350,8 +350,9 @@ Programming (ROP)} (\citeproc{ref-Shacham2007}{Shacham 2007}) and even
 more complex techniques.
 
 To defend against code reuse attacks, the \hyperref[aslr]{Address Space
-Layout Randomization (ASLR)} and \hyperref[cfi]{Control-Flow Integrity
-(CFI)} measures were introduced. This interaction between offensive and
+Layout Randomization (ASLR)} and
+\hyperref[control-flow-integrity-cfi]{Control-Flow Integrity (CFI)}
+measures were introduced. This interaction between offensive and
 defensive security research has been essential to improving security,
 and continues to this day. Each newly deployed mitigation results in
 attempts, often successful, to bypass it, or in alternative, more
@@ -594,7 +595,8 @@ the purposes of this chapter we will focus on:
   the attacker from obtaining powerful read/write primitives.
 \item
   Mitigating the effects of read/write primitives, e.g.~with mechanisms
-  to maintain \hyperref[cfi]{Control-Flow Integrity (CFI)}.
+  to maintain \hyperref[control-flow-integrity-cfi]{Control-Flow
+  Integrity (CFI)}.
 \end{itemize}
 
 \section{Stack buffer overflows}\label{stack-buffer-overflows}
@@ -617,6 +619,13 @@ unintentionally will typically result in a crash, but the overflowing
 values can be carefully chosen by an attacker to gain control of the
 program's execution.
 
+\phantomsection\label{ex:stack-buffer-overflow}
+\begin{example}
+
+\label{ex:stack-buffer-overflow}
+
+\textup{A simple stack buffer overflow.}
+
 Here is a simple example of a program vulnerable to a stack buffer
 overflow\footnote{This is an oversimplified example for illustrative
   purposes. However, as this is a
@@ -625,24 +634,26 @@ overflow\footnote{This is an oversimplified example for illustrative
   \href{https://www.cvedetails.com/vulnerability-list/cweid-121/vulnerabilities.html}{many
   real-world examples} can be found and studied.}:
 
-\begin{verbatim}
-#include <stdio.h>
-#include <string.h>
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}string.h\textgreater{}}
 
-void copy_and_print(char* src) {
-  char dst[16];
+\DataTypeTok{void}\NormalTok{ copy\_and\_print}\OperatorTok{(}\DataTypeTok{char}\OperatorTok{*}\NormalTok{ src}\OperatorTok{)} \OperatorTok{\{}
+  \DataTypeTok{char}\NormalTok{ dst}\OperatorTok{[}\DecValTok{16}\OperatorTok{];}
 
-  for (int i = 0; i < strlen(src) + 1; ++i)
-    dst[i] = src[i];
-  printf("%s\n", dst);
-}
+  \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}}\NormalTok{ strlen}\OperatorTok{(}\NormalTok{src}\OperatorTok{)} \OperatorTok{+} \DecValTok{1}\OperatorTok{;} \OperatorTok{++}\NormalTok{i}\OperatorTok{)}
+\NormalTok{    dst}\OperatorTok{[}\NormalTok{i}\OperatorTok{]} \OperatorTok{=}\NormalTok{ src}\OperatorTok{[}\NormalTok{i}\OperatorTok{];}
+\NormalTok{  printf}\OperatorTok{(}\StringTok{"}\SpecialCharTok{\%s\textbackslash{}n}\StringTok{"}\OperatorTok{,}\NormalTok{ dst}\OperatorTok{);}
+\OperatorTok{\}}
 
-int main(int argc, char* argv[]) {
-  if (argc > 1) {
-    copy_and_print(argv[1]);
-  }
-}
-\end{verbatim}
+\DataTypeTok{int}\NormalTok{ main}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ argc}\OperatorTok{,} \DataTypeTok{char}\OperatorTok{*}\NormalTok{ argv}\OperatorTok{[])} \OperatorTok{\{}
+  \ControlFlowTok{if} \OperatorTok{(}\NormalTok{argc }\OperatorTok{\textgreater{}} \DecValTok{1}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{    copy\_and\_print}\OperatorTok{(}\NormalTok{argv}\OperatorTok{[}\DecValTok{1}\OperatorTok{]);}
+  \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 In the code above, since the length of the argument is not checked
 before copying it into \texttt{dst}, we have a potential for a buffer
@@ -672,6 +683,8 @@ address stored in the saved LR, which has been overwritten. Therefore,
 when an attacker can choose the value that overwrites the saved LR, it's
 possible to control where the program resumes execution after returning
 from \texttt{main}.
+
+\end{example}
 
 Before non-executable stacks were mainstream, a common way to exploit
 these vulnerabilities would be to use the overflow to simultaneously
@@ -755,12 +768,12 @@ control flow according to the attacker's wishes.
 
 Some of these vulnerabilities can be mitigated with the measures
 described in this section, but often more general measures to ensure
-memory safety or \hyperref[cfi]{Control-Flow Integrity} are necessary.
-For example, in addition to the hardening of specific library functions,
-compilers can also implement automatic bounds checking for arrays where
-the array bound can be statically determined
-(\texttt{-fsanitize=bounds}), as well as various other ``sanitizers''.
-We will describe these measures in following sections.
+memory safety or \hyperref[control-flow-integrity-cfi]{Control-Flow
+Integrity} are necessary. For example, in addition to the hardening of
+specific library functions, compilers can also implement automatic
+bounds checking for arrays where the array bound can be statically
+determined (\texttt{-fsanitize=bounds}), as well as various other
+``sanitizers''. We will describe these measures in following sections.
 
 \section{Code reuse attacks}\label{code-reuse-attacks}
 
@@ -1025,7 +1038,7 @@ similar to the JOP example in the previous section.
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/261}{\#261}}
 
 \subsection{Sigreturn-oriented
-programming}\label{sigreturn-oriented-programming}
+programming}\label{sec:sigreturn-oriented-programming}
 
 One last example of a code reuse attack that is worth mentioning here is
 sigreturn-oriented programming
@@ -1050,7 +1063,8 @@ for such attacks to work:
 \begin{itemize}
 \tightlist
 \item
-  the ability to overwrite return addresses or function pointers
+  the ability to overwrite return addresses, function pointers or other
+  code pointers.
 \item
   knowledge of the target addresses to overwrite them with (e.g.~libc
   function entry points).
@@ -1060,7 +1074,30 @@ When code reuse attacks were first described, programs used to contain
 absolute code pointers, and needed to be loaded at fixed addresses. The
 stack base was predictable, and libraries were loaded in predictable
 memory locations. This made code reuse attacks simple, as all of the
-addresses needed for a successful exploit were easy to discover.
+addresses needed for a successful exploit were easy to discover. In this
+section, we're going to discuss mitigations that make it harder for an
+attacker to obtain these capabilities.
+
+The ability for an attacker to overwrite code pointers often boils down
+to the being able to overwrite them while they are stored in memory,
+rather than in machine registers\index{register}. Overwriting value in
+machine registers directly is often not possible. Attackers use memory
+vulnerabilities\index{memory vulnerability} to be able to overwrite
+pointers in memory. With that in mind, one could assume that code reuse
+mitigations are not necessary for programs written in memory-safe
+languages, as they should not have any memory vulnerabilities. However,
+most real-life programs written in memory-safe languages still contain
+at least portions of binary code written in unsafe languages. An
+attacker could obtain a write primitive in the unsafe portion of the
+program, and use it to overwrite code pointers in the memory-safe
+portion of the program. Therefore, mitigations against code reuse
+attacks are still relevant for programs written in memory-safe
+languages.
+
+Another reason that attackers could obtain write primitives in
+memory-safe programs is due to bugs in the compiler or the runtime. This
+is especially true for JIT-based languages, see section
+\hyperref[sec:jit-compiler-vulnerabilities]{2.8} for more details.
 
 \subsection{ASLR}\label{aslr}
 
@@ -1087,7 +1124,8 @@ library function hardening, can help in specific situations, but for the
 more general case where an attacker has obtained arbitrary read and
 write primitives, we need something more.
 
-\subsection{CFI}\label{cfi}
+\subsection{Control-flow Integrity
+(CFI)}\label{control-flow-integrity-cfi}
 
 \href{https://en.wikipedia.org/wiki/Control-flow_integrity}{Control-flow
 integrity (CFI)}\index{CFI} is a family of mitigations that aim to
@@ -1096,44 +1134,483 @@ restricting the possible targets of indirect branches and returns. A
 scheme that protects indirect jumps and calls is referred to as
 forward-edge CFI\index{forward-edge CFI}, whereas a scheme that protects
 returns is said to implement backward-edge CFI\index{backward-edge CFI}.
+
 Ideally, a CFI scheme would not allow any control flow transfers that
 don't occur in a correct program execution, however different schemes
-have varying granularities. They often rely on function type checks or
-use static analysis (points-to analysis) to identify potential control
-flow transfer targets. (\citeproc{ref-Burow2017}{Burow et al. 2017})
-compares a number of available CFI schemes based on the precision. For
+have varying granularities.
+
+CFI schemes are sometimes classified as
+coarse-grained\index{coarse-grained CFI} or
+fine-grained\index{fine-grained CFI}. While there is no precise
+definition of these terms, coarse-grained CFI schemes typically have
+relatively coarse granularity. For example, a CFI scheme that allows an
+indirect function call to continue the execution at the start of any
+function, rather than only at the start of functions with a specific
+signature, is considered coarse-grained.
+
+Forward-edge CFI schemes often rely on function type checks or use
+static analysis (points-to analysis) to identify potential control flow
+transfer targets. (\citeproc{ref-Burow2017}{Burow et al. 2017}) compares
+a number of available CFI schemes based on the precision. For
 forward-edge CFI schemes, for example, schemes are classified based on
 whether or not they perform, among others, flow-sensitive analysis,
 context-sensitive analysis and class-hierarchy analysis.
 
-\subsubsection{Clang CFI}\label{clang-cfi}
+The next few subsections go into a bit more detail on the common CFI
+schemes. These CFI schemes are used in production to harden specific
+kinds of control flow transfers. They include:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://clang.llvm.org/docs/ControlFlowIntegrityDesign.html}{Clang
+  CFI}
+\item
+  arm64e, see McCall and Bougacha (\citeproc{ref-McCall2019}{2019}) and
+  pauthabi, see Korobeynikov (\citeproc{ref-Korobeynikov2024}{2024})
+\item
+  \href{https://reviews.llvm.org/D119296}{kcfi}
+\item
+  various shadow stacks
+\item
+  pac-ret, see Cheeseman (\citeproc{ref-Cheeseman2019}{2019})
+\item
+  \href{https://en.wikipedia.org/wiki/Indirect_branch_tracking}{Arm BTI,
+  Intel IBT}
+\item
+  \href{https://learn.microsoft.com/en-us/windows/win32/secbp/control-flow-guard}{Microsoft
+  Control Flow Guard (CFG)}
+\end{itemize}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2857}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1818}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1688}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1558}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1688}}@{}}
+\caption{A few of the key properties of the most common CFI
+schemes.}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+forward- edge?
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+backward- edge?
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+fine- grained?
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+hardware- based?
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+forward- edge?
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+backward- edge?
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+fine- grained?
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+hardware- based?
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Clang CFI & Yes & No & Yes & No \\
+arm64e/pauthabi & Yes & Yes & Yes & Yes \\
+kcfi & Yes & No & Yes & No \\
+shadow stack & No & Yes & Yes & Depends \\
+pac-ret & No & Yes & Yes & Yes \\
+BTI, IBT & Yes & No & No & Yes \\
+Control Flow Guard & Yes & No & No & No \\
+\end{longtable}
+
+There are many more CFI approaches, often academic, but many of them are
+not widely used in production. This book focuses mostly on the deployed
+CFI schemes.
+
+\subsubsection{General CFI principles}\label{general-cfi-principles}
+
+\paragraph{Protecting (forward) indirect function
+calls}\label{protecting-forward-indirect-function-calls}
+
+In practice, most in-production CFI schemes harden indirect function
+calls by partitioning all functions present in the program into
+equivalence classes\index{equivalence class}. Each function is assigned
+a single equivalence class.
+
+For C code, most CFI schemes either put all functions into a single
+equivalence class, or partition functions based on their
+signature\index{function signature}.
+
+For example, arm64e\index{arm64e} and pauthabi\index{pauthabi} put all C
+functions in a single equivalence class see McCall and Bougacha
+(\citeproc{ref-McCall2019}{2019}). Examples of CFI schemes that
+partition C functions based on their signature include
+\href{https://reviews.llvm.org/D119296}{kcfi} and
+\href{https://clang.llvm.org/docs/ControlFlowIntegrityDesign.html\#forward-edge-cfi-for-indirect-function-calls}{clang
+cfi}.
+
+\begin{example}
+
+\label{}
+
+\textup{Equivalence classes for C functions based on signature.}
+
+In C, consider the following three functions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void}\NormalTok{ f1}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ a}\OperatorTok{)} \OperatorTok{\{} \CommentTok{/* ... */} \OperatorTok{\}}
+\DataTypeTok{void}\NormalTok{ f2}\OperatorTok{(}\DataTypeTok{int}\OperatorTok{*}\NormalTok{ b}\OperatorTok{)} \OperatorTok{\{} \CommentTok{/* ... */} \OperatorTok{\}}
+\DataTypeTok{void}\NormalTok{ f3}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ c}\OperatorTok{)} \OperatorTok{\{} \CommentTok{/* ... */} \OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Function \texttt{f1} and \texttt{f3} have the same signature, but
+\texttt{f2} has a different signature. A CFI scheme that partitions
+functions based on their signature will assign \texttt{f1} and
+\texttt{f3} to the same equivalence class, and \texttt{f2} to a
+different equivalence class.
+
+\end{example}
+
+Probably the main reason why some CFI schemes put all C functions in a
+single equivalence class, is that real-world C code quite often
+implicitly casts one C function pointer type to another. This is
+technically incorrect C code, but happens to work on most platforms not
+using fine-grained CFI. Example \hyperref[ex:qsort-cfi]{3} illustrates
+this.
+
+\phantomsection\label{ex:qsort-cfi}
+\begin{example}
+
+\label{ex:qsort-cfi}
+
+\textup{C code mixing different function pointer types.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdlib.h\textgreater{}}
+\DataTypeTok{int}\NormalTok{ cmp\_long}\OperatorTok{(}\DataTypeTok{const} \DataTypeTok{long} \OperatorTok{*}\NormalTok{a}\OperatorTok{,} \DataTypeTok{const} \DataTypeTok{long} \OperatorTok{*}\NormalTok{b}\OperatorTok{)} \OperatorTok{\{} \ControlFlowTok{return} \OperatorTok{*}\NormalTok{a }\OperatorTok{\textless{}} \OperatorTok{*}\NormalTok{b}\OperatorTok{;} \OperatorTok{\}}
+\DataTypeTok{long}\NormalTok{ sort\_array}\OperatorTok{(}\DataTypeTok{long} \OperatorTok{*}\NormalTok{arr}\OperatorTok{,} \DataTypeTok{long}\NormalTok{ size}\OperatorTok{)} \OperatorTok{\{}
+  \CommentTok{/* The prototype of qsort is:}
+\CommentTok{     void qsort(void *base, size\_t nmemb, size\_t size,}
+\CommentTok{                int (*compar)(const void *, const void *)); */}
+\NormalTok{  qsort}\OperatorTok{(}\NormalTok{arr}\OperatorTok{,}\NormalTok{ size}\OperatorTok{,} \KeywordTok{sizeof}\OperatorTok{(}\DataTypeTok{long}\OperatorTok{),} \OperatorTok{\&}\NormalTok{cmp\_long}\OperatorTok{);}
+  \ControlFlowTok{return}\NormalTok{ arr}\OperatorTok{[}\DecValTok{0}\OperatorTok{];}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+In this example, the function \texttt{cmp\_long} has a different
+signature than the function pointer type expected by \texttt{qsort}.
+
+This code will run under CFI schemes that put all C functions in a
+single equivalence class, but will fail under CFI schemes that partition
+C functions based on their signature.
+
+\end{example}
+
+\paragraph{Protecting (forward) virtual
+calls}\label{protecting-forward-virtual-calls}
+
+Many CFI schemes check that a C++ \index{C++} virtual function call
+happens on an object of the correct dynamic type. A few examples are:
+clang-cfi, arm64e, pauthabi.
+
+\begin{example}
+
+\label{}
+
+\textup{C++ virtual function call.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{struct}\NormalTok{ A }\OperatorTok{\{}
+  \KeywordTok{virtual} \DataTypeTok{void}\NormalTok{ f}\OperatorTok{();}
+\OperatorTok{\};}
+\KeywordTok{struct}\NormalTok{ B }\OperatorTok{:} \KeywordTok{public}\NormalTok{ A }\OperatorTok{\{}
+  \KeywordTok{virtual} \DataTypeTok{void}\NormalTok{ f}\OperatorTok{();}
+\OperatorTok{\};}
+\KeywordTok{struct}\NormalTok{ C }\OperatorTok{:} \KeywordTok{public}\NormalTok{ A }\OperatorTok{\{}
+  \KeywordTok{virtual} \DataTypeTok{void}\NormalTok{ f}\OperatorTok{();}
+\OperatorTok{\};}
+\DataTypeTok{void}\NormalTok{ call\_foo}\OperatorTok{(}\NormalTok{A}\OperatorTok{*}\NormalTok{ a}\OperatorTok{,}\NormalTok{ B}\OperatorTok{*}\NormalTok{ b}\OperatorTok{)\{}
+\NormalTok{  a}\OperatorTok{{-}\textgreater{}}\NormalTok{f}\OperatorTok{();}
+\NormalTok{  b}\OperatorTok{{-}\textgreater{}}\NormalTok{f}\OperatorTok{();}
+\OperatorTok{\}}
+\KeywordTok{struct}\NormalTok{ D }\OperatorTok{:} \KeywordTok{public}\NormalTok{ B }\OperatorTok{\{}
+  \KeywordTok{virtual} \DataTypeTok{void}\NormalTok{ f}\OperatorTok{();}
+\OperatorTok{\};}
+\end{Highlighting}
+\end{Shaded}
+
+In this example, a very fine-grained CFI scheme should allow the call
+\texttt{a-\textgreater{}f()} if \texttt{a} is an instance of \texttt{A},
+\texttt{B}, \texttt{C} or \texttt{D}. In other words, it should make
+sure either \texttt{A::f}, \texttt{B::f}, \texttt{C::f} or \texttt{D::f}
+gets called and no other function. Similarly, the call
+\texttt{b-\textgreater{}f()} should only be allowed if it ends up
+calling either \texttt{B::f} or \texttt{D::f}, but not \texttt{A::f} or
+\texttt{C::f}.
+
+clang-cfi implements this very fine-grained CFI scheme when enabling the
+\href{https://clang.llvm.org/docs/ControlFlowIntegrity.html\#strictness}{\texttt{-fsanitize=cfi-cast-strict}
+option}, whereas arm64e and pauthabi implement a more coarse-grained CFI
+scheme that only (probabilistically) checks whether any call to method
+\texttt{f} is one of the overloaded functions from \texttt{A::f},
+i.e.~\texttt{A::f}, \texttt{B::f}, \texttt{C::f} or \texttt{D::f}. This
+is less precise on the call \texttt{b-\textgreater{}f()} above.
+
+\end{example}
+
+\paragraph{Protecting (forward) switch
+jumps}\label{protecting-forward-switch-jumps}
+
+Switch statements with many cases whose values are densely packed
+together are often implemented using a
+\href{https://en.wikipedia.org/wiki/Branch_table}{jump
+table}\index{jump table}, which is an array of pointers or offsets to
+the code for each case. Ultimately, the address to jump to is computed
+by loading from the jump table, and then an indirect jump to the
+computed address is performed. If an attacker can control the value used
+to index into the jump table, they can make the jump target point to a
+different address, leading to the attacker taking over the control flow.
+
+Most CFI schemes do not protect against this, but arm64e\index{arm64e}
+and pauthabi\index{pauthabi} do, as explained in the example below. This
+is also explained in (\citeproc{ref-McCall2019}{McCall and Bougacha
+2019}, slide 39-40).
+
+\begin{example}
+
+\label{}
+
+\textup{jump table CFI hardening.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \ControlFlowTok{switch} \OperatorTok{(}\NormalTok{b}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{case} \DecValTok{0}\OperatorTok{:}
+      \ControlFlowTok{return}\NormalTok{ a}\OperatorTok{+}\DecValTok{1}\OperatorTok{;}
+    \ControlFlowTok{case} \DecValTok{1}\OperatorTok{:}
+      \ControlFlowTok{return}\NormalTok{ a}\OperatorTok{{-}}\DecValTok{5}\OperatorTok{;}
+    \ControlFlowTok{case} \DecValTok{2}\OperatorTok{:}
+
+      \OperatorTok{...} \CommentTok{/* cases 3{-}13 omitted for brevity */}
+
+    \ControlFlowTok{case} \DecValTok{14}\OperatorTok{:}
+      \ControlFlowTok{return}\NormalTok{ a }\OperatorTok{\%} \DecValTok{4}\OperatorTok{;}
+    \ControlFlowTok{case} \DecValTok{15}\OperatorTok{:}
+      \ControlFlowTok{return}\NormalTok{ a }\OperatorTok{\&} \DecValTok{3}\OperatorTok{;}
+    \OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Arm64 generates the following assembly code for the jump table. The
+comments have been added manually for clarity.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \CommentTok{;; x0 contains the value of b, which is the switch value.}
+\NormalTok{  adrp  x8}\OperatorTok{,}\NormalTok{ lJTI0\_0}\CommentTok{@PAGE}
+\NormalTok{  add   x8}\OperatorTok{,}\NormalTok{ x8}\OperatorTok{,}\NormalTok{ lJTI0\_0}\CommentTok{@PAGEOFF}
+  \CommentTok{;; x8 now contains the address of the jump table.}
+\NormalTok{  adr   x9}\OperatorTok{,}\NormalTok{ LBB0\_2}
+\NormalTok{  ldrb  w10}\OperatorTok{,} \OperatorTok{[}\NormalTok{x8}\OperatorTok{,}\NormalTok{ x0}\OperatorTok{]}
+  \CommentTok{;; w10 now contains the offset in words from LBB0\_2}
+  \CommentTok{;; to the target instruction to jump to.}
+\NormalTok{  add   x9}\OperatorTok{,}\NormalTok{ x9}\OperatorTok{,}\NormalTok{ x10}\OperatorTok{,} \KeywordTok{lsl} \CommentTok{\#2}
+  \CommentTok{;; x9 now contains the address of the instruction to jump to.}
+\NormalTok{  br    x9}
+  \CommentTok{;; code emitted for brevity}
+
+\FunctionTok{lJTI0\_0:}
+  \KeywordTok{.byte} \OperatorTok{(}\NormalTok{LBB0\_2}\OperatorTok{{-}}\NormalTok{LBB0\_2}\OperatorTok{)\textgreater{}\textgreater{}}\DecValTok{2}
+  \KeywordTok{.byte} \OperatorTok{(}\NormalTok{LBB0\_6}\OperatorTok{{-}}\NormalTok{LBB0\_2}\OperatorTok{)\textgreater{}\textgreater{}}\DecValTok{2}
+  \KeywordTok{.byte} \OperatorTok{(}\NormalTok{LBB0\_11}\OperatorTok{{-}}\NormalTok{LBB0\_2}\OperatorTok{)\textgreater{}\textgreater{}}\DecValTok{2}
+  \KeywordTok{.byte} \OperatorTok{(}\NormalTok{LBB0\_10}\OperatorTok{{-}}\NormalTok{LBB0\_2}\OperatorTok{)\textgreater{}\textgreater{}}\DecValTok{2}
+  \KeywordTok{.byte} \OperatorTok{(}\NormalTok{LBB0\_9}\OperatorTok{{-}}\NormalTok{LBB0\_2}\OperatorTok{)\textgreater{}\textgreater{}}\DecValTok{2}
+  \CommentTok{;; more cases omitted for brevity}
+\end{Highlighting}
+\end{Shaded}
+
+In this sequence, if the value in \texttt{x0} was loaded from memory, it
+could potentially be attacker controlled. If an attacker can control
+that value, they can make the jump target point to an almost arbitrary
+address, by loading a word offset value from any readable location in
+the process memory space.
+
+To prevent this, arm64e and pauthabi check that the value in \texttt{x0}
+is in range before loading the jump table offset:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{  mov   x16}\OperatorTok{,}\NormalTok{ x0}
+  \CommentTok{;; check that x0 is in range}
+\NormalTok{  cmp   x16}\OperatorTok{,} \CommentTok{\#15}
+  \CommentTok{;; if x0 is out of range, set switch value to zero (in x16)}
+  \CommentTok{;; this guarantees that the value will be loaded from the jump}
+  \CommentTok{;; table which is read{-}only and cannot be modified by an attacker}
+\NormalTok{  csel  x16}\OperatorTok{,}\NormalTok{ x16}\OperatorTok{,}\NormalTok{ xzr}\OperatorTok{,}\NormalTok{ ls}
+\NormalTok{  adrp  x17}\OperatorTok{,}\NormalTok{ lJTI0\_0}\CommentTok{@PAGE}
+\NormalTok{  add   x17}\OperatorTok{,}\NormalTok{ x17}\OperatorTok{,}\NormalTok{ lJTI0\_0}\CommentTok{@PAGEOFF}
+\NormalTok{  ldrsw x16}\OperatorTok{,} \OperatorTok{[}\NormalTok{x17}\OperatorTok{,}\NormalTok{ x16}\OperatorTok{,} \KeywordTok{lsl} \CommentTok{\#2]}
+\FunctionTok{Ltmp1:}
+\NormalTok{  adr   x17}\OperatorTok{,}\NormalTok{ Ltmp1}
+\NormalTok{  add    x16}\OperatorTok{,}\NormalTok{ x17}\OperatorTok{,}\NormalTok{ x16}
+\NormalTok{  br     x16}
+  \CommentTok{;; code emitted for brevity}
+
+\FunctionTok{lJTI0\_0:}
+  \KeywordTok{.long}\NormalTok{ LBB0\_2}\OperatorTok{{-}}\NormalTok{Ltmp1}
+  \KeywordTok{.long}\NormalTok{ LBB0\_6}\OperatorTok{{-}}\NormalTok{Ltmp1}
+  \KeywordTok{.long}\NormalTok{ LBB0\_11}\OperatorTok{{-}}\NormalTok{Ltmp1}
+  \KeywordTok{.long}\NormalTok{ LBB0\_10}\OperatorTok{{-}}\NormalTok{Ltmp1}
+  \KeywordTok{.long}\NormalTok{ LBB0\_9}\OperatorTok{{-}}\NormalTok{Ltmp1}
+\end{Highlighting}
+\end{Shaded}
+
+\end{example}
+
+\paragraph{Protecting (backward-edge)
+returns}\label{protecting-backward-edge-returns}
+
+When a function is called, the address of the instruction after the call
+instruction is stored in a register or on the stack. That address of the
+next instruction is called the ``return address''\index{return address}.
+When the called function returns, it will use an instruction to branch
+to the return address. This is an indirect control flow, since the
+target of the branch isn't hard-coded in the instruction, but comes from
+a register or a memory location. If an attacker can change the value of
+the return address, they can redirect the control flow.
+
+\begin{example}
+
+\label{}
+
+\textup{Typical AArch64 call/return sequence.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{  ...}
+  \CommentTok{;; the bl instruction jumps to function f and}
+  \CommentTok{;; stores the return address, i.e. the address of}
+  \CommentTok{;; the \textquotesingle{}add\textquotesingle{} instruction, in register x30}
+  \KeywordTok{bl}\NormalTok{ f}
+\NormalTok{  add x0}\OperatorTok{,}\NormalTok{ x0}\OperatorTok{,}\NormalTok{ x1}
+\NormalTok{  ...}
+
+\FunctionTok{f:}
+  \CommentTok{;; stores x29 and x30 on the stack. After executing this}
+  \CommentTok{;; instruction the return address is in memory, on the stack.}
+\NormalTok{  stp x29}\OperatorTok{,}\NormalTok{ x30}\OperatorTok{,} \OperatorTok{[}\KeywordTok{sp}\OperatorTok{,} \CommentTok{\#16]!}
+\NormalTok{  ...}
+  \CommentTok{;; load the x29 and x30 registers from the stack. Under the usual}
+  \CommentTok{;; threat model, an attacker with a write primitive may have overwritten}
+  \CommentTok{;; the value in memory and may control the value in registers x29 and x30}
+\NormalTok{  ldp x29}\OperatorTok{,}\NormalTok{ x30}\OperatorTok{,} \OperatorTok{[}\KeywordTok{sp}\OperatorTok{],} \CommentTok{\#16}
+  \CommentTok{;; The return instruction jumps to the address stored in register x30.}
+  \KeywordTok{ret}\NormalTok{ x30}
+\end{Highlighting}
+\end{Shaded}
+
+\end{example}
+
+Most backward-edge CFI schemes add checks before executing the return
+instruction to verify that the return address hasn't been tampered with.
+
+Shadow stack\index{shadow stack} approaches store the return address on
+a second stack. Some shadow stack approaches also store the return
+address in the original location in the normal stack. In those, before
+the return is executed, it verifies that the return value on both the
+regular stack and the shadow stack are equal. All shadow stack
+approaches have mechanisms to make it hard to impossible for an attacker
+to overwrite the return address on the shadow stack.
+
+A software-only implementation is the clang shadow stack, which is
+explained in more detail in section
+\hyperref[sec:clang-shadow-stack]{2.5.2.2.2}. Hardware-supported shadow
+stacks include
+\href{https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/arm-a-profile-architecture-2022}{Arm's
+Guarded control stack (GCS)}, and
+\href{https://www.intel.com/content/www/us/en/content-details/785687/complex-shadow-stack-updates-intel-control-flow-enforcement-technology.html}{Intel's
+CET Shadow Stack}.
+
+\paragraph{Other code pointers that may need
+protection}\label{other-code-pointers-that-may-need-protection}
+
+Anytime a code pointer is stored in memory, it can potentially be
+modified by an attacker with a write primitive. The previous sections
+gave examples of how code pointers may originate from various source
+code constructs, such as function pointers, vtables, return addresses,
+etc. This list isn't exhaustive, and there are more source code
+constructs that can lead to code pointers being stored in memory, such
+as:
+
+\begin{itemize}
+\tightlist
+\item
+  C++ co-routines are typically implemented using structures containing
+  code pointers. Abusing these has recently been coined as
+  \href{https://www.usenix.org/conference/usenixsecurity25/presentation/bajo}{Coroutine
+  Frame-Oriented Programming(CFOP)}\index{Coroutine
+  Frame-Oriented Programming (CFOP)}.
+\item
+  Procedure Linkage Table (PLT)\index{Procedure Linkage Table (PLT)} and
+  the \href{https://en.wikipedia.org/wiki/Global_Offset_Table}{Global
+  Offset Table(GOT)}\index{Global
+  Offset Table (GOT)} often contain code pointers. One common way to
+  protect these from being overwritten by an attacker is to make these
+  tables
+  \href{https://www.redhat.com/en/blog/hardening-elf-binaries-using-relocation-read-only-relro}{read-only
+  during program startup}.
+\item
+  Signal handlers and signal handler frames contain code pointers, see
+  \hyperref[sec:sigreturn-oriented-programming]{2.4.4} for more details.
+  \todospan{{Should we list examples of indirect control flow from other
+  languages too?}}
+\end{itemize}
+
+\subsubsection{Detailed descriptions of a few CFI
+schemes}\label{detailed-descriptions-of-a-few-cfi-schemes}
+
+Below, we explore a few CFI schemes in more detail:
+
+\begin{itemize}
+\tightlist
+\item
+  Clang CFI in section \hyperref[sec:clang-cfi]{2.5.2.2.1}
+\item
+  Clang Shadow Stack in section
+  \hyperref[sec:clang-shadow-stack]{2.5.2.2.2}
+\item
+  Pointer Authentication-based CFI schemes:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    pac-ret in section \hyperref[sec:pac-ret]{2.5.2.2.3.1}
+  \item
+    arm64e and pauthabi in section
+    \hyperref[sec:arm64e-pauthabi]{2.5.2.2.3.2}
+  \end{itemize}
+\item
+  Branch Target Identification (BTI) in section
+  \hyperref[sec:bti]{2.5.2.2.4}
+\end{itemize}
+
+\paragraph{Clang CFI}\label{sec:clang-cfi}
 
 \href{https://clang.llvm.org/docs/ControlFlowIntegrity.html}{Clang's
 CFI} includes a variety of forward-edge control-flow integrity checks.
 These include checking that the target of an indirect function call is
-an address-taken function of the correct type and checking that a C++
-\index{C++} virtual call happens on an object of the correct dynamic
-type.
-
-For example, assume we have a class \texttt{A} with a virtual function
-\texttt{foo} and a class \texttt{B} deriving from \texttt{A}, and that
-these classes are not exported to other compilation modules:
-
-\begin{verbatim}
-class A {
-public:
-  virtual void foo() {}
-};
-
-class B : public A {
-public:
-  virtual void foo() {}
-};
-
-void call_foo(A* a) {
-  a->foo();
-}
-\end{verbatim}
+an address-taken function of the correct type.
 
 When compiling with \texttt{-fsanitize=cfi\ -flto\ -fvisibility=hidden}
 \footnote{The LTO and visibility flags are required by Clang's CFI.},
@@ -1164,12 +1641,7 @@ or of \texttt{B}, which are stored consecutively and are the only
 allowed possibilities. The checks generated for different types of
 control-flow transfers are similar.
 
-Another implementation of forward-edge CFI is Windows
-\href{https://docs.microsoft.com/en-us/windows/win32/secbp/control-flow-guard}{Control
-Flow Guard}, which only allows indirect calls to functions that are
-marked as valid indirect control flow targets.
-
-\subsubsection{Clang Shadow Stack}\label{clang-shadow-stack}
+\paragraph{Clang Shadow Stack}\label{sec:clang-shadow-stack}
 
 Clang also implements a backward-edge CFI scheme known as
 \href{https://clang.llvm.org/docs/ShadowCallStack.html}{Shadow
@@ -1210,7 +1682,7 @@ You can see that the shadow stack address is kept in \texttt{x18}. The
 return address is also saved on the ``normal'' stack for compatibility
 with unwinders, but it's not actually used for the function return.
 
-\subsubsection{Pointer Authentication}\label{pointer-authentication}
+\paragraph{Pointer Authentication}\label{sec:pointer-authentication}
 
 In addition to software implementations, there are a number of
 hardware-based CFI implementations. A hardware-based implementation has
@@ -1220,101 +1692,207 @@ an equivalent software-only CFI scheme.
 One such example is Pointer Authentication\index{Pointer Authentication}
 (\citeproc{ref-Rutland2017}{Rutland 2017}), an Armv8.3 feature,
 supported only in AArch64 state, that can be used to mitigate code reuse
-attacks. Pointer Authentication introduces instructions that generate a
-pointer \emph{signature}, called a Pointer Authentication Code (PAC),
-based on a key and a modifier. It also introduces matching instructions
-to authenticate this signature. Incorrect authentication leads to an
-unusable pointer, that will cause a fault when used \footnote{With the
-  FPAC extension, a fault is raised at incorrect authentication.}. The
-key is not directly accessible by user space software.
+attacks.
 
-Pointers are stored as 64-bit values, but they don't need all of these
-bits to describe the available address space, so a number of bits in the
-top of each pointer are unused. The unused bits must be all ones or all
-zeros, so we refer to them as extension
-bits\index{pointer extension bits}. Pointer Authentication Codes are
-stored in those unused extension bits of a pointer. The exact number of
-PAC bits depends on the number of unused pointer bits, which varies
-based on the configuration of the virtual address space size.\footnote{If
-  the Top-Byte-Ignore (TBI)\index{Top-Byte-Ignore (TBI)} feature is
-  enabled, the top byte of pointers is ignored when performing memory
-  accesses. This restricts the number of available PAC bits.}
+Pointer Authentication computes a pointer \emph{signature} for a given
+address, called a Pointer Authentication Code
+(PAC)\index{Pointer Authentication Code
+(PAC)}, see \hyperref[fig:pauth-sign-auth]{4}. The PAC code is stored in
+the upper bits of the pointer which are otherwise unused.
+
+A pointer with a PAC code in the upper bits is called a \emph{signed
+pointer}\index{signed pointer}. A non-signed pointer is called a
+\emph{raw pointer}\index{raw pointer}.
+
+The general idea behind Pointer Authentication is that attackers will
+try to overwrite a pointer in memory using a memory vulnerability.
+Pointer Authentication aims to detect when an attacker has overwritten a
+pointer in memory. It does this by making sure that pointers:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  are always signed when they are in memory, and
+\item
+  between loading the pointer into a register and using it, the pointer
+  is authenticated.
+\end{enumerate}
+
+If the authentication fails, the program will fault.
+
+Different hardening schemes are possible with pointer authentication,
+depending on which kinds of pointers get signed, such as only return
+addresses, all function pointers, or more.
+
+An essential aspect of pointer authentication being useful is to make it
+hard for an attacker to construct the correct PAC that will pass
+authentication. To achieve that, next to the address, 2 other inputs are
+used to compute the PAC: a so-called key\index{key} and a
+modifier\index{modifier}:
+
+\begin{itemize}
+\item
+  The key is a secret value that is not directly accessible to software,
+  so that an attacker cannot retrieve the key value. This makes it hard
+  for an attacker to compute the PAC value for a given address off-line.
+  The key can be thought of as a
+  \href{https://en.wikipedia.org/wiki/Pepper_(cryptography)}{pepper}
+\item
+  We also want to avoid that an attacker could take a signed pointer
+  from one context in your program and use it in a different context.
+  The modifier is a value that is specific to the context in which the
+  pointer is used. Different hardening schemes will use different
+  modifiers. Two examples of different hardening schemes built on top of
+  Pointer Authentication are described in sections
+  \hyperref[sec:pac-ret]{2.5.2.2.3.1} (the pac-ret hardening scheme) and
+  \hyperref[sec:arm64e-pauthabi]{2.5.2.2.3.2} (the arm64e/pauthabi
+  hardening scheme). The modifier can be thought of as a
+  \href{https://en.wikipedia.org/wiki/Salt_(cryptography)}{salt}.
+
+  When an attacker successfully takes a signed pointer from one context
+  and overwrites another pointer in another context with it, this is
+  called a pointer substitution
+  attack\index{pointer substitution attack}. Using different modifiers
+  for different contexts makes pointer substitution attacks harder.
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth,height=\textheight]{img/pauth_sign_auth.pdf}
+\caption{Figure 4: AArch64 sign and authenticate operations to convert
+raw pointers to signed pointers and vice
+versa}\label{fig:pauth-sign-auth}
+\end{figure}
+
+Pointer authentication instructions as described above can be used to
+implement a wide variety of hardening schemes. In this book, we only
+cover the two that are used in production on billions of devices in more
+detail: pac-ret and arm64e/pauthabi.
+
+Other hardening schemes based on Pointer Authentication which we're not
+covering further include: PACStack
+(\citeproc{ref-Liljestrand2021}{Liljestrand et al. 2021}), Camouflage
+(\citeproc{ref-DenisCourmont2021}{Denis-Courmont et al. 2021}), PAL
+(\citeproc{ref-Yoo2021}{Yoo et al. 2021}), PTAuth
+(\citeproc{ref-farkhani2021}{farkhani, Ahmadi, and Lu 2021}), PAC it up
+(\citeproc{ref-Liljestrand2019}{Liljestrand et al. 2019}), FIPAC
+(\citeproc{ref-Schilling2022}{Schilling, Nasahl, and Mangard 2022}),
+\href{https://discourse.llvm.org/t/rfc-structure-protection-a-family-of-uaf-mitigation-techniques/85555}{structure
+protection} and more. Some of these harden binaries against attacks also
+in other ways than protecting control flow.
+
+\subparagraph{pac-ret: Backward-Edge CFI}\label{sec:pac-ret}
 
 \href{https://clang.llvm.org/docs/ClangCommandLineReference.html\#aarch64}{Clang}
 and \href{https://gcc.gnu.org/onlinedocs/gcc/AArch64-Options.html}{GCC}
 both use Pointer Authentication for return address signing, when
-compiling with the \texttt{-mbranch-protection=pac-ret} flag. When
-compiling with Clang using this flag, the \texttt{main} function from
-the \hyperref[stack-buffer-overflow]{earlier stack buffer overflow
-example} looks like:
+compiling with the \texttt{-mbranch-protection=pac-ret} flag. How it
+works is easiest to explain by example:
 
-\begin{verbatim}
-main:
-    cmp w0, #2
-    b.lt    .LBB1_2
-    paciasp
-    stp x29, x30, [sp, #-16]!
-    ldr x0, [x1, #8]
-    mov x29, sp
-    bl  copy_and_print
-    ldp x29, x30, [sp], #16
-    autiasp
-.LBB1_2:
-    mov w0, wzr
-    ret
-\end{verbatim}
+\phantomsection\label{ex:pac-ret}
+\begin{example}
 
-Notice the \texttt{paciasp} and \texttt{autiasp} instructions:
-\texttt{paciasp} computes a PAC for the return address in the link
-register (\texttt{x30}), based on the current value of the stack pointer
-(\texttt{sp}) and a key. This PAC is inserted in the extension bits of
-the pointer. We then store this signed version of the link register on
-the stack. Before returning, we load the signed return address from the
-stack, we execute \texttt{autiasp}, which verifies the PAC stored in the
-return address, again based on the value of the key and the value of the
-stack pointer (which at this point will be the same as when we signed
-the return address). If the PAC is correct, which will be the case in
-normal execution, the extension bits of the address are restored, so
-that the address can be used in the \texttt{ret} instruction. However,
-if the stored return address has been overwritten with an address with
-an incorrect PAC, the upper bits will be corrupted so that subsequent
-uses of the address (such as in the \texttt{ret} instruction) will
-result in a fault.
+\label{ex:pac-ret}
+
+\textup{pac-ret example.}
+
+When compiling the \texttt{main} function from example
+\hyperref[ex:stack-buffer-overflow]{1} with \texttt{pac-ret} enabled,
+the compiler will produce:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{main:}
+\NormalTok{    cmp     w0}\OperatorTok{,} \CommentTok{\#2}
+\NormalTok{    b.lt    .LBB1\_2}
+\NormalTok{    paciasp}
+\NormalTok{    stp     x29}\OperatorTok{,}\NormalTok{ x30}\OperatorTok{,} \OperatorTok{[}\KeywordTok{sp}\OperatorTok{,} \CommentTok{\#{-}16]!}
+\NormalTok{    ldr     x0}\OperatorTok{,} \OperatorTok{[}\NormalTok{x1}\OperatorTok{,} \CommentTok{\#8]}
+\NormalTok{    mov     x29}\OperatorTok{,} \KeywordTok{sp}
+    \KeywordTok{bl}\NormalTok{      copy\_and\_print}
+\NormalTok{    ldp     x29}\OperatorTok{,}\NormalTok{ x30}\OperatorTok{,} \OperatorTok{[}\KeywordTok{sp}\OperatorTok{],} \CommentTok{\#16}
+\NormalTok{    autiasp}
+\FunctionTok{.LBB1\_2:}
+\NormalTok{    mov     w0}\OperatorTok{,}\NormalTok{ wzr}
+    \KeywordTok{ret}
+\end{Highlighting}
+\end{Shaded}
+
+Notice the \texttt{paciasp} and \texttt{autiasp} instructions. At entry
+to this function, the return address, i.e.~the address the function will
+jump back to when executing the \texttt{ret} instruction at the end, is
+stored in register \texttt{x30}.
+
+The instruction \texttt{paciasp} computes a PAC for the return address
+in register \texttt{x30}, and stores it in the upper bits of
+\texttt{x30}. The PAC is computed from the following ``inputs'':
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The address in \texttt{x30}, which is the return address,
+\item
+  Secret key \texttt{IA}, as indicated by the \texttt{ia} in instruction
+  \texttt{paciasp}. That key is not accessible by the program.
+\item
+  As a modifier, the current value of the stack pointer (\texttt{sp}),
+  as indicated by \texttt{sp} in the instruction \texttt{paciasp}.
+\end{enumerate}
+
+After the \texttt{paciasp} instruction, the value in \texttt{x30} is a
+signed pointer. The \texttt{stp} instruction stores the signed pointer
+to memory. Under the usual threat model, an attacker with a write
+primitive can modify the value while it is in memory. Therefore, after
+the value is loaded into \texttt{x30} again, by the \texttt{ldp}
+instruction, it should be considerded to be potentially tampered with.
+
+Therefore, the compiler inserts the \texttt{autiasp} instruction between
+loading the signed pointer from memory and using it in the \texttt{ret}
+instruction. The \texttt{autiasp} instruction verifies the PAC in the
+upper bits of \texttt{x30}, taking into account the secret key
+\texttt{IA} and modifier \texttt{sp}. If the PAC is correct, which will
+be the case in normal execution, the extension bits of the address are
+restored, so that the address can be used in the \texttt{ret}
+instruction. However, if the PAC is incorrect, the upper bits will be
+corrupted so that subsequent uses of the address (such as in the
+\texttt{ret} instruction) will result in a fault.
+
+\end{example}
 
 By making sure we don't store any return addresses without a PAC, we can
 significantly reduce the effectiveness of ROP attacks: since the secret
 key is not retrievable by an attacker, an attacker cannot calculate the
 correct PAC for a given address and modifier, and is restricted to
-guessing it. The probability of success when guessing a PAC depends on
-the exact number of PAC bits available in a given system configuration.
-However, authenticated pointers are vulnerable to pointer substitution
-attacks\index{pointer substitution
-attack}, where a pointer that has been signed with a given modifier is
-replaced with a different pointer that has also been signed with the
-same modifier.
+guessing it.
 
-Another backward-edge CFI scheme that uses Pointer Authentication
-instructions is PACStack (\citeproc{ref-Liljestrand2021}{Liljestrand et
-al. 2021}), which chains together PACs in order to include the full
-context (all of the previous return addresses in the call stack) when
-signing a return address. \todospan{{Add more references to relevant
-research
-\href{https://github.com/llsoftsec/llsoftsecbook/issues/166}{\#166}}}
+The probability of success when guessing a PAC depends on the exact
+number of PAC bits available in a given system configuration.
+
+The authenticated pointers are vulnerable to pointer substitution
+attacks\index{pointer substitution attack}, where a pointer that has
+been signed with a given modifier is replaced with a different pointer
+that has also been signed with the same modifier. In the
+\texttt{pac-ret} scheme, this is mitigated by using the stack pointer as
+the modifier, which limits reuse of signed return address pointers to
+function frames that happen to have the same stack pointer value.
+
+\subparagraph{arm64e and pauthabi: Forward-Edge
+CFI}\label{sec:arm64e-pauthabi}
+
+\tododiv{The use of pauth in arm64e or pauthabi should be explained in
+more detail, including the concepts of signing and authentication
+oracles
+\href{https://github.com/llsoftsec/llsoftsecbook/issues/259}{\#259}}
 
 Pointer Authentication can also be used more widely, for example to
 implement a forward-edge CFI scheme, as is done in the arm64e ABI
 (\citeproc{ref-McCall2019}{McCall and Bougacha 2019}). The Pointer
 Authentication instructions, however, are generic enough to also be
 useful in implementing more general memory safety measures, beyond CFI.
-\todospan{{Mention more Pointer Authentication uses in later section,
-and add link here
-\href{https://github.com/llsoftsec/llsoftsecbook/issues/167}{\#167}}}
-\todospan{{The use of pauth in arm64e or pauthabi should be explained in
-more detail, including the concepts of signing and authentication
-oracles
-\href{https://github.com/llsoftsec/llsoftsecbook/issues/259}{\#259}}}
 
-\subsubsection{BTI}\label{bti}
+\paragraph{BTI and other coarse-grained CFI schemes}\label{sec:bti}
 
 \href{https://developer.arm.com/documentation/102433/0100/Jump-oriented-programming?lang=en}{Branch
 Target Identification (BTI)} \index{BTI}, introduced in Armv8.5, offers
@@ -1336,6 +1914,11 @@ applying to indirect branches targeting guarded pages. In addition to
 this, the BTI instruction has been assigned to the hint space, therefore
 it will be executed as a no-op in cores that do not support BTI, aiding
 its adoption.
+
+Another implementation of coarse-grained forward-edge CFI is Windows
+\href{https://docs.microsoft.com/en-us/windows/win32/secbp/control-flow-guard}{Control
+Flow Guard}, which only allows indirect calls to functions that are
+marked as valid indirect control flow targets.
 
 \subsubsection{CFI implementation
 pitfalls}\label{cfi-implementation-pitfalls}
@@ -1395,7 +1978,7 @@ successful or not. The function contains a very obvious buffer overflow,
 as the string length limit passed to \texttt{fgets} does not match the
 buffer size.
 
-Figure \hyperref[fig:non-control-data-attack]{4} shows the stack frame
+Figure \hyperref[fig:non-control-data-attack]{5} shows the stack frame
 layout for this function when the code is compiled for AArch64 with
 Clang 10.0\footnote{The stack frame layout may be significantly
   different for other architectures and compilers.}. As the figure
@@ -1407,7 +1990,7 @@ return a non-zero value, incorrectly indicating authentication success.
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth,height=\textheight]{img/non-control-data-attack.pdf}
-\caption{Figure 4: Stack frame for
+\caption{Figure 5: Stack frame for
 \texttt{authenticate}}\label{fig:non-control-data-attack}
 \end{figure}
 
@@ -1771,7 +2354,7 @@ discuss some of the issues that arise when implementing support for such
 a language in the next section.
 
 \section{JIT compiler
-vulnerabilities}\label{jit-compiler-vulnerabilities}
+vulnerabilities}\label{sec:jit-compiler-vulnerabilities}
 
 Compiler correctness is obviously very important, as miscompilation
 creates buggy programs even when the source code has no bugs. What might
@@ -2171,7 +2754,7 @@ memory address maps to a specific cache set.
 \begin{figure}
 \centering
 \includegraphics[width=1\textwidth,height=\textheight]{img/CacheIndexing.pdf}
-\caption{Figure 5: Illustration of indexing into a set-associative
+\caption{Figure 6: Illustration of indexing into a set-associative
 cache. In this example: \(L\) = 6 bits, hence the cache line size is
 \(2^6=64\) bytes. \(S\) = 5 bits, so there are \(2^5=32\) cache sets.
 \(N\) can be independent of address bits used to index the cache. If we
@@ -2181,7 +2764,7 @@ is \(N*2^L*2^S=12*64*32=24\)KB.}\label{fig:cache-indexing}
 
 Specific bits in the memory address are used for different cache
 indexing purposes, as illustrated in figure
-\hyperref[fig:cache-indexing]{5}. The least-significant \(L\) bits,
+\hyperref[fig:cache-indexing]{6}. The least-significant \(L\) bits,
 where \(2^L\) is the cache line size, are used to compute an address's
 offset within a cache line. The next \(S\) bits, where \(2^S\) is the
 number of cache sets, are used to determine which cache set an address
@@ -3708,6 +4291,11 @@ Stefan Brunthaler, and Mathias Payer. 2017. {``Control-Flow Integrity:
 Precision, Security, and Performance.''} \emph{ACM Comput. Surv.} 50
 (1). \url{https://doi.org/10.1145/3054924}.
 
+\bibitem[\citeproctext]{ref-Cheeseman2019}
+Cheeseman, Luke. 2019. {``Code Reuse Attacks: The Compiler Story.''}
+2019.
+\url{https://community.arm.com/arm-community-blogs/b/tools-software-ides-blog/posts/code-reuse-attacks-the-compiler-story}.
+
 \bibitem[\citeproctext]{ref-Chen2005}
 Chen, Shuo, Jun Xu, Emre Can Sezer, Prachi Gauriar, and Ravishankar K
 Iyer. 2005. {``Non-Control-Data Attacks Are Realistic Threats.''} In
@@ -3735,6 +4323,12 @@ App Store.''} \emph{WIRED}.
 D'Silva, Vijay, Mathias Payer, and Dawn Song. 2015. {``The
 Correctness-Security Gap in Compiler Optimization.''} In \emph{2015 IEEE
 Security and Privacy Workshops}, 73--87. IEEE.
+
+\bibitem[\citeproctext]{ref-DenisCourmont2021}
+Denis-Courmont, R., H. Liljestrand, C. Chinea, and J. -E. Ekberg. 2021.
+{``Camouflage: Hardware-Assisted CFI for the ARM Linux Kernel.''} In
+\emph{2020 57th ACM/IEEE Design Automation Conference (DAC)}.
+https://doi.org/\url{https://doi.org/10.1109/DAC18072.2020.9218535}.
 
 \bibitem[\citeproctext]{ref-Dowd2006}
 Dowd, Mark, John McDonald, and Justin Schuh. 2006. \emph{The Art of
@@ -3765,6 +4359,13 @@ Eyerman, Stijn, Lieven Eeckhout, Tejas Karkhanis, and James E. Smith.
 2009. {``A Mechanistic Performance Model for Superscalar Out-of-Order
 Processors.''} \emph{{ACM} Transactions on Computer Systems} 27 (2).
 \url{https://doi.org/10.1145/1534909.1534910}.
+
+\bibitem[\citeproctext]{ref-farkhani2021}
+farkhani, Reza Mirzazade, Mansour Ahmadi, and Long Lu. 2021.
+{``{PTAuth}: Temporal Memory Safety via Robust Points-to
+Authentication.''} In \emph{30th USENIX Security Symposium (USENIX
+Security 21)}.
+\url{https://www.usenix.org/conference/usenixsecurity21/presentation/mirzazade}.
 
 \bibitem[\citeproctext]{ref-Fetiveau2019}
 Fetiveau, Jeremy. 2019. {``Circumventing Chrome's Hardening of Typer
@@ -3857,6 +4458,11 @@ Werner Haas, Mike Hamburg, et al. 2019. {``Spectre Attacks: Exploiting
 Speculative Execution.''} In \emph{2019 {IEEE} Symposium on Security and
 Privacy ({SP})}. {IEEE}. \url{https://doi.org/10.1109/sp.2019.00002}.
 
+\bibitem[\citeproctext]{ref-Korobeynikov2024}
+Korobeynikov, Anton. 2024. {``Adding Pointer Authentication ABI Support
+for Your ELF Platform.''} 2024.
+\url{https://llvm.org/devmtg/2024-10/slides/techtalk/Korobeynikov-Adding-Pointer-Authentication-ABI-support.pdf}.
+
 \bibitem[\citeproctext]{ref-Lee2017}
 Lee, Sangho, Ming-Wei Shih, Prasun Gera, Taesoo Kim, Hyesoon Kim, and
 Marcus Peinado. 2017. {``Inferring Fine-Grained Control Flow Inside
@@ -3882,6 +4488,12 @@ Elimination.''} 2015. 2015.
 Liljestrand, Hans, Thomas Nyman, Lachlan J Gunn, Jan-Erik Ekberg, and N
 Asokan. 2021. {``\(\{\)PACStack\(\}\): An Authenticated Call Stack.''}
 In \emph{30th USENIX Security Symposium (USENIX Security 21)}, 357--74.
+
+\bibitem[\citeproctext]{ref-Liljestrand2019}
+Liljestrand, Hans, Thomas Nyman, Kui Wang, Carlos Chinea Perez, Jan-Erik
+Ekberg, and N. Asokan. 2019. {``PAC It up: Towards Pointer Integrity
+Using ARM Pointer Authentication.''} In \emph{Proceedings of the 28th
+USENIX Conference on Security Symposium}.
 
 \bibitem[\citeproctext]{ref-Lipp2020}
 Lipp, Moritz, Vedad Hadzic, Michael Schwarz, Arthur Perais, Clementine
@@ -3966,6 +4578,14 @@ JavaScriptCore and CVE-2016-4622.''} 2021.
 \bibitem[\citeproctext]{ref-saelo2021a}
 ---------. 2021b. {``Exploiting Logic Bugs in JavaScript JIT Engines.''}
 2021. \url{http://www.phrack.org/issues/70/9.html}.
+
+\bibitem[\citeproctext]{ref-Schilling2022}
+Schilling, Robert, Pascal Nasahl, and Stefan Mangard. 2022. {``FIPAC:
+Thwarting Fault- and Software-Induced Control-Flow Attacks
+with\&nbsp;ARM Pointer Authentication.''} In \emph{Constructive
+Side-Channel Analysis and Secure Design: 13th International Workshop,
+COSADE 2022, Leuven, Belgium, April 11-12, 2022, Proceedings}.
+\url{https://doi.org/10.1007/978-3-030-99766-3_5}.
 
 \bibitem[\citeproctext]{ref-Schuster2015}
 Schuster, F., T. Tendyck, C. Liebchen, L. Davi, A. Sadeghi, and T. Holz.
@@ -4080,6 +4700,12 @@ Resolution, Low Noise, L3 Cache {Side-Channel} Attack.''} In \emph{23rd
 USENIX Security Symposium (USENIX Security 14)}, 719--32. San Diego, CA:
 USENIX Association.
 \url{https://www.usenix.org/conference/usenixsecurity14/technical-sessions/presentation/yarom}.
+
+\bibitem[\citeproctext]{ref-Yoo2021}
+Yoo, Sungbae, Jinbum Park, Seolheui Kim, Yeji Kim, and Taesoo Kim. 2021.
+{``In-Kernel Control-Flow Integrity on Commodity OSes Using {ARM}
+Pointer Authentication.''} \emph{CoRR}.
+\url{https://arxiv.org/abs/2112.07213}.
 
 \end{CSLReferences}
 
