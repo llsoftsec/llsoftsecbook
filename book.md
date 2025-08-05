@@ -792,15 +792,23 @@ forward-edge CFI\index{forward-edge CFI}, whereas a scheme that protects
 returns is said to implement backward-edge CFI\index{backward-edge CFI}.
 
 Ideally, a CFI scheme would not allow any control flow transfers that don't
-occur in a correct program execution, however different schemes have varying
-granularities.
+occur in a correct program execution. However, different schemes have varying
+granularities. In general, the legal branch targets will be divided into
+classes, with targets in each class treated as equivalent for security purpose.
+A branch is permitted to transfer control to any member of its intended target
+class.
 
-CFI schemes are sometimes classified as coarse-grained\index{coarse-grained CFI}
-or fine-grained\index{fine-grained CFI}. While there is no precise definition of
-these terms, coarse-grained CFI schemes typically have relatively coarse
-granularity. For example, a CFI scheme that allows an indirect function call to
-continue the execution at the start of any function, rather than only at the
-start of functions with a specific signature, is considered coarse-grained.
+CFI schemes are sometimes classified as coarse-grained\index{coarse-grained
+CFI} or fine-grained\index{fine-grained CFI}. A coarse-grained
+CFI scheme is one that uses a small number of large equivalence classes,
+whereas a fine-grained scheme uses a larger number of smaller classes, so that
+the possible branch targets from a given location are more restricted (perhaps
+at a greater performance cost).
+
+For example, a CFI scheme that allows an indirect function call to continue the
+execution at the start of any function would be considered coarse-grained. If
+it instead restricted to the subset of functions with the appropriate type
+signature, it would be fine-grained.
 
 Forward-edge CFI schemes often rely on function type checks or use static
 analysis (points-to analysis) to identify potential control flow transfer
