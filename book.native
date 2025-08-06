@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-211-g8a36ab5" )
+          , ( "VERSION" , MetaString "0-212-g5094cff" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -12358,9 +12358,9 @@ Pandoc
       , Space
       , Str "program"
       , Space
-      , Str "execution,"
+      , Str "execution."
       , Space
-      , Str "however"
+      , Str "However,"
       , Space
       , Str "different"
       , Space
@@ -12371,6 +12371,80 @@ Pandoc
       , Str "varying"
       , SoftBreak
       , Str "granularities."
+      , Space
+      , Str "In"
+      , Space
+      , Str "general,"
+      , Space
+      , Str "the"
+      , Space
+      , Str "legal"
+      , Space
+      , Str "branch"
+      , Space
+      , Str "targets"
+      , Space
+      , Str "will"
+      , Space
+      , Str "be"
+      , Space
+      , Str "divided"
+      , Space
+      , Str "into"
+      , SoftBreak
+      , Str "classes,"
+      , Space
+      , Str "with"
+      , Space
+      , Str "targets"
+      , Space
+      , Str "in"
+      , Space
+      , Str "each"
+      , Space
+      , Str "class"
+      , Space
+      , Str "treated"
+      , Space
+      , Str "as"
+      , Space
+      , Str "equivalent"
+      , Space
+      , Str "for"
+      , Space
+      , Str "security"
+      , Space
+      , Str "purpose."
+      , SoftBreak
+      , Str "A"
+      , Space
+      , Str "branch"
+      , Space
+      , Str "is"
+      , Space
+      , Str "permitted"
+      , Space
+      , Str "to"
+      , Space
+      , Str "transfer"
+      , Space
+      , Str "control"
+      , Space
+      , Str "to"
+      , Space
+      , Str "any"
+      , Space
+      , Str "member"
+      , Space
+      , Str "of"
+      , Space
+      , Str "its"
+      , Space
+      , Str "intended"
+      , Space
+      , Str "target"
+      , SoftBreak
+      , Str "class."
       ]
   , Para
       [ Str "CFI"
@@ -12386,49 +12460,106 @@ Pandoc
       , Str "as"
       , Space
       , Str "coarse-grained"
-      , RawInline (Format "tex") "\\index{coarse-grained CFI}"
-      , SoftBreak
+      , RawInline (Format "tex") "\\index{coarse-grained\nCFI}"
+      , Space
       , Str "or"
       , Space
       , Str "fine-grained"
       , RawInline (Format "tex") "\\index{fine-grained CFI}"
       , Str "."
       , Space
-      , Str "While"
+      , Str "A"
       , Space
-      , Str "there"
+      , Str "coarse-grained"
+      , SoftBreak
+      , Str "CFI"
+      , Space
+      , Str "scheme"
       , Space
       , Str "is"
       , Space
-      , Str "no"
+      , Str "one"
       , Space
-      , Str "precise"
+      , Str "that"
       , Space
-      , Str "definition"
+      , Str "uses"
+      , Space
+      , Str "a"
+      , Space
+      , Str "small"
+      , Space
+      , Str "number"
       , Space
       , Str "of"
+      , Space
+      , Str "large"
+      , Space
+      , Str "equivalence"
+      , Space
+      , Str "classes,"
       , SoftBreak
-      , Str "these"
+      , Str "whereas"
       , Space
-      , Str "terms,"
+      , Str "a"
       , Space
-      , Str "coarse-grained"
+      , Str "fine-grained"
       , Space
-      , Str "CFI"
+      , Str "scheme"
       , Space
-      , Str "schemes"
+      , Str "uses"
       , Space
-      , Str "typically"
+      , Str "a"
       , Space
-      , Str "have"
+      , Str "larger"
       , Space
-      , Str "relatively"
+      , Str "number"
       , Space
-      , Str "coarse"
+      , Str "of"
+      , Space
+      , Str "smaller"
+      , Space
+      , Str "classes,"
+      , Space
+      , Str "so"
+      , Space
+      , Str "that"
       , SoftBreak
-      , Str "granularity."
+      , Str "the"
       , Space
-      , Str "For"
+      , Str "possible"
+      , Space
+      , Str "branch"
+      , Space
+      , Str "targets"
+      , Space
+      , Str "from"
+      , Space
+      , Str "a"
+      , Space
+      , Str "given"
+      , Space
+      , Str "location"
+      , Space
+      , Str "are"
+      , Space
+      , Str "more"
+      , Space
+      , Str "restricted"
+      , Space
+      , Str "(perhaps"
+      , SoftBreak
+      , Str "at"
+      , Space
+      , Str "a"
+      , Space
+      , Str "greater"
+      , Space
+      , Str "performance"
+      , Space
+      , Str "cost)."
+      ]
+  , Para
+      [ Str "For"
       , Space
       , Str "example,"
       , Space
@@ -12451,11 +12582,11 @@ Pandoc
       , Str "call"
       , Space
       , Str "to"
-      , SoftBreak
+      , Space
       , Str "continue"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "execution"
       , Space
       , Str "at"
@@ -12468,19 +12599,29 @@ Pandoc
       , Space
       , Str "any"
       , Space
-      , Str "function,"
+      , Str "function"
       , Space
-      , Str "rather"
+      , Str "would"
       , Space
-      , Str "than"
+      , Str "be"
       , Space
-      , Str "only"
+      , Str "considered"
       , Space
-      , Str "at"
+      , Str "coarse-grained."
+      , Space
+      , Str "If"
+      , SoftBreak
+      , Str "it"
+      , Space
+      , Str "instead"
+      , Space
+      , Str "restricted"
+      , Space
+      , Str "to"
       , Space
       , Str "the"
-      , SoftBreak
-      , Str "start"
+      , Space
+      , Str "subset"
       , Space
       , Str "of"
       , Space
@@ -12488,17 +12629,21 @@ Pandoc
       , Space
       , Str "with"
       , Space
-      , Str "a"
+      , Str "the"
       , Space
-      , Str "specific"
+      , Str "appropriate"
       , Space
+      , Str "type"
+      , SoftBreak
       , Str "signature,"
       , Space
-      , Str "is"
+      , Str "it"
       , Space
-      , Str "considered"
+      , Str "would"
       , Space
-      , Str "coarse-grained."
+      , Str "be"
+      , Space
+      , Str "fine-grained."
       ]
   , Para
       [ Str "Forward-edge"

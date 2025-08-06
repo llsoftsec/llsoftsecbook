@@ -12,8 +12,8 @@
 \contentsline {section}{\numberline {2.5}Mitigations against code reuse attacks}{18}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}ASLR}{19}{subsection.2.5.1}%
 \contentsline {subsection}{\numberline {2.5.2}Control-flow Integrity (CFI)}{19}{subsection.2.5.2}%
-\contentsline {subsubsection}{\numberline {2.5.2.1}General CFI principles}{20}{subsubsection.2.5.2.1}%
-\contentsline {paragraph}{\numberline {2.5.2.1.1}Protecting (forward) indirect function calls}{20}{paragraph.2.5.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.5.2.1}General CFI principles}{21}{subsubsection.2.5.2.1}%
+\contentsline {paragraph}{\numberline {2.5.2.1.1}Protecting (forward) indirect function calls}{21}{paragraph.2.5.2.1.1}%
 \contentsline {paragraph}{\numberline {2.5.2.1.2}Protecting (forward) virtual calls}{21}{paragraph.2.5.2.1.2}%
 \contentsline {paragraph}{\numberline {2.5.2.1.3}Protecting (forward) switch jumps}{22}{paragraph.2.5.2.1.3}%
 \contentsline {paragraph}{\numberline {2.5.2.1.4}Protecting (backward-edge) returns}{24}{paragraph.2.5.2.1.4}%

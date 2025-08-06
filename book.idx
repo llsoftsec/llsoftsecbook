@@ -47,7 +47,7 @@
 \indexentry{Global   Offset Table (GOT)|hyperpage}{25}
 \indexentry{shadow stack|hyperpage}{26}
 \indexentry{Pointer Authentication|hyperpage}{26}
-\indexentry{Pointer Authentication Code (PAC)|hyperpage}{26}
+\indexentry{Pointer Authentication Code (PAC)|hyperpage}{27}
 \indexentry{signed pointer|hyperpage}{27}
 \indexentry{raw pointer|hyperpage}{27}
 \indexentry{key|hyperpage}{27}
@@ -63,11 +63,10 @@
 \indexentry{sanitizers|hyperpage}{32}
 \indexentry{fuzzing|hyperpage}{32}
 \indexentry{AddressSanitizer (ASan)|hyperpage}{32}
-\indexentry{GCC|hyperpage}{32}
-\indexentry{Clang|hyperpage}{32}
-\indexentry{shadow memory|hyperpage}{32}
 \indexentry{fuzzing|hyperpage}{32}
-\indexentry{LeakSanitizer|hyperpage}{32}
+\indexentry{GCC|hyperpage}{33}
+\indexentry{Clang|hyperpage}{33}
+\indexentry{shadow memory|hyperpage}{33}
 \indexentry{malloc|hyperpage}{33}
 \indexentry{free|hyperpage}{33}
 \indexentry{redzone|hyperpage}{33}
@@ -75,8 +74,9 @@
 \indexentry{HWASAN|hyperpage}{33}
 \indexentry{AArch64|hyperpage}{33}
 \indexentry{Top-Byte Ignore (TBI)|hyperpage}{33}
-\indexentry{MemTagSanitizer|hyperpage}{33}
-\indexentry{Memory Tagging Extension (MTE)|hyperpage}{33}
+\indexentry{LeakSanitizer|hyperpage}{33}
+\indexentry{MemTagSanitizer|hyperpage}{34}
+\indexentry{Memory Tagging Extension (MTE)|hyperpage}{34}
 \indexentry{UBSan|hyperpage}{34}
 \indexentry{MemorySanitizer|hyperpage}{34}
 \indexentry{ThreadSanitizer|hyperpage}{34}
@@ -85,15 +85,15 @@
 \indexentry{read primitive|hyperpage}{34}
 \indexentry{write primitive|hyperpage}{34}
 \indexentry{intra-object overflow|hyperpage}{35}
-\indexentry{Application binary interface (ABI)|hyperpage}{35}
+\indexentry{Application binary interface (ABI)|hyperpage}{36}
 \indexentry{capability|hyperpage}{36}
-\indexentry{JIT compilers|hyperpage}{36}
+\indexentry{JIT compilers|hyperpage}{37}
 \indexentry{deoptimization|hyperpage}{37}
 \indexentry{on-stack replacement (OSR)|hyperpage}{37}
-\indexentry{range analysis|hyperpage}{37}
-\indexentry{bounds check elimination|hyperpage}{37}
+\indexentry{range analysis|hyperpage}{38}
 \indexentry{bounds check elimination|hyperpage}{38}
-\indexentry{pointer compression|hyperpage}{38}
+\indexentry{bounds check elimination|hyperpage}{38}
+\indexentry{pointer compression|hyperpage}{39}
 \indexentry{W\^{}X|hyperpage}{39}
 \indexentry{covert channel|hyperpage}{40}
 \indexentry{side-channel|hyperpage}{40}
