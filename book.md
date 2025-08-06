@@ -37,7 +37,7 @@ header-includes:
   ```
 ...
 
-# Introduction
+# Introduction 
 
 Compilers, assemblers and similar tools generate all the binary code that
 processors execute.  It is no surprise then that these tools play a major role
