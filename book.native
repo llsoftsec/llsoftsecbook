@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-210-g0105faf" )
+          , ( "VERSION" , MetaString "0-211-g8a36ab5" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -9286,7 +9286,7 @@ Pandoc
       , Space
       , Str "contains"
       , Space
-      , Str "NULL"
+      , Str "zero"
       , Space
       , Str "bytes,"
       , Space
@@ -9380,10 +9380,15 @@ Pandoc
       , SoftBreak
       , Str "are"
       , Space
-      , Str "null-terminated"
+      , Link
+          ( "" , [] , [] )
+          [ Str "null-terminated" ]
+          ( "https://en.wikipedia.org/wiki/Null-terminated_string"
+          , ""
+          )
       , Space
       , Str "and"
-      , Space
+      , SoftBreak
       , Str "copying"
       , Space
       , Str "the"
@@ -9401,15 +9406,15 @@ Pandoc
       , Str "once"
       , Space
       , Str "the"
-      , SoftBreak
+      , Space
       , Str "first"
       , Space
-      , Str "NULL"
+      , Str "zero"
       , Space
       , Str "byte"
       , Space
       , Str "is"
-      , Space
+      , SoftBreak
       , Str "encountered."
       , Space
       , Str "The"
@@ -9427,7 +9432,7 @@ Pandoc
       , Str "to"
       , Space
       , Str "be"
-      , SoftBreak
+      , Space
       , Str "adjusted"
       , Space
       , Str "so"
@@ -9435,12 +9440,12 @@ Pandoc
       , Str "that"
       , Space
       , Str "it"
-      , Space
+      , SoftBreak
       , Str "doesn\8217t"
       , Space
       , Str "contain"
       , Space
-      , Str "NULL"
+      , Str "zero"
       , Space
       , Str "bytes,"
       , Space
@@ -9451,15 +9456,15 @@ Pandoc
       , Str "by"
       , Space
       , Str "initially"
-      , SoftBreak
+      , Space
       , Str "replacing"
       , Space
       , Str "the"
       , Space
-      , Str "NULL"
+      , Str "zero"
       , Space
       , Str "bytes"
-      , Space
+      , SoftBreak
       , Str "with"
       , Space
       , Str "a"
@@ -9479,7 +9484,7 @@ Pandoc
       , Str "gadgets"
       , Space
       , Str "to"
-      , SoftBreak
+      , Space
       , Str "the"
       , Space
       , Str "ROP"
@@ -9489,7 +9494,7 @@ Pandoc
       , Str "that"
       , Space
       , Str "write"
-      , Space
+      , SoftBreak
       , Str "zero"
       , Space
       , Str "to"
