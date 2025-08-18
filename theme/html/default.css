@@ -271,3 +271,31 @@ figure img + figcaption {
 /*.example > .caption::before {
   content: ": ";
 }*/
+
+.index-entry-list {
+  background-color:rgb(239, 239, 239);
+  column-count: 2;
+  column-gap: 1.5rem;
+}
+
+.index-entry {
+  display: block;
+}
+
+.index-entry-indentation {
+  display: inline-block;
+  width: 1em;
+}
+
+.index-entry-locator {
+  margin-left: auto;
+}
+
+.index-entry-locator a {
+  text-decoration: none;
+  color: #5B8FF9;
+}
+
+/*.index-entry-text::after {
+  content: ", "
+}*/
