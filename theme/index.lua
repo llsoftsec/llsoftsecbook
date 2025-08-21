@@ -194,7 +194,10 @@ local function create_index_entry(entry_text, spans, level)
     if i > 0 then
       table.insert(entry_links, pandoc.Space())
     end
-    table.insert(entry_links, link)
+        table.insert(entry_links, link)
+    if i < #spans then
+      table.insert(entry_links, pandoc.Str(','))
+    end
   end
   table.insert(entry_inlines, pandoc.Space())
   table.insert(entry_inlines,
