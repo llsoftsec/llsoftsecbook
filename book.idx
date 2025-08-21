@@ -6,28 +6,28 @@
 \indexentry{write primitive|hyperpage}{7}
 \indexentry{read primitive|hyperpage}{8}
 \indexentry{interactive attack|hyperpage}{8}
-\indexentry{non-interactive (one-shot)   attack|hyperpage}{8}
+\indexentry{non-interactive (one-shot) attack|hyperpage}{8}
 \indexentry{arbitrary code execution|hyperpage}{10}
 \indexentry{shellcode|hyperpage}{12}
 \indexentry{C|hyperpage}{12}
 \indexentry{C++|hyperpage}{12}
 \indexentry{shellcode|hyperpage}{13}
-\indexentry{gadget|hyperpage}{13}
+\indexentry{gadgets|hyperpage}{13}
 \indexentry{return-oriented programming (ROP)|hyperpage}{13}
 \indexentry{ROP chain|hyperpage}{13}
 \indexentry{stack pivoting|hyperpage}{15}
 \indexentry{gadget scanner|hyperpage}{15}
-\indexentry{jump-oriented programming (JOP)|hyperpage}{17}
+\indexentry{Jump-oriented programming (JOP)|hyperpage}{17}
 \indexentry{dispatcher gadget|hyperpage}{17}
-\indexentry{counterfeit object-oriented programming (COOP)|hyperpage}{18}
+\indexentry{Counterfeit Object-oriented programming (COOP)|hyperpage}{18}
 \indexentry{C++|hyperpage}{18}
-\indexentry{vfgadget|hyperpage}{18}
+\indexentry{vfgadgets|hyperpage}{18}
 \indexentry{sigreturn-oriented programming (SROP)|hyperpage}{18}
 \indexentry{register|hyperpage}{19}
 \indexentry{memory vulnerability|hyperpage}{19}
-\indexentry{ASLR|hyperpage}{19}
+\indexentry{Address space layout randomization (ASLR)|hyperpage}{19}
 \indexentry{info leak|hyperpage}{19}
-\indexentry{CFI|hyperpage}{19}
+\indexentry{Control-flow integrity (CFI)|hyperpage}{19}
 \indexentry{forward-edge CFI|hyperpage}{19}
 \indexentry{backward-edge CFI|hyperpage}{19}
 \indexentry{coarse-grained CFI|hyperpage}{20}
@@ -41,10 +41,9 @@
 \indexentry{arm64e|hyperpage}{22}
 \indexentry{pauthabi|hyperpage}{22}
 \indexentry{return address|hyperpage}{24}
-\indexentry{shadow stack|hyperpage}{24}
-\indexentry{Coroutine   Frame-Oriented Programming (CFOP)|hyperpage}{25}
+\indexentry{Coroutine Frame-Oriented Programming (CFOP)|hyperpage}{25}
 \indexentry{Procedure Linkage Table (PLT)|hyperpage}{25}
-\indexentry{Global   Offset Table (GOT)|hyperpage}{25}
+\indexentry{Global Offset Table(GOT)|hyperpage}{25}
 \indexentry{shadow stack|hyperpage}{26}
 \indexentry{Pointer Authentication|hyperpage}{26}
 \indexentry{Pointer Authentication Code (PAC)|hyperpage}{27}
@@ -53,16 +52,16 @@
 \indexentry{key|hyperpage}{27}
 \indexentry{modifier|hyperpage}{27}
 \indexentry{pointer substitution attack|hyperpage}{27}
-\indexentry{pointer substitution attack|hyperpage}{29}
-\indexentry{BTI|hyperpage}{29}
+\indexentry{pointer substitution attacks|hyperpage}{29}
+\indexentry{Branch Target Identification (BTI)|hyperpage}{29}
 \indexentry{control data|hyperpage}{30}
-\indexentry{non-control data attacks|hyperpage}{30}
+\indexentry{Non-control data attacks|hyperpage}{30}
 \indexentry{data-only attacks|hyperpage}{30}
 \indexentry{C|hyperpage}{32}
 \indexentry{C++|hyperpage}{32}
 \indexentry{sanitizers|hyperpage}{32}
 \indexentry{fuzzing|hyperpage}{32}
-\indexentry{AddressSanitizer (ASan)|hyperpage}{32}
+\indexentry{Address Sanitizer (ASan)|hyperpage}{32}
 \indexentry{fuzzing|hyperpage}{32}
 \indexentry{GCC|hyperpage}{33}
 \indexentry{Clang|hyperpage}{33}
@@ -71,13 +70,13 @@
 \indexentry{free|hyperpage}{33}
 \indexentry{redzone|hyperpage}{33}
 \indexentry{KASAN|hyperpage}{33}
-\indexentry{HWASAN|hyperpage}{33}
+\indexentry{Hardware-assisted AddressSanitizer (HWASAN)|hyperpage}{33}
 \indexentry{AArch64|hyperpage}{33}
 \indexentry{Top-Byte Ignore (TBI)|hyperpage}{33}
 \indexentry{LeakSanitizer|hyperpage}{33}
 \indexentry{MemTagSanitizer|hyperpage}{34}
 \indexentry{Memory Tagging Extension (MTE)|hyperpage}{34}
-\indexentry{UBSan|hyperpage}{34}
+\indexentry{UndefinedBehaviorSanitizer (UBSan)|hyperpage}{34}
 \indexentry{MemorySanitizer|hyperpage}{34}
 \indexentry{ThreadSanitizer|hyperpage}{34}
 \indexentry{GWP-ASan|hyperpage}{34}
@@ -85,16 +84,16 @@
 \indexentry{read primitive|hyperpage}{34}
 \indexentry{write primitive|hyperpage}{34}
 \indexentry{intra-object overflow|hyperpage}{35}
-\indexentry{Application binary interface (ABI)|hyperpage}{36}
+\indexentry{Application Binary Interface (ABI)|hyperpage}{36}
 \indexentry{capability|hyperpage}{36}
-\indexentry{JIT compilers|hyperpage}{37}
+\indexentry{just-in-time (JIT) compilers|hyperpage}{37}
 \indexentry{deoptimization|hyperpage}{37}
 \indexentry{on-stack replacement (OSR)|hyperpage}{37}
 \indexentry{range analysis|hyperpage}{38}
 \indexentry{bounds check elimination|hyperpage}{38}
-\indexentry{bounds check elimination|hyperpage}{38}
+\indexentry{Bounds check elimination (BCE)|hyperpage}{38}
 \indexentry{pointer compression|hyperpage}{39}
-\indexentry{W\^{}X|hyperpage}{39}
+\indexentry{W\textasciicircum {}X|hyperpage}{39}
 \indexentry{covert channel|hyperpage}{40}
 \indexentry{side-channel|hyperpage}{40}
 \indexentry{victim|hyperpage}{40}
@@ -103,25 +102,25 @@
 \indexentry{timing attacks|hyperpage}{40}
 \indexentry{cache|hyperpage}{41}
 \indexentry{memory access time|hyperpage}{42}
-\indexentry{cache hit|hyperpage}{42}
-\indexentry{cache miss|hyperpage}{42}
-\indexentry{multi-level cache|hyperpage}{42}
-\indexentry{cache size|hyperpage}{42}
-\indexentry{cache access time|hyperpage}{42}
+\indexentry{cache!hit|hyperpage}{42}
+\indexentry{cache!miss|hyperpage}{42}
+\indexentry{cache!multi-level|hyperpage}{42}
+\indexentry{cache!size|hyperpage}{42}
+\indexentry{cache!access time|hyperpage}{42}
 \indexentry{principle of locality|hyperpage}{42}
 \indexentry{locality of reference|hyperpage}{42}
-\indexentry{cache block|hyperpage}{42}
-\indexentry{cache line|hyperpage}{42}
-\indexentry{cache eviction|hyperpage}{42}
-\indexentry{cache replacement policy|hyperpage}{42}
-\indexentry{LRU replacement policy|hyperpage}{43}
-\indexentry{random replacement policy|hyperpage}{43}
-\indexentry{pseudo-LRU replacement policy|hyperpage}{43}
-\indexentry{fully-associative cache|hyperpage}{43}
-\indexentry{set-associative cache|hyperpage}{43}
-\indexentry{direct-mapped cache|hyperpage}{43}
-\indexentry{cache set|hyperpage}{43}
-\indexentry{cache coherency|hyperpage}{44}
+\indexentry{cache!block|hyperpage}{42}
+\indexentry{cache!line|hyperpage}{42}
+\indexentry{cache!eviction|hyperpage}{42}
+\indexentry{cache!replacement policy|hyperpage}{42}
+\indexentry{cache!LRU|hyperpage}{43}
+\indexentry{cache!random replacement policy|hyperpage}{43}
+\indexentry{cache!pseudo-LRU replacement policy|hyperpage}{43}
+\indexentry{cache!fully-associative|hyperpage}{43}
+\indexentry{cache!set-associative|hyperpage}{43}
+\indexentry{cache!direct-mapped|hyperpage}{43}
+\indexentry{cache!set|hyperpage}{43}
+\indexentry{cache!side-channel|hyperpage}{44}
 \indexentry{Flush+Reload|hyperpage}{44}
 \indexentry{Prime+Probe|hyperpage}{44}
 \indexentry{reset sequence|hyperpage}{45}
@@ -133,15 +132,15 @@
 \indexentry{Evict+Time|hyperpage}{45}
 \indexentry{Reload+Refresh|hyperpage}{45}
 \indexentry{Collide+Probe|hyperpage}{45}
-\indexentry{multithreading|hyperpage}{46}
+\indexentry{cpu multithreading|hyperpage}{46}
 \indexentry{site isolation|hyperpage}{46}
 \indexentry{Spectre|hyperpage}{46}
 \indexentry{NetSpectre|hyperpage}{46}
-\indexentry{pipeline|hyperpage}{47}
 \indexentry{instruction pipeline|hyperpage}{47}
+\indexentry{pipeline|hyperpage}{47}
 \indexentry{predict|hyperpage}{47}
 \indexentry{branch predictor|hyperpage}{47}
-\indexentry{conditional branch   direction predictor|hyperpage}{47}
+\indexentry{conditional branch direction predictor|hyperpage}{47}
 \indexentry{taken branch|hyperpage}{47}
 \indexentry{history-based prediction|hyperpage}{47}
 \indexentry{branch target predictor|hyperpage}{47}
@@ -153,7 +152,7 @@
 \indexentry{Branch target predictor|hyperpage}{48}
 \indexentry{SBPA|hyperpage}{48}
 \indexentry{BranchShadow|hyperpage}{48}
-\indexentry{BTB|hyperpage}{48}
+\indexentry{Branch Target Buffer (BTB)|hyperpage}{48}
 \indexentry{last branch record|hyperpage}{48}
 \indexentry{instruction trace|hyperpage}{48}
 \indexentry{performance counter|hyperpage}{48}
@@ -162,9 +161,9 @@
 \indexentry{reset sequence|hyperpage}{48}
 \indexentry{trigger sequence|hyperpage}{48}
 \indexentry{measurement sequence|hyperpage}{48}
-\indexentry{control dependencies|hyperpage}{49}
+\indexentry{control dependency|hyperpage}{49}
 \indexentry{true data dependency|hyperpage}{49}
-\indexentry{anti dependency|hyperpage}{49}
+\indexentry{data dependency|hyperpage}{49}
 \indexentry{output dependency|hyperpage}{49}
 \indexentry{prediction|hyperpage}{49}
 \indexentry{speculation|hyperpage}{49}
@@ -172,11 +171,11 @@
 \indexentry{transient instructions|hyperpage}{50}
 \indexentry{architectural effects|hyperpage}{50}
 \indexentry{micro-architectural effects|hyperpage}{50}
-\indexentry{wrong-patch instructions|hyperpage}{50}
+\indexentry{wrong-path instructions|hyperpage}{50}
 \indexentry{faulting instructions|hyperpage}{51}
 \indexentry{transient instructions|hyperpage}{51}
 \indexentry{transient execution attacks|hyperpage}{51}
 \indexentry{Spectre|hyperpage}{51}
 \indexentry{Meltdown|hyperpage}{51}
-\indexentry{dead store optimization|hyperpage}{57}
+\indexentry{dead store optimization (DSO)|hyperpage}{57}
 \indexentry{memset|hyperpage}{57}

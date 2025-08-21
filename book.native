@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-212-g5094cff" )
+          , ( "VERSION" , MetaString "0-213-g81279c6" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -1733,16 +1733,15 @@ Pandoc
       , Space
       , Str "as"
       , Space
-      , Str "C/C++"
-      , Space
-      , RawInline (Format "tex") "\\index{C}"
-      , RawInline (Format "tex") "\\index{C++}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "C" ]
+      , Str "/"
+      , Span ( "" , [ "index" ] , [] ) [ Str "C++" ]
       , Str "."
       , Space
       , Str "These"
-      , SoftBreak
-      , Str "languages"
       , Space
+      , Str "languages"
+      , SoftBreak
       , Str "do"
       , Space
       , Str "not"
@@ -1764,11 +1763,11 @@ Pandoc
       , Str "errors"
       , Space
       , Str "by"
-      , SoftBreak
+      , Space
       , Str "default."
       , Space
       , Str "An"
-      , Space
+      , SoftBreak
       , Str "attacker"
       , Space
       , Str "can"
@@ -1788,9 +1787,9 @@ Pandoc
       , Str "data"
       , Space
       , Str "or"
-      , SoftBreak
-      , Str "overwrite"
       , Space
+      , Str "overwrite"
+      , SoftBreak
       , Str "critical"
       , Space
       , Str "memory"
@@ -2250,14 +2249,11 @@ Pandoc
       , Space
       , Str "hand,"
       , Space
-      , Str "C"
+      , Span ( "" , [ "index" ] , [] ) [ Str "C" ]
       , Space
       , Str "and"
       , Space
-      , Str "C++"
-      , Space
-      , RawInline (Format "tex") "\\index{C}"
-      , RawInline (Format "tex") "\\index{C++}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "C++" ]
       , Space
       , Str "remain"
       , Space
@@ -2891,8 +2887,11 @@ Pandoc
   , Para
       [ Str "An"
       , Space
-      , Emph [ Str "exploit" , Space , Str "primitive" ]
-      , RawInline (Format "tex") "\\index{exploit primitive}"
+      , Emph
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "exploit" , Space , Str "primitive" ]
+          ]
       , Space
       , Str "is"
       , Space
@@ -2905,11 +2904,11 @@ Pandoc
       , Str "allows"
       , Space
       , Str "an"
-      , SoftBreak
+      , Space
       , Str "attacker"
       , Space
       , Str "to"
-      , Space
+      , SoftBreak
       , Str "perform"
       , Space
       , Str "a"
@@ -2929,7 +2928,7 @@ Pandoc
       , Str "of"
       , Space
       , Str "the"
-      , SoftBreak
+      , Space
       , Str "victim"
       , Space
       , Str "program."
@@ -2937,7 +2936,7 @@ Pandoc
       , Str "This"
       , Space
       , Str "is"
-      , Space
+      , SoftBreak
       , Str "done"
       , Space
       , Str "by"
@@ -2953,7 +2952,7 @@ Pandoc
       , Str "to"
       , Space
       , Str "the"
-      , SoftBreak
+      , Space
       , Str "victim"
       , Space
       , Str "program."
@@ -2961,8 +2960,11 @@ Pandoc
   , Para
       [ Str "A"
       , Space
-      , Emph [ Str "write" , Space , Str "primitive" ]
-      , RawInline (Format "tex") "\\index{write primitive}"
+      , Emph
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "write" , Space , Str "primitive" ]
+          ]
       , Space
       , Str "gives"
       , Space
@@ -3251,8 +3253,11 @@ Pandoc
   , Para
       [ Str "A"
       , Space
-      , Emph [ Str "read" , Space , Str "primitive" ]
-      , RawInline (Format "tex") "\\index{read primitive}"
+      , Emph
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "read" , Space , Str "primitive" ]
+          ]
       , Str ","
       , Space
       , Str "respectively,"
@@ -3264,11 +3269,11 @@ Pandoc
       , Str "attacker"
       , Space
       , Str "read"
-      , SoftBreak
+      , Space
       , Str "access"
       , Space
       , Str "to"
-      , Space
+      , SoftBreak
       , Str "the"
       , Space
       , Str "victim\8217s"
@@ -3288,13 +3293,13 @@ Pandoc
       , Str "memory"
       , Space
       , Str "location"
-      , SoftBreak
+      , Space
       , Str "accessed"
       , Space
       , Str "will"
       , Space
       , Str "be"
-      , Space
+      , SoftBreak
       , Str "controlled"
       , Space
       , Str "by"
@@ -3316,11 +3321,11 @@ Pandoc
       , Str "the"
       , Space
       , Str "write"
-      , SoftBreak
+      , Space
       , Str "primitive."
       , Space
       , Str "A"
-      , Space
+      , SoftBreak
       , Str "particularly"
       , Space
       , Str "useful"
@@ -3336,11 +3341,11 @@ Pandoc
       , Str "primitive,"
       , Space
       , Str "in"
-      , SoftBreak
+      , Space
       , Str "which"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "address"
       , Space
       , Str "is"
@@ -3470,8 +3475,11 @@ Pandoc
             , Space
             , Str "an"
             , Space
-            , Emph [ Str "interactive" , Space , Str "attack" ]
-            , RawInline (Format "tex") "\\index{interactive attack}"
+            , Emph
+                [ Span
+                    ( "" , [ "index" ] , [] )
+                    [ Str "interactive" , Space , Str "attack" ]
+                ]
             , Str ","
             , Space
             , Str "the"
@@ -3479,13 +3487,13 @@ Pandoc
             , Str "attacker"
             , Space
             , Str "gives"
-            , SoftBreak
+            , Space
             , Str "malicious"
             , Space
             , Str "input"
             , Space
             , Str "to"
-            , Space
+            , SoftBreak
             , Str "the"
             , Space
             , Str "victim"
@@ -3503,13 +3511,13 @@ Pandoc
             , Str "the"
             , Space
             , Str "victim"
-            , SoftBreak
+            , Space
             , Str "program"
             , Space
             , Str "to"
             , Space
             , Str "perform"
-            , Space
+            , SoftBreak
             , Str "the"
             , Space
             , Str "read"
@@ -3529,7 +3537,7 @@ Pandoc
             , Str "to"
             , Space
             , Str "output"
-            , SoftBreak
+            , Space
             , Str "the"
             , Space
             , Str "results"
@@ -3537,7 +3545,7 @@ Pandoc
             , Str "of"
             , Space
             , Str "that"
-            , Space
+            , SoftBreak
             , Str "read."
             , Space
             , Str "This"
@@ -3557,7 +3565,7 @@ Pandoc
             , Str "output,"
             , Space
             , Str "for"
-            , SoftBreak
+            , Space
             , Str "example"
             , Space
             , Str "a"
@@ -3565,7 +3573,7 @@ Pandoc
             , Str "network"
             , Space
             , Str "packet"
-            , Space
+            , SoftBreak
             , Str "that"
             , Space
             , Str "the"
@@ -3581,7 +3589,7 @@ Pandoc
             , Str "can"
             , Space
             , Str "observe"
-            , SoftBreak
+            , Space
             , Str "the"
             , Space
             , Str "result"
@@ -3591,7 +3599,7 @@ Pandoc
             , Str "the"
             , Space
             , Str "read"
-            , Space
+            , SoftBreak
             , Str "primitive"
             , Space
             , Str "by"
@@ -3607,7 +3615,7 @@ Pandoc
             , Str "for"
             , Space
             , Str "example"
-            , SoftBreak
+            , Space
             , Str "parsing"
             , Space
             , Str "this"
@@ -3615,7 +3623,7 @@ Pandoc
             , Str "network"
             , Space
             , Str "packet."
-            , Space
+            , SoftBreak
             , Str "This"
             , Space
             , Str "process"
@@ -3629,7 +3637,7 @@ Pandoc
             , Str "attacker"
             , Space
             , Str "sends"
-            , SoftBreak
+            , Space
             , Str "more"
             , Space
             , Str "malicious"
@@ -3639,7 +3647,7 @@ Pandoc
             , Str "to"
             , Space
             , Str "the"
-            , Space
+            , SoftBreak
             , Str "victim,"
             , Space
             , Str "observes"
@@ -3655,7 +3663,7 @@ Pandoc
             , Str "the"
             , Space
             , Str "next"
-            , SoftBreak
+            , Space
             , Str "input."
             , Space
             , Str "You"
@@ -3665,7 +3673,7 @@ Pandoc
             , Str "see"
             , Space
             , Str "an"
-            , Space
+            , SoftBreak
             , Str "example"
             , Space
             , Str "of"
@@ -3679,7 +3687,7 @@ Pandoc
             , Str "attack"
             , Space
             , Str "in"
-            , SoftBreak
+            , Space
             , Cite
                 [ Citation
                     { citationId = "Beer2020"
@@ -3700,7 +3708,7 @@ Pandoc
             , Str "a"
             , Space
             , Str "zero-click"
-            , Space
+            , SoftBreak
             , Str "radio"
             , Space
             , Str "proximity"
@@ -3714,15 +3722,15 @@ Pandoc
             , Str "a"
             , Space
             , Emph
-                [ Str "non-interactive"
-                , Space
-                , Str "(one-shot)"
-                , Space
-                , Str "attack"
+                [ Span
+                    ( "" , [ "index" ] , [] )
+                    [ Str "non-interactive"
+                    , Space
+                    , Str "(one-shot)"
+                    , Space
+                    , Str "attack"
+                    ]
                 ]
-            , RawInline
-                (Format "tex")
-                "\\index{non-interactive (one-shot)\nattack}"
             , Str ","
             , Space
             , Str "the"
@@ -3732,7 +3740,7 @@ Pandoc
             , Str "provides"
             , Space
             , Str "all"
-            , Space
+            , SoftBreak
             , Str "malicious"
             , Space
             , Str "input"
@@ -3746,7 +3754,7 @@ Pandoc
             , Str "program"
             , Space
             , Str "at"
-            , SoftBreak
+            , Space
             , Str "once."
             , Space
             , Str "The"
@@ -3756,7 +3764,7 @@ Pandoc
             , Str "input"
             , Space
             , Str "triggers"
-            , Space
+            , SoftBreak
             , Str "multiple"
             , Space
             , Str "primitives"
@@ -3768,7 +3776,7 @@ Pandoc
             , Str "the"
             , Space
             , Str "other,"
-            , SoftBreak
+            , Space
             , Str "and"
             , Space
             , Str "the"
@@ -3780,7 +3788,7 @@ Pandoc
             , Str "able"
             , Space
             , Str "to"
-            , Space
+            , SoftBreak
             , Str "observe"
             , Space
             , Str "the"
@@ -3792,7 +3800,7 @@ Pandoc
             , Str "the"
             , Space
             , Str "preceding"
-            , SoftBreak
+            , Space
             , Str "operations"
             , Space
             , Str "through"
@@ -3802,7 +3810,7 @@ Pandoc
             , Str "victim"
             , Space
             , Str "program\8217s"
-            , Space
+            , SoftBreak
             , Str "state."
             , Space
             , Str "The"
@@ -3814,7 +3822,7 @@ Pandoc
             , Str "be,"
             , Space
             , Str "for"
-            , SoftBreak
+            , Space
             , Str "example,"
             , Space
             , Str "in"
@@ -3830,7 +3838,7 @@ Pandoc
             , Str "JavaScript"
             , Space
             , Str "program"
-            , Space
+            , SoftBreak
             , Cite
                 [ Citation
                     { citationId = "Gro\223\&2020"
@@ -3851,7 +3859,7 @@ Pandoc
             , Str "PDF"
             , Space
             , Str "file"
-            , SoftBreak
+            , Space
             , Str "pretending"
             , Space
             , Str "to"
@@ -5331,13 +5339,14 @@ Pandoc
       , Space
       , Str "is"
       , Space
-      , Str "arbitrary"
-      , Space
-      , Str "code"
-      , SoftBreak
-      , Str "execution"
-      , RawInline
-          (Format "tex") "\\index{arbitrary code execution}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "arbitrary"
+          , Space
+          , Str "code"
+          , SoftBreak
+          , Str "execution"
+          ]
       , Space
       , Str "within"
       , Space
@@ -5350,7 +5359,7 @@ Pandoc
       , Str "We"
       , Space
       , Str "have"
-      , SoftBreak
+      , Space
       , Str "already"
       , Space
       , Str "mentioned"
@@ -5358,7 +5367,7 @@ Pandoc
       , Str "that"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "attacker"
       , Space
       , Str "will"
@@ -5370,7 +5379,7 @@ Pandoc
       , Str "arbitrary"
       , Space
       , Str "computation"
-      , SoftBreak
+      , Space
       , Str "capabilities"
       , Space
       , Str "at"
@@ -5378,7 +5387,7 @@ Pandoc
       , Str "this"
       , Space
       , Str "point,"
-      , Space
+      , SoftBreak
       , Str "but"
       , Space
       , Str "arbitrary"
@@ -5392,7 +5401,7 @@ Pandoc
       , Str "involves"
       , Space
       , Str "things"
-      , SoftBreak
+      , Space
       , Str "like"
       , Space
       , Str "calling"
@@ -5400,7 +5409,7 @@ Pandoc
       , Str "arbitrary"
       , Space
       , Str "library"
-      , Space
+      , SoftBreak
       , Str "functions"
       , Space
       , Str "and"
@@ -6518,7 +6527,7 @@ Pandoc
       , Space
       , Str "write"
       , SoftBreak
-      , Str "shellcode"
+      , Span ( "" , [ "index" ] , [] ) [ Str "shellcode" ]
       , Note
           [ Para
               [ Str "A"
@@ -6562,7 +6571,6 @@ Pandoc
               , Str "machine."
               ]
           ]
-      , RawInline (Format "tex") "\\index{shellcode}"
       , Space
       , Str "to"
       , Space
@@ -6577,11 +6585,11 @@ Pandoc
       , Str "the"
       , Space
       , Str "return"
-      , SoftBreak
+      , Space
       , Str "address"
       , Space
       , Str "so"
-      , Space
+      , SoftBreak
       , Str "that"
       , Space
       , Str "it"
@@ -6611,13 +6619,13 @@ Pandoc
       , Str "a"
       , Space
       , Str "classic"
-      , SoftBreak
+      , Space
       , Str "example"
       , Space
       , Str "of"
       , Space
       , Str "this"
-      , Space
+      , SoftBreak
       , Str "technique."
       ]
   , Para
@@ -7540,9 +7548,9 @@ Pandoc
       , Space
       , Str "secure"
       , SoftBreak
-      , Str "C/C++"
-      , RawInline (Format "tex") "\\index{C}"
-      , RawInline (Format "tex") "\\index{C++}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "C" ]
+      , Str "/"
+      , Span ( "" , [ "index" ] , [] ) [ Str "C++" ]
       , Space
       , Str "code,"
       , Space
@@ -7957,8 +7965,7 @@ Pandoc
       , SoftBreak
       , Str "place"
       , Space
-      , Str "shellcode"
-      , RawInline (Format "tex") "\\index{shellcode}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "shellcode" ]
       , Space
       , Str "of"
       , Space
@@ -7975,11 +7982,11 @@ Pandoc
       , Str "and"
       , Space
       , Str "jump"
-      , SoftBreak
+      , Space
       , Str "to"
       , Space
       , Str "it."
-      , Space
+      , SoftBreak
       , Str "As"
       , Space
       , Str "non-executable"
@@ -7999,9 +8006,9 @@ Pandoc
       , Str "started"
       , Space
       , Str "to"
-      , SoftBreak
-      , Str "reuse"
       , Space
+      , Str "reuse"
+      , SoftBreak
       , Str "code"
       , Space
       , Str "already"
@@ -8021,11 +8028,11 @@ Pandoc
       , Str "linked"
       , Space
       , Str "libraries"
-      , SoftBreak
+      , Space
       , Str "instead."
       , Space
       , Str "A"
-      , Space
+      , SoftBreak
       , Str "variety"
       , Space
       , Str "of"
@@ -8283,11 +8290,11 @@ Pandoc
       , Str "instructions,"
       , Space
       , Str "known"
-      , SoftBreak
-      , Str "as"
       , Space
-      , Strong [ Str "gadgets" ]
-      , RawInline (Format "tex") "\\index{gadget}"
+      , Str "as"
+      , SoftBreak
+      , Strong
+          [ Span ( "" , [ "index" ] , [] ) [ Str "gadgets" ] ]
       , Str "."
       , Space
       , Str "The"
@@ -8301,11 +8308,11 @@ Pandoc
       , Str "instructions"
       , Space
       , Str "make"
-      , SoftBreak
+      , Space
       , Str "it"
       , Space
       , Str "easy"
-      , Space
+      , SoftBreak
       , Str "for"
       , Space
       , Str "an"
@@ -8329,9 +8336,9 @@ Pandoc
       , Str "controlling"
       , Space
       , Str "the"
-      , SoftBreak
-      , Str "memory"
       , Space
+      , Str "memory"
+      , SoftBreak
       , Str "or"
       , Space
       , Str "register"
@@ -8353,14 +8360,15 @@ Pandoc
   , Para
       [ Str "In"
       , Space
-      , Str "return-oriented"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "return-oriented"
+          , Space
+          , Str "programming"
+          , Space
+          , Str "(ROP)"
+          ]
       , Space
-      , Str "programming"
-      , Space
-      , Str "(ROP)"
-      , RawInline
-          (Format "tex") "\\index{return-oriented programming (ROP)}"
-      , SoftBreak
       , Cite
           [ Citation
               { citationId = "Shacham2007"
@@ -8377,7 +8385,7 @@ Pandoc
       , Str "each"
       , Space
       , Str "gadget"
-      , Space
+      , SoftBreak
       , Str "performs"
       , Space
       , Str "a"
@@ -8393,7 +8401,7 @@ Pandoc
       , Str "setting"
       , Space
       , Str "a"
-      , SoftBreak
+      , Space
       , Str "register,"
       , Space
       , Str "then"
@@ -8403,7 +8411,7 @@ Pandoc
       , Str "a"
       , Space
       , Str "return"
-      , Space
+      , SoftBreak
       , Str "address"
       , Space
       , Str "from"
@@ -8421,7 +8429,7 @@ Pandoc
       , Str "it."
       , Space
       , Str "The"
-      , SoftBreak
+      , Space
       , Str "attacker"
       , Space
       , Str "constructs"
@@ -8431,7 +8439,7 @@ Pandoc
       , Str "fake"
       , Space
       , Str "call"
-      , Space
+      , SoftBreak
       , Str "stack"
       , Space
       , Str "(often"
@@ -8440,10 +8448,9 @@ Pandoc
       , Space
       , Str "a"
       , Space
-      , Str "ROP"
-      , Space
-      , Str "chain"
-      , RawInline (Format "tex") "\\index{ROP\nchain}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "ROP" , Space , Str "chain" ]
       , Str ")"
       , Space
       , Str "which"
@@ -8459,7 +8466,7 @@ Pandoc
       , Str "gadgets"
       , Space
       , Str "are"
-      , Space
+      , SoftBreak
       , Str "executed"
       , Space
       , Str "one"
@@ -8469,7 +8476,7 @@ Pandoc
       , Str "another,"
       , Space
       , Str "in"
-      , SoftBreak
+      , Space
       , Str "order"
       , Space
       , Str "to"
@@ -9265,10 +9272,9 @@ Pandoc
       , Space
       , Str "as"
       , Space
-      , Str "stack"
-      , SoftBreak
-      , Str "pivoting"
-      , RawInline (Format "tex") "\\index{stack pivoting}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "stack" , SoftBreak , Str "pivoting" ]
       , Str "."
       ]
   , Para
@@ -9604,9 +9610,9 @@ Pandoc
       , Str "by"
       , Space
       , Str "visual"
-      , SoftBreak
-      , Str "inspection"
       , Space
+      , Str "inspection"
+      , SoftBreak
       , Str "of"
       , Space
       , Str "a"
@@ -9630,8 +9636,11 @@ Pandoc
       , Str "use"
       , SoftBreak
       , Quoted
-          DoubleQuote [ Str "gadget" , Space , Str "scanner" ]
-      , RawInline (Format "tex") "\\index{gadget scanner}"
+          DoubleQuote
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "gadget" , Space , Str "scanner" ]
+          ]
       , Space
       , Str "tools"
       , Space
@@ -9646,11 +9655,11 @@ Pandoc
       , Str "large"
       , Space
       , Str "numbers"
-      , SoftBreak
+      , Space
       , Str "of"
       , Space
       , Str "gadgets"
-      , Space
+      , SoftBreak
       , Str "automatically."
       , Space
       , Str "Such"
@@ -9672,13 +9681,13 @@ Pandoc
       , Str "compiler"
       , Space
       , Str "engineer"
-      , SoftBreak
+      , Space
       , Str "working"
       , Space
       , Str "on"
       , Space
       , Str "a"
-      , Space
+      , SoftBreak
       , Str "code"
       , Space
       , Str "reuse"
@@ -9700,11 +9709,11 @@ Pandoc
       , Str "code"
       , Space
       , Str "sequences"
-      , SoftBreak
+      , Space
       , Str "that"
       , Space
       , Str "should"
-      , Space
+      , SoftBreak
       , Str "be"
       , Space
       , Str "protected"
@@ -9959,14 +9968,15 @@ Pandoc
       ( "jump-oriented-programming" , [] , [] )
       [ Str "Jump-oriented" , Space , Str "programming" ]
   , Para
-      [ Str "Jump-oriented"
+      [ Span
+          ( "" , [ "index" ] , [] )
+          [ Str "Jump-oriented"
+          , Space
+          , Str "programming"
+          , Space
+          , Str "(JOP)"
+          ]
       , Space
-      , Str "programming"
-      , Space
-      , Str "(JOP)"
-      , RawInline
-          (Format "tex") "\\index{jump-oriented programming (JOP)}"
-      , SoftBreak
       , Cite
           [ Citation
               { citationId = "Bletsch2011"
@@ -9988,7 +9998,7 @@ Pandoc
       , Str "on"
       , Space
       , Str "ROP,"
-      , Space
+      , SoftBreak
       , Str "where"
       , Space
       , Str "gadgets"
@@ -10002,7 +10012,7 @@ Pandoc
       , Str "in"
       , Space
       , Str "indirect"
-      , SoftBreak
+      , Space
       , Str "branch"
       , Space
       , Str "instructions"
@@ -10012,7 +10022,7 @@ Pandoc
       , Str "of"
       , Space
       , Str "return"
-      , Space
+      , SoftBreak
       , Str "instructions."
       , Space
       , Str "The"
@@ -10022,7 +10032,7 @@ Pandoc
       , Str "chains"
       , Space
       , Str "a"
-      , SoftBreak
+      , Space
       , Str "number"
       , Space
       , Str "of"
@@ -10035,12 +10045,11 @@ Pandoc
       , Space
       , Str "a"
       , Space
-      , Str "dispatcher"
-      , Space
-      , Str "gadget"
-      , RawInline (Format "tex") "\\index{dispatcher gadget}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "dispatcher" , SoftBreak , Str "gadget" ]
       , Str ","
-      , SoftBreak
+      , Space
       , Str "which"
       , Space
       , Str "loads"
@@ -10060,13 +10069,13 @@ Pandoc
       , Str "array"
       , Space
       , Str "of"
-      , Space
+      , SoftBreak
       , Str "pointers,"
       , Space
       , Str "and"
       , Space
       , Str "branches"
-      , SoftBreak
+      , Space
       , Str "to"
       , Space
       , Str "each"
@@ -10092,7 +10101,7 @@ Pandoc
       , Str "up"
       , Space
       , Str "so"
-      , Space
+      , SoftBreak
       , Str "that"
       , Space
       , Str "they"
@@ -10100,7 +10109,7 @@ Pandoc
       , Str "branch"
       , Space
       , Str "or"
-      , SoftBreak
+      , Space
       , Str "return"
       , Space
       , Str "back"
@@ -10120,11 +10129,11 @@ Pandoc
       , Str "This"
       , Space
       , Str "is"
-      , Space
+      , SoftBreak
       , Str "demonstrated"
       , Space
       , Str "in"
-      , SoftBreak
+      , Space
       , Str "figure"
       , Space
       , Cite
@@ -10547,16 +10556,16 @@ Pandoc
       , Str "programming"
       ]
   , Para
-      [ Str "Counterfeit"
-      , Space
-      , Str "Object-oriented"
-      , Space
-      , Str "programming"
-      , Space
-      , Str "(COOP)"
-      , RawInline
-          (Format "tex")
-          "\\index{counterfeit object-oriented\nprogramming (COOP)}"
+      [ Span
+          ( "" , [ "index" ] , [] )
+          [ Str "Counterfeit"
+          , Space
+          , Str "Object-oriented"
+          , Space
+          , Str "programming"
+          , Space
+          , Str "(COOP)"
+          ]
       , Space
       , Cite
           [ Citation
@@ -10573,7 +10582,7 @@ Pandoc
       , Str "is"
       , Space
       , Str "a"
-      , Space
+      , SoftBreak
       , Str "code"
       , Space
       , Str "reuse"
@@ -10583,19 +10592,17 @@ Pandoc
       , Str "that"
       , Space
       , Str "takes"
-      , SoftBreak
+      , Space
       , Str "advantage"
       , Space
       , Str "of"
       , Space
-      , Str "C++"
-      , Space
-      , RawInline (Format "tex") "\\index{C++}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "C++" ]
       , Space
       , Str "virtual"
       , Space
       , Str "function"
-      , Space
+      , SoftBreak
       , Str "calls."
       , Space
       , Str "A"
@@ -10605,7 +10612,7 @@ Pandoc
       , Str "attack"
       , Space
       , Str "takes"
-      , SoftBreak
+      , Space
       , Str "advantage"
       , Space
       , Str "of"
@@ -10666,8 +10673,7 @@ Pandoc
       , Space
       , Str "called"
       , Space
-      , Str "vfgadgets"
-      , RawInline (Format "tex") "\\index{vfgadget}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "vfgadgets" ]
       , Str "."
       , Space
       , Str "To"
@@ -10956,14 +10962,14 @@ Pandoc
       , Space
       , Str "is"
       , SoftBreak
-      , Str "sigreturn-oriented"
-      , Space
-      , Str "programming"
-      , Space
-      , Str "(SROP)"
-      , RawInline
-          (Format "tex")
-          "\\index{sigreturn-oriented programming\n(SROP)}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "sigreturn-oriented"
+          , Space
+          , Str "programming"
+          , Space
+          , Str "(SROP)"
+          ]
       , Space
       , Cite
           [ Citation
@@ -10985,7 +10991,7 @@ Pandoc
       , Str "a"
       , Space
       , Str "special"
-      , Space
+      , SoftBreak
       , Str "case"
       , Space
       , Str "of"
@@ -11001,7 +11007,7 @@ Pandoc
       , Str "creates"
       , Space
       , Str "a"
-      , SoftBreak
+      , Space
       , Str "fake"
       , Space
       , Str "signal"
@@ -11013,7 +11019,7 @@ Pandoc
       , Str "and"
       , Space
       , Str "calls"
-      , Space
+      , SoftBreak
       , Code ( "" , [] , [] ) "sigreturn"
       , Str "."
       , Space
@@ -11026,7 +11032,7 @@ Pandoc
       , Str "system"
       , Space
       , Str "call"
-      , SoftBreak
+      , Space
       , Str "on"
       , Space
       , Str "many"
@@ -11038,7 +11044,7 @@ Pandoc
       , Str "which"
       , Space
       , Str "is"
-      , Space
+      , SoftBreak
       , Str "normally"
       , Space
       , Str "called"
@@ -11052,7 +11058,7 @@ Pandoc
       , Str "a"
       , Space
       , Str "signal"
-      , SoftBreak
+      , Space
       , Str "handler,"
       , Space
       , Str "and"
@@ -11066,7 +11072,7 @@ Pandoc
       , Str "of"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "process"
       , Space
       , Str "based"
@@ -11082,7 +11088,7 @@ Pandoc
       , Str "has"
       , Space
       , Str "been"
-      , SoftBreak
+      , Space
       , Str "saved"
       , Space
       , Str "on"
@@ -11096,7 +11102,7 @@ Pandoc
       , Str "stack"
       , Space
       , Str "by"
-      , Space
+      , SoftBreak
       , Str "the"
       , Space
       , Str "kernel"
@@ -11110,7 +11116,7 @@ Pandoc
       , Str "to"
       , Space
       , Str "the"
-      , SoftBreak
+      , Space
       , Str "signal"
       , Space
       , Str "handler."
@@ -11124,7 +11130,7 @@ Pandoc
       , Str "fake"
       , Space
       , Str "a"
-      , Space
+      , SoftBreak
       , Str "signal"
       , Space
       , Str "handler"
@@ -11134,7 +11140,7 @@ Pandoc
       , Str "and"
       , Space
       , Str "call"
-      , SoftBreak
+      , Space
       , Code ( "" , [] , [] ) "sigreturn"
       , Space
       , Str "gives"
@@ -11150,7 +11156,7 @@ Pandoc
       , Str "way"
       , Space
       , Str "to"
-      , Space
+      , SoftBreak
       , Str "control"
       , Space
       , Str "the"
@@ -11497,8 +11503,9 @@ Pandoc
       , SoftBreak
       , Str "machine"
       , Space
-      , Str "registers"
-      , RawInline (Format "tex") "\\index{register}"
+      , Span
+          ( "" , [ "index" ] , [ ( "entry" , "register" ) ] )
+          [ Str "registers" ]
       , Str "."
       , Space
       , Str "Overwriting"
@@ -11508,9 +11515,9 @@ Pandoc
       , Str "in"
       , Space
       , Str "machine"
-      , Space
-      , Str "registers"
       , SoftBreak
+      , Str "registers"
+      , Space
       , Str "directly"
       , Space
       , Str "is"
@@ -11525,10 +11532,12 @@ Pandoc
       , Space
       , Str "use"
       , Space
-      , Str "memory"
-      , SoftBreak
-      , Str "vulnerabilities"
-      , RawInline (Format "tex") "\\index{memory vulnerability}"
+      , Span
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "memory vulnerability" ) ]
+          )
+          [ Str "memory" , SoftBreak , Str "vulnerabilities" ]
       , Space
       , Str "to"
       , Space
@@ -11539,11 +11548,11 @@ Pandoc
       , Str "to"
       , Space
       , Str "overwrite"
-      , Space
+      , SoftBreak
       , Str "pointers"
       , Space
       , Str "in"
-      , SoftBreak
+      , Space
       , Str "memory."
       , Space
       , Str "With"
@@ -11565,13 +11574,13 @@ Pandoc
       , Str "code"
       , Space
       , Str "reuse"
-      , Space
+      , SoftBreak
       , Str "mitigations"
       , Space
       , Str "are"
       , Space
       , Str "not"
-      , SoftBreak
+      , Space
       , Str "necessary"
       , Space
       , Str "for"
@@ -11587,7 +11596,7 @@ Pandoc
       , Str "languages,"
       , Space
       , Str "as"
-      , Space
+      , SoftBreak
       , Str "they"
       , Space
       , Str "should"
@@ -11595,7 +11604,7 @@ Pandoc
       , Str "not"
       , Space
       , Str "have"
-      , SoftBreak
+      , Space
       , Str "any"
       , Space
       , Str "memory"
@@ -11607,13 +11616,13 @@ Pandoc
       , Str "most"
       , Space
       , Str "real-life"
-      , Space
+      , SoftBreak
       , Str "programs"
       , Space
       , Str "written"
       , Space
       , Str "in"
-      , SoftBreak
+      , Space
       , Str "memory-safe"
       , Space
       , Str "languages"
@@ -11629,7 +11638,7 @@ Pandoc
       , Str "portions"
       , Space
       , Str "of"
-      , Space
+      , SoftBreak
       , Str "binary"
       , Space
       , Str "code"
@@ -11637,7 +11646,7 @@ Pandoc
       , Str "written"
       , Space
       , Str "in"
-      , SoftBreak
+      , Space
       , Str "unsafe"
       , Space
       , Str "languages."
@@ -11653,7 +11662,7 @@ Pandoc
       , Str "a"
       , Space
       , Str "write"
-      , Space
+      , SoftBreak
       , Str "primitive"
       , Space
       , Str "in"
@@ -11661,7 +11670,7 @@ Pandoc
       , Str "the"
       , Space
       , Str "unsafe"
-      , SoftBreak
+      , Space
       , Str "portion"
       , Space
       , Str "of"
@@ -11681,7 +11690,7 @@ Pandoc
       , Str "overwrite"
       , Space
       , Str "code"
-      , Space
+      , SoftBreak
       , Str "pointers"
       , Space
       , Str "in"
@@ -11689,7 +11698,7 @@ Pandoc
       , Str "the"
       , Space
       , Str "memory-safe"
-      , SoftBreak
+      , Space
       , Str "portion"
       , Space
       , Str "of"
@@ -11701,7 +11710,7 @@ Pandoc
       , Str "Therefore,"
       , Space
       , Str "mitigations"
-      , Space
+      , SoftBreak
       , Str "against"
       , Space
       , Str "code"
@@ -11711,7 +11720,7 @@ Pandoc
       , Str "attacks"
       , Space
       , Str "are"
-      , SoftBreak
+      , Space
       , Str "still"
       , Space
       , Str "relevant"
@@ -11723,7 +11732,7 @@ Pandoc
       , Str "written"
       , Space
       , Str "in"
-      , Space
+      , SoftBreak
       , Str "memory-safe"
       , Space
       , Str "languages."
@@ -11811,20 +11820,22 @@ Pandoc
   , Para
       [ Link
           ( "" , [] , [] )
-          [ Str "Address"
-          , Space
-          , Str "space"
-          , Space
-          , Str "layout"
-          , Space
-          , Str "randomization"
-          , SoftBreak
-          , Str "(ASLR)"
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "Address"
+              , Space
+              , Str "space"
+              , Space
+              , Str "layout"
+              , Space
+              , Str "randomization"
+              , SoftBreak
+              , Str "(ASLR)"
+              ]
           ]
           ( "https://en.wikipedia.org/wiki/Address_space_layout_randomization"
           , ""
           )
-      , RawInline (Format "tex") "\\index{ASLR}"
       , SoftBreak
       , Str "makes"
       , Space
@@ -12023,8 +12034,12 @@ Pandoc
       , Space
       , Str "an"
       , Space
-      , Quoted DoubleQuote [ Str "info" , Space , Str "leak" ]
-      , RawInline (Format "tex") "\\index{info leak}"
+      , Quoted
+          DoubleQuote
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "info" , Space , Str "leak" ]
+          ]
       , Space
       , Cite
           [ Citation
@@ -12196,16 +12211,18 @@ Pandoc
   , Para
       [ Link
           ( "" , [] , [] )
-          [ Str "Control-flow"
-          , Space
-          , Str "integrity"
-          , SoftBreak
-          , Str "(CFI)"
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "Control-flow"
+              , Space
+              , Str "integrity"
+              , SoftBreak
+              , Str "(CFI)"
+              ]
           ]
           ( "https://en.wikipedia.org/wiki/Control-flow_integrity"
           , ""
           )
-      , RawInline (Format "tex") "\\index{CFI}"
       , Space
       , Str "is"
       , Space
@@ -12289,10 +12306,9 @@ Pandoc
       , Space
       , Str "as"
       , SoftBreak
-      , Str "forward-edge"
-      , Space
-      , Str "CFI"
-      , RawInline (Format "tex") "\\index{forward-edge CFI}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "forward-edge" , Space , Str "CFI" ]
       , Str ","
       , Space
       , Str "whereas"
@@ -12304,7 +12320,7 @@ Pandoc
       , Str "that"
       , Space
       , Str "protects"
-      , SoftBreak
+      , Space
       , Str "returns"
       , Space
       , Str "is"
@@ -12312,13 +12328,12 @@ Pandoc
       , Str "said"
       , Space
       , Str "to"
-      , Space
+      , SoftBreak
       , Str "implement"
       , Space
-      , Str "backward-edge"
-      , Space
-      , Str "CFI"
-      , RawInline (Format "tex") "\\index{backward-edge CFI}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "backward-edge" , Space , Str "CFI" ]
       , Str "."
       ]
   , Para
@@ -12459,19 +12474,24 @@ Pandoc
       , Space
       , Str "as"
       , Space
-      , Str "coarse-grained"
-      , RawInline (Format "tex") "\\index{coarse-grained\nCFI}"
+      , Span
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "coarse-grained CFI" ) ]
+          )
+          [ Str "coarse-grained" ]
       , Space
       , Str "or"
       , Space
-      , Str "fine-grained"
-      , RawInline (Format "tex") "\\index{fine-grained CFI}"
+      , Span
+          ( "" , [ "index" ] , [ ( "entry" , "fine-grained CFI" ) ] )
+          [ Str "fine-grained" ]
       , Str "."
-      , Space
+      , SoftBreak
       , Str "A"
       , Space
       , Str "coarse-grained"
-      , SoftBreak
+      , Space
       , Str "CFI"
       , Space
       , Str "scheme"
@@ -12495,9 +12515,9 @@ Pandoc
       , Str "large"
       , Space
       , Str "equivalence"
-      , Space
-      , Str "classes,"
       , SoftBreak
+      , Str "classes,"
+      , Space
       , Str "whereas"
       , Space
       , Str "a"
@@ -12519,11 +12539,11 @@ Pandoc
       , Str "smaller"
       , Space
       , Str "classes,"
-      , Space
+      , SoftBreak
       , Str "so"
       , Space
       , Str "that"
-      , SoftBreak
+      , Space
       , Str "the"
       , Space
       , Str "possible"
@@ -12545,9 +12565,9 @@ Pandoc
       , Str "more"
       , Space
       , Str "restricted"
-      , Space
-      , Str "(perhaps"
       , SoftBreak
+      , Str "(perhaps"
+      , Space
       , Str "at"
       , Space
       , Str "a"
@@ -13387,10 +13407,9 @@ Pandoc
       , Space
       , Str "into"
       , Space
-      , Str "equivalence"
-      , SoftBreak
-      , Str "classes"
-      , RawInline (Format "tex") "\\index{equivalence class}"
+      , Span
+          ( "" , [ "index" ] , [ ( "entry" , "equivalence class" ) ] )
+          [ Str "equivalence" , SoftBreak , Str "classes" ]
       , Str "."
       , Space
       , Str "Each"
@@ -13452,8 +13471,12 @@ Pandoc
       , Space
       , Str "their"
       , Space
-      , Str "signature"
-      , RawInline (Format "tex") "\\index{function signature}"
+      , Span
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "function signature" ) ]
+          )
+          [ Str "signature" ]
       , Str "."
       ]
   , Para
@@ -13461,26 +13484,24 @@ Pandoc
       , Space
       , Str "example,"
       , Space
-      , Str "arm64e"
-      , RawInline (Format "tex") "\\index{arm64e}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "arm64e" ]
       , Space
       , Str "and"
       , Space
-      , Str "pauthabi"
-      , RawInline (Format "tex") "\\index{pauthabi}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "pauthabi" ]
       , Space
       , Str "put"
       , Space
       , Str "all"
       , Space
       , Str "C"
-      , SoftBreak
+      , Space
       , Str "functions"
       , Space
       , Str "in"
       , Space
       , Str "a"
-      , Space
+      , SoftBreak
       , Str "single"
       , Space
       , Str "equivalence"
@@ -13509,11 +13530,11 @@ Pandoc
       , Str "CFI"
       , Space
       , Str "schemes"
-      , SoftBreak
+      , Space
       , Str "that"
       , Space
       , Str "partition"
-      , Space
+      , SoftBreak
       , Str "C"
       , Space
       , Str "functions"
@@ -13909,9 +13930,7 @@ Pandoc
       , Space
       , Str "a"
       , Space
-      , Str "C++"
-      , Space
-      , RawInline (Format "tex") "\\index{C++}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "C++" ]
       , Space
       , Str "virtual"
       , Space
@@ -13922,9 +13941,9 @@ Pandoc
       , Str "happens"
       , Space
       , Str "on"
-      , SoftBreak
-      , Str "an"
       , Space
+      , Str "an"
+      , SoftBreak
       , Str "object"
       , Space
       , Str "of"
@@ -14265,17 +14284,19 @@ Pandoc
       , SoftBreak
       , Link
           ( "" , [] , [] )
-          [ Str "jump" , Space , Str "table" ]
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "jump" , Space , Str "table" ]
+          ]
           ( "https://en.wikipedia.org/wiki/Branch_table" , "" )
-      , RawInline (Format "tex") "\\index{jump table}"
       , Str ","
-      , SoftBreak
+      , Space
       , Str "which"
       , Space
       , Str "is"
       , Space
       , Str "an"
-      , Space
+      , SoftBreak
       , Str "array"
       , Space
       , Str "of"
@@ -14299,11 +14320,11 @@ Pandoc
       , Str "case."
       , Space
       , Str "Ultimately,"
-      , SoftBreak
+      , Space
       , Str "the"
       , Space
       , Str "address"
-      , Space
+      , SoftBreak
       , Str "to"
       , Space
       , Str "jump"
@@ -14331,11 +14352,11 @@ Pandoc
       , Str "then"
       , Space
       , Str "an"
-      , SoftBreak
+      , Space
       , Str "indirect"
       , Space
       , Str "jump"
-      , Space
+      , SoftBreak
       , Str "to"
       , Space
       , Str "the"
@@ -14357,13 +14378,13 @@ Pandoc
       , Str "can"
       , Space
       , Str "control"
-      , SoftBreak
+      , Space
       , Str "the"
       , Space
       , Str "value"
       , Space
       , Str "used"
-      , Space
+      , SoftBreak
       , Str "to"
       , Space
       , Str "index"
@@ -14389,13 +14410,13 @@ Pandoc
       , Str "target"
       , Space
       , Str "point"
-      , SoftBreak
+      , Space
       , Str "to"
       , Space
       , Str "a"
       , Space
       , Str "different"
-      , Space
+      , SoftBreak
       , Str "address,"
       , Space
       , Str "leading"
@@ -14435,13 +14456,11 @@ Pandoc
       , Space
       , Str "but"
       , Space
-      , Str "arm64e"
-      , RawInline (Format "tex") "\\index{arm64e}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "arm64e" ]
       , Space
       , Str "and"
       , SoftBreak
-      , Str "pauthabi"
-      , RawInline (Format "tex") "\\index{pauthabi}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "pauthabi" ]
       , Space
       , Str "do,"
       , Space
@@ -14456,7 +14475,7 @@ Pandoc
       , Str "example"
       , Space
       , Str "below."
-      , SoftBreak
+      , Space
       , Str "This"
       , Space
       , Str "is"
@@ -14464,7 +14483,7 @@ Pandoc
       , Str "also"
       , Space
       , Str "explained"
-      , Space
+      , SoftBreak
       , Str "in"
       , Space
       , Cite
@@ -14766,18 +14785,21 @@ Pandoc
       , Str "the"
       , Space
       , Quoted
-          DoubleQuote [ Str "return" , Space , Str "address" ]
-      , RawInline (Format "tex") "\\index{return address}"
+          DoubleQuote
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "return" , Space , Str "address" ]
+          ]
       , Str "."
       , Space
       , Str "When"
       , Space
       , Str "the"
-      , SoftBreak
+      , Space
       , Str "called"
       , Space
       , Str "function"
-      , Space
+      , SoftBreak
       , Str "returns,"
       , Space
       , Str "it"
@@ -14799,7 +14821,7 @@ Pandoc
       , Str "the"
       , Space
       , Str "return"
-      , SoftBreak
+      , Space
       , Str "address."
       , Space
       , Str "This"
@@ -14807,7 +14829,7 @@ Pandoc
       , Str "is"
       , Space
       , Str "an"
-      , Space
+      , SoftBreak
       , Str "indirect"
       , Space
       , Str "control"
@@ -14827,13 +14849,13 @@ Pandoc
       , Str "branch"
       , Space
       , Str "isn\8217t"
-      , SoftBreak
+      , Space
       , Str "hard-coded"
       , Space
       , Str "in"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "instruction,"
       , Space
       , Str "but"
@@ -14853,7 +14875,7 @@ Pandoc
       , Str "memory"
       , Space
       , Str "location."
-      , SoftBreak
+      , Space
       , Str "If"
       , Space
       , Str "an"
@@ -14861,7 +14883,7 @@ Pandoc
       , Str "attacker"
       , Space
       , Str "can"
-      , Space
+      , SoftBreak
       , Str "change"
       , Space
       , Str "the"
@@ -14883,7 +14905,7 @@ Pandoc
       , Str "redirect"
       , Space
       , Str "the"
-      , SoftBreak
+      , Space
       , Str "control"
       , Space
       , Str "flow."
@@ -14941,10 +14963,13 @@ Pandoc
       , Str "with."
       ]
   , Para
-      [ Str "Shadow"
+      [ Str "[Shadow"
       , Space
-      , Str "stack"
-      , RawInline (Format "tex") "\\index{shadow stack}"
+      , Str "stack]]{.index"
+      , Space
+      , Str "entry="
+      , Quoted DoubleQuote [ Str "shadow" , Space , Str "stack" ]
+      , Str "}"
       , Space
       , Str "approaches"
       , Space
@@ -14955,13 +14980,13 @@ Pandoc
       , Str "return"
       , Space
       , Str "address"
-      , Space
+      , SoftBreak
       , Str "on"
       , Space
       , Str "a"
       , Space
       , Str "second"
-      , SoftBreak
+      , Space
       , Str "stack."
       , Space
       , Str "Some"
@@ -14983,9 +15008,9 @@ Pandoc
       , Str "address"
       , Space
       , Str "in"
-      , Space
-      , Str "the"
       , SoftBreak
+      , Str "the"
+      , Space
       , Str "original"
       , Space
       , Str "location"
@@ -15009,9 +15034,9 @@ Pandoc
       , Str "return"
       , Space
       , Str "is"
-      , Space
-      , Str "executed,"
       , SoftBreak
+      , Str "executed,"
+      , Space
       , Str "it"
       , Space
       , Str "verifies"
@@ -15037,11 +15062,11 @@ Pandoc
       , Str "and"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "shadow"
       , Space
       , Str "stack"
-      , SoftBreak
+      , Space
       , Str "are"
       , Space
       , Str "equal."
@@ -15063,11 +15088,11 @@ Pandoc
       , Str "make"
       , Space
       , Str "it"
-      , Space
+      , SoftBreak
       , Str "hard"
       , Space
       , Str "to"
-      , SoftBreak
+      , Space
       , Str "impossible"
       , Space
       , Str "for"
@@ -15091,7 +15116,7 @@ Pandoc
       , Str "the"
       , Space
       , Str "shadow"
-      , Space
+      , SoftBreak
       , Str "stack."
       ]
   , Para
@@ -15372,31 +15397,34 @@ Pandoc
             , SoftBreak
             , Link
                 ( "" , [] , [] )
-                [ Str "Coroutine"
-                , Space
-                , Str "Frame-Oriented"
-                , Space
-                , Str "Programming(CFOP)"
+                [ Span
+                    ( "" , [ "index" ] , [] )
+                    [ Str "Coroutine"
+                    , Space
+                    , Str "Frame-Oriented"
+                    , Space
+                    , Str "Programming"
+                    , Space
+                    , Str "(CFOP)"
+                    ]
                 ]
                 ( "https://www.usenix.org/conference/usenixsecurity25/presentation/bajo"
                 , ""
                 )
-            , RawInline
-                (Format "tex")
-                "\\index{Coroutine\nFrame-Oriented Programming (CFOP)}"
             , Str "."
             ]
         ]
       , [ Plain
-            [ Str "Procedure"
-            , Space
-            , Str "Linkage"
-            , Space
-            , Str "Table"
-            , Space
-            , Str "(PLT)"
-            , RawInline
-                (Format "tex") "\\index{Procedure Linkage Table (PLT)}"
+            [ Span
+                ( "" , [ "index" ] , [] )
+                [ Str "Procedure"
+                , Space
+                , Str "Linkage"
+                , Space
+                , Str "Table"
+                , Space
+                , Str "(PLT)"
+                ]
             , Space
             , Str "and"
             , Space
@@ -15404,18 +15432,19 @@ Pandoc
             , SoftBreak
             , Link
                 ( "" , [] , [] )
-                [ Str "Global"
-                , Space
-                , Str "Offset"
-                , Space
-                , Str "Table(GOT)"
+                [ Span
+                    ( "" , [ "index" ] , [] )
+                    [ Str "Global"
+                    , Space
+                    , Str "Offset"
+                    , Space
+                    , Str "Table(GOT)"
+                    ]
                 ]
                 ( "https://en.wikipedia.org/wiki/Global_Offset_Table"
                 , ""
                 )
-            , RawInline
-                (Format "tex") "\\index{Global\nOffset Table (GOT)}"
-            , Space
+            , SoftBreak
             , Str "often"
             , Space
             , Str "contain"
@@ -15433,13 +15462,13 @@ Pandoc
             , Str "to"
             , Space
             , Str "protect"
-            , SoftBreak
+            , Space
             , Str "these"
             , Space
             , Str "from"
             , Space
             , Str "being"
-            , Space
+            , SoftBreak
             , Str "overwritten"
             , Space
             , Str "by"
@@ -15957,13 +15986,15 @@ Pandoc
       , Space
       , Link
           ( "" , [] , [] )
-          [ Str "Shadow" , SoftBreak , Str "Stack" ]
+          [ Span
+              ( "" , [ "index" ] , [ ( "entry" , "shadow stack" ) ] )
+              [ Str "Shadow" , Space , Str "Stack" ]
+          ]
           ( "https://clang.llvm.org/docs/ShadowCallStack.html" , "" )
-      , RawInline (Format "tex") "\\index{shadow stack}"
       , Str "."
-      , SoftBreak
-      , Str "In"
       , Space
+      , Str "In"
+      , SoftBreak
       , Str "Clang\8217s"
       , Space
       , Str "implementation,"
@@ -16033,9 +16064,9 @@ Pandoc
       , Str "in"
       , Space
       , Str "a"
-      , SoftBreak
-      , Str "dedicated"
       , Space
+      , Str "dedicated"
+      , SoftBreak
       , Str "register,"
       , Space
       , Str "with"
@@ -16059,11 +16090,11 @@ Pandoc
       , Str "which"
       , Space
       , Str "means"
-      , SoftBreak
+      , Space
       , Str "that"
       , Space
       , Str "an"
-      , Space
+      , SoftBreak
       , Str "arbitrary"
       , Space
       , Str "write"
@@ -16083,11 +16114,11 @@ Pandoc
       , Str "shadow"
       , Space
       , Str "stack"
-      , SoftBreak
+      , Space
       , Str "unless"
       , Space
       , Str "its"
-      , Space
+      , SoftBreak
       , Str "location"
       , Space
       , Str "is"
@@ -16354,11 +16385,10 @@ Pandoc
       , Space
       , Str "is"
       , Space
-      , Str "Pointer"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "Pointer" , Space , Str "Authentication" ]
       , Space
-      , Str "Authentication"
-      , RawInline (Format "tex") "\\index{Pointer Authentication}"
-      , SoftBreak
       , Cite
           [ Citation
               { citationId = "Rutland2017"
@@ -16375,7 +16405,7 @@ Pandoc
       , Str "an"
       , Space
       , Str "Armv8.3"
-      , Space
+      , SoftBreak
       , Str "feature,"
       , Space
       , Str "supported"
@@ -16391,7 +16421,7 @@ Pandoc
       , Str "that"
       , Space
       , Str "can"
-      , SoftBreak
+      , Space
       , Str "be"
       , Space
       , Str "used"
@@ -16401,7 +16431,7 @@ Pandoc
       , Str "mitigate"
       , Space
       , Str "code"
-      , Space
+      , SoftBreak
       , Str "reuse"
       , Space
       , Str "attacks."
@@ -16431,15 +16461,16 @@ Pandoc
       , Space
       , Str "a"
       , Space
-      , Str "Pointer"
-      , Space
-      , Str "Authentication"
-      , Space
-      , Str "Code"
-      , Space
-      , Str "(PAC)"
-      , RawInline
-          (Format "tex") "\\index{Pointer Authentication Code\n(PAC)}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "Pointer"
+          , Space
+          , Str "Authentication"
+          , Space
+          , Str "Code"
+          , Space
+          , Str "(PAC)"
+          ]
       , Str ","
       , Space
       , Str "see"
@@ -16456,7 +16487,7 @@ Pandoc
           ]
           [ Str "@fig:pauth-sign-auth" ]
       , Str "."
-      , Space
+      , SoftBreak
       , Str "The"
       , Space
       , Str "PAC"
@@ -16476,7 +16507,7 @@ Pandoc
       , Str "bits"
       , Space
       , Str "of"
-      , SoftBreak
+      , Space
       , Str "the"
       , Space
       , Str "pointer"
@@ -16486,7 +16517,7 @@ Pandoc
       , Str "are"
       , Space
       , Str "otherwise"
-      , Space
+      , SoftBreak
       , Str "unused."
       ]
   , Para
@@ -16516,8 +16547,11 @@ Pandoc
       , Space
       , Str "a"
       , Space
-      , Emph [ Str "signed" , SoftBreak , Str "pointer" ]
-      , RawInline (Format "tex") "\\index{signed pointer}"
+      , Emph
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "signed" , SoftBreak , Str "pointer" ]
+          ]
       , Str "."
       , Space
       , Str "A"
@@ -16532,8 +16566,11 @@ Pandoc
       , Space
       , Str "a"
       , Space
-      , Emph [ Str "raw" , SoftBreak , Str "pointer" ]
-      , RawInline (Format "tex") "\\index{raw pointer}"
+      , Emph
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "raw" , Space , Str "pointer" ]
+          ]
       , Str "."
       ]
   , Para
@@ -16833,15 +16870,13 @@ Pandoc
       , SoftBreak
       , Str "so-called"
       , Space
-      , Str "key"
-      , RawInline (Format "tex") "\\index{key}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "key" ]
       , Space
       , Str "and"
       , Space
       , Str "a"
       , Space
-      , Str "modifier"
-      , RawInline (Format "tex") "\\index{modifier}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "modifier" ]
       , Str ":"
       ]
   , BulletList
@@ -17196,17 +17231,18 @@ Pandoc
             , Space
             , Str "a"
             , SoftBreak
-            , Str "pointer"
-            , Space
-            , Str "substitution"
-            , Space
-            , Str "attack"
-            , RawInline
-                (Format "tex") "\\index{pointer substitution attack}"
+            , Span
+                ( "" , [ "index" ] , [] )
+                [ Str "pointer"
+                , Space
+                , Str "substitution"
+                , Space
+                , Str "attack"
+                ]
             , Str "."
             , Space
             , Str "Using"
-            , SoftBreak
+            , Space
             , Str "different"
             , Space
             , Str "modifiers"
@@ -17214,7 +17250,7 @@ Pandoc
             , Str "for"
             , Space
             , Str "different"
-            , Space
+            , SoftBreak
             , Str "contexts"
             , Space
             , Str "makes"
@@ -17224,7 +17260,7 @@ Pandoc
             , Str "substitution"
             , Space
             , Str "attacks"
-            , SoftBreak
+            , Space
             , Str "harder."
             ]
         ]
@@ -18410,13 +18446,14 @@ Pandoc
       , Space
       , Str "to"
       , Space
-      , Str "pointer"
-      , Space
-      , Str "substitution"
-      , SoftBreak
-      , Str "attacks"
-      , RawInline
-          (Format "tex") "\\index{pointer substitution attack}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "pointer"
+          , Space
+          , Str "substitution"
+          , SoftBreak
+          , Str "attacks"
+          ]
       , Str ","
       , Space
       , Str "where"
@@ -18724,21 +18761,22 @@ Pandoc
   , Para
       [ Link
           ( "" , [] , [] )
-          [ Str "Branch"
-          , Space
-          , Str "Target"
-          , Space
-          , Str "Identification"
-          , SoftBreak
-          , Str "(BTI)"
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "Branch"
+              , Space
+              , Str "Target"
+              , Space
+              , Str "Identification"
+              , SoftBreak
+              , Str "(BTI)"
+              ]
           ]
           ( "https://developer.arm.com/documentation/102433/0100/Jump-oriented-programming?lang=en"
           , ""
           )
-      , SoftBreak
-      , RawInline (Format "tex") "\\index{BTI}"
       , Str ","
-      , Space
+      , SoftBreak
       , Str "introduced"
       , Space
       , Str "in"
@@ -18750,13 +18788,13 @@ Pandoc
       , Str "coarse-grained"
       , Space
       , Str "forward-edge"
-      , SoftBreak
+      , Space
       , Str "protection."
       , Space
       , Str "With"
       , Space
       , Str "BTI,"
-      , Space
+      , SoftBreak
       , Str "the"
       , Space
       , Str "locations"
@@ -18774,7 +18812,7 @@ Pandoc
       , Str "branches"
       , Space
       , Str "have"
-      , SoftBreak
+      , Space
       , Str "to"
       , Space
       , Str "be"
@@ -18786,7 +18824,7 @@ Pandoc
       , Str "a"
       , Space
       , Str "new"
-      , Space
+      , SoftBreak
       , Str "instruction,"
       , Space
       , Code ( "" , [] , [] ) "BTI"
@@ -18803,13 +18841,13 @@ Pandoc
       , Str "types"
       , Space
       , Str "of"
-      , SoftBreak
+      , Space
       , Str "BTI"
       , Space
       , Str "instructions"
       , Space
       , Str "that"
-      , Space
+      , SoftBreak
       , Str "permit"
       , Space
       , Str "different"
@@ -18823,7 +18861,7 @@ Pandoc
       , Str "branches"
       , Space
       , Str "(indirect"
-      , SoftBreak
+      , Space
       , Str "jump,"
       , Space
       , Str "indirect"
@@ -18831,7 +18869,7 @@ Pandoc
       , Str "call,"
       , Space
       , Str "both,"
-      , Space
+      , SoftBreak
       , Str "or"
       , Space
       , Str "none)."
@@ -18847,7 +18885,7 @@ Pandoc
       , Str "a"
       , Space
       , Str "non-BTI"
-      , SoftBreak
+      , Space
       , Str "instruction"
       , Space
       , Str "or"
@@ -18861,7 +18899,7 @@ Pandoc
       , Str "of"
       , Space
       , Str "BTI"
-      , Space
+      , SoftBreak
       , Str "instruction"
       , Space
       , Str "will"
@@ -18873,7 +18911,7 @@ Pandoc
       , Str "Branch"
       , Space
       , Str "Target"
-      , SoftBreak
+      , Space
       , Str "Exception."
       ]
   , Para
@@ -19402,10 +19440,9 @@ Pandoc
       , SoftBreak
       , Str "overwriting"
       , Space
-      , Str "control"
-      , Space
-      , Str "data"
-      , RawInline (Format "tex") "\\index{control data}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "control" , Space , Str "data" ]
       , Str ","
       , Space
       , Str "which"
@@ -19419,13 +19456,13 @@ Pandoc
       , Str "change"
       , Space
       , Str "the"
-      , SoftBreak
+      , Space
       , Str "value"
       , Space
       , Str "of"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "program"
       , Space
       , Str "counter,"
@@ -19443,11 +19480,11 @@ Pandoc
       , Str "function"
       , Space
       , Str "pointers."
-      , SoftBreak
+      , Space
       , Str "Since"
       , Space
       , Str "these"
-      , Space
+      , SoftBreak
       , Str "types"
       , Space
       , Str "of"
@@ -19467,11 +19504,11 @@ Pandoc
       , Str "been"
       , Space
       , Str "designed"
-      , SoftBreak
+      , Space
       , Str "with"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "goal"
       , Space
       , Str "of"
@@ -19482,14 +19519,25 @@ Pandoc
       , Space
       , Str "integrity."
       , Space
-      , Str "Non-control"
-      , Space
-      , Str "data"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "Non-control"
+          , Space
+          , Str "data"
+          , Space
+          , Str "attacks"
+          ]
       , SoftBreak
-      , Str "attacks"
-      , RawInline
-          (Format "tex") "\\index{non-control data attacks}"
-      , Str ","
+      , Str "entry="
+      , Quoted
+          DoubleQuote
+          [ Str "non-control"
+          , Space
+          , Str "data"
+          , Space
+          , Str "attacks"
+          ]
+      , Str "},"
       , Space
       , Str "also"
       , Space
@@ -19497,12 +19545,11 @@ Pandoc
       , Space
       , Str "as"
       , Space
-      , Str "data-only"
-      , SoftBreak
-      , Str "attacks"
-      , RawInline (Format "tex") "\\index{data-only attacks}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "data-only" , Space , Str "attacks" ]
       , Str ","
-      , Space
+      , SoftBreak
       , Str "can"
       , Space
       , Str "completely"
@@ -19512,7 +19559,7 @@ Pandoc
       , Str "these"
       , Space
       , Str "mitigations,"
-      , SoftBreak
+      , Space
       , Str "since"
       , Space
       , Str "the"
@@ -19528,7 +19575,7 @@ Pandoc
       , Str "not"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "control"
       , Space
       , Str "data"
@@ -19538,7 +19585,7 @@ Pandoc
       , Str "these"
       , Space
       , Str "mitigations"
-      , SoftBreak
+      , Space
       , Str "protect."
       ]
   , Para
@@ -21178,10 +21225,10 @@ Pandoc
       , Space
       , Str "to"
       , Space
-      , Str "C/C++"
+      , Span ( "" , [ "index" ] , [] ) [ Str "C" ]
+      , Str "/"
+      , Span ( "" , [ "index" ] , [] ) [ Str "C++" ]
       , Space
-      , RawInline (Format "tex") "\\index{C}"
-      , RawInline (Format "tex") "\\index{C++}"
       , Str "programmers"
       , SoftBreak
       , Str "to"
@@ -21208,9 +21255,9 @@ Pandoc
       ]
   , Header 3 ( "sanitizers" , [] , [] ) [ Str "Sanitizers" ]
   , Para
-      [ Str "Sanitizers"
-      , Space
-      , RawInline (Format "tex") "\\index{sanitizers}"
+      [ Span
+          ( "" , [ "index" ] , [ ( "entry" , "sanitizers" ) ] )
+          [ Str "Sanitizers" ]
       , Space
       , Str "are"
       , Space
@@ -21223,9 +21270,9 @@ Pandoc
       , Str "bugs"
       , Space
       , Str "during"
-      , Space
-      , Str "program"
       , SoftBreak
+      , Str "program"
+      , Space
       , Str "execution."
       , Space
       , Str "Sanitizers"
@@ -21241,9 +21288,9 @@ Pandoc
       , Str "a"
       , Space
       , Str "compiler"
-      , Space
-      , Str "instrumentation"
       , SoftBreak
+      , Str "instrumentation"
+      , Space
       , Str "part"
       , Space
       , Str "that"
@@ -21265,13 +21312,13 @@ Pandoc
       , Str "library"
       , Space
       , Str "part."
-      , Space
+      , SoftBreak
       , Str "They"
       , Space
       , Str "are"
       , Space
       , Str "often"
-      , SoftBreak
+      , Space
       , Str "too"
       , Space
       , Str "expensive"
@@ -21295,9 +21342,9 @@ Pandoc
       , Str "to"
       , Space
       , Str "increase"
-      , Space
-      , Str "execution"
       , SoftBreak
+      , Str "execution"
+      , Space
       , Str "time"
       , Space
       , Str "and"
@@ -21321,9 +21368,9 @@ Pandoc
       , Str "of"
       , Space
       , Str "an"
-      , Space
-      , Str "application,"
       , SoftBreak
+      , Str "application,"
+      , Space
       , Str "frequently"
       , Space
       , Str "in"
@@ -21332,25 +21379,27 @@ Pandoc
       , Space
       , Str "with"
       , Space
-      , Str "fuzzers"
-      , RawInline (Format "tex") "\\index{fuzzing}"
+      , Span
+          ( "" , [ "index" ] , [ ( "entry" , "fuzzing" ) ] )
+          [ Str "fuzzers" ]
       , Note
           [ Para
               [ Link
                   ( "" , [] , [] )
-                  [ Str "Fuzzing" ]
+                  [ Span
+                      ( "" , [ "index" ] , [ ( "entry" , "fuzzing" ) ] )
+                      [ Str "Fuzzing" ]
+                  ]
                   ( "https://en.wikipedia.org/wiki/Fuzzing" , "" )
               , Space
-              , RawInline (Format "tex") "\\index{fuzzing}"
-              , Space
               , Str "is"
-              , SoftBreak
+              , Space
               , Str "a"
               , Space
               , Str "powerful"
               , Space
               , Str "testing"
-              , Space
+              , SoftBreak
               , Str "technique"
               , Space
               , Str "that"
@@ -21364,7 +21413,7 @@ Pandoc
               , Str "generating"
               , Space
               , Str "large"
-              , SoftBreak
+              , Space
               , Str "amounts"
               , Space
               , Str "of"
@@ -21372,7 +21421,7 @@ Pandoc
               , Str "random"
               , Space
               , Str "inputs"
-              , Space
+              , SoftBreak
               , Str "to"
               , Space
               , Str "the"
@@ -21399,12 +21448,16 @@ Pandoc
       , Space
       , Link
           ( "" , [] , [] )
-          [ Str "Address" , SoftBreak , Str "Sanitizer" ]
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "Address"
+              , Space
+              , Str "Sanitizer"
+              , SoftBreak
+              , Str "(ASan)"
+              ]
+          ]
           ( "https://clang.llvm.org/docs/AddressSanitizer.html" , "" )
-      , SoftBreak
-      , Str "(ASan)"
-      , RawInline
-          (Format "tex") "\\index{AddressSanitizer (ASan)}"
       , Str "."
       , Space
       , Str "It"
@@ -21412,7 +21465,7 @@ Pandoc
       , Str "aims"
       , Space
       , Str "to"
-      , Space
+      , SoftBreak
       , Str "detect"
       , Space
       , Str "various"
@@ -21420,7 +21473,7 @@ Pandoc
       , Str "memory"
       , Space
       , Str "errors."
-      , SoftBreak
+      , Space
       , Str "These"
       , Space
       , Str "include"
@@ -21428,7 +21481,7 @@ Pandoc
       , Str "out-of-bounds"
       , Space
       , Str "accesses,"
-      , Space
+      , SoftBreak
       , Str "use-after-free,"
       , Space
       , Str "double-free"
@@ -21436,7 +21489,7 @@ Pandoc
       , Str "and"
       , Space
       , Str "invalid"
-      , SoftBreak
+      , Space
       , Str "free"
       , Note
           [ Para
@@ -21450,17 +21503,21 @@ Pandoc
               , Space
               , Link
                   ( "" , [] , [] )
-                  [ Str "memory"
-                  , Space
-                  , Str "leak"
-                  , SoftBreak
-                  , Str "detector"
+                  [ Span
+                      ( ""
+                      , [ "index" ]
+                      , [ ( "entry" , "LeakSanitizer" ) ]
+                      )
+                      [ Str "memory"
+                      , Space
+                      , Str "leak"
+                      , Space
+                      , Str "detector"
+                      ]
                   ]
                   ( "https://clang.llvm.org/docs/LeakSanitizer.html"
                   , ""
                   )
-              , SoftBreak
-              , RawInline (Format "tex") "\\index{LeakSanitizer}"
               , Str "."
               ]
           ]
@@ -21471,7 +21528,7 @@ Pandoc
       , Str "are"
       , Space
       , Str "Address"
-      , Space
+      , SoftBreak
       , Str "Sanitizer"
       , Space
       , Str "implementations"
@@ -21480,20 +21537,17 @@ Pandoc
       , Space
       , Str "both"
       , Space
-      , Str "GCC"
-      , SoftBreak
-      , RawInline (Format "tex") "\\index{GCC}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "GCC" ]
       , Space
       , Str "and"
       , Space
-      , Str "Clang"
-      , RawInline (Format "tex") "\\index{Clang}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "Clang" ]
       , Str ","
       , Space
       , Str "but"
       , Space
       , Str "we"
-      , Space
+      , SoftBreak
       , Str "will"
       , Space
       , Str "focus"
@@ -21503,7 +21557,7 @@ Pandoc
       , Str "the"
       , Space
       , Str "Clang"
-      , SoftBreak
+      , Space
       , Str "implementation"
       , Space
       , Str "here."
@@ -21513,10 +21567,9 @@ Pandoc
       , Space
       , Str "uses"
       , Space
-      , Str "shadow"
-      , Space
-      , Str "memory"
-      , RawInline (Format "tex") "\\index{shadow memory}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "shadow" , Space , Str "memory" ]
       , Space
       , Str "to"
       , Space
@@ -21555,9 +21608,9 @@ Pandoc
       , Str "on"
       , Space
       , Str "8"
-      , SoftBreak
-      , Str "bytes"
       , Space
+      , Str "bytes"
+      , SoftBreak
       , Str "of"
       , Space
       , Str "the"
@@ -21625,9 +21678,9 @@ Pandoc
       , Str "out-of-bounds"
       , Space
       , Str "heap,"
-      , SoftBreak
-      , Str "freed"
       , Space
+      , Str "freed"
+      , SoftBreak
       , Str "memory,"
       , Space
       , Str "and"
@@ -21653,11 +21706,11 @@ Pandoc
       , Str "every"
       , Space
       , Str "8"
-      , SoftBreak
+      , Space
       , Str "bytes"
       , Space
       , Str "of"
-      , Space
+      , SoftBreak
       , Str "application"
       , Space
       , Str "memory"
@@ -21752,13 +21805,13 @@ Pandoc
       , Space
       , Str "like"
       , SoftBreak
-      , Code ( "" , [] , [] ) "malloc"
-      , RawInline (Format "tex") "\\index{malloc}"
+      , Span
+          ( "" , [ "index" ] , [] ) [ Code ( "" , [] , [] ) "malloc" ]
       , Space
       , Str "and"
       , Space
-      , Code ( "" , [] , [] ) "free"
-      , RawInline (Format "tex") "\\index{free}"
+      , Span
+          ( "" , [ "index" ] , [] ) [ Code ( "" , [] , [] ) "free" ]
       , Space
       , Str "with"
       , Space
@@ -21767,15 +21820,16 @@ Pandoc
       , Str "own"
       , Space
       , Str "specialized"
-      , SoftBreak
-      , Str "versions."
       , Space
+      , Str "versions."
+      , SoftBreak
       , Code ( "" , [] , [] ) "malloc"
       , Space
       , Str "introduces"
       , Space
-      , Str "redzones"
-      , RawInline (Format "tex") "\\index{redzone}"
+      , Span
+          ( "" , [ "index" ] , [ ( "entry" , "redzone" ) ] )
+          [ Str "redzones" ]
       , Space
       , Str "before"
       , Space
@@ -22069,11 +22123,10 @@ Pandoc
       , SoftBreak
       , Link
           ( "" , [] , [] )
-          [ Str "KASAN" ]
+          [ Span ( "" , [ "index" ] , [] ) [ Str "KASAN" ] ]
           ( "https://www.kernel.org/doc/html/v5.0/dev-tools/kasan.html"
           , ""
           )
-      , RawInline (Format "tex") "\\index{KASAN}"
       , Str "."
       ]
   , Para
@@ -22117,18 +22170,19 @@ Pandoc
       , Space
       , Link
           ( "" , [] , [] )
-          [ Str "Hardware-assisted"
-          , Space
-          , Str "AddressSanitizer"
-          , SoftBreak
-          , Str "(HWASAN)"
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "Hardware-assisted"
+              , Space
+              , Str "AddressSanitizer"
+              , SoftBreak
+              , Str "(HWASAN)"
+              ]
           ]
           ( "https://clang.llvm.org/docs/HardwareAssistedAddressSanitizerDesign.html"
           , ""
           )
       , SoftBreak
-      , RawInline (Format "tex") "\\index{HWASAN}"
-      , Space
       , Str "works"
       , Space
       , Str "similarly"
@@ -22146,13 +22200,13 @@ Pandoc
       , Str "hardware"
       , Space
       , Str "assistance"
-      , SoftBreak
+      , Space
       , Str "can"
       , Space
       , Str "result"
       , Space
       , Str "in"
-      , Space
+      , SoftBreak
       , Str "lower"
       , Space
       , Str "memory"
@@ -22176,20 +22230,21 @@ Pandoc
   , Para
       [ Str "On"
       , Space
-      , Str "AArch64"
-      , RawInline (Format "tex") "\\index{AArch64}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "AArch64" ]
       , Str ","
       , Space
       , Str "HWASAN"
       , Space
       , Str "uses"
       , Space
-      , Str "Top-Byte"
-      , Space
-      , Str "Ignore"
-      , Space
-      , Str "(TBI)"
-      , RawInline (Format "tex") "\\index{Top-Byte\nIgnore (TBI)}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "Top-Byte"
+          , Space
+          , Str "Ignore"
+          , Space
+          , Str "(TBI)"
+          ]
       , Str "."
       , Space
       , Str "When"
@@ -22197,7 +22252,7 @@ Pandoc
       , Str "TBI"
       , Space
       , Str "is"
-      , Space
+      , SoftBreak
       , Str "enabled,"
       , Space
       , Str "the"
@@ -22217,7 +22272,7 @@ Pandoc
       , Str "ignored"
       , Space
       , Str "when"
-      , SoftBreak
+      , Space
       , Str "performing"
       , Space
       , Str "a"
@@ -22225,7 +22280,7 @@ Pandoc
       , Str "memory"
       , Space
       , Str "access,"
-      , Space
+      , SoftBreak
       , Str "allowing"
       , Space
       , Str "software"
@@ -22243,13 +22298,13 @@ Pandoc
       , Str "to"
       , Space
       , Str "store"
-      , SoftBreak
+      , Space
       , Str "metadata,"
       , Space
       , Str "without"
       , Space
       , Str "affecting"
-      , Space
+      , SoftBreak
       , Str "execution."
       , Space
       , Str "Each"
@@ -22265,7 +22320,7 @@ Pandoc
       , Str "16"
       , Space
       , Str "bytes"
-      , SoftBreak
+      , Space
       , Str "and"
       , Space
       , Str "each"
@@ -22275,7 +22330,7 @@ Pandoc
       , Str "chunk"
       , Space
       , Str "of"
-      , Space
+      , SoftBreak
       , Str "memory"
       , Space
       , Str "(called"
@@ -22290,7 +22345,7 @@ Pandoc
       , Str "assigned"
       , Space
       , Str "an"
-      , SoftBreak
+      , Space
       , Str "8-bit"
       , Space
       , Str "tag."
@@ -22302,7 +22357,7 @@ Pandoc
       , Str "is"
       , Space
       , Str "stored"
-      , Space
+      , SoftBreak
       , Str "in"
       , Space
       , Str "shadow"
@@ -22322,7 +22377,7 @@ Pandoc
       , Str "the"
       , Space
       , Str "top"
-      , SoftBreak
+      , Space
       , Str "byte"
       , Space
       , Str "of"
@@ -22334,7 +22389,7 @@ Pandoc
       , Str "to"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "object."
       , Space
       , Str "Memory"
@@ -22348,7 +22403,7 @@ Pandoc
       , Str "are"
       , Space
       , Str "then"
-      , SoftBreak
+      , Space
       , Str "instrumented"
       , Space
       , Str "to"
@@ -22360,7 +22415,7 @@ Pandoc
       , Str "the"
       , Space
       , Str "tag"
-      , Space
+      , SoftBreak
       , Str "stored"
       , Space
       , Str "in"
@@ -22376,7 +22431,7 @@ Pandoc
       , Str "tag"
       , Space
       , Str "stored"
-      , SoftBreak
+      , Space
       , Str "in"
       , Space
       , Str "memory,"
@@ -22390,7 +22445,7 @@ Pandoc
       , Str "error"
       , Space
       , Str "when"
-      , Space
+      , SoftBreak
       , Str "a"
       , Space
       , Str "mismatch"
@@ -22605,14 +22660,13 @@ Pandoc
   , Para
       [ Link
           ( "" , [] , [] )
-          [ Str "MemTagSanitizer" ]
+          [ Span ( "" , [ "index" ] , [] ) [ Str "MemTagSanitizer" ] ]
           ( "https://llvm.org/docs/MemTagSanitizer.html" , "" )
-      , RawInline (Format "tex") "\\index{MemTagSanitizer}"
-      , SoftBreak
+      , Space
       , Str "goes"
       , Space
       , Str "one"
-      , Space
+      , SoftBreak
       , Str "step"
       , Space
       , Str "further"
@@ -22627,25 +22681,26 @@ Pandoc
       , Space
       , Link
           ( "" , [] , [] )
-          [ Str "Memory"
-          , Space
-          , Str "Tagging"
-          , Space
-          , Str "Extension"
-          , SoftBreak
-          , Str "(MTE)"
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "Memory"
+              , Space
+              , Str "Tagging"
+              , Space
+              , Str "Extension"
+              , SoftBreak
+              , Str "(MTE)"
+              ]
           ]
           ( "https://developer.arm.com/documentation/102925/0100"
           , ""
           )
-      , RawInline
-          (Format "tex") "\\index{Memory\nTagging Extension (MTE)}"
       , Str "."
       , Space
       , Str "With"
       , Space
       , Str "MTE,"
-      , Space
+      , SoftBreak
       , Str "the"
       , Space
       , Str "tag"
@@ -22659,7 +22714,7 @@ Pandoc
       , Str "automatically"
       , Space
       , Str "by"
-      , SoftBreak
+      , Space
       , Str "hardware,"
       , Space
       , Str "and"
@@ -22671,7 +22726,7 @@ Pandoc
       , Str "is"
       , Space
       , Str "raised"
-      , Space
+      , SoftBreak
       , Str "on"
       , Space
       , Str "mismatch."
@@ -22685,7 +22740,7 @@ Pandoc
       , Str "is"
       , Space
       , Str "16"
-      , SoftBreak
+      , Space
       , Str "bits,"
       , Space
       , Str "whereas"
@@ -22724,15 +22779,17 @@ Pandoc
   , Para
       [ Link
           ( "" , [] , [] )
-          [ Str "UndefinedBehaviorSanitizer"
-          , SoftBreak
-          , Str "(UBSan)"
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "UndefinedBehaviorSanitizer"
+              , SoftBreak
+              , Str "(UBSan)"
+              ]
           ]
           ( "https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#ubsan-checks"
           , ""
           )
       , SoftBreak
-      , RawInline (Format "tex") "\\index{UBSan}"
       , Str "detects"
       , Space
       , Str "undefined"
@@ -22748,9 +22805,9 @@ Pandoc
       , Str "for"
       , Space
       , Str "example"
-      , SoftBreak
-      , Str "array"
       , Space
+      , Str "array"
+      , SoftBreak
       , Str "out-of-bounds"
       , Space
       , Str "accesses"
@@ -22766,9 +22823,9 @@ Pandoc
       , Str "bounds,"
       , Space
       , Str "null"
-      , SoftBreak
-      , Str "pointer"
       , Space
+      , Str "pointer"
+      , SoftBreak
       , Str "dereference,"
       , Space
       , Str "signed"
@@ -22786,9 +22843,9 @@ Pandoc
       , Str "of"
       , Space
       , Str "integer"
-      , SoftBreak
-      , Str "conversions"
       , Space
+      , Str "conversions"
+      , SoftBreak
       , Str "that"
       , Space
       , Str "result"
@@ -22812,11 +22869,11 @@ Pandoc
       , Str "are"
       , Space
       , Str "not"
-      , SoftBreak
+      , Space
       , Str "directly"
       , Space
       , Str "related"
-      , Space
+      , SoftBreak
       , Str "to"
       , Space
       , Str "memory"
@@ -22838,9 +22895,9 @@ Pandoc
       , Str "to"
       , Space
       , Str "incorrect"
-      , SoftBreak
-      , Str "pointer"
       , Space
+      , Str "pointer"
+      , SoftBreak
       , Str "arithmetic,"
       , Space
       , Str "incorrect"
@@ -22860,9 +22917,9 @@ Pandoc
       , Str "lead"
       , Space
       , Str "to"
-      , SoftBreak
-      , Str "memory"
       , Space
+      , Str "memory"
+      , SoftBreak
       , Str "errors,"
       , Space
       , Str "so"
@@ -23017,11 +23074,12 @@ Pandoc
       [ [ Plain
             [ Link
                 ( "" , [] , [] )
-                [ Str "MemorySanitizer" ]
+                [ Span
+                    ( "" , [ "index" ] , [] ) [ Str "MemorySanitizer" ]
+                ]
                 ( "https://clang.llvm.org/docs/MemorySanitizer.html"
                 , ""
                 )
-            , RawInline (Format "tex") "\\index{MemorySanitizer}"
             , Str ":"
             , SoftBreak
             , Str "detects"
@@ -23034,11 +23092,12 @@ Pandoc
       , [ Plain
             [ Link
                 ( "" , [] , [] )
-                [ Str "ThreadSanitizer" ]
+                [ Span
+                    ( "" , [ "index" ] , [] ) [ Str "ThreadSanitizer" ]
+                ]
                 ( "https://clang.llvm.org/docs/ThreadSanitizer.html"
                 , ""
                 )
-            , RawInline (Format "tex") "\\index{ThreadSanitizer}"
             , Str ":"
             , SoftBreak
             , Str "detects"
@@ -23051,9 +23110,8 @@ Pandoc
       , [ Plain
             [ Link
                 ( "" , [] , [] )
-                [ Str "GWP-ASan" ]
+                [ Span ( "" , [ "index" ] , [] ) [ Str "GWP-ASan" ] ]
                 ( "https://llvm.org/docs/GwpAsan.html" , "" )
-            , RawInline (Format "tex") "\\index{GWP-ASan}"
             , Str ":"
             , Space
             , Str "detects"
@@ -23223,30 +23281,33 @@ Pandoc
       , Space
       , Quoted
           DoubleQuote
-          [ Str "spatial"
-          , Space
-          , Str "memory"
-          , Space
-          , Str "safety"
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "spatial"
+              , Space
+              , Str "memory"
+              , Space
+              , Str "safety"
+              ]
           ]
-      , RawInline (Format "tex") "\\index{spatial memory safety}"
       , Str "."
-      , SoftBreak
+      , Space
       , Str "Out-of-bounds"
       , Space
       , Str "accesses"
       , Space
       , Str "result"
-      , Space
+      , SoftBreak
       , Str "in"
       , Space
       , Str "restricted"
       , Space
-      , Str "read/write"
-      , Space
-      , Str "primitives"
-      , RawInline (Format "tex") "\\index{read\nprimitive}"
-      , RawInline (Format "tex") "\\index{write primitive}"
+      , Span
+          ( "" , [ "index" ] , [ ( "entry" , "read primitive" ) ] )
+          [ Str "read/write" , Space , Str "primitives" ]
+      , Span
+          ( "" , [ "index" ] , [ ( "entry" , "write primitive" ) ] )
+          []
       , Note
           [ Para
               [ Str "These"
@@ -23301,9 +23362,9 @@ Pandoc
       , Str "often"
       , Space
       , Str "easily"
-      , SoftBreak
-      , Str "convert"
       , Space
+      , Str "convert"
+      , SoftBreak
       , Str "these"
       , Space
       , Str "into"
@@ -23323,11 +23384,11 @@ Pandoc
       , Str "can"
       , Space
       , Str "be"
-      , SoftBreak
+      , Space
       , Str "achieved"
       , Space
       , Str "by"
-      , Space
+      , SoftBreak
       , Str "overwriting"
       , Space
       , Str "pointer"
@@ -23345,11 +23406,11 @@ Pandoc
       , Str "object"
       , Space
       , Str "that"
-      , SoftBreak
+      , Space
       , Str "was"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "target"
       , Space
       , Str "of"
@@ -23826,10 +23887,12 @@ Pandoc
       , Space
       , Str "catch"
       , Space
-      , Str "intra-object"
-      , SoftBreak
-      , Str "overflows"
-      , RawInline (Format "tex") "\\index{intra-object overflow}"
+      , Span
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "intra-object overflow" ) ]
+          )
+          [ Str "intra-object" , Space , Str "overflows" ]
       , Space
       , Str "on"
       , Space
@@ -23842,9 +23905,9 @@ Pandoc
       , Str "that"
       , Space
       , Str "the"
-      , SoftBreak
-      , Str "Address"
       , Space
+      , Str "Address"
+      , SoftBreak
       , Str "Sanitizer"
       , Space
       , Str "would"
@@ -24304,7 +24367,7 @@ Pandoc
       ]
   , Para
       [ Str "The"
-      , Space
+      , SoftBreak
       , Link
           ( "" , [] , [] )
           [ Code ( "" , [] , [] ) "-fbounds-safety" ]
@@ -24384,14 +24447,21 @@ Pandoc
       , SoftBreak
       , Link
           ( "" , [] , [] )
-          [ Str "ABI" ]
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "Application"
+              , Space
+              , Str "Binary"
+              , Space
+              , Str "Interface"
+              , Space
+              , Str "(ABI)"
+              ]
+          ]
           ( "https://en.wikipedia.org/wiki/Application_binary_interface"
           , ""
           )
-      , RawInline
-          (Format "tex")
-          "\\index{Application\nbinary interface (ABI)}"
-      , Space
+      , SoftBreak
       , Str "boundaries"
       , Note
           [ Para
@@ -24553,7 +24623,7 @@ Pandoc
       , Str "which"
       , Space
       , Str "do"
-      , SoftBreak
+      , Space
       , Str "not"
       , Space
       , Str "cross"
@@ -24563,7 +24633,7 @@ Pandoc
       , Str "boundaries"
       , Space
       , Str "are"
-      , Space
+      , SoftBreak
       , Str "implicitly"
       , Space
       , Str "converted"
@@ -24577,7 +24647,7 @@ Pandoc
       , Str "pointers."
       , Space
       , Str "These"
-      , SoftBreak
+      , Space
       , Str "wide"
       , Space
       , Str "pointers"
@@ -24585,7 +24655,7 @@ Pandoc
       , Str "store"
       , Space
       , Str "bounds"
-      , Space
+      , SoftBreak
       , Str "information"
       , Space
       , Str "alongside"
@@ -24892,8 +24962,11 @@ Pandoc
       , Space
       , Str "introduces"
       , SoftBreak
-      , Emph [ Str "capabilities" ]
-      , RawInline (Format "tex") "\\index{capability}"
+      , Emph
+          [ Span
+              ( "" , [ "index" ] , [ ( "entry" , "capability" ) ] )
+              [ Str "capabilities" ]
+          ]
       , Space
       , Str "to"
       , Space
@@ -24902,9 +24975,9 @@ Pandoc
       , Str "Instruction"
       , Space
       , Str "Set"
-      , Space
-      , Str "Architectures."
       , SoftBreak
+      , Str "Architectures."
+      , Space
       , Str "Capabilities"
       , Space
       , Str "combine"
@@ -24920,11 +24993,11 @@ Pandoc
       , Str "metadata"
       , Space
       , Str "that"
-      , Space
+      , SoftBreak
       , Str "describes"
       , Space
       , Str "its"
-      , SoftBreak
+      , Space
       , Str "corresponding"
       , Space
       , Str "bounds"
@@ -24938,13 +25011,13 @@ Pandoc
       , Str "cannot"
       , Space
       , Str "be"
-      , Space
+      , SoftBreak
       , Str "forged,"
       , Space
       , Str "and"
       , Space
       , Str "can"
-      , SoftBreak
+      , Space
       , Str "thus"
       , Space
       , Str "provide"
@@ -24962,11 +25035,11 @@ Pandoc
       , Str "developed"
       , Space
       , Str "a"
-      , Space
+      , SoftBreak
       , Str "prototype"
       , Space
       , Str "architecture"
-      , SoftBreak
+      , Space
       , Str "that"
       , Space
       , Str "adapts"
@@ -24986,7 +25059,7 @@ Pandoc
       , Str "SoC"
       , Space
       , Str "and"
-      , Space
+      , SoftBreak
       , Str "development"
       , Space
       , Str "board,"
@@ -24996,9 +25069,9 @@ Pandoc
       , Str "part"
       , Space
       , Str "of"
-      , SoftBreak
-      , Str "the"
       , Space
+      , Str "the"
+      , SoftBreak
       , Link
           ( "" , [] , [] )
           [ Str "Arm"
@@ -25450,15 +25523,17 @@ Pandoc
       , Space
       , Str "for"
       , Space
-      , Link
-          ( "" , [] , [] )
-          [ Str "just-in-time" , SoftBreak , Str "(JIT)" ]
-          ( "https://en.wikipedia.org/wiki/Just-in-time_compilation"
-          , ""
-          )
-      , SoftBreak
-      , Str "compilers"
-      , RawInline (Format "tex") "\\index{JIT compilers}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Link
+              ( "" , [] , [] )
+              [ Str "just-in-time" , SoftBreak , Str "(JIT)" ]
+              ( "https://en.wikipedia.org/wiki/Just-in-time_compilation"
+              , ""
+              )
+          , SoftBreak
+          , Str "compilers"
+          ]
       , Note
           [ Para
               [ Str "JIT"
@@ -25525,13 +25600,13 @@ Pandoc
       , Str "used"
       , Space
       , Str "in"
-      , SoftBreak
+      , Space
       , Str "programs"
       , Space
       , Str "that"
       , Space
       , Str "receive"
-      , Space
+      , SoftBreak
       , Str "source"
       , Space
       , Str "code"
@@ -25547,7 +25622,7 @@ Pandoc
       , Str "execution,"
       , Space
       , Str "for"
-      , SoftBreak
+      , Space
       , Str "example"
       , Space
       , Str "in"
@@ -25557,7 +25632,7 @@ Pandoc
       , Str "browsers,"
       , Space
       , Str "for"
-      , Space
+      , SoftBreak
       , Str "executing"
       , Space
       , Str "JavaScript"
@@ -25571,7 +25646,7 @@ Pandoc
       , Str "web"
       , Space
       , Str "pages."
-      , SoftBreak
+      , Space
       , Str "In"
       , Space
       , Str "this"
@@ -25583,7 +25658,7 @@ Pandoc
       , Str "input"
       , Space
       , Str "to"
-      , Space
+      , SoftBreak
       , Str "the"
       , Space
       , Str "JIT"
@@ -25597,7 +25672,7 @@ Pandoc
       , Str "arbitrary"
       , Space
       , Str "websites"
-      , SoftBreak
+      , Space
       , Str "and"
       , Space
       , Str "is"
@@ -25607,7 +25682,7 @@ Pandoc
       , Str "untrusted."
       , Space
       , Str "Bugs"
-      , Space
+      , SoftBreak
       , Str "in"
       , Space
       , Str "such"
@@ -25623,7 +25698,7 @@ Pandoc
       , Str "to"
       , Space
       , Str "compromise"
-      , SoftBreak
+      , Space
       , Str "of"
       , Space
       , Str "the"
@@ -25635,7 +25710,7 @@ Pandoc
       , Str "(here,"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "browser)"
       , Space
       , Str "if"
@@ -25649,13 +25724,13 @@ Pandoc
       , Str "(e.g.\160coming"
       , Space
       , Str "from"
-      , SoftBreak
+      , Space
       , Str "a"
       , Space
       , Str "malicious"
       , Space
       , Str "website)"
-      , Space
+      , SoftBreak
       , Str "deliberately"
       , Space
       , Str "triggers"
@@ -25669,7 +25744,7 @@ Pandoc
       , Str "to"
       , Space
       , Str "break"
-      , SoftBreak
+      , Space
       , Str "memory"
       , Space
       , Str "safety"
@@ -25677,7 +25752,7 @@ Pandoc
       , Str "of"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "language"
       , Space
       , Str "being"
@@ -25763,9 +25838,9 @@ Pandoc
       , Str "JavaScript"
       , Space
       , Str "code,"
-      , SoftBreak
-      , Str "JavaScript"
       , Space
+      , Str "JavaScript"
+      , SoftBreak
       , Str "engines"
       , Space
       , Str "resort"
@@ -25794,9 +25869,9 @@ Pandoc
       , Str "the"
       , Space
       , Str "types"
-      , SoftBreak
-      , Str "encountered"
       , Space
+      , Str "encountered"
+      , SoftBreak
       , Str "while"
       , Space
       , Str "executing"
@@ -25814,11 +25889,11 @@ Pandoc
       , Str "used"
       , Space
       , Str "during"
-      , SoftBreak
+      , Space
       , Str "optimization,"
       , Space
       , Str "which"
-      , Space
+      , SoftBreak
       , Str "speculates"
       , Space
       , Str "that"
@@ -25836,7 +25911,7 @@ Pandoc
       , Str "encountered"
       , Space
       , Str "in"
-      , SoftBreak
+      , Space
       , Str "future"
       , Space
       , Str "runs"
@@ -25846,7 +25921,7 @@ Pandoc
       , Str "the"
       , Space
       , Str "code,"
-      , Space
+      , SoftBreak
       , Str "and"
       , Space
       , Str "inserts"
@@ -25860,7 +25935,7 @@ Pandoc
       , Str "that"
       , Space
       , Str "these"
-      , SoftBreak
+      , Space
       , Str "assumptions"
       , Space
       , Str "about"
@@ -25870,7 +25945,7 @@ Pandoc
       , Str "still"
       , Space
       , Str "hold."
-      , Space
+      , SoftBreak
       , Str "When"
       , Space
       , Str "a"
@@ -25886,7 +25961,7 @@ Pandoc
       , Str "code"
       , Space
       , Str "is"
-      , SoftBreak
+      , Space
       , Str "replaced"
       , Space
       , Str "by"
@@ -25898,7 +25973,7 @@ Pandoc
       , Str "that"
       , Space
       , Str "can"
-      , Space
+      , SoftBreak
       , Str "handle"
       , Space
       , Str "all"
@@ -25912,19 +25987,19 @@ Pandoc
       , Str "known"
       , Space
       , Str "as"
-      , SoftBreak
-      , Str "deoptimization"
-      , RawInline (Format "tex") "\\index{deoptimization}"
+      , Space
+      , Span ( "" , [ "index" ] , [] ) [ Str "deoptimization" ]
       , Space
       , Str "or"
       , Space
-      , Str "on-stack"
-      , Space
-      , Str "replacement"
-      , SoftBreak
-      , Str "(OSR)"
-      , RawInline
-          (Format "tex") "\\index{on-stack replacement (OSR)}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "on-stack"
+          , SoftBreak
+          , Str "replacement"
+          , Space
+          , Str "(OSR)"
+          ]
       , Str "."
       , Space
       , Str "Deoptimization"
@@ -25936,13 +26011,13 @@ Pandoc
       , Str "that"
       , Space
       , Str "the"
-      , SoftBreak
+      , Space
       , Str "state"
       , Space
       , Str "of"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "deoptimized"
       , Space
       , Str "function"
@@ -25960,13 +26035,13 @@ Pandoc
       , Str "point"
       , Space
       , Str "of"
-      , SoftBreak
+      , Space
       , Str "execution"
       , Space
       , Str "where"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "type"
       , Space
       , Str "check"
@@ -26453,10 +26528,9 @@ Pandoc
       , Space
       , Str "perform"
       , Space
-      , Str "range"
-      , Space
-      , Str "analysis"
-      , RawInline (Format "tex") "\\index{range analysis}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "range" , Space , Str "analysis" ]
       , Space
       , Str "to"
       , Space
@@ -26467,13 +26541,13 @@ Pandoc
       , Str "precise"
       , Space
       , Str "a"
-      , SoftBreak
+      , Space
       , Str "range"
       , Space
       , Str "for"
       , Space
       , Str "a"
-      , Space
+      , SoftBreak
       , Str "value"
       , Space
       , Str "as"
@@ -26488,38 +26562,40 @@ Pandoc
       , Space
       , Str "for"
       , Space
-      , Str "bounds"
-      , Space
-      , Str "check"
-      , SoftBreak
-      , Str "elimination"
-      , RawInline
-          (Format "tex") "\\index{bounds check elimination}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "bounds"
+          , Space
+          , Str "check"
+          , Space
+          , Str "elimination"
+          ]
       , Str "."
       ]
   , Para
-      [ Str "Bounds"
-      , Space
-      , Str "check"
-      , Space
-      , Str "elimination"
-      , Space
-      , Str "(BCE)"
-      , RawInline
-          (Format "tex") "\\index{bounds check elimination}"
+      [ Span
+          ( "" , [ "index" ] , [] )
+          [ Str "Bounds"
+          , Space
+          , Str "check"
+          , Space
+          , Str "elimination"
+          , Space
+          , Str "(BCE)"
+          ]
       , Space
       , Str "is"
       , Space
       , Str "a"
       , Space
       , Str "common"
-      , SoftBreak
+      , Space
       , Str "optimization"
       , Space
       , Str "in"
       , Space
       , Str "languages"
-      , Space
+      , SoftBreak
       , Str "that"
       , Space
       , Str "perform"
@@ -26535,7 +26611,7 @@ Pandoc
       , Str "accesses"
       , Space
       , Str "to"
-      , SoftBreak
+      , Space
       , Str "ensure"
       , Space
       , Str "every"
@@ -26545,7 +26621,7 @@ Pandoc
       , Str "index"
       , Space
       , Str "is"
-      , Space
+      , SoftBreak
       , Str "within"
       , Space
       , Str "the"
@@ -26565,7 +26641,7 @@ Pandoc
       , Str "rid"
       , Space
       , Str "of"
-      , SoftBreak
+      , Space
       , Str "bounds"
       , Space
       , Str "checks"
@@ -26575,7 +26651,7 @@ Pandoc
       , Str "they"
       , Space
       , Str "are"
-      , Space
+      , SoftBreak
       , Str "proven"
       , Space
       , Str "to"
@@ -26591,7 +26667,7 @@ Pandoc
       , Str "array"
       , Space
       , Str "access"
-      , SoftBreak
+      , Space
       , Str "uses"
       , Space
       , Str "a"
@@ -26601,7 +26677,7 @@ Pandoc
       , Str "index"
       , Space
       , Str "that\8217s"
-      , Space
+      , SoftBreak
       , Str "known"
       , Space
       , Str "to"
@@ -26621,7 +26697,7 @@ Pandoc
       , Str "the"
       , Space
       , Str "array."
-      , SoftBreak
+      , Space
       , Str "See"
       , SoftBreak
       , Link
@@ -27472,10 +27548,11 @@ Pandoc
             , Space
             , Link
                 ( "" , [] , [] )
-                [ Str "pointer" , Space , Str "compression" ]
+                [ Span
+                    ( "" , [ "index" ] , [] )
+                    [ Str "pointer" , Space , Str "compression" ]
+                ]
                 ( "https://v8.dev/blog/pointer-compression" , "" )
-            , SoftBreak
-            , RawInline (Format "tex") "\\index{pointer compression}"
             , Str "."
             , SoftBreak
             , Str "With"
@@ -27653,19 +27730,17 @@ Pandoc
             , Str "known"
             , Space
             , Str "as"
-            , Space
+            , SoftBreak
             , Link
                 ( "" , [] , [] )
-                [ Str "W^X" ]
+                [ Span ( "" , [ "index" ] , [] ) [ Str "W^X" ] ]
                 ( "https://en.wikipedia.org/wiki/W%5EX" , "" )
-            , SoftBreak
-            , RawInline (Format "tex") "\\index{W\\^{}X}"
             , Str "."
-            , SoftBreak
+            , Space
             , Str "A"
             , Space
             , Str "naive"
-            , Space
+            , SoftBreak
             , Str "implementation"
             , Space
             , Str "of"
@@ -27681,13 +27756,13 @@ Pandoc
             , Str "memory"
             , Space
             , Str "permissions"
-            , SoftBreak
+            , Space
             , Str "based"
             , Space
             , Str "on"
             , Space
             , Str "page"
-            , Space
+            , SoftBreak
             , Str "tables"
             , Space
             , Str "temporarily"
@@ -27705,13 +27780,13 @@ Pandoc
             , Str "attackers"
             , Space
             , Str "from"
-            , SoftBreak
+            , Space
             , Str "writing"
             , Space
             , Str "to"
             , Space
             , Str "code"
-            , Space
+            , SoftBreak
             , Str "memory"
             , Space
             , Cite
@@ -27736,13 +27811,13 @@ Pandoc
             , Str "are"
             , Space
             , Str "involved."
-            , SoftBreak
+            , Space
             , Str "A"
             , Space
             , Str "more"
             , Space
             , Str "effective"
-            , Space
+            , SoftBreak
             , Str "solution"
             , Space
             , Str "would"
@@ -27758,13 +27833,13 @@ Pandoc
             , Str "process,"
             , Space
             , Str "which"
-            , SoftBreak
+            , Space
             , Str "is"
             , Space
             , Str "the"
             , Space
             , Str "only"
-            , Space
+            , SoftBreak
             , Str "process"
             , Space
             , Str "that"
@@ -27784,11 +27859,11 @@ Pandoc
             , Str "code"
             , Space
             , Str "memory."
-            , SoftBreak
+            , Space
             , Str "Alternatively,"
             , Space
             , Str "some"
-            , Space
+            , SoftBreak
             , Str "architectures"
             , Space
             , Str "provide"
@@ -27800,13 +27875,13 @@ Pandoc
             , Str "that"
             , Space
             , Str "can"
-            , SoftBreak
+            , Space
             , Str "restrict"
             , Space
             , Str "page-based"
             , Space
             , Str "memory"
-            , Space
+            , SoftBreak
             , Str "permissions"
             , Space
             , Str "from"
@@ -27814,7 +27889,7 @@ Pandoc
             , Str "userspace,"
             , Space
             , Str "effectively"
-            , SoftBreak
+            , Space
             , Str "allowing"
             , Space
             , Str "permissions"
@@ -27822,7 +27897,7 @@ Pandoc
             , Str "to"
             , Space
             , Str "be"
-            , Space
+            , SoftBreak
             , Str "different"
             , Space
             , Str "for"
@@ -27834,7 +27909,7 @@ Pandoc
             , Str "Such"
             , Space
             , Str "features"
-            , SoftBreak
+            , Space
             , Str "can"
             , Space
             , Str "also"
@@ -27846,7 +27921,7 @@ Pandoc
             , Str "use"
             , Space
             , Str "in"
-            , Space
+            , SoftBreak
             , Str "implementing"
             , Space
             , Str "W^X."
@@ -28036,8 +28111,11 @@ Pandoc
   , Para
       [ Str "A"
       , Space
-      , Strong [ Str "covert" , Space , Str "channel" ]
-      , RawInline (Format "tex") "\\index{covert channel}"
+      , Strong
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "covert" , Space , Str "channel" ]
+          ]
       , Space
       , Str "is"
       , Space
@@ -28050,17 +28128,17 @@ Pandoc
       , Str "both"
       , Space
       , Str "entities"
-      , SoftBreak
+      , Space
       , Str "intend"
       , Space
       , Str "to"
-      , Space
+      , SoftBreak
       , Str "communicate."
       , Space
       , Str "A"
       , Space
-      , Strong [ Str "side-channel" ]
-      , RawInline (Format "tex") "\\index{side-channel}"
+      , Strong
+          [ Span ( "" , [ "index" ] , [] ) [ Str "side-channel" ] ]
       , Space
       , Str "is"
       , Space
@@ -28069,7 +28147,7 @@ Pandoc
       , Str "channel"
       , Space
       , Str "where"
-      , SoftBreak
+      , Space
       , Str "one"
       , Space
       , Str "entity"
@@ -28077,7 +28155,7 @@ Pandoc
       , Str "is"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "victim"
       , Space
       , Str "of"
@@ -28151,26 +28229,24 @@ Pandoc
       , Space
       , Str "the"
       , Space
-      , Strong [ Str "victim" ]
-      , RawInline (Format "tex") "\\index{victim}"
+      , Strong [ Span ( "" , [ "index" ] , [] ) [ Str "victim" ] ]
       , Str "."
       , Space
       , Str "The"
       , Space
       , Str "other"
-      , SoftBreak
+      , Space
       , Str "entity"
       , Space
       , Str "is"
-      , Space
+      , SoftBreak
       , Str "sometimes"
       , Space
       , Str "called"
       , Space
       , Str "the"
       , Space
-      , Strong [ Str "spy" ]
-      , RawInline (Format "tex") "\\index{spy}"
+      , Strong [ Span ( "" , [ "index" ] , [] ) [ Str "spy" ] ]
       , Str "."
       ]
   , Para
@@ -28251,12 +28327,11 @@ Pandoc
       , Space
       , Str "so-called"
       , Space
-      , Str "micro-architectural"
-      , SoftBreak
-      , Str "aspect"
-      , RawInline (Format "tex") "\\index{micro-architectural}"
-      , Str ","
+      , Span
+          ( "" , [ "index" ] , [] ) [ Str "micro-architectural" ]
       , Space
+      , Str "aspect,"
+      , SoftBreak
       , Str "such"
       , Space
       , Str "as"
@@ -28272,7 +28347,7 @@ Pandoc
       , Str "or"
       , Space
       , Str "branch"
-      , SoftBreak
+      , Space
       , Str "predictor"
       , Space
       , Str "state."
@@ -28350,10 +28425,9 @@ Pandoc
       , Space
       , Str "called"
       , Space
-      , Str "timing"
-      , Space
-      , Str "attacks"
-      , RawInline (Format "tex") "\\index{timing\nattacks}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "timing" , Space , Str "attacks" ]
       , Str "."
       ]
   , Para
@@ -29033,16 +29107,18 @@ Pandoc
   , Para
       [ Link
           ( "" , [] , [] )
-          [ Str "Caches" ]
+          [ Span
+              ( "" , [ "index" ] , [ ( "entry" , "cache" ) ] )
+              [ Str "Caches" ]
+          ]
           ( "https://en.wikipedia.org/wiki/Cache_(computing)" , "" )
-      , RawInline (Format "tex") "\\index{cache}"
       , Space
       , Str "are"
       , Space
       , Str "used"
-      , SoftBreak
-      , Str "in"
       , Space
+      , Str "in"
+      , SoftBreak
       , Str "almost"
       , Space
       , Str "every"
@@ -29066,9 +29142,9 @@ Pandoc
       , Str "much"
       , Space
       , Str "faster"
-      , SoftBreak
-      , Str "than"
       , Space
+      , Str "than"
+      , SoftBreak
       , Str "the"
       , Space
       , Str "main"
@@ -29092,9 +29168,9 @@ Pandoc
       , Str "data,"
       , Space
       , Str "so"
-      , SoftBreak
-      , Str "that"
       , Space
+      , Str "that"
+      , SoftBreak
       , Str "the"
       , Space
       , Str "average"
@@ -29522,9 +29598,12 @@ Pandoc
       , Space
       , Str "typical"
       , Space
-      , Str "access"
-      , SoftBreak
-      , Str "time"
+      , Span
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "memory access time" ) ]
+          )
+          [ Str "access" , SoftBreak , Str "time" ]
       , Space
       , Str "is"
       , Space
@@ -29543,7 +29622,7 @@ Pandoc
       , Str "the"
       , Space
       , Str "fastest"
-      , Space
+      , SoftBreak
       , Str "cache"
       , Space
       , Str "on"
@@ -29557,7 +29636,7 @@ Pandoc
       , Str "hundreds"
       , Space
       , Str "of"
-      , SoftBreak
+      , Space
       , Str "cycles"
       , Space
       , Str "for"
@@ -29569,16 +29648,15 @@ Pandoc
       , Str "memory"
       , Space
       , Str "access."
-      , RawInline (Format "tex") "\\index{memory access time}"
       , Space
       , Str "When"
       , Space
       , Str "data"
       , Space
       , Str "is"
-      , Space
-      , Str "present"
       , SoftBreak
+      , Str "present"
+      , Space
       , Str "in"
       , Space
       , Str "the"
@@ -29606,9 +29684,12 @@ Pandoc
       , Str "be"
       , Space
       , Str "a"
-      , Space
-      , Strong [ Str "cache" , Space , Str "hit" ]
-      , RawInline (Format "tex") "\\index{cache\nhit}"
+      , SoftBreak
+      , Strong
+          [ Span
+              ( "" , [ "index" ] , [ ( "entry" , "cache!hit" ) ] )
+              [ Str "cache" , Space , Str "hit" ]
+          ]
       , Str "."
       , Space
       , Str "Otherwise,"
@@ -29618,9 +29699,12 @@ Pandoc
       , Str "called"
       , Space
       , Str "a"
-      , Space
-      , Strong [ Str "cache" , Space , Str "miss" ]
-      , RawInline (Format "tex") "\\index{cache miss}"
+      , SoftBreak
+      , Strong
+          [ Span
+              ( "" , [ "index" ] , [ ( "entry" , "cache!miss" ) ] )
+              [ Str "cache" , Space , Str "miss" ]
+          ]
       , Str "."
       ]
   , Para
@@ -29630,45 +29714,45 @@ Pandoc
       , Space
       , Str "have"
       , Space
-      , Str "multiple"
-      , Space
-      , Str "levels"
-      , Space
-      , Str "of"
-      , Space
-      , Str "cache"
-      , RawInline (Format "tex") "\\index{multi-level cache}"
+      , Span
+          ( "" , [ "index" ] , [ ( "entry" , "cache!multi-level" ) ] )
+          [ Str "multiple"
+          , Space
+          , Str "levels"
+          , Space
+          , Str "of"
+          , Space
+          , Str "cache"
+          ]
       , Str ","
-      , Space
+      , SoftBreak
       , Str "each"
       , Space
       , Str "with"
       , Space
       , Str "a"
-      , SoftBreak
+      , Space
       , Str "different"
       , Space
       , Str "trade-off"
       , Space
       , Str "between"
       , Space
-      , Str "cache"
-      , Space
-      , Str "size"
-      , RawInline (Format "tex") "\\index{cache size}"
-      , Space
+      , Span
+          ( "" , [ "index" ] , [ ( "entry" , "cache!size" ) ] )
+          [ Str "cache" , Space , Str "size" ]
+      , SoftBreak
       , Str "and"
       , Space
-      , Str "access"
-      , SoftBreak
-      , Str "time"
-      , RawInline (Format "tex") "\\index{cache access time}"
+      , Span
+          ( "" , [ "index" ] , [ ( "entry" , "cache!access time" ) ] )
+          [ Str "access" , Space , Str "time" ]
       , Str "."
       , Space
       , Str "Some"
       , Space
       , Str "typical"
-      , Space
+      , SoftBreak
       , Str "characteristics"
       , Space
       , Str "might"
@@ -29954,17 +30038,25 @@ Pandoc
       , SoftBreak
       , Link
           ( "" , [] , [] )
-          [ Str "principle"
-          , Space
-          , Str "of"
-          , Space
-          , Str "locality"
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "principle"
+              , Space
+              , Str "of"
+              , Space
+              , Str "locality"
+              ]
           ]
           ( "https://en.wikipedia.org/wiki/Locality_of_reference"
           , ""
           )
-      , RawInline (Format "tex") "\\index{principle\nof locality}"
-      , RawInline (Format "tex") "\\index{locality of reference}"
+      , Str "]"
+      , Span
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "locality of reference" ) ]
+          )
+          []
       , Str "."
       ]
   , Para
@@ -30006,13 +30098,19 @@ Pandoc
       , Space
       , Str "a"
       , Space
-      , Strong [ Str "cache" , Space , Str "block" ]
-      , RawInline (Format "tex") "\\index{cache block}"
+      , Strong
+          [ Span
+              ( "" , [ "index" ] , [ ( "entry" , "cache!block" ) ] )
+              [ Str "cache" , Space , Str "block" ]
+          ]
       , Space
       , Str "or"
-      , Space
-      , Strong [ Str "cache" , SoftBreak , Str "line" ]
-      , RawInline (Format "tex") "\\index{cache line}"
+      , SoftBreak
+      , Strong
+          [ Span
+              ( "" , [ "index" ] , [ ( "entry" , "cache!line" ) ] )
+              [ Str "cache" , Space , Str "line" ]
+          ]
       , Str "."
       , Space
       , Str "Typical"
@@ -30028,7 +30126,7 @@ Pandoc
       , Str "or"
       , Space
       , Str "128"
-      , Space
+      , SoftBreak
       , Str "bytes"
       , Space
       , Str "per"
@@ -30088,10 +30186,13 @@ Pandoc
       , Space
       , Str "or"
       , Space
-      , Strong [ Str "evicting" ]
-      , RawInline (Format "tex") "\\index{cache eviction}"
+      , Strong
+          [ Span
+              ( "" , [ "index" ] , [ ( "entry" , "cache!eviction" ) ] )
+              [ Str "evicting" ]
+          ]
       , Str ","
-      , SoftBreak
+      , Space
       , Str "some"
       , Space
       , Str "other"
@@ -30109,7 +30210,7 @@ Pandoc
       , Str "choice"
       , Space
       , Str "gets"
-      , Space
+      , SoftBreak
       , Str "made"
       , Space
       , Str "is"
@@ -30119,49 +30220,61 @@ Pandoc
       , Str "by"
       , Space
       , Str "the"
-      , SoftBreak
+      , Space
       , Link
           ( "" , [] , [] )
-          [ Str "cache"
-          , Space
-          , Str "replacement"
-          , Space
-          , Str "policy"
+          [ Span
+              ( ""
+              , [ "index" ]
+              , [ ( "entry" , "cache!replacement policy" ) ]
+              )
+              [ Str "cache"
+              , Space
+              , Str "replacement"
+              , Space
+              , Str "policy"
+              ]
           ]
           ( "https://en.wikipedia.org/wiki/Cache_replacement_policies"
           , ""
           )
-      , RawInline
-          (Format "tex") "\\index{cache\nreplacement policy}"
-      , Str "."
+      , Str "]."
       , Space
       , Str "Popular"
-      , Space
+      , SoftBreak
       , Str "replacement"
       , Space
       , Str "algorithms"
       , Space
       , Str "are"
       , Space
-      , Str "Least"
-      , Space
-      , Str "Recently"
-      , Space
-      , Str "Used"
-      , SoftBreak
-      , Str "(LRU)"
-      , RawInline (Format "tex") "\\index{LRU replacement policy}"
+      , Span
+          ( "" , [ "index" ] , [ ( "entry" , "cache!LRU" ) ] )
+          [ Str "Least"
+          , Space
+          , Str "Recently"
+          , Space
+          , Str "Used"
+          , Space
+          , Str "(LRU)"
+          ]
       , Str ","
       , Space
-      , Str "Random"
-      , RawInline
-          (Format "tex") "\\index{random replacement policy}"
+      , Span
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "cache!random replacement policy" ) ]
+          )
+          [ Str "Random" ]
       , Space
       , Str "and"
       , SoftBreak
-      , Str "pseudo-LRU"
-      , RawInline
-          (Format "tex") "\\index{pseudo-LRU replacement policy}"
+      , Span
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "cache!pseudo-LRU replacement policy" ) ]
+          )
+          [ Str "pseudo-LRU" ]
       , Str "."
       , Space
       , Str "As"
@@ -30169,11 +30282,11 @@ Pandoc
       , Str "the"
       , Space
       , Str "names"
-      , Space
+      , SoftBreak
       , Str "suggest,"
       , Space
       , Str "LRU"
-      , SoftBreak
+      , Space
       , Str "evicts"
       , Space
       , Str "the"
@@ -30197,11 +30310,11 @@ Pandoc
       , Str "picks"
       , Space
       , Str "a"
-      , Space
+      , SoftBreak
       , Str "random"
       , Space
       , Str "cache"
-      , SoftBreak
+      , Space
       , Str "line;"
       , Space
       , Str "and"
@@ -30219,7 +30332,7 @@ Pandoc
       , Str "recently"
       , Space
       , Str "used"
-      , Space
+      , SoftBreak
       , Str "line."
       ]
   , Para
@@ -30257,19 +30370,24 @@ Pandoc
       , SoftBreak
       , Str "is"
       , Space
-      , Strong [ Str "fully-associative" ]
-      , RawInline
-          (Format "tex") "\\index{fully-associative cache}"
+      , Strong
+          [ Span
+              ( ""
+              , [ "index" ]
+              , [ ( "entry" , "cache!fully-associative" ) ]
+              )
+              [ Str "fully-associative" ]
+          ]
       , Str "."
       , Space
       , Str "Most"
       , Space
       , Str "caches"
-      , Space
+      , SoftBreak
       , Str "are"
       , Space
       , Str "however"
-      , SoftBreak
+      , Space
       , Str "not"
       , Space
       , Str "fully-associative,"
@@ -30287,25 +30405,31 @@ Pandoc
       , Str "implement."
       , Space
       , Str "Instead,"
-      , Space
+      , SoftBreak
       , Str "most"
       , Space
       , Str "caches"
       , Space
       , Str "are"
-      , SoftBreak
-      , Strong [ Str "set-associative" ]
-      , RawInline (Format "tex") "\\index{set-associative cache}"
+      , Space
+      , Strong
+          [ Span
+              ( ""
+              , [ "index" ]
+              , [ ( "entry" , "cache!set-associative" ) ]
+              )
+              [ Str "set-associative" ]
+          ]
       , Str "."
       , Space
       , Str "In"
-      , Space
+      , SoftBreak
       , Str "an"
       , Space
       , Str "N-way"
       , Space
       , Str "set-associative"
-      , SoftBreak
+      , Space
       , Str "cache,"
       , Space
       , Str "a"
@@ -30329,13 +30453,13 @@ Pandoc
       , Str "of"
       , Space
       , Str "N"
-      , Space
+      , SoftBreak
       , Str "cache"
       , Space
       , Str "locations."
       , Space
       , Str "For"
-      , SoftBreak
+      , Space
       , Str "example,"
       , Space
       , Str "if"
@@ -30359,7 +30483,7 @@ Pandoc
       , Str "of"
       , Space
       , Str "2"
-      , Space
+      , SoftBreak
       , Str "locations,"
       , Space
       , Str "the"
@@ -30367,7 +30491,7 @@ Pandoc
       , Str "cache"
       , Space
       , Str "is"
-      , SoftBreak
+      , Space
       , Str "said"
       , Space
       , Str "to"
@@ -30389,7 +30513,7 @@ Pandoc
       , Str "stored"
       , Space
       , Str "in"
-      , Space
+      , SoftBreak
       , Str "one"
       , Space
       , Str "of"
@@ -30397,7 +30521,7 @@ Pandoc
       , Str "4"
       , Space
       , Str "locations,"
-      , SoftBreak
+      , Space
       , Str "it\8217s"
       , Space
       , Str "called"
@@ -30415,7 +30539,7 @@ Pandoc
       , Str "When"
       , Space
       , Str "an"
-      , Space
+      , SoftBreak
       , Str "address"
       , Space
       , Str "can"
@@ -30425,7 +30549,7 @@ Pandoc
       , Str "be"
       , Space
       , Str "stored"
-      , SoftBreak
+      , Space
       , Str "in"
       , Space
       , Str "one"
@@ -30448,8 +30572,14 @@ Pandoc
       , Space
       , Str "be"
       , SoftBreak
-      , Strong [ Str "direct-mapped" ]
-      , RawInline (Format "tex") "\\index{direct-mapped cache}"
+      , Strong
+          [ Span
+              ( ""
+              , [ "index" ]
+              , [ ( "entry" , "cache!direct-mapped" ) ]
+              )
+              [ Str "direct-mapped" ]
+          ]
       , Str ","
       , Space
       , Str "rather"
@@ -30457,9 +30587,9 @@ Pandoc
       , Str "than"
       , Space
       , Str "1-way"
-      , Space
-      , Str "set-associative."
       , SoftBreak
+      , Str "set-associative."
+      , Space
       , Str "Typical"
       , Space
       , Str "organizations"
@@ -30473,13 +30603,13 @@ Pandoc
       , Str "4-way,"
       , Space
       , Str "8-way,"
-      , Space
+      , SoftBreak
       , Str "16-way"
       , Space
       , Str "or"
       , Space
       , Str "32-way"
-      , SoftBreak
+      , Space
       , Str "set-associative."
       ]
   , Para
@@ -30517,8 +30647,11 @@ Pandoc
       , Space
       , Str "a"
       , Space
-      , Strong [ Str "cache" , Space , Str "set" ]
-      , RawInline (Format "tex") "\\index{cache set}"
+      , Strong
+          [ Span
+              ( "" , [ "index" ] , [ ( "entry" , "cache!set" ) ] )
+              [ Str "cache" , Space , Str "set" ]
+          ]
       , Str "."
       ]
   , Header
@@ -31099,8 +31232,9 @@ Pandoc
           , Space
           , Str "coherency"
           , Space
-          , RawInline (Format "tex") "\\index{cache coherency}"
-          , Str "?"
+          , Str "cache"
+          , Space
+          , Str "coherency?"
           , SoftBreak
           , Span ( "" , [ "issue" ] , [] ) [ Str "173" ]
           ]
@@ -31137,9 +31271,12 @@ Pandoc
       , Str "side-channels"
       ]
   , Para
-      [ Str "Cache"
-      , Space
-      , Str "side-channels"
+      [ Span
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "cache!side-channel" ) ]
+          )
+          [ Str "Cache" , Space , Str "side-channels" ]
       , Space
       , Str "typically"
       , Space
@@ -31148,7 +31285,7 @@ Pandoc
       , Str "by"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "spy"
       , Space
       , Str "determining"
@@ -31158,7 +31295,7 @@ Pandoc
       , Str "a"
       , Space
       , Str "memory"
-      , SoftBreak
+      , Space
       , Str "access"
       , Space
       , Str "was"
@@ -31178,7 +31315,7 @@ Pandoc
       , Str "miss."
       , Space
       , Str "From"
-      , Space
+      , SoftBreak
       , Str "that"
       , Space
       , Str "information,"
@@ -31190,7 +31327,7 @@ Pandoc
       , Str "may"
       , Space
       , Str "be"
-      , SoftBreak
+      , Space
       , Str "able"
       , Space
       , Str "to"
@@ -31208,7 +31345,7 @@ Pandoc
       , Str "only"
       , Space
       , Str "the"
-      , Space
+      , SoftBreak
       , Str "victim"
       , Space
       , Str "should"
@@ -31249,8 +31386,8 @@ Pandoc
       , Space
       , Str "so-called"
       , Space
-      , Strong [ Str "Flush+Reload" ]
-      , RawInline (Format "tex") "\\index{Flush+Reload}"
+      , Strong
+          [ Span ( "" , [ "index" ] , [] ) [ Str "Flush+Reload" ] ]
       , Space
       , Str "attack"
       , Cite
@@ -31656,11 +31793,10 @@ Pandoc
       , Space
       , Str "a"
       , Space
-      , Strong [ Str "Prime+Probe" ]
+      , Strong
+          [ Span ( "" , [ "index" ] , [] ) [ Str "Prime+Probe" ] ]
       , Space
-      , Str "attack"
-      , RawInline (Format "tex") "\\index{Prime+Probe}"
-      , Str ","
+      , Str "attack,"
       , Space
       , Str "there"
       , Space
@@ -31675,11 +31811,11 @@ Pandoc
       , Str "memory"
       , Space
       , Str "to"
-      , SoftBreak
+      , Space
       , Str "be"
       , Space
       , Str "shared"
-      , Space
+      , SoftBreak
       , Str "between"
       , Space
       , Str "victim"
@@ -32074,9 +32210,12 @@ Pandoc
             , Str "state"
             , Space
             , Str "("
-            , Strong [ Str "reset" , SoftBreak , Str "sequence" ]
+            , Strong
+                [ Span
+                    ( "" , [ "index" ] , [] )
+                    [ Str "reset" , SoftBreak , Str "sequence" ]
+                ]
             , Str ")."
-            , RawInline (Format "tex") "\\index{reset sequence}"
             ]
         ]
       , [ Plain
@@ -32097,9 +32236,12 @@ Pandoc
             , Str "change"
             , Space
             , Str "("
-            , Strong [ Str "trigger" , SoftBreak , Str "sequence" ]
+            , Strong
+                [ Span
+                    ( "" , [ "index" ] , [] )
+                    [ Str "trigger" , SoftBreak , Str "sequence" ]
+                ]
             , Str ")."
-            , RawInline (Format "tex") "\\index{trigger sequence}"
             ]
         ]
       , [ Plain
@@ -32120,9 +32262,12 @@ Pandoc
             , Str "state"
             , Space
             , Str "("
-            , Strong [ Str "measurement" , SoftBreak , Str "sequence" ]
+            , Strong
+                [ Span
+                    ( "" , [ "index" ] , [] )
+                    [ Str "measurement" , SoftBreak , Str "sequence" ]
+                ]
             , Str ")."
-            , RawInline (Format "tex") "\\index{measurement sequence}"
             ]
         ]
       ]
@@ -32149,8 +32294,7 @@ Pandoc
       , SoftBreak
       , Str "include:"
       , Space
-      , Str "Flush+Flush"
-      , RawInline (Format "tex") "\\index{Flush+Flush}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "Flush+Flush" ]
       , Cite
           [ Citation
               { citationId = "Gruss2016a"
@@ -32164,8 +32308,7 @@ Pandoc
           [ Str "[@Gruss2016a]" ]
       , Str ","
       , SoftBreak
-      , Str "Flush+Prefetch"
-      , RawInline (Format "tex") "\\index{Flush+Prefetch}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "Flush+Prefetch" ]
       , Cite
           [ Citation
               { citationId = "Gruss2016"
@@ -32178,9 +32321,8 @@ Pandoc
           ]
           [ Str "[@Gruss2016]" ]
       , Str ","
-      , SoftBreak
-      , Str "Evict+Reload"
-      , RawInline (Format "tex") "\\index{Evict+Reload}"
+      , Space
+      , Span ( "" , [ "index" ] , [] ) [ Str "Evict+Reload" ]
       , Cite
           [ Citation
               { citationId = "Percival2005"
@@ -32194,8 +32336,7 @@ Pandoc
           [ Str "[@Percival2005]" ]
       , Str ","
       , SoftBreak
-      , Str "Evict+Time"
-      , RawInline (Format "tex") "\\index{Evict+Time}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "Evict+Time" ]
       , Cite
           [ Citation
               { citationId = "Osvik2005"
@@ -32208,9 +32349,8 @@ Pandoc
           ]
           [ Str "[@Osvik2005]" ]
       , Str ","
-      , SoftBreak
-      , Str "Reload+Refresh"
-      , RawInline (Format "tex") "\\index{Reload+Refresh}"
+      , Space
+      , Span ( "" , [ "index" ] , [] ) [ Str "Reload+Refresh" ]
       , Cite
           [ Citation
               { citationId = "Briongos2020"
@@ -32224,8 +32364,7 @@ Pandoc
           [ Str "[@Briongos2020]" ]
       , Str ","
       , SoftBreak
-      , Str "Collide+Probe"
-      , RawInline (Format "tex") "\\index{Collide+Probe}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "Collide+Probe" ]
       , Cite
           [ Citation
               { citationId = "Lipp2020"
@@ -32965,11 +33104,13 @@ Pandoc
       , Space
       , Link
           ( "" , [] , [] )
-          [ Str "cpu" , SoftBreak , Str "multithreading" ]
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "cpu" , SoftBreak , Str "multithreading" ]
+          ]
           ( "https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)"
           , ""
           )
-      , RawInline (Format "tex") "\\index{multithreading}"
       , Str "."
       , SoftBreak
       , Str "For"
@@ -33114,12 +33255,14 @@ Pandoc
       , SoftBreak
       , Link
           ( "" , [] , [] )
-          [ Str "site" , Space , Str "isolation" ]
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "site" , Space , Str "isolation" ]
+          ]
           ( "https://developer.chrome.com/blog/site-isolation/" , "" )
-      , RawInline (Format "tex") "\\index{site\nisolation}"
       , Space
       , Str "as"
-      , Space
+      , SoftBreak
       , Str "implemented"
       , Space
       , Str "in"
@@ -33141,11 +33284,11 @@ Pandoc
       , Str "also"
       , Space
       , Str "falls"
-      , SoftBreak
+      , Space
       , Str "into"
       , Space
       , Str "this"
-      , Space
+      , SoftBreak
       , Str "category."
       , Space
       , Str "Site"
@@ -33387,7 +33530,7 @@ Pandoc
           ( "https://developer.mozilla.org/en-US/docs/Web/API/Performance/now"
           , ""
           )
-      , RawInline (Format "tex") "\\index{Spectre}"
+      , Span ( "" , [ "index" ] , [ ( "entry" , "Spectre" ) ] ) []
       , Str "."
       ]
   , Para
@@ -33481,8 +33624,7 @@ Pandoc
       , Space
       , Str "the"
       , Space
-      , Str "NetSpectre"
-      , RawInline (Format "tex") "\\index{NetSpectre}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "NetSpectre" ]
       , Space
       , Str "attack"
       , Space
@@ -33501,9 +33643,9 @@ Pandoc
       , Str "where"
       , Space
       , Str "the"
-      , SoftBreak
-      , Str "difference"
       , Space
+      , Str "difference"
+      , SoftBreak
       , Str "between"
       , Space
       , Str "cache"
@@ -33527,9 +33669,9 @@ Pandoc
       , Str "network,"
       , Space
       , Str "by"
-      , SoftBreak
-      , Str "statistically"
       , Space
+      , Str "statistically"
+      , SoftBreak
       , Str "analyzing"
       , Space
       , Str "delays"
@@ -33543,7 +33685,7 @@ Pandoc
       , Str "responses."
       , Space
       , Str "Furthermore,"
-      , SoftBreak
+      , Space
       , Cite
           [ Citation
               { citationId = "Schwarz2017"
@@ -33555,7 +33697,7 @@ Pandoc
               }
           ]
           [ Str "[@Schwarz2017]" ]
-      , Space
+      , SoftBreak
       , Str "demonstrates"
       , Space
       , Str "how"
@@ -33571,13 +33713,13 @@ Pandoc
       , Str "in"
       , Space
       , Str "various"
-      , SoftBreak
+      , Space
       , Str "indirect"
       , Space
       , Str "ways"
       , Space
       , Str "in"
-      , Space
+      , SoftBreak
       , Str "all"
       , Space
       , Str "browsers"
@@ -33724,17 +33866,23 @@ Pandoc
       , Str "or"
       , Space
       , Str "more"
-      , SoftBreak
+      , Space
       , Link
           ( "" , [] , [] )
-          [ Str "instruction" , Space , Str "pipelines" ]
+          [ Span
+              ( ""
+              , [ "index" ]
+              , [ ( "entry" , "instruction pipeline" ) ]
+              )
+              [ Str "instruction" , Space , Str "pipelines" ]
+          ]
           ( "https://en.wikipedia.org/wiki/Instruction_pipelining"
           , ""
           )
       , Str "."
-      , SoftBreak
-      , RawInline (Format "tex") "\\index{pipeline}"
-      , RawInline (Format "tex") "\\index{instruction pipeline}"
+      , Space
+      , Span
+          ( "" , [ "index" ] , [ ( "entry" , "pipeline" ) ] ) []
       , Space
       , Str "In"
       , Space
@@ -33745,7 +33893,7 @@ Pandoc
       , Str "pipeline,"
       , Space
       , Str "the"
-      , SoftBreak
+      , Space
       , Str "next"
       , Space
       , Str "instruction"
@@ -33753,7 +33901,7 @@ Pandoc
       , Str "is"
       , Space
       , Str "started"
-      , Space
+      , SoftBreak
       , Str "before"
       , Space
       , Str "the"
@@ -33765,7 +33913,7 @@ Pandoc
       , Str "has"
       , Space
       , Str "finished"
-      , SoftBreak
+      , Space
       , Str "executing."
       , Space
       , Str "When"
@@ -33773,7 +33921,7 @@ Pandoc
       , Str "the"
       , Space
       , Str "previous"
-      , Space
+      , SoftBreak
       , Str "instruction"
       , Space
       , Str "is"
@@ -33787,7 +33935,7 @@ Pandoc
       , Str "the"
       , Space
       , Str "next"
-      , SoftBreak
+      , Space
       , Str "instruction"
       , Space
       , Str "that"
@@ -33797,7 +33945,7 @@ Pandoc
       , Str "to"
       , Space
       , Str "be"
-      , Space
+      , SoftBreak
       , Str "executed"
       , Space
       , Str "is"
@@ -33813,13 +33961,13 @@ Pandoc
       , Str "branch"
       , Space
       , Str "instruction"
-      , SoftBreak
+      , Space
       , Str "completes."
       , Space
       , Str "However,"
       , Space
       , Str "waiting"
-      , Space
+      , SoftBreak
       , Str "for"
       , Space
       , Str "the"
@@ -33835,7 +33983,7 @@ Pandoc
       , Str "before"
       , Space
       , Str "starting"
-      , SoftBreak
+      , Space
       , Str "the"
       , Space
       , Str "next"
@@ -33843,7 +33991,7 @@ Pandoc
       , Str "instruction"
       , Space
       , Str "leads"
-      , Space
+      , SoftBreak
       , Str "to"
       , Space
       , Str "a"
@@ -33851,7 +33999,7 @@ Pandoc
       , Str "big"
       , Space
       , Str "performance"
-      , SoftBreak
+      , Space
       , Str "loss."
       , Note
           [ Para
@@ -33984,8 +34132,7 @@ Pandoc
       , Space
       , Str "CPUs"
       , SoftBreak
-      , Str "predict"
-      , RawInline (Format "tex") "\\index{predict}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "predict" ]
       , Space
       , Str "which"
       , Space
@@ -34004,9 +34151,9 @@ Pandoc
       , Str "a"
       , Space
       , Str "branch,"
-      , SoftBreak
-      , Str "before"
       , Space
+      , Str "before"
+      , SoftBreak
       , Str "the"
       , Space
       , Str "branch"
@@ -34024,9 +34171,9 @@ Pandoc
       , Str "quickly"
       , Space
       , Str "predicting"
-      , SoftBreak
-      , Str "the"
       , Space
+      , Str "the"
+      , SoftBreak
       , Str "instruction"
       , Space
       , Str "after"
@@ -34048,20 +34195,25 @@ Pandoc
       , Str "performance"
       , Space
       , Str "that"
-      , SoftBreak
-      , Str "most"
       , Space
+      , Str "most"
+      , SoftBreak
       , Str "CPUs"
       , Space
       , Str "have"
       , Space
       , Str "multiple"
-      , SoftBreak
+      , Space
       , Link
           ( "" , [] , [] )
-          [ Str "branch" , Space , Str "predictors" ]
+          [ Span
+              ( ""
+              , [ "index" ]
+              , [ ( "entry" , "branch predictor" ) ]
+              )
+              [ Str "branch" , Space , Str "predictors" ]
+          ]
           ( "https://en.wikipedia.org/wiki/Branch_predictor" , "" )
-      , RawInline (Format "tex") "\\index{branch\npredictor}"
       , Str ","
       , Space
       , Str "such"
@@ -34084,35 +34236,41 @@ Pandoc
             , Space
             , Str "a"
             , Space
-            , Str "conditional"
-            , Space
-            , Str "branch"
-            , RawInline
-                (Format "tex")
-                "\\index{conditional branch\ndirection predictor}"
+            , Span
+                ( ""
+                , [ "index" ]
+                , [ ( "entry"
+                    , "conditional branch direction predictor"
+                    )
+                  ]
+                )
+                [ Str "conditional" , Space , Str "branch" ]
             , Str ":"
             , Space
-            , Str "taken"
+            , Span
+                ( "" , [ "index" ] , [ ( "entry" , "taken branch" ) ] )
+                [ Str "taken" ]
             , Space
             , Str "or"
             , Space
             , Str "not"
-            , Space
-            , Str "taken"
-            , RawInline (Format "tex") "\\index{taken branch}"
-            , Str "."
+            , SoftBreak
+            , Str "taken."
             , Space
             , Str "The"
             , Space
             , Str "prediction"
-            , SoftBreak
+            , Space
             , Str "is"
             , Space
             , Str "typically"
             , Space
-            , Str "history-based"
-            , RawInline
-                (Format "tex") "\\index{history-based prediction}"
+            , Span
+                ( ""
+                , [ "index" ]
+                , [ ( "entry" , "history-based prediction" ) ]
+                )
+                [ Str "history-based" ]
             , Str ","
             , Space
             , Str "i.e.\160based"
@@ -34120,7 +34278,7 @@ Pandoc
             , Str "on"
             , Space
             , Str "the"
-            , SoftBreak
+            , Space
             , Str "outcome"
             , Space
             , Str "of"
@@ -34136,7 +34294,7 @@ Pandoc
             , Str "in"
             , Space
             , Str "the"
-            , Space
+            , SoftBreak
             , Str "recent"
             , Space
             , Str "past."
@@ -34151,19 +34309,23 @@ Pandoc
             , Space
             , Str "the"
             , Space
-            , Str "target"
-            , Space
-            , Str "of"
-            , Space
-            , Str "a"
-            , Space
-            , Str "taken"
-            , Space
-            , Str "branch"
-            , RawInline
-                (Format "tex") "\\index{branch target predictor}"
+            , Span
+                ( ""
+                , [ "index" ]
+                , [ ( "entry" , "branch target predictor" ) ]
+                )
+                [ Str "target"
+                , Space
+                , Str "of"
+                , Space
+                , Str "a"
+                , Space
+                , Str "taken"
+                , Space
+                , Str "branch"
+                ]
             , Str ","
-            , SoftBreak
+            , Space
             , Str "i.e.\160the"
             , Space
             , Str "address"
@@ -34198,25 +34360,30 @@ Pandoc
             , Space
             , Str "to"
             , Space
-            , Str "predict"
-            , Space
-            , Str "the"
-            , Space
-            , Str "next"
-            , Space
-            , Str "instruction"
-            , Space
-            , Str "after"
-            , Space
-            , Str "a"
-            , SoftBreak
-            , Str "function"
-            , Space
-            , Str "return"
-            , Space
-            , Str "instruction."
-            , RawInline
-                (Format "tex") "\\index{return address predictor}"
+            , Span
+                ( ""
+                , [ "index" ]
+                , [ ( "entry" , "return address predictor" ) ]
+                )
+                [ Str "predict"
+                , Space
+                , Str "the"
+                , Space
+                , Str "next"
+                , Space
+                , Str "instruction"
+                , Space
+                , Str "after"
+                , Space
+                , Str "a"
+                , SoftBreak
+                , Str "function"
+                , Space
+                , Str "return"
+                , Space
+                , Str "instruction"
+                ]
+            , Str "."
             ]
         ]
       ]
@@ -34303,9 +34470,12 @@ Pandoc
       , Str "attacks"
       ]
   , Para
-      [ RawInline
-          (Format "tex")
-          "\\index{conditional branch direction predictor}"
+      [ Span
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "conditional branch direction predictor" ) ]
+          )
+          []
       ]
   , Para
       [ Str "Two"
@@ -34314,7 +34484,7 @@ Pandoc
       , Space
       , Str "are"
       , Space
-      , Str "BranchScope"
+      , Span ( "" , [ "index" ] , [] ) [ Str "BranchScope" ]
       , Space
       , Cite
           [ Citation
@@ -34327,11 +34497,10 @@ Pandoc
               }
           ]
           [ Str "[@Evtyushkin2018]" ]
-      , RawInline (Format "tex") "\\index{BranchScope}"
       , Space
       , Str "and"
       , SoftBreak
-      , Str "BlueThunder"
+      , Span ( "" , [ "index" ] , [] ) [ Str "BlueThunder" ]
       , Space
       , Cite
           [ Citation
@@ -34344,7 +34513,6 @@ Pandoc
               }
           ]
           [ Str "[@Huo2019]" ]
-      , RawInline (Format "tex") "\\index{BlueThunder}"
       , Str "."
       , Space
       , Str "These"
@@ -34358,11 +34526,11 @@ Pandoc
       , Str "a"
       , Space
       , Str "branch"
-      , SoftBreak
+      , Space
       , Str "is"
       , Space
       , Str "taken"
-      , Space
+      , SoftBreak
       , Str "or"
       , Space
       , Str "not"
@@ -34390,11 +34558,11 @@ Pandoc
       , Str "making"
       , Space
       , Str "sure"
-      , SoftBreak
+      , Space
       , Str "that"
       , Space
       , Str "a"
-      , Space
+      , SoftBreak
       , Str "branch"
       , Space
       , Str "in"
@@ -34420,9 +34588,9 @@ Pandoc
       , Str "as"
       , Space
       , Str "the"
-      , SoftBreak
-      , Str "targeted"
       , Space
+      , Str "targeted"
+      , SoftBreak
       , Str "branch"
       , Space
       , Str "in"
@@ -34446,11 +34614,11 @@ Pandoc
       , Str "in"
       , Space
       , Str "the"
-      , SoftBreak
+      , Space
       , Str "spy"
       , Space
       , Str "process"
-      , Space
+      , SoftBreak
       , Str "gets"
       , Space
       , Str "predicted"
@@ -34472,9 +34640,9 @@ Pandoc
       , Str "in"
       , Space
       , Str "the"
-      , SoftBreak
-      , Str "victim"
       , Space
+      , Str "victim"
+      , SoftBreak
       , Str "process"
       , Space
       , Str "was"
@@ -34616,8 +34784,10 @@ Pandoc
       , Space
       , Str "break"
       , Space
-      , Link ( "" , [] , [] ) [ Str "ASLR" ] ( "#aslr" , "" )
-      , RawInline (Format "tex") "\\index{ASLR}"
+      , Link
+          ( "" , [] , [] )
+          [ Span ( "" , [ "index" ] , [] ) [ Str "ASLR" ] ]
+          ( "#aslr" , "" )
       , Str "."
       ]
   , Header
@@ -34634,8 +34804,12 @@ Pandoc
       , Str "attacks"
       ]
   , Para
-      [ RawInline
-          (Format "tex") "\\index{Branch target predictor}"
+      [ Span
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "Branch target predictor" ) ]
+          )
+          []
       ]
   , Para
       [ Str "Two"
@@ -34644,7 +34818,7 @@ Pandoc
       , Space
       , Str "are"
       , Space
-      , Str "SBPA"
+      , Span ( "" , [ "index" ] , [] ) [ Str "SBPA" ]
       , Space
       , Cite
           [ Citation
@@ -34657,11 +34831,10 @@ Pandoc
               }
           ]
           [ Str "[@Aciicmez2007]" ]
-      , RawInline (Format "tex") "\\index{SBPA}"
       , Space
       , Str "and"
       , Space
-      , Str "BranchShadow"
+      , Span ( "" , [ "index" ] , [] ) [ Str "BranchShadow" ]
       , SoftBreak
       , Cite
           [ Citation
@@ -34674,7 +34847,6 @@ Pandoc
               }
           ]
           [ Str "[@Lee2017]" ]
-      , RawInline (Format "tex") "\\index{BranchShadow}"
       , Str "."
       , Space
       , Str "These"
@@ -34692,7 +34864,7 @@ Pandoc
       , Str "making"
       , Space
       , Str "a"
-      , SoftBreak
+      , Space
       , Str "branch"
       , Space
       , Str "in"
@@ -34700,7 +34872,7 @@ Pandoc
       , Str "the"
       , Space
       , Str "spy"
-      , Space
+      , SoftBreak
       , Str "process"
       , Space
       , Str "alias"
@@ -34709,16 +34881,17 @@ Pandoc
       , Space
       , Str "the"
       , Space
-      , Str "Branch"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "Branch"
+          , Space
+          , Str "Target"
+          , Space
+          , Str "Buffer"
+          , Space
+          , Str "(BTB)"
+          ]
       , Space
-      , Str "Target"
-      , Space
-      , Str "Buffer"
-      , Space
-      , Str "(BTB"
-      , RawInline (Format "tex") "\\index{BTB}"
-      , Str ")"
-      , SoftBreak
       , Str "with"
       , Space
       , Str "a"
@@ -34726,7 +34899,7 @@ Pandoc
       , Str "targeted"
       , Space
       , Str "branch"
-      , Space
+      , SoftBreak
       , Str "in"
       , Space
       , Str "the"
@@ -34734,7 +34907,7 @@ Pandoc
       , Str "victim"
       , Space
       , Str "process."
-      , SoftBreak
+      , Space
       , Str "They"
       , Space
       , Str "use"
@@ -34748,37 +34921,43 @@ Pandoc
       , Str "timing"
       , Space
       , Str "difference,"
-      , Space
-      , Str "last"
-      , Space
-      , Str "branch"
       , SoftBreak
-      , Str "records"
-      , RawInline (Format "tex") "\\index{last branch record}"
+      , Span
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "last branch record" ) ]
+          )
+          [ Str "last"
+          , Space
+          , Str "branch"
+          , Space
+          , Str "records"
+          ]
       , Str ","
-      , Space
-      , Str "instruction"
-      , Space
-      , Str "traces"
-      , RawInline (Format "tex") "\\index{instruction trace}"
       , SoftBreak
+      , Span
+          ( "" , [ "index" ] , [ ( "entry" , "instruction trace" ) ] )
+          [ Str "instruction" , Space , Str "traces" ]
+      , Space
       , Str "or"
-      , Space
-      , Str "performance"
-      , Space
-      , Str "counters"
-      , RawInline (Format "tex") "\\index{performance counter}"
+      , SoftBreak
+      , Span
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "performance counter" ) ]
+          )
+          [ Str "performance" , Space , Str "counters" ]
       , Space
       , Str "to"
       , Space
       , Str "measure"
       , Space
       , Str "whether"
-      , Space
+      , SoftBreak
       , Str "the"
       , Space
       , Str "branch"
-      , SoftBreak
+      , Space
       , Str "in"
       , Space
       , Str "the"
@@ -34820,8 +34999,12 @@ Pandoc
       , Str "attacks"
       ]
   , Para
-      [ RawInline
-          (Format "tex") "\\index{return address predictor}"
+      [ Span
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "return address predictor" ) ]
+          )
+          []
       ]
   , Para
       [ Str "One"
@@ -34830,7 +35013,7 @@ Pandoc
       , Space
       , Str "is"
       , Space
-      , Str "Hyper-Channel"
+      , Span ( "" , [ "index" ] , [] ) [ Str "Hyper-Channel" ]
       , Space
       , Cite
           [ Citation
@@ -34843,7 +35026,6 @@ Pandoc
               }
           ]
           [ Str "[@Bulygin2008]" ]
-      , RawInline (Format "tex") "\\index{Hyper-Channel}"
       , Str "."
       , Space
       , Str "In"
@@ -34851,11 +35033,11 @@ Pandoc
       , Str "this"
       , Space
       , Str "case,"
-      , SoftBreak
+      , Space
       , Str "a"
       , Space
       , Str "spy"
-      , Space
+      , SoftBreak
       , Str "process"
       , Space
       , Str "invokes"
@@ -34881,9 +35063,9 @@ Pandoc
       , Str "Then"
       , Space
       , Str "it"
-      , SoftBreak
-      , Str "lets"
       , Space
+      , Str "lets"
+      , SoftBreak
       , Str "the"
       , Space
       , Str "victim"
@@ -34909,9 +35091,9 @@ Pandoc
       , Str "many"
       , Space
       , Str "of"
-      , SoftBreak
-      , Str "its"
       , Space
+      , Str "its"
+      , SoftBreak
       , Str "return"
       , Space
       , Str "stack"
@@ -34935,9 +35117,9 @@ Pandoc
       , Str "Buffer"
       , Space
       , Str "(RSB),"
-      , SoftBreak
-      , Str "by"
       , Space
+      , Str "by"
+      , SoftBreak
       , Str "measuring"
       , Space
       , Str "the"
@@ -34955,7 +35137,7 @@ Pandoc
       , Str "get"
       , Space
       , Str "mis-predicted."
-      , SoftBreak
+      , Space
       , Str "If"
       , Space
       , Str "the"
@@ -34963,7 +35145,7 @@ Pandoc
       , Str "number"
       , Space
       , Str "of"
-      , Space
+      , SoftBreak
       , Str "calls"
       , Space
       , Str "in"
@@ -34971,7 +35153,7 @@ Pandoc
       , Str "the"
       , Space
       , Str "victim"
-      , SoftBreak
+      , Space
       , Str "process"
       , Space
       , Str "is"
@@ -34989,7 +35171,7 @@ Pandoc
       , Str "could"
       , Space
       , Str "leak"
-      , Space
+      , SoftBreak
       , Str "it."
       ]
   , Para
@@ -35078,7 +35260,11 @@ Pandoc
             , Str "state"
             , Space
             , Str "("
-            , Emph [ Str "reset" , SoftBreak , Str "sequence" ]
+            , Emph
+                [ Span
+                    ( "" , [ "index" ] , [] )
+                    [ Str "reset" , SoftBreak , Str "sequence" ]
+                ]
             , Str "),"
             , Space
             , Str "run"
@@ -35090,7 +35276,6 @@ Pandoc
             , Str "spy"
             , Space
             , Str "process."
-            , RawInline (Format "tex") "\\index{reset sequence}"
             ]
         ]
       , [ Plain
@@ -35113,9 +35298,13 @@ Pandoc
             , Str "state"
             , Space
             , Str "change"
-            , Space
+            , SoftBreak
             , Str "("
-            , Emph [ Str "trigger" , SoftBreak , Str "sequence" ]
+            , Emph
+                [ Span
+                    ( "" , [ "index" ] , [] )
+                    [ Str "trigger" , Space , Str "sequence" ]
+                ]
             , Str "),"
             , Space
             , Str "run"
@@ -35127,7 +35316,6 @@ Pandoc
             , Str "victim"
             , Space
             , Str "process."
-            , RawInline (Format "tex") "\\index{trigger sequence}"
             ]
         ]
       , [ Plain
@@ -35150,7 +35338,11 @@ Pandoc
             , Str "state"
             , Space
             , Str "("
-            , Emph [ Str "measurement" , SoftBreak , Str "sequence" ]
+            , Emph
+                [ Span
+                    ( "" , [ "index" ] , [] )
+                    [ Str "measurement" , SoftBreak , Str "sequence" ]
+                ]
             , Str "),"
             , Space
             , Str "run"
@@ -35161,8 +35353,7 @@ Pandoc
             , Space
             , Str "spy"
             , Space
-            , Str "process"
-            , RawInline (Format "tex") "\\index{measurement sequence}"
+            , Str "process."
             ]
         ]
       ]
@@ -35560,8 +35751,14 @@ Pandoc
       , Space
       , Str "is"
       , Space
-      , Strong [ Str "control" , SoftBreak , Str "dependencies" ]
-      , RawInline (Format "tex") "\\index{control dependencies}"
+      , Strong
+          [ Span
+              ( ""
+              , [ "index" ]
+              , [ ( "entry" , "control dependency" ) ]
+              )
+              [ Str "control" , SoftBreak , Str "dependencies" ]
+          ]
       , Str ","
       , Space
       , Str "where"
@@ -35571,9 +35768,9 @@ Pandoc
       , Str "the"
       , Space
       , Str "later"
-      , Space
-      , Str "instruction"
       , SoftBreak
+      , Str "instruction"
+      , Space
       , Str "should"
       , Space
       , Str "be"
@@ -35609,22 +35806,36 @@ Pandoc
       , Str "are"
       , Space
       , Strong
-          [ Str "true"
-          , Space
-          , Str "data"
-          , Space
-          , Str "dependencies"
+          [ Span
+              ( ""
+              , [ "index" ]
+              , [ ( "entry" , "true data dependency" ) ]
+              )
+              [ Str "true"
+              , Space
+              , Str "data"
+              , Space
+              , Str "dependencies"
+              ]
           ]
-      , RawInline (Format "tex") "\\index{true data\ndependency}"
       , Str ","
       , Space
-      , Strong [ Str "anti-dependencies" ]
-      , RawInline (Format "tex") "\\index{anti dependency}"
+      , Strong
+          [ Span
+              ( "" , [ "index" ] , [ ( "entry" , "data dependency" ) ] )
+              [ Str "anti-dependencies" ]
+          ]
       , Space
       , Str "and"
-      , Space
-      , Strong [ Str "output" , SoftBreak , Str "dependencies" ]
-      , RawInline (Format "tex") "\\index{output dependency}"
+      , SoftBreak
+      , Strong
+          [ Span
+              ( ""
+              , [ "index" ]
+              , [ ( "entry" , "output dependency" ) ]
+              )
+              [ Str "output" , Space , Str "dependencies" ]
+          ]
       , Str "."
       , Space
       , Str "More"
@@ -35632,13 +35843,13 @@ Pandoc
       , Str "details"
       , Space
       , Str "about"
-      , Space
+      , SoftBreak
       , Str "these"
       , Space
       , Str "kinds"
       , Space
       , Str "of"
-      , SoftBreak
+      , Space
       , Str "dependencies"
       , Space
       , Str "can"
@@ -35691,18 +35902,21 @@ Pandoc
       , Space
       , Str "of"
       , Space
-      , Strong [ Str "predictions" ]
-      , RawInline (Format "tex") "\\index{prediction}"
+      , Strong
+          [ Span
+              ( "" , [ "index" ] , [ ( "entry" , "prediction" ) ] )
+              [ Str "predictions" ]
+          ]
       , Str "."
       , Space
       , Str "For"
       , Space
       , Str "example,"
-      , Space
+      , SoftBreak
       , Str "most"
       , Space
       , Str "CPUs"
-      , SoftBreak
+      , Space
       , Str "predict"
       , Space
       , Str "whether"
@@ -35724,9 +35938,9 @@ Pandoc
       , Str "is"
       , Space
       , Str "making"
-      , Space
-      , Str "a"
       , SoftBreak
+      , Str "a"
+      , Space
       , Str "prediction"
       , Space
       , Str "on"
@@ -35748,9 +35962,9 @@ Pandoc
       , Str "making"
       , Space
       , Str "a"
-      , Space
-      , Str "prediction"
       , SoftBreak
+      , Str "prediction"
+      , Space
       , Str "on"
       , Space
       , Str "whether"
@@ -35774,13 +35988,13 @@ Pandoc
       , Str "a"
       , Space
       , Str "preceding"
-      , Space
+      , SoftBreak
       , Str "store."
       , Space
       , Str "If"
       , Space
       , Str "they"
-      , SoftBreak
+      , Space
       , Str "do"
       , Space
       , Str "not"
@@ -35804,13 +36018,13 @@ Pandoc
       , Str "run"
       , Space
       , Str "in"
-      , Space
+      , SoftBreak
       , Str "parallel"
       , Space
       , Str "with"
       , Space
       , Str "the"
-      , SoftBreak
+      , Space
       , Str "store,"
       , Space
       , Str "as"
@@ -35834,9 +36048,9 @@ Pandoc
       , Str "they"
       , Space
       , Str "do"
-      , Space
-      , Str "access"
       , SoftBreak
+      , Str "access"
+      , Space
       , Str "overlapping"
       , Space
       , Str "memory"
@@ -35895,9 +36109,9 @@ Pandoc
       , Str "dependencies"
       , Space
       , Str "have"
-      , Space
-      , Str "been"
       , SoftBreak
+      , Str "been"
+      , Space
       , Str "resolved,"
       , Space
       , Str "based"
@@ -35912,8 +36126,8 @@ Pandoc
       , Space
       , Str "called"
       , Space
-      , Strong [ Str "speculation" ]
-      , RawInline (Format "tex") "\\index{speculation}"
+      , Strong
+          [ Span ( "" , [ "index" ] , [] ) [ Str "speculation" ] ]
       , Str "."
       ]
   , Para
@@ -36551,8 +36765,8 @@ Pandoc
       , Space
       , Str "so-called"
       , SoftBreak
-      , Strong [ Str "mis-speculation" ]
-      , RawInline (Format "tex") "\\index{mis-speculation}"
+      , Strong
+          [ Span ( "" , [ "index" ] , [] ) [ Str "mis-speculation" ] ]
       , Str ","
       , Space
       , Str "are"
@@ -36560,8 +36774,10 @@ Pandoc
       , Str "called"
       , Space
       , Strong
-          [ Str "transient" , SoftBreak , Str "instructions" ]
-      , RawInline (Format "tex") "\\index{transient instructions}"
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "transient" , SoftBreak , Str "instructions" ]
+          ]
       , Str "."
       , Note
           [ Para
@@ -36572,9 +36788,9 @@ Pandoc
               , Str "caused"
               , Space
               , Str "by"
-              , SoftBreak
-              , Str "incorrect"
               , Space
+              , Str "incorrect"
+              , SoftBreak
               , Str "branch-direction"
               , Space
               , Str "prediction"
@@ -36588,9 +36804,13 @@ Pandoc
               , Str "called"
               , Space
               , Strong
-                  [ Str "wrong-path" , SoftBreak , Str "instructions" ]
-              , RawInline
-                  (Format "tex") "\\index{wrong-patch instructions}"
+                  [ Span
+                      ( "" , [ "index" ] , [] )
+                      [ Str "wrong-path"
+                      , SoftBreak
+                      , Str "instructions"
+                      ]
+                  ]
               , Space
               , Cite
                   [ Citation
@@ -36879,13 +37099,16 @@ Pandoc
       , Space
       , Str "the"
       , Space
-      , Strong [ Str "architectural" , Space , Str "effects" ]
-      , RawInline (Format "tex") "\\index{architectural\neffects}"
+      , Strong
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "architectural" , Space , Str "effects" ]
+          ]
       , Space
       , Str "of"
       , Space
       , Str "transient"
-      , Space
+      , SoftBreak
       , Str "instructions"
       , Space
       , Str "need"
@@ -36901,16 +37124,17 @@ Pandoc
       , Str "the"
       , SoftBreak
       , Strong
-          [ Str "micro-architectural" , Space , Str "effects" ]
-      , RawInline
-          (Format "tex") "\\index{micro-architectural effects}"
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "micro-architectural" , Space , Str "effects" ]
+          ]
       , Space
       , Str "do"
       , Space
       , Str "not"
       , Space
       , Str "need"
-      , SoftBreak
+      , Space
       , Str "to"
       , Space
       , Str "be"
@@ -37115,15 +37339,21 @@ Pandoc
           ]
       ]
   , Para
-      [ Strong [ Str "Faulting" , Space , Str "instructions" ]
-      , RawInline (Format "tex") "\\index{faulting instructions}"
+      [ Strong
+          [ Span
+              ( ""
+              , [ "index" ]
+              , [ ( "entry" , "faulting instructions" ) ]
+              )
+              [ Str "Faulting" , Space , Str "instructions" ]
+          ]
       , Space
       , Str "are"
-      , Space
+      , SoftBreak
       , Str "instructions"
       , Space
       , Str "that"
-      , SoftBreak
+      , Space
       , Str "generate"
       , Space
       , Str "an"
@@ -37139,13 +37369,13 @@ Pandoc
       , Str "instructions"
       , Space
       , Str "can"
-      , Space
+      , SoftBreak
       , Str "generate"
       , Space
       , Str "an"
       , Space
       , Str "exception,"
-      , SoftBreak
+      , Space
       , Str "and"
       , Space
       , Str "are"
@@ -37160,13 +37390,13 @@ Pandoc
       , Str "example"
       , Space
       , Str "most"
-      , Space
+      , SoftBreak
       , Str "load"
       , Space
       , Str "and"
       , Space
       , Str "store"
-      , SoftBreak
+      , Space
       , Str "instructions"
       , Space
       , Str "generate"
@@ -37184,11 +37414,11 @@ Pandoc
       , Str "address"
       , Space
       , Str "is"
-      , Space
+      , SoftBreak
       , Str "not"
       , Space
       , Str "mapped."
-      , SoftBreak
+      , Space
       , Str "Since"
       , Space
       , Str "so"
@@ -37206,9 +37436,9 @@ Pandoc
       , Str "exception,"
       , Space
       , Str "processors"
-      , Space
-      , Str "typically"
       , SoftBreak
+      , Str "typically"
+      , Space
       , Str "speculate"
       , Space
       , Str "that"
@@ -37230,9 +37460,9 @@ Pandoc
       , Str "enable"
       , Space
       , Str "more"
-      , Space
-      , Str "parallel"
       , SoftBreak
+      , Str "parallel"
+      , Space
       , Str "execution."
       ]
   , Para
@@ -37297,8 +37527,10 @@ Pandoc
       , Str "called"
       , Space
       , Strong
-          [ Str "transient" , SoftBreak , Str "instructions" ]
-      , RawInline (Format "tex") "\\index{transient instructions}"
+          [ Span
+              ( "" , [ "index" ] , [] )
+              [ Str "transient" , SoftBreak , Str "instructions" ]
+          ]
       , Str "."
       ]
   , Para
@@ -37449,19 +37681,23 @@ Pandoc
       ]
   , Para
       [ Strong
-          [ Str "Transient"
-          , Space
-          , Str "execution"
-          , Space
-          , Str "attacks"
+          [ Span
+              ( ""
+              , [ "index" ]
+              , [ ( "entry" , "transient execution attacks" ) ]
+              )
+              [ Str "Transient"
+              , Space
+              , Str "execution"
+              , Space
+              , Str "attacks"
+              ]
           ]
-      , RawInline
-          (Format "tex") "\\index{transient execution attacks}"
-      , Space
+      , SoftBreak
       , Str "are"
       , Space
       , Str "a"
-      , SoftBreak
+      , Space
       , Str "category"
       , Space
       , Str "of"
@@ -37477,9 +37713,9 @@ Pandoc
       , Str "the"
       , Space
       , Str "micro-architectural"
-      , Space
-      , Str "side-effects"
       , SoftBreak
+      , Str "side-effects"
+      , Space
       , Str "of"
       , Space
       , Str "transient"
@@ -37503,8 +37739,7 @@ Pandoc
       , Space
       , Str "the"
       , Space
-      , Str "Spectre"
-      , RawInline (Format "tex") "\\index{Spectre}"
+      , Span ( "" , [ "index" ] , [] ) [ Str "Spectre" ]
       , Space
       , Cite
           [ Citation
@@ -37519,10 +37754,9 @@ Pandoc
           [ Str "[@Kocher2019]" ]
       , Space
       , Str "and"
-      , SoftBreak
-      , Str "Meltdown"
-      , RawInline (Format "tex") "\\index{Meltdown}"
       , Space
+      , Span ( "" , [ "index" ] , [] ) [ Str "Meltdown" ]
+      , SoftBreak
       , Cite
           [ Citation
               { citationId = "Lipp2018"
@@ -37552,13 +37786,13 @@ Pandoc
       , Str "which"
       , Space
       , Str "a"
-      , SoftBreak
+      , Space
       , Str "large"
       , Space
       , Str "number"
       , Space
       , Str "of"
-      , Space
+      , SoftBreak
       , Str "transient"
       , Space
       , Str "attacks"
@@ -37576,11 +37810,11 @@ Pandoc
       , Str "of"
       , Space
       , Str "them"
-      , SoftBreak
+      , Space
       , Str "were"
       , Space
       , Str "given"
-      , Space
+      , SoftBreak
       , Str "specific"
       , Space
       , Str "names,"
@@ -37596,9 +37830,9 @@ Pandoc
       , Str "LVI,"
       , Space
       , Str "Straight-line"
-      , SoftBreak
-      , Str "Speculation,"
       , Space
+      , Str "Speculation,"
+      , SoftBreak
       , Str "etc."
       , Space
       , Str "New"
@@ -40794,26 +41028,26 @@ Pandoc
       , SoftBreak
       , Str "this"
       , Space
-      , Str "dead"
-      , Space
-      , Str "store"
-      , Space
-      , Str "optimization"
-      , Space
-      , Str "(DSO)"
-      , Space
-      , RawInline
-          (Format "tex") "\\index{dead store optimization}"
+      , Span
+          ( "" , [ "index" ] , [] )
+          [ Str "dead"
+          , Space
+          , Str "store"
+          , Space
+          , Str "optimization"
+          , Space
+          , Str "(DSO)"
+          ]
       , Str "."
       , Space
       , Str "This"
       , Space
       , Str "has"
-      , SoftBreak
+      , Space
       , Str "serious"
       , Space
       , Str "security"
-      , Space
+      , SoftBreak
       , Str "implications"
       , Space
       , Str "because"
@@ -40831,13 +41065,13 @@ Pandoc
       , Str "was"
       , Space
       , Str "to"
-      , SoftBreak
+      , Space
       , Str "delete"
       , Space
       , Str "the"
       , Space
       , Code ( "" , [] , [] ) "hash"
-      , Space
+      , SoftBreak
       , Str "information"
       , Space
       , Str "from"
@@ -40898,9 +41132,8 @@ Pandoc
       , Space
       , Str "uses"
       , Space
-      , Code ( "" , [] , [] ) "memset"
-      , Space
-      , RawInline (Format "tex") "\\index{memset}"
+      , Span
+          ( "" , [ "index" ] , [] ) [ Code ( "" , [] , [] ) "memset" ]
       , Space
       , Str "to"
       , Space
@@ -40911,9 +41144,9 @@ Pandoc
       , Str "associated"
       , Space
       , Str "security"
-      , SoftBreak
-      , Str "sensitive"
       , Space
+      , Str "sensitive"
+      , SoftBreak
       , Str "data,"
       , Space
       , Str "but"
@@ -40961,9 +41194,9 @@ Pandoc
       , Str "fully"
       , Space
       , Str "eliminate"
-      , SoftBreak
-      , Str "dead"
       , Space
+      , Str "dead"
+      , SoftBreak
       , Str "stores"
       , Space
       , Cite
@@ -47032,7 +47265,7 @@ Pandoc
           )
       , Str "."
       ]
-  , RawBlock (Format "tex") "\\printindex"
+  , Div ( "index" , [] , [] ) []
   , Header
       1
       ( "references" , [ "unnumbered" ] , [] )

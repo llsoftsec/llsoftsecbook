@@ -200,7 +200,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
   Copyright 2024 Anders Waldenborg
 \href{mailto:anders@0x63.nu}{\nolinkurl{anders@0x63.nu}}\\
 
-Version 0-212-g5094cff
+Version 0-213-g81279c6
 \clearpage
 % end of llsoftsecbook-specific template part
 
@@ -327,11 +327,12 @@ listing their types, which include:
 
 Memory vulnerabilities are an important class of vulnerabilities that
 arise due to these types of errors, and they most commonly occur due to
-programming mistakes when using languages such as C/C++
-\index{C}\index{C++}. These languages do not provide mechanisms to
-protect against memory access errors by default. An attacker can exploit
-such vulnerabilities to leak sensitive data or overwrite critical memory
-locations and gain control of the vulnerable program.
+programming mistakes when using languages such as
+\phantomsection\label{__index_entry_1}{C}\index{C}/\phantomsection\label{__index_entry_2}{C++}\index{C++}.
+These languages do not provide mechanisms to protect against memory
+access errors by default. An attacker can exploit such vulnerabilities
+to leak sensitive data or overwrite critical memory locations and gain
+control of the vulnerable program.
 
 Memory vulnerabilities have a long history. The
 \href{https://en.wikipedia.org/wiki/Morris_worm}{Morris worm} in 1988
@@ -364,12 +365,13 @@ techniques such as bounds checking and automatic memory management. If
 these languages promise to eliminate memory vulnerabilities, why are we
 still discussing this topic?
 
-On the one hand, C and C++ \index{C}\index{C++} remain very popular
-languages, particularly in the implementation of low-level software. On
-the other hand, programs written in memory safe languages can themselves
-be vulnerable to memory errors as a result of bugs in how they are
-implemented, e.g.~a bug in their compiler. Can we fix the problem by
-also using memory safe languages for the compiler and runtime
+On the one hand, \phantomsection\label{__index_entry_3}{C}\index{C} and
+\phantomsection\label{__index_entry_4}{C++}\index{C++} remain very
+popular languages, particularly in the implementation of low-level
+software. On the other hand, programs written in memory safe languages
+can themselves be vulnerable to memory errors as a result of bugs in how
+they are implemented, e.g.~a bug in their compiler. Can we fix the
+problem by also using memory safe languages for the compiler and runtime
 implementation? Even if that were as simple as it sounds, unfortunately
 there are types of programming errors that these languages cannot
 protect against. For example, a logical error in the implementation of a
@@ -401,15 +403,17 @@ vulnerabilities and be able to design effective mitigations, it's
 important to understand what these terms mean, how these primitives
 could be obtained by an attacker, and how they can be used.
 
-An \emph{exploit primitive}\index{exploit primitive} is a mechanism that
-allows an attacker to perform a specific operation in the memory space
-of the victim program. This is done by providing specially crafted input
-to the victim program.
+An \emph{\phantomsection\label{__index_entry_5}{exploit
+primitive}\index{exploit primitive}} is a mechanism that allows an
+attacker to perform a specific operation in the memory space of the
+victim program. This is done by providing specially crafted input to the
+victim program.
 
-A \emph{write primitive}\index{write primitive} gives the attacker some
-level of write access to the victim's memory space. The value written
-and the address written to may be controlled by the attacker to various
-degrees. The primitive, for example, may allow:
+A \emph{\phantomsection\label{__index_entry_6}{write
+primitive}\index{write primitive}} gives the attacker some level of
+write access to the victim's memory space. The value written and the
+address written to may be controlled by the attacker to various degrees.
+The primitive, for example, may allow:
 
 \begin{itemize}
 \tightlist
@@ -434,12 +438,13 @@ The most powerful version of a write primitive is an \emph{arbitrary
 write} primitive, where both the address and the value are fully
 controlled by the attacker.
 
-A \emph{read primitive}\index{read primitive}, respectively, gives the
-attacker read access to the victim's memory space. The address of the
-memory location accessed will be controlled by the attacker to some
-degree, as for the write primitive. A particularly useful primitive is
-an \emph{arbitrary read} primitive, in which the address is fully
-controlled by the attacker.
+A \emph{\phantomsection\label{__index_entry_7}{read
+primitive}\index{read primitive}}, respectively, gives the attacker read
+access to the victim's memory space. The address of the memory location
+accessed will be controlled by the attacker to some degree, as for the
+write primitive. A particularly useful primitive is an \emph{arbitrary
+read} primitive, in which the address is fully controlled by the
+attacker.
 
 The effects of a write primitive are perhaps easier to understand, as it
 has obvious side-effects: a value is written to the victim program's
@@ -451,26 +456,26 @@ This depends on whether the attack is interactive or non-interactive
 \begin{itemize}
 \tightlist
 \item
-  In an \emph{interactive attack}\index{interactive attack}, the
-  attacker gives malicious input to the victim program. The malicious
-  input causes the victim program to perform the read the attacker
-  instructed it to, and to output the results of that read. This output
-  could be any kind of output, for example a network packet that the
-  victim transmits. The attacker can observe the result of the read
-  primitive by looking at this output, for example parsing this network
-  packet. This process then repeats: the attacker sends more malicious
-  input to the victim, observes the output and prepares the next input.
-  You can see an example of this type of attack in
-  (\citeproc{ref-Beer2020}{Beer 2020}), which describes a zero-click
-  radio proximity exploit.
+  In an \emph{\phantomsection\label{__index_entry_8}{interactive
+  attack}\index{interactive attack}}, the attacker gives malicious input
+  to the victim program. The malicious input causes the victim program
+  to perform the read the attacker instructed it to, and to output the
+  results of that read. This output could be any kind of output, for
+  example a network packet that the victim transmits. The attacker can
+  observe the result of the read primitive by looking at this output,
+  for example parsing this network packet. This process then repeats:
+  the attacker sends more malicious input to the victim, observes the
+  output and prepares the next input. You can see an example of this
+  type of attack in (\citeproc{ref-Beer2020}{Beer 2020}), which
+  describes a zero-click radio proximity exploit.
 \item
-  In a \emph{non-interactive (one-shot)
-  attack}\index{non-interactive (one-shot)
-  attack}, the attacker provides all malicious input to the victim
-  program at once. The malicious input triggers multiple primitives one
-  after the other, and the primitives are able to observe the effects of
-  the preceding operations through the victim program's state. The input
-  could be, for example, in the form of a JavaScript program
+  In a \emph{\phantomsection\label{__index_entry_9}{non-interactive
+  (one-shot) attack}\index{non-interactive (one-shot) attack}}, the
+  attacker provides all malicious input to the victim program at once.
+  The malicious input triggers multiple primitives one after the other,
+  and the primitives are able to observe the effects of the preceding
+  operations through the victim program's state. The input could be, for
+  example, in the form of a JavaScript program
   (\citeproc{ref-Grouxdf2020}{Groß 2020}), or a PDF file pretending to
   be a GIF (\citeproc{ref-Beer2021}{Beer and Groß 2021}).
 \end{itemize}
@@ -561,11 +566,12 @@ them to achieve their goals?
 The ultimate goal of an attacker may vary: it may be, among other
 things, getting access to a system, leaking sensitive information or
 bringing down a service. Frequently, a first step towards these wider
-goals is arbitrary code execution\index{arbitrary code execution} within
-the victim process. We have already mentioned that the attacker will
-typically have arbitrary computation capabilities at this point, but
-arbitrary code execution also involves things like calling arbitrary
-library functions and performing system calls.
+goals is \phantomsection\label{__index_entry_10}{arbitrary code
+execution}\index{arbitrary code execution} within the victim process. We
+have already mentioned that the attacker will typically have arbitrary
+computation capabilities at this point, but arbitrary code execution
+also involves things like calling arbitrary library functions and
+performing system calls.
 
 Some examples of how the attacker may use the obtained primitives:
 
@@ -688,10 +694,11 @@ from \texttt{main}.
 
 Before non-executable stacks were mainstream, a common way to exploit
 these vulnerabilities would be to use the overflow to simultaneously
-write shellcode\footnote{A shellcode is a short instruction sequence
-  that performs an action such as starting a shell on the victim
-  machine.}\index{shellcode} to the stack and overwrite the return
-address so that it points to the shellcode.
+write
+\phantomsection\label{__index_entry_11}{shellcode}\index{shellcode}\footnote{A
+  shellcode is a short instruction sequence that performs an action such
+  as starting a shell on the victim machine.} to the stack and overwrite
+the return address so that it points to the shellcode.
 (\citeproc{ref-AlephOne1996}{Aleph One 1996}) is a classic example of
 this technique.
 
@@ -750,8 +757,9 @@ string manipulation functions, even when the value is leaked.
 Many buffer overflow vulnerabilities result from the use of unsafe
 library functions, such as \texttt{gets}, or from the unsafe use of
 library functions such as \texttt{strcpy}. There is extensive literature
-on writing secure C/C++\index{C}\index{C++} code, for example
-(\citeproc{ref-Seacord2013}{Seacord 2013}) and
+on writing secure
+\phantomsection\label{__index_entry_12}{C}\index{C}/\phantomsection\label{__index_entry_13}{C++}\index{C++}
+code, for example (\citeproc{ref-Seacord2013}{Seacord 2013}) and
 (\citeproc{ref-Dowd2006}{Dowd, McDonald, and Schuh 2006}). A different
 approach to limiting the effects of overflows is library function
 hardening, which aims to detect buffer overflows and terminate the
@@ -778,11 +786,12 @@ determined (\texttt{-fsanitize=bounds}), as well as various other
 \section{Code reuse attacks}\label{code-reuse-attacks}
 
 In the early days of memory vulnerability exploitation, attackers could
-simply place shellcode\index{shellcode} of their choice in executable
-memory and jump to it. As non-executable stack and heap became
-mainstream, attackers started to reuse code already present in an
-application's binary and linked libraries instead. A variety of
-different techniques to this effect came to light.
+simply place
+\phantomsection\label{__index_entry_14}{shellcode}\index{shellcode} of
+their choice in executable memory and jump to it. As non-executable
+stack and heap became mainstream, attackers started to reuse code
+already present in an application's binary and linked libraries instead.
+A variety of different techniques to this effect came to light.
 
 The simplest of these techniques is return-to-libc
 (\citeproc{ref-Solar1997}{Solar Designer 1997}). Instead of returning to
@@ -799,19 +808,20 @@ Return-to-libc attacks restrict an attacker to whole library functions.
 While this can lead to powerful attacks, it has also been demonstrated
 that it is possible to achieve arbitrary computation by combining a
 number of short instruction sequences ending in indirect control
-transfer instructions, known as \textbf{gadgets}\index{gadget}. The
-indirect control transfer instructions make it easy for an attacker to
-execute gadgets one after another, by controlling the memory or register
-that provides each control transfer instruction's target.
+transfer instructions, known as
+\textbf{\phantomsection\label{__index_entry_15}{gadgets}\index{gadgets}}.
+The indirect control transfer instructions make it easy for an attacker
+to execute gadgets one after another, by controlling the memory or
+register that provides each control transfer instruction's target.
 
-In return-oriented programming
-(ROP)\index{return-oriented programming (ROP)}
+In \phantomsection\label{__index_entry_16}{return-oriented programming
+(ROP)}\index{return-oriented programming (ROP)}
 (\citeproc{ref-Shacham2007}{Shacham 2007}), each gadget performs a
 simple operation, for example setting a register, then pops a return
 address from the stack and returns to it. The attacker constructs a fake
-call stack (often called a ROP chain\index{ROP
-chain}) which ensures a number of gadgets are executed one after
-another, in order to perform a more complex operation.
+call stack (often called a \phantomsection\label{__index_entry_17}{ROP
+chain}\index{ROP chain}) which ensures a number of gadgets are executed
+one after another, in order to perform a more complex operation.
 
 This will hopefully become more clear with an example: a ROP chain for
 AArch64 Linux that starts a shell, by calling \texttt{execve} with
@@ -933,8 +943,9 @@ frame in which the address of \texttt{gadget\_x2} has replaced a saved
 return address that will be loaded and returned to in the future. As an
 alternative, an attacker could place this fake call stack somewhere
 else, for example on the heap, and use a primitive that changes the
-stack pointer's value instead. This is known as stack
-pivoting\index{stack pivoting}.
+stack pointer's value instead. This is known as
+\phantomsection\label{__index_entry_18}{stack
+pivoting}\index{stack pivoting}.
 
 Note that this fake call stack contains zero bytes, even without
 considering the exact values of the various return addresses included.
@@ -954,11 +965,11 @@ this in the next section.
 
 ROP gadgets like the ones used here may be easy to identify by visual
 inspection of a disassembled binary, but it's common for attackers to
-use ``gadget scanner''\index{gadget scanner} tools in order to discover
-large numbers of gadgets automatically. Such tools can also be useful to
-a compiler engineer working on a code reuse attack mitigation, as they
-can point out code sequences that should be protected and have been
-missed.
+use ``\phantomsection\label{__index_entry_19}{gadget
+scanner}\index{gadget scanner}'' tools in order to discover large
+numbers of gadgets automatically. Such tools can also be useful to a
+compiler engineer working on a code reuse attack mitigation, as they can
+point out code sequences that should be protected and have been missed.
 
 Anything in executable memory can potentially be used as a ROP gadget,
 even if the compiler has not intended it to be code. This includes
@@ -975,15 +986,17 @@ bytes corresponds to the two single byte instructions
 
 \subsection{Jump-oriented programming}\label{jump-oriented-programming}
 
-Jump-oriented programming (JOP)\index{jump-oriented programming (JOP)}
+\phantomsection\label{__index_entry_20}{Jump-oriented programming
+(JOP)}\index{Jump-oriented programming (JOP)}
 (\citeproc{ref-Bletsch2011}{Bletsch et al. 2011}) is a variation on ROP,
 where gadgets can also end in indirect branch instructions instead of
 return instructions. The attacker chains a number of such gadgets
-through a dispatcher gadget\index{dispatcher gadget}, which loads
-pointers one after another from an array of pointers, and branches to
-each one in return. The gadgets used must be set up so that they branch
-or return back to the dispatcher after they're done. This is
-demonstrated in figure \hyperref[fig:jop]{3}.
+through a \phantomsection\label{__index_entry_21}{dispatcher
+gadget}\index{dispatcher gadget}, which loads pointers one after another
+from an array of pointers, and branches to each one in return. The
+gadgets used must be set up so that they branch or return back to the
+dispatcher after they're done. This is demonstrated in figure
+\hyperref[fig:jop]{3}.
 
 \begin{figure}
 \centering
@@ -1014,25 +1027,27 @@ dispatcher gadget.
 \subsection{Counterfeit Object-oriented
 programming}\label{counterfeit-object-oriented-programming}
 
-Counterfeit Object-oriented programming
-(COOP)\index{counterfeit object-oriented
-programming (COOP)} (\citeproc{ref-Schuster2015}{Schuster et al. 2015})
-is a code reuse technique that takes advantage of C++ \index{C++}
-virtual function calls. A COOP attack takes advantage of existing
-virtual functions and
+\phantomsection\label{__index_entry_22}{Counterfeit Object-oriented
+programming
+(COOP)}\index{Counterfeit Object-oriented programming (COOP)}
+(\citeproc{ref-Schuster2015}{Schuster et al. 2015}) is a code reuse
+technique that takes advantage of
+\phantomsection\label{__index_entry_23}{C++}\index{C++} virtual function
+calls. A COOP attack takes advantage of existing virtual functions and
 \href{https://en.wikipedia.org/wiki/Virtual_method_table}{vtables}, and
 creates fake objects pointing to these existing vtables. The virtual
 functions used as gadgets in the attack are called
-vfgadgets\index{vfgadget}. To chain vfgadgets together, the attacker
-uses a ``main loop gadget'', similar to JOP's dispatcher gadget, which
-is itself a virtual function that loops over a container of pointers to
-C++ objects and invokes a virtual function on these objects.
-(\citeproc{ref-Schuster2015}{Schuster et al. 2015}) describes the attack
-in more detail. It is specifically mentioned here as an example of an
-attack that doesn't depend on directly replacing return addresses and
-code pointers, like ROP and JOP do. Such language-specific attacks are
-important to consider when considering mitigations against code reuse
-attacks, which will be the topic of the next section.
+\phantomsection\label{__index_entry_24}{vfgadgets}\index{vfgadgets}. To
+chain vfgadgets together, the attacker uses a ``main loop gadget'',
+similar to JOP's dispatcher gadget, which is itself a virtual function
+that loops over a container of pointers to C++ objects and invokes a
+virtual function on these objects. (\citeproc{ref-Schuster2015}{Schuster
+et al. 2015}) describes the attack in more detail. It is specifically
+mentioned here as an example of an attack that doesn't depend on
+directly replacing return addresses and code pointers, like ROP and JOP
+do. Such language-specific attacks are important to consider when
+considering mitigations against code reuse attacks, which will be the
+topic of the next section.
 
 \tododiv{It would be nice to have a small example of a COOP attack,
 similar to the JOP example in the previous section.
@@ -1042,17 +1057,17 @@ similar to the JOP example in the previous section.
 programming}\label{sec:sigreturn-oriented-programming}
 
 One last example of a code reuse attack that is worth mentioning here is
-sigreturn-oriented programming
-(SROP)\index{sigreturn-oriented programming
-(SROP)} (\citeproc{ref-Bosman2014}{Bosman and Bos 2014}). It is a
-special case of ROP where the attacker creates a fake signal handler
-frame and calls \texttt{sigreturn}. \texttt{sigreturn} is a system call
-on many UNIX-type systems which is normally called upon return from a
-signal handler, and restores the state of the process based on the state
-that has been saved on the signal handler's stack by the kernel
-previously, on entry to the signal handler. The ability to fake a signal
-handler frame and call \texttt{sigreturn} gives an attacker a simple way
-to control the state of the program.
+\phantomsection\label{__index_entry_25}{sigreturn-oriented programming
+(SROP)}\index{sigreturn-oriented programming (SROP)}
+(\citeproc{ref-Bosman2014}{Bosman and Bos 2014}). It is a special case
+of ROP where the attacker creates a fake signal handler frame and calls
+\texttt{sigreturn}. \texttt{sigreturn} is a system call on many
+UNIX-type systems which is normally called upon return from a signal
+handler, and restores the state of the process based on the state that
+has been saved on the signal handler's stack by the kernel previously,
+on entry to the signal handler. The ability to fake a signal handler
+frame and call \texttt{sigreturn} gives an attacker a simple way to
+control the state of the program.
 
 \section{Mitigations against code reuse
 attacks}\label{mitigations-against-code-reuse-attacks}
@@ -1081,9 +1096,11 @@ attacker to obtain these capabilities.
 
 The ability for an attacker to overwrite code pointers often boils down
 to the being able to overwrite them while they are stored in memory,
-rather than in machine registers\index{register}. Overwriting value in
-machine registers directly is often not possible. Attackers use memory
-vulnerabilities\index{memory vulnerability} to be able to overwrite
+rather than in machine
+\phantomsection\label{__index_entry_26}{registers}\index{register}.
+Overwriting value in machine registers directly is often not possible.
+Attackers use \phantomsection\label{__index_entry_27}{memory
+vulnerabilities}\index{memory vulnerability} to be able to overwrite
 pointers in memory. With that in mind, one could assume that code reuse
 mitigations are not necessary for programs written in memory-safe
 languages, as they should not have any memory vulnerabilities. However,
@@ -1102,19 +1119,20 @@ is especially true for JIT-based languages, see section
 
 \subsection{ASLR}\label{aslr}
 
-\href{https://en.wikipedia.org/wiki/Address_space_layout_randomization}{Address
-space layout randomization (ASLR)}\index{ASLR} makes this more difficult
-by randomizing the positions of the memory areas containing the
-executable, the loaded libraries, the stack and the heap. ASLR requires
-code to be position-independent. Given enough entropy, the chance that
-an attacker would successfully guess one or more addresses in order to
-mount a successful attack will be greatly reduced.
+\href{https://en.wikipedia.org/wiki/Address_space_layout_randomization}{\phantomsection\label{__index_entry_28}{Address
+space layout randomization
+(ASLR)}\index{Address space layout randomization (ASLR)}} makes this
+more difficult by randomizing the positions of the memory areas
+containing the executable, the loaded libraries, the stack and the heap.
+ASLR requires code to be position-independent. Given enough entropy, the
+chance that an attacker would successfully guess one or more addresses
+in order to mount a successful attack will be greatly reduced.
 
 Does this mean that code reuse attacks have been made redundant by ASLR?
 Unfortunately, this is not the case. There are various ways in which an
 attacker can discover the memory layout of the victim program. This is
-often referred to as an ``info leak''\index{info leak}
-(\citeproc{ref-Serna2012}{Serna 2012}).
+often referred to as an ``\phantomsection\label{__index_entry_29}{info
+leak}\index{info leak}'' (\citeproc{ref-Serna2012}{Serna 2012}).
 
 Since we can not exclude code reuse attacks solely by making addresses
 hard to guess, we need to also consider mitigations that prevent
@@ -1128,13 +1146,15 @@ write primitives, we need something more.
 \subsection{Control-flow Integrity
 (CFI)}\label{control-flow-integrity-cfi}
 
-\href{https://en.wikipedia.org/wiki/Control-flow_integrity}{Control-flow
-integrity (CFI)}\index{CFI} is a family of mitigations that aim to
-preserve the intended control flow of a program. This is done by
-restricting the possible targets of indirect branches and returns. A
-scheme that protects indirect jumps and calls is referred to as
-forward-edge CFI\index{forward-edge CFI}, whereas a scheme that protects
-returns is said to implement backward-edge CFI\index{backward-edge CFI}.
+\href{https://en.wikipedia.org/wiki/Control-flow_integrity}{\phantomsection\label{__index_entry_30}{Control-flow
+integrity (CFI)}\index{Control-flow integrity (CFI)}} is a family of
+mitigations that aim to preserve the intended control flow of a program.
+This is done by restricting the possible targets of indirect branches
+and returns. A scheme that protects indirect jumps and calls is referred
+to as \phantomsection\label{__index_entry_31}{forward-edge
+CFI}\index{forward-edge CFI}, whereas a scheme that protects returns is
+said to implement \phantomsection\label{__index_entry_32}{backward-edge
+CFI}\index{backward-edge CFI}.
 
 Ideally, a CFI scheme would not allow any control flow transfers that
 don't occur in a correct program execution. However, different schemes
@@ -1144,12 +1164,13 @@ for security purpose. A branch is permitted to transfer control to any
 member of its intended target class.
 
 CFI schemes are sometimes classified as
-coarse-grained\index{coarse-grained
-CFI} or fine-grained\index{fine-grained CFI}. A coarse-grained CFI
-scheme is one that uses a small number of large equivalence classes,
-whereas a fine-grained scheme uses a larger number of smaller classes,
-so that the possible branch targets from a given location are more
-restricted (perhaps at a greater performance cost).
+\phantomsection\label{__index_entry_33}{coarse-grained}\index{coarse-grained CFI}
+or
+\phantomsection\label{__index_entry_34}{fine-grained}\index{fine-grained CFI}.
+A coarse-grained CFI scheme is one that uses a small number of large
+equivalence classes, whereas a fine-grained scheme uses a larger number
+of smaller classes, so that the possible branch targets from a given
+location are more restricted (perhaps at a greater performance cost).
 
 For example, a CFI scheme that allows an indirect function call to
 continue the execution at the start of any function would be considered
@@ -1248,15 +1269,18 @@ calls}\label{protecting-forward-indirect-function-calls}
 
 In practice, most in-production CFI schemes harden indirect function
 calls by partitioning all functions present in the program into
-equivalence classes\index{equivalence class}. Each function is assigned
-a single equivalence class.
+\phantomsection\label{__index_entry_35}{equivalence
+classes}\index{equivalence class}. Each function is assigned a single
+equivalence class.
 
 For C code, most CFI schemes either put all functions into a single
 equivalence class, or partition functions based on their
-signature\index{function signature}.
+\phantomsection\label{__index_entry_36}{signature}\index{function signature}.
 
-For example, arm64e\index{arm64e} and pauthabi\index{pauthabi} put all C
-functions in a single equivalence class see McCall and Bougacha
+For example,
+\phantomsection\label{__index_entry_37}{arm64e}\index{arm64e} and
+\phantomsection\label{__index_entry_38}{pauthabi}\index{pauthabi} put
+all C functions in a single equivalence class see McCall and Bougacha
 (\citeproc{ref-McCall2019}{2019}). Examples of CFI schemes that
 partition C functions based on their signature include
 \href{https://reviews.llvm.org/D119296}{kcfi} and
@@ -1327,9 +1351,10 @@ C functions based on their signature.
 \paragraph{Protecting (forward) virtual
 calls}\label{protecting-forward-virtual-calls}
 
-Many CFI schemes check that a C++ \index{C++} virtual function call
-happens on an object of the correct dynamic type. A few examples are:
-clang-cfi, arm64e, pauthabi.
+Many CFI schemes check that a
+\phantomsection\label{__index_entry_39}{C++}\index{C++} virtual function
+call happens on an object of the correct dynamic type. A few examples
+are: clang-cfi, arm64e, pauthabi.
 
 \begin{example}
 
@@ -1382,18 +1407,19 @@ jumps}\label{protecting-forward-switch-jumps}
 
 Switch statements with many cases whose values are densely packed
 together are often implemented using a
-\href{https://en.wikipedia.org/wiki/Branch_table}{jump
-table}\index{jump table}, which is an array of pointers or offsets to
+\href{https://en.wikipedia.org/wiki/Branch_table}{\phantomsection\label{__index_entry_40}{jump
+table}\index{jump table}}, which is an array of pointers or offsets to
 the code for each case. Ultimately, the address to jump to is computed
 by loading from the jump table, and then an indirect jump to the
 computed address is performed. If an attacker can control the value used
 to index into the jump table, they can make the jump target point to a
 different address, leading to the attacker taking over the control flow.
 
-Most CFI schemes do not protect against this, but arm64e\index{arm64e}
-and pauthabi\index{pauthabi} do, as explained in the example below. This
-is also explained in (\citeproc{ref-McCall2019}{McCall and Bougacha
-2019}, slide 39-40).
+Most CFI schemes do not protect against this, but
+\phantomsection\label{__index_entry_41}{arm64e}\index{arm64e} and
+\phantomsection\label{__index_entry_42}{pauthabi}\index{pauthabi} do, as
+explained in the example below. This is also explained in
+(\citeproc{ref-McCall2019}{McCall and Bougacha 2019}, slide 39-40).
 
 \begin{example}
 
@@ -1491,12 +1517,14 @@ returns}\label{protecting-backward-edge-returns}
 
 When a function is called, the address of the instruction after the call
 instruction is stored in a register or on the stack. That address of the
-next instruction is called the ``return address''\index{return address}.
-When the called function returns, it will use an instruction to branch
-to the return address. This is an indirect control flow, since the
-target of the branch isn't hard-coded in the instruction, but comes from
-a register or a memory location. If an attacker can change the value of
-the return address, they can redirect the control flow.
+next instruction is called the
+``\phantomsection\label{__index_entry_43}{return
+address}\index{return address}''. When the called function returns, it
+will use an instruction to branch to the return address. This is an
+indirect control flow, since the target of the branch isn't hard-coded
+in the instruction, but comes from a register or a memory location. If
+an attacker can change the value of the return address, they can
+redirect the control flow.
 
 \begin{example}
 
@@ -1533,13 +1561,13 @@ the return address, they can redirect the control flow.
 Most backward-edge CFI schemes add checks before executing the return
 instruction to verify that the return address hasn't been tampered with.
 
-Shadow stack\index{shadow stack} approaches store the return address on
-a second stack. Some shadow stack approaches also store the return
-address in the original location in the normal stack. In those, before
-the return is executed, it verifies that the return value on both the
-regular stack and the shadow stack are equal. All shadow stack
-approaches have mechanisms to make it hard to impossible for an attacker
-to overwrite the return address on the shadow stack.
+{[}Shadow stack{]}{]}\{.index entry=``shadow stack''\} approaches store
+the return address on a second stack. Some shadow stack approaches also
+store the return address in the original location in the normal stack.
+In those, before the return is executed, it verifies that the return
+value on both the regular stack and the shadow stack are equal. All
+shadow stack approaches have mechanisms to make it hard to impossible
+for an attacker to overwrite the return address on the shadow stack.
 
 A software-only implementation is the clang shadow stack, which is
 explained in more detail in section
@@ -1566,16 +1594,16 @@ as:
 \item
   C++ co-routines are typically implemented using structures containing
   code pointers. Abusing these has recently been coined as
-  \href{https://www.usenix.org/conference/usenixsecurity25/presentation/bajo}{Coroutine
-  Frame-Oriented Programming(CFOP)}\index{Coroutine
-  Frame-Oriented Programming (CFOP)}.
+  \href{https://www.usenix.org/conference/usenixsecurity25/presentation/bajo}{\phantomsection\label{__index_entry_44}{Coroutine
+  Frame-Oriented Programming
+  (CFOP)}\index{Coroutine Frame-Oriented Programming (CFOP)}}.
 \item
-  Procedure Linkage Table (PLT)\index{Procedure Linkage Table (PLT)} and
-  the \href{https://en.wikipedia.org/wiki/Global_Offset_Table}{Global
-  Offset Table(GOT)}\index{Global
-  Offset Table (GOT)} often contain code pointers. One common way to
-  protect these from being overwritten by an attacker is to make these
-  tables
+  \phantomsection\label{__index_entry_45}{Procedure Linkage Table
+  (PLT)}\index{Procedure Linkage Table (PLT)} and the
+  \href{https://en.wikipedia.org/wiki/Global_Offset_Table}{\phantomsection\label{__index_entry_46}{Global
+  Offset Table(GOT)}\index{Global Offset Table(GOT)}} often contain code
+  pointers. One common way to protect these from being overwritten by an
+  attacker is to make these tables
   \href{https://www.redhat.com/en/blog/hardening-elf-binaries-using-relocation-read-only-relro}{read-only
   during program startup}.
 \item
@@ -1652,8 +1680,8 @@ control-flow transfers are similar.
 \paragraph{Clang Shadow Stack}\label{sec:clang-shadow-stack}
 
 Clang also implements a backward-edge CFI scheme known as
-\href{https://clang.llvm.org/docs/ShadowCallStack.html}{Shadow
-Stack}\index{shadow stack}. In Clang's implementation, a separate stack
+\href{https://clang.llvm.org/docs/ShadowCallStack.html}{\phantomsection\label{__index_entry_47}{Shadow
+Stack}\index{shadow stack}}. In Clang's implementation, a separate stack
 is used for return addresses, which means that stack-based buffer
 overflows cannot be used to overwrite return addresses. The address of
 the shadow stack is randomized and kept in a dedicated register, with
@@ -1697,20 +1725,23 @@ hardware-based CFI implementations. A hardware-based implementation has
 the potential to offer improved protection and performance compared to
 an equivalent software-only CFI scheme.
 
-One such example is Pointer Authentication\index{Pointer Authentication}
+One such example is \phantomsection\label{__index_entry_48}{Pointer
+Authentication}\index{Pointer Authentication}
 (\citeproc{ref-Rutland2017}{Rutland 2017}), an Armv8.3 feature,
 supported only in AArch64 state, that can be used to mitigate code reuse
 attacks.
 
 Pointer Authentication computes a pointer \emph{signature} for a given
-address, called a Pointer Authentication Code
-(PAC)\index{Pointer Authentication Code
-(PAC)}, see \hyperref[fig:pauth-sign-auth]{4}. The PAC code is stored in
-the upper bits of the pointer which are otherwise unused.
+address, called a \phantomsection\label{__index_entry_49}{Pointer
+Authentication Code (PAC)}\index{Pointer Authentication Code (PAC)}, see
+\hyperref[fig:pauth-sign-auth]{4}. The PAC code is stored in the upper
+bits of the pointer which are otherwise unused.
 
-A pointer with a PAC code in the upper bits is called a \emph{signed
-pointer}\index{signed pointer}. A non-signed pointer is called a
-\emph{raw pointer}\index{raw pointer}.
+A pointer with a PAC code in the upper bits is called a
+\emph{\phantomsection\label{__index_entry_50}{signed
+pointer}\index{signed pointer}}. A non-signed pointer is called a
+\emph{\phantomsection\label{__index_entry_51}{raw
+pointer}\index{raw pointer}}.
 
 The general idea behind Pointer Authentication is that attackers will
 try to overwrite a pointer in memory using a memory vulnerability.
@@ -1736,8 +1767,9 @@ addresses, all function pointers, or more.
 An essential aspect of pointer authentication being useful is to make it
 hard for an attacker to construct the correct PAC that will pass
 authentication. To achieve that, next to the address, 2 other inputs are
-used to compute the PAC: a so-called key\index{key} and a
-modifier\index{modifier}:
+used to compute the PAC: a so-called
+\phantomsection\label{__index_entry_52}{key}\index{key} and a
+\phantomsection\label{__index_entry_53}{modifier}\index{modifier}:
 
 \begin{itemize}
 \item
@@ -1760,8 +1792,8 @@ modifier\index{modifier}:
 
   When an attacker successfully takes a signed pointer from one context
   and overwrites another pointer in another context with it, this is
-  called a pointer substitution
-  attack\index{pointer substitution attack}. Using different modifiers
+  called a \phantomsection\label{__index_entry_54}{pointer substitution
+  attack}\index{pointer substitution attack}. Using different modifiers
   for different contexts makes pointer substitution attacks harder.
 \end{itemize}
 
@@ -1878,8 +1910,9 @@ guessing it.
 The probability of success when guessing a PAC depends on the exact
 number of PAC bits available in a given system configuration.
 
-The authenticated pointers are vulnerable to pointer substitution
-attacks\index{pointer substitution attack}, where a pointer that has
+The authenticated pointers are vulnerable to
+\phantomsection\label{__index_entry_55}{pointer substitution
+attacks}\index{pointer substitution attacks}, where a pointer that has
 been signed with a given modifier is replaced with a different pointer
 that has also been signed with the same modifier. In the
 \texttt{pac-ret} scheme, this is mitigated by using the stack pointer as
@@ -1902,14 +1935,15 @@ useful in implementing more general memory safety measures, beyond CFI.
 
 \paragraph{BTI and other coarse-grained CFI schemes}\label{sec:bti}
 
-\href{https://developer.arm.com/documentation/102433/0100/Jump-oriented-programming?lang=en}{Branch
-Target Identification (BTI)} \index{BTI}, introduced in Armv8.5, offers
-coarse-grained forward-edge protection. With BTI, the locations that are
-targets of indirect branches have to be marked with a new instruction,
-\texttt{BTI}. There are four different types of BTI instructions that
-permit different types of indirect branches (indirect jump, indirect
-call, both, or none). An indirect branch to a non-BTI instruction or the
-wrong type of BTI instruction will raise a Branch Target Exception.
+\href{https://developer.arm.com/documentation/102433/0100/Jump-oriented-programming?lang=en}{\phantomsection\label{__index_entry_56}{Branch
+Target Identification (BTI)}\index{Branch Target Identification (BTI)}},
+introduced in Armv8.5, offers coarse-grained forward-edge protection.
+With BTI, the locations that are targets of indirect branches have to be
+marked with a new instruction, \texttt{BTI}. There are four different
+types of BTI instructions that permit different types of indirect
+branches (indirect jump, indirect call, both, or none). An indirect
+branch to a non-BTI instruction or the wrong type of BTI instruction
+will raise a Branch Target Exception.
 
 Both Clang and GCC support generating BTI instructions, with the
 \texttt{-mbranch-protection=bti} flag, or, to enable both BTI and return
@@ -1948,12 +1982,16 @@ will be the topic of the next section.
 \section{Non-control data attacks}\label{non-control-data-attacks}
 
 In the previous sections, we have focused on subverting control flow by
-overwriting control data\index{control data}, which are used to change
-the value of the program counter, such as return addresses and function
-pointers. Since these types of attacks are prominent, many mitigations
-have been designed with the goal of maintaining control-flow integrity.
-Non-control data attacks\index{non-control data attacks}, also known as
-data-only attacks\index{data-only attacks}, can completely bypass these
+overwriting \phantomsection\label{__index_entry_57}{control
+data}\index{control data}, which are used to change the value of the
+program counter, such as return addresses and function pointers. Since
+these types of attacks are prominent, many mitigations have been
+designed with the goal of maintaining control-flow integrity.
+\phantomsection\label{__index_entry_58}{Non-control data
+attacks}\index{Non-control data attacks} entry=``non-control data
+attacks''\}, also known as
+\phantomsection\label{__index_entry_59}{data-only
+attacks}\index{data-only attacks}, can completely bypass these
 mitigations, since the data they modify is not the control data that
 these mitigations protect.
 
@@ -2071,48 +2109,56 @@ We have so far discussed how languages that are
 \hyperref[a-bit-of-background-on-memory-vulnerabilities]{not memory
 safe}, like C and C++, are vulnerable to memory errors and therefore
 exploitation. In this section, we will discuss tools that are available
-to C/C++ \index{C}\index{C++}programmers to help them detect
-vulnerabilities that can lead to memory errors.
+to
+\phantomsection\label{__index_entry_60}{C}\index{C}/\phantomsection\label{__index_entry_61}{C++}\index{C++}
+programmers to help them detect vulnerabilities that can lead to memory
+errors.
 
 \subsection{Sanitizers}\label{sanitizers}
 
-Sanitizers \index{sanitizers} are tools that detect bugs during program
-execution. Sanitizers usually have two components: a compiler
-instrumentation part that introduces the new checks, and a runtime
-library part. They are often too expensive to run in production mode, as
-they tend to increase execution time and memory usage. They are commonly
-used during testing of an application, frequently in combination with
-fuzzers\index{fuzzing}\footnote{\href{https://en.wikipedia.org/wiki/Fuzzing}{Fuzzing}
-  \index{fuzzing} is a powerful testing technique that relies on
-  automatically generating large amounts of random inputs to the program
-  under test.}.
+\phantomsection\label{__index_entry_62}{Sanitizers}\index{sanitizers}
+are tools that detect bugs during program execution. Sanitizers usually
+have two components: a compiler instrumentation part that introduces the
+new checks, and a runtime library part. They are often too expensive to
+run in production mode, as they tend to increase execution time and
+memory usage. They are commonly used during testing of an application,
+frequently in combination with
+\phantomsection\label{__index_entry_63}{fuzzers}\index{fuzzing}\footnote{\href{https://en.wikipedia.org/wiki/Fuzzing}{\phantomsection\label{__index_entry_64}{Fuzzing}\index{fuzzing}}
+  is a powerful testing technique that relies on automatically
+  generating large amounts of random inputs to the program under test.}.
 
 A very popular sanitizer is
-\href{https://clang.llvm.org/docs/AddressSanitizer.html}{Address
-Sanitizer} (ASan)\index{AddressSanitizer (ASan)}. It aims to detect
+\href{https://clang.llvm.org/docs/AddressSanitizer.html}{\phantomsection\label{__index_entry_65}{Address
+Sanitizer (ASan)}\index{Address Sanitizer (ASan)}}. It aims to detect
 various memory errors. These include out-of-bounds accesses,
 use-after-free, double-free and invalid free\footnote{ASan also includes
-  a \href{https://clang.llvm.org/docs/LeakSanitizer.html}{memory leak
-  detector} \index{LeakSanitizer}.}. There are Address Sanitizer
-implementations for both GCC \index{GCC} and Clang\index{Clang}, but we
-will focus on the Clang implementation here.
+  a
+  \href{https://clang.llvm.org/docs/LeakSanitizer.html}{\phantomsection\label{__index_entry_66}{memory
+  leak detector}\index{LeakSanitizer}}.}. There are Address Sanitizer
+implementations for both
+\phantomsection\label{__index_entry_67}{GCC}\index{GCC} and
+\phantomsection\label{__index_entry_68}{Clang}\index{Clang}, but we will
+focus on the Clang implementation here.
 
-ASan uses shadow memory\index{shadow memory} to keep track of the state
-of the application's memory. Each byte of shadow memory records
-information on 8 bytes of the application's memory. It represents how
-many of the 8 bytes are addressable. When none of the bytes are
-addressable, it encodes additional details (whether the 8 bytes are
-out-of-bounds stack, out-of-bounds heap, freed memory, and so on).
-Requiring one byte of shadow memory for every 8 bytes of application
-memory means that ASan needs to reserve one-eighth of the application's
-virtual address space (\citeproc{ref-Serebryany2012}{Serebryany et al.
-2012}). Shadow memory is allocated in one contiguous chunk, which keeps
-mapping application memory to shadow memory simple.
+ASan uses \phantomsection\label{__index_entry_69}{shadow
+memory}\index{shadow memory} to keep track of the state of the
+application's memory. Each byte of shadow memory records information on
+8 bytes of the application's memory. It represents how many of the 8
+bytes are addressable. When none of the bytes are addressable, it
+encodes additional details (whether the 8 bytes are out-of-bounds stack,
+out-of-bounds heap, freed memory, and so on). Requiring one byte of
+shadow memory for every 8 bytes of application memory means that ASan
+needs to reserve one-eighth of the application's virtual address space
+(\citeproc{ref-Serebryany2012}{Serebryany et al. 2012}). Shadow memory
+is allocated in one contiguous chunk, which keeps mapping application
+memory to shadow memory simple.
 
 ASan's runtime library replaces memory allocation functions like
-\texttt{malloc}\index{malloc} and \texttt{free}\index{free} with its own
-specialized versions. \texttt{malloc} introduces redzones\index{redzone}
-before and after each allocation, which are marked as unaddressable.
+\phantomsection\label{__index_entry_70}{\texttt{malloc}}\index{malloc}
+and \phantomsection\label{__index_entry_71}{\texttt{free}}\index{free}
+with its own specialized versions. \texttt{malloc} introduces
+\phantomsection\label{__index_entry_72}{redzones}\index{redzone} before
+and after each allocation, which are marked as unaddressable.
 \texttt{free} marks the entire allocation as unaddressable and places it
 in quarantine, so that it doesn't get reallocated for a while (in a FIFO
 basis). This allows for detecting use-after-free. The runtime library
@@ -2130,27 +2176,28 @@ option. It is used in practice for testing
 \href{https://chromium.googlesource.com/chromium/src/+/HEAD/docs/asan.md}{large
 projects}. There is a similar tool for dynamic memory error detection in
 the Linux kernel,
-\href{https://www.kernel.org/doc/html/v5.0/dev-tools/kasan.html}{KASAN}\index{KASAN}.
+\href{https://www.kernel.org/doc/html/v5.0/dev-tools/kasan.html}{\phantomsection\label{__index_entry_73}{KASAN}\index{KASAN}}.
 
 ASan's biggest drawback is its high runtime overhead and memory usage,
 due to the quarantine, redzones and shadow memory.
-\href{https://clang.llvm.org/docs/HardwareAssistedAddressSanitizerDesign.html}{Hardware-assisted
-AddressSanitizer (HWASAN)} \index{HWASAN} works similarly to ASan, but
-with partial hardware assistance can result in lower memory overheads,
-at the cost of being less portable.
+\href{https://clang.llvm.org/docs/HardwareAssistedAddressSanitizerDesign.html}{\phantomsection\label{__index_entry_74}{Hardware-assisted
+AddressSanitizer
+(HWASAN)}\index{Hardware-assisted AddressSanitizer (HWASAN)}} works
+similarly to ASan, but with partial hardware assistance can result in
+lower memory overheads, at the cost of being less portable.
 
-On AArch64\index{AArch64}, HWASAN uses Top-Byte Ignore
-(TBI)\index{Top-Byte
-Ignore (TBI)}. When TBI is enabled, the top byte of a pointer is ignored
-when performing a memory access, allowing software to use that top byte
-to store metadata, without affecting execution. Each allocation is
-aligned to 16 bytes and each 16-byte chunk of memory (called
-``granule'') is randomly assigned an 8-bit tag. The tag is stored in
-shadow memory and is also placed in the top byte of the pointer to the
-object. Memory loads and stores are then instrumented to check that the
-tag stored in the pointer matches the tag stored in memory, and report
-an error when a mismatch happens. \todospan{{Add diagram to demonstrate
-how HWASAN works
+On \phantomsection\label{__index_entry_75}{AArch64}\index{AArch64},
+HWASAN uses \phantomsection\label{__index_entry_76}{Top-Byte Ignore
+(TBI)}\index{Top-Byte Ignore (TBI)}. When TBI is enabled, the top byte
+of a pointer is ignored when performing a memory access, allowing
+software to use that top byte to store metadata, without affecting
+execution. Each allocation is aligned to 16 bytes and each 16-byte chunk
+of memory (called ``granule'') is randomly assigned an 8-bit tag. The
+tag is stored in shadow memory and is also placed in the top byte of the
+pointer to the object. Memory loads and stores are then instrumented to
+check that the tag stored in the pointer matches the tag stored in
+memory, and report an error when a mismatch happens. \todospan{{Add
+diagram to demonstrate how HWASAN works
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/168}{\#168}}}
 
 For granules shorter than 16 bytes, the value stored in shadow memory is
@@ -2163,25 +2210,26 @@ the last byte of the granule.
 HWASAN is also easy to use, and simply requires compiling and linking an
 application with the \texttt{-fsanitize=hwaddress} flag.
 
-\href{https://llvm.org/docs/MemTagSanitizer.html}{MemTagSanitizer}\index{MemTagSanitizer}
+\href{https://llvm.org/docs/MemTagSanitizer.html}{\phantomsection\label{__index_entry_77}{MemTagSanitizer}\index{MemTagSanitizer}}
 goes one step further and uses the Armv8.5-A
-\href{https://developer.arm.com/documentation/102925/0100}{Memory
-Tagging Extension (MTE)}\index{Memory
-Tagging Extension (MTE)}. With MTE, the tag checking is done
-automatically by hardware, and an exception is raised on mismatch. MTE's
-granule size is 16 bits, whereas tags are 4-bit. \todospan{{Consider
-adding a whole section on MTE and its applications
+\href{https://developer.arm.com/documentation/102925/0100}{\phantomsection\label{__index_entry_78}{Memory
+Tagging Extension (MTE)}\index{Memory Tagging Extension (MTE)}}. With
+MTE, the tag checking is done automatically by hardware, and an
+exception is raised on mismatch. MTE's granule size is 16 bits, whereas
+tags are 4-bit. \todospan{{Consider adding a whole section on MTE and
+its applications
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/169}{\#169}}}
 
-\href{https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html\#ubsan-checks}{UndefinedBehaviorSanitizer
-(UBSan)} \index{UBSan}detects undefined behavior during program
-execution, for example array out-of-bounds accesses for statically
-determined array bounds, null pointer dereference, signed integer
-overflow and various kinds of integer conversions that result in data
-loss. Although some of these checks are not directly related to memory
-errors, these kinds of errors can lead to incorrect pointer arithmetic,
-incorrect allocation sizes, and other issues that lead to memory errors,
-so it is important to detect them and address them.
+\href{https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html\#ubsan-checks}{\phantomsection\label{__index_entry_79}{UndefinedBehaviorSanitizer
+(UBSan)}\index{UndefinedBehaviorSanitizer (UBSan)}} detects undefined
+behavior during program execution, for example array out-of-bounds
+accesses for statically determined array bounds, null pointer
+dereference, signed integer overflow and various kinds of integer
+conversions that result in data loss. Although some of these checks are
+not directly related to memory errors, these kinds of errors can lead to
+incorrect pointer arithmetic, incorrect allocation sizes, and other
+issues that lead to memory errors, so it is important to detect them and
+address them.
 
 UBSan's documentation describes the full list of available checks. The
 majority of these checks are enabled with the
@@ -2195,13 +2243,13 @@ this section. For the interested reader, we list a few more:
 \begin{itemize}
 \tightlist
 \item
-  \href{https://clang.llvm.org/docs/MemorySanitizer.html}{MemorySanitizer}\index{MemorySanitizer}:
+  \href{https://clang.llvm.org/docs/MemorySanitizer.html}{\phantomsection\label{__index_entry_80}{MemorySanitizer}\index{MemorySanitizer}}:
   detects uninitialized reads.
 \item
-  \href{https://clang.llvm.org/docs/ThreadSanitizer.html}{ThreadSanitizer}\index{ThreadSanitizer}:
+  \href{https://clang.llvm.org/docs/ThreadSanitizer.html}{\phantomsection\label{__index_entry_81}{ThreadSanitizer}\index{ThreadSanitizer}}:
   detects data races.
 \item
-  \href{https://llvm.org/docs/GwpAsan.html}{GWP-ASan}\index{GWP-ASan}:
+  \href{https://llvm.org/docs/GwpAsan.html}{\phantomsection\label{__index_entry_82}{GWP-ASan}\index{GWP-ASan}}:
   detects use-after-free and heap buffer overflows, with low overhead
   that makes it suitable for production environments. It performs checks
   only on a sample of allocations.
@@ -2216,15 +2264,17 @@ hardware-based, e.g.~PAuth-based pointer integrity schemes, MTE etc
 
 Making sure that memory accesses happen within the bounds of each
 object's allocation is a very important part of memory safety. This is
-usually described with the term ``spatial memory
-safety''\index{spatial memory safety}. Out-of-bounds accesses result in
-restricted read/write primitives\index{read
-primitive}\index{write primitive}\footnote{These primitives are
-  restricted since they can only access a limited number of bytes past
-  the end of the allocation.}. An attacker can often easily convert
-these into arbitrary read/write primitives. For example, this can be
-achieved by overwriting pointer fields in allocations following the
-object that was the target of the problematic memory access.
+usually described with the term
+``\phantomsection\label{__index_entry_83}{spatial memory
+safety}\index{spatial memory safety}''. Out-of-bounds accesses result in
+restricted \phantomsection\label{__index_entry_84}{read/write
+primitives}\index{read primitive}\phantomsection\label{__index_entry_85}{}\index{write primitive}\footnote{These
+  primitives are restricted since they can only access a limited number
+  of bytes past the end of the allocation.}. An attacker can often
+easily convert these into arbitrary read/write primitives. For example,
+this can be achieved by overwriting pointer fields in allocations
+following the object that was the target of the problematic memory
+access.
 
 The C and C++ memory languages do not, as a general rule, perform bounds
 checking\footnote{Some C++ containers have accessors that do perform
@@ -2253,10 +2303,10 @@ You may notice that there is a bit of overlap between the bounds checks
 introduced by \texttt{-fsanitize=bounds} and the Address Sanitizer.
 Although the scope of \texttt{-fsanitize=bounds} is restricted to
 statically sized arrays, it's interesting to note that it can still
-catch intra-object overflows\index{intra-object overflow} on array
-member accesses that the Address Sanitizer would not, because the access
-is still technically within the allocation. For example, given the
-following code:
+catch \phantomsection\label{__index_entry_86}{intra-object
+overflows}\index{intra-object overflow} on array member accesses that
+the Address Sanitizer would not, because the access is still technically
+within the allocation. For example, given the following code:
 
 \begin{verbatim}
 struct foo {
@@ -2305,18 +2355,18 @@ proposal goes a bit further, introducing a similar annotation that can
 be applied to pointers more generally. The proposal also aims to reduce
 the annotation burden placed on programmers by only requiring the
 annotations at
-\href{https://en.wikipedia.org/wiki/Application_binary_interface}{ABI}\index{Application
-binary interface (ABI)} boundaries\footnote{This refers to the interface
-  between different binary modules, typically a user program and a
-  system library. The ABI describes low-level details of that interface,
-  for example the assignment of arguments and return values into
-  registers or memory. In many systems, the ABI is expected to change
-  rarely, so programs and libraries can be updated independently and
-  still work together. This makes ABI changes undesirable, which is why
-  this proposal aims to minimise them.}. Local variables which do not
-cross ABI boundaries are implicitly converted to use wide pointers.
-These wide pointers store bounds information alongside the original
-pointer.
+\href{https://en.wikipedia.org/wiki/Application_binary_interface}{\phantomsection\label{__index_entry_87}{Application
+Binary Interface (ABI)}\index{Application Binary Interface (ABI)}}
+boundaries\footnote{This refers to the interface between different
+  binary modules, typically a user program and a system library. The ABI
+  describes low-level details of that interface, for example the
+  assignment of arguments and return values into registers or memory. In
+  many systems, the ABI is expected to change rarely, so programs and
+  libraries can be updated independently and still work together. This
+  makes ABI changes undesirable, which is why this proposal aims to
+  minimise them.}. Local variables which do not cross ABI boundaries are
+implicitly converted to use wide pointers. These wide pointers store
+bounds information alongside the original pointer.
 
 There are also hardening efforts focusing on C++ codebases. For example,
 the \href{https://libcxx.llvm.org/Hardening.html}{libc++ hardening
@@ -2338,13 +2388,14 @@ in (\citeproc{ref-Cook2023}{Cook 2023}).
 There are also hardware-based mitigations for violations of spatial
 memory safety. For example,
 \href{https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/}{CHERI}
-introduces \emph{capabilities}\index{capability} to conventional
-Instruction Set Architectures. Capabilities combine a virtual address
-with metadata that describes its corresponding bounds and permissions.
-Capabilities cannot be forged, and can thus provide very strong
-guarantees. Arm has developed a prototype architecture that adapts
-CHERI, as well as a prototype SoC and development board, as part of the
-\href{https://www.arm.com/architecture/cpu/morello}{Arm Morello
+introduces
+\emph{\phantomsection\label{__index_entry_88}{capabilities}\index{capability}}
+to conventional Instruction Set Architectures. Capabilities combine a
+virtual address with metadata that describes its corresponding bounds
+and permissions. Capabilities cannot be forged, and can thus provide
+very strong guarantees. Arm has developed a prototype architecture that
+adapts CHERI, as well as a prototype SoC and development board, as part
+of the \href{https://www.arm.com/architecture/cpu/morello}{Arm Morello
 Program}.
 
 Of course, another approach to mitigating spatial memory safety
@@ -2375,18 +2426,19 @@ been \hyperref[supply-chain-attacks]{intentionally injected in the
 compiler}.
 
 Compiler bugs are an interesting source of security issues for
-\href{https://en.wikipedia.org/wiki/Just-in-time_compilation}{just-in-time
-(JIT)} compilers\index{JIT compilers}\footnote{JIT compilers compile
-  code during execution of a program, as opposed to the more traditional
-  compilation where code is compiled before the program is executed.}.
-JIT compilation is often used in programs that receive source code as
-input during program execution, for example in web browsers, for
-executing JavaScript code included in web pages. In this context, the
-input to the JIT compiler comes from arbitrary websites and is therefore
-untrusted. Bugs in such JIT compilers can lead to compromise of the
-whole program (here, the browser) if a malicious input (e.g.~coming from
-a malicious website) deliberately triggers miscompilation in order to
-break memory safety of the language being implemented.
+\phantomsection\label{__index_entry_89}{\href{https://en.wikipedia.org/wiki/Just-in-time_compilation}{just-in-time
+(JIT)} compilers}\index{just-in-time (JIT) compilers}\footnote{JIT
+  compilers compile code during execution of a program, as opposed to
+  the more traditional compilation where code is compiled before the
+  program is executed.}. JIT compilation is often used in programs that
+receive source code as input during program execution, for example in
+web browsers, for executing JavaScript code included in web pages. In
+this context, the input to the JIT compiler comes from arbitrary
+websites and is therefore untrusted. Bugs in such JIT compilers can lead
+to compromise of the whole program (here, the browser) if a malicious
+input (e.g.~coming from a malicious website) deliberately triggers
+miscompilation in order to break memory safety of the language being
+implemented.
 
 For this section, we focus on JavaScript, which is a dynamically typed,
 memory safe language, but the concerns we discuss also apply to other
@@ -2400,8 +2452,9 @@ which speculates that the same types will be encountered in future runs
 of the code, and inserts checks to validate that these assumptions about
 types still hold. When a check fails, the optimized code is replaced by
 unoptimized code that can handle all types, a process known as
-deoptimization\index{deoptimization} or on-stack replacement
-(OSR)\index{on-stack replacement (OSR)}. Deoptimization makes sure that
+\phantomsection\label{__index_entry_90}{deoptimization}\index{deoptimization}
+or \phantomsection\label{__index_entry_91}{on-stack replacement
+(OSR)}\index{on-stack replacement (OSR)}. Deoptimization makes sure that
 the state of the deoptimized function is recreated correctly for the
 point of execution where the type check failed.
 
@@ -2446,17 +2499,20 @@ during profiling, optimizing JavaScript compilers propagate the profiled
 types to dependent values. For example if a value \texttt{x} is expected
 to be a string, and we check this assumption, then \texttt{x\ +\ 1} will
 also be a string (and no additional check is needed in this case). In
-addition to simple type propagation, they usually perform range
-analysis\index{range analysis} to determine as precise a range for a
-value as possible, which is useful for bounds check
-elimination\index{bounds check elimination}.
+addition to simple type propagation, they usually perform
+\phantomsection\label{__index_entry_92}{range
+analysis}\index{range analysis} to determine as precise a range for a
+value as possible, which is useful for
+\phantomsection\label{__index_entry_93}{bounds check
+elimination}\index{bounds check elimination}.
 
-Bounds check elimination (BCE)\index{bounds check elimination} is a
-common optimization in languages that perform bounds checks on array
-accesses to ensure every accessed index is within the bounds of the
-array. BCE gets rid of bounds checks when they are proven to be
-redundant, e.g.~when the array access uses a constant index that's known
-to be smaller than the length of the array. See
+\phantomsection\label{__index_entry_94}{Bounds check elimination
+(BCE)}\index{Bounds check elimination (BCE)} is a common optimization in
+languages that perform bounds checks on array accesses to ensure every
+accessed index is within the bounds of the array. BCE gets rid of bounds
+checks when they are proven to be redundant, e.g.~when the array access
+uses a constant index that's known to be smaller than the length of the
+array. See
 \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length}{here}
 for details on how out-of-bounds array accesses behave in JavaScript.
 
@@ -2524,8 +2580,9 @@ complementary approaches, for example:
   primitives that bugs provide. For example, for 64-bit architectures,
   V8 implements a
   \href{https://docs.google.com/document/d/1FM4fQmIhEqPG8uGp5o9A-mnPB5BOeScZYpkHjo0KKA8/edit}{sandbox},
-  built on top of \href{https://v8.dev/blog/pointer-compression}{pointer
-  compression} \index{pointer compression}. With pointer compression,
+  built on top of
+  \href{https://v8.dev/blog/pointer-compression}{\phantomsection\label{__index_entry_95}{pointer
+  compression}\index{pointer compression}}. With pointer compression,
   pointers are represented by 32-bit indices off a base pointer instead
   of as full 64-bit values. By making sure that all pointers inside the
   sandbox (where the JavaScript heap is located) are compressed, and
@@ -2536,17 +2593,18 @@ complementary approaches, for example:
 \item
   Preventing code memory from being executable and writable at the same
   time is also desirable. This is known as
-  \href{https://en.wikipedia.org/wiki/W\%5EX}{W\^{}X} \index{W\^{}X}. A
-  naive implementation of W\^{}X that simply switches memory permissions
-  based on page tables temporarily is not enough to prevent attackers
-  from writing to code memory (\citeproc{ref-Song2015}{Song et al.
-  2015}), when multiple threads are involved. A more effective solution
-  would use a separate compilation process, which is the only process
-  that has write access to the JIT's code memory. Alternatively, some
-  architectures provide special features that can restrict page-based
-  memory permissions from userspace, effectively allowing permissions to
-  be different for different threads. Such features can also be of use
-  in implementing W\^{}X. For AArch64, this feature is called
+  \href{https://en.wikipedia.org/wiki/W\%5EX}{\phantomsection\label{__index_entry_96}{W\^{}X}\index{W\textasciicircum{}X}}.
+  A naive implementation of W\^{}X that simply switches memory
+  permissions based on page tables temporarily is not enough to prevent
+  attackers from writing to code memory (\citeproc{ref-Song2015}{Song et
+  al. 2015}), when multiple threads are involved. A more effective
+  solution would use a separate compilation process, which is the only
+  process that has write access to the JIT's code memory. Alternatively,
+  some architectures provide special features that can restrict
+  page-based memory permissions from userspace, effectively allowing
+  permissions to be different for different threads. Such features can
+  also be of use in implementing W\^{}X. For AArch64, this feature is
+  called
   \href{https://developer.arm.com/documentation/102376/0200/Permission-indirection-and-permission-overlay-extensions}{permission
   overlays}.
 \end{enumerate}
@@ -2564,32 +2622,35 @@ Side-channels and covert channels are communication channels between two
 entities in a system, where the entities should not be able to
 communicate that way.
 
-A \textbf{covert channel}\index{covert channel} is a channel where both
-entities intend to communicate. A
-\textbf{side-channel}\index{side-channel} is a channel where one entity
-is the victim of an attack using the channel.
+A \textbf{\phantomsection\label{__index_entry_97}{covert
+channel}\index{covert channel}} is a channel where both entities intend
+to communicate. A
+\textbf{\phantomsection\label{__index_entry_98}{side-channel}\index{side-channel}}
+is a channel where one entity is the victim of an attack using the
+channel.
 
 The difference between a covert channel and a side-channel is whether
 both entities intend to communicate. In a side-channel attack, the
 entity not intending to communicate is called the
-\textbf{victim}\index{victim}. The other entity is sometimes called the
-\textbf{spy}\index{spy}.
+\textbf{\phantomsection\label{__index_entry_99}{victim}\index{victim}}.
+The other entity is sometimes called the
+\textbf{\phantomsection\label{__index_entry_100}{spy}\index{spy}}.
 
 As we focus on attacks in this book, we'll mostly use the term
 side-channels in the rest of this chapter.
 
 The next few sections describe a variety of side-channels. Each section
-focusses on leakage through a specific so-called micro-architectural
-aspect\index{micro-architectural}, such as execution time, cache state
-or branch predictor state.
+focusses on leakage through a specific so-called
+\phantomsection\label{__index_entry_101}{micro-architectural}\index{micro-architectural}
+aspect, such as execution time, cache state or branch predictor state.
 
 \section{Timing side-channels}\label{timing-side-channels}
 
 An implementation of a cryptographic algorithm can leak information
 about the data it processes if its run time is influenced by the value
-of the processed data. Attacks making use of this are called timing
-attacks\index{timing
-attacks}.
+of the processed data. Attacks making use of this are called
+\phantomsection\label{__index_entry_102}{timing
+attacks}\index{timing attacks}.
 
 The main mitigation against such attacks consists of carefully
 implementing the algorithm such that the execution time remains
@@ -2648,7 +2709,7 @@ attacks}.
 
 \section{Cache side-channels}\label{cache-side-channels}
 
-\href{https://en.wikipedia.org/wiki/Cache_(computing)}{Caches}\index{cache}
+\href{https://en.wikipedia.org/wiki/Cache_(computing)}{\phantomsection\label{__index_entry_103}{Caches}\index{cache}}
 are used in almost every computing system. They are small memories that
 are much faster than the main memory. They automatically keep the most
 frequently used data, so that the average memory access time improves.
@@ -2678,16 +2739,22 @@ On every read and write instruction, the cache micro-architecture looks
 up if the data for the requested address happens to be present in the
 cache. If it is, the CPU can continue executing quickly; if not,
 dependent operations will have to wait until the data returns from the
-slower main memory. A typical access time is 3 to 5 CPU cycles for the
-fastest cache on a CPU versus hundreds of cycles for a main memory
-access.\index{memory access time} When data is present in the cache for
-a read or write, it is said to be a \textbf{cache hit}\index{cache
-hit}. Otherwise, it's called a \textbf{cache miss}\index{cache miss}.
+slower main memory. A typical
+\phantomsection\label{__index_entry_104}{access
+time}\index{memory access time} is 3 to 5 CPU cycles for the fastest
+cache on a CPU versus hundreds of cycles for a main memory access. When
+data is present in the cache for a read or write, it is said to be a
+\textbf{\phantomsection\label{__index_entry_105}{cache
+hit}\index{cache!hit}}. Otherwise, it's called a
+\textbf{\phantomsection\label{__index_entry_106}{cache
+miss}\index{cache!miss}}.
 
-Most systems have multiple levels of cache\index{multi-level cache},
-each with a different trade-off between cache size\index{cache size} and
-access time\index{cache access time}. Some typical characteristics might
-be:
+Most systems have \phantomsection\label{__index_entry_107}{multiple
+levels of cache}\index{cache!multi-level}, each with a different
+trade-off between \phantomsection\label{__index_entry_108}{cache
+size}\index{cache!size} and
+\phantomsection\label{__index_entry_109}{access
+time}\index{cache!access time}. Some typical characteristics might be:
 
 \begin{itemize}
 \tightlist
@@ -2713,45 +2780,54 @@ there after it has been fetched from a slower cache level or main
 memory. This is often a good decision to make as there's a high
 likelihood the same address will be accessed by the program soon after.
 This high likelihood is known as the
-\href{https://en.wikipedia.org/wiki/Locality_of_reference}{principle of
-locality}\index{principle
-of locality}\index{locality of reference}.
+\href{https://en.wikipedia.org/wiki/Locality_of_reference}{\phantomsection\label{__index_entry_110}{principle
+of
+locality}\index{principle of locality}}{]}\phantomsection\label{__index_entry_111}{}\index{locality of reference}.
 
 Data is stored and transferred between cache levels in blocks of aligned
-memory. Such a block is called a \textbf{cache block}\index{cache block}
-or \textbf{cache line}\index{cache line}. Typical sizes are 32, 64 or
-128 bytes per cache line.
+memory. Such a block is called a
+\textbf{\phantomsection\label{__index_entry_112}{cache
+block}\index{cache!block}} or
+\textbf{\phantomsection\label{__index_entry_113}{cache
+line}\index{cache!line}}. Typical sizes are 32, 64 or 128 bytes per
+cache line.
 
 When data that wasn't previously in the cache needs to be stored in the
 cache, room has to be made for it by removing, or
-\textbf{evicting}\index{cache eviction}, some other address/data from
-it. How that choice gets made is decided by the
-\href{https://en.wikipedia.org/wiki/Cache_replacement_policies}{cache
-replacement policy}\index{cache
-replacement policy}. Popular replacement algorithms are Least Recently
-Used (LRU)\index{LRU replacement policy},
-Random\index{random replacement policy} and
-pseudo-LRU\index{pseudo-LRU replacement policy}. As the names suggest,
-LRU evicts the cache line that is least recently used; random picks a
-random cache line; and pseudo-LRU approximates choosing the least
-recently used line.
+\textbf{\phantomsection\label{__index_entry_114}{evicting}\index{cache!eviction}},
+some other address/data from it. How that choice gets made is decided by
+the
+\href{https://en.wikipedia.org/wiki/Cache_replacement_policies}{\phantomsection\label{__index_entry_115}{cache
+replacement policy}\index{cache!replacement policy}}{]}. Popular
+replacement algorithms are
+\phantomsection\label{__index_entry_116}{Least Recently Used
+(LRU)}\index{cache!LRU},
+\phantomsection\label{__index_entry_117}{Random}\index{cache!random replacement policy}
+and
+\phantomsection\label{__index_entry_118}{pseudo-LRU}\index{cache!pseudo-LRU replacement policy}.
+As the names suggest, LRU evicts the cache line that is least recently
+used; random picks a random cache line; and pseudo-LRU approximates
+choosing the least recently used line.
 
 If a cache line can be stored in all locations available in the cache,
-the cache is \textbf{fully-associative}\index{fully-associative cache}.
+the cache is
+\textbf{\phantomsection\label{__index_entry_119}{fully-associative}\index{cache!fully-associative}}.
 Most caches are however not fully-associative, as it's too costly to
 implement. Instead, most caches are
-\textbf{set-associative}\index{set-associative cache}. In an N-way
-set-associative cache, a specific line can only be stored in one of N
-cache locations. For example, if a line can potentially be stored in one
-of 2 locations, the cache is said to be 2-way set-associative. If it can
-be stored in one of 4 locations, it's called 4-way set-associative, and
-so on. When an address can only be stored in one location in the cache,
-it is said to be \textbf{direct-mapped}\index{direct-mapped cache},
+\textbf{\phantomsection\label{__index_entry_120}{set-associative}\index{cache!set-associative}}.
+In an N-way set-associative cache, a specific line can only be stored in
+one of N cache locations. For example, if a line can potentially be
+stored in one of 2 locations, the cache is said to be 2-way
+set-associative. If it can be stored in one of 4 locations, it's called
+4-way set-associative, and so on. When an address can only be stored in
+one location in the cache, it is said to be
+\textbf{\phantomsection\label{__index_entry_121}{direct-mapped}\index{cache!direct-mapped}},
 rather than 1-way set-associative. Typical organizations are
 direct-mapped, 2-way, 4-way, 8-way, 16-way or 32-way set-associative.
 
 The set of cache locations that a particular cache line can be stored at
-is called a \textbf{cache set}\index{cache set}.
+is called a \textbf{\phantomsection\label{__index_entry_122}{cache
+set}\index{cache!set}}.
 
 \subsubsection{Indexing in a set-associative
 cache}\label{indexing-in-a-set-associative-cache}
@@ -2784,7 +2860,7 @@ For direct-mapped and fully-associative caches, the mapping of an
 address to cache locations also works as described above. In
 fully-associative caches the number of cache sets is 1, so \(S\)=0.
 
-\tododiv{Also explain cache coherency \index{cache coherency}?
+\tododiv{Also explain cache coherency cache coherency?
 \href{https://github.com/llsoftsec/llsoftsecbook/issues/173}{\#173}}
 
 \tododiv{Also say something about TLBs and prefetching?
@@ -2793,17 +2869,19 @@ fully-associative caches the number of cache sets is 1, so \(S\)=0.
 \subsection{Operation of cache
 side-channels}\label{operation-of-cache-side-channels}
 
-Cache side-channels typically work by the spy determining whether a
-memory access was a cache hit or a cache miss. From that information,
-the spy may be able to deduce bits of data that only the victim should
-have access to.
+\phantomsection\label{__index_entry_123}{Cache
+side-channels}\index{cache!side-channel} typically work by the spy
+determining whether a memory access was a cache hit or a cache miss.
+From that information, the spy may be able to deduce bits of data that
+only the victim should have access to.
 
 Let's illustrate this by describing a few well-known cache
 side-channels:
 
 \subsubsection{Flush+Reload}\label{flushreload}
 
-In a so-called \textbf{Flush+Reload}\index{Flush+Reload}
+In a so-called
+\textbf{\phantomsection\label{__index_entry_124}{Flush+Reload}\index{Flush+Reload}}
 attack(\citeproc{ref-Yarom2014}{Yarom and Falkner 2014}), the spy
 process shares memory with the victim process. The attack works in 3
 steps:
@@ -2836,9 +2914,10 @@ Flush+Reload attack can be used to leak GnuPG private keys.
 
 \subsubsection{Prime+Probe}\label{primeprobe}
 
-In a \textbf{Prime+Probe} attack\index{Prime+Probe}, there is no need
-for memory to be shared between victim and spy. The attack works in 3
-steps:
+In a
+\textbf{\phantomsection\label{__index_entry_125}{Prime+Probe}\index{Prime+Probe}}
+attack, there is no need for memory to be shared between victim and spy.
+The attack works in 3 steps:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2873,29 +2952,33 @@ describe the general pattern as being:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  An instruction sequence that resets the inner CPU state (\textbf{reset
-  sequence}).\index{reset sequence}
+  An instruction sequence that resets the inner CPU state
+  (\textbf{\phantomsection\label{__index_entry_126}{reset
+  sequence}\index{reset sequence}}).
 \item
-  An instruction sequence that triggers a state change (\textbf{trigger
-  sequence}).\index{trigger sequence}
+  An instruction sequence that triggers a state change
+  (\textbf{\phantomsection\label{__index_entry_127}{trigger
+  sequence}\index{trigger sequence}}).
 \item
   An instruction sequence that leaks the inner state
-  (\textbf{measurement sequence}).\index{measurement sequence}
+  (\textbf{\phantomsection\label{__index_entry_128}{measurement
+  sequence}\index{measurement sequence}}).
 \end{enumerate}
 
 Other cache-based side channel attacks following this general 3-step
 approach include:
-Flush+Flush\index{Flush+Flush}(\citeproc{ref-Gruss2016a}{Gruss, Maurice,
-Wagner, et al. 2016}),
-Flush+Prefetch\index{Flush+Prefetch}(\citeproc{ref-Gruss2016}{Gruss,
+\phantomsection\label{__index_entry_129}{Flush+Flush}\index{Flush+Flush}(\citeproc{ref-Gruss2016a}{Gruss,
+Maurice, Wagner, et al. 2016}),
+\phantomsection\label{__index_entry_130}{Flush+Prefetch}\index{Flush+Prefetch}(\citeproc{ref-Gruss2016}{Gruss,
 Maurice, Fogh, et al. 2016}),
-Evict+Reload\index{Evict+Reload}(\citeproc{ref-Percival2005}{Percival
-2005}), Evict+Time\index{Evict+Time}(\citeproc{ref-Osvik2005}{Osvik,
+\phantomsection\label{__index_entry_131}{Evict+Reload}\index{Evict+Reload}(\citeproc{ref-Percival2005}{Percival
+2005}),
+\phantomsection\label{__index_entry_132}{Evict+Time}\index{Evict+Time}(\citeproc{ref-Osvik2005}{Osvik,
 Shamir, and Tromer 2005}),
-Reload+Refresh\index{Reload+Refresh}(\citeproc{ref-Briongos2020}{Briongos
+\phantomsection\label{__index_entry_133}{Reload+Refresh}\index{Reload+Refresh}(\citeproc{ref-Briongos2020}{Briongos
 et al. 2020}),
-Collide+Probe\index{Collide+Probe}(\citeproc{ref-Lipp2020}{Lipp et al.
-2020}), etc.
+\phantomsection\label{__index_entry_134}{Collide+Probe}\index{Collide+Probe}(\citeproc{ref-Lipp2020}{Lipp
+et al. 2020}), etc.
 
 \subsection{Mitigating cache side-channel
 attacks}\label{mitigating-cache-side-channel-attacks}
@@ -2967,8 +3050,8 @@ without losing too much system efficiency.
 and implementations -- too many to try to describe them all here.
 
 One popular such mitigation is disabling
-\href{https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)}{cpu
-multithreading}\index{multithreading}. For example,
+\href{https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)}{\phantomsection\label{__index_entry_135}{cpu
+multithreading}\index{cpu multithreading}}. For example,
 \href{https://learn.microsoft.com/en-us/azure/virtual-machines/mitigate-se}{Azure
 suggests that users who run untrusted code should consider disabling cpu
 multithreading}.
@@ -2981,11 +3064,10 @@ processes are mutually-trusting} and only allows those to run
 simultaneously on the same core.
 
 One could argue that
-\href{https://developer.chrome.com/blog/site-isolation/}{site
-isolation}\index{site
-isolation} as implemented in many web browsers is a mitigation that also
-falls into this category. Site isolation is described in more detail in
-\hyperref[site-isolation]{its own section}.
+\href{https://developer.chrome.com/blog/site-isolation/}{\phantomsection\label{__index_entry_136}{site
+isolation}\index{site isolation}} as implemented in many web browsers is
+a mitigation that also falls into this category. Site isolation is
+described in more detail in \hyperref[site-isolation]{its own section}.
 
 \subsubsection{Mitigations disabling the spy program to infer a cache
 status change in the victim program through its own cache
@@ -3000,12 +3082,14 @@ mitigations in javascript engines against Spectre attacks. For more
 information see this \href{https://v8.dev/blog/spectre}{v8 blog post} or
 this
 \href{https://developer.mozilla.org/en-US/docs/Web/API/Performance/now}{Firefox
-documentation of the performance.now() method}\index{Spectre}.
+documentation of the performance.now()
+method}\phantomsection\label{__index_entry_137}{}\index{Spectre}.
 
 Note that this is not a perfect mitigation - there are often surprising
 ways that an attacker can get a fine-grained enough timer or use
 statistical methods to be able to detect the difference between a cache
-hit or miss. One extreme example is the NetSpectre\index{NetSpectre}
+hit or miss. One extreme example is the
+\phantomsection\label{__index_entry_138}{NetSpectre}\index{NetSpectre}
 attack (\citeproc{ref-Schwarz2019}{Schwarz et al. 2019}) where the
 difference between cache hit and cache miss is measured over a network,
 by statistically analyzing delays on network packet responses.
@@ -3024,8 +3108,9 @@ side-channels}\label{branch-predictor-based-side-channels}
 \subsection{Branch predictors}\label{branch-predictors}
 
 Most CPUs implement one or more
-\href{https://en.wikipedia.org/wiki/Instruction_pipelining}{instruction
-pipelines}. \index{pipeline}\index{instruction pipeline} In an
+\href{https://en.wikipedia.org/wiki/Instruction_pipelining}{\phantomsection\label{__index_entry_139}{instruction
+pipelines}\index{instruction pipeline}}.
+\phantomsection\label{__index_entry_140}{}\index{pipeline} In an
 instruction pipeline, the next instruction is started before the
 previous instruction has finished executing. When the previous
 instruction is a branch instruction, the next instruction that needs to
@@ -3037,31 +3122,34 @@ the next instruction leads to a big performance loss.\footnote{Over
   suggests that branch prediction accuracy has to grow more than
   linearly when the number of pipelines, or the depth of the pipeline
   grows. Therefore, there is a constant push to increase the accuracy of
-  branch predictors.} Therefore, most CPUs predict\index{predict} which
+  branch predictors.} Therefore, most CPUs
+\phantomsection\label{__index_entry_141}{predict}\index{predict} which
 instruction needs to be executed after a branch, before the branch
 instruction has completed. Correctly and quickly predicting the
 instruction after a branch instruction is so important for performance
 that most CPUs have multiple
-\href{https://en.wikipedia.org/wiki/Branch_predictor}{branch
-predictors}\index{branch
-predictor}, such as:
+\href{https://en.wikipedia.org/wiki/Branch_predictor}{\phantomsection\label{__index_entry_142}{branch
+predictors}\index{branch predictor}}, such as:
 
 \begin{itemize}
 \tightlist
 \item
-  A predictor of the outcome of a conditional
-  branch\index{conditional branch
-  direction predictor}: taken or not taken\index{taken branch}. The
-  prediction is typically history-based\index{history-based prediction},
+  A predictor of the outcome of a
+  \phantomsection\label{__index_entry_143}{conditional
+  branch}\index{conditional branch direction predictor}:
+  \phantomsection\label{__index_entry_144}{taken}\index{taken branch} or
+  not taken. The prediction is typically
+  \phantomsection\label{__index_entry_145}{history-based}\index{history-based prediction},
   i.e.~based on the outcome of this and other branches in the recent
   past.
 \item
-  A predictor of the target of a taken
-  branch\index{branch target predictor}, i.e.~the address of the next
-  instruction after a taken branch.
+  A predictor of the \phantomsection\label{__index_entry_146}{target of
+  a taken branch}\index{branch target predictor}, i.e.~the address of
+  the next instruction after a taken branch.
 \item
-  A predictor that is specialized to predict the next instruction after
-  a function return instruction.\index{return address predictor}
+  A predictor that is specialized to
+  \phantomsection\label{__index_entry_147}{predict the next instruction
+  after a function return instruction}\index{return address predictor}.
 \end{itemize}
 
 \subsection{Side-channels through branch
@@ -3074,17 +3162,19 @@ component they target.
 \subsubsection{Conditional branch direction predictor side-channel
 attacks}\label{conditional-branch-direction-predictor-side-channel-attacks}
 
-\index{conditional branch direction predictor}
+\phantomsection\label{__index_entry_148}{}\index{conditional branch direction predictor}
 
-Two examples are BranchScope (\citeproc{ref-Evtyushkin2018}{Evtyushkin
-et al. 2018})\index{BranchScope} and BlueThunder
-(\citeproc{ref-Huo2019}{Huo et al. 2019})\index{BlueThunder}. These
-attacks infer whether a branch is taken or not taken in a victim
-process. They do so by carefully making sure that a branch in the spy
-process uses the same branch predictor entry as the targeted branch in
-the victim process. By measuring whether the branch in the spy process
-gets predicted correctly, one can derive whether the branch in the
-victim process was taken or not.
+Two examples are
+\phantomsection\label{__index_entry_149}{BranchScope}\index{BranchScope}
+(\citeproc{ref-Evtyushkin2018}{Evtyushkin et al. 2018}) and
+\phantomsection\label{__index_entry_150}{BlueThunder}\index{BlueThunder}
+(\citeproc{ref-Huo2019}{Huo et al. 2019}). These attacks infer whether a
+branch is taken or not taken in a victim process. They do so by
+carefully making sure that a branch in the spy process uses the same
+branch predictor entry as the targeted branch in the victim process. By
+measuring whether the branch in the spy process gets predicted
+correctly, one can derive whether the branch in the victim process was
+taken or not.
 
 This can be thought of as somewhat akin to the
 \hyperref[primeprobe]{Prime+Probe cache-based side channel attacks}.
@@ -3093,37 +3183,44 @@ When the outcome of a branch depends on a bit in a secret key, this can
 enable an attacker to derive the value of the secret key. These papers
 demonstrate deriving the secret key from implementations of specific
 cryptographic kernels. It can also be used to break
-\hyperref[aslr]{ASLR}\index{ASLR}.
+\hyperref[aslr]{\phantomsection\label{__index_entry_151}{ASLR}\index{ASLR}}.
 
 \subsubsection{Branch target predictor side-channel
 attacks}\label{branch-target-predictor-side-channel-attacks}
 
-\index{Branch target predictor}
+\phantomsection\label{__index_entry_152}{}\index{Branch target predictor}
 
-Two examples are SBPA (\citeproc{ref-Aciicmez2007}{Aciiçmez, Kaya Koç,
-and Seifert 2007})\index{SBPA} and BranchShadow
-(\citeproc{ref-Lee2017}{Lee et al. 2017})\index{BranchShadow}. These
-earlier attacks are based on making a branch in the spy process alias in
-the Branch Target Buffer (BTB\index{BTB}) with a targeted branch in the
-victim process. They use methods such as timing difference, last branch
-records\index{last branch record}, instruction
-traces\index{instruction trace} or performance
-counters\index{performance counter} to measure whether the branch in the
-spy process caused a specific state change in the BTB.
+Two examples are
+\phantomsection\label{__index_entry_153}{SBPA}\index{SBPA}
+(\citeproc{ref-Aciicmez2007}{Aciiçmez, Kaya Koç, and Seifert 2007}) and
+\phantomsection\label{__index_entry_154}{BranchShadow}\index{BranchShadow}
+(\citeproc{ref-Lee2017}{Lee et al. 2017}). These earlier attacks are
+based on making a branch in the spy process alias in the
+\phantomsection\label{__index_entry_155}{Branch Target Buffer
+(BTB)}\index{Branch Target Buffer (BTB)} with a targeted branch in the
+victim process. They use methods such as timing difference,
+\phantomsection\label{__index_entry_156}{last branch
+records}\index{last branch record},
+\phantomsection\label{__index_entry_157}{instruction
+traces}\index{instruction trace} or
+\phantomsection\label{__index_entry_158}{performance
+counters}\index{performance counter} to measure whether the branch in
+the spy process caused a specific state change in the BTB.
 
 \subsubsection{Return address predictor side-channel
 attacks}\label{return-address-predictor-side-channel-attacks}
 
-\index{return address predictor}
+\phantomsection\label{__index_entry_159}{}\index{return address predictor}
 
-One example is Hyper-Channel (\citeproc{ref-Bulygin2008}{Bulygin
-2008})\index{Hyper-Channel}. In this case, a spy process invokes \(N\)
-calls to fill up the return stack predictor. Then it lets the victim
-process execute. Then, the spy process can measure how many of its
-return stack entries have been removed from the Return Stack Buffer
-(RSB), by measuring the number of \(N\) returns that get mis-predicted.
-If the number of calls in the victim process is dependent on secret
-information, this could leak it.
+One example is
+\phantomsection\label{__index_entry_160}{Hyper-Channel}\index{Hyper-Channel}
+(\citeproc{ref-Bulygin2008}{Bulygin 2008}). In this case, a spy process
+invokes \(N\) calls to fill up the return stack predictor. Then it lets
+the victim process execute. Then, the spy process can measure how many
+of its return stack entries have been removed from the Return Stack
+Buffer (RSB), by measuring the number of \(N\) returns that get
+mis-predicted. If the number of calls in the victim process is dependent
+on secret information, this could leak it.
 
 The papers referred to above contain detailed explanations of how they
 set up the attack. All of these attacks use a general 3-step approach,
@@ -3135,15 +3232,16 @@ side channels}:
 \tightlist
 \item
   An instruction sequence that resets the branch predictor state
-  (\emph{reset sequence}), run by the spy process.\index{reset sequence}
+  (\emph{\phantomsection\label{__index_entry_161}{reset
+  sequence}\index{reset sequence}}), run by the spy process.
 \item
   An instruction sequence that triggers a branch predictor state change
-  (\emph{trigger sequence}), run by the victim
-  process.\index{trigger sequence}
+  (\emph{\phantomsection\label{__index_entry_162}{trigger
+  sequence}\index{trigger sequence}}), run by the victim process.
 \item
   An instruction sequence that leaks the branch predictor state
-  (\emph{measurement sequence}), run by the spy
-  process\index{measurement sequence}
+  (\emph{\phantomsection\label{__index_entry_163}{measurement
+  sequence}\index{measurement sequence}}), run by the spy process.
 \end{enumerate}
 
 \subsection{Mitigations}\label{mitigations}
@@ -3183,20 +3281,24 @@ that later instruction? In other words, there may be a
 \textbf{dependency} between an instruction that has not finished yet and
 a later instruction that the CPU also already started executing.
 
-There are various kinds of dependencies. One kind is \textbf{control
-dependencies}\index{control dependencies}, where whether the later
+There are various kinds of dependencies. One kind is
+\textbf{\phantomsection\label{__index_entry_164}{control
+dependencies}\index{control dependency}}, where whether the later
 instruction should be executed at all is dependent on the outcome of the
-earlier instruction. Other kinds are \textbf{true data
-dependencies}\index{true data
-dependency}, \textbf{anti-dependencies}\index{anti dependency} and
-\textbf{output dependencies}\index{output dependency}. More details
-about these kinds of dependencies can be found on
+earlier instruction. Other kinds are
+\textbf{\phantomsection\label{__index_entry_165}{true data
+dependencies}\index{true data dependency}},
+\textbf{\phantomsection\label{__index_entry_166}{anti-dependencies}\index{data dependency}}
+and \textbf{\phantomsection\label{__index_entry_167}{output
+dependencies}\index{output dependency}}. More details about these kinds
+of dependencies can be found on
 \href{https://en.wikipedia.org/wiki/Data_dependency}{the wikipedia page
 about them}.
 
 CPUs overcome parallel execution limitations imposed by dependencies by
-making massive numbers of \textbf{predictions}\index{prediction}. For
-example, most CPUs predict whether conditional branches are taken or
+making massive numbers of
+\textbf{\phantomsection\label{__index_entry_168}{predictions}\index{prediction}}.
+For example, most CPUs predict whether conditional branches are taken or
 not, which is making a prediction on control dependencies. Another
 example is a CPU making a prediction on whether a load accesses the same
 memory address as a preceding store. If they do not access the same
@@ -3207,7 +3309,7 @@ the load can start executing.
 
 Starting to execute later instructions before all of their dependencies
 have been resolved, based on the predictions, is called
-\textbf{speculation}\index{speculation}.
+\textbf{\phantomsection\label{__index_entry_169}{speculation}\index{speculation}}.
 
 Let's illustrate that with an example. The following C code
 
@@ -3268,12 +3370,13 @@ discovering the branch was mis-predicted, the CPU would have to restore
 the correct, non-negated, value in register \texttt{x0}.
 
 Any instructions that are executed under so-called
-\textbf{mis-speculation}\index{mis-speculation}, are called
-\textbf{transient
-instructions}\index{transient instructions}.\footnote{Transient
+\textbf{\phantomsection\label{__index_entry_170}{mis-speculation}\index{mis-speculation}},
+are called \textbf{\phantomsection\label{__index_entry_171}{transient
+instructions}\index{transient instructions}}.\footnote{Transient
   instructions caused by incorrect branch-direction prediction have also
-  been called \textbf{wrong-path
-  instructions}\index{wrong-patch instructions} Mutlu et al.
+  been called
+  \textbf{\phantomsection\label{__index_entry_172}{wrong-path
+  instructions}\index{wrong-path instructions}} Mutlu et al.
   (\citeproc{ref-Mutlu2004}{2004})}
 
 The paragraph above says ``\emph{the system state that affects the
@@ -3290,11 +3393,12 @@ program; it merely influences its execution speed. Therefore, the effect
 of transient execution on the content of the cache is typically not
 undone when detecting mis-speculation.
 
-Sometimes, it is said that the \textbf{architectural
-effects}\index{architectural
-effects} of transient instructions need to be undone, but the
-\textbf{micro-architectural effects}\index{micro-architectural effects}
-do not need to be undone.
+Sometimes, it is said that the
+\textbf{\phantomsection\label{__index_entry_173}{architectural
+effects}\index{architectural effects}} of transient instructions need to
+be undone, but the
+\textbf{\phantomsection\label{__index_entry_174}{micro-architectural
+effects}\index{micro-architectural effects}} do not need to be undone.
 
 The above explanation describes architectural effects as changes in
 system state that need to be undone after detecting mis-speculation. In
@@ -3308,18 +3412,20 @@ that explains micro-architectural versus architectural state in more
 detail? Is ``Computer Architecture: A Quantitative Approach'' the best
 reference available?}}
 
-\textbf{Faulting instructions}\index{faulting instructions} are
-instructions that generate an exception at run-time. Many instructions
-can generate an exception, and are hence \textbf{potentially faulting}.
-For example most load and store instructions generate an exception when
-the accessed address is not mapped. Since so many instructions can
-generate an exception, processors typically speculate that they do not
-generate an exception to enable more parallel execution.
+\textbf{\phantomsection\label{__index_entry_175}{Faulting
+instructions}\index{faulting instructions}} are instructions that
+generate an exception at run-time. Many instructions can generate an
+exception, and are hence \textbf{potentially faulting}. For example most
+load and store instructions generate an exception when the accessed
+address is not mapped. Since so many instructions can generate an
+exception, processors typically speculate that they do not generate an
+exception to enable more parallel execution.
 
 When an instruction faults, the execution typically continues at another
 location. Any instructions later in the instruction stream which are
 speculatively executed before the fault is detected are also called
-\textbf{transient instructions}\index{transient instructions}.
+\textbf{\phantomsection\label{__index_entry_176}{transient
+instructions}\index{transient instructions}}.
 
 There is a kind of control dependency between every potentially-faulting
 instruction and the next one, as the next instruction to be executed
@@ -3332,17 +3438,20 @@ instructions after a faulting instruction.
 \subsection{Transient Execution
 Attacks}\label{transient-execution-attacks-1}
 
-\textbf{Transient execution attacks}\index{transient execution attacks}
-are a category of side-channel attacks that use the micro-architectural
-side-effects of transient execution as a side channel.
+\textbf{\phantomsection\label{__index_entry_177}{Transient execution
+attacks}\index{transient execution attacks}} are a category of
+side-channel attacks that use the micro-architectural side-effects of
+transient execution as a side channel.
 
-The publication of the Spectre\index{Spectre}
+The publication of the
+\phantomsection\label{__index_entry_178}{Spectre}\index{Spectre}
 (\citeproc{ref-Kocher2019}{Kocher et al. 2019}) and
-Meltdown\index{Meltdown} (\citeproc{ref-Lipp2018}{Lipp et al. 2018})
-attacks in 2018 started a period in which a large number of transient
-attacks were discovered and published. Most of them were given specific
-names, such as ZombieLoad, NetSpectre, LVI, Straight-line Speculation,
-etc. New variants continue to be published regularly.
+\phantomsection\label{__index_entry_179}{Meltdown}\index{Meltdown}
+(\citeproc{ref-Lipp2018}{Lipp et al. 2018}) attacks in 2018 started a
+period in which a large number of transient attacks were discovered and
+published. Most of them were given specific names, such as ZombieLoad,
+NetSpectre, LVI, Straight-line Speculation, etc. New variants continue
+to be published regularly.
 
 Covering each one of them in detail here would make the book overly
 lengthy, and may not necessarily help much with gaining a better insight
@@ -3646,10 +3755,11 @@ There are also cases of security vulnerabilities that are not introduced
 by undefined behavior, the following piece of code is such an example.
 This was taken from the Linux kernel. Because the compiler sees that the
 pointer hash is never used after this point, it decides to delete the
-memset operation. We call this dead store optimization (DSO)
-\index{dead store optimization}. This has serious security implications
-because the intention of the programmer was to delete the \texttt{hash}
-information from memory.
+memset operation. We call this
+\phantomsection\label{__index_entry_180}{dead store optimization
+(DSO)}\index{dead store optimization (DSO)}. This has serious security
+implications because the intention of the programmer was to delete the
+\texttt{hash} information from memory.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3674,14 +3784,16 @@ The solution Linux came with was to add a new function called
 \end{Highlighting}
 \end{Shaded}
 
-It still uses \texttt{memset} \index{memset} to delete the associated
-security sensitive data, but it also tries to eliminate the risk of DSO
-by using the OPTIMIZER\_HIDE\_VAR macro. This, however, is not enough to
-fully eliminate dead stores (\citeproc{ref-MemZeroBarrier}{{``Lib:
-Memzero\_explicit: Use Barrier Instead of {OPTIMIZER\_HIDE\_VAR}''}
-2015}). In case of using LTO, the buffer \texttt{s} is still vulnerable.
-For this reason, Linux maintainers added a further hardening mechanism
-by using a compiler barrier instead:
+It still uses
+\phantomsection\label{__index_entry_181}{\texttt{memset}}\index{memset}
+to delete the associated security sensitive data, but it also tries to
+eliminate the risk of DSO by using the OPTIMIZER\_HIDE\_VAR macro. This,
+however, is not enough to fully eliminate dead stores
+(\citeproc{ref-MemZeroBarrier}{{``Lib: Memzero\_explicit: Use Barrier
+Instead of {OPTIMIZER\_HIDE\_VAR}''} 2015}). In case of using LTO, the
+buffer \texttt{s} is still vulnerable. For this reason, Linux
+maintainers added a further hardening mechanism by using a compiler
+barrier instead:
 
 \begin{Shaded}
 \begin{Highlighting}[]
