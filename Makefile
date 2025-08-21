@@ -15,6 +15,7 @@ PANDOCFLAGS = \
 
 COMMONFILTERS = \
           --lua-filter theme/fignos.lua \
+          --lua-filter theme/index.lua \
           --citeproc
 
 .PHONY: all clean pdf html
@@ -33,6 +34,7 @@ img/%.pdf: img/%.svg
 	rsvg-convert -f pdf -o $@ $<
 svgimages := $(wildcard img/*.svg)
 pdfimages := $(patsubst %.svg,%.pdf,$(svgimages))
+commonfilters := theme/fignos.lua theme/index.lua
 
 clean:
 	rm -rf build default_pandoc_html_template default_pandoc_latex_template $(pdfimages)
@@ -48,7 +50,7 @@ build/book.html: book.md book.bib Makefile build theme/html/pandoc_template.html
 				 theme/html/convert_to_sidenote.lua \
 				 theme/html/markup_issue.lua \
 				 theme/html/markup_todo.lua \
-				 theme/fignos.lua \
+				 $(commonfilters) \
 				 theme/html/add_edit_to_headers.lua \
 				 build/default.css $(svgimages)
 	pandoc $< -t html \
@@ -86,7 +88,7 @@ build/LLSoftSecBook.epub: build/book.epub build
 build/book.tex: book.md book.bib Makefile build theme/tex/pandoc_template.tex \
 				theme/html/markup_issue.lua \
 				theme/html/markup_todo.lua \
-				theme/fignos.lua \
+				$(commonfilters) \
 				$(pdfimages)
 	pandoc $< -t latex \
 		--template theme/tex/pandoc_template.tex \
