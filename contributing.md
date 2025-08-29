@@ -49,6 +49,8 @@ so that the copyright notices for this project remain well-maintained.
 The license used for this project is
 https://creativecommons.org/licenses/by/4.0/.
 
+The lua scripts in this repository are licensed under the MIT license.
+
 ### Planning changes
 
 If you're planning to fix a non-trivial reported issue or to add new content,

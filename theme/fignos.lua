@@ -1,3 +1,7 @@
+-- SPDX-FileCopyrightText: <text>Copyright 2024,2025 Arm Limited and/or its
+-- affiliates <open-source-office@arm.com></text>
+-- SPDX-License-Identifier: MIT
+
 -- This lua pandoc filter converts @fig: references.
 -- similarly to how https://github.com/tomduck/pandoc-fignos works.
 -- pandoc-fignos is no longer maintained, therefore, we re-implement
