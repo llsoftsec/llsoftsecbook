@@ -1,3 +1,7 @@
+-- SPDX-FileCopyrightText: <text>Copyright 2022,2024 Arm Limited and/or its
+-- affiliates <open-source-office@arm.com></text>
+-- SPDX-License-Identifier: MIT
+
 function Header (h)
   -- if AST object is header type, it is passed through this function
 

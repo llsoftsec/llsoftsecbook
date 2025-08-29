@@ -1,3 +1,7 @@
+-- SPDX-FileCopyrightText: <text>Copyright 2025 Arm Limited and/or its
+-- affiliates <open-source-office@arm.com></text>
+-- SPDX-License-Identifier: MIT
+
 -- This lua pandoc filter adds index entries written in the pandoc document
 -- into an index where a div with id 'index' is present in the document.
 --
