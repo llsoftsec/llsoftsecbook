@@ -1225,9 +1225,9 @@ feature, supported only in AArch64 state, that can be used to mitigate code
 reuse attacks.
 
 Pointer Authentication computes a pointer _signature_ for a given address,
-called a [Pointer Authentication Code (PAC)]{.index}, see @fig:pauth-sign-auth.
-The PAC code is stored in the upper bits of the pointer which are otherwise
-unused.
+called a [Pointer Authentication Code (PAC)]{.index}, see figure
+@fig:pauth-sign-auth. The PAC code is stored in the upper bits of the pointer
+which are otherwise unused.
 
 A pointer with a PAC code in the upper bits is called a _[signed
 pointer]{.index}_. A non-signed pointer is called a _[raw pointer]{.index}_.
