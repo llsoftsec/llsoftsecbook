@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-215-g62fc1a3" )
+          , ( "VERSION" , MetaString "0-216-g13af29d" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -16475,6 +16475,8 @@ Pandoc
       , Space
       , Str "see"
       , Space
+      , Str "figure"
+      , SoftBreak
       , Cite
           [ Citation
               { citationId = "fig:pauth-sign-auth"
@@ -16487,7 +16489,7 @@ Pandoc
           ]
           [ Str "@fig:pauth-sign-auth" ]
       , Str "."
-      , SoftBreak
+      , Space
       , Str "The"
       , Space
       , Str "PAC"
@@ -16511,13 +16513,13 @@ Pandoc
       , Str "the"
       , Space
       , Str "pointer"
-      , Space
+      , SoftBreak
       , Str "which"
       , Space
       , Str "are"
       , Space
       , Str "otherwise"
-      , SoftBreak
+      , Space
       , Str "unused."
       ]
   , Para
