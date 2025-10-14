@@ -1,3 +1,7 @@
+-- SPDX-FileCopyrightText: <text>Copyright 2023 Arm Limited and/or its
+-- affiliates <open-source-office@arm.com></text>
+-- SPDX-License-Identifier: MIT
+
 -- This lua pandoc filter converts issue spans into nice-looking
 -- links to github issues
 -- local logging = require 'theme/html/logging'

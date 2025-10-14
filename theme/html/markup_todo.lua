@@ -1,3 +1,8 @@
+-- SPDX-FileCopyrightText: <text>Copyright 2023 Arm Limited and/or its
+-- affiliates <open-source-office@arm.com></text>
+-- SPDX-License-Identifier: MIT
+
+
 -- This lua pandoc filter converts footnotes to HTML "sidenote"s
 -- local logging = require 'theme/html/logging'
 

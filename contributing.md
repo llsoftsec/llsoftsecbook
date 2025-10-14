@@ -49,6 +49,8 @@ so that the copyright notices for this project remain well-maintained.
 The license used for this project is
 https://creativecommons.org/licenses/by/4.0/.
 
+The lua scripts in this repository are licensed under the MIT license.
+
 ### Planning changes
 
 If you're planning to fix a non-trivial reported issue or to add new content,
@@ -100,12 +102,94 @@ please join [our Discord server](https://discord.gg/Bm55Z9Ppgn).
   [book.md](https://github.com/llsoftsec/llsoftsecbook/blob/main/book.md) file.
 - When adding new content, please remember to:
   - Spell check your contributions. We use US English spelling.
-  - Add \index as needed to make sure the index of the book remains up-to-date.
+  - Add index entries as needed to make sure the index of the book remains
+    up-to-date.
 - If the copyright owner of what you're adding is not already listed in the
   header of
   [book.md](https://github.com/llsoftsec/llsoftsecbook/blob/main/book.md) under
   'copyright:', please add a SPDX-FileCopyrightText item.
+- We've written a number of lua scripts to allow us to extend pandoc's
+  capabilities in a few areas. These enable a few new markdown constructs,
+  explained in the following sections.
 
+### Use of Example, Definition environments
+
+The book uses many examples to explain concepts. In some places, it also
+explicitly defines terms. To make these stand out, we use special environments
+for them.
+
+To create an example, use the following syntax:
+
+```markdown
+::: {.example #ex:example-example
+     caption="This is the caption of the example"}
+This is an example.
+:::
+```
+
+As you can see, this uses the standard
+[pandoc fenced div syntax](https://pandoc.org/MANUAL.html#extension-fenced_divs).
+Every div with the class `example` is treated as an example. The optional
+`caption` attribute can be used to provide a caption for the example. The
+optional `#ex:example-example` identifier provides a label for the example, so
+that it can be referred to from other parts of the book using
+`@ex:example-example`. For this to work, the identifier must start with `ex:`.
+Example numbers are automatically generated.
+
+The above example would be rendered in HTML as follows:
+
+![screenshot of an HTML-rendered example](docs/contributing-example-example.png)
+
+Similarly, definitions can be created using the following syntax:
+
+```markdown
+::: {.definition #def:example-definition
+     caption="This is the caption of the definition"}
+This is a definition.
+:::
+```
+
+Definition identifiers must start with `def:`.
+
+The above definition would be rendered in HTML as follows:
+
+![screenshot of an HTML-rendered definition](docs/contributing-definition-example.png)
+
+### Refering to sections, figures, examples, definitions
+
+Sections, figures, examples and definitions can be referred to using the
+`@sec:`, `@fig:`, `@ex:` and `@def:` prefixes, respectively. For example,
+`@sec:introduction` refers to the section with the identifier
+`#sec:introduction`. Similarly, `@fig:some-figure` refers to the figure with the
+identifier `#fig:some-figure`.
+
+### How to add index entries
+
+Pandoc markdown does not have built-in support for index entries. Therefore, we
+use a custom lua script to add this functionality. To add an index entry, use
+the following syntax: `This will become an [index entry]{.index}`
+
+This uses the
+[pandoc markdown bracketed span](https://pandoc.org/MANUAL.html#extension-bracketed_spans)
+syntax. The text inside the square brackets is the text that will appear in the
+index. The `.index` class tells the lua script that this is an index entry.
+
+If you want a different text to appear in the index than what is visible in the
+main text, you can use the following syntax:
+`This will become an [index entry]{.index entry="alternative text"}`. As you can
+see, the `entry` attribute specifies the text that will appear in the index.
+
+If you want to create a sub-entry in the index, you can use the `!` character to
+separate the main entry from the sub-entry. For example,
+`This will become an [index entry]{.index entry="index entry!sub-entry"}` will
+create a main entry "index entry" with a sub-entry "sub-entry".
+
+All index entries are automatically sorted alphabetically and inserted into the
+div with the id `index`.
+
+The 3 example index entries above would be rendered in HTML as follows:
+
+![screenshot of an HTML-rendered index](docs/contributing-index-example.png)
 
 ### General style and grammar conventions
 

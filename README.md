@@ -4,7 +4,7 @@
 [![Build book with docker container CI](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml/badge.svg)](https://github.com/llsoftsec/llsoftsecbook/actions/workflows/main.yml)
 [![Discord chat](https://img.shields.io/discord/1073537588234829845?logo=discord)](https://discord.gg/Bm55Z9Ppgn)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-27-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-28-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This book aims to provide a structured, broad overview of all attacks and
@@ -139,6 +139,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/koutheir"><img src="https://avatars.githubusercontent.com/u/1145849?v=4?s=100" width="100px;" alt="Koutheir Attouchi"/><br /><sub><b>Koutheir Attouchi</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=koutheir" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/BetaRays"><img src="https://avatars.githubusercontent.com/u/26482956?v=4?s=100" width="100px;" alt="BetaRays"/><br /><sub><b>BetaRays</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=BetaRays" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/pcc"><img src="https://avatars.githubusercontent.com/u/425024?v=4?s=100" width="100px;" alt="Peter Collingbourne"/><br /><sub><b>Peter Collingbourne</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/pulls?q=is%3Apr+reviewed-by%3Apcc" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/tarcisiofischer"><img src="https://avatars.githubusercontent.com/u/1008957?v=4?s=100" width="100px;" alt="Tarcísio Fischer"/><br /><sub><b>Tarcísio Fischer</b></sub></a><br /><a href="https://github.com/llsoftsec/llsoftsecbook/commits?author=tarcisiofischer" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
@@ -153,3 +154,5 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 ## License
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This book is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+The lua scripts in this repository are licensed under the MIT license.

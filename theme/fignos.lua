@@ -1,3 +1,7 @@
+-- SPDX-FileCopyrightText: <text>Copyright 2024,2025 Arm Limited and/or its
+-- affiliates <open-source-office@arm.com></text>
+-- SPDX-License-Identifier: MIT
+
 -- This lua pandoc filter converts @fig: references.
 -- similarly to how https://github.com/tomduck/pandoc-fignos works.
 -- pandoc-fignos is no longer maintained, therefore, we re-implement
@@ -177,11 +181,13 @@ function process_headers (header)
   if sec_label then
     headerlabel2counter[sec_label] = counter;
   end
+  -- also add attribute to header containing the section number
+  -- so that later pandoc filters can use it.
+  header.attr.attributes['section-number'] = section_counter_to_string(counter);
   return header;
 end
 
-function get_section_reference_text(label)
-  local section_number_array = headerlabel2counter[label]
+function section_counter_to_string(section_number_array)
   local ref_text = '';
   for i = 1, #section_number_array do
     ref_text = ref_text..section_number_array[i];
@@ -190,6 +196,11 @@ function get_section_reference_text(label)
     end
   end
   return ref_text;
+end
+
+function get_section_reference_text(label)
+  local section_number_array = headerlabel2counter[label]
+  return section_counter_to_string(section_number_array);
 end
 
 function get_link_text(citation, label)
