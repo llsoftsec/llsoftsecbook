@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-216-g13af29d" )
+          , ( "VERSION" , MetaString "0-217-g0edbaab" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -7938,6 +7938,1552 @@ Pandoc
       ]
   , Header
       2
+      ( "use-after-free-uaf" , [] , [] )
+      [ Str "Use"
+      , Space
+      , Str "After"
+      , Space
+      , Str "Free"
+      , Space
+      , Str "(UaF)"
+      ]
+  , Para
+      [ Str "A"
+      , Space
+      , Emph
+          [ Span
+              ( ""
+              , [ "index" ]
+              , [ ( "entry" , "Use after free (UaF)" ) ]
+              )
+              [ Str "use" , Space , Str "after" , Space , Str "free" ]
+          ]
+      , Space
+      , Str "(UaF)"
+      , Space
+      , Str "occurs"
+      , Space
+      , Str "when"
+      , Space
+      , Str "a"
+      , Space
+      , Str "variable"
+      , Space
+      , Str "is"
+      , Space
+      , Str "used"
+      , Space
+      , Str "(read"
+      , Space
+      , Str "and/or"
+      , Space
+      , Str "written)"
+      , SoftBreak
+      , Str "after"
+      , Space
+      , Str "it"
+      , Space
+      , Str "has"
+      , Space
+      , Str "been"
+      , Space
+      , Str "freed."
+      , Space
+      , Str "Although"
+      , Space
+      , Str "this"
+      , Space
+      , Str "description"
+      , Space
+      , Str "assumes"
+      , Space
+      , Str "manual"
+      , Space
+      , Str "memory"
+      , Space
+      , Str "management"
+      , Space
+      , Str "using"
+      , SoftBreak
+      , Str "malloc/new"
+      , Space
+      , Str "and"
+      , Space
+      , Str "free/delete"
+      , Space
+      , Str "(heap"
+      , Space
+      , Str "allocation),"
+      , Space
+      , Str "if"
+      , Space
+      , Str "we"
+      , Space
+      , Str "think"
+      , Space
+      , Str "about"
+      , Space
+      , Str "memory"
+      , Space
+      , Str "as"
+      , Space
+      , Str "a"
+      , Space
+      , Str "resource"
+      , SoftBreak
+      , Str "one"
+      , Space
+      , Str "may"
+      , Space
+      , Str "apply"
+      , Space
+      , Str "the"
+      , Space
+      , Str "same"
+      , Space
+      , Str "idea"
+      , Space
+      , Str "more"
+      , Space
+      , Str "broadly."
+      , Space
+      , Str "For"
+      , Space
+      , Str "example,"
+      , Space
+      , Str "getting"
+      , Space
+      , Str "a"
+      , Space
+      , Str "reference"
+      , Space
+      , Str "to"
+      , Space
+      , Str "a"
+      , Space
+      , Str "variable"
+      , Space
+      , Str "in"
+      , Space
+      , Str "the"
+      , SoftBreak
+      , Str "stack"
+      , Space
+      , Str "and"
+      , Space
+      , Str "using"
+      , Space
+      , Str "it"
+      , Space
+      , Str "after"
+      , Space
+      , Str "it"
+      , Space
+      , Str "has"
+      , Space
+      , Str "ended"
+      , Space
+      , Str "its"
+      , Space
+      , Str "scope,"
+      , Space
+      , Str "or"
+      , Space
+      , Str "somehow"
+      , Space
+      , Str "getting"
+      , Space
+      , Str "access"
+      , Space
+      , Str "to"
+      , Space
+      , Str "freed"
+      , Space
+      , Str "memory"
+      , SoftBreak
+      , Str "from"
+      , Space
+      , Str "a"
+      , Space
+      , Str "garbage"
+      , Space
+      , Str "collector."
+      , Space
+      , Str "It"
+      , Space
+      , Str "is"
+      , Space
+      , Str "important"
+      , Space
+      , Str "to"
+      , Space
+      , Str "note"
+      , Space
+      , Str "that,"
+      , Space
+      , Str "although"
+      , Space
+      , Str "seemingly"
+      , Space
+      , Str "related,"
+      , Space
+      , Str "some"
+      , SoftBreak
+      , Str "authors"
+      , Space
+      , Str "prefer"
+      , Space
+      , Str "to"
+      , Space
+      , Str "not"
+      , Space
+      , Str "mix"
+      , Space
+      , Str "the"
+      , Space
+      , Str "definitions."
+      , Space
+      , Str "For"
+      , Space
+      , Str "example,"
+      , Space
+      , Str "the"
+      , SoftBreak
+      , Span
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "Common Weakness Enumeration (CWE)" ) ]
+          )
+          [ Str "Common"
+          , Space
+          , Str "Weakness"
+          , Space
+          , Str "Enumeration"
+          ]
+      , Space
+      , Str "(CWE)"
+      , Space
+      , Str "page"
+      , SoftBreak
+      , Link
+          ( "" , [] , [] )
+          [ Str "only"
+          , Space
+          , Str "gives"
+          , Space
+          , Str "examples"
+          ]
+          ( "https://cwe.mitre.org/data/definitions/416.html" , "" )
+      , SoftBreak
+      , Str "using"
+      , Space
+      , Str "raw"
+      , Space
+      , Str "malloc/frees,"
+      , Space
+      , Str "without"
+      , Space
+      , Str "any"
+      , Space
+      , Str "mentions"
+      , Space
+      , Str "to"
+      , Space
+      , Str "cases"
+      , Space
+      , Str "with"
+      , Space
+      , Str "stack"
+      , Space
+      , Str "or"
+      , Space
+      , Str "garbage"
+      , Space
+      , Str "collector."
+      , Space
+      , Str "Unless"
+      , SoftBreak
+      , Str "explicitly"
+      , Space
+      , Str "stated,"
+      , Space
+      , Str "the"
+      , Space
+      , Str "rest"
+      , Space
+      , Str "of"
+      , Space
+      , Str "this"
+      , Space
+      , Str "section"
+      , Space
+      , Str "assumes"
+      , Space
+      , Str "raw"
+      , Space
+      , Str "memory"
+      , Space
+      , Str "management"
+      , Space
+      , Str "with"
+      , Space
+      , Str "malloc/new"
+      , Space
+      , Str "and"
+      , SoftBreak
+      , Str "free/delete."
+      ]
+  , Para
+      [ Str "Although"
+      , Space
+      , Str "some"
+      , Space
+      , Str "cases"
+      , Space
+      , Str "of"
+      , Space
+      , Str "UaF"
+      , Space
+      , Str "may"
+      , Space
+      , Str "just"
+      , Space
+      , Str "lead"
+      , Space
+      , Str "to"
+      , Space
+      , Str "unexpected"
+      , Space
+      , Str "software"
+      , Space
+      , Str "behavior"
+      , SoftBreak
+      , Str "or"
+      , Space
+      , Str "crashes,"
+      , Space
+      , Str "other"
+      , Space
+      , Str "cases"
+      , Space
+      , Str "may"
+      , Space
+      , Str "enable"
+      , Space
+      , Str "attackers"
+      , Space
+      , Str "to"
+      , Space
+      , Str "poison"
+      , Space
+      , Str "data"
+      , Space
+      , Str "and"
+      , Space
+      , Str "thereby"
+      , Space
+      , Str "alter"
+      , Space
+      , Str "program"
+      , Space
+      , Str "flow."
+      , SoftBreak
+      , Str "There"
+      , Space
+      , Str "are"
+      , Space
+      , Str "many"
+      , Space
+      , Str "possibilities"
+      , Space
+      , Str "on"
+      , Space
+      , Str "how"
+      , Space
+      , Str "this"
+      , Space
+      , Str "can"
+      , Space
+      , Str "happen."
+      , Space
+      , Str "Some"
+      , Space
+      , Str "of"
+      , Space
+      , Str "them"
+      , SoftBreak
+      , Str "depend"
+      , Space
+      , Str "on"
+      , Space
+      , Str "how"
+      , Space
+      , Str "the"
+      , Space
+      , Str "memory"
+      , Space
+      , Str "allocator"
+      , Space
+      , Str "manages"
+      , Space
+      , Str "its"
+      , Space
+      , Str "data."
+      , Space
+      , Str "For"
+      , Space
+      , Str "example,"
+      , SoftBreak
+      , Str "if"
+      , Space
+      , Str "the"
+      , Space
+      , Str "attacker"
+      , Space
+      , Str "can"
+      , Space
+      , Str "trick"
+      , Space
+      , Str "the"
+      , Space
+      , Str "allocator"
+      , Space
+      , Str "to"
+      , Space
+      , Str "return"
+      , Space
+      , Str "the"
+      , Space
+      , Str "same"
+      , Space
+      , Str "address"
+      , Space
+      , Str "for"
+      , Space
+      , Str "two"
+      , SoftBreak
+      , Str "different"
+      , Space
+      , Str "allocation,"
+      , Space
+      , Str "that"
+      , Space
+      , Str "could"
+      , Space
+      , Str "lead"
+      , Space
+      , Str "to"
+      , Space
+      , Str "controllable"
+      , Space
+      , Str "data."
+      , Space
+      , Str "This"
+      , Space
+      , Str "is"
+      , Space
+      , Str "shown"
+      , Space
+      , Str "in"
+      , Space
+      , Str "more"
+      , SoftBreak
+      , Str "detail"
+      , Space
+      , Str "in"
+      , Space
+      , Str "Example"
+      , Space
+      , Cite
+          [ Citation
+              { citationId = "ex:use-after-free"
+              , citationPrefix = []
+              , citationSuffix = []
+              , citationMode = AuthorInText
+              , citationNoteNum = 21
+              , citationHash = 0
+              }
+          ]
+          [ Str "@ex:use-after-free" ]
+      , Str "."
+      , Space
+      , Str "For"
+      , Space
+      , Str "an"
+      , Space
+      , Str "overview"
+      , Space
+      , Str "of"
+      , Space
+      , Str "heap"
+      , Space
+      , Str "exploiting"
+      , Space
+      , Str "techniques,"
+      , Space
+      , Str "see"
+      , SoftBreak
+      , Cite
+          [ Citation
+              { citationId = "dhavalkapil2022"
+              , citationPrefix = []
+              , citationSuffix = []
+              , citationMode = NormalCitation
+              , citationNoteNum = 22
+              , citationHash = 0
+              }
+          ]
+          [ Str "[@dhavalkapil2022]" ]
+      , Str "."
+      ]
+  , Div
+      ( "ex:use-after-free"
+      , [ "example" ]
+      , [ ( "caption" , "Simple UaF example" ) ]
+      )
+      [ CodeBlock
+          ( "" , [ "c" ] , [] )
+          "struct auth_t {\n  char name[32];\n  int logged_in;\n};\n \nint main(int argc, char** argv) {\n  char line[50];\n \n  while(1) {\n    printf(\"[ auth = %p, service = %p ]\\n\", auth, service);\n \n    if (fgets(line, sizeof(line), stdin) == NULL) break;\n \n    // Usage: auth <name>\n    if (strncmp(line, \"auth \", 5) == 0) {\n      auth = (struct auth_t*)malloc(sizeof(struct auth_t));\n\n      // Memory is only set to 0 here, not on free[1]\n      memset(auth, 0, sizeof(struct auth_t));\n\n      if (strlen(line + 5) < 31) {\n        strcpy(auth->name, line + 5);\n      }\n    }\n \n    // Usage: reset\n    else if (strncmp(line, \"reset\", 5) == 0) {\n      // [1]\n      free(auth);\n    }\n\n    // Usage: service <service-name>\n    else if (strncmp(line, \"service \", 8) == 0) {\n      service = strdup(line + 8);\n    }\n\n    // Usage: login\n    else if (strncmp(line, \"login\", 5) == 0) {\n      // Possible use-after-free:\n      if (auth && auth->logged_in) {\n        printf(\"You are already logged in!\\n\");\n      } else {\n        printf(\"NOT AUTHORIZED!\\n\");\n      }\n    }\n  }\n\n  return 0;\n}"
+      , Para
+          [ Str "The"
+          , Space
+          , Str "exploit"
+          , Space
+          , Str "below"
+          , Space
+          , Str "may"
+          , Space
+          , Str "not"
+          , Space
+          , Str "work"
+          , Space
+          , Str "in"
+          , Space
+          , Str "every"
+          , Space
+          , Str "system,"
+          , Space
+          , Str "as"
+          , Space
+          , Str "it"
+          , Space
+          , Str "assumes"
+          , Space
+          , Str "that"
+          , SoftBreak
+          , Str "calling"
+          , Space
+          , Str "malloc+free+malloc"
+          , Space
+          , Str "will"
+          , Space
+          , Str "result"
+          , Space
+          , Str "in"
+          , Space
+          , Str "both"
+          , Space
+          , Str "calls"
+          , Space
+          , Str "to"
+          , Space
+          , Str "malloc"
+          , Space
+          , Str "returning"
+          , Space
+          , Str "the"
+          , Space
+          , Str "same"
+          , Space
+          , Str "pointer."
+          , SoftBreak
+          , Str "The"
+          , Space
+          , Str "example"
+          , Space
+          , Str "execution"
+          , Space
+          , Str "below"
+          , Space
+          , Str "tricks"
+          , Space
+          , Str "the"
+          , Space
+          , Str "software"
+          , Space
+          , Str "into"
+          , Space
+          , Str "thinking"
+          , Space
+          , Str "the"
+          , Space
+          , Str "user"
+          , Space
+          , Str "is"
+          , Space
+          , Str "logged"
+          , Space
+          , Str "in,"
+          , Space
+          , Str "by"
+          , SoftBreak
+          , Str "taking"
+          , Space
+          , Str "advantage"
+          , Space
+          , Str "of"
+          , Space
+          , Str "the"
+          , Space
+          , Str "UaF"
+          , Space
+          , Str "to"
+          , Space
+          , Str "change"
+          , Space
+          , Str "the"
+          , Space
+          , Str "boolean:"
+          ]
+      , CodeBlock
+          ( "" , [] , [] )
+          "> auth admin                                   \n[ auth = 0x78322e1000, service = 0x0 ]       \n> reset                                        \n[ auth = 0x78322e1000, service = 0x0 ]       \n> service aaaaaaaaa0aaaaaaaaa0aaaaaaaaa0121    \n[ auth = 0x78322e1000, service = 0x78322e1000 ]\n> login                                        \nYou are already logged in!"
+      , Para
+          [ Str "In"
+          , Space
+          , Str "this"
+          , Space
+          , Str "example,"
+          , Space
+          , Str "four"
+          , Space
+          , Str "commands"
+          , Space
+          , Str "are"
+          , Space
+          , Str "issued:"
+          ]
+      , OrderedList
+          ( 1 , Decimal , OneParen )
+          [ [ Para
+                [ Code ( "" , [] , [] ) "auth admin"
+                , Space
+                , Str "will"
+                , Space
+                , Str "allocate"
+                , Space
+                , Str "the"
+                , Space
+                , Code ( "" , [] , [] ) "auth_t"
+                , Space
+                , Str "structure"
+                , Space
+                , Str "for"
+                , Space
+                , Str "the"
+                , Space
+                , Str "first"
+                , Space
+                , Str "time."
+                , Space
+                , Str "At"
+                , SoftBreak
+                , Str "this"
+                , Space
+                , Str "point,"
+                , Space
+                , Str "the"
+                , Space
+                , Str "user"
+                , Space
+                , Str "has"
+                , Space
+                , Str "a"
+                , Space
+                , Str "name,"
+                , Space
+                , Str "but"
+                , Space
+                , Str "is"
+                , Space
+                , Str "not"
+                , Space
+                , Str "authorized"
+                , Space
+                , Str "("
+                , Code ( "" , [] , [] ) "logged_in"
+                , Space
+                , Str "is"
+                , Space
+                , Code ( "" , [] , [] ) "false"
+                , Str ")."
+                ]
+            ]
+          , [ Para
+                [ Code ( "" , [] , [] ) "reset"
+                , Space
+                , Str "will"
+                , Space
+                , Str "free"
+                , Space
+                , Str "the"
+                , Space
+                , Str "memory"
+                , Space
+                , Str "(but"
+                , Space
+                , Str "pointer"
+                , Space
+                , Str "to"
+                , Space
+                , Code ( "" , [] , [] ) "auth"
+                , Space
+                , Str "is"
+                , Space
+                , Str "not"
+                , Space
+                , Str "set"
+                , Space
+                , Str "to"
+                , Space
+                , Code ( "" , [] , [] ) "nullptr"
+                , Str ")."
+                , SoftBreak
+                , Code ( "" , [] , [] ) "service (...)"
+                , Space
+                , Str "will"
+                , Space
+                , Str "allocate"
+                , Space
+                , Str "a"
+                , Space
+                , Str "new"
+                , Space
+                , Str "string,"
+                , Space
+                , Str "potentially"
+                , Space
+                , Str "at"
+                , Space
+                , Str "the"
+                , Space
+                , Str "same"
+                , Space
+                , Str "address"
+                , SoftBreak
+                , Str "where"
+                , Space
+                , Str "the"
+                , Space
+                , Code ( "" , [] , [] ) "auth_t"
+                , Space
+                , Str "structure"
+                , Space
+                , Str "was"
+                , Space
+                , Str "previously"
+                , Space
+                , Str "allocated."
+                ]
+            ]
+          , [ Para
+                [ Code
+                    ( "" , [] , [] )
+                    "service aaaaaaaaa0aaaaaaaaa0aaaaaaaaa0121"
+                , Space
+                , Str "will"
+                , Space
+                , Str "end"
+                , Space
+                , Str "up"
+                , Space
+                , Str "setting"
+                , Space
+                , Str "the"
+                , Space
+                , Str "memory"
+                , SoftBreak
+                , Str "previously"
+                , Space
+                , Str "pointing"
+                , Space
+                , Str "to"
+                , Space
+                , Str "an"
+                , Space
+                , Code ( "" , [] , [] ) "auth_t"
+                , Str "."
+                ]
+            ]
+          , [ Para
+                [ Code ( "" , [] , [] ) "login"
+                , Space
+                , Str "will"
+                , Space
+                , Str "use"
+                , Space
+                , Str "the"
+                , Space
+                , Str "dangling"
+                , Space
+                , Code ( "" , [] , [] ) "auth_t"
+                , Space
+                , Str "pointer."
+                , Space
+                , Str "If"
+                , Space
+                , Str "this"
+                , Space
+                , Str "memory"
+                , Space
+                , Str "has"
+                , Space
+                , Str "been"
+                , SoftBreak
+                , Str "reallocated"
+                , Space
+                , Str "to"
+                , Space
+                , Str "the"
+                , Space
+                , Str "attacker"
+                , Space
+                , Str "controlled"
+                , Space
+                , Str "string,"
+                , Space
+                , Str "it"
+                , Space
+                , Str "will"
+                , Space
+                , Str "appear"
+                , Space
+                , Str "as"
+                , Space
+                , Str "if"
+                , Space
+                , Str "the"
+                , Space
+                , Str "field"
+                , SoftBreak
+                , Code ( "" , [] , [] ) "name"
+                , Space
+                , Str "is"
+                , Space
+                , Str "set"
+                , Space
+                , Str "to"
+                , Space
+                , Code
+                    ( "" , [] , [] ) "aaaaaaaaa0aaaaaaaaa0aaaaaaaaa012"
+                , Space
+                , Str "and"
+                , Space
+                , Str "the"
+                , Space
+                , Str "boolean"
+                , SoftBreak
+                , Code ( "" , [] , [] ) "logged_in"
+                , Space
+                , Str "to"
+                , Space
+                , Code ( "" , [] , [] ) "true"
+                , Str "."
+                ]
+            ]
+          ]
+      ]
+  , Para
+      [ Str "Detecting"
+      , Space
+      , Str "UaFs"
+      , Space
+      , Str "is"
+      , Space
+      , Str "usually"
+      , Space
+      , Str "not"
+      , Space
+      , Str "an"
+      , Space
+      , Str "easy"
+      , Space
+      , Str "task,"
+      , Space
+      , Str "as"
+      , Space
+      , Str "it"
+      , Space
+      , Str "depends"
+      , Space
+      , Str "not"
+      , Space
+      , Str "only"
+      , Space
+      , Str "on"
+      , SoftBreak
+      , Str "user"
+      , Space
+      , Str "inputs,"
+      , Space
+      , Str "but"
+      , Space
+      , Str "sometimes"
+      , Space
+      , Str "also"
+      , Space
+      , Str "on"
+      , Space
+      , Str "the"
+      , Space
+      , Str "execution"
+      , Space
+      , Str "flow."
+      , Space
+      , Str "It"
+      , Space
+      , Str "can"
+      , Space
+      , Str "get"
+      , Space
+      , Str "even"
+      , Space
+      , Str "more"
+      , SoftBreak
+      , Str "complicated"
+      , Space
+      , Str "in"
+      , Space
+      , Str "multi-threaded"
+      , Space
+      , Str "environments."
+      , Space
+      , Str "Therefore,"
+      , Space
+      , Str "many"
+      , Space
+      , Str "different"
+      , Space
+      , Str "UaF"
+      , SoftBreak
+      , Str "detection"
+      , Space
+      , Str "tools"
+      , Space
+      , Str "have"
+      , Space
+      , Str "been"
+      , Space
+      , Str "built,"
+      , Space
+      , Str "based"
+      , Space
+      , Str "on"
+      , Space
+      , Str "a"
+      , Space
+      , Str "number"
+      , Space
+      , Str "of"
+      , Space
+      , Str "different"
+      , Space
+      , Str "approaches:"
+      ]
+  , Para
+      [ Str "Some"
+      , Space
+      , Str "detectors"
+      , Space
+      , Str "intercept"
+      , Space
+      , Str "calls"
+      , Space
+      , Str "to"
+      , Space
+      , Str "delete"
+      , Space
+      , Str "/"
+      , Space
+      , Str "free"
+      , Space
+      , Str "to"
+      , Space
+      , Str "inject"
+      , Space
+      , Str "a"
+      , Space
+      , Str "known"
+      , Space
+      , Str "value"
+      , Space
+      , Str "to"
+      , SoftBreak
+      , Str "the"
+      , Space
+      , Str "variables"
+      , Space
+      , Str "and"
+      , Space
+      , Str "then"
+      , Space
+      , Str "run"
+      , Space
+      , Str "the"
+      , Space
+      , Str "software"
+      , Space
+      , Str "looking"
+      , Space
+      , Str "for"
+      , Space
+      , Str "crashes"
+      , Space
+      , Str "that"
+      , Space
+      , Str "include"
+      , SoftBreak
+      , Str "that"
+      , Space
+      , Str "value."
+      , Space
+      , Str "Another"
+      , Space
+      , Str "useful"
+      , Space
+      , Str "tool"
+      , Space
+      , Str "for"
+      , Space
+      , Str "detecting"
+      , Space
+      , Str "UaF"
+      , Space
+      , Str "is"
+      , Space
+      , Str "Arm\8217s"
+      , SoftBreak
+      , Str "MTE"
+      , Space
+      , Str "(Memory"
+      , Space
+      , Str "Tagging"
+      , Space
+      , Str "Extension),"
+      , Space
+      , Str "discussed"
+      , Space
+      , Str "in"
+      , Space
+      , Str "section"
+      , SoftBreak
+      , Cite
+          [ Citation
+              { citationId =
+                  "sec:preventing-and-detecting-memory-errors"
+              , citationPrefix = []
+              , citationSuffix = []
+              , citationMode = AuthorInText
+              , citationNoteNum = 23
+              , citationHash = 0
+              }
+          ]
+          [ Str "@sec:preventing-and-detecting-memory-errors" ]
+      , Str "."
+      ]
+  , Para
+      [ Str "Fuzzing"
+      , Space
+      , Str "(generating"
+      , Space
+      , Str "random"
+      , Space
+      , Str "inputs)"
+      , Space
+      , Str "can"
+      , Space
+      , Str "also"
+      , Space
+      , Str "be"
+      , Space
+      , Str "useful,"
+      , Space
+      , Str "potentially"
+      , Space
+      , Str "used"
+      , Space
+      , Str "at"
+      , SoftBreak
+      , Str "the"
+      , Space
+      , Str "same"
+      , Space
+      , Str "time"
+      , Space
+      , Str "as"
+      , Space
+      , Str "other"
+      , Space
+      , Str "tools."
+      ]
+  , Para
+      [ Str "One"
+      , Space
+      , Str "could"
+      , Space
+      , Str "also"
+      , Space
+      , Str "include"
+      , Space
+      , Str "different"
+      , Space
+      , Str "algorithms"
+      , Space
+      , Str "to"
+      , Space
+      , Str "reduce"
+      , Space
+      , Str "the"
+      , Space
+      , Str "probability"
+      , Space
+      , Str "of"
+      , Space
+      , Str "exploiting"
+      , SoftBreak
+      , Str "use-after-free"
+      , Space
+      , Str "in"
+      , Space
+      , Str "allocators"
+      , Space
+      , Str "as"
+      , Space
+      , Str "a"
+      , Space
+      , Str "mitigation"
+      , Space
+      , Str "strategy,"
+      , Space
+      , Str "garbage"
+      , Space
+      , Str "collectors"
+      , Space
+      , Str "or"
+      , SoftBreak
+      , Str "reference-count"
+      , Space
+      , Str "based"
+      , Space
+      , Str "memory"
+      , Space
+      , Str "allocators."
+      ]
+  , Para
+      [ Str "Preventing"
+      , Space
+      , Str "UaF"
+      , Space
+      , Str "from"
+      , Space
+      , Str "happening"
+      , Space
+      , Str "may"
+      , Space
+      , Str "involve"
+      , Space
+      , Str "multiple"
+      , Space
+      , Str "approaches,"
+      , Space
+      , Str "depending"
+      , Space
+      , Str "on"
+      , Space
+      , Str "the"
+      , SoftBreak
+      , Str "context."
+      , Space
+      , Str "From"
+      , Space
+      , Str "simple"
+      , Space
+      , Str "code"
+      , Space
+      , Str "changes,"
+      , Space
+      , Str "such"
+      , Space
+      , Str "as"
+      , Space
+      , Str "initializing"
+      , Space
+      , Str "allocated"
+      , Space
+      , Str "variables,"
+      , Space
+      , Str "to"
+      , SoftBreak
+      , Str "more"
+      , Space
+      , Str "elaborate"
+      , Space
+      , Str "changes,"
+      , Space
+      , Str "such"
+      , Space
+      , Str "as"
+      , Space
+      , Str "changing"
+      , Space
+      , Str "how"
+      , Space
+      , Str "the"
+      , Space
+      , Str "memory"
+      , Space
+      , Str "allocator"
+      , Space
+      , Str "works"
+      , Space
+      , Str "to"
+      , SoftBreak
+      , Str "avoid"
+      , Space
+      , Str "reusing"
+      , Space
+      , Str "specific"
+      , Space
+      , Str "memory"
+      , Space
+      , Str "locations."
+      , Space
+      , Str "On"
+      , Space
+      , Str "top"
+      , Space
+      , Str "of"
+      , Space
+      , Str "that,"
+      , Space
+      , Str "decreasing"
+      , Space
+      , Str "relevance"
+      , SoftBreak
+      , Str "of"
+      , Space
+      , Str "UaF"
+      , Space
+      , Str "for"
+      , Space
+      , Str "attackers"
+      , Space
+      , Str "can"
+      , Space
+      , Str "be"
+      , Space
+      , Str "another"
+      , Space
+      , Str "interesting"
+      , Space
+      , Str "perspective"
+      , Space
+      , Str "(meaning,"
+      , Space
+      , Str "even"
+      , Space
+      , Str "if"
+      , SoftBreak
+      , Str "a"
+      , Space
+      , Str "UaF"
+      , Space
+      , Str "is"
+      , Space
+      , Str "present,"
+      , Space
+      , Str "decreasing"
+      , Space
+      , Str "the"
+      , Space
+      , Str "likelihood"
+      , Space
+      , Str "of"
+      , Space
+      , Str "it"
+      , Space
+      , Str "being"
+      , Space
+      , Str "exploitable)."
+      , Space
+      , Str "For"
+      , SoftBreak
+      , Str "example,"
+      , Space
+      , Str "MTE"
+      , Space
+      , Str "sync"
+      , Space
+      , Str "mode"
+      , Space
+      , Str "can"
+      , Space
+      , Str "force"
+      , Space
+      , Str "an"
+      , Space
+      , Str "application"
+      , Space
+      , Str "crash"
+      , Space
+      , Str "as"
+      , Space
+      , Str "soon"
+      , Space
+      , Str "as"
+      , Space
+      , Str "the"
+      , Space
+      , Str "UaF"
+      , Space
+      , Str "occurs,"
+      , SoftBreak
+      , Str "while"
+      , Space
+      , Str "Pointer"
+      , Space
+      , Str "Authentication"
+      , Space
+      , Str "(PAC)"
+      , Space
+      , Str "can"
+      , Space
+      , Str "be"
+      , Space
+      , Str "used"
+      , Space
+      , Str "to"
+      , Space
+      , Str "sign"
+      , Space
+      , Str "pointers"
+      , Space
+      , Str "so"
+      , Space
+      , Str "that"
+      , Space
+      , Str "even"
+      , Space
+      , Str "if"
+      , SoftBreak
+      , Str "they"
+      , Space
+      , Str "get"
+      , Space
+      , Str "poisoned,"
+      , Space
+      , Str "they"
+      , Space
+      , Str "cannot"
+      , Space
+      , Str "be"
+      , Space
+      , Str "used"
+      , Space
+      , Str "(more"
+      , Space
+      , Str "details"
+      , Space
+      , Str "in"
+      , SoftBreak
+      , Str "section"
+      , Space
+      , Cite
+          [ Citation
+              { citationId = "sec:pointer-authentication"
+              , citationPrefix = []
+              , citationSuffix = []
+              , citationMode = AuthorInText
+              , citationNoteNum = 24
+              , citationHash = 0
+              }
+          ]
+          [ Str "@sec:pointer-authentication" ]
+      , Space
+      , Str ")."
+      ]
+  , Div
+      ( "" , [ "TODO" ] , [] )
+      [ Para
+          [ Str "Dive"
+          , Space
+          , Str "more"
+          , Space
+          , Str "into"
+          , Space
+          , Str "UaF"
+          , Space
+          , Str "detection"
+          , Space
+          , Str "and"
+          , Space
+          , Str "mitigations."
+          , Space
+          , Str "Suggested"
+          , Space
+          , Str "starting"
+          , Space
+          , Str "points:"
+          ]
+      , BulletList
+          [ [ Plain
+                [ Str "Allocators"
+                , Space
+                , Str "using"
+                , Space
+                , Str "different"
+                , Space
+                , Str "algorithms"
+                , Space
+                , Str "to"
+                , Space
+                , Str "reduce"
+                , Space
+                , Str "the"
+                , Space
+                , Str "probability"
+                , Space
+                , Str "of"
+                , Space
+                , Str "exploiting"
+                , Space
+                , Str "use-after-free"
+                , Space
+                , Str "(this"
+                , Space
+                , Str "might"
+                , Space
+                , Str "be"
+                , Space
+                , Str "a"
+                , Space
+                , Str "whole"
+                , Space
+                , Str "section"
+                , Space
+                , Str "of"
+                , Space
+                , Str "it\8217s"
+                , Space
+                , Str "own?)"
+                ]
+            ]
+          , [ Plain
+                [ Str "Type-aware"
+                , Space
+                , Str "allocation"
+                , Space
+                , Str "and"
+                , Space
+                , Str "deallocation"
+                , Space
+                , Str "functions,"
+                , Space
+                , Str "which"
+                , Space
+                , Str "explains"
+                , Space
+                , Str "the"
+                , Space
+                , Str "motivation"
+                , Space
+                , Str "for"
+                , Space
+                , Str "this"
+                , Space
+                , Str "feature"
+                , Space
+                , Str "at"
+                , Space
+                , Str
+                    "https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2025/p2719r5.html#a-concrete-use-case."
+                ]
+            ]
+          , [ Plain
+                [ Str "Languages"
+                , Space
+                , Str "that"
+                , Space
+                , Str "use"
+                , Space
+                , Str "garbage"
+                , Space
+                , Str "collection"
+                , Space
+                , Str "or"
+                , Space
+                , Str "reference"
+                , Space
+                , Str "counting"
+                ]
+            ]
+          ]
+      ]
+  , Para
+      [ Str "Those"
+      , Space
+      , Str "are"
+      , Space
+      , Str "not"
+      , Space
+      , Str "exaustive"
+      , Space
+      , Str "lists"
+      , Space
+      , Str "of"
+      , Space
+      , Str "tools"
+      , Space
+      , Str "to"
+      , Space
+      , Str "detect,"
+      , Space
+      , Str "mitigate"
+      , Space
+      , Str "and"
+      , Space
+      , Str "prevent"
+      , Space
+      , Str "UaFs."
+      , SoftBreak
+      , Str "But"
+      , Space
+      , Str "this"
+      , Space
+      , Str "section\8217s"
+      , Space
+      , Str "goal"
+      , Space
+      , Str "was"
+      , Space
+      , Str "to"
+      , Space
+      , Str "give"
+      , Space
+      , Str "a"
+      , Space
+      , Str "brief"
+      , Space
+      , Str "introduction"
+      , Space
+      , Str "to"
+      , Space
+      , Str "the"
+      , Space
+      , Str "topic."
+      ]
+  , Header
+      2
       ( "code-reuse-attacks" , [] , [] )
       [ Str "Code" , Space , Str "reuse" , Space , Str "attacks" ]
   , Para
@@ -8074,7 +9620,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 21
+              , citationNoteNum = 25
               , citationHash = 0
               }
           ]
@@ -8375,7 +9921,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 22
+              , citationNoteNum = 26
               , citationHash = 0
               }
           ]
@@ -9037,7 +10583,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = AuthorInText
-              , citationNoteNum = 23
+              , citationNoteNum = 27
               , citationHash = 0
               }
           ]
@@ -9144,7 +10690,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = AuthorInText
-              , citationNoteNum = 24
+              , citationNoteNum = 28
               , citationHash = 0
               }
           ]
@@ -9983,7 +11529,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 25
+              , citationNoteNum = 29
               , citationHash = 0
               }
           ]
@@ -10142,7 +11688,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = AuthorInText
-              , citationNoteNum = 26
+              , citationNoteNum = 30
               , citationHash = 0
               }
           ]
@@ -10243,7 +11789,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = AuthorInText
-              , citationNoteNum = 27
+              , citationNoteNum = 31
               , citationHash = 0
               }
           ]
@@ -10573,7 +12119,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 28
+              , citationNoteNum = 32
               , citationHash = 0
               }
           ]
@@ -10761,7 +12307,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 29
+              , citationNoteNum = 33
               , citationHash = 0
               }
           ]
@@ -10977,7 +12523,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 30
+              , citationNoteNum = 34
               , citationHash = 0
               }
           ]
@@ -11804,7 +13350,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = AuthorInText
-              , citationNoteNum = 31
+              , citationNoteNum = 35
               , citationHash = 0
               }
           ]
@@ -12047,7 +13593,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 32
+              , citationNoteNum = 36
               , citationHash = 0
               }
           ]
@@ -12716,7 +14262,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 33
+              , citationNoteNum = 37
               , citationHash = 0
               }
           ]
@@ -12880,7 +14426,7 @@ Pandoc
                     , citationPrefix = []
                     , citationSuffix = []
                     , citationMode = AuthorInText
-                    , citationNoteNum = 34
+                    , citationNoteNum = 38
                     , citationHash = 0
                     }
                 ]
@@ -12898,7 +14444,7 @@ Pandoc
                     , citationPrefix = []
                     , citationSuffix = []
                     , citationMode = AuthorInText
-                    , citationNoteNum = 35
+                    , citationNoteNum = 39
                     , citationHash = 0
                     }
                 ]
@@ -12931,7 +14477,7 @@ Pandoc
                     , citationPrefix = []
                     , citationSuffix = []
                     , citationMode = AuthorInText
-                    , citationNoteNum = 36
+                    , citationNoteNum = 40
                     , citationHash = 0
                     }
                 ]
@@ -13516,7 +15062,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = AuthorInText
-              , citationNoteNum = 37
+              , citationNoteNum = 41
               , citationHash = 0
               }
           ]
@@ -13783,7 +15329,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = AuthorInText
-              , citationNoteNum = 38
+              , citationNoteNum = 42
               , citationHash = 0
               }
           ]
@@ -14498,7 +16044,7 @@ Pandoc
                   , Str "39-40"
                   ]
               , citationMode = NormalCitation
-              , citationNoteNum = 39
+              , citationNoteNum = 43
               , citationHash = 0
               }
           ]
@@ -15158,7 +16704,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = AuthorInText
-              , citationNoteNum = 40
+              , citationNoteNum = 44
               , citationHash = 0
               }
           ]
@@ -15530,7 +17076,7 @@ Pandoc
                     , citationPrefix = []
                     , citationSuffix = []
                     , citationMode = AuthorInText
-                    , citationNoteNum = 41
+                    , citationNoteNum = 45
                     , citationHash = 0
                     }
                 ]
@@ -15625,7 +17171,7 @@ Pandoc
                     , citationPrefix = []
                     , citationSuffix = []
                     , citationMode = AuthorInText
-                    , citationNoteNum = 42
+                    , citationNoteNum = 46
                     , citationHash = 0
                     }
                 ]
@@ -15649,7 +17195,7 @@ Pandoc
                     , citationPrefix = []
                     , citationSuffix = []
                     , citationMode = AuthorInText
-                    , citationNoteNum = 43
+                    , citationNoteNum = 47
                     , citationHash = 0
                     }
                 ]
@@ -15679,7 +17225,7 @@ Pandoc
                           , citationPrefix = []
                           , citationSuffix = []
                           , citationMode = AuthorInText
-                          , citationNoteNum = 44
+                          , citationNoteNum = 48
                           , citationHash = 0
                           }
                       ]
@@ -15703,7 +17249,7 @@ Pandoc
                           , citationPrefix = []
                           , citationSuffix = []
                           , citationMode = AuthorInText
-                          , citationNoteNum = 45
+                          , citationNoteNum = 49
                           , citationHash = 0
                           }
                       ]
@@ -15731,7 +17277,7 @@ Pandoc
                     , citationPrefix = []
                     , citationSuffix = []
                     , citationMode = AuthorInText
-                    , citationNoteNum = 46
+                    , citationNoteNum = 50
                     , citationHash = 0
                     }
                 ]
@@ -16395,7 +17941,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 49
+              , citationNoteNum = 53
               , citationHash = 0
               }
           ]
@@ -16483,7 +18029,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = AuthorInText
-              , citationNoteNum = 50
+              , citationNoteNum = 54
               , citationHash = 0
               }
           ]
@@ -17124,7 +18670,7 @@ Pandoc
                     , citationPrefix = []
                     , citationSuffix = []
                     , citationMode = AuthorInText
-                    , citationNoteNum = 51
+                    , citationNoteNum = 55
                     , citationHash = 0
                     }
                 ]
@@ -17146,7 +18692,7 @@ Pandoc
                     , citationPrefix = []
                     , citationSuffix = []
                     , citationMode = AuthorInText
-                    , citationNoteNum = 52
+                    , citationNoteNum = 56
                     , citationHash = 0
                     }
                 ]
@@ -17455,7 +19001,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 53
+              , citationNoteNum = 57
               , citationHash = 0
               }
           ]
@@ -17470,7 +19016,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 54
+              , citationNoteNum = 58
               , citationHash = 0
               }
           ]
@@ -17485,7 +19031,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 55
+              , citationNoteNum = 59
               , citationHash = 0
               }
           ]
@@ -17500,7 +19046,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 56
+              , citationNoteNum = 60
               , citationHash = 0
               }
           ]
@@ -17519,7 +19065,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 57
+              , citationNoteNum = 61
               , citationHash = 0
               }
           ]
@@ -17534,7 +19080,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 58
+              , citationNoteNum = 62
               , citationHash = 0
               }
           ]
@@ -17680,7 +19226,7 @@ Pandoc
                   , citationPrefix = []
                   , citationSuffix = []
                   , citationMode = AuthorInText
-                  , citationNoteNum = 59
+                  , citationNoteNum = 63
                   , citationHash = 0
                   }
               ]
@@ -18696,7 +20242,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 60
+              , citationNoteNum = 64
               , citationHash = 0
               }
           ]
@@ -19217,7 +20763,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 61
+              , citationNoteNum = 65
               , citationHash = 0
               }
           ]
@@ -19643,7 +21189,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 62
+              , citationNoteNum = 66
               , citationHash = 0
               }
           ]
@@ -19856,7 +21402,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = AuthorInText
-              , citationNoteNum = 64
+              , citationNoteNum = 68
               , citationHash = 0
               }
           ]
@@ -20066,7 +21612,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 66
+              , citationNoteNum = 70
               , citationHash = 0
               }
           ]
@@ -20167,7 +21713,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 67
+              , citationNoteNum = 71
               , citationHash = 0
               }
           ]
@@ -20195,7 +21741,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 68
+              , citationNoteNum = 72
               , citationHash = 0
               }
           ]
@@ -20354,7 +21900,7 @@ Pandoc
                       , citationPrefix = []
                       , citationSuffix = []
                       , citationMode = NormalCitation
-                      , citationNoteNum = 69
+                      , citationNoteNum = 73
                       , citationHash = 0
                       }
                   ]
@@ -20452,7 +21998,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 70
+              , citationNoteNum = 74
               , citationHash = 0
               }
           ]
@@ -20820,7 +22366,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 71
+              , citationNoteNum = 75
               , citationHash = 0
               }
           ]
@@ -21140,7 +22686,7 @@ Pandoc
       ]
   , Header
       2
-      ( "preventing-and-detecting-memory-errors" , [] , [] )
+      ( "sec:preventing-and-detecting-memory-errors" , [] , [] )
       [ Str "Preventing"
       , Space
       , Str "and"
@@ -21749,7 +23295,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 74
+              , citationNoteNum = 78
               , citationHash = 0
               }
           ]
@@ -24921,7 +26467,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 78
+              , citationNoteNum = 82
               , citationHash = 0
               }
           ]
@@ -25859,7 +27405,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 81
+              , citationNoteNum = 85
               , citationHash = 0
               }
           ]
@@ -26224,7 +27770,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 82
+              , citationNoteNum = 86
               , citationHash = 0
               }
           ]
@@ -26922,7 +28468,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 83
+              , citationNoteNum = 87
               , citationHash = 0
               }
           ]
@@ -27214,7 +28760,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 84
+              , citationNoteNum = 88
               , citationHash = 0
               }
           ]
@@ -27434,7 +28980,7 @@ Pandoc
                             , citationPrefix = []
                             , citationSuffix = []
                             , citationMode = NormalCitation
-                            , citationNoteNum = 85
+                            , citationNoteNum = 89
                             , citationHash = 0
                             }
                         ]
@@ -27797,7 +29343,7 @@ Pandoc
                     , citationPrefix = []
                     , citationSuffix = []
                     , citationMode = NormalCitation
-                    , citationNoteNum = 86
+                    , citationNoteNum = 90
                     , citationHash = 0
                     }
                 ]
@@ -28029,7 +29575,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 87
+              , citationNoteNum = 91
               , citationHash = 0
               }
           ]
@@ -28043,7 +29589,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 88
+              , citationNoteNum = 92
               , citationHash = 0
               }
           ]
@@ -28811,7 +30357,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 89
+              , citationNoteNum = 93
               , citationHash = 0
               }
           ]
@@ -28863,7 +30409,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 90
+              , citationNoteNum = 94
               , citationHash = 0
               }
           ]
@@ -29022,7 +30568,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 91
+              , citationNoteNum = 95
               , citationHash = 0
               }
           ]
@@ -29042,7 +30588,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 92
+              , citationNoteNum = 96
               , citationHash = 0
               }
           ]
@@ -31003,7 +32549,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = AuthorInText
-              , citationNoteNum = 93
+              , citationNoteNum = 97
               , citationHash = 0
               }
           ]
@@ -31398,7 +32944,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 94
+              , citationNoteNum = 98
               , citationHash = 0
               }
           ]
@@ -31757,7 +33303,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 95
+              , citationNoteNum = 99
               , citationHash = 0
               }
           ]
@@ -32044,7 +33590,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 96
+              , citationNoteNum = 100
               , citationHash = 0
               }
           ]
@@ -32136,7 +33682,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 97
+              , citationNoteNum = 101
               , citationHash = 0
               }
           ]
@@ -32303,7 +33849,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 98
+              , citationNoteNum = 102
               , citationHash = 0
               }
           ]
@@ -32317,7 +33863,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 99
+              , citationNoteNum = 103
               , citationHash = 0
               }
           ]
@@ -32331,7 +33877,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 100
+              , citationNoteNum = 104
               , citationHash = 0
               }
           ]
@@ -32345,7 +33891,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 101
+              , citationNoteNum = 105
               , citationHash = 0
               }
           ]
@@ -32359,7 +33905,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 102
+              , citationNoteNum = 106
               , citationHash = 0
               }
           ]
@@ -32373,7 +33919,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 103
+              , citationNoteNum = 107
               , citationHash = 0
               }
           ]
@@ -32406,7 +33952,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 104
+              , citationNoteNum = 108
               , citationHash = 0
               }
           ]
@@ -33039,7 +34585,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 105
+              , citationNoteNum = 109
               , citationHash = 0
               }
           ]
@@ -33053,7 +34599,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 106
+              , citationNoteNum = 110
               , citationHash = 0
               }
           ]
@@ -33636,7 +35182,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 107
+              , citationNoteNum = 111
               , citationHash = 0
               }
           ]
@@ -33694,7 +35240,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 108
+              , citationNoteNum = 112
               , citationHash = 0
               }
           ]
@@ -34043,7 +35589,7 @@ Pandoc
                           , Str "4.2.3"
                           ]
                       , citationMode = NormalCitation
-                      , citationNoteNum = 109
+                      , citationNoteNum = 113
                       , citationHash = 0
                       }
                   ]
@@ -34494,7 +36040,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 110
+              , citationNoteNum = 114
               , citationHash = 0
               }
           ]
@@ -34510,7 +36056,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 111
+              , citationNoteNum = 115
               , citationHash = 0
               }
           ]
@@ -34828,7 +36374,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 112
+              , citationNoteNum = 116
               , citationHash = 0
               }
           ]
@@ -34844,7 +36390,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 113
+              , citationNoteNum = 117
               , citationHash = 0
               }
           ]
@@ -35023,7 +36569,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 114
+              , citationNoteNum = 118
               , citationHash = 0
               }
           ]
@@ -36820,7 +38366,7 @@ Pandoc
                       , citationPrefix = []
                       , citationSuffix = []
                       , citationMode = AuthorInText
-                      , citationNoteNum = 115
+                      , citationNoteNum = 119
                       , citationHash = 0
                       }
                   ]
@@ -37749,7 +39295,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 116
+              , citationNoteNum = 120
               , citationHash = 0
               }
           ]
@@ -37765,7 +39311,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 117
+              , citationNoteNum = 121
               , citationHash = 0
               }
           ]
@@ -38032,7 +39578,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 118
+              , citationNoteNum = 122
               , citationHash = 0
               }
           ]
@@ -38053,7 +39599,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 119
+              , citationNoteNum = 123
               , citationHash = 0
               }
           ]
@@ -38764,7 +40310,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 120
+              , citationNoteNum = 124
               , citationHash = 0
               }
           ]
@@ -38917,7 +40463,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 121
+              , citationNoteNum = 125
               , citationHash = 0
               }
           ]
@@ -39010,7 +40556,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 122
+              , citationNoteNum = 126
               , citationHash = 0
               }
           ]
@@ -39196,7 +40742,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 123
+              , citationNoteNum = 127
               , citationHash = 0
               }
           ]
@@ -39350,7 +40896,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 124
+              , citationNoteNum = 128
               , citationHash = 0
               }
           ]
@@ -39626,7 +41172,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 125
+              , citationNoteNum = 129
               , citationHash = 0
               }
           ]
@@ -39903,7 +41449,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 126
+              , citationNoteNum = 130
               , citationHash = 0
               }
           ]
@@ -39915,7 +41461,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 127
+              , citationNoteNum = 131
               , citationHash = 0
               }
           ]
@@ -39927,7 +41473,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 128
+              , citationNoteNum = 132
               , citationHash = 0
               }
           ]
@@ -40083,7 +41629,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 129
+              , citationNoteNum = 133
               , citationHash = 0
               }
           ]
@@ -40478,7 +42024,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 130
+              , citationNoteNum = 134
               , citationHash = 0
               }
           ]
@@ -40494,7 +42040,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 131
+              , citationNoteNum = 135
               , citationHash = 0
               }
           ]
@@ -40885,7 +42431,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 132
+              , citationNoteNum = 136
               , citationHash = 0
               }
           ]
@@ -40901,7 +42447,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 133
+              , citationNoteNum = 137
               , citationHash = 0
               }
           ]
@@ -41207,7 +42753,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 134
+              , citationNoteNum = 138
               , citationHash = 0
               }
           ]
@@ -41298,7 +42844,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 135
+              , citationNoteNum = 139
               , citationHash = 0
               }
           ]
@@ -41470,7 +43016,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 136
+              , citationNoteNum = 140
               , citationHash = 0
               }
           ]
@@ -41628,7 +43174,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 137
+              , citationNoteNum = 141
               , citationHash = 0
               }
           ]
@@ -41693,7 +43239,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 138
+              , citationNoteNum = 142
               , citationHash = 0
               }
           ]
@@ -41884,7 +43430,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 139
+              , citationNoteNum = 143
               , citationHash = 0
               }
           ]
@@ -42292,7 +43838,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 140
+              , citationNoteNum = 144
               , citationHash = 0
               }
           ]
@@ -42755,7 +44301,7 @@ Pandoc
               , citationPrefix = []
               , citationSuffix = []
               , citationMode = NormalCitation
-              , citationNoteNum = 141
+              , citationNoteNum = 145
               , citationHash = 0
               }
           ]

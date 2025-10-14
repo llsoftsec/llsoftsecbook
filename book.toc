@@ -4,82 +4,83 @@
 \contentsline {section}{\numberline {2.1}A bit of background on memory vulnerabilities}{6}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Exploitation primitives}{7}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Stack buffer overflows}{10}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Code reuse attacks}{13}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Return-oriented programming}{13}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Jump-oriented programming}{17}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Counterfeit Object-oriented programming}{18}{subsection.2.4.3}%
-\contentsline {subsection}{\numberline {2.4.4}Sigreturn-oriented programming}{18}{subsection.2.4.4}%
-\contentsline {section}{\numberline {2.5}Mitigations against code reuse attacks}{18}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}ASLR}{19}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}Control-flow Integrity (CFI)}{19}{subsection.2.5.2}%
-\contentsline {subsubsection}{\numberline {2.5.2.1}General CFI principles}{21}{subsubsection.2.5.2.1}%
-\contentsline {paragraph}{\numberline {2.5.2.1.1}Protecting (forward) indirect function calls}{21}{paragraph.2.5.2.1.1}%
-\contentsline {paragraph}{\numberline {2.5.2.1.2}Protecting (forward) virtual calls}{21}{paragraph.2.5.2.1.2}%
-\contentsline {paragraph}{\numberline {2.5.2.1.3}Protecting (forward) switch jumps}{22}{paragraph.2.5.2.1.3}%
-\contentsline {paragraph}{\numberline {2.5.2.1.4}Protecting (backward-edge) returns}{24}{paragraph.2.5.2.1.4}%
-\contentsline {paragraph}{\numberline {2.5.2.1.5}Other code pointers that may need protection}{25}{paragraph.2.5.2.1.5}%
-\contentsline {subsubsection}{\numberline {2.5.2.2}Detailed descriptions of a few CFI schemes}{25}{subsubsection.2.5.2.2}%
-\contentsline {paragraph}{\numberline {2.5.2.2.1}Clang CFI}{25}{paragraph.2.5.2.2.1}%
-\contentsline {paragraph}{\numberline {2.5.2.2.2}Clang Shadow Stack}{26}{paragraph.2.5.2.2.2}%
-\contentsline {paragraph}{\numberline {2.5.2.2.3}Pointer Authentication}{26}{paragraph.2.5.2.2.3}%
-\contentsline {subparagraph}{\numberline {2.5.2.2.3.1}pac-ret: Backward-Edge CFI}{28}{subparagraph.2.5.2.2.3.1}%
-\contentsline {subparagraph}{\numberline {2.5.2.2.3.2}arm64e and pauthabi: Forward-Edge CFI}{29}{subparagraph.2.5.2.2.3.2}%
-\contentsline {paragraph}{\numberline {2.5.2.2.4}BTI and other coarse-grained CFI schemes}{29}{paragraph.2.5.2.2.4}%
-\contentsline {subsubsection}{\numberline {2.5.2.3}CFI implementation pitfalls}{30}{subsubsection.2.5.2.3}%
-\contentsline {section}{\numberline {2.6}Non-control data attacks}{30}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Preventing and detecting memory errors}{32}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}Sanitizers}{32}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}Bounds checking}{34}{subsection.2.7.2}%
-\contentsline {section}{\numberline {2.8}JIT compiler vulnerabilities}{36}{section.2.8}%
-\contentsline {chapter}{\numberline {3}Covert channels and side-channels}{40}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Timing side-channels}{40}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Cache side-channels}{41}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Typical CPU cache architecture}{41}{subsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.1.1}Indexing in a set-associative cache}{43}{subsubsection.3.2.1.1}%
-\contentsline {subsection}{\numberline {3.2.2}Operation of cache side-channels}{44}{subsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.2.1}Flush+Reload}{44}{subsubsection.3.2.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2.2}Prime+Probe}{44}{subsubsection.3.2.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.2.3}General schema for cache covert channels}{45}{subsubsection.3.2.2.3}%
-\contentsline {subsection}{\numberline {3.2.3}Mitigating cache side-channel attacks}{45}{subsection.3.2.3}%
-\contentsline {subsubsection}{\numberline {3.2.3.1}Mitigations de-correlating cache state change with sensitive information in the victim program}{45}{subsubsection.3.2.3.1}%
-\contentsline {subsubsection}{\numberline {3.2.3.2}Mitigations disallowing spy programs to share the cache with the victim program}{46}{subsubsection.3.2.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.3.3}Mitigations disabling the spy program to infer a cache status change in the victim program through its own cache status}{46}{subsubsection.3.2.3.3}%
-\contentsline {section}{\numberline {3.3}Branch-predictor based side-channels}{47}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Branch predictors}{47}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Side-channels through branch predictors}{47}{subsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.2.1}Conditional branch direction predictor side-channel attacks}{47}{subsubsection.3.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.3.2.2}Branch target predictor side-channel attacks}{48}{subsubsection.3.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.3.2.3}Return address predictor side-channel attacks}{48}{subsubsection.3.3.2.3}%
-\contentsline {subsection}{\numberline {3.3.3}Mitigations}{48}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Resource contention channels}{48}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Channels making use of aliasing in other predictors}{48}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Transient execution attacks}{49}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Transient execution}{49}{subsection.3.6.1}%
-\contentsline {subsubsection}{\numberline {3.6.1.1}Speculative execution}{49}{subsubsection.3.6.1.1}%
-\contentsline {subsection}{\numberline {3.6.2}Transient Execution Attacks}{51}{subsection.3.6.2}%
-\contentsline {subsubsection}{\numberline {3.6.2.1}Branch predictor-based side-channel attacks}{52}{subsubsection.3.6.2.1}%
-\contentsline {subsubsection}{\numberline {3.6.2.2}Spectre-style attacks}{52}{subsubsection.3.6.2.2}%
-\contentsline {subsubsection}{\numberline {3.6.2.3}Meltdown-style attacks}{52}{subsubsection.3.6.2.3}%
-\contentsline {subsubsection}{\numberline {3.6.2.4}LVI-style attacks}{52}{subsubsection.3.6.2.4}%
-\contentsline {subsection}{\numberline {3.6.3}Mitigations against transient execution attacks}{52}{subsection.3.6.3}%
-\contentsline {subsubsection}{\numberline {3.6.3.1}Site isolation}{52}{subsubsection.3.6.3.1}%
-\contentsline {section}{\numberline {3.7}Physical access side-channel attacks}{52}{section.3.7}%
-\contentsline {chapter}{\numberline {4}Supply chain attacks}{53}{chapter.4}%
-\contentsline {section}{\numberline {4.1}History of supply chain attacks}{53}{section.4.1}%
-\contentsline {chapter}{\numberline {5}Compiler introduced security vulnerabilities}{55}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Underhanded code}{59}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Assignment and equality confusion}{59}{section.6.1}%
-\contentsline {section}{\numberline {6.2}goto fail}{60}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Trojan Source}{61}{section.6.3}%
-\contentsline {chapter}{\numberline {7}Physical attacks}{62}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Overview}{62}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Physical access side-channel attacks}{62}{section.7.2}%
-\contentsline {subsection}{\numberline {7.2.1}How is information leaked?}{63}{subsection.7.2.1}%
-\contentsline {subsection}{\numberline {7.2.2}Side channel leakage at instruction level}{63}{subsection.7.2.2}%
-\contentsline {subsection}{\numberline {7.2.3}Countermeasures}{65}{subsection.7.2.3}%
-\contentsline {section}{\numberline {7.3}Fault injection attacks}{66}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Common forms of Fault injection attacks}{66}{subsection.7.3.1}%
-\contentsline {subsection}{\numberline {7.3.2}Countermeasures}{67}{subsection.7.3.2}%
-\contentsline {chapter}{\numberline {8}Other security topics relevant for compiler developers}{68}{chapter.8}%
-\contentsline {chapter}{Appendix: contribution guidelines}{69}{chapter*.231}%
-\contentsline {chapter}{References}{73}{chapter*.232}%
+\contentsline {section}{\numberline {2.4}Use After Free (UaF)}{13}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Code reuse attacks}{16}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Return-oriented programming}{16}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Jump-oriented programming}{20}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Counterfeit Object-oriented programming}{21}{subsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.5.4}Sigreturn-oriented programming}{21}{subsection.2.5.4}%
+\contentsline {section}{\numberline {2.6}Mitigations against code reuse attacks}{21}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}ASLR}{22}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Control-flow Integrity (CFI)}{22}{subsection.2.6.2}%
+\contentsline {subsubsection}{\numberline {2.6.2.1}General CFI principles}{23}{subsubsection.2.6.2.1}%
+\contentsline {paragraph}{\numberline {2.6.2.1.1}Protecting (forward) indirect function calls}{23}{paragraph.2.6.2.1.1}%
+\contentsline {paragraph}{\numberline {2.6.2.1.2}Protecting (forward) virtual calls}{24}{paragraph.2.6.2.1.2}%
+\contentsline {paragraph}{\numberline {2.6.2.1.3}Protecting (forward) switch jumps}{25}{paragraph.2.6.2.1.3}%
+\contentsline {paragraph}{\numberline {2.6.2.1.4}Protecting (backward-edge) returns}{27}{paragraph.2.6.2.1.4}%
+\contentsline {paragraph}{\numberline {2.6.2.1.5}Other code pointers that may need protection}{28}{paragraph.2.6.2.1.5}%
+\contentsline {subsubsection}{\numberline {2.6.2.2}Detailed descriptions of a few CFI schemes}{28}{subsubsection.2.6.2.2}%
+\contentsline {paragraph}{\numberline {2.6.2.2.1}Clang CFI}{28}{paragraph.2.6.2.2.1}%
+\contentsline {paragraph}{\numberline {2.6.2.2.2}Clang Shadow Stack}{29}{paragraph.2.6.2.2.2}%
+\contentsline {paragraph}{\numberline {2.6.2.2.3}Pointer Authentication}{29}{paragraph.2.6.2.2.3}%
+\contentsline {subparagraph}{\numberline {2.6.2.2.3.1}pac-ret: Backward-Edge CFI}{31}{subparagraph.2.6.2.2.3.1}%
+\contentsline {subparagraph}{\numberline {2.6.2.2.3.2}arm64e and pauthabi: Forward-Edge CFI}{32}{subparagraph.2.6.2.2.3.2}%
+\contentsline {paragraph}{\numberline {2.6.2.2.4}BTI and other coarse-grained CFI schemes}{32}{paragraph.2.6.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.6.2.3}CFI implementation pitfalls}{33}{subsubsection.2.6.2.3}%
+\contentsline {section}{\numberline {2.7}Non-control data attacks}{33}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Preventing and detecting memory errors}{35}{section.2.8}%
+\contentsline {subsection}{\numberline {2.8.1}Sanitizers}{35}{subsection.2.8.1}%
+\contentsline {subsection}{\numberline {2.8.2}Bounds checking}{37}{subsection.2.8.2}%
+\contentsline {section}{\numberline {2.9}JIT compiler vulnerabilities}{39}{section.2.9}%
+\contentsline {chapter}{\numberline {3}Covert channels and side-channels}{43}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Timing side-channels}{43}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Cache side-channels}{44}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Typical CPU cache architecture}{44}{subsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.1.1}Indexing in a set-associative cache}{46}{subsubsection.3.2.1.1}%
+\contentsline {subsection}{\numberline {3.2.2}Operation of cache side-channels}{47}{subsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.2.1}Flush+Reload}{47}{subsubsection.3.2.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2.2}Prime+Probe}{47}{subsubsection.3.2.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.2.3}General schema for cache covert channels}{48}{subsubsection.3.2.2.3}%
+\contentsline {subsection}{\numberline {3.2.3}Mitigating cache side-channel attacks}{48}{subsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.3.1}Mitigations de-correlating cache state change with sensitive information in the victim program}{48}{subsubsection.3.2.3.1}%
+\contentsline {subsubsection}{\numberline {3.2.3.2}Mitigations disallowing spy programs to share the cache with the victim program}{49}{subsubsection.3.2.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.3.3}Mitigations disabling the spy program to infer a cache status change in the victim program through its own cache status}{49}{subsubsection.3.2.3.3}%
+\contentsline {section}{\numberline {3.3}Branch-predictor based side-channels}{50}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Branch predictors}{50}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Side-channels through branch predictors}{50}{subsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.2.1}Conditional branch direction predictor side-channel attacks}{50}{subsubsection.3.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.3.2.2}Branch target predictor side-channel attacks}{51}{subsubsection.3.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.3.2.3}Return address predictor side-channel attacks}{51}{subsubsection.3.3.2.3}%
+\contentsline {subsection}{\numberline {3.3.3}Mitigations}{51}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Resource contention channels}{51}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Channels making use of aliasing in other predictors}{51}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Transient execution attacks}{52}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Transient execution}{52}{subsection.3.6.1}%
+\contentsline {subsubsection}{\numberline {3.6.1.1}Speculative execution}{52}{subsubsection.3.6.1.1}%
+\contentsline {subsection}{\numberline {3.6.2}Transient Execution Attacks}{54}{subsection.3.6.2}%
+\contentsline {subsubsection}{\numberline {3.6.2.1}Branch predictor-based side-channel attacks}{55}{subsubsection.3.6.2.1}%
+\contentsline {subsubsection}{\numberline {3.6.2.2}Spectre-style attacks}{55}{subsubsection.3.6.2.2}%
+\contentsline {subsubsection}{\numberline {3.6.2.3}Meltdown-style attacks}{55}{subsubsection.3.6.2.3}%
+\contentsline {subsubsection}{\numberline {3.6.2.4}LVI-style attacks}{55}{subsubsection.3.6.2.4}%
+\contentsline {subsection}{\numberline {3.6.3}Mitigations against transient execution attacks}{55}{subsection.3.6.3}%
+\contentsline {subsubsection}{\numberline {3.6.3.1}Site isolation}{55}{subsubsection.3.6.3.1}%
+\contentsline {section}{\numberline {3.7}Physical access side-channel attacks}{55}{section.3.7}%
+\contentsline {chapter}{\numberline {4}Supply chain attacks}{56}{chapter.4}%
+\contentsline {section}{\numberline {4.1}History of supply chain attacks}{56}{section.4.1}%
+\contentsline {chapter}{\numberline {5}Compiler introduced security vulnerabilities}{58}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Underhanded code}{62}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Assignment and equality confusion}{62}{section.6.1}%
+\contentsline {section}{\numberline {6.2}goto fail}{63}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Trojan Source}{64}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Physical attacks}{65}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Overview}{65}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Physical access side-channel attacks}{65}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}How is information leaked?}{66}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Side channel leakage at instruction level}{66}{subsection.7.2.2}%
+\contentsline {subsection}{\numberline {7.2.3}Countermeasures}{68}{subsection.7.2.3}%
+\contentsline {section}{\numberline {7.3}Fault injection attacks}{69}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Common forms of Fault injection attacks}{69}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Countermeasures}{70}{subsection.7.3.2}%
+\contentsline {chapter}{\numberline {8}Other security topics relevant for compiler developers}{71}{chapter.8}%
+\contentsline {chapter}{Appendix: contribution guidelines}{72}{chapter*.235}%
+\contentsline {chapter}{References}{76}{chapter*.236}%
