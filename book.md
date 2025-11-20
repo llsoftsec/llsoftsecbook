@@ -342,7 +342,7 @@ Some examples of how the attacker may use the obtained primitives:
 
 * Leak information, such as pointers to specific data structures or code,
   or the stack pointer.
-* Overwrite the stack contents, e.g. to perform a [ROP attack](#rop).
+* Overwrite the stack contents, e.g. to perform a [ROP attack](#return-oriented-programming).
 * Overwrite non-control data, e.g. authorization state. Sometimes this
   step is sufficient to achieve the attacker's goal, bypassing the need for
   arbitrary code execution.
