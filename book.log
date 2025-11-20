@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.10.17)  17 OCT 2025 14:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.11.20)  20 NOV 2025 06:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1287,12 +1287,9 @@ Overfull \hbox (5.3377pt too wide) in paragraph at lines 427--427
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2023/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [8] [9]
-
-LaTeX Warning: Hyper reference `rop' on page 10 undefined on input line 585.
-
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 6
 44.
-(/texlive/2023/texmf-dist/tex/latex/lm/t1lmtt.fd
+ (/texlive/2023/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
@@ -1303,7 +1300,7 @@ LaTeX Font Warning: Font shape `T1/lmtt/bx/it' in size <10> not available
 
 pdfTeX warning: pdflatex (file ./img/stack-buffer-overflow.pdf): PDF inclusion:
  found PDF version <1.7>, but at most version <1.5> allowed
-<img/stack-buffer-overflow.pdf, id=252, 483.72719pt x 334.3692pt>
+<img/stack-buffer-overflow.pdf, id=253, 483.72719pt x 334.3692pt>
 File: img/stack-buffer-overflow.pdf Graphic file (type pdf)
 <use img/stack-buffer-overflow.pdf>
 Package pdftex.def Info: img/stack-buffer-overflow.pdf  used on input line 675.
@@ -1354,7 +1351,7 @@ File: bc-aux-301.mps Graphic file (type mps)
 
 pdfTeX warning: pdflatex (file ./img/rop-control-flow.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<img/rop-control-flow.pdf, id=338, 142.61281pt x 281.13028pt>
+<img/rop-control-flow.pdf, id=339, 142.61281pt x 281.13028pt>
 File: img/rop-control-flow.pdf Graphic file (type pdf)
 <use img/rop-control-flow.pdf>
 Package pdftex.def Info: img/rop-control-flow.pdf  used on input line 1106.
@@ -1363,7 +1360,7 @@ Package pdftex.def Info: img/rop-control-flow.pdf  used on input line 1106.
 
 pdfTeX warning: pdflatex (file ./img/rop-call-stack.pdf): PDF inclusion: found 
 PDF version <1.7>, but at most version <1.5> allowed
-<img/rop-call-stack.pdf, id=339, 435.54718pt x 605.3817pt>
+<img/rop-call-stack.pdf, id=340, 435.54718pt x 605.3817pt>
 File: img/rop-call-stack.pdf Graphic file (type pdf)
 <use img/rop-call-stack.pdf>
 Package pdftex.def Info: img/rop-call-stack.pdf  used on input line 1112.
@@ -1372,7 +1369,7 @@ Package pdftex.def Info: img/rop-call-stack.pdf  used on input line 1112.
 
 pdfTeX warning: pdflatex (file ./img/jop.pdf): PDF inclusion: found PDF version
  <1.7>, but at most version <1.5> allowed
-<img/jop.pdf, id=371, 268.12169pt x 305.22029pt>
+<img/jop.pdf, id=372, 268.12169pt x 305.22029pt>
 File: img/jop.pdf Graphic file (type pdf)
 <use img/jop.pdf>
 Package pdftex.def Info: img/jop.pdf  used on input line 1180.
@@ -1415,7 +1412,7 @@ fsanitize=shadow-call-stack
 
 pdfTeX warning: pdflatex (file ./img/pauth_sign_auth.pdf): PDF inclusion: found
  PDF version <1.7>, but at most version <1.5> allowed
-<img/pauth_sign_auth.pdf, id=534, 1212.02812pt x 149.8097pt>
+<img/pauth_sign_auth.pdf, id=535, 1212.02812pt x 149.8097pt>
 File: img/pauth_sign_auth.pdf Graphic file (type pdf)
 <use img/pauth_sign_auth.pdf>
 Package pdftex.def Info: img/pauth_sign_auth.pdf  used on input line 1979.
@@ -1433,7 +1430,7 @@ ions, with the
 
 pdfTeX warning: pdflatex (file ./img/non-control-data-attack.pdf): PDF inclusio
 n: found PDF version <1.7>, but at most version <1.5> allowed
-<img/non-control-data-attack.pdf, id=620, 325.215pt x 243.79079pt>
+<img/non-control-data-attack.pdf, id=621, 325.215pt x 243.79079pt>
 File: img/non-control-data-attack.pdf Graphic file (type pdf)
 <use img/non-control-data-attack.pdf>
 Package pdftex.def Info: img/non-control-data-attack.pdf  used on input line 22
@@ -1494,7 +1491,7 @@ d on input line 2885.
 
 pdfTeX warning: pdflatex (file ./img/CacheLevels.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<img/CacheLevels.pdf, id=849, 173.89969pt x 241.65282pt>
+<img/CacheLevels.pdf, id=850, 173.89969pt x 241.65282pt>
 File: img/CacheLevels.pdf Graphic file (type pdf)
 <use img/CacheLevels.pdf>
 Package pdftex.def Info: img/CacheLevels.pdf  used on input line 2951.
@@ -1503,7 +1500,7 @@ Package pdftex.def Info: img/CacheLevels.pdf  used on input line 2951.
 
 pdfTeX warning: pdflatex (file ./img/CacheIndexing.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<img/CacheIndexing.pdf, id=878, 528.47438pt x 208.52907pt>
+<img/CacheIndexing.pdf, id=879, 528.47438pt x 208.52907pt>
 File: img/CacheIndexing.pdf Graphic file (type pdf)
 <use img/CacheIndexing.pdf>
 Package pdftex.def Info: img/CacheIndexing.pdf  used on input line 3017.
@@ -1617,7 +1614,7 @@ File: bc-aux-301.mps Graphic file (type mps)
 
 pdfTeX warning: pdflatex (file ./img/side_channel_leakage_figure_1_branch.pdf):
  PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/side_channel_leakage_figure_1_branch.pdf, id=1259, 518.68181pt x 248.38115
+<img/side_channel_leakage_figure_1_branch.pdf, id=1260, 518.68181pt x 248.38115
 pt>
 File: img/side_channel_leakage_figure_1_branch.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_1_branch.pdf>
@@ -1628,7 +1625,7 @@ input line 4288.
 
 pdfTeX warning: pdflatex (file ./img/side_channel_leakage_figure_2_duration.pdf
 ): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/side_channel_leakage_figure_2_duration.pdf, id=1265, 337.96272pt x 219.928
+<img/side_channel_leakage_figure_2_duration.pdf, id=1266, 337.96272pt x 219.928
 45pt>
 File: img/side_channel_leakage_figure_2_duration.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_2_duration.pdf>
@@ -1639,7 +1636,7 @@ n input line 4299.
 
 pdfTeX warning: pdflatex (file ./img/side_channel_leakage_figure_3_toggle.pdf):
  PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/side_channel_leakage_figure_3_toggle.pdf, id=1266, 502.94427pt x 232.68701
+<img/side_channel_leakage_figure_3_toggle.pdf, id=1267, 502.94427pt x 232.68701
 pt>
 File: img/side_channel_leakage_figure_3_toggle.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_3_toggle.pdf>
@@ -1658,7 +1655,7 @@ File: bc-aux-301.mps Graphic file (type mps)
 
 pdfTeX warning: pdflatex (file ./img/physical_attacks.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<img/physical_attacks.pdf, id=1303, 374.83124pt x 128.53943pt>
+<img/physical_attacks.pdf, id=1304, 374.83124pt x 128.53943pt>
 File: img/physical_attacks.pdf Graphic file (type pdf)
 <use img/physical_attacks.pdf>
 Package pdftex.def Info: img/physical_attacks.pdf  used on input line 4385.
@@ -1716,10 +1713,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 31700 strings out of 476076
- 574765 string characters out of 5793494
- 1988187 words of memory out of 5000000
- 52294 multiletter control sequences out of 15000+600000
+ 31699 strings out of 476076
+ 574760 string characters out of 5793494
+ 1989187 words of memory out of 5000000
+ 52293 multiletter control sequences out of 15000+600000
  648516 words of font info for 234 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  99i,12n,117p,1007b,1311s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1736,10 +1733,10 @@ ri10.pfb></texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></texlive/2
 /type1/public/lm/lmtko10.pfb></texlive/2023/texmf-dist/fonts/type1/public/lm/lm
 tt10.pfb></texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></texlive/20
 23/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on build/book.pdf (83 pages, 1008924 bytes).
+Output written on build/book.pdf (83 pages, 1008991 bytes).
 PDF statistics:
- 2080 PDF objects out of 2487 (max. 8388607)
- 1897 compressed objects within 19 object streams
+ 2081 PDF objects out of 2487 (max. 8388607)
+ 1898 compressed objects within 19 object streams
  559 named destinations out of 1000 (max. 500000)
  47625 words of extra memory for PDF output out of 51595 (max. 10000000)
 

@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-218-gac08abb" )
+          , ( "VERSION" , MetaString "0-219-g778598f" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -5494,7 +5494,7 @@ Pandoc
             , Link
                 ( "" , [] , [] )
                 [ Str "ROP" , Space , Str "attack" ]
-                ( "#rop" , "" )
+                ( "#return-oriented-programming" , "" )
             , Str "."
             ]
         ]
