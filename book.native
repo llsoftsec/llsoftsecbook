@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-219-g778598f" )
+          , ( "VERSION" , MetaString "0-220-g97004b7" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -21068,24 +21068,17 @@ Pandoc
       , Str "integrity."
       , Space
       , Span
-          ( "" , [ "index" ] , [] )
+          ( ""
+          , [ "index" ]
+          , [ ( "entry" , "non-control data attacks" ) ]
+          )
           [ Str "Non-control"
           , Space
           , Str "data"
           , Space
           , Str "attacks"
           ]
-      , SoftBreak
-      , Str "entry="
-      , Quoted
-          DoubleQuote
-          [ Str "non-control"
-          , Space
-          , Str "data"
-          , Space
-          , Str "attacks"
-          ]
-      , Str "},"
+      , Str ","
       , Space
       , Str "also"
       , Space

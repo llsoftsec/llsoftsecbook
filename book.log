@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.11.20)  20 NOV 2025 06:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2026.3.11)  11 MAR 2026 09:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1434,7 +1434,7 @@ n: found PDF version <1.7>, but at most version <1.5> allowed
 File: img/non-control-data-attack.pdf Graphic file (type pdf)
 <use img/non-control-data-attack.pdf>
 Package pdftex.def Info: img/non-control-data-attack.pdf  used on input line 22
-15.
+14.
 (pdftex.def)             Requested size: 207.00546pt x 155.17741pt.
 [34 <./img/non-control-data-attack.pdf>] [35]
 File: bc-aux-301.mps Graphic file (type mps)
@@ -1446,13 +1446,13 @@ File: bc-aux-301.mps Graphic file (type mps)
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF]
 (/texlive/2023/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.3377pt too wide) in paragraph at lines 2398--2398
+Overfull \hbox (5.3377pt too wide) in paragraph at lines 2397--2397
 [][][][]\T1/lmr/m/n/10 (-20) Consider 
  []
 
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2023/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.3377pt too wide) in paragraph at lines 2398--2398
+Overfull \hbox (5.3377pt too wide) in paragraph at lines 2397--2397
 [][][][]\T1/lmr/m/n/10 (-20) Consider 
  []
 
@@ -1462,7 +1462,7 @@ File: bc-aux-301.mps Graphic file (type mps)
 [37] [38]
 
 LaTeX Warning: Hyper reference `jit-compiler-vulnerabilities' on page 39 undefi
-ned on input line 2588.
+ned on input line 2587.
 
 [39] [40] [41] [42]
 Chapter 3.
@@ -1485,7 +1485,7 @@ LaTeX Warning: Marginpar on page 44 moved.
 
 
 LaTeX Warning: Hyper reference `cache-side-channel-attacks' on page 44 undefine
-d on input line 2885.
+d on input line 2884.
 
 [44]
 
@@ -1494,7 +1494,7 @@ pdfTeX warning: pdflatex (file ./img/CacheLevels.pdf): PDF inclusion: found PDF
 <img/CacheLevels.pdf, id=850, 173.89969pt x 241.65282pt>
 File: img/CacheLevels.pdf Graphic file (type pdf)
 <use img/CacheLevels.pdf>
-Package pdftex.def Info: img/CacheLevels.pdf  used on input line 2951.
+Package pdftex.def Info: img/CacheLevels.pdf  used on input line 2950.
 (pdftex.def)             Requested size: 138.00279pt x 191.77014pt.
 [45 <./img/CacheLevels.pdf>]
 
@@ -1503,7 +1503,7 @@ DF version <1.7>, but at most version <1.5> allowed
 <img/CacheIndexing.pdf, id=879, 528.47438pt x 208.52907pt>
 File: img/CacheIndexing.pdf Graphic file (type pdf)
 <use img/CacheIndexing.pdf>
-Package pdftex.def Info: img/CacheIndexing.pdf  used on input line 3017.
+Package pdftex.def Info: img/CacheIndexing.pdf  used on input line 3016.
 (pdftex.def)             Requested size: 344.99608pt x 136.13092pt.
 [46{/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/texlive/2023/te
 xmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/texlive/2023/texmf-dist/fonts/enc/dvips
@@ -1517,25 +1517,25 @@ File: bc-aux-301.mps Graphic file (type mps)
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF]
 (/texlive/2023/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [47]
-Underfull \hbox (badness 1490) in paragraph at lines 3145--3159
+Underfull \hbox (badness 1490) in paragraph at lines 3144--3158
 \T1/lmr/m/n/10 (+20) proach in-clude: [][]Flush+Flush[]([][]Gruss, Mau-rice, Wa
 g-ner, et al. 2016[][]),
  []
 
 
-Overfull \hbox (0.2491pt too wide) in paragraph at lines 3209--3209
+Overfull \hbox (0.2491pt too wide) in paragraph at lines 3208--3208
  []\T1/lmtt/m/n/10 * exponent bits as an array index would be an obvious leak o
 f[] 
  []
 
 [48]
-Overfull \hbox (10.74907pt too wide) in paragraph at lines 3209--3209
+Overfull \hbox (10.74907pt too wide) in paragraph at lines 3208--3208
  []\T1/lmtt/m/n/10 * iteration, we read _all_ the table entries, and do a seque
 nce[] 
  []
 
 
-Overfull \hbox (15.99905pt too wide) in paragraph at lines 3209--3209
+Overfull \hbox (15.99905pt too wide) in paragraph at lines 3208--3208
  []\T1/lmtt/m/n/10 * of mp_select operations to leave just the one we wanted in
  the[] 
  []
@@ -1547,19 +1547,19 @@ File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2023/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 [51]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 3496.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 3495.
  [52]
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2023/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
 File: bc-aux-301.mps Graphic file (type mps)
  [MP to PDF] (/texlive/2023/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.11017pt too wide) in paragraph at lines 3590--3590
+Overfull \hbox (5.11017pt too wide) in paragraph at lines 3589--3589
 \T1/lmr/m/n/10 (-20) architectural 
  []
 
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2023/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Overfull \hbox (5.11017pt too wide) in paragraph at lines 3590--3590
+Overfull \hbox (5.11017pt too wide) in paragraph at lines 3589--3589
 \T1/lmr/m/n/10 (-20) architectural 
  []
 
@@ -1588,7 +1588,7 @@ File: bc-aux-301.mps Graphic file (type mps)
 Chapter 5.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2023/texmf-dist/tex/latex/bclogo/bc-aux-301.mps)
-Underfull \hbox (badness 1694) in paragraph at lines 3827--3830
+Underfull \hbox (badness 1694) in paragraph at lines 3826--3829
 []\T1/lmr/m/n/10 (+20) In the ran-dom num-ber gen-er-a-tor of the sys-tem, more
  specif-i-cally in
  []
@@ -1596,7 +1596,7 @@ Underfull \hbox (badness 1694) in paragraph at lines 3827--3830
 [58
 
 ] [59]
-Overfull \hbox (2.91692pt too wide) in paragraph at lines 3951--3953
+Overfull \hbox (2.91692pt too wide) in paragraph at lines 3950--3952
 []\T1/lmr/m/n/10 (-20) The so-lu-tion Linux came with was to add a new func-tio
 n called \T1/lmtt/m/n/10 memzero_explicit
  []
@@ -1619,7 +1619,7 @@ pt>
 File: img/side_channel_leakage_figure_1_branch.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_1_branch.pdf>
 Package pdftex.def Info: img/side_channel_leakage_figure_1_branch.pdf  used on 
-input line 4288.
+input line 4287.
 (pdftex.def)             Requested size: 276.00806pt x 132.17197pt.
 [66]
 
@@ -1630,7 +1630,7 @@ pdfTeX warning: pdflatex (file ./img/side_channel_leakage_figure_2_duration.pdf
 File: img/side_channel_leakage_figure_2_duration.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_2_duration.pdf>
 Package pdftex.def Info: img/side_channel_leakage_figure_2_duration.pdf  used o
-n input line 4299.
+n input line 4298.
 (pdftex.def)             Requested size: 276.01733pt x 179.61763pt.
 
 
@@ -1641,7 +1641,7 @@ pt>
 File: img/side_channel_leakage_figure_3_toggle.pdf Graphic file (type pdf)
 <use img/side_channel_leakage_figure_3_toggle.pdf>
 Package pdftex.def Info: img/side_channel_leakage_figure_3_toggle.pdf  used on 
-input line 4327.
+input line 4326.
 (pdftex.def)             Requested size: 275.99858pt x 127.69064pt.
 [67 <./img/side_channel_leakage_figure_1_branch.pdf> <./img/side_channel_leakag
 e_figure_2_duration.pdf
@@ -1658,7 +1658,7 @@ d PDF version <1.7>, but at most version <1.5> allowed
 <img/physical_attacks.pdf, id=1304, 374.83124pt x 128.53943pt>
 File: img/physical_attacks.pdf Graphic file (type pdf)
 <use img/physical_attacks.pdf>
-Package pdftex.def Info: img/physical_attacks.pdf  used on input line 4385.
+Package pdftex.def Info: img/physical_attacks.pdf  used on input line 4384.
 (pdftex.def)             Requested size: 276.00954pt x 94.65086pt.
 File: bc-aux-301.mps Graphic file (type mps)
 [MP to PDF] (/texlive/2023/texmf-dist/tex/latex/bclogo/bc-aux-301.mps) [69 <./i
@@ -1690,7 +1690,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 195--196
 [74] [75
 
 ])
-Overfull \hbox (0.15384pt too wide) in paragraph at lines 4580--4584
+Overfull \hbox (0.15384pt too wide) in paragraph at lines 4579--4583
 \T1/lmr/m/n/10 (+18) c o n / t o o r c o n -[] s e a t t l e -[] 2 0 0 8 / c pu
  -[] s i de -[] c h a n n e ls -[] vs -[] v i r t u a l i z a t i on -[] r o o 
 t k i ts -[] t h e -[]
@@ -1714,8 +1714,8 @@ LaTeX Warning: There were multiply-defined labels.
  ) 
 Here is how much of TeX's memory you used:
  31699 strings out of 476076
- 574760 string characters out of 5793494
- 1989187 words of memory out of 5000000
+ 574760 string characters out of 5793495
+ 1988187 words of memory out of 5000000
  52293 multiletter control sequences out of 15000+600000
  648516 words of font info for 234 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1733,7 +1733,7 @@ ri10.pfb></texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></texlive/2
 /type1/public/lm/lmtko10.pfb></texlive/2023/texmf-dist/fonts/type1/public/lm/lm
 tt10.pfb></texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></texlive/20
 23/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on build/book.pdf (83 pages, 1008991 bytes).
+Output written on build/book.pdf (83 pages, 1008960 bytes).
 PDF statistics:
  2081 PDF objects out of 2487 (max. 8388607)
  1898 compressed objects within 19 object streams
