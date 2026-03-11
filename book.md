@@ -1577,7 +1577,7 @@ In the previous sections, we have focused on subverting control flow by
 overwriting [control data]{.index}, which are used to change the value of the
 program counter, such as return addresses and function pointers. Since these
 types of attacks are prominent, many mitigations have been designed with the
-goal of maintaining control-flow integrity. [Non-control data attacks]{.index}
+goal of maintaining control-flow integrity. [Non-control data attacks]{.index
 entry="non-control data attacks"}, also known as [data-only attacks]{.index},
 can completely bypass these mitigations, since the data they modify is not the
 control data that these mitigations protect.
