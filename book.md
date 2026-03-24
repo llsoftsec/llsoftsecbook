@@ -1246,7 +1246,7 @@ f:
 Most backward-edge CFI schemes add checks before executing the return
 instruction to verify that the return address hasn't been tampered with.
 
-[Shadow stack]]{.index entry="shadow stack"} approaches store the return address
+[Shadow stack]{.index entry="shadow stack"} approaches store the return address
 on a second stack. Some shadow stack approaches also store the return address in
 the original location in the normal stack. In those, before the return is
 executed, it verifies that the return value on both the regular stack and the
