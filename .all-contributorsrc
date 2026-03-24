@@ -292,6 +292,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "bgergely0",
+      "name": "Gergely Bálint",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50703923?v=4",
+      "profile": "https://github.com/bgergely0",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
