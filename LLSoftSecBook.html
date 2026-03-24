@@ -495,7 +495,7 @@ Developers</h1>
       Copyright 2023 Lucian Popescu <a href="mailto:lucian.popescu187@gmail.com" class="email">lucian.popescu187@gmail.com</a><br />
       Copyright 2024 Anders Waldenborg <a href="mailto:anders@0x63.nu" class="email">anders@0x63.nu</a><br />
     </p>
-  <p>Version: 0-220-g97004b7</p>
+  <p>Version: 0-221-g283a066</p>
 </header>
 
 <main id="content">
@@ -3810,7 +3810,7 @@ Example 7
 <p>Most backward-edge CFI schemes add checks before executing the return
 instruction to verify that the return address hasn’t been tampered
 with.</p>
-<p>[Shadow stack]]{.index entry=“shadow stack”} approaches store the
+<p><span id="__index_entry_46" class="index" data-entry="shadow stack">Shadow stack</span> approaches store the
 return address on a second stack. Some shadow stack approaches also
 store the return address in the original location in the normal stack.
 In those, before the return is executed, it verifies that the return
@@ -3833,10 +3833,10 @@ constructs that can lead to code pointers being stored in memory, such
 as:</p>
 <ul>
 <li>C++ co-routines are typically implemented using structures
-containing code pointers. Abusing these has recently been coined as <a href="https://www.usenix.org/conference/usenixsecurity25/presentation/bajo"><span id="__index_entry_46" class="index">Coroutine Frame-Oriented Programming
+containing code pointers. Abusing these has recently been coined as <a href="https://www.usenix.org/conference/usenixsecurity25/presentation/bajo"><span id="__index_entry_47" class="index">Coroutine Frame-Oriented Programming
 (CFOP)</span></a>.</li>
-<li><span id="__index_entry_47" class="index">Procedure Linkage Table
-(PLT)</span> and the <a href="https://en.wikipedia.org/wiki/Global_Offset_Table"><span id="__index_entry_48" class="index">Global Offset Table(GOT)</span></a>
+<li><span id="__index_entry_48" class="index">Procedure Linkage Table
+(PLT)</span> and the <a href="https://en.wikipedia.org/wiki/Global_Offset_Table"><span id="__index_entry_49" class="index">Global Offset Table(GOT)</span></a>
 often contain code pointers. One common way to protect these from being
 overwritten by an attacker is to make these tables <a href="https://www.redhat.com/en/blog/hardening-elf-binaries-using-relocation-read-only-relro">read-only
 during program startup</a>.</li>
@@ -3890,7 +3890,7 @@ virtual table pointer (vptr) of the argument points to the vtable of
 are the only allowed possibilities. The checks generated for different
 types of control-flow transfers are similar.</p>
 <h5 data-number="2.6.2.2.2" data-section-number="2.6.2.2.2" id="sec:clang-shadow-stack"><span class="header-section-number">2.6.2.2.2</span> Clang Shadow Stack<a href="#sec:clang-shadow-stack" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1331" class="suggestedit" title="Suggest an edit"></a></h5>
-<p>Clang also implements a backward-edge CFI scheme known as <a href="https://clang.llvm.org/docs/ShadowCallStack.html"><span id="__index_entry_49" class="index" data-entry="shadow stack">Shadow
+<p>Clang also implements a backward-edge CFI scheme known as <a href="https://clang.llvm.org/docs/ShadowCallStack.html"><span id="__index_entry_50" class="index" data-entry="shadow stack">Shadow
 Stack</span></a>. In Clang’s implementation, a separate stack is used
 for return addresses, which means that stack-based buffer overflows
 cannot be used to overwrite return addresses. The address of the shadow
@@ -3927,15 +3927,15 @@ function return.</p>
 hardware-based CFI implementations. A hardware-based implementation has
 the potential to offer improved protection and performance compared to
 an equivalent software-only CFI scheme.</p>
-<p>One such example is <span id="__index_entry_50" class="index">Pointer
+<p>One such example is <span id="__index_entry_51" class="index">Pointer
 Authentication</span> <span class="citation" data-cites="Rutland2017">(<a href="#ref-Rutland2017" role="doc-biblioref">Rutland 2017</a>)</span>, an Armv8.3 feature,
 supported only in AArch64 state, that can be used to mitigate code reuse
 attacks.</p>
 <p>Pointer Authentication computes a pointer <em>signature</em> for a
-given address, called a <span id="__index_entry_51" class="index">Pointer Authentication Code (PAC)</span>, see figure <a href="#fig:pauth-sign-auth">4</a>. The PAC code is stored in the upper
+given address, called a <span id="__index_entry_52" class="index">Pointer Authentication Code (PAC)</span>, see figure <a href="#fig:pauth-sign-auth">4</a>. The PAC code is stored in the upper
 bits of the pointer which are otherwise unused.</p>
-<p>A pointer with a PAC code in the upper bits is called a <em><span id="__index_entry_52" class="index">signed pointer</span></em>. A
-non-signed pointer is called a <em><span id="__index_entry_53" class="index">raw pointer</span></em>.</p>
+<p>A pointer with a PAC code in the upper bits is called a <em><span id="__index_entry_53" class="index">signed pointer</span></em>. A
+non-signed pointer is called a <em><span id="__index_entry_54" class="index">raw pointer</span></em>.</p>
 <p>The general idea behind Pointer Authentication is that attackers will
 try to overwrite a pointer in memory using a memory vulnerability.
 Pointer Authentication aims to detect when an attacker has overwritten a
@@ -3952,7 +3952,7 @@ addresses, all function pointers, or more.</p>
 <p>An essential aspect of pointer authentication being useful is to make
 it hard for an attacker to construct the correct PAC that will pass
 authentication. To achieve that, next to the address, 2 other inputs are
-used to compute the PAC: a so-called <span id="__index_entry_54" class="index">key</span> and a <span id="__index_entry_55" class="index">modifier</span>:</p>
+used to compute the PAC: a so-called <span id="__index_entry_55" class="index">key</span> and a <span id="__index_entry_56" class="index">modifier</span>:</p>
 <ul>
 <li><p>The key is a secret value that is not directly accessible to
 software, so that an attacker cannot retrieve the key value. This makes
@@ -3968,7 +3968,7 @@ on top of Pointer Authentication are described in sections <a href="#sec:pac-ret
 hardening scheme). The modifier can be thought of as a <a href="https://en.wikipedia.org/wiki/Salt_(cryptography)">salt</a>.</p>
 <p>When an attacker successfully takes a signed pointer from one context
 and overwrites another pointer in another context with it, this is
-called a <span id="__index_entry_56" class="index">pointer substitution
+called a <span id="__index_entry_57" class="index">pointer substitution
 attack</span>. Using different modifiers for different contexts makes
 pointer substitution attacks harder.</p></li>
 </ul>
@@ -4058,7 +4058,7 @@ calculate the correct PAC for a given address and modifier, and is
 restricted to guessing it.</p>
 <p>The probability of success when guessing a PAC depends on the exact
 number of PAC bits available in a given system configuration.</p>
-<p>The authenticated pointers are vulnerable to <span id="__index_entry_57" class="index">pointer substitution attacks</span>,
+<p>The authenticated pointers are vulnerable to <span id="__index_entry_58" class="index">pointer substitution attacks</span>,
 where a pointer that has been signed with a given modifier is replaced
 with a different pointer that has also been signed with the same
 modifier. In the <code>pac-ret</code> scheme, this is mitigated by using
@@ -4078,7 +4078,7 @@ useful in implementing more general memory safety measures, beyond
 CFI.</p>
 <h5 data-number="2.6.2.2.4" data-section-number="2.6.2.2.4" id="sec:bti"><span class="header-section-number">2.6.2.2.4</span> BTI
 and other coarse-grained CFI schemes<a href="#sec:bti" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1532" class="suggestedit" title="Suggest an edit"></a></h5>
-<p><a href="https://developer.arm.com/documentation/102433/0100/Jump-oriented-programming?lang=en"><span id="__index_entry_58" class="index">Branch Target Identification
+<p><a href="https://developer.arm.com/documentation/102433/0100/Jump-oriented-programming?lang=en"><span id="__index_entry_59" class="index">Branch Target Identification
 (BTI)</span></a>, introduced in Armv8.5, offers coarse-grained
 forward-edge protection. With BTI, the locations that are targets of
 indirect branches have to be marked with a new instruction,
@@ -4117,12 +4117,12 @@ try to overwrite code pointers: attacks against non-control data, which
 will be the topic of the next section.</p>
 <h2 data-number="2.7" data-section-number="2.7" id="non-control-data-attacks"><span class="header-section-number">2.7</span> Non-control data attacks<a href="#non-control-data-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1574" class="suggestedit" title="Suggest an edit"></a></h2>
 <p>In the previous sections, we have focused on subverting control flow
-by overwriting <span id="__index_entry_59" class="index">control
+by overwriting <span id="__index_entry_60" class="index">control
 data</span>, which are used to change the value of the program counter,
 such as return addresses and function pointers. Since these types of
 attacks are prominent, many mitigations have been designed with the goal
-of maintaining control-flow integrity. <span id="__index_entry_60" class="index" data-entry="non-control data attacks">Non-control data
-attacks</span>, also known as <span id="__index_entry_61" class="index">data-only attacks</span>, can completely bypass these
+of maintaining control-flow integrity. <span id="__index_entry_61" class="index" data-entry="non-control data attacks">Non-control data
+attacks</span>, also known as <span id="__index_entry_62" class="index">data-only attacks</span>, can completely bypass these
 mitigations, since the data they modify is not the control data that
 these mitigations protect.</p>
 <p>Non-control data attacks can range from very simple attacks targeting
@@ -4470,26 +4470,26 @@ errors<a href="#sec:preventing-and-detecting-memory-errors" class="selflink"></a
 <p>We have so far discussed how languages that are <a href="#a-bit-of-background-on-memory-vulnerabilities">not memory
 safe</a>, like C and C++, are vulnerable to memory errors and therefore
 exploitation. In this section, we will discuss tools that are available
-to <span id="__index_entry_62" class="index">C</span>/<span id="__index_entry_63" class="index">C++</span> programmers to help them
+to <span id="__index_entry_63" class="index">C</span>/<span id="__index_entry_64" class="index">C++</span> programmers to help them
 detect vulnerabilities that can lead to memory errors.</p>
 <h3 data-number="2.8.1" data-section-number="2.8.1" id="sanitizers"><span class="header-section-number">2.8.1</span>
 Sanitizers<a href="#sanitizers" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1691" class="suggestedit" title="Suggest an edit"></a></h3>
-<p><span id="__index_entry_64" class="index" data-entry="sanitizers">Sanitizers</span> are tools that detect bugs
+<p><span id="__index_entry_65" class="index" data-entry="sanitizers">Sanitizers</span> are tools that detect bugs
 during program execution. Sanitizers usually have two components: a
 compiler instrumentation part that introduces the new checks, and a
 runtime library part. They are often too expensive to run in production
 mode, as they tend to increase execution time and memory usage. They are
 commonly used during testing of an application, frequently in
-combination with <span id="__index_entry_65" class="index" data-entry="fuzzing">fuzzers</span><span class="sidenote_ref" href="#sidenote_10"><sup>10</sup></span><span id="sidenote_10" class="sidenote">10. <a href="https://en.wikipedia.org/wiki/Fuzzing"><span id="__index_entry_66" class="index" data-entry="fuzzing">Fuzzing</span></a> is a powerful
+combination with <span id="__index_entry_66" class="index" data-entry="fuzzing">fuzzers</span><span class="sidenote_ref" href="#sidenote_10"><sup>10</sup></span><span id="sidenote_10" class="sidenote">10. <a href="https://en.wikipedia.org/wiki/Fuzzing"><span id="__index_entry_67" class="index" data-entry="fuzzing">Fuzzing</span></a> is a powerful
 testing technique that relies on automatically generating large amounts
 of random inputs to the program under test.</span>.</p>
-<p>A very popular sanitizer is <a href="https://clang.llvm.org/docs/AddressSanitizer.html"><span id="__index_entry_67" class="index">Address Sanitizer (ASan)</span></a>.
+<p>A very popular sanitizer is <a href="https://clang.llvm.org/docs/AddressSanitizer.html"><span id="__index_entry_68" class="index">Address Sanitizer (ASan)</span></a>.
 It aims to detect various memory errors. These include out-of-bounds
-accesses, use-after-free, double-free and invalid free<span class="sidenote_ref" href="#sidenote_11"><sup>11</sup></span><span id="sidenote_11" class="sidenote">11. ASan also includes a <a href="https://clang.llvm.org/docs/LeakSanitizer.html"><span id="__index_entry_68" class="index" data-entry="LeakSanitizer">memory
+accesses, use-after-free, double-free and invalid free<span class="sidenote_ref" href="#sidenote_11"><sup>11</sup></span><span id="sidenote_11" class="sidenote">11. ASan also includes a <a href="https://clang.llvm.org/docs/LeakSanitizer.html"><span id="__index_entry_69" class="index" data-entry="LeakSanitizer">memory
 leak detector</span></a>.</span>. There are Address Sanitizer
-implementations for both <span id="__index_entry_69" class="index">GCC</span> and <span id="__index_entry_70" class="index">Clang</span>, but we will focus on the Clang
+implementations for both <span id="__index_entry_70" class="index">GCC</span> and <span id="__index_entry_71" class="index">Clang</span>, but we will focus on the Clang
 implementation here.</p>
-<p>ASan uses <span id="__index_entry_71" class="index">shadow
+<p>ASan uses <span id="__index_entry_72" class="index">shadow
 memory</span> to keep track of the state of the application’s memory.
 Each byte of shadow memory records information on 8 bytes of the
 application’s memory. It represents how many of the 8 bytes are
@@ -4502,9 +4502,9 @@ needs to reserve one-eighth of the application’s virtual address space
 2012</a>)</span>. Shadow memory is allocated in one contiguous chunk,
 which keeps mapping application memory to shadow memory simple.</p>
 <p>ASan’s runtime library replaces memory allocation functions like
-<span id="__index_entry_72" class="index"><code>malloc</code></span> and
-<span id="__index_entry_73" class="index"><code>free</code></span> with
-its own specialized versions. <code>malloc</code> introduces <span id="__index_entry_74" class="index" data-entry="redzone">redzones</span>
+<span id="__index_entry_73" class="index"><code>malloc</code></span> and
+<span id="__index_entry_74" class="index"><code>free</code></span> with
+its own specialized versions. <code>malloc</code> introduces <span id="__index_entry_75" class="index" data-entry="redzone">redzones</span>
 before and after each allocation, which are marked as unaddressable.
 <code>free</code> marks the entire allocation as unaddressable and
 places it in quarantine, so that it doesn’t get reallocated for a while
@@ -4519,14 +4519,14 @@ reports an error if unaddressable memory is accessed.</p>
 compiling and linking a program with the <code>-fsanitize=address</code>
 option. It is used in practice for testing <a href="https://chromium.googlesource.com/chromium/src/+/HEAD/docs/asan.md">large
 projects</a>. There is a similar tool for dynamic memory error detection
-in the Linux kernel, <a href="https://www.kernel.org/doc/html/v5.0/dev-tools/kasan.html"><span id="__index_entry_75" class="index">KASAN</span></a>.</p>
+in the Linux kernel, <a href="https://www.kernel.org/doc/html/v5.0/dev-tools/kasan.html"><span id="__index_entry_76" class="index">KASAN</span></a>.</p>
 <p>ASan’s biggest drawback is its high runtime overhead and memory
-usage, due to the quarantine, redzones and shadow memory. <a href="https://clang.llvm.org/docs/HardwareAssistedAddressSanitizerDesign.html"><span id="__index_entry_76" class="index">Hardware-assisted AddressSanitizer
+usage, due to the quarantine, redzones and shadow memory. <a href="https://clang.llvm.org/docs/HardwareAssistedAddressSanitizerDesign.html"><span id="__index_entry_77" class="index">Hardware-assisted AddressSanitizer
 (HWASAN)</span></a> works similarly to ASan, but with partial hardware
 assistance can result in lower memory overheads, at the cost of being
 less portable.</p>
-<p>On <span id="__index_entry_77" class="index">AArch64</span>, HWASAN
-uses <span id="__index_entry_78" class="index">Top-Byte Ignore
+<p>On <span id="__index_entry_78" class="index">AArch64</span>, HWASAN
+uses <span id="__index_entry_79" class="index">Top-Byte Ignore
 (TBI)</span>. When TBI is enabled, the top byte of a pointer is ignored
 when performing a memory access, allowing software to use that top byte
 to store metadata, without affecting execution. Each allocation is
@@ -4545,13 +4545,13 @@ the bounds of the granule and the pointer tag matches the tag stored at
 the last byte of the granule.</p>
 <p>HWASAN is also easy to use, and simply requires compiling and linking
 an application with the <code>-fsanitize=hwaddress</code> flag.</p>
-<p><a href="https://llvm.org/docs/MemTagSanitizer.html"><span id="__index_entry_79" class="index">MemTagSanitizer</span></a> goes one
-step further and uses the Armv8.5-A <a href="https://developer.arm.com/documentation/102925/0100"><span id="__index_entry_80" class="index">Memory Tagging Extension
+<p><a href="https://llvm.org/docs/MemTagSanitizer.html"><span id="__index_entry_80" class="index">MemTagSanitizer</span></a> goes one
+step further and uses the Armv8.5-A <a href="https://developer.arm.com/documentation/102925/0100"><span id="__index_entry_81" class="index">Memory Tagging Extension
 (MTE)</span></a>. With MTE, the tag checking is done automatically by
 hardware, and an exception is raised on mismatch. MTE’s granule size is
 16 bits, whereas tags are 4-bit. <span class="todo_ref" href="#todo_6"><sup>todo</sup></span><span id="todo_6" class="todo">Consider adding a whole section on MTE and its applications
 <a href="https://github.com/llsoftsec/llsoftsecbook/issues/169"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iaXNzdWUgMTY5OiBvcGVuIj48dGl0bGU+aXNzdWUgMTY5OiBvcGVuPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI2MyIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjYzIiB3aWR0aD0iMzciIGhlaWdodD0iMjAiIGZpbGw9IiMyY2JlNGUiLz48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjMyNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNjk8L3RleHQ+PHRleHQgeD0iMzI1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSI1MzAiPmlzc3VlIDE2OTwvdGV4dD48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iODA1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIyNzAiPm9wZW48L3RleHQ+PHRleHQgeD0iODA1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSIyNzAiPm9wZW48L3RleHQ+PC9nPjwvc3ZnPg==" alt="#169" /></a></span></p>
-<p><a href="https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#ubsan-checks"><span id="__index_entry_81" class="index">UndefinedBehaviorSanitizer
+<p><a href="https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#ubsan-checks"><span id="__index_entry_82" class="index">UndefinedBehaviorSanitizer
 (UBSan)</span></a> detects undefined behavior during program execution,
 for example array out-of-bounds accesses for statically determined array
 bounds, null pointer dereference, signed integer overflow and various
@@ -4568,11 +4568,11 @@ checks related to integer conversions and arithmetic.</p>
 <p>There are many other sanitizers, more than can reasonably be covered
 in this section. For the interested reader, we list a few more:</p>
 <ul>
-<li><a href="https://clang.llvm.org/docs/MemorySanitizer.html"><span id="__index_entry_82" class="index">MemorySanitizer</span></a>: detects
+<li><a href="https://clang.llvm.org/docs/MemorySanitizer.html"><span id="__index_entry_83" class="index">MemorySanitizer</span></a>: detects
 uninitialized reads.</li>
-<li><a href="https://clang.llvm.org/docs/ThreadSanitizer.html"><span id="__index_entry_83" class="index">ThreadSanitizer</span></a>: detects
+<li><a href="https://clang.llvm.org/docs/ThreadSanitizer.html"><span id="__index_entry_84" class="index">ThreadSanitizer</span></a>: detects
 data races.</li>
-<li><a href="https://llvm.org/docs/GwpAsan.html"><span id="__index_entry_84" class="index">GWP-ASan</span></a>: detects
+<li><a href="https://llvm.org/docs/GwpAsan.html"><span id="__index_entry_85" class="index">GWP-ASan</span></a>: detects
 use-after-free and heap buffer overflows, with low overhead that makes
 it suitable for production environments. It performs checks only on a
 sample of allocations.</li>
@@ -4586,8 +4586,8 @@ schemes, MTE etc <a href="https://github.com/llsoftsec/llsoftsecbook/issues/170"
 Bounds checking<a href="#bounds-checking" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L1817" class="suggestedit" title="Suggest an edit"></a></h3>
 <p>Making sure that memory accesses happen within the bounds of each
 object’s allocation is a very important part of memory safety. This is
-usually described with the term “<span id="__index_entry_85" class="index">spatial memory safety</span>”. Out-of-bounds accesses
-result in restricted <span id="__index_entry_86" class="index" data-entry="read primitive">read/write primitives</span><span id="__index_entry_87" class="index" data-entry="write primitive"></span><span class="sidenote_ref" href="#sidenote_12"><sup>12</sup></span><span id="sidenote_12" class="sidenote">12. These primitives are restricted since they can only
+usually described with the term “<span id="__index_entry_86" class="index">spatial memory safety</span>”. Out-of-bounds accesses
+result in restricted <span id="__index_entry_87" class="index" data-entry="read primitive">read/write primitives</span><span id="__index_entry_88" class="index" data-entry="write primitive"></span><span class="sidenote_ref" href="#sidenote_12"><sup>12</sup></span><span id="sidenote_12" class="sidenote">12. These primitives are restricted since they can only
 access a limited number of bytes past the end of the allocation.</span>.
 An attacker can often easily convert these into arbitrary read/write
 primitives. For example, this can be achieved by overwriting pointer
@@ -4616,7 +4616,7 @@ general, especially if pointer arithmetic is performed.</p>
 checks introduced by <code>-fsanitize=bounds</code> and the Address
 Sanitizer. Although the scope of <code>-fsanitize=bounds</code> is
 restricted to statically sized arrays, it’s interesting to note that it
-can still catch <span id="__index_entry_88" class="index" data-entry="intra-object overflow">intra-object overflows</span> on
+can still catch <span id="__index_entry_89" class="index" data-entry="intra-object overflow">intra-object overflows</span> on
 array member accesses that the Address Sanitizer would not, because the
 access is still technically within the allocation. For example, given
 the following code:</p>
@@ -4657,7 +4657,7 @@ that expresses the array’s length.</p>
 proposal goes a bit further, introducing a similar annotation that can
 be applied to pointers more generally. The proposal also aims to reduce
 the annotation burden placed on programmers by only requiring the
-annotations at <a href="https://en.wikipedia.org/wiki/Application_binary_interface"><span id="__index_entry_89" class="index">Application Binary Interface
+annotations at <a href="https://en.wikipedia.org/wiki/Application_binary_interface"><span id="__index_entry_90" class="index">Application Binary Interface
 (ABI)</span></a> boundaries<span class="sidenote_ref" href="#sidenote_14"><sup>14</sup></span><span id="sidenote_14" class="sidenote">14. This refers to the interface between different
 binary modules, typically a user program and a system library. The ABI
 describes low-level details of that interface, for example the
@@ -4684,7 +4684,7 @@ the Linux kernel to use bounds checks for flexible arrays, as described
 in <span class="citation" data-cites="Cook2023">(<a href="#ref-Cook2023" role="doc-biblioref">Cook 2023</a>)</span>.</p>
 <p>There are also hardware-based mitigations for violations of spatial
 memory safety. For example, <a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/">CHERI</a>
-introduces <em><span id="__index_entry_90" class="index" data-entry="capability">capabilities</span></em> to conventional
+introduces <em><span id="__index_entry_91" class="index" data-entry="capability">capabilities</span></em> to conventional
 Instruction Set Architectures. Capabilities combine a virtual address
 with metadata that describes its corresponding bounds and permissions.
 Capabilities cannot be forged, and can thus provide very strong
@@ -4713,7 +4713,7 @@ unaffected and not cause security issues in practice before it is
 detected and fixed. This is, of course, assuming that the bug has not
 been <a href="#supply-chain-attacks">intentionally injected in the
 compiler</a>.</p>
-<p>Compiler bugs are an interesting source of security issues for <span id="__index_entry_91" class="index"><a href="https://en.wikipedia.org/wiki/Just-in-time_compilation">just-in-time
+<p>Compiler bugs are an interesting source of security issues for <span id="__index_entry_92" class="index"><a href="https://en.wikipedia.org/wiki/Just-in-time_compilation">just-in-time
 (JIT)</a> compilers</span><span class="sidenote_ref" href="#sidenote_16"><sup>16</sup></span><span id="sidenote_16" class="sidenote">16. JIT compilers compile code during execution of a
 program, as opposed to the more traditional compilation where code is
 compiled before the program is executed.</span>. JIT compilation is
@@ -4735,7 +4735,7 @@ optimization, which speculates that the same types will be encountered
 in future runs of the code, and inserts checks to validate that these
 assumptions about types still hold. When a check fails, the optimized
 code is replaced by unoptimized code that can handle all types, a
-process known as <span id="__index_entry_92" class="index">deoptimization</span> or <span id="__index_entry_93" class="index">on-stack replacement (OSR)</span>. Deoptimization makes
+process known as <span id="__index_entry_93" class="index">deoptimization</span> or <span id="__index_entry_94" class="index">on-stack replacement (OSR)</span>. Deoptimization makes
 sure that the state of the deoptimized function is recreated correctly
 for the point of execution where the type check failed.</p>
 <p>For example, a function such as:</p>
@@ -4770,11 +4770,11 @@ types to dependent values. For example if a value <code>x</code> is
 expected to be a string, and we check this assumption, then
 <code>x + 1</code> will also be a string (and no additional check is
 needed in this case). In addition to simple type propagation, they
-usually perform <span id="__index_entry_94" class="index">range
+usually perform <span id="__index_entry_95" class="index">range
 analysis</span> to determine as precise a range for a value as possible,
-which is useful for <span id="__index_entry_95" class="index">bounds
+which is useful for <span id="__index_entry_96" class="index">bounds
 check elimination</span>.</p>
-<p><span id="__index_entry_96" class="index">Bounds check elimination
+<p><span id="__index_entry_97" class="index">Bounds check elimination
 (BCE)</span> is a common optimization in languages that perform bounds
 checks on array accesses to ensure every accessed index is within the
 bounds of the array. BCE gets rid of bounds checks when they are proven
@@ -4828,7 +4828,7 @@ will be present and introduce mitigations that prevent attackers from
 building arbitrary read/write primitives on top of the initial limited
 primitives that bugs provide. For example, for 64-bit architectures, V8
 implements a <a href="https://docs.google.com/document/d/1FM4fQmIhEqPG8uGp5o9A-mnPB5BOeScZYpkHjo0KKA8/edit">sandbox</a>,
-built on top of <a href="https://v8.dev/blog/pointer-compression"><span id="__index_entry_97" class="index">pointer compression</span></a>. With
+built on top of <a href="https://v8.dev/blog/pointer-compression"><span id="__index_entry_98" class="index">pointer compression</span></a>. With
 pointer compression, pointers are represented by 32-bit indices off a
 base pointer instead of as full 64-bit values. By making sure that all
 pointers inside the sandbox (where the JavaScript heap is located) are
@@ -4837,7 +4837,7 @@ sandbox, a limited primitive that allows overwriting memory within the
 sandbox cannot be used to build an arbitrary read/write primitive by
 overwriting pointer values.</li>
 <li>Preventing code memory from being executable and writable at the
-same time is also desirable. This is known as <a href="https://en.wikipedia.org/wiki/W%5EX"><span id="__index_entry_98" class="index">W^X</span></a>. A naive implementation of W^X that simply
+same time is also desirable. This is known as <a href="https://en.wikipedia.org/wiki/W%5EX"><span id="__index_entry_99" class="index">W^X</span></a>. A naive implementation of W^X that simply
 switches memory permissions based on page tables temporarily is not
 enough to prevent attackers from writing to code memory <span class="citation" data-cites="Song2015">(<a href="#ref-Song2015" role="doc-biblioref">Song et al. 2015</a>)</span>, when multiple threads
 are involved. A more effective solution would use a separate compilation
@@ -4858,24 +4858,24 @@ side-channels<a href="#covert-channels-and-side-channels" class="selflink"></a><
 <p>Side-channels and covert channels are communication channels between
 two entities in a system, where the entities should not be able to
 communicate that way.</p>
-<p>A <strong><span id="__index_entry_99" class="index">covert
+<p>A <strong><span id="__index_entry_100" class="index">covert
 channel</span></strong> is a channel where both entities intend to
-communicate. A <strong><span id="__index_entry_100" class="index">side-channel</span></strong> is a channel where one entity
+communicate. A <strong><span id="__index_entry_101" class="index">side-channel</span></strong> is a channel where one entity
 is the victim of an attack using the channel.</p>
 <p>The difference between a covert channel and a side-channel is whether
 both entities intend to communicate. In a side-channel attack, the
-entity not intending to communicate is called the <strong><span id="__index_entry_101" class="index">victim</span></strong>. The other
-entity is sometimes called the <strong><span id="__index_entry_102" class="index">spy</span></strong>.</p>
+entity not intending to communicate is called the <strong><span id="__index_entry_102" class="index">victim</span></strong>. The other
+entity is sometimes called the <strong><span id="__index_entry_103" class="index">spy</span></strong>.</p>
 <p>As we focus on attacks in this book, we’ll mostly use the term
 side-channels in the rest of this chapter.</p>
 <p>The next few sections describe a variety of side-channels. Each
-section focusses on leakage through a specific so-called <span id="__index_entry_103" class="index">micro-architectural</span> aspect,
+section focusses on leakage through a specific so-called <span id="__index_entry_104" class="index">micro-architectural</span> aspect,
 such as execution time, cache state or branch predictor state.</p>
 <h2 data-number="3.1" data-section-number="3.1" id="timing-side-channels"><span class="header-section-number">3.1</span>
 Timing side-channels<a href="#timing-side-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2142" class="suggestedit" title="Suggest an edit"></a></h2>
 <p>An implementation of a cryptographic algorithm can leak information
 about the data it processes if its run time is influenced by the value
-of the processed data. Attacks making use of this are called <span id="__index_entry_104" class="index">timing attacks</span>.</p>
+of the processed data. Attacks making use of this are called <span id="__index_entry_105" class="index">timing attacks</span>.</p>
 <p>The main mitigation against such attacks consists of carefully
 implementing the algorithm such that the execution time remains
 independent of the processed data. This can be done by making sure that
@@ -4918,7 +4918,7 @@ side-channel attacks in mind, which are discussed in the <a href="#cache-side-ch
 attacks</a>.</p>
 <h2 data-number="3.2" data-section-number="3.2" id="cache-side-channels"><span class="header-section-number">3.2</span>
 Cache side-channels<a href="#cache-side-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2196" class="suggestedit" title="Suggest an edit"></a></h2>
-<p><a href="https://en.wikipedia.org/wiki/Cache_(computing)"><span id="__index_entry_105" class="index" data-entry="cache">Caches</span></a> are used in almost every computing
+<p><a href="https://en.wikipedia.org/wiki/Cache_(computing)"><span id="__index_entry_106" class="index" data-entry="cache">Caches</span></a> are used in almost every computing
 system. They are small memories that are much faster than the main
 memory. They automatically keep the most frequently used data, so that
 the average memory access time improves.</p>
@@ -4943,13 +4943,13 @@ instruction.</p>
 looks up if the data for the requested address happens to be present in
 the cache. If it is, the CPU can continue executing quickly; if not,
 dependent operations will have to wait until the data returns from the
-slower main memory. A typical <span id="__index_entry_106" class="index" data-entry="memory access time">access time</span> is 3 to 5 CPU cycles
+slower main memory. A typical <span id="__index_entry_107" class="index" data-entry="memory access time">access time</span> is 3 to 5 CPU cycles
 for the fastest cache on a CPU versus hundreds of cycles for a main
 memory access. When data is present in the cache for a read or write, it
-is said to be a <strong><span id="__index_entry_107" class="index" data-entry="cache!hit">cache hit</span></strong>. Otherwise, it’s called
-a <strong><span id="__index_entry_108" class="index" data-entry="cache!miss">cache miss</span></strong>.</p>
-<p>Most systems have <span id="__index_entry_109" class="index" data-entry="cache!multi-level">multiple levels of cache</span>, each
-with a different trade-off between <span id="__index_entry_110" class="index" data-entry="cache!size">cache size</span> and <span id="__index_entry_111" class="index" data-entry="cache!access time">access time</span>. Some typical
+is said to be a <strong><span id="__index_entry_108" class="index" data-entry="cache!hit">cache hit</span></strong>. Otherwise, it’s called
+a <strong><span id="__index_entry_109" class="index" data-entry="cache!miss">cache miss</span></strong>.</p>
+<p>Most systems have <span id="__index_entry_110" class="index" data-entry="cache!multi-level">multiple levels of cache</span>, each
+with a different trade-off between <span id="__index_entry_111" class="index" data-entry="cache!size">cache size</span> and <span id="__index_entry_112" class="index" data-entry="cache!access time">access time</span>. Some typical
 characteristics might be:</p>
 <ul>
 <li>L1 (level 1) cache, 32KB in size, with an access time of 4
@@ -4968,34 +4968,34 @@ system</figcaption>
 stored there after it has been fetched from a slower cache level or main
 memory. This is often a good decision to make as there’s a high
 likelihood the same address will be accessed by the program soon after.
-This high likelihood is known as the <a href="https://en.wikipedia.org/wiki/Locality_of_reference"><span id="__index_entry_112" class="index">principle of
-locality</span></a>]<span id="__index_entry_113" class="index" data-entry="locality of reference"></span>.</p>
+This high likelihood is known as the <a href="https://en.wikipedia.org/wiki/Locality_of_reference"><span id="__index_entry_113" class="index">principle of
+locality</span></a>]<span id="__index_entry_114" class="index" data-entry="locality of reference"></span>.</p>
 <p>Data is stored and transferred between cache levels in blocks of
-aligned memory. Such a block is called a <strong><span id="__index_entry_114" class="index" data-entry="cache!block">cache
-block</span></strong> or <strong><span id="__index_entry_115" class="index" data-entry="cache!line">cache line</span></strong>.
+aligned memory. Such a block is called a <strong><span id="__index_entry_115" class="index" data-entry="cache!block">cache
+block</span></strong> or <strong><span id="__index_entry_116" class="index" data-entry="cache!line">cache line</span></strong>.
 Typical sizes are 32, 64 or 128 bytes per cache line.</p>
 <p>When data that wasn’t previously in the cache needs to be stored in
-the cache, room has to be made for it by removing, or <strong><span id="__index_entry_116" class="index" data-entry="cache!eviction">evicting</span></strong>, some other
-address/data from it. How that choice gets made is decided by the <a href="https://en.wikipedia.org/wiki/Cache_replacement_policies"><span id="__index_entry_117" class="index" data-entry="cache!replacement policy">cache replacement
-policy</span></a>]. Popular replacement algorithms are <span id="__index_entry_118" class="index" data-entry="cache!LRU">Least
-Recently Used (LRU)</span>, <span id="__index_entry_119" class="index" data-entry="cache!random replacement policy">Random</span> and <span id="__index_entry_120" class="index" data-entry="cache!pseudo-LRU replacement policy">pseudo-LRU</span>. As
+the cache, room has to be made for it by removing, or <strong><span id="__index_entry_117" class="index" data-entry="cache!eviction">evicting</span></strong>, some other
+address/data from it. How that choice gets made is decided by the <a href="https://en.wikipedia.org/wiki/Cache_replacement_policies"><span id="__index_entry_118" class="index" data-entry="cache!replacement policy">cache replacement
+policy</span></a>]. Popular replacement algorithms are <span id="__index_entry_119" class="index" data-entry="cache!LRU">Least
+Recently Used (LRU)</span>, <span id="__index_entry_120" class="index" data-entry="cache!random replacement policy">Random</span> and <span id="__index_entry_121" class="index" data-entry="cache!pseudo-LRU replacement policy">pseudo-LRU</span>. As
 the names suggest, LRU evicts the cache line that is least recently
 used; random picks a random cache line; and pseudo-LRU approximates
 choosing the least recently used line.</p>
 <p>If a cache line can be stored in all locations available in the
-cache, the cache is <strong><span id="__index_entry_121" class="index" data-entry="cache!fully-associative">fully-associative</span></strong>.
+cache, the cache is <strong><span id="__index_entry_122" class="index" data-entry="cache!fully-associative">fully-associative</span></strong>.
 Most caches are however not fully-associative, as it’s too costly to
-implement. Instead, most caches are <strong><span id="__index_entry_122" class="index" data-entry="cache!set-associative">set-associative</span></strong>. In
+implement. Instead, most caches are <strong><span id="__index_entry_123" class="index" data-entry="cache!set-associative">set-associative</span></strong>. In
 an N-way set-associative cache, a specific line can only be stored in
 one of N cache locations. For example, if a line can potentially be
 stored in one of 2 locations, the cache is said to be 2-way
 set-associative. If it can be stored in one of 4 locations, it’s called
 4-way set-associative, and so on. When an address can only be stored in
-one location in the cache, it is said to be <strong><span id="__index_entry_123" class="index" data-entry="cache!direct-mapped">direct-mapped</span></strong>, rather
+one location in the cache, it is said to be <strong><span id="__index_entry_124" class="index" data-entry="cache!direct-mapped">direct-mapped</span></strong>, rather
 than 1-way set-associative. Typical organizations are direct-mapped,
 2-way, 4-way, 8-way, 16-way or 32-way set-associative.</p>
 <p>The set of cache locations that a particular cache line can be stored
-at is called a <strong><span id="__index_entry_124" class="index" data-entry="cache!set">cache set</span></strong>.</p>
+at is called a <strong><span id="__index_entry_125" class="index" data-entry="cache!set">cache set</span></strong>.</p>
 <h4 data-number="3.2.1.1" data-section-number="3.2.1.1" id="indexing-in-a-set-associative-cache"><span class="header-section-number">3.2.1.1</span> Indexing in a
 set-associative cache<a href="#indexing-in-a-set-associative-cache" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2286" class="suggestedit" title="Suggest an edit"></a></h4>
 <p>For some cache covert channels, it is essential to know exactly how a
@@ -5027,7 +5027,7 @@ coherency? <a href="https://github.com/llsoftsec/llsoftsecbook/issues/173"><img 
 prefetching? <a href="https://github.com/llsoftsec/llsoftsecbook/issues/174"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iaXNzdWUgMTc0OiBvcGVuIj48dGl0bGU+aXNzdWUgMTc0OiBvcGVuPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI2MyIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjYzIiB3aWR0aD0iMzciIGhlaWdodD0iMjAiIGZpbGw9IiMyY2JlNGUiLz48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjMyNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNzQ8L3RleHQ+PHRleHQgeD0iMzI1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSI1MzAiPmlzc3VlIDE3NDwvdGV4dD48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iODA1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIyNzAiPm9wZW48L3RleHQ+PHRleHQgeD0iODA1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSIyNzAiPm9wZW48L3RleHQ+PC9nPjwvc3ZnPg==" alt="#174" /></a></span>
 <h3 data-number="3.2.2" data-section-number="3.2.2" id="operation-of-cache-side-channels"><span class="header-section-number">3.2.2</span> Operation of cache
 side-channels<a href="#operation-of-cache-side-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2321" class="suggestedit" title="Suggest an edit"></a></h3>
-<p><span id="__index_entry_125" class="index" data-entry="cache!side-channel">Cache side-channels</span> typically
+<p><span id="__index_entry_126" class="index" data-entry="cache!side-channel">Cache side-channels</span> typically
 work by the spy determining whether a memory access was a cache hit or a
 cache miss. From that information, the spy may be able to deduce bits of
 data that only the victim should have access to.</p>
@@ -5035,7 +5035,7 @@ data that only the victim should have access to.</p>
 side-channels:</p>
 <h4 data-number="3.2.2.1" data-section-number="3.2.2.1" id="flushreload"><span class="header-section-number">3.2.2.1</span>
 Flush+Reload<a href="#flushreload" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2330" class="suggestedit" title="Suggest an edit"></a></h4>
-<p>In a so-called <strong><span id="__index_entry_126" class="index">Flush+Reload</span></strong> attack<span class="citation" data-cites="Yarom2014">(<a href="#ref-Yarom2014" role="doc-biblioref">Yarom and Falkner 2014</a>)</span>, the spy process
+<p>In a so-called <strong><span id="__index_entry_127" class="index">Flush+Reload</span></strong> attack<span class="citation" data-cites="Yarom2014">(<a href="#ref-Yarom2014" role="doc-biblioref">Yarom and Falkner 2014</a>)</span>, the spy process
 shares memory with the victim process. The attack works in 3 steps:</p>
 <ol type="1">
 <li>The Flush step: The spy flushes a specific address from the
@@ -5058,7 +5058,7 @@ whether a specific bit is set in secret data. For example, <span class="citation
 that a Flush+Reload attack can be used to leak GnuPG private keys.</p>
 <h4 data-number="3.2.2.2" data-section-number="3.2.2.2" id="primeprobe"><span class="header-section-number">3.2.2.2</span>
 Prime+Probe<a href="#primeprobe" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2355" class="suggestedit" title="Suggest an edit"></a></h4>
-<p>In a <strong><span id="__index_entry_127" class="index">Prime+Probe</span></strong> attack, there is no need for
+<p>In a <strong><span id="__index_entry_128" class="index">Prime+Probe</span></strong> attack, there is no need for
 memory to be shared between victim and spy. The attack works in 3
 steps:</p>
 <ol type="1">
@@ -5083,17 +5083,17 @@ that follow this 3-step pattern. They describe the general pattern as
 being:</p>
 <ol type="1">
 <li>An instruction sequence that resets the inner CPU state
-(<strong><span id="__index_entry_128" class="index">reset
+(<strong><span id="__index_entry_129" class="index">reset
 sequence</span></strong>).</li>
-<li>An instruction sequence that triggers a state change (<strong><span id="__index_entry_129" class="index">trigger
+<li>An instruction sequence that triggers a state change (<strong><span id="__index_entry_130" class="index">trigger
 sequence</span></strong>).</li>
-<li>An instruction sequence that leaks the inner state (<strong><span id="__index_entry_130" class="index">measurement
+<li>An instruction sequence that leaks the inner state (<strong><span id="__index_entry_131" class="index">measurement
 sequence</span></strong>).</li>
 </ol>
 <p>Other cache-based side channel attacks following this general 3-step
-approach include: <span id="__index_entry_131" class="index">Flush+Flush</span><span class="citation" data-cites="Gruss2016a">(<a href="#ref-Gruss2016a" role="doc-biblioref">Gruss, Maurice, Wagner, et al. 2016</a>)</span>,
-<span id="__index_entry_132" class="index">Flush+Prefetch</span><span class="citation" data-cites="Gruss2016">(<a href="#ref-Gruss2016" role="doc-biblioref">Gruss, Maurice, Fogh, et al. 2016</a>)</span>,
-<span id="__index_entry_133" class="index">Evict+Reload</span><span class="citation" data-cites="Percival2005">(<a href="#ref-Percival2005" role="doc-biblioref">Percival 2005</a>)</span>, <span id="__index_entry_134" class="index">Evict+Time</span><span class="citation" data-cites="Osvik2005">(<a href="#ref-Osvik2005" role="doc-biblioref">Osvik, Shamir, and Tromer 2005</a>)</span>, <span id="__index_entry_135" class="index">Reload+Refresh</span><span class="citation" data-cites="Briongos2020">(<a href="#ref-Briongos2020" role="doc-biblioref">Briongos et al. 2020</a>)</span>, <span id="__index_entry_136" class="index">Collide+Probe</span><span class="citation" data-cites="Lipp2020">(<a href="#ref-Lipp2020" role="doc-biblioref">Lipp et al. 2020</a>)</span>, etc.</p>
+approach include: <span id="__index_entry_132" class="index">Flush+Flush</span><span class="citation" data-cites="Gruss2016a">(<a href="#ref-Gruss2016a" role="doc-biblioref">Gruss, Maurice, Wagner, et al. 2016</a>)</span>,
+<span id="__index_entry_133" class="index">Flush+Prefetch</span><span class="citation" data-cites="Gruss2016">(<a href="#ref-Gruss2016" role="doc-biblioref">Gruss, Maurice, Fogh, et al. 2016</a>)</span>,
+<span id="__index_entry_134" class="index">Evict+Reload</span><span class="citation" data-cites="Percival2005">(<a href="#ref-Percival2005" role="doc-biblioref">Percival 2005</a>)</span>, <span id="__index_entry_135" class="index">Evict+Time</span><span class="citation" data-cites="Osvik2005">(<a href="#ref-Osvik2005" role="doc-biblioref">Osvik, Shamir, and Tromer 2005</a>)</span>, <span id="__index_entry_136" class="index">Reload+Refresh</span><span class="citation" data-cites="Briongos2020">(<a href="#ref-Briongos2020" role="doc-biblioref">Briongos et al. 2020</a>)</span>, <span id="__index_entry_137" class="index">Collide+Probe</span><span class="citation" data-cites="Lipp2020">(<a href="#ref-Lipp2020" role="doc-biblioref">Lipp et al. 2020</a>)</span>, etc.</p>
 <h3 data-number="3.2.3" data-section-number="3.2.3" id="mitigating-cache-side-channel-attacks"><span class="header-section-number">3.2.3</span> Mitigating cache side-channel
 attacks<a href="#mitigating-cache-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2392" class="suggestedit" title="Suggest an edit"></a></h3>
 <p>As described in <span class="citation" data-cites="Su2021">(<a href="#ref-Su2021" role="doc-biblioref">Su and Zeng 2021</a>)</span>, 3
@@ -5142,7 +5142,7 @@ variety of mitigations have been proposed that aim to make attacks
 somewhat harder without losing too much system efficiency. <span class="citation" data-cites="Mushtaq2020">(<a href="#ref-Mushtaq2020" role="doc-biblioref">Mushtaq et al. 2020</a>)</span> and <span class="citation" data-cites="Su2021">(<a href="#ref-Su2021" role="doc-biblioref">Su and Zeng 2021</a>)</span> summarize dozens of
 proposals and implementations – too many to try to describe them all
 here.</p>
-<p>One popular such mitigation is disabling <a href="https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)"><span id="__index_entry_137" class="index">cpu multithreading</span></a>. For
+<p>One popular such mitigation is disabling <a href="https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)"><span id="__index_entry_138" class="index">cpu multithreading</span></a>. For
 example, <a href="https://learn.microsoft.com/en-us/azure/virtual-machines/mitigate-se">Azure
 suggests that users who run untrusted code should consider disabling cpu
 multithreading</a>. <a href="https://www.kernel.org/doc/Documentation/admin-guide/hw-vuln/core-scheduling.rst">The
@@ -5151,7 +5151,7 @@ untrusted code should not run on the same core concurrently. It
 implements a scheduler that <a href="https://lwn.net/Articles/861251/">takes into account which
 processes are mutually-trusting</a> and only allows those to run
 simultaneously on the same core.</p>
-<p>One could argue that <a href="https://developer.chrome.com/blog/site-isolation/"><span id="__index_entry_138" class="index">site isolation</span></a> as
+<p>One could argue that <a href="https://developer.chrome.com/blog/site-isolation/"><span id="__index_entry_139" class="index">site isolation</span></a> as
 implemented in many web browsers is a mitigation that also falls into
 this category. Site isolation is described in more detail in <a href="#site-isolation">its own section</a>.</p>
 <h4 data-number="3.2.3.3" data-section-number="3.2.3.3" id="mitigations-disabling-the-spy-program-to-infer-a-cache-status-change-in-the-victim-program-through-its-own-cache-status"><span class="header-section-number">3.2.3.3</span> Mitigations disabling the
@@ -5165,11 +5165,11 @@ distinguish between a cache hit and cache miss. This is one of the
 mitigations in javascript engines against Spectre attacks. For more
 information see this <a href="https://v8.dev/blog/spectre">v8 blog
 post</a> or this <a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance/now">Firefox
-documentation of the performance.now() method</a><span id="__index_entry_139" class="index" data-entry="Spectre"></span>.</p>
+documentation of the performance.now() method</a><span id="__index_entry_140" class="index" data-entry="Spectre"></span>.</p>
 <p>Note that this is not a perfect mitigation - there are often
 surprising ways that an attacker can get a fine-grained enough timer or
 use statistical methods to be able to detect the difference between a
-cache hit or miss. One extreme example is the <span id="__index_entry_140" class="index">NetSpectre</span> attack <span class="citation" data-cites="Schwarz2019">(<a href="#ref-Schwarz2019" role="doc-biblioref">Schwarz et al. 2019</a>)</span> where the
+cache hit or miss. One extreme example is the <span id="__index_entry_141" class="index">NetSpectre</span> attack <span class="citation" data-cites="Schwarz2019">(<a href="#ref-Schwarz2019" role="doc-biblioref">Schwarz et al. 2019</a>)</span> where the
 difference between cache hit and cache miss is measured over a network,
 by statistically analyzing delays on network packet responses.
 Furthermore, <span class="citation" data-cites="Schwarz2017">(<a href="#ref-Schwarz2017" role="doc-biblioref">Schwarz et al.
@@ -5185,8 +5185,8 @@ level.</p>
 side-channels<a href="#branch-predictor-based-side-channels" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2484" class="suggestedit" title="Suggest an edit"></a></h2>
 <h3 data-number="3.3.1" data-section-number="3.3.1" id="branch-predictors"><span class="header-section-number">3.3.1</span>
 Branch predictors<a href="#branch-predictors" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2486" class="suggestedit" title="Suggest an edit"></a></h3>
-<p>Most CPUs implement one or more <a href="https://en.wikipedia.org/wiki/Instruction_pipelining"><span id="__index_entry_141" class="index" data-entry="instruction pipeline">instruction pipelines</span></a>.
-<span id="__index_entry_142" class="index" data-entry="pipeline"></span>
+<p>Most CPUs implement one or more <a href="https://en.wikipedia.org/wiki/Instruction_pipelining"><span id="__index_entry_142" class="index" data-entry="instruction pipeline">instruction pipelines</span></a>.
+<span id="__index_entry_143" class="index" data-entry="pipeline"></span>
 In an instruction pipeline, the next instruction is started before the
 previous instruction has finished executing. When the previous
 instruction is a branch instruction, the next instruction that needs to
@@ -5197,18 +5197,18 @@ support having more instructions in flight. <span class="citation" data-cites="E
 suggests that branch prediction accuracy has to grow more than linearly
 when the number of pipelines, or the depth of the pipeline grows.
 Therefore, there is a constant push to increase the accuracy of branch
-predictors.</span> Therefore, most CPUs <span id="__index_entry_143" class="index">predict</span> which instruction needs to be executed
+predictors.</span> Therefore, most CPUs <span id="__index_entry_144" class="index">predict</span> which instruction needs to be executed
 after a branch, before the branch instruction has completed. Correctly
 and quickly predicting the instruction after a branch instruction is so
-important for performance that most CPUs have multiple <a href="https://en.wikipedia.org/wiki/Branch_predictor"><span id="__index_entry_144" class="index" data-entry="branch predictor">branch predictors</span></a>, such as:</p>
+important for performance that most CPUs have multiple <a href="https://en.wikipedia.org/wiki/Branch_predictor"><span id="__index_entry_145" class="index" data-entry="branch predictor">branch predictors</span></a>, such as:</p>
 <ul>
-<li>A predictor of the outcome of a <span id="__index_entry_145" class="index" data-entry="conditional branch direction predictor">conditional
-branch</span>: <span id="__index_entry_146" class="index" data-entry="taken branch">taken</span> or not taken. The prediction is
-typically <span id="__index_entry_147" class="index" data-entry="history-based prediction">history-based</span>, i.e. based
+<li>A predictor of the outcome of a <span id="__index_entry_146" class="index" data-entry="conditional branch direction predictor">conditional
+branch</span>: <span id="__index_entry_147" class="index" data-entry="taken branch">taken</span> or not taken. The prediction is
+typically <span id="__index_entry_148" class="index" data-entry="history-based prediction">history-based</span>, i.e. based
 on the outcome of this and other branches in the recent past.</li>
-<li>A predictor of the <span id="__index_entry_148" class="index" data-entry="branch target predictor">target of a taken branch</span>,
+<li>A predictor of the <span id="__index_entry_149" class="index" data-entry="branch target predictor">target of a taken branch</span>,
 i.e. the address of the next instruction after a taken branch.</li>
-<li>A predictor that is specialized to <span id="__index_entry_149" class="index" data-entry="return address predictor">predict the next
+<li>A predictor that is specialized to <span id="__index_entry_150" class="index" data-entry="return address predictor">predict the next
 instruction after a function return instruction</span>.</li>
 </ul>
 <h3 data-number="3.3.2" data-section-number="3.3.2" id="side-channels-through-branch-predictors"><span class="header-section-number">3.3.2</span> Side-channels through branch
@@ -5218,8 +5218,8 @@ following sections list a few examples, categorized per branch predictor
 component they target.</p>
 <h4 data-number="3.3.2.1" data-section-number="3.3.2.1" id="conditional-branch-direction-predictor-side-channel-attacks"><span class="header-section-number">3.3.2.1</span> Conditional branch
 direction predictor side-channel attacks<a href="#conditional-branch-direction-predictor-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2525" class="suggestedit" title="Suggest an edit"></a></h4>
-<p><span id="__index_entry_150" class="index" data-entry="conditional branch direction predictor"></span></p>
-<p>Two examples are <span id="__index_entry_151" class="index">BranchScope</span> <span class="citation" data-cites="Evtyushkin2018">(<a href="#ref-Evtyushkin2018" role="doc-biblioref">Evtyushkin et al. 2018</a>)</span> and <span id="__index_entry_152" class="index">BlueThunder</span> <span class="citation" data-cites="Huo2019">(<a href="#ref-Huo2019" role="doc-biblioref">Huo et al. 2019</a>)</span>. These attacks infer
+<p><span id="__index_entry_151" class="index" data-entry="conditional branch direction predictor"></span></p>
+<p>Two examples are <span id="__index_entry_152" class="index">BranchScope</span> <span class="citation" data-cites="Evtyushkin2018">(<a href="#ref-Evtyushkin2018" role="doc-biblioref">Evtyushkin et al. 2018</a>)</span> and <span id="__index_entry_153" class="index">BlueThunder</span> <span class="citation" data-cites="Huo2019">(<a href="#ref-Huo2019" role="doc-biblioref">Huo et al. 2019</a>)</span>. These attacks infer
 whether a branch is taken or not taken in a victim process. They do so
 by carefully making sure that a branch in the spy process uses the same
 branch predictor entry as the targeted branch in the victim process. By
@@ -5230,21 +5230,21 @@ taken or not.</p>
 <p>When the outcome of a branch depends on a bit in a secret key, this
 can enable an attacker to derive the value of the secret key. These
 papers demonstrate deriving the secret key from implementations of
-specific cryptographic kernels. It can also be used to break <a href="#aslr"><span id="__index_entry_153" class="index">ASLR</span></a>.</p>
+specific cryptographic kernels. It can also be used to break <a href="#aslr"><span id="__index_entry_154" class="index">ASLR</span></a>.</p>
 <h4 data-number="3.3.2.2" data-section-number="3.3.2.2" id="branch-target-predictor-side-channel-attacks"><span class="header-section-number">3.3.2.2</span> Branch target predictor
 side-channel attacks<a href="#branch-target-predictor-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2544" class="suggestedit" title="Suggest an edit"></a></h4>
-<p><span id="__index_entry_154" class="index" data-entry="Branch target predictor"></span></p>
-<p>Two examples are <span id="__index_entry_155" class="index">SBPA</span> <span class="citation" data-cites="Aciicmez2007">(<a href="#ref-Aciicmez2007" role="doc-biblioref">Aciiçmez, Kaya Koç, and Seifert 2007</a>)</span>
-and <span id="__index_entry_156" class="index">BranchShadow</span> <span class="citation" data-cites="Lee2017">(<a href="#ref-Lee2017" role="doc-biblioref">Lee et al. 2017</a>)</span>. These earlier attacks
-are based on making a branch in the spy process alias in the <span id="__index_entry_157" class="index">Branch Target Buffer (BTB)</span>
+<p><span id="__index_entry_155" class="index" data-entry="Branch target predictor"></span></p>
+<p>Two examples are <span id="__index_entry_156" class="index">SBPA</span> <span class="citation" data-cites="Aciicmez2007">(<a href="#ref-Aciicmez2007" role="doc-biblioref">Aciiçmez, Kaya Koç, and Seifert 2007</a>)</span>
+and <span id="__index_entry_157" class="index">BranchShadow</span> <span class="citation" data-cites="Lee2017">(<a href="#ref-Lee2017" role="doc-biblioref">Lee et al. 2017</a>)</span>. These earlier attacks
+are based on making a branch in the spy process alias in the <span id="__index_entry_158" class="index">Branch Target Buffer (BTB)</span>
 with a targeted branch in the victim process. They use methods such as
-timing difference, <span id="__index_entry_158" class="index" data-entry="last branch record">last branch records</span>, <span id="__index_entry_159" class="index" data-entry="instruction trace">instruction traces</span> or <span id="__index_entry_160" class="index" data-entry="performance counter">performance counters</span> to measure
+timing difference, <span id="__index_entry_159" class="index" data-entry="last branch record">last branch records</span>, <span id="__index_entry_160" class="index" data-entry="instruction trace">instruction traces</span> or <span id="__index_entry_161" class="index" data-entry="performance counter">performance counters</span> to measure
 whether the branch in the spy process caused a specific state change in
 the BTB.</p>
 <h4 data-number="3.3.2.3" data-section-number="3.3.2.3" id="return-address-predictor-side-channel-attacks"><span class="header-section-number">3.3.2.3</span> Return address predictor
 side-channel attacks<a href="#return-address-predictor-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2556" class="suggestedit" title="Suggest an edit"></a></h4>
-<p><span id="__index_entry_161" class="index" data-entry="return address predictor"></span></p>
-<p>One example is <span id="__index_entry_162" class="index">Hyper-Channel</span> <span class="citation" data-cites="Bulygin2008">(<a href="#ref-Bulygin2008" role="doc-biblioref">Bulygin 2008</a>)</span>. In this case, a spy
+<p><span id="__index_entry_162" class="index" data-entry="return address predictor"></span></p>
+<p>One example is <span id="__index_entry_163" class="index">Hyper-Channel</span> <span class="citation" data-cites="Bulygin2008">(<a href="#ref-Bulygin2008" role="doc-biblioref">Bulygin 2008</a>)</span>. In this case, a spy
 process invokes <span class="math inline"><em>N</em></span> calls to
 fill up the return stack predictor. Then it lets the victim process
 execute. Then, the spy process can measure how many of its return stack
@@ -5258,13 +5258,13 @@ approach, similar to <a href="#general-schema-for-cache-covert-channels">cache s
 channels</a>:</p>
 <ol type="1">
 <li>An instruction sequence that resets the branch predictor state
-(<em><span id="__index_entry_163" class="index">reset
+(<em><span id="__index_entry_164" class="index">reset
 sequence</span></em>), run by the spy process.</li>
 <li>An instruction sequence that triggers a branch predictor state
-change (<em><span id="__index_entry_164" class="index">trigger
+change (<em><span id="__index_entry_165" class="index">trigger
 sequence</span></em>), run by the victim process.</li>
 <li>An instruction sequence that leaks the branch predictor state
-(<em><span id="__index_entry_165" class="index">measurement
+(<em><span id="__index_entry_166" class="index">measurement
 sequence</span></em>), run by the spy process.</li>
 </ol>
 <h3 data-number="3.3.3" data-section-number="3.3.3" id="mitigations"><span class="header-section-number">3.3.3</span>
@@ -5295,16 +5295,16 @@ that later instruction? In other words, there may be a
 <strong>dependency</strong> between an instruction that has not finished
 yet and a later instruction that the CPU also already started
 executing.</p>
-<p>There are various kinds of dependencies. One kind is <strong><span id="__index_entry_166" class="index" data-entry="control dependency">control dependencies</span></strong>,
+<p>There are various kinds of dependencies. One kind is <strong><span id="__index_entry_167" class="index" data-entry="control dependency">control dependencies</span></strong>,
 where whether the later instruction should be executed at all is
 dependent on the outcome of the earlier instruction. Other kinds are
-<strong><span id="__index_entry_167" class="index" data-entry="true data dependency">true data
-dependencies</span></strong>, <strong><span id="__index_entry_168" class="index" data-entry="data dependency">anti-dependencies</span></strong> and
-<strong><span id="__index_entry_169" class="index" data-entry="output dependency">output dependencies</span></strong>. More
+<strong><span id="__index_entry_168" class="index" data-entry="true data dependency">true data
+dependencies</span></strong>, <strong><span id="__index_entry_169" class="index" data-entry="data dependency">anti-dependencies</span></strong> and
+<strong><span id="__index_entry_170" class="index" data-entry="output dependency">output dependencies</span></strong>. More
 details about these kinds of dependencies can be found on <a href="https://en.wikipedia.org/wiki/Data_dependency">the wikipedia page
 about them</a>.</p>
 <p>CPUs overcome parallel execution limitations imposed by dependencies
-by making massive numbers of <strong><span id="__index_entry_170" class="index" data-entry="prediction">predictions</span></strong>. For
+by making massive numbers of <strong><span id="__index_entry_171" class="index" data-entry="prediction">predictions</span></strong>. For
 example, most CPUs predict whether conditional branches are taken or
 not, which is making a prediction on control dependencies. Another
 example is a CPU making a prediction on whether a load accesses the same
@@ -5315,7 +5315,7 @@ locations, there is a dependency and the store should complete before
 the load can start executing.</p>
 <p>Starting to execute later instructions before all of their
 dependencies have been resolved, based on the predictions, is called
-<strong><span id="__index_entry_171" class="index">speculation</span></strong>.</p>
+<strong><span id="__index_entry_172" class="index">speculation</span></strong>.</p>
 <p>Let’s illustrate that with an example. The following C code</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> abs<span class="op">(</span><span class="dt">long</span> a<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>a <span class="op">&gt;=</span> <span class="dv">0</span><span class="op">)</span></span>
@@ -5360,10 +5360,10 @@ predicted it to not be taken, the <code>neg</code> instruction is
 executed incorrectly and changes the value in register <code>x0</code>.
 After discovering the branch was mis-predicted, the CPU would have to
 restore the correct, non-negated, value in register <code>x0</code>.</p>
-<p>Any instructions that are executed under so-called <strong><span id="__index_entry_172" class="index">mis-speculation</span></strong>,
-are called <strong><span id="__index_entry_173" class="index">transient
+<p>Any instructions that are executed under so-called <strong><span id="__index_entry_173" class="index">mis-speculation</span></strong>,
+are called <strong><span id="__index_entry_174" class="index">transient
 instructions</span></strong>.<span class="sidenote_ref" href="#sidenote_19"><sup>19</sup></span><span id="sidenote_19" class="sidenote">19. Transient instructions caused by incorrect
-branch-direction prediction have also been called <strong><span id="__index_entry_174" class="index">wrong-path
+branch-direction prediction have also been called <strong><span id="__index_entry_175" class="index">wrong-path
 instructions</span></strong> <span class="citation" data-cites="Mutlu2004">Mutlu et al. (<a href="#ref-Mutlu2004" role="doc-biblioref">2004</a>)</span></span></p>
 <p>The paragraph above says “<em>the system state that affects the
 correct execution of the program, needs to be undone</em>”. There is a
@@ -5377,8 +5377,8 @@ present in the cache does not influence the correct execution of a
 program; it merely influences its execution speed. Therefore, the effect
 of transient execution on the content of the cache is typically not
 undone when detecting mis-speculation.</p>
-<p>Sometimes, it is said that the <strong><span id="__index_entry_175" class="index">architectural effects</span></strong> of transient
-instructions need to be undone, but the <strong><span id="__index_entry_176" class="index">micro-architectural
+<p>Sometimes, it is said that the <strong><span id="__index_entry_176" class="index">architectural effects</span></strong> of transient
+instructions need to be undone, but the <strong><span id="__index_entry_177" class="index">micro-architectural
 effects</span></strong> do not need to be undone.</p>
 <p>The above explanation describes architectural effects as changes in
 system state that need to be undone after detecting mis-speculation. In
@@ -5391,7 +5391,7 @@ affect architectural state. <span class="todo_ref" href="#todo_9"><sup>todo</sup
 micro-architectural versus architectural state in more detail? Is
 “Computer Architecture: A Quantitative Approach” the best reference
 available?</span></p>
-<p><strong><span id="__index_entry_177" class="index" data-entry="faulting instructions">Faulting instructions</span></strong>
+<p><strong><span id="__index_entry_178" class="index" data-entry="faulting instructions">Faulting instructions</span></strong>
 are instructions that generate an exception at run-time. Many
 instructions can generate an exception, and are hence
 <strong>potentially faulting</strong>. For example most load and store
@@ -5402,7 +5402,7 @@ more parallel execution.</p>
 <p>When an instruction faults, the execution typically continues at
 another location. Any instructions later in the instruction stream which
 are speculatively executed before the fault is detected are also called
-<strong><span id="__index_entry_178" class="index">transient
+<strong><span id="__index_entry_179" class="index">transient
 instructions</span></strong>.</p>
 <p>There is a kind of control dependency between every
 potentially-faulting instruction and the next one, as the next
@@ -5412,11 +5412,11 @@ transient execution attacks we’ll describe next get classified based on
 whether they make use of transient instructions after a misprediction,
 or transient instructions after a faulting instruction.</p>
 <h3 data-number="3.6.2" data-section-number="3.6.2" id="transient-execution-attacks-1"><span class="header-section-number">3.6.2</span> Transient Execution Attacks<a href="#transient-execution-attacks-1" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2737" class="suggestedit" title="Suggest an edit"></a></h3>
-<p><strong><span id="__index_entry_179" class="index" data-entry="transient execution attacks">Transient execution
+<p><strong><span id="__index_entry_180" class="index" data-entry="transient execution attacks">Transient execution
 attacks</span></strong> are a category of side-channel attacks that use
 the micro-architectural side-effects of transient execution as a side
 channel.</p>
-<p>The publication of the <span id="__index_entry_180" class="index">Spectre</span> <span class="citation" data-cites="Kocher2019">(<a href="#ref-Kocher2019" role="doc-biblioref">Kocher et al. 2019</a>)</span> and <span id="__index_entry_181" class="index">Meltdown</span> <span class="citation" data-cites="Lipp2018">(<a href="#ref-Lipp2018" role="doc-biblioref">Lipp et al. 2018</a>)</span> attacks in 2018
+<p>The publication of the <span id="__index_entry_181" class="index">Spectre</span> <span class="citation" data-cites="Kocher2019">(<a href="#ref-Kocher2019" role="doc-biblioref">Kocher et al. 2019</a>)</span> and <span id="__index_entry_182" class="index">Meltdown</span> <span class="citation" data-cites="Lipp2018">(<a href="#ref-Lipp2018" role="doc-biblioref">Lipp et al. 2018</a>)</span> attacks in 2018
 started a period in which a large number of transient attacks were
 discovered and published. Most of them were given specific names, such
 as ZombieLoad, NetSpectre, LVI, Straight-line Speculation, etc. New
@@ -5494,7 +5494,7 @@ execution attacks<a href="#mitigations-against-transient-execution-attacks" clas
 Site isolation<a href="#site-isolation" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2813" class="suggestedit" title="Suggest an edit"></a></h4>
 <span class="todo_ref" href="#todo_28"><sup>todo</sup></span>
 <span id="todo_28" class="todo">Write section on site isolation as a
-SpectreV1 mitigation <a href="https://github.com/llsoftsec/llsoftsecbook/issues/179"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTQiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iaXNzdWUvcHVsbCByZXF1ZXN0OiBpbnZhbGlkIj48dGl0bGU+aXNzdWUvcHVsbCByZXF1ZXN0OiBpbnZhbGlkPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxNTQiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSIxMDkiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSIxMDkiIHdpZHRoPSI0NSIgaGVpZ2h0PSIyMCIgZmlsbD0iIzlmOWY5ZiIvPjxyZWN0IHdpZHRoPSIxNTQiIGhlaWdodD0iMjAiIGZpbGw9InVybCgjcykiLz48L2c+PGcgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IlZlcmRhbmEsR2VuZXZhLERlamFWdSBTYW5zLHNhbnMtc2VyaWYiIHRleHQtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iIGZvbnQtc2l6ZT0iMTEwIj48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iNTU1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSI5OTAiPmlzc3VlL3B1bGwgcmVxdWVzdDwvdGV4dD48dGV4dCB4PSI1NTUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiNmZmYiIHRleHRMZW5ndGg9Ijk5MCI+aXNzdWUvcHVsbCByZXF1ZXN0PC90ZXh0Pjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIxMzA1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIzNTAiPmludmFsaWQ8L3RleHQ+PHRleHQgeD0iMTMwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMzUwIj5pbnZhbGlkPC90ZXh0PjwvZz48L3N2Zz4=" alt="#179" /></a></span>
+SpectreV1 mitigation <a href="https://github.com/llsoftsec/llsoftsecbook/issues/179"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iaXNzdWUgMTc5OiBvcGVuIj48dGl0bGU+aXNzdWUgMTc5OiBvcGVuPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI2MyIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjYzIiB3aWR0aD0iMzciIGhlaWdodD0iMjAiIGZpbGw9IiMyY2JlNGUiLz48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjMyNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNzk8L3RleHQ+PHRleHQgeD0iMzI1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSI1MzAiPmlzc3VlIDE3OTwvdGV4dD48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iODA1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIyNzAiPm9wZW48L3RleHQ+PHRleHQgeD0iODA1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSIyNzAiPm9wZW48L3RleHQ+PC9nPjwvc3ZnPg==" alt="#179" /></a></span>
 <h2 data-number="3.7" data-section-number="3.7" id="physical-access-side-channel-attacks"><span class="header-section-number">3.7</span> Physical access side-channel
 attacks<a href="#physical-access-side-channel-attacks" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2820" class="suggestedit" title="Suggest an edit"></a></h2>
 <h1 data-number="4" data-section-number="4" id="supply-chain-attacks"><span class="header-section-number">4</span>
@@ -5552,7 +5552,7 @@ applications, and there is no doubt that there will be more such attacks
 in the future. Let us now explore what we can do about these.</p>
 <span class="todo_ref" href="#todo_29"><sup>todo</sup></span>
 <span id="todo_29" class="todo">Explain how these vulnerabilities arise
-and how to mitigate them. <a href="https://github.com/llsoftsec/llsoftsecbook/issues/180"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTQiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iaXNzdWUvcHVsbCByZXF1ZXN0OiBpbnZhbGlkIj48dGl0bGU+aXNzdWUvcHVsbCByZXF1ZXN0OiBpbnZhbGlkPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxNTQiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSIxMDkiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSIxMDkiIHdpZHRoPSI0NSIgaGVpZ2h0PSIyMCIgZmlsbD0iIzlmOWY5ZiIvPjxyZWN0IHdpZHRoPSIxNTQiIGhlaWdodD0iMjAiIGZpbGw9InVybCgjcykiLz48L2c+PGcgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IlZlcmRhbmEsR2VuZXZhLERlamFWdSBTYW5zLHNhbnMtc2VyaWYiIHRleHQtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iIGZvbnQtc2l6ZT0iMTEwIj48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iNTU1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSI5OTAiPmlzc3VlL3B1bGwgcmVxdWVzdDwvdGV4dD48dGV4dCB4PSI1NTUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiNmZmYiIHRleHRMZW5ndGg9Ijk5MCI+aXNzdWUvcHVsbCByZXF1ZXN0PC90ZXh0Pjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIxMzA1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIzNTAiPmludmFsaWQ8L3RleHQ+PHRleHQgeD0iMTMwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMzUwIj5pbnZhbGlkPC90ZXh0PjwvZz48L3N2Zz4=" alt="#180" /></a></span>
+and how to mitigate them. <a href="https://github.com/llsoftsec/llsoftsecbook/issues/180"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iaXNzdWUgMTgwOiBvcGVuIj48dGl0bGU+aXNzdWUgMTgwOiBvcGVuPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI2MyIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjYzIiB3aWR0aD0iMzciIGhlaWdodD0iMjAiIGZpbGw9IiMyY2JlNGUiLz48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjMyNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxODA8L3RleHQ+PHRleHQgeD0iMzI1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSI1MzAiPmlzc3VlIDE4MDwvdGV4dD48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iODA1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIyNzAiPm9wZW48L3RleHQ+PHRleHQgeD0iODA1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSIyNzAiPm9wZW48L3RleHQ+PC9nPjwvc3ZnPg==" alt="#180" /></a></span>
 <h1 data-number="5" data-section-number="5" id="compiler-introduced-security-vulnerabilities"><span class="header-section-number">5</span> Compiler introduced security
 vulnerabilities<a href="#compiler-introduced-security-vulnerabilities" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L2886" class="suggestedit" title="Suggest an edit"></a></h1>
 <p>Security vulnerabilities introduced by compilers have a long history.
@@ -5568,7 +5568,7 @@ compiler.</p>
 undefined behaviour can often work as the programmer expected until some
 optimisation is applied, and perhaps even talk a bit about why compilers
 rely on the absence of undefined behaviour in ways that appear
-aggressive in some occasions. <a href="https://github.com/llsoftsec/llsoftsecbook/issues/202"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTQiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iaXNzdWUvcHVsbCByZXF1ZXN0OiBpbnZhbGlkIj48dGl0bGU+aXNzdWUvcHVsbCByZXF1ZXN0OiBpbnZhbGlkPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxNTQiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSIxMDkiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSIxMDkiIHdpZHRoPSI0NSIgaGVpZ2h0PSIyMCIgZmlsbD0iIzlmOWY5ZiIvPjxyZWN0IHdpZHRoPSIxNTQiIGhlaWdodD0iMjAiIGZpbGw9InVybCgjcykiLz48L2c+PGcgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IlZlcmRhbmEsR2VuZXZhLERlamFWdSBTYW5zLHNhbnMtc2VyaWYiIHRleHQtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iIGZvbnQtc2l6ZT0iMTEwIj48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iNTU1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSI5OTAiPmlzc3VlL3B1bGwgcmVxdWVzdDwvdGV4dD48dGV4dCB4PSI1NTUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiNmZmYiIHRleHRMZW5ndGg9Ijk5MCI+aXNzdWUvcHVsbCByZXF1ZXN0PC90ZXh0Pjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIxMzA1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIzNTAiPmludmFsaWQ8L3RleHQ+PHRleHQgeD0iMTMwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMzUwIj5pbnZhbGlkPC90ZXh0PjwvZz48L3N2Zz4=" alt="#202" /></a></span>
+aggressive in some occasions. <a href="https://github.com/llsoftsec/llsoftsecbook/issues/202"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iaXNzdWUgMjAyOiBvcGVuIj48dGl0bGU+aXNzdWUgMjAyOiBvcGVuPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI2MyIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjYzIiB3aWR0aD0iMzciIGhlaWdodD0iMjAiIGZpbGw9IiMyY2JlNGUiLz48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjMyNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAyMDI8L3RleHQ+PHRleHQgeD0iMzI1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSI1MzAiPmlzc3VlIDIwMjwvdGV4dD48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iODA1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIyNzAiPm9wZW48L3RleHQ+PHRleHQgeD0iODA1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSIyNzAiPm9wZW48L3RleHQ+PC9nPjwvc3ZnPg==" alt="#202" /></a></span>
 <p>When discussing compiler introduced security vulnerabilities,
 undefined behavior plays a major role. Its implications were thoroughly
 discussed by various works such as <span class="citation" data-cites="wang2012undefined">(<a href="#ref-wang2012undefined" role="doc-biblioref">Wang et al. 2012</a>)</span> <span class="citation" data-cites="d2015correctness">(<a href="#ref-d2015correctness" role="doc-biblioref">D’Silva, Payer, and Song 2015</a>)</span> <span class="citation" data-cites="dusilent">(<a href="#ref-dusilent" role="doc-biblioref">Du, Wu, and Mao, n.d.</a>)</span>. By reading the
@@ -5659,7 +5659,7 @@ past with this.</p>
 introduced by undefined behavior, the following piece of code is such an
 example. This was taken from the Linux kernel. Because the compiler sees
 that the pointer hash is never used after this point, it decides to
-delete the memset operation. We call this <span id="__index_entry_182" class="index">dead store optimization (DSO)</span>. This has serious
+delete the memset operation. We call this <span id="__index_entry_183" class="index">dead store optimization (DSO)</span>. This has serious
 security implications because the intention of the programmer was to
 delete the <code>hash</code> information from memory.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">void</span> extract_buf<span class="op">(</span><span class="kw">struct</span> entropy_store <span class="op">*</span>r<span class="op">,</span> __u8 <span class="op">*</span>out<span class="op">)</span> <span class="op">{</span></span>
@@ -5674,7 +5674,7 @@ delete the <code>hash</code> information from memory.</p>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  memset<span class="op">(</span>s<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> count<span class="op">);</span></span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  OPTIMIZER_HIDE_VAR<span class="op">(</span>s<span class="op">);</span></span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>It still uses <span id="__index_entry_183" class="index"><code>memset</code></span> to delete the associated
+<p>It still uses <span id="__index_entry_184" class="index"><code>memset</code></span> to delete the associated
 security sensitive data, but it also tries to eliminate the risk of DSO
 by using the OPTIMIZER_HIDE_VAR macro. This, however, is not enough to
 fully eliminate dead stores <span class="citation" data-cites="MemZeroBarrier">(<a href="#ref-MemZeroBarrier" role="doc-biblioref"><span>“Lib: Memzero_explicit: Use Barrier Instead
@@ -6931,7 +6931,7 @@ Evaluation”</a>, where a good illustration of the concept is shown in
 figure 1 of that paper.</p>
 <span class="todo_ref" href="#todo_33"><sup>todo</sup></span>
 <span id="todo_33" class="todo">Make the above reference to a paper use
-bibtex. <a href="https://github.com/llsoftsec/llsoftsecbook/issues/159"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTQiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iaXNzdWUvcHVsbCByZXF1ZXN0OiBpbnZhbGlkIj48dGl0bGU+aXNzdWUvcHVsbCByZXF1ZXN0OiBpbnZhbGlkPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxNTQiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSIxMDkiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSIxMDkiIHdpZHRoPSI0NSIgaGVpZ2h0PSIyMCIgZmlsbD0iIzlmOWY5ZiIvPjxyZWN0IHdpZHRoPSIxNTQiIGhlaWdodD0iMjAiIGZpbGw9InVybCgjcykiLz48L2c+PGcgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IlZlcmRhbmEsR2VuZXZhLERlamFWdSBTYW5zLHNhbnMtc2VyaWYiIHRleHQtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iIGZvbnQtc2l6ZT0iMTEwIj48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iNTU1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSI5OTAiPmlzc3VlL3B1bGwgcmVxdWVzdDwvdGV4dD48dGV4dCB4PSI1NTUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiNmZmYiIHRleHRMZW5ndGg9Ijk5MCI+aXNzdWUvcHVsbCByZXF1ZXN0PC90ZXh0Pjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIxMzA1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIzNTAiPmludmFsaWQ8L3RleHQ+PHRleHQgeD0iMTMwNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMzUwIj5pbnZhbGlkPC90ZXh0PjwvZz48L3N2Zz4=" alt="#159" /></a></span>
+bibtex. <a href="https://github.com/llsoftsec/llsoftsecbook/issues/159"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iaXNzdWUgMTU5OiBvcGVuIj48dGl0bGU+aXNzdWUgMTU5OiBvcGVuPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI2MyIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjYzIiB3aWR0aD0iMzciIGhlaWdodD0iMjAiIGZpbGw9IiMyY2JlNGUiLz48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjMyNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNTMwIj5pc3N1ZSAxNTk8L3RleHQ+PHRleHQgeD0iMzI1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSI1MzAiPmlzc3VlIDE1OTwvdGV4dD48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iODA1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIyNzAiPm9wZW48L3RleHQ+PHRleHQgeD0iODA1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSIyNzAiPm9wZW48L3RleHQ+PC9nPjwvc3ZnPg==" alt="#159" /></a></span>
 <p>Using glitching methods, there are several common ways of attacking a
 system. For example:</p>
 <ul>
@@ -6986,312 +6986,312 @@ explained better, please do let us know by raising an <a href="https://github.co
 <h1 class="unnumbered" id="index-header">Index</h1>
 <div class="index-entry-list">
 <span class="index-entry"><span class="index-entry-text">AArch64</span>
-<span class="index-entry-locator"> <a href="#__index_entry_77">2.8.1</a></span></span>
+<span class="index-entry-locator"> <a href="#__index_entry_78">2.8.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Address
-Sanitizer (ASan)</span> <span class="index-entry-locator"> <a href="#__index_entry_67">2.8.1</a></span></span>
+Sanitizer (ASan)</span> <span class="index-entry-locator"> <a href="#__index_entry_68">2.8.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Address space
 layout randomization (ASLR)</span> <span class="index-entry-locator"> <a href="#__index_entry_30">2.6.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Application
-Binary Interface (ABI)</span> <span class="index-entry-locator"> <a href="#__index_entry_89">2.8.2</a></span></span>
+Binary Interface (ABI)</span> <span class="index-entry-locator"> <a href="#__index_entry_90">2.8.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">arbitrary code
 execution</span> <span class="index-entry-locator"> <a href="#__index_entry_10">2.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">architectural
-effects</span> <span class="index-entry-locator"> <a href="#__index_entry_175">3.6.1.1</a></span></span>
+effects</span> <span class="index-entry-locator"> <a href="#__index_entry_176">3.6.1.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">arm64e</span>
 <span class="index-entry-locator"> <a href="#__index_entry_39">2.6.2.1.1</a>, <a href="#__index_entry_43">2.6.2.1.3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">ASLR</span>
-<span class="index-entry-locator"> <a href="#__index_entry_153">3.3.2.1</a></span></span>
+<span class="index-entry-locator"> <a href="#__index_entry_154">3.3.2.1</a></span></span>
 <p></p>
 <span class="index-entry"><span class="index-entry-text">backward-edge
 CFI</span> <span class="index-entry-locator"> <a href="#__index_entry_34">2.6.2</a></span></span>
-<span class="index-entry"><span class="index-entry-text">BlueThunder</span> <span class="index-entry-locator"> <a href="#__index_entry_152">3.3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">BlueThunder</span> <span class="index-entry-locator"> <a href="#__index_entry_153">3.3.2.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">bounds check
-elimination</span> <span class="index-entry-locator"> <a href="#__index_entry_95">2.9</a></span></span>
+elimination</span> <span class="index-entry-locator"> <a href="#__index_entry_96">2.9</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Bounds check
-elimination (BCE)</span> <span class="index-entry-locator"> <a href="#__index_entry_96">2.9</a></span></span>
+elimination (BCE)</span> <span class="index-entry-locator"> <a href="#__index_entry_97">2.9</a></span></span>
 <span class="index-entry"><span class="index-entry-text">branch
-predictor</span> <span class="index-entry-locator"> <a href="#__index_entry_144">3.3.1</a></span></span>
+predictor</span> <span class="index-entry-locator"> <a href="#__index_entry_145">3.3.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Branch Target
-Buffer (BTB)</span> <span class="index-entry-locator"> <a href="#__index_entry_157">3.3.2.2</a></span></span>
+Buffer (BTB)</span> <span class="index-entry-locator"> <a href="#__index_entry_158">3.3.2.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Branch Target
-Identification (BTI)</span> <span class="index-entry-locator"> <a href="#__index_entry_58">2.6.2.2.4</a></span></span>
-<span class="index-entry"><span class="index-entry-text">branch target
-predictor</span> <span class="index-entry-locator"> <a href="#__index_entry_148">3.3.1</a></span></span>
+Identification (BTI)</span> <span class="index-entry-locator"> <a href="#__index_entry_59">2.6.2.2.4</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Branch target
-predictor</span> <span class="index-entry-locator"> <a href="#__index_entry_154">3.3.2.2</a></span></span>
-<span class="index-entry"><span class="index-entry-text">BranchScope</span> <span class="index-entry-locator"> <a href="#__index_entry_151">3.3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">BranchShadow</span> <span class="index-entry-locator"> <a href="#__index_entry_156">3.3.2.2</a></span></span>
+predictor</span> <span class="index-entry-locator"> <a href="#__index_entry_155">3.3.2.2</a></span></span>
+<span class="index-entry"><span class="index-entry-text">branch target
+predictor</span> <span class="index-entry-locator"> <a href="#__index_entry_149">3.3.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">BranchScope</span> <span class="index-entry-locator"> <a href="#__index_entry_152">3.3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">BranchShadow</span> <span class="index-entry-locator"> <a href="#__index_entry_157">3.3.2.2</a></span></span>
 <p></p>
-<span class="index-entry"><span class="index-entry-text">C</span> <span class="index-entry-locator"> <a href="#__index_entry_1">2.1</a>, <a href="#__index_entry_3">2.1</a>, <a href="#__index_entry_12">2.3</a>, <a href="#__index_entry_62">2.8</a></span></span>
+<span class="index-entry"><span class="index-entry-text">C</span> <span class="index-entry-locator"> <a href="#__index_entry_1">2.1</a>, <a href="#__index_entry_3">2.1</a>, <a href="#__index_entry_12">2.3</a>, <a href="#__index_entry_63">2.8</a></span></span>
 <span class="index-entry"><span class="index-entry-text">C++</span>
 <span class="index-entry-locator"> <a href="#__index_entry_2">2.1</a>,
 <a href="#__index_entry_4">2.1</a>, <a href="#__index_entry_13">2.3</a>,
-<a href="#__index_entry_25">2.5.3</a>, <a href="#__index_entry_41">2.6.2.1.2</a>, <a href="#__index_entry_63">2.8</a></span></span>
+<a href="#__index_entry_25">2.5.3</a>, <a href="#__index_entry_41">2.6.2.1.2</a>, <a href="#__index_entry_64">2.8</a></span></span>
 <span class="index-entry"><span class="index-entry-text">cache</span>
-<span class="index-entry-locator"> <a href="#__index_entry_105">3.2</a></span></span>
-<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">access time</span> <span class="index-entry-locator"> <a href="#__index_entry_111">3.2.1</a></span></span>
+<span class="index-entry-locator"> <a href="#__index_entry_106">3.2</a></span></span>
+<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">access time</span> <span class="index-entry-locator"> <a href="#__index_entry_112">3.2.1</a></span></span>
 <span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">block</span> <span class="index-entry-locator">
-<a href="#__index_entry_114">3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">direct-mapped</span> <span class="index-entry-locator"> <a href="#__index_entry_123">3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">eviction</span> <span class="index-entry-locator"> <a href="#__index_entry_116">3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">fully-associative</span> <span class="index-entry-locator"> <a href="#__index_entry_121">3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">hit</span> <span class="index-entry-locator">
-<a href="#__index_entry_107">3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">line</span> <span class="index-entry-locator">
 <a href="#__index_entry_115">3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">LRU</span> <span class="index-entry-locator">
-<a href="#__index_entry_118">3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">miss</span> <span class="index-entry-locator">
+<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">direct-mapped</span> <span class="index-entry-locator"> <a href="#__index_entry_124">3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">eviction</span> <span class="index-entry-locator"> <a href="#__index_entry_117">3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">fully-associative</span> <span class="index-entry-locator"> <a href="#__index_entry_122">3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">hit</span> <span class="index-entry-locator">
 <a href="#__index_entry_108">3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">multi-level</span> <span class="index-entry-locator"> <a href="#__index_entry_109">3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">pseudo-LRU replacement policy</span> <span class="index-entry-locator"> <a href="#__index_entry_120">3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">random replacement policy</span> <span class="index-entry-locator"> <a href="#__index_entry_119">3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">replacement policy</span> <span class="index-entry-locator"> <a href="#__index_entry_117">3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">line</span> <span class="index-entry-locator">
+<a href="#__index_entry_116">3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">LRU</span> <span class="index-entry-locator">
+<a href="#__index_entry_119">3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">miss</span> <span class="index-entry-locator">
+<a href="#__index_entry_109">3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">multi-level</span> <span class="index-entry-locator"> <a href="#__index_entry_110">3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">pseudo-LRU replacement policy</span> <span class="index-entry-locator"> <a href="#__index_entry_121">3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">random replacement policy</span> <span class="index-entry-locator"> <a href="#__index_entry_120">3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">replacement policy</span> <span class="index-entry-locator"> <a href="#__index_entry_118">3.2.1</a></span></span>
 <span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">set</span> <span class="index-entry-locator">
-<a href="#__index_entry_124">3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">set-associative</span> <span class="index-entry-locator"> <a href="#__index_entry_122">3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">side-channel</span> <span class="index-entry-locator"> <a href="#__index_entry_125">3.2.2</a></span></span>
+<a href="#__index_entry_125">3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">set-associative</span> <span class="index-entry-locator"> <a href="#__index_entry_123">3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">side-channel</span> <span class="index-entry-locator"> <a href="#__index_entry_126">3.2.2</a></span></span>
 <span class="index-entry"><span class="index-entry-indentation"></span><span class="index-entry-text">size</span> <span class="index-entry-locator">
-<a href="#__index_entry_110">3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">capability</span> <span class="index-entry-locator"> <a href="#__index_entry_90">2.8.2</a></span></span>
+<a href="#__index_entry_111">3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">capability</span> <span class="index-entry-locator"> <a href="#__index_entry_91">2.8.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Clang</span>
-<span class="index-entry-locator"> <a href="#__index_entry_70">2.8.1</a></span></span>
+<span class="index-entry-locator"> <a href="#__index_entry_71">2.8.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">coarse-grained
 CFI</span> <span class="index-entry-locator"> <a href="#__index_entry_35">2.6.2</a></span></span>
-<span class="index-entry"><span class="index-entry-text">Collide+Probe</span> <span class="index-entry-locator"> <a href="#__index_entry_136">3.2.2.3</a></span></span>
+<span class="index-entry"><span class="index-entry-text">Collide+Probe</span> <span class="index-entry-locator"> <a href="#__index_entry_137">3.2.2.3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Common Weakness
 Enumeration (CWE)</span> <span class="index-entry-locator"> <a href="#__index_entry_15">2.4</a></span></span>
 <span class="index-entry"><span class="index-entry-text">conditional
-branch direction predictor</span> <span class="index-entry-locator"> <a href="#__index_entry_145">3.3.1</a>, <a href="#__index_entry_150">3.3.2.1</a></span></span>
+branch direction predictor</span> <span class="index-entry-locator"> <a href="#__index_entry_146">3.3.1</a>, <a href="#__index_entry_151">3.3.2.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">control
-data</span> <span class="index-entry-locator"> <a href="#__index_entry_59">2.7</a></span></span>
+data</span> <span class="index-entry-locator"> <a href="#__index_entry_60">2.7</a></span></span>
 <span class="index-entry"><span class="index-entry-text">control
-dependency</span> <span class="index-entry-locator"> <a href="#__index_entry_166">3.6.1.1</a></span></span>
+dependency</span> <span class="index-entry-locator"> <a href="#__index_entry_167">3.6.1.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Control-flow
 integrity (CFI)</span> <span class="index-entry-locator"> <a href="#__index_entry_32">2.6.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Coroutine
-Frame-Oriented Programming (CFOP)</span> <span class="index-entry-locator"> <a href="#__index_entry_46">2.6.2.1.5</a></span></span>
+Frame-Oriented Programming (CFOP)</span> <span class="index-entry-locator"> <a href="#__index_entry_47">2.6.2.1.5</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Counterfeit
 Object-oriented programming (COOP)</span> <span class="index-entry-locator"> <a href="#__index_entry_24">2.5.3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">covert
-channel</span> <span class="index-entry-locator"> <a href="#__index_entry_99">3</a></span></span>
+channel</span> <span class="index-entry-locator"> <a href="#__index_entry_100">3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">cpu
-multithreading</span> <span class="index-entry-locator"> <a href="#__index_entry_137">3.2.3.2</a></span></span>
+multithreading</span> <span class="index-entry-locator"> <a href="#__index_entry_138">3.2.3.2</a></span></span>
 <p></p>
 <span class="index-entry"><span class="index-entry-text">data
-dependency</span> <span class="index-entry-locator"> <a href="#__index_entry_168">3.6.1.1</a></span></span>
+dependency</span> <span class="index-entry-locator"> <a href="#__index_entry_169">3.6.1.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">data-only
-attacks</span> <span class="index-entry-locator"> <a href="#__index_entry_61">2.7</a></span></span>
+attacks</span> <span class="index-entry-locator"> <a href="#__index_entry_62">2.7</a></span></span>
 <span class="index-entry"><span class="index-entry-text">dead store
-optimization (DSO)</span> <span class="index-entry-locator"> <a href="#__index_entry_182">5</a></span></span>
-<span class="index-entry"><span class="index-entry-text">deoptimization</span> <span class="index-entry-locator"> <a href="#__index_entry_92">2.9</a></span></span>
+optimization (DSO)</span> <span class="index-entry-locator"> <a href="#__index_entry_183">5</a></span></span>
+<span class="index-entry"><span class="index-entry-text">deoptimization</span> <span class="index-entry-locator"> <a href="#__index_entry_93">2.9</a></span></span>
 <span class="index-entry"><span class="index-entry-text">dispatcher
 gadget</span> <span class="index-entry-locator"> <a href="#__index_entry_23">2.5.2</a></span></span>
 <p></p>
 <span class="index-entry"><span class="index-entry-text">equivalence
 class</span> <span class="index-entry-locator"> <a href="#__index_entry_37">2.6.2.1.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">Evict+Reload</span> <span class="index-entry-locator"> <a href="#__index_entry_133">3.2.2.3</a></span></span>
-<span class="index-entry"><span class="index-entry-text">Evict+Time</span> <span class="index-entry-locator"> <a href="#__index_entry_134">3.2.2.3</a></span></span>
+<span class="index-entry"><span class="index-entry-text">Evict+Reload</span> <span class="index-entry-locator"> <a href="#__index_entry_134">3.2.2.3</a></span></span>
+<span class="index-entry"><span class="index-entry-text">Evict+Time</span> <span class="index-entry-locator"> <a href="#__index_entry_135">3.2.2.3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">exploit
 primitive</span> <span class="index-entry-locator"> <a href="#__index_entry_5">2.2</a></span></span>
 <p></p>
 <span class="index-entry"><span class="index-entry-text">faulting
-instructions</span> <span class="index-entry-locator"> <a href="#__index_entry_177">3.6.1.1</a></span></span>
+instructions</span> <span class="index-entry-locator"> <a href="#__index_entry_178">3.6.1.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">fine-grained
 CFI</span> <span class="index-entry-locator"> <a href="#__index_entry_36">2.6.2</a></span></span>
-<span class="index-entry"><span class="index-entry-text">Flush+Flush</span> <span class="index-entry-locator"> <a href="#__index_entry_131">3.2.2.3</a></span></span>
-<span class="index-entry"><span class="index-entry-text">Flush+Prefetch</span> <span class="index-entry-locator"> <a href="#__index_entry_132">3.2.2.3</a></span></span>
-<span class="index-entry"><span class="index-entry-text">Flush+Reload</span> <span class="index-entry-locator"> <a href="#__index_entry_126">3.2.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">Flush+Flush</span> <span class="index-entry-locator"> <a href="#__index_entry_132">3.2.2.3</a></span></span>
+<span class="index-entry"><span class="index-entry-text">Flush+Prefetch</span> <span class="index-entry-locator"> <a href="#__index_entry_133">3.2.2.3</a></span></span>
+<span class="index-entry"><span class="index-entry-text">Flush+Reload</span> <span class="index-entry-locator"> <a href="#__index_entry_127">3.2.2.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">forward-edge
 CFI</span> <span class="index-entry-locator"> <a href="#__index_entry_33">2.6.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">free</span>
-<span class="index-entry-locator"> <a href="#__index_entry_73">2.8.1</a></span></span>
+<span class="index-entry-locator"> <a href="#__index_entry_74">2.8.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">function
 signature</span> <span class="index-entry-locator"> <a href="#__index_entry_38">2.6.2.1.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">fuzzing</span>
-<span class="index-entry-locator"> <a href="#__index_entry_65">2.8.1</a>, <a href="#__index_entry_66">2.8.1</a></span></span>
+<span class="index-entry-locator"> <a href="#__index_entry_66">2.8.1</a>, <a href="#__index_entry_67">2.8.1</a></span></span>
 <p></p>
 <span class="index-entry"><span class="index-entry-text">gadget
 scanner</span> <span class="index-entry-locator"> <a href="#__index_entry_21">2.5.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">gadgets</span>
 <span class="index-entry-locator"> <a href="#__index_entry_17">2.5.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">GCC</span>
-<span class="index-entry-locator"> <a href="#__index_entry_69">2.8.1</a></span></span>
+<span class="index-entry-locator"> <a href="#__index_entry_70">2.8.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Global Offset
-Table(GOT)</span> <span class="index-entry-locator"> <a href="#__index_entry_48">2.6.2.1.5</a></span></span>
+Table(GOT)</span> <span class="index-entry-locator"> <a href="#__index_entry_49">2.6.2.1.5</a></span></span>
 <span class="index-entry"><span class="index-entry-text">GWP-ASan</span>
-<span class="index-entry-locator"> <a href="#__index_entry_84">2.8.1</a></span></span>
+<span class="index-entry-locator"> <a href="#__index_entry_85">2.8.1</a></span></span>
 <p></p>
 <span class="index-entry"><span class="index-entry-text">Hardware-assisted AddressSanitizer
-(HWASAN)</span> <span class="index-entry-locator"> <a href="#__index_entry_76">2.8.1</a></span></span>
+(HWASAN)</span> <span class="index-entry-locator"> <a href="#__index_entry_77">2.8.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">history-based
-prediction</span> <span class="index-entry-locator"> <a href="#__index_entry_147">3.3.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">Hyper-Channel</span> <span class="index-entry-locator"> <a href="#__index_entry_162">3.3.2.3</a></span></span>
+prediction</span> <span class="index-entry-locator"> <a href="#__index_entry_148">3.3.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">Hyper-Channel</span> <span class="index-entry-locator"> <a href="#__index_entry_163">3.3.2.3</a></span></span>
 <p></p>
 <span class="index-entry"><span class="index-entry-text">info
 leak</span> <span class="index-entry-locator"> <a href="#__index_entry_31">2.6.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">instruction
-pipeline</span> <span class="index-entry-locator"> <a href="#__index_entry_141">3.3.1</a></span></span>
+pipeline</span> <span class="index-entry-locator"> <a href="#__index_entry_142">3.3.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">instruction
-trace</span> <span class="index-entry-locator"> <a href="#__index_entry_159">3.3.2.2</a></span></span>
+trace</span> <span class="index-entry-locator"> <a href="#__index_entry_160">3.3.2.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">interactive
 attack</span> <span class="index-entry-locator"> <a href="#__index_entry_8">2.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">intra-object
-overflow</span> <span class="index-entry-locator"> <a href="#__index_entry_88">2.8.2</a></span></span>
+overflow</span> <span class="index-entry-locator"> <a href="#__index_entry_89">2.8.2</a></span></span>
 <p></p>
 <span class="index-entry"><span class="index-entry-text">jump
 table</span> <span class="index-entry-locator"> <a href="#__index_entry_42">2.6.2.1.3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Jump-oriented
 programming (JOP)</span> <span class="index-entry-locator"> <a href="#__index_entry_22">2.5.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">just-in-time
-(JIT) compilers</span> <span class="index-entry-locator"> <a href="#__index_entry_91">2.9</a></span></span>
+(JIT) compilers</span> <span class="index-entry-locator"> <a href="#__index_entry_92">2.9</a></span></span>
 <p></p>
 <span class="index-entry"><span class="index-entry-text">KASAN</span>
-<span class="index-entry-locator"> <a href="#__index_entry_75">2.8.1</a></span></span>
+<span class="index-entry-locator"> <a href="#__index_entry_76">2.8.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">key</span>
-<span class="index-entry-locator"> <a href="#__index_entry_54">2.6.2.2.3</a></span></span>
-<p></p>
-<span class="index-entry"><span class="index-entry-text">last branch
-record</span> <span class="index-entry-locator"> <a href="#__index_entry_158">3.3.2.2</a></span></span>
-<span class="index-entry"><span class="index-entry-text">LeakSanitizer</span> <span class="index-entry-locator"> <a href="#__index_entry_68">2.8.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">locality of
-reference</span> <span class="index-entry-locator"> <a href="#__index_entry_113">3.2.1</a></span></span>
-<p></p>
-<span class="index-entry"><span class="index-entry-text">malloc</span>
-<span class="index-entry-locator"> <a href="#__index_entry_72">2.8.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">measurement
-sequence</span> <span class="index-entry-locator"> <a href="#__index_entry_130">3.2.2.3</a>, <a href="#__index_entry_165">3.3.2.3</a></span></span>
-<span class="index-entry"><span class="index-entry-text">Meltdown</span>
-<span class="index-entry-locator"> <a href="#__index_entry_181">3.6.2</a></span></span>
-<span class="index-entry"><span class="index-entry-text">memory access
-time</span> <span class="index-entry-locator"> <a href="#__index_entry_106">3.2.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">Memory Tagging
-Extension (MTE)</span> <span class="index-entry-locator"> <a href="#__index_entry_80">2.8.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">memory
-vulnerability</span> <span class="index-entry-locator"> <a href="#__index_entry_29">2.6</a></span></span>
-<span class="index-entry"><span class="index-entry-text">MemorySanitizer</span> <span class="index-entry-locator"> <a href="#__index_entry_82">2.8.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">memset</span>
-<span class="index-entry-locator"> <a href="#__index_entry_183">5</a></span></span>
-<span class="index-entry"><span class="index-entry-text">MemTagSanitizer</span> <span class="index-entry-locator"> <a href="#__index_entry_79">2.8.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">micro-architectural</span> <span class="index-entry-locator"> <a href="#__index_entry_103">3</a></span></span>
-<span class="index-entry"><span class="index-entry-text">micro-architectural effects</span> <span class="index-entry-locator"> <a href="#__index_entry_176">3.6.1.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">mis-speculation</span> <span class="index-entry-locator"> <a href="#__index_entry_172">3.6.1.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">modifier</span>
 <span class="index-entry-locator"> <a href="#__index_entry_55">2.6.2.2.3</a></span></span>
 <p></p>
-<span class="index-entry"><span class="index-entry-text">NetSpectre</span> <span class="index-entry-locator"> <a href="#__index_entry_140">3.2.3.3</a></span></span>
+<span class="index-entry"><span class="index-entry-text">last branch
+record</span> <span class="index-entry-locator"> <a href="#__index_entry_159">3.3.2.2</a></span></span>
+<span class="index-entry"><span class="index-entry-text">LeakSanitizer</span> <span class="index-entry-locator"> <a href="#__index_entry_69">2.8.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">locality of
+reference</span> <span class="index-entry-locator"> <a href="#__index_entry_114">3.2.1</a></span></span>
+<p></p>
+<span class="index-entry"><span class="index-entry-text">malloc</span>
+<span class="index-entry-locator"> <a href="#__index_entry_73">2.8.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">measurement
+sequence</span> <span class="index-entry-locator"> <a href="#__index_entry_131">3.2.2.3</a>, <a href="#__index_entry_166">3.3.2.3</a></span></span>
+<span class="index-entry"><span class="index-entry-text">Meltdown</span>
+<span class="index-entry-locator"> <a href="#__index_entry_182">3.6.2</a></span></span>
+<span class="index-entry"><span class="index-entry-text">memory access
+time</span> <span class="index-entry-locator"> <a href="#__index_entry_107">3.2.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">Memory Tagging
+Extension (MTE)</span> <span class="index-entry-locator"> <a href="#__index_entry_81">2.8.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">memory
+vulnerability</span> <span class="index-entry-locator"> <a href="#__index_entry_29">2.6</a></span></span>
+<span class="index-entry"><span class="index-entry-text">MemorySanitizer</span> <span class="index-entry-locator"> <a href="#__index_entry_83">2.8.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">memset</span>
+<span class="index-entry-locator"> <a href="#__index_entry_184">5</a></span></span>
+<span class="index-entry"><span class="index-entry-text">MemTagSanitizer</span> <span class="index-entry-locator"> <a href="#__index_entry_80">2.8.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">micro-architectural</span> <span class="index-entry-locator"> <a href="#__index_entry_104">3</a></span></span>
+<span class="index-entry"><span class="index-entry-text">micro-architectural effects</span> <span class="index-entry-locator"> <a href="#__index_entry_177">3.6.1.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">mis-speculation</span> <span class="index-entry-locator"> <a href="#__index_entry_173">3.6.1.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">modifier</span>
+<span class="index-entry-locator"> <a href="#__index_entry_56">2.6.2.2.3</a></span></span>
+<p></p>
+<span class="index-entry"><span class="index-entry-text">NetSpectre</span> <span class="index-entry-locator"> <a href="#__index_entry_141">3.2.3.3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">non-control
-data attacks</span> <span class="index-entry-locator"> <a href="#__index_entry_60">2.7</a></span></span>
+data attacks</span> <span class="index-entry-locator"> <a href="#__index_entry_61">2.7</a></span></span>
 <span class="index-entry"><span class="index-entry-text">non-interactive
 (one-shot) attack</span> <span class="index-entry-locator"> <a href="#__index_entry_9">2.2</a></span></span>
 <p></p>
 <span class="index-entry"><span class="index-entry-text">on-stack
-replacement (OSR)</span> <span class="index-entry-locator"> <a href="#__index_entry_93">2.9</a></span></span>
+replacement (OSR)</span> <span class="index-entry-locator"> <a href="#__index_entry_94">2.9</a></span></span>
 <span class="index-entry"><span class="index-entry-text">output
-dependency</span> <span class="index-entry-locator"> <a href="#__index_entry_169">3.6.1.1</a></span></span>
+dependency</span> <span class="index-entry-locator"> <a href="#__index_entry_170">3.6.1.1</a></span></span>
 <p></p>
 <span class="index-entry"><span class="index-entry-text">pauthabi</span>
 <span class="index-entry-locator"> <a href="#__index_entry_40">2.6.2.1.1</a>, <a href="#__index_entry_44">2.6.2.1.3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">performance
-counter</span> <span class="index-entry-locator"> <a href="#__index_entry_160">3.3.2.2</a></span></span>
+counter</span> <span class="index-entry-locator"> <a href="#__index_entry_161">3.3.2.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">pipeline</span>
-<span class="index-entry-locator"> <a href="#__index_entry_142">3.3.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">Pointer
-Authentication</span> <span class="index-entry-locator"> <a href="#__index_entry_50">2.6.2.2.3</a></span></span>
-<span class="index-entry"><span class="index-entry-text">Pointer
-Authentication Code (PAC)</span> <span class="index-entry-locator"> <a href="#__index_entry_51">2.6.2.2.3</a></span></span>
-<span class="index-entry"><span class="index-entry-text">pointer
-compression</span> <span class="index-entry-locator"> <a href="#__index_entry_97">2.9</a></span></span>
-<span class="index-entry"><span class="index-entry-text">pointer
-substitution attack</span> <span class="index-entry-locator"> <a href="#__index_entry_56">2.6.2.2.3</a></span></span>
-<span class="index-entry"><span class="index-entry-text">pointer
-substitution attacks</span> <span class="index-entry-locator"> <a href="#__index_entry_57">2.6.2.2.3.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">predict</span>
 <span class="index-entry-locator"> <a href="#__index_entry_143">3.3.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">prediction</span> <span class="index-entry-locator"> <a href="#__index_entry_170">3.6.1.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">Prime+Probe</span> <span class="index-entry-locator"> <a href="#__index_entry_127">3.2.2.2</a></span></span>
+<span class="index-entry"><span class="index-entry-text">Pointer
+Authentication</span> <span class="index-entry-locator"> <a href="#__index_entry_51">2.6.2.2.3</a></span></span>
+<span class="index-entry"><span class="index-entry-text">Pointer
+Authentication Code (PAC)</span> <span class="index-entry-locator"> <a href="#__index_entry_52">2.6.2.2.3</a></span></span>
+<span class="index-entry"><span class="index-entry-text">pointer
+compression</span> <span class="index-entry-locator"> <a href="#__index_entry_98">2.9</a></span></span>
+<span class="index-entry"><span class="index-entry-text">pointer
+substitution attack</span> <span class="index-entry-locator"> <a href="#__index_entry_57">2.6.2.2.3</a></span></span>
+<span class="index-entry"><span class="index-entry-text">pointer
+substitution attacks</span> <span class="index-entry-locator"> <a href="#__index_entry_58">2.6.2.2.3.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">predict</span>
+<span class="index-entry-locator"> <a href="#__index_entry_144">3.3.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">prediction</span> <span class="index-entry-locator"> <a href="#__index_entry_171">3.6.1.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">Prime+Probe</span> <span class="index-entry-locator"> <a href="#__index_entry_128">3.2.2.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">principle of
-locality</span> <span class="index-entry-locator"> <a href="#__index_entry_112">3.2.1</a></span></span>
+locality</span> <span class="index-entry-locator"> <a href="#__index_entry_113">3.2.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Procedure
-Linkage Table (PLT)</span> <span class="index-entry-locator"> <a href="#__index_entry_47">2.6.2.1.5</a></span></span>
+Linkage Table (PLT)</span> <span class="index-entry-locator"> <a href="#__index_entry_48">2.6.2.1.5</a></span></span>
 <p></p>
 <span class="index-entry"><span class="index-entry-text">range
-analysis</span> <span class="index-entry-locator"> <a href="#__index_entry_94">2.9</a></span></span>
+analysis</span> <span class="index-entry-locator"> <a href="#__index_entry_95">2.9</a></span></span>
 <span class="index-entry"><span class="index-entry-text">raw
-pointer</span> <span class="index-entry-locator"> <a href="#__index_entry_53">2.6.2.2.3</a></span></span>
+pointer</span> <span class="index-entry-locator"> <a href="#__index_entry_54">2.6.2.2.3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">read
-primitive</span> <span class="index-entry-locator"> <a href="#__index_entry_7">2.2</a>, <a href="#__index_entry_86">2.8.2</a></span></span>
+primitive</span> <span class="index-entry-locator"> <a href="#__index_entry_7">2.2</a>, <a href="#__index_entry_87">2.8.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">redzone</span>
-<span class="index-entry-locator"> <a href="#__index_entry_74">2.8.1</a></span></span>
+<span class="index-entry-locator"> <a href="#__index_entry_75">2.8.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">register</span>
 <span class="index-entry-locator"> <a href="#__index_entry_28">2.6</a></span></span>
-<span class="index-entry"><span class="index-entry-text">Reload+Refresh</span> <span class="index-entry-locator"> <a href="#__index_entry_135">3.2.2.3</a></span></span>
+<span class="index-entry"><span class="index-entry-text">Reload+Refresh</span> <span class="index-entry-locator"> <a href="#__index_entry_136">3.2.2.3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">reset
-sequence</span> <span class="index-entry-locator"> <a href="#__index_entry_128">3.2.2.3</a>, <a href="#__index_entry_163">3.3.2.3</a></span></span>
+sequence</span> <span class="index-entry-locator"> <a href="#__index_entry_129">3.2.2.3</a>, <a href="#__index_entry_164">3.3.2.3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">return
 address</span> <span class="index-entry-locator"> <a href="#__index_entry_45">2.6.2.1.4</a></span></span>
 <span class="index-entry"><span class="index-entry-text">return address
-predictor</span> <span class="index-entry-locator"> <a href="#__index_entry_149">3.3.1</a>, <a href="#__index_entry_161">3.3.2.3</a></span></span>
+predictor</span> <span class="index-entry-locator"> <a href="#__index_entry_150">3.3.1</a>, <a href="#__index_entry_162">3.3.2.3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">return-oriented
 programming (ROP)</span> <span class="index-entry-locator"> <a href="#__index_entry_18">2.5.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">ROP
 chain</span> <span class="index-entry-locator"> <a href="#__index_entry_19">2.5.1</a></span></span>
 <p></p>
-<span class="index-entry"><span class="index-entry-text">sanitizers</span> <span class="index-entry-locator"> <a href="#__index_entry_64">2.8.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">sanitizers</span> <span class="index-entry-locator"> <a href="#__index_entry_65">2.8.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">SBPA</span>
-<span class="index-entry-locator"> <a href="#__index_entry_155">3.3.2.2</a></span></span>
+<span class="index-entry-locator"> <a href="#__index_entry_156">3.3.2.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">shadow
-memory</span> <span class="index-entry-locator"> <a href="#__index_entry_71">2.8.1</a></span></span>
+memory</span> <span class="index-entry-locator"> <a href="#__index_entry_72">2.8.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">shadow
-stack</span> <span class="index-entry-locator"> <a href="#__index_entry_49">2.6.2.2.2</a></span></span>
+stack</span> <span class="index-entry-locator"> <a href="#__index_entry_46">2.6.2.1.4</a>, <a href="#__index_entry_50">2.6.2.2.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">shellcode</span> <span class="index-entry-locator"> <a href="#__index_entry_11">2.3</a>, <a href="#__index_entry_16">2.5</a></span></span>
-<span class="index-entry"><span class="index-entry-text">side-channel</span> <span class="index-entry-locator"> <a href="#__index_entry_100">3</a></span></span>
+<span class="index-entry"><span class="index-entry-text">side-channel</span> <span class="index-entry-locator"> <a href="#__index_entry_101">3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">signed
-pointer</span> <span class="index-entry-locator"> <a href="#__index_entry_52">2.6.2.2.3</a></span></span>
+pointer</span> <span class="index-entry-locator"> <a href="#__index_entry_53">2.6.2.2.3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">sigreturn-oriented programming (SROP)</span>
 <span class="index-entry-locator"> <a href="#__index_entry_27">2.5.4</a></span></span>
 <span class="index-entry"><span class="index-entry-text">site
-isolation</span> <span class="index-entry-locator"> <a href="#__index_entry_138">3.2.3.2</a></span></span>
+isolation</span> <span class="index-entry-locator"> <a href="#__index_entry_139">3.2.3.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">spatial memory
-safety</span> <span class="index-entry-locator"> <a href="#__index_entry_85">2.8.2</a></span></span>
+safety</span> <span class="index-entry-locator"> <a href="#__index_entry_86">2.8.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Spectre</span>
-<span class="index-entry-locator"> <a href="#__index_entry_139">3.2.3.3</a>, <a href="#__index_entry_180">3.6.2</a></span></span>
-<span class="index-entry"><span class="index-entry-text">speculation</span> <span class="index-entry-locator"> <a href="#__index_entry_171">3.6.1.1</a></span></span>
+<span class="index-entry-locator"> <a href="#__index_entry_140">3.2.3.3</a>, <a href="#__index_entry_181">3.6.2</a></span></span>
+<span class="index-entry"><span class="index-entry-text">speculation</span> <span class="index-entry-locator"> <a href="#__index_entry_172">3.6.1.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">spy</span>
-<span class="index-entry-locator"> <a href="#__index_entry_102">3</a></span></span>
+<span class="index-entry-locator"> <a href="#__index_entry_103">3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">stack
 pivoting</span> <span class="index-entry-locator"> <a href="#__index_entry_20">2.5.1</a></span></span>
 <p></p>
 <span class="index-entry"><span class="index-entry-text">taken
-branch</span> <span class="index-entry-locator"> <a href="#__index_entry_146">3.3.1</a></span></span>
-<span class="index-entry"><span class="index-entry-text">ThreadSanitizer</span> <span class="index-entry-locator"> <a href="#__index_entry_83">2.8.1</a></span></span>
+branch</span> <span class="index-entry-locator"> <a href="#__index_entry_147">3.3.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">ThreadSanitizer</span> <span class="index-entry-locator"> <a href="#__index_entry_84">2.8.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">timing
-attacks</span> <span class="index-entry-locator"> <a href="#__index_entry_104">3.1</a></span></span>
+attacks</span> <span class="index-entry-locator"> <a href="#__index_entry_105">3.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Top-Byte Ignore
-(TBI)</span> <span class="index-entry-locator"> <a href="#__index_entry_78">2.8.1</a></span></span>
+(TBI)</span> <span class="index-entry-locator"> <a href="#__index_entry_79">2.8.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">transient
-execution attacks</span> <span class="index-entry-locator"> <a href="#__index_entry_179">3.6.2</a></span></span>
+execution attacks</span> <span class="index-entry-locator"> <a href="#__index_entry_180">3.6.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">transient
-instructions</span> <span class="index-entry-locator"> <a href="#__index_entry_173">3.6.1.1</a>, <a href="#__index_entry_178">3.6.1.1</a></span></span>
+instructions</span> <span class="index-entry-locator"> <a href="#__index_entry_174">3.6.1.1</a>, <a href="#__index_entry_179">3.6.1.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">trigger
-sequence</span> <span class="index-entry-locator"> <a href="#__index_entry_129">3.2.2.3</a>, <a href="#__index_entry_164">3.3.2.3</a></span></span>
+sequence</span> <span class="index-entry-locator"> <a href="#__index_entry_130">3.2.2.3</a>, <a href="#__index_entry_165">3.3.2.3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">true data
-dependency</span> <span class="index-entry-locator"> <a href="#__index_entry_167">3.6.1.1</a></span></span>
+dependency</span> <span class="index-entry-locator"> <a href="#__index_entry_168">3.6.1.1</a></span></span>
 <p></p>
-<span class="index-entry"><span class="index-entry-text">UndefinedBehaviorSanitizer (UBSan)</span> <span class="index-entry-locator"> <a href="#__index_entry_81">2.8.1</a></span></span>
+<span class="index-entry"><span class="index-entry-text">UndefinedBehaviorSanitizer (UBSan)</span> <span class="index-entry-locator"> <a href="#__index_entry_82">2.8.1</a></span></span>
 <span class="index-entry"><span class="index-entry-text">Use after free
 (UaF)</span> <span class="index-entry-locator"> <a href="#__index_entry_14">2.4</a></span></span>
 <p></p>
 <span class="index-entry"><span class="index-entry-text">vfgadgets</span> <span class="index-entry-locator"> <a href="#__index_entry_26">2.5.3</a></span></span>
 <span class="index-entry"><span class="index-entry-text">victim</span>
-<span class="index-entry-locator"> <a href="#__index_entry_101">3</a></span></span>
+<span class="index-entry-locator"> <a href="#__index_entry_102">3</a></span></span>
 <p></p>
 <span class="index-entry"><span class="index-entry-text">W^X</span>
-<span class="index-entry-locator"> <a href="#__index_entry_98">2.9</a></span></span>
+<span class="index-entry-locator"> <a href="#__index_entry_99">2.9</a></span></span>
 <span class="index-entry"><span class="index-entry-text">write
-primitive</span> <span class="index-entry-locator"> <a href="#__index_entry_6">2.2</a>, <a href="#__index_entry_87">2.8.2</a></span></span>
+primitive</span> <span class="index-entry-locator"> <a href="#__index_entry_6">2.2</a>, <a href="#__index_entry_88">2.8.2</a></span></span>
 <span class="index-entry"><span class="index-entry-text">wrong-path
-instructions</span> <span class="index-entry-locator"> <a href="#__index_entry_174">3.6.1.1</a></span></span>
+instructions</span> <span class="index-entry-locator"> <a href="#__index_entry_175">3.6.1.1</a></span></span>
 </div>
 <h1 class="unnumbered" data-section-number="10" id="references">References<a href="#references" class="selflink"></a><a href="https://github.com/llsoftsec/llsoftsecbook/edit/main/book.md#L3482" class="suggestedit" title="Suggest an edit"></a></h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">

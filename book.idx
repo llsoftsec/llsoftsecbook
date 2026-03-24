@@ -43,6 +43,7 @@
 \indexentry{arm64e|hyperpage}{25}
 \indexentry{pauthabi|hyperpage}{25}
 \indexentry{return address|hyperpage}{27}
+\indexentry{shadow stack|hyperpage}{27}
 \indexentry{Coroutine Frame-Oriented Programming (CFOP)|hyperpage}{28}
 \indexentry{Procedure Linkage Table (PLT)|hyperpage}{28}
 \indexentry{Global Offset Table(GOT)|hyperpage}{28}

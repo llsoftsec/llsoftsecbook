@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-220-g97004b7" )
+          , ( "VERSION" , MetaString "0-221-g283a066" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -16509,13 +16509,9 @@ Pandoc
       , Str "with."
       ]
   , Para
-      [ Str "[Shadow"
-      , Space
-      , Str "stack]]{.index"
-      , Space
-      , Str "entry="
-      , Quoted DoubleQuote [ Str "shadow" , Space , Str "stack" ]
-      , Str "}"
+      [ Span
+          ( "" , [ "index" ] , [ ( "entry" , "shadow stack" ) ] )
+          [ Str "Shadow" , Space , Str "stack" ]
       , Space
       , Str "approaches"
       , Space

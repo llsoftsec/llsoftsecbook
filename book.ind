@@ -188,7 +188,7 @@
   \item sanitizers, \hyperpage{35}
   \item SBPA, \hyperpage{51}
   \item shadow memory, \hyperpage{35}
-  \item shadow stack, \hyperpage{29}
+  \item shadow stack, \hyperpage{27}, \hyperpage{29}
   \item shellcode, \hyperpage{12}, \hyperpage{16}
   \item side-channel, \hyperpage{43}
   \item signed pointer, \hyperpage{30}
