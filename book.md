@@ -1777,7 +1777,7 @@ application with the `-fsanitize=hwaddress` flag.
 step further and uses the Armv8.5-A [[Memory Tagging Extension
 (MTE)]{.index}](https://developer.arm.com/documentation/102925/0100). With MTE,
 the tag checking is done automatically by hardware, and an exception is raised
-on mismatch. MTE's granule size is 16 bits, whereas tags are 4-bit.
+on mismatch. MTE's granule size is 16 bytes, whereas tags are 4-bit.
 [Consider adding a whole section on MTE and its applications [169]{.issue}]{.todo}
 
 [[UndefinedBehaviorSanitizer
