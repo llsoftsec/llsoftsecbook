@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2026.3.24)  24 MAR 2026 15:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2026.10.6)  6 OCT 2026 15:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1733,7 +1733,7 @@ ri10.pfb></texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></texlive/2
 /type1/public/lm/lmtko10.pfb></texlive/2023/texmf-dist/fonts/type1/public/lm/lm
 tt10.pfb></texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></texlive/20
 23/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on build/book.pdf (83 pages, 1008560 bytes).
+Output written on build/book.pdf (83 pages, 1008551 bytes).
 PDF statistics:
  2083 PDF objects out of 2487 (max. 8388607)
  1900 compressed objects within 19 object streams

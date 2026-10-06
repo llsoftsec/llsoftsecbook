@@ -5,7 +5,7 @@ Pandoc
           [ ( "SPDX-License-Identifier"
             , MetaInlines [ Str "CC-BY-4.0" ]
             )
-          , ( "VERSION" , MetaString "0-221-g283a066" )
+          , ( "VERSION" , MetaString "0-223-g2f0a884" )
           , ( "bibliography"
             , MetaList [ MetaInlines [ Str "book.bib" ] ]
             )
@@ -24278,7 +24278,7 @@ Pandoc
       , Space
       , Str "16"
       , Space
-      , Str "bits,"
+      , Str "bytes,"
       , Space
       , Str "whereas"
       , Space
